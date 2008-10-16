@@ -1,0 +1,7 @@
+; $Id$
+name = "Cover and crop action"
+description = "Scales a image so that it covers a specified width and height and then crops it"
+package = ImageCache
+dependencies[] = imagecache
+version = 0.1
+core = 6.x
