@@ -1,0 +1,148 @@
+<?php
+// $Id: opensearchplugin.module,v 1.2.2.1.2.2 2008/02/16 19:49:04 robloach Exp $
+
+/**
+* Display help and module information
+* @param section which section of the site we're displaying help
+* @return help text for section
+*/
+function opensearchplugin_help($path, $arg) {
+  $output = '';
+  switch ($path) {
+    case "admin/help#opensearchplugin":
+    case 'admin/settings/opensearchplugin':
+      $output .= '<p>'. t("OpenSearch provides browser search integration via the OpenSearch plugin protocal.") .'</p>';
+      break;
+  }
+  return $output;
+} // function opensearchplugin_help
+
+/**
+ * Implementation of hook_init().
+ */ 
+function opensearchplugin_init() {
+  drupal_add_link(array(
+    'rel' => 'search',
+    'type' => 'application/opensearchdescription+xml',
+    'href' => url('opensearch.xml', array('absolute' => TRUE)),
+    'title' => variable_get('site_name', 'Drupal'),
+  ));
+}
+
+/*
+ * Implementation of hook_menu().
+ */ 
+function opensearchplugin_menu() {
+  $items = array();
+  $items['opensearch.xml'] = array(
+    'title' => 'OpenSearch Plugin',
+    'page callback' => 'opensearchplugin_output',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK
+  );
+  $items['admin/settings/opensearchplugin'] = array(
+    'title' => 'OpenSearch Plugin',
+    'description' => t('Allows cusomization of the OpenSearch Plugin.'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('opensearchplugin_admin'),
+    'access arguments' => array('administer site configuration'),
+    'type' => MENU_NORMAL_ITEM
+  );
+  return $items;
+}
+
+/**
+ * The administration settings for OpenSearch Plugin
+ */
+function opensearchplugin_admin() {
+  $form = array();
+  // Image Settings
+  $form['image'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Image Settings'),
+    '#collapsible' => true,
+    '#collapsed' => false,
+  );
+  $form['image']['opensearchplugin_image'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Image'),
+    '#default_value' => variable_get('opensearchplugin_image', ''),
+    '#description' => t('The icon to associate with the OpenSearch plugin. It is recommended you use a <a href="@dataurischeme">Data URI Scheme</a>. If left blank, will reference the favicon used by your theme.'),
+  );
+  $form['image']['opensearchplugin_image_width'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Width'),
+    '#default_value' => variable_get('opensearchplugin_image_width', 16),
+    '#description' => t('The width of the image.'),
+  );
+  $form['image']['opensearchplugin_image_height'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Height'),
+    '#default_value' => variable_get('opensearchplugin_image_height', 16),
+    '#description' => t('The height of the image.'),
+  );
+  return system_settings_form($form);
+}
+
+/*
+ * Outputs the definition of the OpenSearch plugin
+ */
+function opensearchplugin_output() {
+  // Farm the variables
+  $shortname = variable_get('site_name', 'Drupal');
+  $longname = variable_get('site_name', 'Drupal');
+  $description = variable_get('site_slogan', '');
+  $tags = ''; // associated meta tags
+  $contact = ''; // contact email address
+  $htmlsearch = url("search/node/", array('absolute' => TRUE)); // search query
+  $language = '*'; // website language
+  $adultcontent = 'false'; // if website contains adult material
+  $syndicationright = 'open';  // open, limited, private or closed
+  $attribution = ''; // copyright information
+  $developer = ''; // who developed the website
+  $searchform = url('search', array('absolute' => TRUE)); // search page url
+  $icon = variable_get('opensearchplugin_image', '');
+  $iconwidth = variable_get('opensearchplugin_image_width', 16);
+  $iconheight = variable_get('opensearchplugin_image_height', 16);
+  
+  if (empty($icon)) {
+    theme(); // prepare the theme
+    $icon = theme_get_setting('favicon'); // the icon to use
+    if (!empty($icon)) {
+      global $base_url;
+      $url = parse_url($base_url);
+      $icon = $url['scheme'] .'://'. $url['host'] . $icon;
+    }
+  }
+  // Check if the icon is choosen
+  if (!empty($icon)) {
+    $iconwidth = empty($iconwidth) ? '' : " width=\"$iconwidth\"";
+    $iconheight = empty($iconheight) ? '' : " height=\"$iconheight\"";
+    $icon = '<Image'. $iconwidth . $iconheight .'>'. $icon .'</Image>';
+  }
+  
+  // Output specification based on
+  // http://www.opensearch.org/Specifications/OpenSearch/1.1
+  $output = '<?xml version="1.0" encoding="UTF-8"?'.">
+ <OpenSearchDescription xmlns=\"http://a9.com/-/spec/opensearch/1.1/\">
+   <ShortName>$shortname</ShortName>
+   <Description>$description</Description>
+   <Tags>$tags</Tags>
+   <Contact>$contact</Contact>
+   <Url type=\"text/html\" method=\"get\" template=\"$htmlsearch{searchTerms}\"/>
+   <SearchForm>$searchform</SearchForm>
+   <LongName>$longname</LongName>
+   $icon
+   <Developer>$developer</Developer>
+   <Attribution>$attribution</Attribution>
+   <SyndicationRight>$syndicationright</SyndicationRight>
+   <AdultContent>$adultcontent</AdultContent>
+   <Language>$language</Language>
+   <OutputEncoding>UTF-8</OutputEncoding>
+   <InputEncoding>UTF-8</InputEncoding>
+ </OpenSearchDescription>";
+  drupal_set_header('Content-Type: text/xml');
+  echo $output;
+  module_invoke_all('exit');
+  exit;
+}

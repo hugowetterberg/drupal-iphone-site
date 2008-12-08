@@ -1,0 +1,12 @@
+; $Id: opensearchplugin.info,v 1.1.4.2 2008/02/16 19:49:04 robloach Exp $
+name = OpenSearch Plugin
+description = Provides browser search integration via the OpenSearch plugin protocal.
+dependencies[] = search
+core = 6.x
+
+; Information added by drupal.org packaging script on 2008-02-16
+version = "6.x-1.1"
+core = "6.x"
+project = "opensearchplugin"
+datestamp = "1203192009"
+
