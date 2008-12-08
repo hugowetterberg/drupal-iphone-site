@@ -1,0 +1,213 @@
+/* Reset link properties and then override them with !important */
+#ui-datepicker-div a, .ui-datepicker-inline a {
+	cursor: pointer;
+	margin: 0;
+	padding: 0;
+	background-color: #fff;
+	color: #000;
+}
+#ui-datepicker-div .ui-datepicker-clear a, 
+#ui-datepicker-div .ui-datepicker-prev a,
+#ui-datepicker-div .ui-datepicker-close a, 
+#ui-datepicker-div .ui-datepicker-next a,
+#ui-datepicker-div .ui-datepicker-current a, 
+#ui-datepicker-div .ui-datepicker-days-cell-over a {
+  background-color:#eee;
+}
+
+/* Main Style Sheet for jQuery ui-datepicker */
+#ui-datepicker-div, .ui-datepicker-inline {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	padding: 0;
+	margin: 0;
+	background-color: #fff;
+}
+#ui-datepicker-div {
+	display: none;
+	border: 1px solid #999;
+	z-index: 10; /*must have*/
+}
+#ui-datepicker-div table,
+#ui-datepicker-div td, 
+#ui-datepicker-div th, 
+#ui-datepicker-div td a, 
+#ui-datepicker-div th a, 
+.ui-datepicker-inline a {
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+}
+/* Sort of a drop-shadow effect, can't do it by creating extra divs so borders are the only alternative. */
+#ui-datepicker-div {
+  border-right:3px #ddd ridge;
+	border-bottom:3px #ddd ridge;
+	border-left:1px #ddd solid;
+	border-top:1px #ddd solid;
+} 
+
+.ui-datepicker-control, 
+.ui-datepicker-links, 
+.ui-datepicker-header, 
+.ui-datepicker {
+	width:185px;
+}
+.ui-datepicker-inline {
+	float: left;
+	display: block;
+	border: 0;
+}
+.ui-datepicker-dialog {
+	padding: 5px !important;
+	border: 4px ridge #ddd !important;
+}
+button.ui-datepicker-trigger {
+	width: 25px;
+}
+img.ui-datepicker-trigger {
+	margin: 2px;
+	vertical-align: middle;
+}
+.ui-datepicker-month-cell {
+	float: left;
+	width: 185px;
+	padding: 2px;
+	background-color: #ddd;
+	color: #000;
+}
+* html .ui-datepicker-month-cell {
+	width: 185px;
+}
+.ui-datepicker-control, 
+.ui-datepicker-links, 
+.ui-datepicker-header, 
+.ui-datepicker {
+	clear: both;
+	float: left;
+	color: #000;
+}
+.ui-datepicker-control, 
+.ui-datepicker-header {
+	background-color: #eee;
+}
+.ui-datepicker-links {
+	background-color: #fff;
+}
+.ui-datepicker-control, 
+.ui-datepicker-links {
+	font-size: 80%;
+	letter-spacing: 1px;
+	background-color: #eee;
+}
+.ui-datepicker-links label { /* disabled links */
+	padding: 2px 5px;
+	color: #666;
+}
+.ui-datepicker-clear, 
+.ui-datepicker-prev {
+	float: left;
+	width: 35px;
+}
+.ui-datepicker-current {
+	float: left;
+	width: 113px;
+	text-align: center;
+}
+.ui-datepicker-close, .ui-datepicker-next {
+	float: right;
+	width: 35px;
+}
+
+.ui-datepicker-header {
+	background-color: #ddd;
+	text-align: center;
+}
+.ui-datepicker-header select {
+	background-color: #fff;
+	color: #000;
+	border: 0px;
+}
+.ui-datepicker {
+	background-color: #fff;
+	text-align: center;
+	font-size: 100%;
+}
+.ui-datepicker a {
+	display: block;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+.ui-datepicker .ui-datepicker-title-row {
+	background-color: #eee;
+}
+.ui-datepicker .ui-datepicker-days-row {
+	background-color: #fff;
+	color: #666;
+}
+.ui-datepicker .ui-datepicker-days-cell {
+	color: #000;
+	border: 1px solid #fff;
+}
+#ui-datepicker .ui-datepicker-days-cell a{
+	display: block;
+}
+.ui-datepicker .ui-datepicker-week-end-cell {
+	background-color: #fff;
+}
+.ui-datepicker .ui-datepicker-title-row .ui-datepicker-week-end-cell {
+	background-color: #eee;
+}
+.ui-datepicker .ui-datepicker-days-cell-over {
+	background-color: #fff;
+}
+.ui-datepicker .ui-datepicker-unselectable {
+	color: #333;
+}
+.ui-datepicker-today {
+	background-color: #eee !important;
+}
+.ui-datepicker-currentDay {
+	background-color: #ddd !important;
+}
+
+/* ________ CALENDAR LINKS _______
+
+
+.ui-datepicker-inline .ui-datepicker-links a {
+	padding: 0 5px !important;
+}
+.ui-datepicker-control a, .ui-datepicker-links a {
+	padding: 2px 5px !important;
+	color: #333 !important;
+}
+.ui-datepicker-title-row a {
+	color: #333 !important;
+}
+.ui-datepicker-control a:hover {
+	background-color: #eee !important;
+	color: #333 !important;
+}
+.ui-datepicker-links a:hover, .ui-datepicker-title-row a:hover {
+	background-color: #eee !important;
+	color: #333 !important;
+}
+
+/* ___________ IE6 IFRAME FIX ________ */
+
+.ui-datepicker-cover {
+    display: none; /*sorry for IE5*/
+    display/**/: block; /*sorry for IE5*/
+    position: absolute; /*must have*/
+    z-index: -1; /*must have*/
+    filter: mask(); /*must have*/
+    top: -4px; /*must have*/
+    left: -4px; /*must have*/
+    width: 185px; /*must have to match width and borders*/
+    height: 200px; /*must have to match maximum height*/
+}
+
+.ui-datepicker-one-month {
+  border:1px solid #333;
+}

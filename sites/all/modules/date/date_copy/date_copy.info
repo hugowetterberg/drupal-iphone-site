@@ -1,0 +1,13 @@
+; $Id: date_copy.info,v 1.2 2008/02/18 19:32:28 karens Exp $
+name = Date Copy
+description = Import and export CCK date data.
+dependencies[] = content
+dependencies[] = date
+package = Date/Time
+core = 6.x
+; Information added by drupal.org packaging script on 2008-12-02
+version = "6.x-2.0-rc6"
+core = "6.x"
+project = "date"
+datestamp = "1228247410"
+

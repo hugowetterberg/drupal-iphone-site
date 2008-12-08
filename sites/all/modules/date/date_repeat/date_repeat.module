@@ -1,0 +1,286 @@
+<?php
+// $Id: date_repeat.module,v 1.30.4.7 2008/11/21 16:27:35 karens Exp $
+/**
+ * @file
+ *
+ * This module creates a form element that allows users to select
+ * repeat rules for a date, and reworks the result into an iCal
+ * RRULE string that can be stored in the database.
+ *
+ * The module also parses iCal RRULEs to create an array of dates
+ * that meet their criteria.
+ *
+ * Other modules can use this API to add self-validating form elements
+ * to their dates, and identify dates that meet the RRULE criteria.
+ *
+ */
+/**
+ * Implementation of hook_elements().
+ */
+function date_repeat_elements() {
+  $type['date_repeat_rrule'] = array(
+    '#input' => TRUE,
+    '#process' => array('date_repeat_rrule_process'),
+    '#element_validate' => array('date_repeat_rrule_validate'),
+  );
+  return $type;
+}
+
+function date_repeat_theme() {
+  return array(
+    'date_repeat' => array('arguments' => array('element' => NULL)),
+    'date_repeat_current_exceptions' => array('arguments' => array('element' => NULL)),
+  );
+}
+
+/**
+ * Helper function for FREQ options.
+ */
+function FREQ_options() {
+  return array(
+    'NONE' => t('-- Period'),
+    'DAILY' => t('Day(s)'),
+    'WEEKLY' => t('Week(s)'),
+    'MONTHLY' => t('Month(s)'),
+    'YEARLY' => t('Year(s)'),
+  );
+}
+
+function INTERVAL_options() {
+  $options = array(
+    0 => t('-- Frequency'),
+    1 => t('Every'),
+  );
+  for ($i = 2; $i < 367; $i++) {
+    $options[$i] = t('Every @number', array('@number' => $i));
+  }
+  return $options;
+}
+
+/**
+ * Helper function for FREQ options.
+ *
+ * Translated and untranslated arrays of the iCal day of week names.
+ * We need the untranslated values for date_modify(), translated
+ * values when displayed to user.
+ */
+function date_repeat_dow_day_options($translated = TRUE) {
+  return array(
+    'SU' => $translated ? t('Sunday') : 'Sunday',
+    'MO' => $translated ? t('Monday') : 'Monday',
+    'TU' => $translated ? t('Tuesday') : 'Tuesday',
+    'WE' => $translated ? t('Wednesday') : 'Wednesday',
+    'TH' => $translated ? t('Thursday') : 'Thursday',
+    'FR' => $translated ? t('Friday') : 'Friday',
+    'SA' => $translated ? t('Saturday') : 'Saturday',
+  );
+}
+
+function date_repeat_dow_day_options_ordered($week_start) {
+  $unordered = date_repeat_dow_day_options(FALSE);
+  if (variable_get('date_first_day', 1) > 0) {
+    for ($i = 1; $i <= variable_get('date_first_day', 1); $i++) {
+      $last = array_shift($weekdays);
+      array_push($weekdays, $last);
+    }
+  }
+  return $weekdays;
+}
+
+/**
+ * Helper function for BYDAY options.
+ */
+function date_repeat_dow_count_options() {
+  return array(
+    '' => t('Every'),
+    '1' => t('First'),
+    '2' => t('Second'),
+    '3' => t('Third'),
+    '4' => t('Fourth'),
+    '5' => t('Fifth'),
+    '-1' => t('Last'),
+    '-2' => t('Next to last'),
+    '-3' => t('Second from last'),
+    '-4' => t('Third from last'),
+    '-5' => t('Fourth from last')
+  );
+}
+
+/**
+ * Helper function for BYDAY options.
+ *
+ * Creates options like -1SU and 2TU
+ */
+function date_repeat_dow_options() {
+  $options = array();
+  foreach (date_repeat_dow_count_options() as $count_key => $count_value) {
+    foreach (date_repeat_dow_day_options() as $dow_key => $dow_value) {
+      $options[$count_key . $dow_key] = $count_value .' '. $dow_value;
+    }
+  }
+  return $options;
+}
+
+/**
+ * Translate a day of week position to the iCal day name.
+ *
+ * Used with date_format($date, 'w') or get_variable('date_first_day'),
+ * which return 0 for Sunday, 1 for Monday, etc.
+ *
+ * dow 2 becomes 'TU', dow 3 becomes 'WE', and so on.
+ */
+function date_repeat_dow2day($dow) {
+  $days_of_week = array_keys(date_repeat_dow_day_options(FALSE));
+  return $days_of_week[$dow];
+}
+
+/**
+ * Shift the array of iCal day names into the right order
+ * for a specific week start day.
+ */
+function date_repeat_days_ordered($week_start_day) {
+  $days = array_flip(array_keys(date_repeat_dow_day_options(FALSE)));
+  $start_position = $days[$week_start_day];
+  $keys = array_flip($days);
+  if ($start_position > 0) {
+    for ($i = 1; $i <= $start_position; $i++) {
+      $last = array_shift($keys);
+      array_push($keys, $last);
+    }
+  }
+  return $keys;
+}
+
+/**
+ * Build a description of an iCal rule.
+ *
+ * Constructs a human-readable description of the rule.
+ */
+function date_repeat_rrule_description($rrule, $start_date, $format = 'D M d Y') {
+  // Empty or invalid value.
+  if (empty($rrule) || !strstr($rrule, 'RRULE')) {
+    return;
+  }
+  
+  require_once('./'. drupal_get_path('module', 'date_api') .'/date_api_ical.inc');
+  require_once('./'. drupal_get_path('module', 'date_repeat') .'/date_repeat_calc.inc');
+
+  $parts = date_repeat_split_rrule($rrule);
+  $exceptions = $parts[1];
+  $rrule = $parts[0];
+  $description = array(t('Repeats') .' ');
+  $interval = INTERVAL_options();
+  switch ($rrule['FREQ']) {
+    case 'WEEKLY':
+      $description[] = format_plural($rrule['INTERVAL'], 'every week', 'every @count weeks') .' ';
+      break;
+    case 'MONTHLY':
+      if (!empty($rrule['BYMONTH'])) {
+        $description[] = format_plural($rrule['INTERVAL'], 'every ', 'every @count') .' '; 
+      }
+      else {
+        $description[] = format_plural($rrule['INTERVAL'], 'every month', 'every @count months') .' ';
+      }
+      break;
+    case 'YEARLY':
+      $description[] = format_plural($rrule['INTERVAL'], 'every year', 'every @count years') .' ';
+      break;
+    default:
+      if (!empty($rrule['BYDAY'])) {
+        $description[] = format_plural($rrule['INTERVAL'], 'every ', 'every @count') .' '; 
+      }
+      else {
+        $description[] = format_plural($rrule['INTERVAL'], 'every day', 'every @count days') .' ';
+      }
+      break;
+  }
+  
+  if (!empty($rrule['BYDAY'])) {
+    $days = date_repeat_dow_day_options();
+    $counts = date_repeat_dow_count_options();
+    $results = array();
+    foreach ($rrule['BYDAY'] as $byday) {
+      $day = substr($byday, -2);
+      $count = intval(str_replace(' '. $day, '', $byday));
+      if ($count = intval(str_replace(' '. $day, '', $byday))) {
+        $results[] = t('!count !day', array('!count' => strtolower($counts[$count]), '!day' => $days[$day])) .' ';
+      }
+      else {
+        $results[] = t('every !day', array('!day' => $days[$day])) .' ';
+      }
+    }
+    $description[] = t('!days', array('!days' => implode(' '. t(' and ') .' ', $results)));
+  }
+  if (!empty($rrule['BYMONTHDAY'])) {
+    $description[] = t('on day @number', array('@number' => implode(', ', $rrule['BYMONTHDAY']))) .' ';
+  }
+  if (!empty($rrule['BYMONTH'])) {
+    if (sizeof($rrule['BYMONTH']) < 12) {
+      $results = array();
+      $months = date_month_names();
+      foreach ($rrule['BYMONTH'] as $month) {
+        $results[] = $months[$month];
+      }
+      $description[] = implode(', ', $results) .' ';
+    }
+  }
+  if ($rrule['INTERVAL'] < 1) {
+    $rrule['INTERVAL'] = 1;
+  }
+  if (!empty($rrule['COUNT'])) {
+    $description[] = t('for !times occurences', array('!times' => $rrule['COUNT'])) .' ';
+  }
+  if (!empty($rrule['UNTIL'])) {
+    $until = date_ical_date($rrule['UNTIL']);
+    $description[] = t('until !until', array('!until' => date_format_date($until, 'custom', $format))) .' ';
+  }
+  if ($exceptions) {
+    $values = array();
+    foreach ($exceptions as $exception) {
+      $values[] = date_format_date(date_ical_date($exception), 'custom', $format);
+    }
+    $description[] = t('except !dates', array('!dates' => implode(', ', $values))) .' ';
+  }
+  if (!empty($rrule['WKST'])) {
+    $day_names = date_repeat_dow_day_options();
+    //$description[] = t('where the week starts on !start ', array('!start' => $day_names[$rrule['WKST']]));
+  }
+  return implode($description);
+}
+
+/**
+ * Parse an iCal rule into a parsed RRULE array and an EXDATE array.
+ */
+function date_repeat_split_rrule($rrule) {
+  $parts = explode("\n", $rrule);
+  $rrule = array();
+  $exceptions = array();
+  foreach ($parts as $part) {
+    if (strstr($part, 'RRULE')) {
+      $RRULE = str_replace('RRULE:', '', $part);
+      $rrule = (array) date_ical_parse_rrule('RRULE:', $RRULE);
+    }
+    elseif (strstr($part, 'EXDATE')) {
+      $EXDATE = str_replace('EXDATE:', '', $part);
+      $exceptions = (array) date_ical_parse_exceptions('EXDATE:', $EXDATE);
+      unset($exceptions['DATA']);
+    }
+  }
+  return array($rrule, $exceptions);
+}
+
+/**
+ * Analyze a RRULE and return dates that match it.
+ */
+function date_repeat_calc($rrule, $start, $end, $exceptions = array(), $timezone = NULL) {
+  require_once('./'. drupal_get_path('module', 'date_repeat') .'/date_repeat_calc.inc');
+  return _date_repeat_calc($rrule, $start, $end, $exceptions, $timezone);
+}
+
+/**
+ * Generate the repeat rule setting form.
+ */
+function date_repeat_rrule_process($element, $edit, $form_state, $form) {
+  require_once('./'. drupal_get_path('module', 'date_repeat') .'/date_repeat_form.inc');
+  return _date_repeat_rrule_process($element, $edit, $form_state, $form);
+}

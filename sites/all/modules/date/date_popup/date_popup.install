@@ -1,0 +1,104 @@
+<?php
+//$Id: date_popup.install,v 1.5.6.3 2008/11/18 16:16:00 karens Exp $
+/**
+ * Implementation of hook_requirements().
+ * Make sure a site timezone name has been selected.
+ */
+function date_popup_requirements($phase) {
+  $requirements = array();
+  $t = get_t();
+  switch ($phase) {
+    case 'runtime':
+      $error = FALSE;
+      if (!file_exists(drupal_get_path('module', 'date_popup') .'/lib/jquery.timeentry.pack.js')) {
+        $message .= t('<p>Download jquery.timeentry.pack.js and jquery.timeentry.css from the jquery-timeentry home page at !link and install them in the /lib/ folder of the Date Popup module.</p>', array('!link' => l('http://home.iprimus.com.au/kbwood/jquery/timeEntry.html', 'http://home.iprimus.com.au/kbwood/jquery/timeEntry.html', array('html' => TRUE))));
+      }
+      if (!empty($message)) {
+        $requirements['date_popup_files'] = array(
+         'title' => $t('Date Popup requirements'),
+          'value' => $message,
+          'severity' => REQUIREMENT_ERROR,
+          );
+      }
+      break;
+   case 'install':
+      break;
+  }
+  return $requirements;
+}
+
+/**
+ * Implementation of hook_install().
+ */
+function date_popup_install() {
+  if (module_exists('content')) {
+    drupal_load('module', 'content');
+    if (!db_table_exists(content_instance_tablename())) {
+      return;
+    }
+    if (module_exists('date_repeat')) {
+      db_query("UPDATE {". content_instance_tablename() ."} SET widget_active=1 WHERE widget_type='%s' OR widget_type='%s'", 'date_popup', 'date_popup_repeat');
+    }
+    else {
+      db_query("UPDATE {". content_instance_tablename() ."} SET widget_active=1 WHERE widget_type='%s'", 'date_popup');
+    }
+    content_clear_type_cache(TRUE);
+  }
+}
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function date_popup_uninstall() {
+  if (module_exists('content')) {
+    drupal_load('module', 'content');
+    if (!db_table_exists(content_instance_tablename())) {
+      return;
+    }
+    if (module_exists('date_repeat')) {
+      db_query("UPDATE {". content_instance_tablename() ."} SET widget_active=0 WHERE widget_type='%s' OR widget_type='%s'", 'date_popup', 'date_popup_repeat');
+    }
+    else {
+      db_query("UPDATE {". content_instance_tablename() ."} SET widget_active=0 WHERE widget_type='%s'", 'date_popup');
+    }
+    content_clear_type_cache(TRUE);
+  }
+}
+
+/**
+ * Implementation of hook_enable().
+ */
+function date_popup_enable() {
+  if (module_exists('content')) {
+    drupal_load('module', 'content');
+    if (!db_table_exists(content_instance_tablename())) {
+      return;
+    }
+    if (module_exists('date_repeat')) {
+      db_query("UPDATE {". content_instance_tablename() ."} SET widget_active=1 WHERE widget_type='%s' OR widget_type='%s'", 'date_popup', 'date_popup_repeat');
+    }
+    else {
+      db_query("UPDATE {". content_instance_tablename() ."} SET widget_active=1 WHERE widget_type='%s'", 'date_popup');
+    }
+    content_clear_type_cache(TRUE);
+  }
+}
+
+/**
+ * Implementation of hook_disable().
+ */
+function date_popup_disable() {
+  if (module_exists('content')) {
+    drupal_load('module', 'content');
+    if (!db_table_exists(content_instance_tablename())) {
+      return;
+    }
+    if (module_exists('date_repeat')) {
+      db_query("UPDATE {". content_instance_tablename() ."} SET widget_active=0 WHERE widget_type='%s' OR widget_type='%s'", 'date_popup', 'date_popup_repeat');
+    }
+    else {
+      db_query("UPDATE {". content_instance_tablename() ."} SET widget_active=0 WHERE widget_type='%s'", 'date_popup');
+    }
+    content_clear_type_cache(TRUE);
+  }
+}

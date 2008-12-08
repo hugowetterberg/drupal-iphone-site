@@ -1,0 +1,25 @@
+<p>The date field can be displayed, or formatted, several ways, some configurable in the date settings, others that are automatically provided as options.</p>
+<p>You'll see these formatters as options on the 'Display fields' screen and when you add the fields to Views. You can also use these formatters in custom code by doing something like:</p>
+<pre>
+print content_format('field_date', $node->field_date[0], 'iso');
+</pre>
+<p>The formatter options are:</p>
+<dl>
+<dt>default</dt>
+<dd>The main way to display this date, configured in the Date settings, defaults to the site short format.</dd>
+<dt>short</dt>
+<dd>An alternative way to display this date, configured in the Date settings, defaults to the site short format.</dd>
+<dt>medium</dt>
+<dd>An alternative way to display this date, configured in the Date settings, defaults to the site medium format.</dd>
+<dt>long</dt>
+<dd>An alternative way to display this date, configured in the Date settings, defaults to the site long format.</dd>
+<dt>iso</dt>
+<dd>Display the date in the standard ISO format of YYYY-MM-DDTHH:MM:SS.</dd>
+<dt>ical</dt>
+<dd>Display the date in the standard iCal format of YYYYMMDDTHHMMSS.</dd>
+<dt>timestamp</dt>
+<dd>Display the date as the Unix timestamp value.</dd>
+<dt>format_interval</dt>
+<dd>Display the date as 'XX days, XX hours ago' or 'XX months, XX days from now'.</dd>
+</dl>
+<p> To set up the configurable options, edit the field settings and scroll down to the section called 'Default display'. You can set the default display there, or open up the collapsible fieldset called 'Additional display settings' to set up other alternative display formats. You can either select a pre-configured display format from the drop-down selector, or input a custom format. The custom format, if provided, will override the selected display or input options. Define a php date format string like 'm-d-Y H:i' (see <a href="http://php.net/date">http://php.net/date</a> for more details on custom format strings.)</p>

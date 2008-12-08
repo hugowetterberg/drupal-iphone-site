@@ -1,0 +1,19 @@
+<?php
+// $Id: date_copy.install,v 1.1 2007/08/31 13:37:36 karens Exp $
+
+/**
+ * Implementation of hook_install().
+ */
+function date_copy_install() {
+  // Make sure this module loads after date_api.
+  db_query("UPDATE {system} SET weight = 1 WHERE name = 'date_copy'");
+}
+
+/**
+ * Implementation of hook_update().
+ */
+function date_copy_update_5000() {
+  $ret = array();
+  $ret[] = update_sql("UPDATE {system} SET weight = 1 WHERE name = 'date_copy'");
+  return $ret;
+}
