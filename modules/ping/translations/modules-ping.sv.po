@@ -1,0 +1,60 @@
+# $Id: modules-ping.po,v 1.2.2.3 2008/08/08 07:23:49 zoo33 Exp $
+#
+# Swedish translation of Drupal (installer)
+# Copyright 2008 Magnus Gunnarsson <seals@passagen.se>
+# Generated from file: ping.module,v 1.52 2007/12/19 17:45:42 goba
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Drupal 6\n"
+"POT-Creation-Date: 2008-02-15 13:50+0100\n"
+"PO-Revision-Date: 2008-02-15 19:32+0100\n"
+"Last-Translator: Magnus Gunnarsson <seals@passagen.se>\n"
+"Language-Team: Swedish (http://drupal.org/project/sv)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: modules/ping/ping.module:15
+msgid ""
+"The ping module is useful for notifying interested sites that your site has "
+"changed. It automatically sends notifications, or \"pings\", to the <a href="
+"\"@external-http-pingomatic-com\">pingomatic</a> service about new or "
+"updated content. In turn, <a href=\"@external-http-pingomatic-com"
+"\">pingomatic</a> notifies other popular services, including weblogs.com, "
+"Technorati, blo.gs, BlogRolling, Feedster.com, and Moreover."
+msgstr ""
+"Modulen Ping är användbar för att meddela intresserade webbplatser att din "
+"webbplats har ändrats. Den skickar automatiskt meddelanden (så kallade "
+"pingar) om ändringar till tjänsten <a href=\"@external-http-pingomatic-com"
+"\">pingomatic</a>. Pingomatic meddelar i sin tur andra tjänster såsom "
+"weblogs.com, Technocrati, blo.gs, Blogrolling, Feedster.com och Moreover."
+
+#: modules/ping/ping.module:16
+msgid ""
+"The ping module requires a correctly configured <a href=\"@cron\">cron "
+"maintenance task</a>."
+msgstr ""
+"Modulen Ping kräver en korrekt inställd <a href=\"@cron\">schemalagd "
+"aktivitet</a>."
+
+#: modules/ping/ping.module:17
+msgid ""
+"For more information, see the online handbook entry for <a href=\"@ping"
+"\">Ping module</a>."
+msgstr ""
+"Läs mer om <a href=\"@ping\">modulen Ping</a> i konfigurations- och "
+"anpassningshandboken."
+
+#: modules/ping/ping.module:55
+msgid "directory ping"
+msgstr "katalogping"
+
+#: modules/ping/ping.module:55
+msgid "Failed to notify pingomatic.com (site)."
+msgstr "Misslyckades att meddela pingomatic.com (webbplats)."
+
+#: modules/ping/ping.module:0
+msgid "ping"
+msgstr "ping"

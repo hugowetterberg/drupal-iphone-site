@@ -1,0 +1,21 @@
+# $Id: themes-pushbutton.po,v 1.1.2.2 2008/03/18 15:44:02 zoo33 Exp $
+#
+# Swedish translation of Drupal (installer)
+# Copyright 2008 zoo33
+# Generated from file: page.tpl.php,v 1.25 2008/01/24 09:42:53 goba
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Drupal 6\n"
+"POT-Creation-Date: 2008-02-15 13:50+0100\n"
+"PO-Revision-Date: 2007-01-22 18:00+0100\n"
+"Last-Translator: zoo33\n"
+"Language-Team: Swedish (http://drupal.org/project/sv)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: themes/pushbutton/page.tpl.php:15;15
+msgid "Skip navigation"
+msgstr "Hoppa över navigation"

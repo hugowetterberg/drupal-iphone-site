@@ -1,0 +1,2776 @@
+# $Id: modules-system.po,v 1.3.2.15 2008/09/17 14:24:44 zoo33 Exp $
+#
+# Swedish translation of Drupal (installer)
+# Copyright 2008 Magnus Gunnarsson <seals@passagen.se>
+# Generated from files:
+#  system.admin.inc,v 1.63 2008/02/04 12:35:48 goba
+#  system.module,v 1.585.2.7 2008/02/13 15:39:27 goba
+#  system.js,v 1.14.2.1 2008/02/07 18:23:30 goba
+#  system.install,v 1.238.2.1 2008/02/08 17:07:55 goba
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Drupal 6\n"
+"POT-Creation-Date: 2008-02-15 13:50+0100\n"
+"PO-Revision-Date: 2008-03-03 23:23+0100\n"
+"Last-Translator: Magnus Gunnarsson <seals@passagen.se>\n"
+"Language-Team: Swedish (http://drupal.org/project/sv)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: modules/system/system.admin.inc:22
+msgid ""
+"One or more problems were detected with your Drupal installation. Check the "
+"<a href=\"@status\">status report</a> for more information."
+msgstr ""
+"Ett eller flera problem upptäcktes i din Drupal-installation. Titta på <a "
+"href=\"@status\">statusrapporten</a> för mer information."
+
+#: modules/system/system.admin.inc:58;79
+msgid "You do not have any administrative items."
+msgstr "Du har inga administrativa val."
+
+#: modules/system/system.admin.inc:118
+msgid "Get help"
+msgstr "Hjälp"
+
+#: modules/system/system.admin.inc:158
+msgid "System default"
+msgstr "Systemstandard"
+
+#: modules/system/system.admin.inc:166 modules/system/system.module:258
+msgid "Administration theme"
+msgstr "Administrationstema"
+
+#: modules/system/system.admin.inc:167
+msgid ""
+"Choose which theme the administration pages should display in. If you choose "
+"\"System default\" the administration pages will use the same theme as the "
+"rest of the site."
+msgstr ""
+"Ange vilket tema som ska användas på administrationssidorna. Om du väljer "
+"\"Systemstandard\" kommer de administrativa sidorna att använda samma tema "
+"som resten av webbplatsen."
+
+#: modules/system/system.admin.inc:173
+msgid "Use administration theme for content editing"
+msgstr "Använd administrationstemat vid redigering av innehåll"
+
+#: modules/system/system.admin.inc:174
+msgid ""
+"Use the administration theme when editing existing posts or creating new "
+"ones."
+msgstr ""
+"Använd adminstrationstemat när du redigerar befintliga inlägg eller skapar "
+"nya."
+
+#: modules/system/system.admin.inc:209 modules/system/system.module:704
+msgid "Screenshot for %theme theme"
+msgstr "Skärmbild av temat %theme"
+
+#: modules/system/system.admin.inc:209 modules/system/system.module:704
+msgid "no screenshot"
+msgstr "ingen skärmbild"
+
+#: modules/system/system.admin.inc:288
+msgid ""
+"Please note that the <a href=\"!admin_theme_page\">administration theme</a> "
+"is still set to the %admin_theme theme; consequently, the theme on this page "
+"remains unchanged. All non-administrative sections of the site, however, "
+"will show the selected %selected_theme theme by default."
+msgstr ""
+"Observera att <a href=\"!admin_theme_page\">administrationstemat</a> "
+"fortfarande är inställt på temat %admin_theme. Därför har inte temat ändrats "
+"på den här sidan. Alla ickeadministrativa delar av webbplatsen kommer dock "
+"att använda det valda temat %selected_theme som standardtema."
+
+#: modules/system/system.admin.inc:306;555;933
+#: modules/system/system.module:1054
+msgid "The configuration options have been saved."
+msgstr "Inställningarna har sparats."
+
+#: modules/system/system.admin.inc:377
+msgid "Logo"
+msgstr "Logotyp"
+
+#: modules/system/system.admin.inc:378
+msgid "Site name"
+msgstr "Webbplatsens namn"
+
+#: modules/system/system.admin.inc:379
+msgid "Site slogan"
+msgstr "Webbplatsens slogan"
+
+#: modules/system/system.admin.inc:380
+msgid "Mission statement"
+msgstr "Syfte"
+
+#: modules/system/system.admin.inc:381
+msgid "User pictures in posts"
+msgstr "Användarbilder i inlägg"
+
+#: modules/system/system.admin.inc:382
+msgid "User pictures in comments"
+msgstr "Användarbilder i kommentarer"
+
+#: modules/system/system.admin.inc:383
+msgid "Search box"
+msgstr "Sökruta"
+
+#: modules/system/system.admin.inc:384
+msgid "Shortcut icon"
+msgstr "Bokmärkesikon"
+
+#: modules/system/system.admin.inc:401
+msgid "Toggle display"
+msgstr "Växla visningsläge"
+
+#: modules/system/system.admin.inc:402
+msgid "Enable or disable the display of certain page elements."
+msgstr "Visa eller dölj vissa element på sidorna."
+
+#: modules/system/system.admin.inc:427
+msgid "Display post information on"
+msgstr "Visa information om författare"
+
+#: modules/system/system.admin.inc:428
+msgid ""
+"Enable or disable the <em>submitted by Username on date</em> text when "
+"displaying posts of the following type."
+msgstr ""
+"Visa eller dölj texten <em>skrivet av Användare, datum</em> för följande "
+"innehållstyper."
+
+#: modules/system/system.admin.inc:447
+msgid "Logo image settings"
+msgstr "Inställningar för logotypbild"
+
+#: modules/system/system.admin.inc:448
+msgid "If toggled on, the following logo will be displayed."
+msgstr "Om detta är valt kommer nedanstående logotyp att visas."
+
+#: modules/system/system.admin.inc:453
+msgid "Use the default logo"
+msgstr "Använd standardlogotyp"
+
+#: modules/system/system.admin.inc:456
+msgid "Check here if you want the theme to use the logo supplied with it."
+msgstr "Kryssa i om du vill att temat ska använda sin standardlogotyp."
+
+#: modules/system/system.admin.inc:460
+msgid "Path to custom logo"
+msgstr "Sökväg för egen logotyp"
+
+#: modules/system/system.admin.inc:462
+msgid ""
+"The path to the file you would like to use as your logo file instead of the "
+"default logo."
+msgstr ""
+"Sökvägen till den fil som ska användas som logotyp istället för temats "
+"standardlogotyp."
+
+#: modules/system/system.admin.inc:466
+msgid "Upload logo image"
+msgstr "Ladda upp logotypbild"
+
+#: modules/system/system.admin.inc:468
+msgid ""
+"If you don't have direct file access to the server, use this field to upload "
+"your logo."
+msgstr ""
+"Om du inte har direkt tillgång till filerna på servern, använd detta fält "
+"för att ladda upp din logotyp."
+
+#: modules/system/system.admin.inc:475
+msgid "Shortcut icon settings"
+msgstr "Inställningar för bokmärkesikon"
+
+#: modules/system/system.admin.inc:476
+msgid ""
+"Your shortcut icon, or 'favicon', is displayed in the address bar and "
+"bookmarks of most browsers."
+msgstr ""
+"Din bokmärkesikon eller 'favicon' visas i adressraden och vid bokmärken i de "
+"flesta webbläsare."
+
+#: modules/system/system.admin.inc:480
+msgid "Use the default shortcut icon."
+msgstr "Använd standardikonen."
+
+#: modules/system/system.admin.inc:482
+msgid "Check here if you want the theme to use the default shortcut icon."
+msgstr "Kryssa i om du vill att temat ska använda standard-bokmärkesikonen."
+
+#: modules/system/system.admin.inc:486
+msgid "Path to custom icon"
+msgstr "Sökväg till egen ikon"
+
+#: modules/system/system.admin.inc:488
+msgid ""
+"The path to the image file you would like to use as your custom shortcut "
+"icon."
+msgstr "Sökvägen till den fil som ska användas som egen bokmärkesikon."
+
+#: modules/system/system.admin.inc:493
+msgid "Upload icon image"
+msgstr "Ladda upp en ikonbild"
+
+#: modules/system/system.admin.inc:494
+msgid ""
+"If you don't have direct file access to the server, use this field to upload "
+"your shortcut icon."
+msgstr ""
+"Om du inte har direkt tillgång till filerna på servern, använd detta fält "
+"för att ladda upp din bokmärkesikon."
+
+#: modules/system/system.admin.inc:515
+msgid "Theme-engine-specific settings"
+msgstr "Inställningar specifika för temamotorer"
+
+#: modules/system/system.admin.inc:515
+msgid ""
+"These settings only exist for all the templates and styles based on the %"
+"engine theme engine."
+msgstr ""
+"Dessa inställningar finns bara för de mallar och stilar som baseras på "
+"temamotorn %engine."
+
+#: modules/system/system.admin.inc:527
+msgid "Theme-specific settings"
+msgstr "Temaspecifika inställningar"
+
+#: modules/system/system.admin.inc:527
+msgid ""
+"These settings only exist for the %theme theme and all the styles based on "
+"it."
+msgstr ""
+"Dessa inställningar finns bara för temat %theme och alla stilar som baseras "
+"på detta."
+
+#: modules/system/system.admin.inc:549 modules/system/system.module:1051
+msgid "The configuration options have been reset to their default values."
+msgstr "Inställningarna har återställts till sina standardvärden."
+
+#: modules/system/system.admin.inc:683;715
+msgid " (<span class=\"admin-disabled\">disabled</span>)"
+msgstr " (<span class=\"admin-disabled\">inaktiverad</span>)"
+
+#: modules/system/system.admin.inc:686
+msgid " (<span class=\"admin-missing\">missing</span>)"
+msgstr " (<span class=\"admin-missing\">saknas</span>)"
+
+#: modules/system/system.admin.inc:692;710
+msgid " (<span class=\"admin-enabled\">enabled</span>)"
+msgstr " (<span class=\"admin-enabled\">aktiverad</span>)"
+
+#: modules/system/system.admin.inc:699
+msgid "Depends on: !dependencies"
+msgstr "Kräver: !dependencies"
+
+#: modules/system/system.admin.inc:722
+msgid "Required by: !required"
+msgstr "Krävs av: !required"
+
+#: modules/system/system.admin.inc:841
+msgid "Some required modules must be enabled"
+msgstr "Andra moduler måste vara aktiverade"
+
+#: modules/system/system.admin.inc:843
+msgid "Would you like to continue with enabling the above?"
+msgstr "Vill du aktivera modulerna ovan och fortsätta?"
+
+#: modules/system/system.admin.inc:844
+msgid "Continue"
+msgstr "Fortsätt"
+
+#: modules/system/system.admin.inc:1036;1081;2106
+#: modules/system/system.module:322;327
+msgid "Uninstall"
+msgstr "Avinstallera"
+
+#: modules/system/system.admin.inc:1075
+msgid ""
+"The following modules will be completely uninstalled from your site, and "
+"<em>all data from these modules will be lost</em>!"
+msgstr ""
+"Följande moduler kommer att avinstalleras helt och hållet från webbplatsen, "
+"och <em>all data från dessa moduler kommer att försvinna</em>!"
+
+#: modules/system/system.admin.inc:1078
+msgid "Confirm uninstall"
+msgstr "Bekräfta avinstallation"
+
+#: modules/system/system.admin.inc:1080
+msgid "Would you like to continue with uninstalling the above?"
+msgstr "Vill du fortsätta och avinstallera ovanstående?"
+
+#: modules/system/system.admin.inc:1093
+msgid "No modules selected."
+msgstr "Inga moduler valda."
+
+#: modules/system/system.admin.inc:1110
+msgid "The selected modules have been uninstalled."
+msgstr "De valda modulerna har avinstallerats."
+
+#: modules/system/system.admin.inc:1131
+msgid "The name of this website."
+msgstr "Namnet på den här webbplatsen."
+
+#: modules/system/system.admin.inc:1138
+msgid ""
+"The <em>From</em> address in automated e-mails sent during registration and "
+"new password requests, and other notifications. (Use an address ending in "
+"your site's domain to help prevent this e-mail being flagged as spam.)"
+msgstr ""
+"Den <em>Från</em>-adress som används i automatisk e-post som skickas vid "
+"registrering och begäran om nytt lösenord, liksom vid andra aviseringar. "
+"(Använd en adress som slutar med din webbplats domän för att minska risken "
+"för att e-posten flaggas som spam.)"
+
+#: modules/system/system.admin.inc:1143
+msgid "Slogan"
+msgstr "Slogan"
+
+#: modules/system/system.admin.inc:1145
+msgid ""
+"Your site's motto, tag line, or catchphrase (often displayed alongside the "
+"title of the site)."
+msgstr ""
+"Webbplatsens motto eller slogan (visas oftast intill webbplatsens rubrik)."
+
+#: modules/system/system.admin.inc:1149
+msgid "Mission"
+msgstr "Syfte"
+
+#: modules/system/system.admin.inc:1151
+msgid ""
+"Your site's mission or focus statement (often prominently displayed on the "
+"front page)."
+msgstr ""
+"Webbplatsens syfte eller uppgift (visas oftast på en framträdande plats på "
+"förstasidan)."
+
+#: modules/system/system.admin.inc:1155
+msgid "Footer message"
+msgstr "Sidfot"
+
+#: modules/system/system.admin.inc:1157
+msgid ""
+"This text will be displayed at the bottom of each page. Useful for adding a "
+"copyright notice to your pages."
+msgstr ""
+"Denna text kommer att visas längst ned på varje sida. Användbart för att "
+"lägga till copyright-meddelanden på dina sidor."
+
+#: modules/system/system.admin.inc:1161
+msgid "Anonymous user"
+msgstr "Anonym användare"
+
+#: modules/system/system.admin.inc:1163
+msgid "The name used to indicate anonymous users."
+msgstr "Beteckningen på anonyma användare."
+
+#: modules/system/system.admin.inc:1168
+msgid "Default front page"
+msgstr "Standardframsida"
+
+#: modules/system/system.admin.inc:1171
+msgid ""
+"The home page displays content from this relative URL. If unsure, specify "
+"\"node\"."
+msgstr ""
+"Framsidan visar innehåll från denna relativa URL. Om du inte använder Rena "
+"URL:er, ange den del av adressen som kommer efter \"?q=\". Om du är osäker, "
+"ange \"node\"."
+
+#: modules/system/system.admin.inc:1196
+msgid "The path '@path' is either invalid or you do not have access to it."
+msgstr ""
+"Sökvägen '@path' är antingen ogiltig eller så har du inte behörighet till "
+"den."
+
+#: modules/system/system.admin.inc:1210
+msgid "Default 403 (access denied) page"
+msgstr "Standard 403-sida (ingen åtkomst)"
+
+#: modules/system/system.admin.inc:1213
+msgid ""
+"This page is displayed when the requested document is denied to the current "
+"user. If unsure, specify nothing."
+msgstr ""
+"Denna sida visas när den aktuella användaren inte har rätt att se det "
+"begärda dokumentet. Om du är osäker lämnar du fältet tomt."
+
+#: modules/system/system.admin.inc:1219
+msgid "Default 404 (not found) page"
+msgstr "Standard 404-sida (finns inte)"
+
+#: modules/system/system.admin.inc:1222
+msgid ""
+"This page is displayed when no other content matches the requested document. "
+"If unsure, specify nothing."
+msgstr ""
+"Denna sida visas när inget innehåll matchar det begärda dokumentet. Om du är "
+"osäker lämnar du fältet tomt."
+
+#: modules/system/system.admin.inc:1227 modules/system/system.module:374
+msgid "Error reporting"
+msgstr "Felrapportering"
+
+#: modules/system/system.admin.inc:1228
+msgid "Write errors to the log"
+msgstr "Skriv fel till loggen"
+
+#: modules/system/system.admin.inc:1228
+msgid "Write errors to the log and to the screen"
+msgstr "Skriv fel till loggen och på skärmen"
+
+#: modules/system/system.admin.inc:1229
+msgid ""
+"Specify where Drupal, PHP and SQL errors are logged. While it is recommended "
+"that a site running in a production environment write errors to the log "
+"only, in a development or testing environment it may be helpful to write "
+"errors both to the log and to the screen."
+msgstr ""
+"Ange var Drupal-, PHP- och SQL-fel loggas. På en produktionsserver "
+"rekommenderas det att felen endast skrivs till loggen. På en testserver kan "
+"man ha nytta av att skriva dem både till loggen och på skärmen."
+
+#: modules/system/system.admin.inc:1255
+msgid ""
+"The normal cache mode is suitable for most sites and does not cause any side "
+"effects. The aggressive cache mode causes Drupal to skip the loading (boot) "
+"and unloading (exit) of enabled modules when serving a cached page. This "
+"results in an additional performance boost but can cause unwanted side "
+"effects."
+msgstr ""
+"Det normala cacheläget passar de flesta webbplatser och har inga bieffekter. "
+"Det aggressiva cacheläget gör att Drupal inte laddar och laddar av moduler "
+"när den visar en cachad sida. Detta ger en extra höjning av prestanda, men "
+"kan ge oönskade bieffekter."
+
+#: modules/system/system.admin.inc:1261
+msgid ""
+"<strong class=\"error\">The following enabled modules are incompatible with "
+"aggressive mode caching and will not function properly: %modules</strong>"
+msgstr ""
+"<strong class=\"error\">Följande aktiva moduler är inkompatibla med "
+"aggressiv sidcache och kommer inte att fungera ordentligt: %modules</strong>"
+
+#: modules/system/system.admin.inc:1264
+msgid ""
+"<strong class=\"ok\">Currently, all enabled modules are compatible with the "
+"aggressive caching policy.</strong> Please note, if you use aggressive "
+"caching and enable new modules, you will need to check this page again to "
+"ensure compatibility."
+msgstr ""
+"<strong class=\"ok\">Alla aktiva moduler är kompatibla med aggressiv "
+"sidcache.</strong> Observera att om du använder aggressiv sidcache och "
+"aktiverar nya moduler måste du titta här igen för att vara säker på att de "
+"nya modulerna är kompatibla."
+
+#: modules/system/system.admin.inc:1268
+msgid "Page cache"
+msgstr "Sidcache"
+
+#: modules/system/system.admin.inc:1269
+msgid ""
+"Enabling the page cache will offer a significant performance boost. Drupal "
+"can store and send compressed cached pages requested by <em>anonymous</em> "
+"users. By caching a web page, Drupal does not have to construct the page "
+"each time it is viewed."
+msgstr ""
+"Att aktivera sidcache ger en betydande ökning av prestanda. Drupal kan lagra "
+"och överföra komprimerade sidor för <em>gäster</em>. Genom att cacha en "
+"webbsida behöver inte Drupal skapa sidan varje gång någon vill titta på den."
+
+#: modules/system/system.admin.inc:1274
+msgid "Caching mode"
+msgstr "Cacheläge"
+
+#: modules/system/system.admin.inc:1276
+msgid "Normal (recommended for production sites, no side effects)"
+msgstr "Normal (rekommenderas i produktionsmiljö, inga bieffekter)"
+
+#: modules/system/system.admin.inc:1276
+msgid "Aggressive (experts only, possible side effects)"
+msgstr "Aggressiv (bara för experter, eventuella bieffekter)"
+
+#: modules/system/system.admin.inc:1284
+msgid "Minimum cache lifetime"
+msgstr "Minsta tid en cachad sida sparas"
+
+#: modules/system/system.admin.inc:1287
+msgid ""
+"On high-traffic sites, it may be necessary to enforce a minimum cache "
+"lifetime. The minimum cache lifetime is the minimum amount of time that will "
+"elapse before the cache is emptied and recreated, and is applied to both "
+"page and block caches. A larger minimum cache lifetime offers better "
+"performance, but users will not see new content for a longer period of time."
+msgstr ""
+"För webbplatser med hög belastning kan det bli nödvändigt att reglera den "
+"minsta livslängden för cacheminnet. Den minsta livslängden för cacheminnet "
+"är den minsta tidsrymd som passerar innan cache-minnet rensas och "
+"återskapas. En större livslängd för cacheminnet ger bättre prestanda, men "
+"det tar längre tid innan användarna kan se nytt innehåll."
+
+#: modules/system/system.admin.inc:1291
+msgid "Page compression"
+msgstr "Sidkomprimering"
+
+#: modules/system/system.admin.inc:1294
+msgid ""
+"By default, Drupal compresses the pages it caches in order to save bandwidth "
+"and improve download times. This option should be disabled when using a "
+"webserver that performs compression."
+msgstr ""
+"Som standard komprimerar Drupal sidor som den cachar för att spara bandbredd "
+"och minska nedladdningstiden. Detta alternativ bör vara inaktiverat när man "
+"använder en webserver som utför komprimering."
+
+#: modules/system/system.admin.inc:1299;1305
+msgid "Block cache"
+msgstr "Blockcache"
+
+#: modules/system/system.admin.inc:1300
+msgid ""
+"Enabling the block cache can offer a performance increase for all users by "
+"preventing blocks from being reconstructed on each page load. If the page "
+"cache is also enabled, performance increases from enabling the block cache "
+"will mainly benefit authenticated users."
+msgstr ""
+"Genom att aktivera blockcache undviker man att blocken behöver återskapas "
+"vid varje sidvisning, och får därmed en prestandahöjning. Om sidcache "
+"dessutom är aktiverad ger den här funktionen huvudsakligen ökad prestanda "
+"för inloggade användare."
+
+#: modules/system/system.admin.inc:1307
+msgid "Enabled (recommended)"
+msgstr "Aktiverad (rekommenderat)"
+
+#: modules/system/system.admin.inc:1309
+msgid ""
+"Note that block caching is inactive when modules defining content access "
+"restrictions are enabled."
+msgstr ""
+"OBS: blockcachen används inte när man har aktiverat moduler för begränsad "
+"åtkomst till innehåll."
+
+#: modules/system/system.admin.inc:1314
+msgid "Bandwidth optimizations"
+msgstr "Bandbreddsoptimeringar"
+
+#: modules/system/system.admin.inc:1315
+msgid ""
+"<p>Drupal can automatically optimize external resources like CSS and "
+"JavaScript, which can reduce both the size and number of requests made to "
+"your website. CSS files can be aggregated and compressed into a single file, "
+"while JavaScript files are aggregated (but not compressed). These optional "
+"optimizations may reduce server load, bandwidth requirements, and page "
+"loading times.</p><p>These options are disabled if you have not set up your "
+"files directory, or if your download method is set to private.</p>"
+msgstr ""
+"<p>Drupal kan automatiskt optimera externa resurser som CSS och JavaScript. "
+"Detta kan reducera både storleken och antalet anrop till din webbserver. CSS-"
+"filer kan slås samman och komprimeras till en enda fil medan JavaScript-"
+"filen bara slås samman (de komprimeras inte). Dessa valfria optimeringar kan "
+"minska belastningen på servern, kraven på bandbredd och tiden det tar att "
+"ladda sidorna.</p><p>Alternativen är inaktiverade om du inte har skapat "
+"katalogen files, eller om nedladdingsmetoden är inställd på privat.</p>"
+
+#: modules/system/system.admin.inc:1322
+msgid "Optimize CSS files"
+msgstr "Optimera CSS-filer"
+
+#: modules/system/system.admin.inc:1326
+msgid ""
+"This option can interfere with theme development and should only be enabled "
+"in a production environment."
+msgstr ""
+"Detta alternativ kan störa temautveckling och bör bara aktiveras i en "
+"produktionsmiljö."
+
+#: modules/system/system.admin.inc:1330
+msgid "Optimize JavaScript files"
+msgstr "Optimera JavaScript-filer"
+
+#: modules/system/system.admin.inc:1334
+msgid ""
+"This option can interfere with module development and should only be enabled "
+"in a production environment."
+msgstr ""
+"Detta alternativ kan störa modulutveckling och bör bara aktiveras i en "
+"produktionsmiljö."
+
+#: modules/system/system.admin.inc:1339;1345
+msgid "Clear cached data"
+msgstr "Töm cachad data"
+
+#: modules/system/system.admin.inc:1340
+msgid ""
+"Caching data improves performance, but may cause problems while "
+"troubleshooting new modules, themes, or translations, if outdated "
+"information has been cached. To refresh all cached data on your site, click "
+"the button below. <em>Warning: high-traffic sites will experience "
+"performance slowdowns while cached data is rebuilt.</em>"
+msgstr ""
+"Att cacha data ökar prestandan, men om gammal data finns cachad kan det "
+"skapa problem vid felsökning av nya moduler, teman eller översättningar. För "
+"att uppdatera all cachad data på din webbplats, klicka på knappen nedan. "
+"<em>Varning: webbplatser med hög trafik kommer att märka av en försämrad "
+"prestanda under tiden som data i cachen byggs om.</em>"
+
+#: modules/system/system.admin.inc:1375
+msgid "File system path"
+msgstr "Sökväg"
+
+#: modules/system/system.admin.inc:1378
+msgid ""
+"A file system path where the files will be stored. This directory must exist "
+"and be writable by Drupal. If the download method is set to public, this "
+"directory must be relative to the Drupal installation directory and be "
+"accessible over the web. If the download method is set to private, this "
+"directory should not be accessible over the web. Changing this location will "
+"modify all download paths and may cause unexpected problems on an existing "
+"site."
+msgstr ""
+"En sökväg i filsystemet där filerna sparas. Denna katalog måste existera och "
+"Drupal måste ha rättigheter att skriva i katalogen. Om nedladdningsmetoden "
+"Öppen är vald måste denna katalog vara en underkatalog till din Drupal-"
+"installation och åtkomlig via webben. När nedladdningsmetoden Stängd är vald "
+"bör katalogen inte vara åtkomlig via webben. Om man ändrar denna inställning "
+"modifieras alla sökvägar till nedladdningsbara filer, vilket kan skapa "
+"oväntade problem på en webbplats som redan är i drift."
+
+#: modules/system/system.admin.inc:1384
+msgid "Temporary directory"
+msgstr "Tillfällig katalog"
+
+#: modules/system/system.admin.inc:1387
+msgid "A file system path where uploaded files will be stored during previews."
+msgstr ""
+"En sökväg i filsystemet där uppladdade filer kommer att lagras när de "
+"förhandsgranskas."
+
+#: modules/system/system.admin.inc:1393
+msgid "Download method"
+msgstr "Nedladdningsmetod"
+
+#: modules/system/system.admin.inc:1395
+msgid "Public - files are available using HTTP directly."
+msgstr "Öppen - filerna är tillgängliga direkt via HTTP."
+
+#: modules/system/system.admin.inc:1395
+msgid "Private - files are transferred by Drupal."
+msgstr "Privat - filerna överförs av Drupal"
+
+#: modules/system/system.admin.inc:1396
+msgid ""
+"Choose the <em>Public download</em> method unless you wish to enforce fine-"
+"grained access controls over file downloads. Changing the download method "
+"will modify all download paths and may cause unexpected problems on an "
+"existing site."
+msgstr ""
+"Välj metoden <em>Publik nedladdning</em> om du inte vill upprätthålla "
+"finkornig åtkomstkontroll över filnedladdningar. Genom att ändra "
+"nedladdningsmetod ändras alla sökvägar för nedladdningar och kan orsaka "
+"oväntade problem på din nuvarande webbplats."
+
+#: modules/system/system.admin.inc:1413
+msgid "Select an image processing toolkit"
+msgstr "Välj ett bildhanteringsverktyg"
+
+#: modules/system/system.admin.inc:1437
+msgid "Number of items in each feed"
+msgstr "Antal poster i varje nyhetsflöde"
+
+#: modules/system/system.admin.inc:1440
+msgid "Default number of items to include in each feed."
+msgstr "Det förvalda antalet poster som inkluderas i varje nyhetsflöde."
+
+#: modules/system/system.admin.inc:1444
+msgid "Feed content"
+msgstr "Innehåll i nyhetsflöde"
+
+#: modules/system/system.admin.inc:1446
+msgid "Titles only"
+msgstr "Endast rubriker"
+
+#: modules/system/system.admin.inc:1446
+msgid "Titles plus teaser"
+msgstr "Rubriker och ingresser"
+
+#: modules/system/system.admin.inc:1446
+msgid "Full text"
+msgstr "Hela texten"
+
+#: modules/system/system.admin.inc:1447
+msgid "Global setting for the default display of content items in each feed."
+msgstr ""
+"Globala inställningar för standardvisningen av inlägg i varje nyhetsflöde."
+
+#: modules/system/system.admin.inc:1490
+msgid "Custom format"
+msgstr "Anpassat format"
+
+#: modules/system/system.admin.inc:1494 modules/system/system.module:550
+msgid "Locale settings"
+msgstr "Språkanpassning"
+
+#: modules/system/system.admin.inc:1499
+msgid "Default time zone"
+msgstr "Förvald tidszon"
+
+#: modules/system/system.admin.inc:1502
+msgid "Select the default site time zone."
+msgstr "Ange förvald tidszon för webbplatsen."
+
+#: modules/system/system.admin.inc:1507
+msgid "User-configurable time zones"
+msgstr "Användarvalda tidszoner"
+
+#: modules/system/system.admin.inc:1510
+msgid ""
+"When enabled, users can set their own time zone and dates will be displayed "
+"accordingly."
+msgstr ""
+"När funktionen är aktiverad kan användare välja tidszon själva och datum och "
+"tider kommer att uppdateras utifrån denna."
+
+#: modules/system/system.admin.inc:1515
+msgid "First day of week"
+msgstr "Första dagen i veckan"
+
+#: modules/system/system.admin.inc:1518
+msgid "The first day of the week for calendar views."
+msgstr "Den första dagen i veckan i kalendervyer."
+
+#: modules/system/system.admin.inc:1523
+msgid "Formatting"
+msgstr "Formatering"
+
+#: modules/system/system.admin.inc:1531
+msgid "Short date format"
+msgstr "Kort datumformat"
+
+#: modules/system/system.admin.inc:1535
+msgid "The short format of date display."
+msgstr "Det korta datumvisningsformatet"
+
+#: modules/system/system.admin.inc:1543
+msgid "Custom short date format"
+msgstr "Anpassat kort datumformat"
+
+#: modules/system/system.admin.inc:1546
+msgid ""
+"A user-defined short date format. See the <a href=\"@url\">PHP manual</a> "
+"for available options. This format is currently set to display as <span>%"
+"date</span>."
+msgstr ""
+"Ett användardefinierat kort datumformat. Se <a href=\"@url\">PHP-manualen</"
+"a> för tillgängliga alternativ. Detta format visas för tillfället som <span>%"
+"date</span>."
+
+#: modules/system/system.admin.inc:1554
+msgid "Medium date format"
+msgstr "Mellanlångt datumformat"
+
+#: modules/system/system.admin.inc:1558
+msgid "The medium sized date display."
+msgstr "Det mellanlånga datumvisningsformatet"
+
+#: modules/system/system.admin.inc:1566
+msgid "Custom medium date format"
+msgstr "Anpassat mellanlångt datumformat"
+
+#: modules/system/system.admin.inc:1569
+msgid ""
+"A user-defined medium date format. See the <a href=\"@url\">PHP manual</a> "
+"for available options. This format is currently set to display as <span>%"
+"date</span>."
+msgstr ""
+"Ett användardefinierat mellanlångt datumformat. Se <a href=\"@url\">PHP-"
+"manualen</a> för tillgängliga alternativ. Detta format visas för tillfället "
+"som <span>%date</span>."
+
+#: modules/system/system.admin.inc:1577
+msgid "Long date format"
+msgstr "Långt datumformat"
+
+#: modules/system/system.admin.inc:1581
+msgid "Longer date format used for detailed display."
+msgstr "Långt datumformat för detaljerad information."
+
+#: modules/system/system.admin.inc:1589
+msgid "Custom long date format"
+msgstr "Anpassat långt datumformat"
+
+#: modules/system/system.admin.inc:1592
+msgid ""
+"A user-defined long date format. See the <a href=\"@url\">PHP manual</a> for "
+"available options. This format is currently set to display as <span>%date</"
+"span>."
+msgstr ""
+"Ett användardefinierat långt datumformat. Se <a href=\"@url\">PHP-manualen</"
+"a> för tillgängliga alternativ. Detta format visas för tillfället som <span>%"
+"date</span>."
+
+#: modules/system/system.admin.inc:1636
+msgid "Site status"
+msgstr "Webbplatsens status"
+
+#: modules/system/system.admin.inc:1638
+msgid "Online"
+msgstr "Uppkopplad"
+
+#: modules/system/system.admin.inc:1638
+msgid "Off-line"
+msgstr "Nedkopplad"
+
+#: modules/system/system.admin.inc:1639
+msgid ""
+"When set to \"Online\", all visitors will be able to browse your site "
+"normally. When set to \"Off-line\", only users with the \"administer site "
+"configuration\" permission will be able to access your site to perform "
+"maintenance; all other visitors will see the site off-line message "
+"configured below. Authorized users can log in during \"Off-line\" mode "
+"directly via the <a href=\"@user-login\">user login</a> page."
+msgstr ""
+"I läget \"Uppkopplad\", kan alla besökare se webbplatsen som vanligt. I "
+"läget \"Nedkopplad\", kan bara användare med behörigheten \"administrera "
+"webbplatsens inställningar\" komma åt webbplatsen för att utföra underhåll; "
+"alla andra besökare kommer att se webbplatsens Nedkopplad-meddelande som kan "
+"ställas in nedan. Behöriga användare kan logga in i \"Nedkopplad\"-läget via "
+"<a href=\"@user-login\">användarinloggningssidan</a>."
+
+#: modules/system/system.admin.inc:1644
+msgid "Site off-line message"
+msgstr "Nedkopplad-meddelande"
+
+#: modules/system/system.admin.inc:1646
+msgid "Message to show visitors when the site is in off-line mode."
+msgstr ""
+"Meddelande som visas för besökare när webbplatsen är i nedkopplat läge."
+
+#: modules/system/system.admin.inc:1661 modules/system/system.module:443
+msgid "Clean URLs"
+msgstr "Rena URL:er"
+
+#: modules/system/system.admin.inc:1664
+msgid ""
+"This option makes Drupal emit \"clean\" URLs (i.e. without <code>?q=</code> "
+"in the URL)."
+msgstr ""
+"Detta val gör att Drupal använder \"rena\" URL:er (det vill säga utan <code>?"
+"q=</code> i adressen)."
+
+#: modules/system/system.admin.inc:1671
+msgid ""
+"Before enabling clean URLs, you must perform a test to determine if your "
+"server is properly configured. If you are able to see this page again after "
+"clicking the \"Run the clean URL test\" link, the test has succeeded and the "
+"radio buttons above will be available. If instead you are directed to a "
+"\"Page not found\" error, you will need to change the configuration of your "
+"server. The <a href=\"@handbook\">handbook page on Clean URLs</a> has "
+"additional troubleshooting information."
+msgstr ""
+"Innan du aktiverar rena URL:er måste du testa om din webbserver är korrekt "
+"inställd. Om du kan se den här sidan igen efter att ha klickat på \"Testkör "
+"rena URL:er\"-länken så har testet lyckats och knapparna ovan kommer att "
+"aktiveras. Om du istället ser felmeddelandet \"Page not found/Sidan hittades "
+"inte\" så måste du ändra inställningarna på din server. <a href=\"@handbook"
+"\">Handbokssidan om rena URL:er</a> har mer information om att lösa "
+"eventuella problem."
+
+#: modules/system/system.admin.inc:1675
+msgid "<a href=\"@clean_url\">Run the clean url test</a>."
+msgstr "<a href=\"@clean_url\">Testkör rena URL:er</a>."
+
+#: modules/system/system.admin.inc:1678 modules/system/system.js:0
+msgid "Your server has been successfully tested to support this feature."
+msgstr "Din server har testats och har stöd för denna funktion."
+
+#: modules/system/system.admin.inc:1716
+msgid "Cron ran successfully."
+msgstr "Schemalagda aktiviteter kördes utan problem."
+
+#: modules/system/system.admin.inc:1719
+msgid "Cron run failed."
+msgstr "Körning av schemalagda aktiviteter misslyckades."
+
+#: modules/system/system.admin.inc:1751
+msgid "Variable"
+msgstr "Variabel"
+
+#: modules/system/system.admin.inc:1751
+msgid "Value"
+msgstr "Värde"
+
+#: modules/system/system.admin.inc:1766
+msgid "Command counters"
+msgstr "Kommandoräknare "
+
+#: modules/system/system.admin.inc:1768
+msgid "The number of <code>SELECT</code>-statements."
+msgstr "Antalet <code>SELECT</code>-satser."
+
+#: modules/system/system.admin.inc:1769
+msgid "The number of <code>INSERT</code>-statements."
+msgstr "Antalet <code>INSERT</code>-satser."
+
+#: modules/system/system.admin.inc:1770
+msgid "The number of <code>UPDATE</code>-statements."
+msgstr "Antalet <code>UPDATE</code>-satser."
+
+#: modules/system/system.admin.inc:1771
+msgid "The number of <code>DELETE</code>-statements."
+msgstr "Antalet <code>DELETE</code>-satser."
+
+#: modules/system/system.admin.inc:1772
+msgid "The number of table locks."
+msgstr "Antal låsningar av tabeller."
+
+#: modules/system/system.admin.inc:1773
+msgid "The number of table unlocks."
+msgstr "Antal upplåsningar av tabeller."
+
+#: modules/system/system.admin.inc:1776
+msgid "Query performance"
+msgstr "Frågeprestanda"
+
+#: modules/system/system.admin.inc:1778
+msgid "The number of joins without an index; should be zero."
+msgstr "Antal join-satser som körts utan att använda ett index. Bör vara noll."
+
+#: modules/system/system.admin.inc:1779
+msgid ""
+"The number of joins without keys that check for key usage after each row; "
+"should be zero."
+msgstr ""
+"Antal databasjoins utan nycklar som kollar efter nyckelanvändning efter "
+"varje rad: bör vara noll."
+
+#: modules/system/system.admin.inc:1780
+msgid "The number of sorts done without using an index; should be zero."
+msgstr ""
+"Antal sorteringar som utförts utan att använda ett index; bör vara noll."
+
+#: modules/system/system.admin.inc:1781
+msgid "The number of times a lock could be acquired immediately."
+msgstr "Antal gånger en låsning inte kunde utföras omedelbart."
+
+#: modules/system/system.admin.inc:1782
+msgid "The number of times the server had to wait for a lock."
+msgstr "Antal gånger servern behövde vänta för att låsa en tabell."
+
+#: modules/system/system.admin.inc:1785
+msgid "Query cache information"
+msgstr "Frågecacheinformation"
+
+#: modules/system/system.admin.inc:1786
+msgid ""
+"The MySQL query cache can improve performance of your site by storing the "
+"result of queries. Then, if an identical query is received later, the MySQL "
+"server retrieves the result from the query cache rather than parsing and "
+"executing the statement again."
+msgstr ""
+"Frågecachen i MySQL kan öka prestandan på webbplatsen genom att spara svaren "
+"på frågorna. Om en identisk fråga ställs senare kan MySQL-servern hämta "
+"svaret från cachen i stället för att tolka och exekvera satsen igen."
+
+#: modules/system/system.admin.inc:1788
+msgid "The number of queries in the query cache."
+msgstr "Antal frågor i frågecachen."
+
+#: modules/system/system.admin.inc:1789
+msgid "The number of times MySQL found previous results in the cache."
+msgstr "Antal gånger MySQL hittade tidigare resultat i cachen."
+
+#: modules/system/system.admin.inc:1790
+msgid "The number of times MySQL added a query to the cache (misses)."
+msgstr "Antal gånger MySQL sparade en fråga i cachen (missar)."
+
+#: modules/system/system.admin.inc:1791
+msgid ""
+"The number of times MySQL had to remove queries from the cache because it "
+"ran out of memory. Ideally should be zero."
+msgstr ""
+"Antal gånger MySQL var tvungen att ta bort frågor ur cache eftersom minnet "
+"tog slut. Ska helst vara noll."
+
+#: modules/system/system.admin.inc:1904
+msgid "Show descriptions"
+msgstr "Visa beskrivningar"
+
+#: modules/system/system.admin.inc:1904
+msgid "Expand layout to include descriptions."
+msgstr "Visa en mindre kompakt layout som inkluderar beskrivningar."
+
+#: modules/system/system.admin.inc:1907
+msgid "Hide descriptions"
+msgstr "Dölj beskrivningar"
+
+#: modules/system/system.admin.inc:1907
+msgid "Compress layout by hiding descriptions."
+msgstr "Visa en mer kompakt layout genom att dölja beskrivningarna."
+
+#: modules/system/system.admin.inc:2023;2207
+msgid "Version"
+msgstr "Version"
+
+#: modules/system/system.admin.inc:2030
+msgid "Other"
+msgstr "Övriga"
+
+#: modules/system/system.admin.inc:2045;2050;2175;2180
+msgid "incompatible"
+msgstr "inkompatibel"
+
+#: modules/system/system.admin.inc:2045;2175
+msgid "Incompatible with this version of Drupal core"
+msgstr "Inkompatibel med den här versionen av Drupal-kärnan"
+
+#: modules/system/system.admin.inc:2046;2176
+msgid ""
+"This version is incompatible with the !core_version version of Drupal core."
+msgstr ""
+"Den här versionen är inkompatibel med version !core_version av Drupal-kärnan."
+
+#: modules/system/system.admin.inc:2050;2180
+msgid "Incompatible with this version of PHP"
+msgstr "Inkompatibel med den här versionen av PHP"
+
+#: modules/system/system.admin.inc:2055
+msgid ""
+"This module requires PHP version @php_required and is incompatible with PHP "
+"version !php_version."
+msgstr ""
+"Den här modulen kräver PHP-versionen @php_required och är inkompatibel med "
+"PHP-versionen !php_version."
+
+#: modules/system/system.admin.inc:2123
+msgid "No modules are available to uninstall."
+msgstr "Inga moduler är tillgängliga för avinstallation."
+
+#: modules/system/system.admin.inc:2149;2207
+msgid "Screenshot"
+msgstr "Skärmbild"
+
+#: modules/system/system.admin.inc:2185
+msgid ""
+"This theme requires PHP version @php_required and is incompatible with PHP "
+"version !php_version."
+msgstr ""
+"Det här temat kräver PHP-versionen @php_required och är inkompatibel med PHP-"
+"versionen !php_version."
+
+#: modules/system/system.admin.inc:833
+msgid "You must enable the @dependencies module to install @module."
+msgid_plural "You must enable the @dependencies modules to install @module."
+msgstr[0] ""
+"Du måste aktivera modulen @dependencies för att kunna installera @module."
+msgstr[1] ""
+"Du måste aktivera modulerna @dependencies för att kunna installera @module."
+
+#: modules/system/system.module:52
+msgid ""
+"The system module is at the foundation of your Drupal website, and provides "
+"basic but extensible functionality for use by other modules and themes. Some "
+"integral elements of Drupal are contained in and managed by the system "
+"module, including caching, enabling or disabling of modules and themes, "
+"preparing and displaying the administrative page, and configuring "
+"fundamental site settings. A number of key system maintenance operations are "
+"also part of the system module."
+msgstr ""
+"Modulen System är grunden till din Drupal-webbplats, och tillhandahåller "
+"grundläggande, men utbyggbara, funktioner som används i andra moduler och "
+"teman. Vissa väsentliga delar av Drupal finns i, och hanteras av, modulen "
+"System, bland annat cachning, aktivering och inaktivering av moduler och "
+"teman, visning av administrativa sidor och konfigurering av grundläggande "
+"inställningar. Modulen innehåller också ett antal nyckelfunktioner för "
+"systemunderhåll. "
+
+#: modules/system/system.module:53
+msgid "The system module provides:"
+msgstr "Modulen System tillhandahåller:"
+
+#: modules/system/system.module:54
+msgid ""
+"support for enabling and disabling <a href=\"@modules\">modules</a>. Drupal "
+"comes packaged with a number of core modules; each module provides a "
+"discrete set of features and may be enabled depending on the needs of your "
+"site. A wide array of additional modules contributed by members of the "
+"Drupal community are available for download at the <a href=\"@drupal-modules"
+"\">Drupal.org module page</a>."
+msgstr ""
+"stöd för att aktivera och inaktivera <a href=\"@modules\">moduler</a>. "
+"Drupal levereras med ett antal kärnmoduler; varje modul tillhandahåller en "
+"egen uppsättning av funktioner, och kan aktiveras beroende på webbplatsens "
+"behov. Det finns ett stort antal ytterligare moduler, skrivna av medlemmar i "
+"Drupals community. Dessa kan man ladda ned från <a href=\"@drupal-modules"
+"\">modulsidan på Drupal.org</a>."
+
+#: modules/system/system.module:55
+msgid ""
+"support for enabling and disabling <a href=\"@themes\">themes</a>, which "
+"determine the design and presentation of your site. Drupal comes packaged "
+"with several core themes and additional contributed themes are available at "
+"the <a href=\"@drupal-themes\">Drupal.org theme page</a>."
+msgstr ""
+"stöd för att aktivera och inaktivera <a href=\"@themes\">teman</a>, som "
+"bestämmer hur design och presentation ser ut på webbplatsen. Drupal "
+"innehåller ett antal kärnteman och ytterligare teman finns tillgängliga på "
+"<a href=\"@drupal-themes\">temasidan på Drupal.org</a>."
+
+#: modules/system/system.module:56
+msgid ""
+"a robust <a href=\"@cache-settings\">caching system</a> that allows the "
+"efficient re-use of previously-constructed web pages and web page "
+"components. Drupal stores the pages requested by anonymous users in a "
+"compressed format; depending on your site configuration and the amount of "
+"your web traffic tied to anonymous visitors, Drupal's caching system may "
+"significantly increase the speed of your site."
+msgstr ""
+"ett robust <a href=\"@cache-settings\">system för cachning</a> som effektivt "
+"återanvänder redan byggda webbsidor och webbsidekomponenter. Drupal lagrar "
+"sidor som visas för gäster i ett komprimerat format. Drupals cachesystem kan "
+"öka hastigheten på din webbplats markant beroende på dina inställningar och "
+"mängden webbtrafik som hör till anonyma gäster."
+
+#: modules/system/system.module:57
+msgid ""
+"a set of routine administrative operations that rely on a correctly-"
+"configured <a href=\"@cron\">cron maintenance task</a> to run automatically. "
+"A number of other modules, including the feed aggregator, ping module and "
+"search also rely on <a href=\"@cron\">cron maintenance tasks</a>. For more "
+"information, see the online handbook entry for <a href=\"@handbook"
+"\">configuring cron jobs</a>."
+msgstr ""
+"en uppsättning av rutiner för administrativa åtgärder som förlitar sig på "
+"att <a href=\"@cron\">schemalagda aktiviteter med cron</a> är korrekt "
+"konfigurerade för att kunna köras automatiskt. Ett antal andra moduler, "
+"inklusive Aggregator, Ping och Search, förlitar sig också på <a href=\"@cron"
+"\">schemalagda aktiviteter</a>. Läs mer om <a href=\"@handbook\">schemalagda "
+"aktiviteter och cron</a> i onlinehandboken."
+
+#: modules/system/system.module:58
+msgid ""
+"basic configuration options for your site, including <a href=\"@date-settings"
+"\">date and time settings</a>, <a href=\"@file-system\">file system "
+"settings</a>, <a href=\"@clean-url\">clean URL support</a>, <a href=\"@site-"
+"info\">site name and other information</a>, and a <a href=\"@site-maintenance"
+"\">site maintenance</a> function for taking your site temporarily off-line."
+msgstr ""
+"grundläggande inställningar för din webbplats, bland annat <a href=\"@date-"
+"settings\">datum- och tidsinställningar</a>, <a href=\"@file-system"
+"\">inställningar för filsystem</a>, <a href=\"@clean-url\">stöd för rena URL:"
+"er</a>, <a href=\"@site-info\">webbplatsen namn och annan information</a> "
+"och en funktion för <a href=\"@site-maintenance\">underhåll av webbplatsen</"
+"a> för att tillfälligt göra din webbplats nedkopplad."
+
+#: modules/system/system.module:59
+msgid ""
+"For more information, see the online handbook entry for <a href=\"@system"
+"\">System module</a>."
+msgstr "Läs mer om <a href=\"@system\">modulen System</a> i onlinehandboken."
+
+#: modules/system/system.module:62
+msgid ""
+"Welcome to the administration section. Here you may control how your site "
+"functions."
+msgstr ""
+"Välkommen till administrationsavdelningen. Här kan du styra hur webbplatsen "
+"fungerar."
+
+#: modules/system/system.module:64
+msgid "This page shows you all available administration tasks for each module."
+msgstr "Den här sidan visar alla administrativa uppgifter för varje modul. "
+
+#: modules/system/system.module:66
+msgid ""
+"Select which themes are available to your users and specify the default "
+"theme. To configure site-wide display settings, click the \"configure\" task "
+"above. Alternatively, to override these settings in a specific theme, click "
+"the \"configure\" link for that theme. Note that different themes may have "
+"different regions available for displaying content; for consistency in "
+"presentation, you may wish to enable only one theme."
+msgstr ""
+"Välj vilka teman som ska vara tillgängliga för dina användare och välj ett "
+"standardtema. För att göra generella inställningar för webbplatsen, klicka "
+"på \"inställningar\" ovan. Man kan också åsidosätta dessa inställningar för "
+"ett visst tema genom att klicka på \"inställningar\"-länken för detta tema. "
+"Observera att teman kan ha olika områden tillgängliga för att visa innehåll; "
+"för att få ett enhetligt utseende på webbplatsen kan det vara bra att bara "
+"aktivera ett enda tema."
+
+#: modules/system/system.module:67
+msgid ""
+"To change the appearance of your site, a number of <a href=\"@themes"
+"\">contributed themes</a> are available."
+msgstr ""
+"Det finns ett stort antal <a href=\"@themes\">extra teman</a> tillgängliga "
+"för att ändra utseendet på din webbplats."
+
+#: modules/system/system.module:72
+msgid ""
+"These options control the display settings for the <code>%template</code> "
+"theme. When your site is displayed using this theme, these settings will be "
+"used. By clicking \"Reset to defaults,\" you can choose to use the <a href="
+"\"@global\">global settings</a> for this theme."
+msgstr ""
+"Dessa val är visningsinställningar för temat <code>%template</code>. När "
+"webbplatsen visas med detta tema kommer dessa inställningar att användas. Du "
+"kan välja att använde de <a href=\"@global\">globala inställningarna</a> med "
+"detta tema genom att klicka på \"Återställ till standardvärden\"."
+
+#: modules/system/system.module:74
+msgid ""
+"These options control the default display settings for your entire site, "
+"across all themes. Unless they have been overridden by a specific theme, "
+"these settings will be used."
+msgstr ""
+"Dessa val är standardinställningar för visning på hela webbplatsen, i alla "
+"teman. De kommer att användas så länge de inte åsidosätts av ett specifikt "
+"temas inställningar."
+
+#: modules/system/system.module:76
+msgid ""
+"Modules are plugins that extend Drupal's core functionality. Enable modules "
+"by selecting the <em>Enabled</em> checkboxes below and clicking the <em>Save "
+"configuration</em> button. Once a module is enabled, new <a href="
+"\"@permissions\">permissions</a> may be available. To reduce server load, "
+"modules with their <em>Throttle</em> checkbox selected are temporarily "
+"disabled when your site becomes extremely busy. (Note that the <em>Throttle</"
+"em> checkbox is only available if the Throttle module is enabled.)"
+msgstr ""
+"Moduler är insticksprogram som utökar Drupals kärnfunktioner. Aktivera "
+"moduler genom att markera kryssrutan <em>Aktiverad</em> nedan, och klicka "
+"sedan på knappen <em>Spara inställningar</em>. När en modul väl är aktiverad "
+"kan nya <a href=\"@permissions\">behörigheter</a> ha blivit tillgängliga. "
+"För att minska belastningen på servern kan moduler som har kryssrutan "
+"<em>Lastbegränsning</em> markerad tillfälligt inaktiveras när din webbplats "
+"blir extremt belastad. Observera att kryssrutan <em>Lastbegränsning</em> "
+"bara är tillgänglig om modulen Throttle är aktiverad. "
+
+#: modules/system/system.module:78
+msgid ""
+"The auto-throttle functionality must be enabled on the <a href=\"@throttle"
+"\">throttle configuration page</a> after having enabled the throttle module."
+msgstr ""
+"Den automatiska lastbegränsarens funktionalitet måste aktiveras på <a href="
+"\"@throttle\">inställningssidan för lastbegränsning</a> efter att modulen "
+"Throttle har aktiverats."
+
+#: modules/system/system.module:81
+msgid ""
+"It is important that <a href=\"@update-php\">update.php</a> is run every "
+"time a module is updated to a newer version."
+msgstr ""
+"Det är viktigt att <a href=\"@update-php\">update.php</a> körs varje gång en "
+"modul har uppdaterats till en nyare version."
+
+#: modules/system/system.module:82
+msgid ""
+"You can find all administration tasks belonging to a particular module on "
+"the <a href=\"@by-module\">administration by module page</a>."
+msgstr ""
+"Du hittar alla administrativa uppgifter som tillhör en särskild modul på "
+"sidan för <a href=\"@by-module\">administration per modul</a>."
+
+#: modules/system/system.module:83
+msgid ""
+"To extend the functionality of your site, a number of <a href=\"@modules"
+"\">contributed modules</a> are available."
+msgstr ""
+"För att utöka din webbplats funktionalitet finns ett stort antal <a href="
+"\"@modules\">tilläggsmoduler</a> tillgängliga."
+
+#: modules/system/system.module:86
+msgid ""
+"The uninstall process removes all data related to a module. To uninstall a "
+"module, you must first disable it. Not all modules support this feature."
+msgstr ""
+"Avinstallationen tar bort all data som hör till en modul. För att "
+"avinstallera en modul måste man först inaktivera den. Alla moduler har inte "
+"stöd för avinstallation."
+
+#: modules/system/system.module:89
+msgid ""
+"The <em>Powered by Drupal</em> block is an optional link to the home page of "
+"the Drupal project. While there is absolutely no requirement that sites "
+"feature this link, it may be used to show support for Drupal."
+msgstr ""
+"Blocket <em>Drivs av Drupal</em> är en valfri länk till hemsidan för Drupal-"
+"projektet. Det är absolut inget krav att webbplatsen visar den här länken, "
+"men den kan användas för att visa sitt stöd för Drupal."
+
+#: modules/system/system.module:94
+msgid ""
+"Actions are individual tasks that the system can do, such as unpublishing a "
+"piece of content or banning a user. Modules, such as the trigger module, can "
+"fire these actions when certain system events happen; for example, when a "
+"new post is added or when a user logs in. Modules may also provide "
+"additional actions."
+msgstr ""
+"Åtgärder är enskilda arbetsuppgifter som systemet kan utföra, som att "
+"avpublicera ett visst inlägg eller blockera en användare. Moduler, "
+"exempelvis Trigger, kan utlösa dessa åtgärder när vissa systemhändelser "
+"sker, till exempel när ett nytt inlägg har lagts till eller när en användare "
+"loggar in. Moduler kan också erbjuda ytterligare åtgärder."
+
+#: modules/system/system.module:95
+msgid ""
+"There are two types of actions: simple and advanced. Simple actions do not "
+"require any additional configuration, and are listed here automatically. "
+"Advanced actions can do more than simple actions; for example, send an e-"
+"mail to a specified address, or check for certain words within a piece of "
+"content. These actions need to be created and configured first before they "
+"may be used. To create an advanced action, select the action from the drop-"
+"down below and click the <em>Create</em> button."
+msgstr ""
+"Det finns två typer av åtgärder: Enkla och avancerade. Enkla åtgärder kräver "
+"inga extra inställningar och visas här automatiskt. Avancerade åtgärder kan "
+"göra mer än enkla åtgärder, till exempel skicka e-post till en specifik "
+"adress, eller hålla utkik efter särskilda ord inom ett visst inlägg. Dessa "
+"åtgärder måste skapas och konfigureras innan de kan användas. Välj åtgärden "
+"från rutan nedan och klicka på knappen <em>Skapa</em> för att skapa en "
+"avancerad åtgärd."
+
+#: modules/system/system.module:97
+msgid ""
+"You may proceed to the <a href=\"@url\">Triggers</a> page to assign these "
+"actions to system events."
+msgstr ""
+"Du kan fortsätta till <a href=\"@url\">Triggersidan</a> för att koppla ihop "
+"dessa åtgärder med systemhändelser."
+
+#: modules/system/system.module:101
+msgid ""
+"An advanced action offers additional configuration options which may be "
+"filled out below. Changing the <em>Description</em> field is recommended, in "
+"order to better identify the precise action taking place. This description "
+"will be displayed in modules such as the trigger module when assigning "
+"actions to system events, so it is best if it is as descriptive as possible "
+"(for example, \"Send e-mail to Moderation Team\" rather than simply \"Send e-"
+"mail\")."
+msgstr ""
+"En avancerad åtgärd erbjuder ytterligare inställningsalternativ som kan "
+"fyllas i nedan. Att ändra fältet <em>Beskrivning</em> är att rekommendera "
+"för att bättre kunna identifiera precis den åtgärd som sker. Denna "
+"beskrivning kommer att visas i moduler som Trigger när åtgärder kopplas till "
+"systemhändelser. Förslagsvis bör den vara så beskrivande som möjligt (till "
+"exempel: \"Skicka e-post till teamet för moderering\" hellre än bara "
+"\"Skicka e-post\")."
+
+#: modules/system/system.module:103
+msgid ""
+"Here you can find a short overview of your site's parameters as well as any "
+"problems detected with your installation. It may be useful to copy and paste "
+"this information into support requests filed on drupal.org's support forums "
+"and project issue queues."
+msgstr ""
+"Här finns en kort översikt av en del av webbplatsens parametrar samt "
+"information om eventuella problem med installationen. Det kan vara lämpligt "
+"att ta med den här informationen i supportfrågor som skickas in på "
+"supportforumen på drupal.org och via projektens buggsystem."
+
+#: modules/system/system.module:544
+msgid "Selecting a different theme will change the look and feel of the site."
+msgstr "Val av ett annat tema ändrar utseendet och funktionen på webbplatsen."
+
+#: modules/system/system.module:556
+msgid "Time zone"
+msgstr "Tidszon"
+
+#: modules/system/system.module:559
+msgid ""
+"Select your current local time. Dates and times throughout this site will be "
+"displayed using this time zone."
+msgstr ""
+"Välj din nuvarande lokala tid. Datum och tid kommer att visas i denna "
+"tidszon på hela webbplatsen."
+
+#: modules/system/system.module:576
+msgid "Powered by Drupal"
+msgstr "Drivs av Drupal"
+
+#: modules/system/system.module:586
+msgid "Badge color"
+msgstr "Färg på märket"
+
+#: modules/system/system.module:588
+msgid "Black"
+msgstr "Svart"
+
+#: modules/system/system.module:588
+msgid "Blue"
+msgstr "Blå"
+
+#: modules/system/system.module:588
+msgid "Gray"
+msgstr "Grå"
+
+#: modules/system/system.module:592
+msgid "Badge size"
+msgstr "Storlek på märket"
+
+#: modules/system/system.module:594
+msgid "Small"
+msgstr "Liten"
+
+#: modules/system/system.module:594
+msgid "Large"
+msgstr "Stor"
+
+#: modules/system/system.module:684
+msgid "Theme configuration"
+msgstr "Temainställningar"
+
+#: modules/system/system.module:707
+msgid "(site default theme)"
+msgstr "(webbplatsens standardtema)"
+
+#: modules/system/system.module:1020
+msgid "The settings have not been saved because of the errors."
+msgstr "Inställningarna har inte sparats på grund av felen."
+
+#: modules/system/system.module:1191
+msgid "Configure permissions"
+msgstr "Konfigurera rättigheter"
+
+#: modules/system/system.module:1240
+msgid "When cron runs"
+msgstr "När schemalagda aktiviteter körs"
+
+#: modules/system/system.module:1254
+msgid "Display a message to the user"
+msgstr "Visa ett meddelande för användaren"
+
+#: modules/system/system.module:1275
+msgid "Redirect to URL"
+msgstr "Omdirigera till URL"
+
+#: modules/system/system.module:1295
+msgid "Choose an advanced action"
+msgstr "Välj en avancerad åtgärd"
+
+#: modules/system/system.module:1310
+msgid "Action type"
+msgstr "Åtgärdstyp"
+
+#: modules/system/system.module:1330
+msgid "Actions available to Drupal:"
+msgstr "Åtgärder som är tillgängliga för Drupal:"
+
+#: modules/system/system.module:1356
+msgid "Make a new advanced action available"
+msgstr "Gör en ny avancerad åtgärd tillgänglig."
+
+#: modules/system/system.module:1368
+msgid "Create"
+msgstr "Skapa"
+
+#: modules/system/system.module:1435
+msgid ""
+"A unique description for this advanced action. This description will be "
+"displayed in the interface of modules that integrate with actions, such as "
+"Trigger module."
+msgstr ""
+"En unik beskrivning för den här avancerade åtgärden. Denna beskrivning "
+"kommer att visas i gränssnittet för moduler som integrerar med åtgärder, "
+"såsom Trigger."
+
+#: modules/system/system.module:1491
+msgid "The action has been successfully saved."
+msgstr "Åtgärden har sparats."
+
+#: modules/system/system.module:1509
+msgid "Are you sure you want to delete the action %action?"
+msgstr "Är du säker på att du vill radera åtgärden %action?"
+
+#: modules/system/system.module:1511
+msgid "This cannot be undone."
+msgstr "Detta kan inte ångras."
+
+#: modules/system/system.module:1527
+msgid "Action %action was deleted"
+msgstr "Åtgärden %action raderades"
+
+#: modules/system/system.module:1575
+msgid "Recipient"
+msgstr "Mottagare"
+
+#: modules/system/system.module:1578
+msgid ""
+"The email address to which the message should be sent OR enter %author if "
+"you would like to send an e-mail to the author of the original post."
+msgstr ""
+"E-postadressen som meddelandet ska skickat till ELLER ange %author om du "
+"vill skicka e-post till författaren av det ursprungliga inlägget."
+
+#: modules/system/system.module:1585
+msgid "The subject of the message."
+msgstr "Meddelandets ämnesrad."
+
+#: modules/system/system.module:1593
+msgid ""
+"The message that should be sent. You may include the following variables: %"
+"site_name, %username, %node_url, %node_type, %title, %teaser, %body. Not all "
+"variables will be available in all contexts."
+msgstr ""
+"Meddelandet som ska skickas. Du kan inkludera följande variabler: %"
+"site_name, %username, %node_url, %node_type, %title, %teaser, %body. Alla "
+"variabler är inte tillgängliga i alla sammanhang."
+
+#: modules/system/system.module:1606
+msgid "Please enter a valid email address or %author."
+msgstr "Ange en giltig e-postadress eller %author."
+
+#: modules/system/system.module:1739
+msgid ""
+"The message to be displayed to the current user. You may include the "
+"following variables: %site_name, %username, %node_url, %node_type, %title, %"
+"teaser, %body. Not all variables will be available in all contexts."
+msgstr ""
+"Meddelandet som ska visas för den aktuella användaren. Du kan inkludera "
+"följande variabler: %site_name, %username, %node_url, %node_type, %title, %"
+"teaser, %body. Alla variabler är inte tillgängliga i alla sammanhang."
+
+#: modules/system/system.module:1812
+msgid ""
+"The URL to which the user should be redirected. This can be an internal URL "
+"like node/1234 or an external URL like http://drupal.org."
+msgstr ""
+"Den URL som användaren ska omdirigeras till. Detta kan vara en intern URL "
+"som node/1234 eller en extern URL som http://drupal.org."
+
+#: modules/system/system.module:1875;1875
+msgid "Powered by Drupal, an open source content management system"
+msgstr "Drivs av Drupal, ett webbpubliceringsverktyg byggt på öppen källkod"
+
+#: modules/system/system.module:1224
+msgid "Could not delete temporary file \"%path\" during garbage collection"
+msgstr "Kunde inte radera den temporära filen \"%path\" under upprensning"
+
+#: modules/system/system.module:1526
+msgid "Deleted action %aid (%action)"
+msgstr "Raderade åtgärden %aid (%action)"
+
+#: modules/system/system.module:1653
+msgid "Cannot use %author token in this context."
+msgstr "Kan inte använda symbolen %author i det här sammanhanget."
+
+#: modules/system/system.module:1684
+msgid "Sent email to %recipient"
+msgstr "Skicka e-post till %recipient"
+
+#: modules/system/system.module:1687
+msgid "Unable to send email to %recipient"
+msgstr "Kunde inte skicka e-post till %recipient"
+
+#: modules/system/system.module:158
+msgid "administer site configuration"
+msgstr "hantera webbplatsens inställningar"
+
+#: modules/system/system.module:158
+msgid "access administration pages"
+msgstr "åtkomst till administrationssidor"
+
+#: modules/system/system.module:158
+msgid "administer actions"
+msgstr "administrera åtgärder"
+
+#: modules/system/system.module:158
+msgid "access site reports"
+msgstr "komma åt rapporter för webbplatsen"
+
+#: modules/system/system.module:158
+msgid "select different theme"
+msgstr "byta tema"
+
+#: modules/system/system.module:158
+msgid "administer files"
+msgstr "administrera filer"
+
+#: modules/system/system.module:200
+msgid "File download"
+msgstr "Filnerladdning"
+
+#: modules/system/system.module:206
+msgid "Administer"
+msgstr "Administrera"
+
+#: modules/system/system.module:213
+msgid "Compact mode"
+msgstr "Kompakt läge"
+
+#: modules/system/system.module:219
+msgid "By task"
+msgstr "Per uppgift"
+
+#: modules/system/system.module:225
+msgid "By module"
+msgstr "Per modul"
+
+#: modules/system/system.module:232
+msgid "Content management"
+msgstr "Innehåll"
+
+#: modules/system/system.module:233
+msgid "Manage your site's content."
+msgstr "Hantera webbplatsens innehåll."
+
+#: modules/system/system.module:242
+msgid "Site configuration"
+msgstr "Inställningar"
+
+#: modules/system/system.module:243
+msgid "Adjust basic site configuration options."
+msgstr "Justera grundläggande inställningar för webbplatsen."
+
+#: modules/system/system.module:250
+msgid "Site building"
+msgstr "Uppbyggnad"
+
+#: modules/system/system.module:251
+msgid "Control how your site looks and feels."
+msgstr "Styr webbplatsens utseende och användningsegenskaper."
+
+#: modules/system/system.module:259
+msgid "Settings for how your administrative pages should look."
+msgstr "Inställningar för hur de administrativa sidorna ska se ut."
+
+#: modules/system/system.module:270
+msgid "Change which theme your site uses or allows users to set."
+msgstr ""
+"Ändra det tema som webbplatsen använder, eller de som användarna tillåts "
+"ställa in."
+
+#: modules/system/system.module:278
+msgid "Select the default theme."
+msgstr "Välj standardtema."
+
+#: modules/system/system.module:289
+msgid "Global settings"
+msgstr "Globala inställningar"
+
+#: modules/system/system.module:307
+msgid "Enable or disable add-on modules for your site."
+msgstr "Aktivera och inaktivera tilläggsmoduler på webbplatsen."
+
+#: modules/system/system.module:333
+msgid "Actions"
+msgstr "Åtgärder"
+
+#: modules/system/system.module:334;340
+msgid "Manage the actions defined for your site."
+msgstr "Hantera de åtgärder som definierats för din webbplats."
+
+#: modules/system/system.module:339
+msgid "Manage actions"
+msgstr "Hantera åtgärder"
+
+#: modules/system/system.module:346
+msgid "Configure an advanced action"
+msgstr "Konfigurera en avancerad åtgärd"
+
+#: modules/system/system.module:352
+msgid "Delete action"
+msgstr "Radera åtgärd"
+
+#: modules/system/system.module:353
+msgid "Delete an action."
+msgstr "Radera en åtgärd"
+
+#: modules/system/system.module:366
+msgid "Site information"
+msgstr "Information om webbplatsen"
+
+#: modules/system/system.module:367
+msgid ""
+"Change basic site information, such as the site name, slogan, e-mail "
+"address, mission, front page and more."
+msgstr ""
+"Ändra grundläggande information om webbplatsen, som namn, slogan, e-"
+"postadress, syfte, framsida med mera."
+
+#: modules/system/system.module:375
+msgid ""
+"Control how Drupal deals with errors including 403/404 errors as well as PHP "
+"error reporting."
+msgstr "Styr felhantering som till exempel 403/404-fel och PHP-fel."
+
+#: modules/system/system.module:382
+msgid "Logging and alerts"
+msgstr "Loggningar och varningar"
+
+#: modules/system/system.module:383
+msgid ""
+"Settings for logging and alerts modules. Various modules can route Drupal's "
+"system events to different destination, such as syslog, database, email, ..."
+"etc."
+msgstr ""
+"Inställningar för moduler för loggning och varningar. Olika moduler kan "
+"omdirigera Drupals systemhändelser till olika mål, såsom systemloggen, "
+"databasen, e-post med mera."
+
+#: modules/system/system.module:389
+msgid "Performance"
+msgstr "Prestanda"
+
+#: modules/system/system.module:390
+msgid ""
+"Enable or disable page caching for anonymous users and set CSS and JS "
+"bandwidth optimization options."
+msgstr ""
+"Aktivera eller inaktivera sidcache för gäster och ställ in "
+"bandbreddsoptimering för CSS och JS."
+
+#: (duplicate) modules/system/system.module:397
+#: modules/system/system.install:184
+msgid "File system"
+msgstr "Filsystem"
+
+#: modules/system/system.module:398
+msgid "Tell Drupal where to store uploaded files and how they are accessed."
+msgstr "Ange var Drupal ska lagra uppladdade filer, och hur de kan laddas ned."
+
+#: modules/system/system.module:405
+msgid "Image toolkit"
+msgstr "Bildhanteringsverktyg"
+
+#: modules/system/system.module:406
+msgid ""
+"Choose which image toolkit to use if you have installed optional toolkits."
+msgstr ""
+"Välj vilket bildbehandlingsverktyg som ska användas om du har flera "
+"installerade."
+
+#: modules/system/system.module:413
+msgid "RSS publishing"
+msgstr "RSS-publicering"
+
+#: modules/system/system.module:414
+msgid ""
+"Configure the number of items per feed and whether feeds should be titles/"
+"teasers/full-text."
+msgstr ""
+"Ställ in antal poster per flöde och om flödena ska vara rubriker/ingresser/"
+"hela texten."
+
+#: modules/system/system.module:421
+msgid "Date and time"
+msgstr "Datum och tid"
+
+#: modules/system/system.module:422
+msgid ""
+"Settings for how Drupal displays date and time, as well as the system's "
+"default timezone."
+msgstr ""
+"Inställningar för hur Drupal visar datum och tid, samt systemets standardtid."
+
+#: modules/system/system.module:429
+msgid "Date and time lookup"
+msgstr "Ta reda på datum och tid"
+
+#: modules/system/system.module:435
+msgid "Site maintenance"
+msgstr "Underhåll av webbplatsen"
+
+#: modules/system/system.module:436
+msgid "Take the site off-line for maintenance or bring it back online."
+msgstr "Koppla ned webbplatsen för underhåller, eller koppla upp den igen."
+
+#: modules/system/system.module:444
+msgid "Enable or disable clean URLs for your site."
+msgstr "Aktivera eller inaktivera rena URL:er."
+
+#: modules/system/system.module:451
+msgid "Clean URL check"
+msgstr "Kontroll av rena URL:er"
+
+#: modules/system/system.module:460
+msgid "Request test"
+msgstr "Begär test"
+
+#: modules/system/system.module:469
+msgid "Reports"
+msgstr "Rapporter"
+
+#: modules/system/system.module:470
+msgid "View reports from system logs and other status information."
+msgstr "Granska rapporter från systemloggar och annan statusinformation."
+
+#: modules/system/system.module:478
+msgid "Status report"
+msgstr "Statusrapport"
+
+#: modules/system/system.module:479
+msgid ""
+"Get a status report about your site's operation and any detected problems."
+msgstr "Visa en kort statusrapport samt eventuella problem med installationen."
+
+#: modules/system/system.module:486
+msgid "Run cron"
+msgstr "Kör schemalagda aktiviteter"
+
+#: (duplicate) modules/system/system.module:492
+#: modules/system/system.install:36
+msgid "PHP"
+msgstr "PHP"
+
+#: modules/system/system.module:498
+msgid "SQL"
+msgstr "SQL"
+
+#: modules/system/system.module:0
+msgid "system"
+msgstr "system"
+
+#: modules/system/system.module:0
+msgid "Footer"
+msgstr "Sidfot"
+
+#: modules/system/system.install:417
+msgid ""
+"Named variable/value pairs created by Drupal core or any other module or "
+"theme. All variables are cached in memory at the start of every Drupal "
+"request so developers should not be careless about what is stored here."
+msgstr ""
+"Namngivna variabel/värde-par som skapas av Drupal-kärnan eller andra moduler "
+"eller teman. Alla variabler cachas in i minnet början av varje anrop i "
+"Drupal så utvecklare bör inte vara ovarsamma med vad som lagras där."
+
+#: modules/system/system.install:420
+msgid "The name of the variable."
+msgstr "Variabelns namn."
+
+#: modules/system/system.install:426
+msgid "The value of the variable."
+msgstr "Variabelns värde."
+
+#: modules/system/system.install:435
+msgid "Stores action information."
+msgstr "Lagrar information om en åtgärd."
+
+#: modules/system/system.install:438;474
+msgid "Primary Key: Unique actions ID."
+msgstr "Primärnyckel: Unikt ID för åtgärder."
+
+#: modules/system/system.install:444
+msgid ""
+"The object that that action acts on (node, user, comment, system or custom "
+"types.)"
+msgstr ""
+"Objektet som denna åtgärd utförs på (node, user, comment, system eller "
+"custom)."
+
+#: modules/system/system.install:450
+msgid "The callback function that executes when the action runs."
+msgstr "Callback-funktion som anropas när åtgärden körs."
+
+#: modules/system/system.install:456
+msgid "Parameters to be passed to the callback function."
+msgstr "Parametrar som skickas till callback-funktionen."
+
+#: modules/system/system.install:461
+msgid "Description of the action."
+msgstr "Beskrivning av åtgärden."
+
+#: modules/system/system.install:471
+msgid "Stores action IDs for non-default actions."
+msgstr "Lagrar ID för åtgärder som inte är standard."
+
+#: modules/system/system.install:483
+msgid ""
+"Stores details about batches (processes that run in multiple HTTP requests)."
+msgstr "Lagrar detaljer om batchar (processer som körs i multipla HTTP-anrop)."
+
+#: modules/system/system.install:486
+msgid "Primary Key: Unique batch ID."
+msgstr "Primärnyckel: Unikt ID för en batch."
+
+#: modules/system/system.install:491
+msgid ""
+"A string token generated against the current user's session id and the batch "
+"id, used to ensure that only the user who submitted the batch can "
+"effectively access it."
+msgstr ""
+"En strängsymbol som genereras utifrån den aktiva användarens sessions-id och "
+"batch-id. Den används för att säkerställa att bara användaren som startade "
+"bearbetningen har åtkomst till den."
+
+#: modules/system/system.install:496
+msgid ""
+"A Unix timestamp indicating when this batch was submitted for processing. "
+"Stale batches are purged at cron time."
+msgstr ""
+"En Unix-tidsstämpel som indikerar när den denna batch startades. Överblivna "
+"batchar rensas bort när cron körs."
+
+#: modules/system/system.install:500
+msgid "A serialized array containing the processing data for the batch."
+msgstr "En serialiserad array innehållande data som behandlas i batchen."
+
+#: modules/system/system.install:510
+msgid ""
+"Generic cache table for caching things not separated out into their own "
+"tables. Contributed modules may also use this to store cached items."
+msgstr ""
+"Allmän cachetabell för cachning av saker som inte finns i separata tabeller. "
+"Tilläggsmoduler kan också använda den för att lagra cachade poster."
+
+#: modules/system/system.install:513
+msgid "Primary Key: Unique cache ID."
+msgstr "Primärnyckel: Unikt cache-ID."
+
+#: modules/system/system.install:519
+msgid "A collection of data to cache."
+msgstr "En uppsättning data att cacha."
+
+#: modules/system/system.install:524
+msgid ""
+"A Unix timestamp indicating when the cache entry should expire, or 0 for "
+"never."
+msgstr ""
+"En Unix-tidsstämpel för tiden då cacheposten skall upphöra att gälla, eller "
+"0 för aldrig."
+
+#: modules/system/system.install:529
+msgid "A Unix timestamp indicating when the cache entry was created."
+msgstr "En Unix-tidsstämpel som anger när cacheposten skapades."
+
+#: modules/system/system.install:534
+msgid "Any custom HTTP headers to be added to cached data."
+msgstr "Eventuella anpassade HTTP-headers som läggs till cachad data."
+
+#: modules/system/system.install:538
+msgid "A flag to indicate whether content is serialized (1) or not (0)."
+msgstr ""
+"En flagga för att indikera huruvida innehållet är serialiserat (1) eller "
+"inte (0)."
+
+#: modules/system/system.install:549
+msgid ""
+"Cache table for the form system to store recently built forms and their "
+"storage data, to be used in subsequent page requests."
+msgstr ""
+"Cachetabell för formulärsystemet för att lagra senast byggda formulär och "
+"dess lagrade data, för att användas på efterföljande sidanrop."
+
+#: modules/system/system.install:551
+msgid ""
+"Cache table used to store compressed pages for anonymous users, if page "
+"caching is enabled."
+msgstr ""
+"Cachetabell som används för att lagra komprimerade sidor för gäster, om "
+"sidcachning är aktiverat."
+
+#: modules/system/system.install:553
+msgid ""
+"Cache table for the menu system to store router information as well as "
+"generated link trees for various menu/page/user combinations."
+msgstr ""
+"Cachetabell för menysystemet som lagrar routerinformation såväl som "
+"genererade länkträd för olika kombinationer av menyer/sidor/användare."
+
+#: modules/system/system.install:556
+msgid "Stores information for uploaded files."
+msgstr "Lagrar information för uppladdade filer."
+
+#: modules/system/system.install:559
+msgid "Primary Key: Unique files ID."
+msgstr "Primärnyckel: Unikt fil-ID."
+
+#: modules/system/system.install:564
+msgid "The {users}.uid of the user who is associated with the file."
+msgstr "{users}.uid för den användaresom är associerad med filen."
+
+#: modules/system/system.install:570
+msgid "Name of the file."
+msgstr "Filens namn."
+
+#: modules/system/system.install:576
+msgid "Path of the file relative to Drupal root."
+msgstr "Sökväg till filen relativt Drupals rot."
+
+#: modules/system/system.install:582
+msgid "The file MIME type."
+msgstr "Filens MIME-typ."
+
+#: modules/system/system.install:588
+msgid "The size of the file in bytes."
+msgstr "Filens storlek i bytes."
+
+#: modules/system/system.install:594
+msgid "A flag indicating whether file is temporary (1) or permanent (0)."
+msgstr "En flagga som indikerar om filen är temporär (1) eller permanent (0)."
+
+#: modules/system/system.install:599
+msgid "UNIX timestamp for when the file was added."
+msgstr "UNIX-tidsstämpel för när filen lades till."
+
+#: modules/system/system.install:614
+msgid ""
+"Flood controls the threshold of events, such as the number of contact "
+"attempts."
+msgstr "Flood styr gränsvärdet för händelser, såsom antalet kontaktförsök."
+
+#: modules/system/system.install:617
+msgid "Unique flood event ID."
+msgstr "Unikt ID för flood-händelse."
+
+#: modules/system/system.install:621
+msgid "Name of event (e.g. contact)."
+msgstr "Namn på händelsen (till exempel contact)."
+
+#: modules/system/system.install:627
+msgid "Hostname of the visitor."
+msgstr "Besökarens värdnamn."
+
+#: modules/system/system.install:633
+msgid "Timestamp of the event."
+msgstr "Tidsstämpel för händelsen."
+
+#: modules/system/system.install:645
+msgid "A record of which {users} have read which {node}s."
+msgstr "Ett arkiv över vilka {users} som har läst vilka {node}r."
+
+#: modules/system/system.install:648
+msgid "The {users}.uid that read the {node} nid."
+msgstr "Den {users}.uid som läst {node} nid."
+
+#: modules/system/system.install:653
+msgid "The {node}.nid that was read."
+msgstr "Den {node}.nid som lästes."
+
+#: modules/system/system.install:658
+msgid "The Unix timestamp at which the read occurred."
+msgstr "Unix-tidsstämpel för tiden när läsningen skedde."
+
+#: modules/system/system.install:669
+msgid "Maps paths to various callbacks (access, page and title)"
+msgstr "Kopplar samman sökvägar till olika callbacks (access, page och title)"
+
+#: modules/system/system.install:672
+msgid "Primary Key: the Drupal path this entry describes"
+msgstr "Primärnyckel: den Drupal-sökväg som den här posten beskriver."
+
+#: modules/system/system.install:678
+msgid ""
+"A serialized array of function names (like node_load) to be called to load "
+"an object corresponding to a part of the current path."
+msgstr ""
+"En serialiserad array med namn på funktioner (såsom node_load) som anropas "
+"för att ladda ett objekt motsvarande en del av den aktuella sökvägen."
+
+#: modules/system/system.install:684
+msgid ""
+"A serialized array of function names (like user_current_to_arg) to be called "
+"to replace a part of the router path with another string."
+msgstr ""
+"En serialiserad array med namn på funktioner (såsom user_current_to_arg) som "
+"anropas för att ersätta en del av sökvägen med en annan sträng."
+
+#: modules/system/system.install:690
+msgid ""
+"The callback which determines the access to this router path. Defaults to "
+"user_access."
+msgstr ""
+"Callback som bestämmer behörigheten för den här sökvägen. Standard är "
+"user_access."
+
+#: modules/system/system.install:696
+msgid "A serialized array of arguments for the access callback."
+msgstr "En serialiserad array med argument till behörighets-callback."
+
+#: modules/system/system.install:700
+msgid "The name of the function that renders the page."
+msgstr "Namnet på den funktion som renderar sidan."
+
+#: modules/system/system.install:706
+msgid "A serialized array of arguments for the page callback."
+msgstr "En serialiserad array med argument till sid-callback."
+
+#: modules/system/system.install:710
+msgid "A numeric representation of how specific the path is."
+msgstr "En numerisk representation för hur specifik sökvägen är."
+
+#: modules/system/system.install:715
+msgid "Number of parts in this router path."
+msgstr "Antalet delar i den här sökvägen."
+
+#: modules/system/system.install:721
+msgid ""
+"Only for local tasks (tabs) - the router path of the parent page (which may "
+"also be a local task)."
+msgstr ""
+"Enbart för local tasks (flikar) - sökvägen för den överliggande sidan (som "
+"också kan vara en local task)."
+
+#: modules/system/system.install:727
+msgid ""
+"Router path of the closest non-tab parent page. For pages that are not local "
+"tasks, this will be the same as the path."
+msgstr ""
+"Sökväg för den närmsta överliggande sida som inte är en flik. För vanliga "
+"menysidor är det här detsamma som sökvägen."
+
+#: modules/system/system.install:733
+msgid ""
+"The title for the current page, or the title for the tab if this is a local "
+"task."
+msgstr ""
+"Titeln på nuvarande sida, eller titeln på fliken om det här är en local task."
+
+#: modules/system/system.install:739
+msgid "A function which will alter the title. Defaults to t()"
+msgstr "En funktion som kommer att modifiera titeln. Standard är t()"
+
+#: modules/system/system.install:745
+msgid ""
+"A serialized array of arguments for the title callback. If empty, the title "
+"will be used as the sole argument for the title callback."
+msgstr ""
+"En serialiserad array med argument till titel-callback. Om detta är tomt "
+"används titeln som enda callback-argument."
+
+#: modules/system/system.install:751
+msgid ""
+"Numeric representation of the type of the menu item, like MENU_LOCAL_TASK."
+msgstr "Numerisk representation av menyvalets typ, såsom MENU_LOCAL_TASK."
+
+#: modules/system/system.install:756
+msgid ""
+"Name of a function used to render the block on the system administration "
+"page for this item."
+msgstr ""
+"Namn på den funktion som används för att rendera blocket för det här "
+"menyvalet på systemets administrationssida."
+
+#: modules/system/system.install:762
+msgid "A description of this item."
+msgstr "En beskrivning av denna post."
+
+#: modules/system/system.install:766
+msgid ""
+"The position of the block (left or right) on the system administration page "
+"for this item."
+msgstr ""
+"Blockets position (vänster eller höger) för det här menyvalet på systemets "
+"administrationssida."
+
+#: modules/system/system.install:772
+msgid ""
+"Weight of the element. Lighter weights are higher up, heavier weights go "
+"down."
+msgstr "Vikt på elementet. Lättare vikter är högre upp, tyngre vikter sjunker."
+
+#: modules/system/system.install:777
+msgid ""
+"The file to include for this element, usually the page callback function "
+"lives in this file."
+msgstr ""
+"Filen som skall inkluderas för detta element. Vanligen finns sidans "
+"callbackfunktion i denna fil."
+
+#: modules/system/system.install:789
+msgid "Contains the individual links within a menu."
+msgstr "Innehåller de individuella länkarna inom en meny."
+
+#: modules/system/system.install:792
+msgid ""
+"The menu name. All links with the same menu name (such as 'navigation') are "
+"part of the same menu."
+msgstr ""
+"Menyns namn. Alla länkar med samma menynamn (som 'meny') tillhör samma meny."
+
+#: modules/system/system.install:798
+msgid "The menu link ID (mlid) is the integer primary key."
+msgstr "Menylänkens ID (mlid) är primärnyckel i form av ett heltal."
+
+#: modules/system/system.install:803
+msgid ""
+"The parent link ID (plid) is the mlid of the link above in the hierarchy, or "
+"zero if the link is at the top level in its menu."
+msgstr ""
+"Den överliggande länkens ID (plid) är mlid för länken som ligger ovanför i "
+"hierarkin, eller noll om länken är på toppnivån i dess meny."
+
+#: modules/system/system.install:809
+msgid "The Drupal path or external path this link points to."
+msgstr "Sökvägen i Drupal eller externa sökvägar som den här länken pekar mot."
+
+#: modules/system/system.install:815
+msgid ""
+"For links corresponding to a Drupal path (external = 0), this connects the "
+"link to a {menu_router}.path for joins."
+msgstr ""
+"För länkar som motsvarar en sökväg i Drupal (external = 0) kopplar det här "
+"samman länken till en {menu_router}.path för databas-joins."
+
+#: modules/system/system.install:821
+msgid ""
+"The text displayed for the link, which may be modified by a title callback "
+"stored in {menu_router}."
+msgstr ""
+"Texten som visas för en länk, som kan ändras av en titel-callback lagrad i "
+"{menu_router}."
+
+#: modules/system/system.install:827
+msgid ""
+"A serialized array of options to be passed to the url() or l() function, "
+"such as a query string or HTML attributes."
+msgstr ""
+"En serialiserad array med alternativ som skickas till funktionernana url() "
+"eller l()  i form av en en frågesträng eller HTML-attribut"
+
+#: modules/system/system.install:831
+msgid "The name of the module that generated this link."
+msgstr "Namnet på modulen som genererade den här länken."
+
+#: modules/system/system.install:837
+msgid ""
+"A flag for whether the link should be rendered in menus. (1 = a disabled "
+"menu item that may be shown on admin screens, -1 = a menu callback, 0 = a "
+"normal, visible link)"
+msgstr ""
+"En flagga för huruvida länken skall återges i menyer. (1 = ett inaktiverat "
+"menyval som kan visas för administratörer, -1 = en meny-callback, 0 = en "
+"normal synlig länk)"
+
+#: modules/system/system.install:843
+msgid ""
+"A flag to indicate if the link points to a full URL starting with a "
+"protocol, like http:// (1 = external, 0 = internal)."
+msgstr ""
+"En flagga som anger om länken pekar mot en fullständig URL med ett "
+"protokoll, såsom http:// (1 = extern, 0 = intern)."
+
+#: modules/system/system.install:849
+msgid ""
+"Flag indicating whether any links have this link as a parent (1 = children "
+"exist, 0 = no children)."
+msgstr ""
+"Flagga som anger om denna länk har underliggande länkar (1 = underliggande "
+"existerar, 0 = inga underliggande)."
+
+#: modules/system/system.install:855
+msgid ""
+"Flag for whether this link should be rendered as expanded in menus - "
+"expanded links always have their child links displayed, instead of only when "
+"the link is in the active trail (1 = expanded, 0 = not expanded)"
+msgstr ""
+"Flagga för huruvida denna länk skall återges som utfälld i menyn. Utfällda "
+"länkar visar alltid sina underliggande länkar, istället för att bara visa "
+"dem när länken är aktiv (1 = utfälld, 0 = ej utfälld)."
+
+#: modules/system/system.install:861
+msgid "Link weight among links in the same menu at the same depth."
+msgstr "Vikt på länk bland andra länkar inom samma meny och på samma djup."
+
+#: modules/system/system.install:866
+msgid ""
+"The depth relative to the top level. A link with plid == 0 will have depth "
+"== 1."
+msgstr ""
+"Djupet relativt till toppnivån. En länk med plid == 0 kommer att få djupet "
+"== 1."
+
+#: modules/system/system.install:872
+msgid ""
+"A flag to indicate that the user has manually created or edited the link (1 "
+"= customized, 0 = not customized)."
+msgstr ""
+"En flagga för att ange att användare manuellt har skapat eller redigerat "
+"länken (1 = anpassad, 0 = ej anpassad)."
+
+#: modules/system/system.install:878
+msgid ""
+"The first mlid in the materialized path. If N = depth, then pN must equal "
+"the mlid. If depth > 1 then p(N-1) must equal the plid. All pX where X > "
+"depth must equal zero. The columns p1 .. p9 are also called the parents."
+msgstr ""
+"Det första mlid i den materialiserade sökvägen. Om N = depth så måste pN "
+"vara lika med mlid. Om depth > 1 måste p(N-1) vara lika med plid. Alla pX "
+"där X > depth måste vara lika med noll. Kolumnerna p1 till p9 kallas också "
+"parents."
+
+#: modules/system/system.install:884
+msgid "The second mlid in the materialized path. See p1."
+msgstr "Det andra mlid i den materialiserade sökvägen. Se p1."
+
+#: modules/system/system.install:890
+msgid "The third mlid in the materialized path. See p1."
+msgstr "Det tredje mlid i den materialiserade sökvägen. Se p1."
+
+#: modules/system/system.install:896
+msgid "The fourth mlid in the materialized path. See p1."
+msgstr "Det fjärde mlid i den materialiserade sökvägen. Se p1."
+
+#: modules/system/system.install:902
+msgid "The fifth mlid in the materialized path. See p1."
+msgstr "Det femte mlid i den materialiserade sökvägen. Se p1."
+
+#: modules/system/system.install:908
+msgid "The sixth mlid in the materialized path. See p1."
+msgstr "Det sjätte mlid i den materialiserade sökvägen. Se p1."
+
+#: modules/system/system.install:914
+msgid "The seventh mlid in the materialized path. See p1."
+msgstr "Det sjunde mlid i den materialiserade sökvägen. Se p1."
+
+#: modules/system/system.install:920
+msgid "The eighth mlid in the materialized path. See p1."
+msgstr "Det åttonde mlid i den materialiserade sökvägen. Se p1."
+
+#: modules/system/system.install:926
+msgid "The ninth mlid in the materialized path. See p1."
+msgstr "Det nionde mlid i den materialiserade sökvägen. Se p1."
+
+#: modules/system/system.install:932
+msgid ""
+"Flag that indicates that this link was generated during the update from "
+"Drupal 5."
+msgstr ""
+"Flagga som anger att denna länk genererades vid uppdateringen från Drupal 5."
+
+#: modules/system/system.install:950
+msgid ""
+"Drupal's session handlers read and write into the sessions table. Each "
+"record represents a user session, either anonymous or authenticated."
+msgstr ""
+"Drupals sessionshantering läser och skriver till sessionstabellen. Varje "
+"post representerar en användares session, antingen anonym eller inloggad."
+
+#: modules/system/system.install:953
+msgid "The {users}.uid corresponding to a session, or 0 for anonymous user."
+msgstr "{users}.uid som hör till en session, eller 0 för gäster."
+
+#: modules/system/system.install:958
+msgid "Primary key: A session ID. The value is generated by PHP's Session API."
+msgstr ""
+"Primärnyckel: Ett sessions-ID. Värdet genereras genom PHPs Session API."
+
+#: modules/system/system.install:964
+msgid "The IP address that last used this session ID (sid)."
+msgstr "IP-adressen som senast använde denna sessions-ID (sid)."
+
+#: modules/system/system.install:970
+msgid ""
+"The Unix timestamp when this session last requested a page. Old records are "
+"purged by PHP automatically."
+msgstr ""
+"Unix-tidsstämpel för tiden då den här sessionen senast anropade en sida. "
+"Gamla poster rensas automatiskt av PHP."
+
+#: modules/system/system.install:975
+msgid ""
+"The time of this user's last post. This is used when the site has specified "
+"a minimum_cache_lifetime. See cache_get()."
+msgstr ""
+"Tiden för den här användarens senaste inlägg. Det här används när "
+"webbplatsen har specificerat en minimun_cache_lifetime. Se cache_get()."
+
+#: modules/system/system.install:980
+msgid ""
+"The serialized contents of $_SESSION, an array of name/value pairs that "
+"persists across page requests by this session ID. Drupal loads $_SESSION "
+"from here at the start of each request and saves it at the end."
+msgstr ""
+"Det serialiserade innehållet av $_SESSION, en array av namn/värdepar som "
+"sparas mellan sidanrop från den här sessionens ID. Drupal laddar $_SESSION "
+"härifrån i början av varje anrop och sparar den vid slutet."
+
+#: modules/system/system.install:993
+msgid ""
+"A list of all modules, themes, and theme engines that are or have been "
+"installed in Drupal's file system."
+msgstr ""
+"En lista över alla moduler, teman och temamotorer som är installerade i "
+"Drupals filsystem."
+
+#: modules/system/system.install:996
+msgid ""
+"The path of the primary file for this item, relative to the Drupal root; e."
+"g. modules/node/node.module."
+msgstr ""
+"Sökvägen till den primära filen för den här posten, relativt till Drupals "
+"rot. Till exempel modules/node/node.module."
+
+#: modules/system/system.install:1002
+msgid "The name of the item; e.g. node."
+msgstr "Postens namn, t ex node."
+
+#: modules/system/system.install:1008
+msgid "The type of the item, either module, theme, or theme_engine."
+msgstr "Typ av post, antingen module, theme eller theme_engine."
+
+#: modules/system/system.install:1014
+msgid "A theme's 'parent'. Can be either a theme or an engine."
+msgstr ""
+"Ett temas \"överliggande tema\". Kan antingen vara ett tema eller en motor."
+
+#: modules/system/system.install:1020
+msgid "Boolean indicating whether or not this item is enabled."
+msgstr "Booleskt värde som anger huruvida det här alternativet är aktiverat."
+
+#: modules/system/system.install:1025
+msgid ""
+"Boolean indicating whether this item is disabled when the throttle.module "
+"disables throttleable items."
+msgstr ""
+"Booleskt värde som anger huruvida denna post är inaktiverad när throttle."
+"module inaktiverar lastbegränsande alternativ."
+
+#: modules/system/system.install:1031
+msgid ""
+"Boolean indicating whether this module is loaded during Drupal's early "
+"bootstrapping phase (e.g. even before the page cache is consulted)."
+msgstr ""
+"Booleskt värde som anger huruvida modulen laddats under Drupals tidiga "
+"bootstrap-fas (exempelvis redan innan sidcachen används)."
+
+#: modules/system/system.install:1036
+msgid ""
+"The module's database schema version number. -1 if the module is not "
+"installed (its tables do not exist); 0 or the largest N of the module's "
+"hook_update_N() function that has either been run or existed when the module "
+"was first installed."
+msgstr ""
+"Modulens versionsnummer för databasschemat. -1 om modulen inte är "
+"installerad (dess tabeller existerar inte). 0 eller det största värdet på N "
+"för de hook_update_N()-funktioner i modulen som antingen har körts eller "
+"existerat när modulen installerades första gången."
+
+#: modules/system/system.install:1042
+msgid ""
+"The order in which this module's hooks should be invoked relative to other "
+"modules. Equal-weighted modules are ordered by name."
+msgstr ""
+"I vilken ordning den här modulens hooks skall anropas relativt till andra "
+"moduler. Jämviktiga moduler sorteras per namn."
+
+#: modules/system/system.install:1047
+msgid ""
+"A serialized array containing information from the module's .info file; keys "
+"can include name, description, package, version, core, dependencies, "
+"dependents, and php."
+msgstr ""
+"En serialiserad array som innehåller information från modulernas .info-"
+"filer; nycklarna kan vara name, description, package, version, core, "
+"dependencies, dependents och php."
+
+#: modules/system/system.install:1060
+msgid ""
+"A list of URL aliases for Drupal paths; a user may visit either the source "
+"or destination path."
+msgstr ""
+"En lista över URL-alias för Drupals sökvägar. En användare kan besöka "
+"antingen källans eller målets sökväg."
+
+#: modules/system/system.install:1063
+msgid "A unique path alias identifier."
+msgstr "Ett unikt id för URL-alias."
+
+#: modules/system/system.install:1068
+msgid "The Drupal path this alias is for; e.g. node/12."
+msgstr "Den sökväg i Drupal som detta alias gäller för, t ex node/12."
+
+#: modules/system/system.install:1074
+msgid "The alias for this path; e.g. title-of-the-story."
+msgstr "Aliaset för den här sökvägen, till exempel titel-på-artikeln."
+
+#: modules/system/system.install:1080
+msgid ""
+"The language this alias is for; if blank, the alias will be used for unknown "
+"languages. Each Drupal path can have an alias for each supported language."
+msgstr ""
+"Språket som det här aliaset är för. Om det lämnas blankt kommer aliaset "
+"användas för okända språk. Varje sökväg i Drupal kan ha ett alias för varje "
+"språk som stöds."
+
+#: (duplicate) modules/system/system.install:20
+msgid "Drupal"
+msgstr "Drupal"
+
+#: (duplicate) modules/system/system.install:30
+msgid "Web server"
+msgstr "Webbserver"
+
+#: (duplicate) modules/system/system.install:40
+msgid ""
+"Your PHP installation is too old. Drupal requires at least PHP %version."
+msgstr "Din PHP-installation är inaktuell. Drupal kräver minst PHP %version."
+
+#: (duplicate) modules/system/system.install:46
+msgid "PHP register globals"
+msgstr "PHP: register globals"
+
+#: (duplicate) modules/system/system.install:55
+msgid ""
+"<em>register_globals</em> is enabled. Drupal requires this configuration "
+"directive to be disabled. Your site may not be secure when "
+"<em>register_globals</em> is enabled. The PHP manual has instructions for <a "
+"href=\"http://php.net/configuration.changes\">how to change configuration "
+"settings</a>."
+msgstr ""
+"<em>register_globals</em> är aktiverat. Drupal kräver att den här "
+"inställningen är avstängd. Din webbplats är kanske inte säker när "
+"<em>register_globals</em> är aktiverat. Manualen för PHP har instruktioner "
+"för <a href=\"http://php.net/configuration.changes\">hur man ändrar dessa "
+"inställningar</a>."
+
+#: (duplicate) modules/system/system.install:57
+msgid "Enabled ('@value')"
+msgstr "Aktiverad ('@value')"
+
+#: (duplicate) modules/system/system.install:66
+msgid "PHP memory limit"
+msgstr "PHP: memory limit"
+
+#: (duplicate) modules/system/system.install:73
+msgid ""
+"Consider increasing your PHP memory limit to %memory_minimum_limit to help "
+"prevent errors in the installation process."
+msgstr ""
+"Överväg att öka PHPs minnestilldelning (memory limit) till %"
+"memory_minimum_limit för att undvika fel i installationsprocessen."
+
+#: (duplicate) modules/system/system.install:76
+msgid ""
+"Consider increasing your PHP memory limit to %memory_minimum_limit to help "
+"prevent errors in the update process."
+msgstr ""
+"Överväg att öka PHPs minnestilldelning (memory limit) till %"
+"memory_minimum_limit för att undvika fel i uppdateringsprocessen."
+
+#: (duplicate) modules/system/system.install:79
+msgid ""
+"Depending on your configuration, Drupal can run with a %memory_limit PHP "
+"memory limit. However, a %memory_minimum_limit PHP memory limit or above is "
+"recommended, especially if your site uses additional custom or contributed "
+"modules."
+msgstr ""
+"Beroende på din konfiguration kan Drupal köras med %memory_limit som "
+"minnesgräns för PHP. Dock rekommenderas en minnesgräns för PHP på minst %"
+"memory_minimum_limit eller mer, speciellt om din webbplats använder flera "
+"tilläggsmoduler."
+
+#: (duplicate) modules/system/system.install:84
+msgid ""
+"Increase the memory limit by editing the memory_limit parameter in the file %"
+"configuration-file and then restart your web server (or contact your system "
+"administrator or hosting provider for assistance)."
+msgstr ""
+"Höj minnesgränsen genom att redigera parametern memory_limit i filen %"
+"configuration-file och starta sedan om webbservern (eller be din "
+"systemadministratör eller webbleverantör om hjälp)."
+
+#: (duplicate) modules/system/system.install:87
+msgid ""
+"Contact your system administrator or hosting provider for assistance with "
+"increasing your PHP memory limit."
+msgstr ""
+"Be din systemadministratör eller webbleverantör om hjälp med att höja "
+"minnesgränsen för PHP."
+
+#: (duplicate) modules/system/system.install:90
+msgid "See the <a href=\"@url\">Drupal requirements</a> for more information."
+msgstr "Se <a href=\"@url\">Drupals systemkrav</a> för mer information."
+
+#: (duplicate) modules/system/system.install:107 ;254
+msgid "Not protected"
+msgstr "Ej skyddad"
+
+#: (duplicate) modules/system/system.install:112
+msgid ""
+"The directory %file is not protected from modifications and poses a security "
+"risk. You must change the directory's permissions to be non-writable. "
+msgstr ""
+"Katalogen %file är inte skyddad mot ändringar och utgör en säkerhetsrisk. Du "
+"måste ändra katalogens rättigheter så att den inte är skrivbar."
+
+#: (duplicate) modules/system/system.install:115
+msgid ""
+"The file %file is not protected from modifications and poses a security "
+"risk. You must change the file's permissions to be non-writable."
+msgstr ""
+"Filen %file är inte skyddad för modifieringar och utgör en säkerhetsrisk. Du "
+"måste ändra filens rättigheter så att den inte är skrivbar."
+
+#: (duplicate) modules/system/system.install:120 ;261
+msgid "Protected"
+msgstr "Skyddad"
+
+#: (duplicate) modules/system/system.install:123
+msgid "Configuration file"
+msgstr "Inställningsfil"
+
+#: (duplicate) modules/system/system.install:133
+msgid ""
+"For more information, see the online handbook entry for <a href=\"@cron-"
+"handbook\">configuring cron jobs</a>."
+msgstr ""
+"Läs mer om <a href=\"@cron-handbook\">att ställa in schemalagda aktiviteter "
+"med cron</a> i onlinehandboken."
+
+#: (duplicate) modules/system/system.install:157
+msgid ""
+"Cron has not run. Please visit the <a href=\"@status\">status report</a> for "
+"more information."
+msgstr ""
+"Schemalagda aktiviteter (cron) har inte körts. Se <a href=\"@status"
+"\">statusrapporten</a> för mer information."
+
+#: (duplicate) modules/system/system.install:162
+msgid "Never run"
+msgstr "Aldrig utfört"
+
+#: (duplicate) modules/system/system.install:163
+msgid "Cron has not run."
+msgstr "Cron har inte körts."
+
+#: (duplicate) modules/system/system.install:166
+msgid "Last run !time ago"
+msgstr "Kördes senast för !time sedan"
+
+#: (duplicate) modules/system/system.install:169
+msgid "Cron has not run recently."
+msgstr "Cron har inte körts nyligen."
+
+#: (duplicate) modules/system/system.install:174
+msgid "Cron maintenance tasks"
+msgstr "Underhållsuppgifter för cron"
+
+#: (duplicate) modules/system/system.install:177
+msgid "You can <a href=\"@cron\">run cron manually</a>."
+msgstr "Du kan <a href=\"@cron\">köra cron manuellt</a>."
+
+#: (duplicate) modules/system/system.install:196
+msgid "Not writable"
+msgstr "Ej skrivbar"
+
+#: (duplicate) modules/system/system.install:201
+msgid "The directory %directory is not writable."
+msgstr "Mappen %directory är skrivskyddad."
+
+#: (duplicate) modules/system/system.install:205
+msgid ""
+"You may need to set the correct directory at the <a href=\"@admin-file-system"
+"\">file system settings page</a> or change the current directory's "
+"permissions so that it is writable."
+msgstr ""
+"Du behöver eventuellt ställa in rätt katalog på <a href=\"@admin-file-system"
+"\">inställningssidan för filsystem</a> eller ändra nuvarande katalogs "
+"rättigheter så att den är skrivbar."
+
+#: (duplicate) modules/system/system.install:210
+msgid ""
+"An automated attempt to create this directory failed, possibly due to a "
+"permissions problem. To proceed with the installation, either create the "
+"directory and modify its permissions manually, or ensure that the installer "
+"has the permissions to create it automatically. For more information, please "
+"see INSTALL.txt or the <a href=\"@handbook_url\">on-line handbook</a>."
+msgstr ""
+"Ett automatiskt försök att skapa den här katalogen misslyckades, förmodligen "
+"på grund av problem med filrättigheter. För att gå vidare med installationen "
+"måste du antingen skapa katalogen och redigera rättigheterna manuellt, eller "
+"så ser du till att installeraren har rättigheterna att skapa katalogen "
+"automatiskt. För mer information, se filen INSTALL.txt eller <a href="
+"\"@handbook_url\">onlinehandboken</a>."
+
+#: (duplicate) modules/system/system.install:220
+msgid "Writable (<em>public</em> download method)"
+msgstr "Skrivbar (<em>öppen</em> nerladdningsmetod)"
+
+#: (duplicate) modules/system/system.install:223
+msgid "Writable (<em>private</em> download method)"
+msgstr "Skrivbar (<em>stängd</em> nerladdningsmetod)"
+
+#: (duplicate) modules/system/system.install:230
+msgid "Database updates"
+msgstr "Databasuppdateringar"
+
+#: (duplicate) modules/system/system.install:243
+msgid ""
+"Some modules have database schema updates to install. You should run the <a "
+"href=\"@update\">database update script</a> immediately."
+msgstr ""
+"Vissa moduler har uppdateringar för databas-schemat att installera. Du bör "
+"köra <a href=\"@update\">skriptet för databasuppdatering</a> omgående."
+
+#: (duplicate) modules/system/system.install:256
+msgid ""
+"The update.php script is accessible to everyone without authentication "
+"check, which is a security risk. You must change the $update_free_access "
+"value in your settings.php back to FALSE."
+msgstr ""
+"Skriptet update.php är åtkomligt för alla utan behörighetskontroll, vilket "
+"är en säkerhetsrisk. Du måste ändra tillbaka värdet på $update_free_access i "
+"settings.php till FALSE."
+
+#: (duplicate) modules/system/system.install:264
+msgid "Access to update.php"
+msgstr "Åtkomst till update.php"
+
+#: (duplicate) modules/system/system.install:275
+msgid "Not enabled"
+msgstr "Ej aktiverat"
+
+#: (duplicate) modules/system/system.install:277
+msgid ""
+"Update notifications are not enabled. It is <strong>highly recommended</"
+"strong> that you enable the update status module from the <a href=\"@module"
+"\">module administration page</a> in order to stay up-to-date on new "
+"releases. For more information please read the <a href=\"@update\">Update "
+"status handbook page</a>."
+msgstr ""
+"Meddelanden om uppdateringar är inte aktiva. Det <strong>rekommenderas "
+"starkt</a> att du aktiverar modulen Update status från <a href=\"@module"
+"\">administrationssidan för moduler</a> för att hålla dig underrättad om nya "
+"versioner. För mer information, se <a href=\"@update\">handboksidan för "
+"Update status</a>."
+
+#: (duplicate) modules/system/system.install:286
+msgid "HTTP request status"
+msgstr "Status för HTTP-anrop"
+
+#: (duplicate) modules/system/system.install:287
+msgid "Fails"
+msgstr "Misslyckas"
+
+#: (duplicate) modules/system/system.install:289
+msgid ""
+"Your system or network configuration does not allow Drupal to access web "
+"pages, resulting in reduced functionality. This could be due to your "
+"webserver configuration or PHP settings, and should be resolved in order to "
+"download information about available updates, fetch aggregator feeds, sign "
+"in via OpenID, or use other network-dependent services."
+msgstr ""
+"Ditt system eller dina nätverksinställningar tillåter inte Drupal att komma "
+"åt webbsidor, vilket innebär nedsatt funktionalitet. Detta kan bero på "
+"webbserverns eller PHPs inställningar och bör lösas för att göra det möjligt "
+"att ladda ner information om tillgängliga uppdateringar, hämta nyhetsflöden, "
+"använda OpenID-inloggning eller för att använda andra nätverksberoende "
+"tjänster."
+
+#: (duplicate) modules/system/system.install:293
+msgid "Update notifications"
+msgstr "Meddelanden om uppdateringar"
+
+#: modules/system/system.js:0
+msgid "Testing clean URLs..."
+msgstr "Testar rena URL:er..."
+
+#: modules/system/system.js:0
+msgid ""
+"Your system configuration does not currently support this feature. The <a "
+"href=\"http://drupal.org/node/15365\">handbook page on Clean URLs</a> has "
+"additional troubleshooting information."
+msgstr ""
+"Dina systeminställningar stöder för närvarande inte denna funktion. På <a "
+"href=\"http://drupal.org/node/15365\">handbokssidan om rena URL:er</a> finns "
+"mer information om fellösning."

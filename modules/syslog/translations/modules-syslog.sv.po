@@ -1,0 +1,132 @@
+# $Id: modules-syslog.po,v 1.2.2.2 2008/03/18 15:44:02 zoo33 Exp $
+#
+# Swedish translation of Drupal (installer)
+# Copyright 2008 Magnus Gunnarsson <seals@passagen.se>
+# Generated from file: syslog.module,v 1.14 2007/12/14 18:08:48 goba
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Drupal 6\n"
+"POT-Creation-Date: 2008-02-15 13:50+0100\n"
+"PO-Revision-Date: 2008-02-16 05:01+0100\n"
+"Last-Translator: Magnus Gunnarsson <seals@passagen.se>\n"
+"Language-Team: Swedish (http://drupal.org/project/sv)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: modules/syslog/syslog.module:22
+msgid ""
+"The syslog module enables Drupal to send messages to the operating system's "
+"logging facility."
+msgstr ""
+"Modulen Syslog möjliggör för Drupal att sända meddelanden till "
+"operativsystemets logghantering."
+
+#: modules/syslog/syslog.module:23
+msgid ""
+"Syslog is an operating system administrative logging tool, and provides "
+"valuable information for use in system management and security auditing. "
+"Most suited to medium and large sites, syslog provides filtering tools that "
+"allow messages to be routed by type and severity. On UNIX/Linux systems, the "
+"file /etc/syslog.conf defines this routing configuration; on Microsoft "
+"Windows, all messages are sent to the Event Log. For more information on "
+"syslog facilities, severity levels, and how to set up a syslog.conf file, "
+"see <a href=\"@syslog_conf\">UNIX/Linux syslog.conf</a> and PHP's <a href="
+"\"@php_openlog\">openlog</a> and <a href=\"@php_syslog\">syslog</a> "
+"functions."
+msgstr ""
+"Syslog är ett operativsystems administrativa loggverktyg som används i "
+"systemhantering och säkerhetsgranskningar. Anpassat mest för medium till "
+"stora webbplatser. Syslog tillhandahåller filtrerande verktyg som tillåter "
+"att meddelanden vidarebefordras beroende på typ och allvarlighetsgrad. På "
+"system med UNIX/Linux bestämmer filen /etc/syslog.conf vidarebefordringen. "
+"På Microsoft Windows skickas alla meddelanden till händelsehanterarens log. "
+"För mer information om Syslogs möjligheter, säkerhetsnivåer och hur man "
+"sätter upp filen syslog.conf, se <a href=\"@syslog_conf\">UNIX/Linux syslog."
+"conf</a> och PHP:s <a href=\"@php_openlog\">Openlog</a> och <a href="
+"\"@php_syslog\">Syslog</a> funktioner."
+
+#: modules/syslog/syslog.module:24
+msgid ""
+"For more information, see the online handbook entry for <a href=\"@syslog"
+"\">Syslog module</a>."
+msgstr ""
+"Läs mer om <a href=\"@syslog\">modulen Syslog</a> i konfigurations- och "
+"anpassningshandboken."
+
+#: modules/syslog/syslog.module:42
+msgid "Send events to this syslog facility"
+msgstr "Skicka händelserna till Syslogs hantering"
+
+#: modules/syslog/syslog.module:45
+msgid ""
+"Select the syslog facility code under which Drupal's messages should be "
+"sent. On UNIX/Linux systems, Drupal can flag its messages with the code "
+"LOG_LOCAL0 through LOG_LOCAL7; for Microsoft Windows, all messages are "
+"flagged with the code LOG_USER. Depending on the system configuration, "
+"syslog and other logging tools use this code to identify or filter Drupal "
+"messages from within the entire system log. For more information on syslog, "
+"see <a href=\"@syslog_help\">Syslog help</a>."
+msgstr ""
+"Välj Syslogs hanteringskod som Drupals meddelande ska skickas med. På "
+"systemen UNIX/Linux kan Drupal flagga meddelandena med koden LOG_LOCAL0 till "
+"och med LOG_LOCAL7. För Microsoft Windows flaggas alla meddelanden med koden "
+"LOG_USER. Beroende på systemets konfiguration kan Syslog och andra "
+"loggverktyg använda denna kod för att identifiera eller filtrera Drupals "
+"meddelanden inifrån hela systemloggen. Läs mer om <a href=\"@syslog_help"
+"\">Syslog help</a> för mer information om Syslog."
+
+#: modules/syslog/syslog.module:55
+msgid "LOG_USER - User level messages. Use this for Windows."
+msgstr "LOG_USER - Användarens meddelandenivå. Använd detta för Windows."
+
+#: modules/syslog/syslog.module:59
+msgid "LOG_LOCAL0 - Local 0"
+msgstr "LOG_LOCAL0 - Local 0"
+
+#: modules/syslog/syslog.module:60
+msgid "LOG_LOCAL1 - Local 1"
+msgstr "LOG_LOCAL1 - Local 1"
+
+#: modules/syslog/syslog.module:61
+msgid "LOG_LOCAL2 - Local 2"
+msgstr "LOG_LOCAL2 - Local 2"
+
+#: modules/syslog/syslog.module:62
+msgid "LOG_LOCAL3 - Local 3"
+msgstr "LOG_LOCAL3 - Local 3"
+
+#: modules/syslog/syslog.module:63
+msgid "LOG_LOCAL4 - Local 4"
+msgstr "LOG_LOCAL4 - Local 4"
+
+#: modules/syslog/syslog.module:64
+msgid "LOG_LOCAL5 - Local 5"
+msgstr "LOG_LOCAL5 - Local 5"
+
+#: modules/syslog/syslog.module:65
+msgid "LOG_LOCAL6 - Local 6"
+msgstr "LOG_LOCAL6 - Local 6"
+
+#: modules/syslog/syslog.module:66
+msgid "LOG_LOCAL7 - Local 7"
+msgstr "LOG_LOCAL7 - Local 7"
+
+#: modules/syslog/syslog.module:32
+msgid ""
+"Settings for syslog logging. Syslog is an operating system administrative "
+"logging tool used in systems management and security auditing. Most suited "
+"to medium and large sites, syslog provides filtering tools that allow "
+"messages to be routed by type and severity."
+msgstr ""
+"Inställningar för Syslogs loggningar. Syslog är ett operativsystems "
+"administrativa loggverktyg som används i systemhantering och "
+"säkerhetsgranskningar. Anpassat mest för medium till stora webbplatser. "
+"Syslog tillhandahåller filtrerande verktyg som tillåter att meddelanden "
+"vidarebefordras beroende på typ och allvarlighetsgrad."
+
+#: modules/syslog/syslog.module:0
+msgid "syslog"
+msgstr "syslog"
