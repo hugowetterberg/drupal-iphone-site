@@ -1,0 +1,28 @@
+<?php
+//$ Id: $
+
+/**
+* Implementation of hook_requirements
+*
+* Alert admins that they need to download the classTextile.php if they haven't already
+*/
+
+function textile_requirements($phase) {
+  $requirements = array();
+
+  if ($phase == 'runtime') {
+    if ($error = _textile_lib_check()) {
+      $requirements['textile'] = array(
+        'value' => t('Not installed'),
+        'severity' => REQUIREMENT_ERROR,
+        'description' => $error,
+      );
+    }
+    else {
+      $requirements['textile']['severity'] = REQUIREMENT_OK;
+    }
+    $requirements['textile']['title'] = t('classTextile library');
+  }
+
+  return $requirements;
+}

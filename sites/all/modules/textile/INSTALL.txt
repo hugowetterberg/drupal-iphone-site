@@ -1,0 +1,25 @@
+$Id: INSTALL.txt,v 1.6 2008/10/13 21:16:33 joshk Exp $
+
+For a new installation, copy the entire textile module directory to the
+appropriate module directory within your Drupal installation.
+
+Then download the most up to date textile library from thresholdstate:
+
+http://textile.thresholdstate.com/
+
+The library should be availble via a link on the right in tar.gz or zip
+formats. Uncompress the download, and place the classTextile.php file
+into the same directory as textile.module.
+
+You can also get the library from their SVN reposiory:
+
+http://textpattern.googlecode.com/svn/releases/4.0/source/textpattern/lib/classTextile.php
+
+Then log into your site, enable the Textile module on the
+admin/build/modules page. Finally, you must add the Textile filter to
+the appropriate input formats and set any desired configuration options.
+
+NOTE: you need to be careful with how your input filters are ordered. I
+recommend setting up a special filter for textile. Disable the
+line-break converter, and set up the HTML filter to run AFTER textile,
+and only allow the types of tags you want to permit.

@@ -1,0 +1,57 @@
+# LANGUAGE translation of Drupal (textile.module)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from file: textile.module,v 1.16 2005/03/21 16:06:59 jhriggs
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2005-10-04 08:48+0200\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: textile.module:62
+msgid "Textile"
+msgstr ""
+
+#: textile.module:65
+msgid "Allows content to be submitted using Textile, a simple, plain text syntax that is filtered into valid XHTML."
+msgstr ""
+
+#: textile.module:76
+msgid "Textile filter"
+msgstr ""
+
+#: textile.module:76
+msgid "Use tags"
+msgstr ""
+
+#: textile.module:76
+msgid "If enabled, only text between [textile] and optional [/textile] tags will be processed.  Otherwise, all text will be processed as Textile markup."
+msgstr ""
+
+#: textile.module:88
+msgid "\n<h1>Textile Help</h1>\n\n<h2>Block modifier syntax:</h2>\n\n<p>\n  CSS attributes can be applied to blocks (paragraphes, headers,\n  etc.). CSS classes are specifed with \"<code>(<i>class</i>)</code>\";\n  CSS IDs are specified with \"<code>(#<i>id</i>)</code>\"; both can be\n  specified with \"<code>(<i>class</i>#<i>id</i>)</code>\". An arbtirary\n  CSS style can be applied by using\n  \"<code>{<i>style</i>}</code>\". Finally, language attributes are\n  applied using \"<code>[<i>language</i>]</code>\".\n</p>\n<p>\n  Additionally, alignment and indentation shorthands are provided. To\n  left-align, right-align, center, and justify text, use\n  \"<code>&lt;</code>\", \"<code>&gt;</code>\", \"<code>=</code>\", and\n  \"<code>&lt;&gt;</code>\", respectively. \"<code>(</code>\" left-indents\n  a block 1em for each occurrence, and \"<code>)</code>\" right-indents\n  similarly.\n</p>\n<p>\n  Tables have additional options. \"<code>^</code>\", \"<code>-</code>\",\n  and \"<code>~</code>\" specify top, middle, and bottom vertical\n  alignment. The \"<code>_</code>\" attribute on a cell indicates that\n  it is a table header.\n</p>\n<p>\n  The examples below illustrate these attributes.\n</p>\n\n<table>\n<tr>\n  <th>textile input</th>\n  <th>output</th>\n</tr>\n\n<tr class=\"dark\">\n  <td colspan=\"2\">\n    <h3>Headings</h3>\n    <code>h<i>x</i>.</code> (where <i>x</i> is 1 - 6)\n  </td>\n</tr>\n<tr class=\"light\">\n  <td>h1. Heading</td>\n  <td><h1>Heading</h1></td>\n</tr>\n<tr class=\"light\">\n  <td>h2(class). Heading with class</td>\n  <td><h2 class=\"class\">Heading with class</h2></td>\n</tr>\n\n<tr class=\"dark\">\n  <td colspan=\"2\"><h3>Paragraphs</h3></td>\n</tr>\n<tr class=\"light\">\n  <td>p=. Centered text</td>\n  <td><p style=\"text-align:center;\">Centered text</p></td>\n</tr>\n<tr class=\"light\">\n  <td>p())(#id). Indented text with ID</td>\n  <td>\n    <p style=\"padding-left:1em;padding-right:2em;\" id=\"id\">Indented\n    text with ID</p>\n  </td>\n</tr>\n\n<tr class=\"dark\">\n  <td colspan=\"2\"><h3>Block quotes</h3></td>\n</tr>\n<tr class=\"light\">\n  <td>bq(class#id). Quote with class and ID</td>\n  <td>\n    <blockquote class=\"class\" id=\"id\">Quote with class and\n    ID</blockquote>\n  </td>\n</tr>\n<tr class=\"light\">\n  <td>bq[en]. English quote</td>\n  <td>\n    <blockquote lang=\"en\">English quote</blockquote>\n  </td>\n</tr>\n\n<tr class=\"dark\">\n  <td colspan=\"2\"><h3>Ordered lists</h3></td>\n</tr>\n<tr class=\"light\">\n  <td>\n    {color: blue}# Attributes specified<br />\n    # before the first item<br />\n    # affect the whole list\n  </td>\n  <td>\n    <ol style=\"color:blue;\">\n      <li>Attributes specified</li>\n      <li>before the first item</li>\n      <li>affect the whole list</li>\n    </ol>\n  </td>\n</tr>\n\n<tr class=\"dark\">\n  <td colspan=\"2\"><h3>Unordered lists</h3></td>\n</tr>\n<tr class=\"light\">\n  <td>\n    * Lists can have<br />\n    ## subitems or<br />\n    ## sublists<br />\n    * too\n  </td>\n  <td>\n    <ul>\n      <li>Lists can have\n        <ol>\n          <li>subitems or</li>\n          <li>sublists</li>\n        </ol>\n      </li>\n      <li>too</li>\n    </ul>\n  </td>\n</tr>\n\n<tr class=\"dark\">\n  <td colspan=\"2\">\n    <h3>Footnotes</h3>\n    <code>fn<i>x</i>.</code> (where <i>x</i> is 1 - 100)\n  </td>\n</tr>\n<tr class=\"light\">\n  <td>fn17. Footnote</td>\n  <td><p id=\"fn17\"><sup>17</sup> Footnote</p></td>\n</tr>\n\n<tr class=\"dark\">\n  <td colspan=\"2\"><h3>Tables</h3></td>\n</tr>\n<tr class=\"light\">\n  <td>\n    |_. A|_. B|_. C|<br />\n    (dark). |very|simple|table|<br />\n    |&lt;. left|=. center|&gt;. right|<br />\n    |^{height:3em}. top|-. middle|~. bottom|\n  </td>\n  <td>\n    <table>\n    <tr>\n      <th>A</th>\n      <th>B</th>\n      <th>C</th>\n    </tr>\n    <tr class=\"dark\">\n      <td>very</td>\n      <td>simple</td>\n      <td>table</td>\n    </tr>\n    <tr>\n      <td style=\"text-align:left;\">left</td>\n      <td style=\"text-align:center;\">center</td>\n      <td style=\"text-align:right;\">right</td>\n    </tr>\n    <tr>\n      <td style=\"vertical-align:top;height:3em;\">top</td>\n      <td style=\"vertical-align:middle;\">middle</td>\n      <td style=\"vertical-align:bottom;\">bottom</td>\n    </tr>\n    </table>\n  </td>\n</tr>\n</table>\n\n<h2>Phrase modifier syntax:</h2>\n<p>\n  The class, ID, style, and language attributes described above also\n  apply to the span phrase modifier as shown below.\n</p>\n\n<table>\n<tr>\n  <th>textile input</th>\n  <th>output</th>\n</tr>\n<tr class=\"dark\">\n  <td>_emphasis_</td>\n  <td><em>emphasis</em></td>\n</tr>\n<tr class=\"light\">\n  <td>__italic__</td>\n  <td><i>italic</i></td>\n</tr>\n<tr class=\"dark\">\n  <td>*strong*</td>\n  <td><strong>strong</strong></td>\n</tr>\n<tr class=\"light\">\n  <td>**bold**</td>\n  <td><b>bold</bold></td>\n</tr>\n<tr class=\"dark\">\n  <td>??citation??</td>\n  <td><cite>citation</cite></td>\n</tr>\n<tr class=\"light\">\n  <td>-delete text-</td>\n  <td><del>deleted text</del></td>\n</tr>\n<tr class=\"dark\">\n  <td>+inserted text+</td>\n  <td><ins>inserted text</ins></td>\n</tr>\n<tr class=\"light\">\n  <td>^superscript^</td>\n  <td><sup>superscript</sup></td>\n</tr>\n<tr class=\"dark\">\n  <td>~subscript~</td>\n  <td><sub>subscript</sub></td>\n</tr>\n<tr class=\"light\">\n  <td>@code@</td>\n  <td><code>code</code></td>\n</tr>\n<tr class=\"dark\">\n  <td>%(class)span%</td>\n  <td><span class=\"class\">span</span></td>\n</tr>\n<tr class=\"dark\">\n  <td>%{color:red;}span%</td>\n  <td><span style=\"color:red;\">span</span></td>\n</tr>\n<tr class=\"light\">\n  <td>==no textile==</td>\n  <td>no textile</td>\n</tr>\n<tr class=\"dark\">\n  <td>\"link text\":url</td>\n  <td><a href=\"url\">link text</a></td>\n</tr>\n<tr class=\"light\">\n  <td>\"link text(title)\":url</td>\n  <td><a href=\"url\" title=\"title\">link text</a></td>\n</tr>\n<tr class=\"dark\">\n  <td>!imageurl!</td>\n  <td><img src=\"imageurl\" /></td>\n</tr>\n<tr class=\"light\">\n  <td>!imageurl(alt text)!</td>\n  <td><img src=\"imageurl\" alt=\"alt text\" /></td>\n</tr>\n<tr class=\"dark\">\n  <td>!imageurl!:url</td>\n  <td><a href=\"imageurl\"><img src=\"imageurl\" /></a></td>\n</tr>\n<tr class=\"light\">\n  <td>ABC(Always Be Closing)</td>\n  <td><acronym title=\"Always Be Closing\">ABC</acronym></td>\n</tr>\n<tr class=\"dark\">\n  <td>Footnote reference[17]</td>\n  <td>Footnote reference<sup><a href=\"#17\">17</a></sup></td>\n</tr>\n</table>\n"
+msgstr ""
+
+#: textile.module:357
+msgid "You can use Textile markup to format text between the [textile] and (optional) [/textile] tags."
+msgstr ""
+
+#: textile.module:360
+msgid "You can use Textile markup to format text."
+msgstr ""
+
+#: textile.module:373
+msgid "\n<p>\n  The Textile module allows users to enter content using <a\n  href=\"http://textism.com/tools/textile/\"\n  title=\"Textile\">Textile</a>, a simple, plain text syntax that is\n  filtered into valid XHTML. The <a href=\"filter/tips\" title=\"Textile\n  help\">filter tips page</a> provides syntax descriptions and\n  examples.\n</p>\n"
+msgstr ""
+
+#: textile.module:0
+msgid "textile"
+msgstr ""
+

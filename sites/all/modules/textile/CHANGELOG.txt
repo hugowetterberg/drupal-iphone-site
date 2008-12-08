@@ -1,0 +1,162 @@
+textile.module
+CHANGELOG.txt
+$Id: CHANGELOG.txt,v 1.8 2007/06/28 00:30:31 joshk Exp $
+
+2007-06-27
+  - Transferred owenership to joshk
+  - Changed to use external library from thresholdstate, based on:
+    http://leon.info.tm/en/salvation-textile-drupal-module
+  - See issue:
+    http://drupal.org/node/143730
+
+2007-03-01
+  - release 5.x-1.1
+  - textile.module: fix quotes for filter settings (fixes bug 123860
+    reported by jhm)
+
+2007-02-15
+  - release 5.x-1.0
+  - textile.module: updated for Drupal 5
+  - textile.info: new file
+  - INSTALL.txt, README.txt: updated for Drupal 5 changes
+
+2006-05-10
+  - release 4.7r2/2006051000
+  - textile.module
+    - updated coding style to more-closely resemble Drupal's standards
+    - removed install
+  - DrupalTextile.inc
+    - updated coding style to more-closely resemble Drupal's standards
+    - removed process()
+    - added format_url() which uses Drupal's url() function (addresses
+      feature 57592 requested by njivy)
+
+2005-11-29
+  - release 4.7r1/2005112900
+  - textile.module
+    - updated for Drupal 4.7
+    - only load the Textile classes when needed (addresses task 28632
+      reported by drumm)
+    - removed DrupalTextile class
+  - DrupalTextile.inc: initial version; moves DrupalTextile class to
+    its own include file (addresses task 28632 reported by drumm)
+
+2005-03-21
+  - release 4.6r1/2005032101
+
+2005-03-21
+  - release 4.5r3/2005032100 (versioning changed to better coincide
+    with Drupal versions)
+  - textile.module
+    - import Textile.php based on __FILE__ rather than
+      module_get_path() (addresses task 14544 reported by mousse-man)
+    - default [textile] and [/textile] tags to false (NOTE: You may
+      need to verify your input format settings!)
+    - set charset to UTF-8 and disable char_encoding in the
+      DrupalTextile constructor (fixes bug 11357 reported by Tommy
+      Sundstrom)
+  - textilephp: import of TextilePHP 2.0.8
+  - smartypants-php: removed; smartypants functionality is now
+    available in the separate smartypants filter module (NOTE: You may
+    want to install and enable the smartypants module.)
+
+2004-09-23
+  - release 2.1.1/2004092301
+  - textilephp: import of TextilePHP 2.0.7
+  - textile.module: updated to use module_get_path()
+
+2004-09-23
+  - release 2.0.6/2004092300
+  - textilephp: import of TextilePHP 2.0.7
+
+2004-08-25
+  - release 2.1.0/2004082501
+  - NOTE: some of the changes in this release conflict with changes
+    committed to CVS recently by almaw; users that had those changes
+    may need to verify the filter configuration for Textile
+  - textile.module
+    - updated for CVS, including input formats
+    - filter now has a setting (per input format) for specifying
+      whether or not the [textile] and optional [/textile] tags should
+      be used; content converted from older versions will need this
+      option enabled; if a given input format is expected to use
+      Textile, though, the tags are redundant
+  - README: added note about configuration
+
+2004-08-25
+  - release 2.0.5/2004082500
+  - smartypants-php: import of SmartyPants-PHP 1.5.1-r1
+
+2004-07-28
+  - release 2.0.4/2004072800
+  - textilephp: import of TextilePHP 2.0.4 which is (non-strict)
+    PHP5-compliant
+
+2004-05-29
+  - release 2.0.3/2004052900
+  - textile.module
+    - updated quoting
+    - fixed admin help link
+    - changed heredoc strings to multiline
+    - added @private marks
+    - added DrupalTextile (MTLikeTextile subclass) which fixes footnote
+      links in Drupal context (fixes bug 8037 reported by me)
+  - textilephp: import of TextilePHP 2.0.2
+  - smartypants-php: import of SmartyPants-PHP 1.4.1-r2
+  - Textile.php, SmartyPants-PHP.inc: removed
+
+2004-05-27
+  - release 2.0.2/2004052700
+  - SmartyPants-PHP.inc: added
+  - INSTALL, README, CREDITS, textile.module: updated for SmartyPants
+
+2004-05-25
+  - release 2.0.1/2004052500
+  - INSTALL, README: added note about title.module
+  - Textile.php: updated to version 2.0.1 which fixes a bug with link
+    lookup lists
+
+2004-05-24
+  - release 2.0/2004052400
+  - textile.module
+    - no longer uses "invisible" tags in the node body/teaser to
+      identify Textile input; "visible" [textile] and optional
+      [/textile] tags now mark Textile data; legacy Textile nodes are
+      updated automatically (fixes bug 7348 reported by jluster)
+    - _textile_is_installed() and _textile_install() methods
+      implemented to allow automatic legacy update
+    - nodeapi support removed, as it is unneeded with new tags
+      (nullifies bugs/features 3992, 5824, and 5195 reported by ber
+      kessels, mic, and weitzman, respectively)
+    - fixed phpdoc comments
+  - Textile1.php, Textile2.php: removed
+  - Textile.php: PHP port of Brad Choate's Textile.pm Perl module
+    available at <http://jimandlissa.com/project/textilephp> replaces
+    Textile(1|2).php (fixes bug 4439 reported by Eric Scouten)
+
+2004-03-26
+  - release 1.1.0/2004032601
+  - textile.module: updated for Drupal 4.4
+
+2004-03-26
+  - release 1.0.3/2004032600
+  - textile.module
+    - added update of include path via ini_set() for Textile(1|2).php
+      includes
+    - only the first 100 characters of filtered text are checked for
+      the Textile tag
+
+2003-11-09
+  - release 1.0.2/2003110900
+  - Textile2.php: changed preg_replace_callback() calls to $this to
+    use array(&$this, ...) instead of array($this, ...) to ensure that
+    member variables get updated properly (fixes bug 4021 reported by
+    me)
+
+2003-11-06
+  - release 1.0.1/2003110600
+  - textile.module: added module description for "administer >
+    configuration > modules" list
+
+2003-11-04
+  - initial release 1.0/2003110400
