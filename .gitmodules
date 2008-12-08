@@ -1,0 +1,3 @@
+[submodule "sites/all/modules/cobalt"]
+	path = sites/all/modules/cobalt
+	url = git://github.com/hugowetterberg/cobalt.git
