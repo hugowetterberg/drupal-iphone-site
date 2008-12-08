@@ -1,0 +1,78 @@
+# $Id: de.po,v 1.1.4.2 2007/11/17 20:57:50 hass Exp $
+#
+# LANGUAGE translation of Drupal (sites/all/modules/potx/potx-cli.php)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from file:
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: German translation for potx 5.x\n"
+"POT-Creation-Date: 2007-05-01 23:04+0200\n"
+"PO-Revision-Date: 2007-06-13 16:13+0100\n"
+"Last-Translator: Alexander Hass\n"
+"Language-Team: Alexander Hass\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: potx.module:15
+msgid "Helps to extract pot-files for translations from the sources of installed modules."
+msgstr "Hilft dabei die POT Übersetzungsdateien aus den Quellen der installierten Module zu erstellen."
+
+#: potx.module:17
+msgid "This page allows you to generate translation templates for module files. Select the module you wish to generate a template file for. A single Gettext Portable Object Template file is generated (unlike the output of the command line extractor utility), so you can easily save it and start translation."
+msgstr "Diese Seite erlaubt die Erzeugung von Übersetzungsvorlagen für Moduldateien. Dazu muss das Modul für das eine Vorlagendatei erzeugt werden soll ausgewählt werden. Dann wird eine einzelne Gettext Portable Object Vorlagendatei erzeugt (im Gegensatz zu dem Kommandozeilen Extrahier-Utility), welche gespeichert und übersetzt werden kann."
+
+#: potx.module:30
+msgid "Extract strings"
+msgstr "Zeichenketten extrahieren"
+
+#: potx.module:77
+msgid "Extract"
+msgstr "Extrahieren"
+
+#: potx.module:168
+msgid "Extract from %module_name module, in directory %dir_name"
+msgstr "Aus dem Modul %module_name im Verzeichnis %dir_name extrahieren"
+
+#: potx.module:169
+msgid "Generates output from all files found in this directory."
+msgstr "Die Ausgaben von allen in diesem Verzeichnis gefundenen Dateien erzeugen."
+
+#: potx.module:184
+msgid "Extract from all modules in directory \"@dir_name\""
+msgstr "Aus allen Modulen in „@dir_name“ extrahieren"
+
+#: potx.module:185
+msgid "To extract from a single module in this directory, choose the module entry in the fieldset below."
+msgstr "Um aus einem einzelnen Modul in diesem Verzeichnis zu extrahieren, kann ein Modul in der unten aufgeführten Feldliste ausgewählt werden."
+
+#: potx.module:194
+msgid "Modules in \"@dir_name\""
+msgstr "Module in „@dir_name“"
+
+#: potx.module:214
+msgid "Extract from module %module_name"
+msgstr "Aus dem Modul %module_name extrahieren"
+
+#: potx.module:215
+msgid "Extract from files named %module_pattern, in directory %module_dir."
+msgstr "Aus den Dateien im Verzeichnis %module_dir mit den Namen %module_pattern extrahieren."
+
+#: potx.module:0
+#: potx.info:0
+msgid "potx"
+msgstr "potx"
+
+#: potx.info:0
+msgid "POT extractor"
+msgstr "POT Extraktor"
+
+#: potx.info:0
+msgid "Provides a web interface to extract Gettext templates from the sources of installed modules."
+msgstr "Bietet eine Weboberfläche, um Gettext Vorlagen aus den Quellen der installierten Module zu extrahieren."
+

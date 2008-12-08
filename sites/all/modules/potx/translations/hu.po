@@ -1,0 +1,190 @@
+# translation of potx-module.po to Hungarian
+# $Id: hu.po,v 1.1.4.2 2007/11/17 20:57:50 hass Exp $
+# LANGUAGE translation of Drupal (potx.module)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+# 	potx.info,v 1.1.2.3 2007/03/27 19:40:09 goba
+#	potx.inc,v 1.1.2.9 2007/05/02 12:56:31 ray007
+#  potx.module,v 1.1.2.9 2007/05/02 12:56:31 ray007
+#  potx-cli.php,v 1.1.2.2 2007/05/02 09:18:15 goba
+#
+# Domokos Endre János <domokos.endrejanos@chello.hu>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: potx-module\n"
+"POT-Creation-Date: 2007-05-01 23:52+0200\n"
+"PO-Revision-Date: 2007-05-17 18:14+0200\n"
+"Last-Translator: Domokos Endre János <domokos.endrejanos@chello.hu>\n"
+"Language-Team: Hungarian <Drupal.hu Fordítási Csapat <forditas [at] drupal.hu>>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#: potx.info:0;2
+msgid "POT extractor"
+msgstr "POT kinyerő"
+
+#: potx.info:3
+msgid "Provides a web interface to extract Gettext templates from the sources of installed modules."
+msgstr "Webes felhasználói felületet biztosít a Gettext üzenetfájlok sablonjainak (.pot kiterjesztésű állományok) elkészítéséhez a telepített modulok forrásából."
+
+#: potx.module:0
+msgid "potx"
+msgstr "potx"
+
+#: potx.inc:254
+msgid "Generated from files:\n#  "
+msgstr "Forrásállományok: \n#  "
+
+#: potx.inc:257
+msgid "Generated from file: "
+msgstr "Forrásállomány: "
+
+#: potx.inc:260
+msgid "No version information was available in the source files."
+msgstr "A forrásállományban nincs elérhető verzió-információ."
+
+#: potx.inc:371
+msgid "Invalid marker content in $file:$line\n* $marker("
+msgstr "Érvénytelen jelzés tartalom: $file:$line\n* $marker("
+
+#: potx.inc:537
+msgid "administer content types"
+msgstr "tartalom tipus adminisztrálása"
+
+#: potx.inc:537
+msgid "administer nodes"
+msgstr "tartalom adminisztrálása"
+
+#: potx.inc:537
+msgid "access content"
+msgstr "hozzáférés a tartalomhoz"
+
+#: potx.inc:537
+msgid "view revisions"
+msgstr "javítások megtekintése"
+
+#: potx.inc:537
+msgid "revert revisions"
+msgstr "javítások visszavonása"
+
+#: potx.module:15
+msgid "Helps to extract pot-files for translations from the sources of installed modules."
+msgstr "Segítség a pot állományok kinyeréséhez a telepített modulok forrásából a fordítások számára."
+
+#: potx.module:17
+msgid "This page allows you to generate translation templates for module files. Select the module you wish to generate a template file for. A single Gettext Portable Object Template file is generated (unlike the output of the command line extractor utility), so you can easily save it and start translation."
+msgstr "Ezen oldal lehetővé teszi fordítási sablonok létrehozását a modul állományok számára. Válassza ki azt a modult, amelyhez sablon állományt szeretne generálni. A Gettext Hordozható Objektum (.pot állomány) Sablon létrehozása egyszerűen elvégezhető (ellentétben a parancssori alkalmazásokkal), könnyedén elmenthető és már indulhat is a fordítás."
+
+#: potx.module:30
+msgid "Extract strings"
+msgstr "Karaktersorozatok kinyerése"
+
+#: potx.module:33
+msgid "administer locales"
+msgstr "helyek adminisztrálása"
+
+#: potx.module:77
+msgid "Extract"
+msgstr "Kinyerés"
+
+#: potx.module:168
+msgid "Extract from %module_name module, in directory %dir_name"
+msgstr "Kinyerés a %module_name modulból a %dir_name könyvtárban"
+
+#: potx.module:169
+msgid "Generates output from all files found in this directory."
+msgstr "Kimenet generálása az összes e könyvtárban található állományból."
+
+#: potx.module:184
+msgid "Extract from all modules in directory \"@dir_name\""
+msgstr "Kinyerés a „@dir_name” könyvtárban található összes modulból"
+
+#: potx.module:185
+msgid "To extract from a single module in this directory, choose the module entry in the fieldset below."
+msgstr "Egyetlen modul kivonatolása ebben a könyvtárban, válassza ki a modul bemenetet a lenti mezőben."
+
+#: potx.module:194
+msgid "Modules in \"@dir_name\""
+msgstr "Modulok a „@dir_name” könyvtárban"
+
+#: potx.module:214
+msgid "Extract from module %module_name"
+msgstr "Kivonat a %module_name modulból"
+
+#: potx.module:212
+msgid "Extract from files named %module_pattern, in directory %module_dir."
+msgstr "Kivonat a %module_pattern nevű állományból a %module_dir könyvtárban."
+
+#: potx-cli.php:99
+msgid "Test string 1"
+msgstr "Próbaszöveg 1"
+
+#: potx-cli.php:100
+msgid "Test string 2 %string"
+msgstr "Próbaszöveg 2 %string"
+
+#: potx-cli.php:101
+msgid "Test string 3"
+msgstr "Próbaszöveg 3"
+
+#: potx-cli.php:102;103
+msgid "Special\ncharacters"
+msgstr "Különleges \n karakterek"
+
+#: potx-cli.php:104;105
+msgid "Embedded $variable"
+msgstr "Beágyazott $variable"
+
+#: potx-cli.php:106
+msgid "more $special characters"
+msgstr "több $special karakter"
+
+#: potx-cli.php:107
+msgid "even more $special characters"
+msgstr "mégtöbb $special karakter"
+
+#: potx-cli.php:108
+msgid "Mixed 'quote' \"marks\""
+msgstr "Vegyes 'idéző' \"jelek\""
+
+#: potx-cli.php:109
+msgid "Mixed \"quote\" 'marks'"
+msgstr "Vegyes \"idéző\" 'jelek'"
+
+#: potx-cli.php:110;111
+msgid "This is some repeating text"
+msgstr "Ez egy ismétlődő szöveg"
+
+#: potx-cli.php:113;114
+msgid "one day"
+msgid_plural "@count days"
+msgstr[0] "egy nap"
+msgstr[1] "@count nap"
+
+#: potx-cli.php:119
+msgid "access extrator data"
+msgstr "hozzáférés a kinyerő adataihoz"
+
+#: potx-cli.php:119
+msgid "administer extractor data"
+msgstr "a kinyerő adatainak adminisztrálása"
+
+#: potx-cli.php:122
+msgid "default"
+msgstr "alapértelmezett"
+
+#: potx-cli.php:123
+msgid "help"
+msgstr "súgó"
+
+#: potx-cli.php:123
+msgid "Help called"
+msgstr "Súgó meghívva"
+
+#: potx-cli.php:124
+msgid "This is some help"
+msgstr "Ez valami súgó"
+
