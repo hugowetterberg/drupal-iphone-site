@@ -125,17 +125,26 @@ function node_token_values($type, $object = NULL, $options = array()) {
                 $term = taxonomy_get_term($tid);
               }
             }
-            $values['term'] = check_plain($term->name);
-            $values['term-raw'] = $term->name;
-            $values['term-id'] = $term->tid;
-            $vid = $term->vid;
 
-            if (!empty($vid)) {
-              $vocabulary = taxonomy_vocabulary_load($vid);
+            $vocabulary = taxonomy_vocabulary_load($term->vid);
+            if (module_exists('i18ntaxonomy') && i18ntaxonomy_vocabulary($vocabulary->vid) == I18N_TAXONOMY_LOCALIZE) {
+              $lang_code = i18n_node_get_lang($node->nid);
+              $vname = tt("taxonomy:vocabulary:{$vocabulary->vid}:name", $vocabulary->name, $lang_code);
+              $tname = tt("taxonomy:term:{$term->tid}:name", $term->name, $lang_code);
+
+              $values['vocab'] = check_plain($vname);
+              $values['term'] = check_plain($tname);
+              $values['vocab-raw'] = $vname;
+              $values['term-raw'] = $tname;
+            }
+            else {
+              $values['term'] = check_plain($term->name);
+              $values['term-raw'] = $term->name;
               $values['vocab'] = check_plain($vocabulary->name);
               $values['vocab-raw'] = $vocabulary->name;
-              $values['vocab-id'] = $vocabulary->vid;
             }
+            $values['term-id'] = $term->tid;
+            $values['vocab-id'] = $vocabulary->vid;
 
             // The 'catpath' (and 'cat') tokens have been removed, as they caused quite a bit of confusion,
             // and the catpath was a relatively expensive query when the taxonomy tree was deep.
