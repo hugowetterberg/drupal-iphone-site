@@ -132,9 +132,8 @@ function pathauto_token_values($type, $object = NULL) {
             $catpath = '';
             $catpath_raw = '';
             foreach ($parents as $parent) {
-              // Replace any / characters in individual terms which might create confusing URLs
-              $catpath = pathauto_cleanstring(check_plain(preg_replace('/\//', '', $parent->name))) .'/'. $catpath;
-              $catpath_raw = pathauto_cleanstring(preg_replace('/\//', '', $parent->name)) .'/'. $catpath_raw;
+              $catpath = pathauto_cleanstring(check_plain($parent->name)) .'/'. $catpath;
+              $catpath_raw = pathauto_cleanstring($parent->name) .'/'. $catpath_raw;
             }
             $values[$label .'path'] = $catpath .'/'. check_plain($category->name);
             $values[$label .'path-raw'] = $catpath_raw .'/'. $category->name;
