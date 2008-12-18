@@ -1,10 +1,14 @@
 <?php
-// $Id: views_handler_filter_boolean_operator.inc,v 1.2 2008/09/10 01:08:06 merlinofchaos Exp $
+// $Id: views_handler_filter_boolean_operator.inc,v 1.3 2008/11/24 19:58:30 merlinofchaos Exp $
 /**
  * Simple filter to handle matching of boolean values
  *
  * Definition items:
  * - label: (REQUIRED) The label for the checkbox.
+ * - type: For basic 'true false' types, an item can specify the following:
+ *    - true-false: True/false (this is the default)
+ *    - yes-no: Yes/No
+ *    - on-off: On/Off
  */
 class views_handler_filter_boolean_operator extends views_handler_filter {
   // exposed filter options
@@ -17,7 +21,36 @@ class views_handler_filter_boolean_operator extends views_handler_filter {
     if (isset($this->definition['label'])) {
       $this->value_value = $this->definition['label'];
     }
+    $this->value_options = NULL;
     parent::construct();
+  }
+
+  /**
+   * Return the possible options for this filter.
+   *
+   * Child classes should override this function to set the possible values
+   * for the filter.  Since this is a boolean filter, the array should have
+   * two possible keys: 1 for "True" and 0 for "False", although the labels
+   * can be whatever makes sense for the filter.  These values are used for
+   * configuring the filter, when the filter is exposed, and in the admin
+   * summary of the filter.  Normally, this should be static data, but if it's
+   * dynamic for some reason, child classes should use a guard to reduce
+   * database hits as much as possible.
+   */
+  function get_value_options() {
+    if (isset($this->definition['type'])) {
+      if ($this->definition['type'] == 'yes-no') {
+        $this->value_options = array(1 => t('Yes'), 0 => t('No'));
+      }
+      if ($this->definition['type'] == 'on-off') {
+        $this->value_options = array(1 => t('On'), 0 => t('Off'));
+      }
+    }
+
+    // Provide a fallback if the above didn't set anything.
+    if (!isset($this->value_options)) {
+      $this->value_options = array(1 => t('True'), 0 => t('False'));
+    }
   }
 
   function option_definition() {
@@ -33,32 +66,44 @@ class views_handler_filter_boolean_operator extends views_handler_filter {
   }
 
   function value_form(&$form, &$form_state) {
-    if (empty($this->options['exposed'])) {
-      $form['value'] = array(
-        '#type' => 'checkbox',
-        '#title' => $this->value_value,
-        '#default_value' => $this->value,
-      );
+    if (empty($this->value_options)) {
+      // Initialize the array of possible values for this filter.
+      $this->get_value_options();
+    }
+    if (!empty($form_state['exposed'])) {
+      // Exposed filter: use a select box to save space.
+      $filter_form_type = 'select';
     }
     else {
-      $form['value'] = array(
-        '#type' => 'select',
-        '#title' => $this->value_value,
-        '#options' => array(1 => t('Yes'), 0 => t('No')),
-        '#default_value' => $this->value,
-      );
+      // Configuring a filter: use radios for clarity.
+      $filter_form_type = 'radios';
+    }
+    $form['value'] = array(
+      '#type' => $filter_form_type,
+      '#title' => $this->value_value,
+      '#options' => $this->value_options,
+      '#default_value' => $this->value,
+    );
+    if (!empty($this->options['exposed'])) {
       $identifier = $this->options['expose']['identifier'];
       if (!isset($form_state['input'][$identifier])) {
         $form_state['input'][$identifier] = $this->value;
       }
     }
   }
+
   function admin_summary() {
     if (!empty($this->options['exposed'])) {
       return t('exposed');
     }
-
-    return (empty($this->value) ? t("False") : t('True'));
+    if (empty($this->value_options)) {
+      $this->get_value_options();
+    }
+    // Now that we have the valid options for this filter, just return the
+    // human-readable label based on the current value.  The value_options
+    // array is keyed with either 0 or 1, so if the current value is not
+    // empty, use the label for 1, and if it's empty, use the label for 0.
+    return $this->value_options[!empty($this->value)];
   }
 
   function expose_options() {

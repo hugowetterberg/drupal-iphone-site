@@ -1,5 +1,5 @@
 <?php
-// $Id: plugins.inc,v 1.150 2008/10/14 18:58:01 merlinofchaos Exp $
+// $Id: plugins.inc,v 1.151 2008/10/28 19:23:50 merlinofchaos Exp $
 /**
  * @file plugins.inc
  * Built in plugins for Views output handling.
@@ -101,7 +101,7 @@ function views_views_plugins() {
         'help topic' => 'style-unformatted',
       ),
       'list' => array(
-        'title' => t('List'),
+        'title' => t('HTML List'),
         'help' => t('Displays rows as an HTML list.'),
         'handler' => 'views_plugin_style_list',
         'theme' => 'views_view_list',

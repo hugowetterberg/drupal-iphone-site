@@ -1,5 +1,5 @@
 <?php
-// $Id: cache.inc,v 1.20 2008/09/24 21:21:21 merlinofchaos Exp $
+// $Id: cache.inc,v 1.21 2008/11/19 22:33:55 merlinofchaos Exp $
 /**
  * @file cache.inc
  *
@@ -27,7 +27,7 @@ function _views_include_default_views() {
 function _views_fetch_data($table = NULL) {
   static $cache = NULL;
   if (!isset($cache)) {
-    $start = microtime();
+    $start = views_microtime();
     // NOTE: This happens whether we retrieve them from cache or otherwise.
     views_include_handlers();
 
@@ -46,7 +46,7 @@ function _views_fetch_data($table = NULL) {
       views_cache_set('views_data', $cache, TRUE);
     }
 
-    vpr('Views data build time: ' . (microtime() - $start) * 1000 . ' ms');
+    vpr('Views data build time: ' . (views_microtime() - $start) * 1000 . ' ms');
   }
 
   if (!$table) {
@@ -66,12 +66,12 @@ function _views_fetch_data($table = NULL) {
 function _views_fetch_plugin_data($type = NULL, $plugin = NULL) {
   static $cache = NULL;
   if (!isset($cache)) {
-    $start = microtime();
+    $start = views_microtime();
     views_include_handlers();
 
     $cache = views_discover_plugins();
 
-    vpr('Views plugins build time: ' . (microtime() - $start) * 1000 . ' ms');
+    vpr('Views plugins build time: ' . (views_microtime() - $start) * 1000 . ' ms');
   }
 
   if (!$type && !$plugin) {

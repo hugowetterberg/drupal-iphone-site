@@ -1,5 +1,5 @@
 <?php
-// $Id: views_handler_field_node_new_comments.inc,v 1.2 2008/09/22 21:59:39 merlinofchaos Exp $
+// $Id: views_handler_field_node_new_comments.inc,v 1.3 2008/11/19 22:44:29 merlinofchaos Exp $
 
 /**
  * Field handler to display the number of new comments
@@ -70,7 +70,7 @@ class views_handler_field_node_new_comments extends views_handler_field_numeric 
   }
 
   function render_link($data, $values) {
-    if (!empty($this->options['link_to_comment'])) {
+    if (!empty($this->options['link_to_comment']) && $data !== NULL && $data !== '') {
       return l($data, "node/" . $values->{$this->aliases['nid']}, array('html' => TRUE, 'fragment' => "new"));
     }
     else {

@@ -1,5 +1,5 @@
 <?php
-// $Id: theme.inc,v 1.62 2008/10/16 17:06:25 merlinofchaos Exp $
+// $Id: theme.inc,v 1.65 2008/12/02 22:17:42 merlinofchaos Exp $
 
 /**
  * @file theme.inc
@@ -293,7 +293,7 @@ function template_preprocess_views_view_table(&$vars) {
     // render the header labels
     if ($field == $column && empty($fields[$field]->options['exclude'])) {
       $label = check_plain(!empty($fields[$field]) ? $fields[$field]->label() : '');
-      if (empty($options['info'][$field]['sortable'])) {
+      if (empty($options['info'][$field]['sortable']) || !$fields[$field]->click_sortable()) {
         $vars['header'][$field] = $label;
       }
       else {
@@ -451,6 +451,10 @@ function template_preprocess_views_view_rss(&$vars) {
   else {
     $description = $options['description'];
   }
+  // The RSS 2.0 "spec" doesn't indicate HTML can be used in the description.
+  // We strip all HTML tags, but need to prevent double encoding from properly
+  // escaped source data (such as &amp becoming &amp;amp;).
+  $vars['description'] = check_plain(decode_entities(strip_tags($description)));
 
   if ($view->display_handler->get_option('sitename_title')) {
     $title = variable_get('site_name', 'Drupal');
@@ -461,6 +465,7 @@ function template_preprocess_views_view_rss(&$vars) {
   else {
     $title = $view->get_title();
   }
+  $vars['title'] = check_plain($title);
 
   // Figure out which display which has a path we're using for this feed. If there isn't
   // one, use the global $base_url
@@ -484,10 +489,26 @@ function template_preprocess_views_view_rss(&$vars) {
     $vars['link'] = check_url(url($path, $url_options));
   }
 
+  $vars['langcode'] = check_plain($language->language);
   $vars['namespaces'] = drupal_attributes($style->namespaces);
-  $vars['channel'] = format_rss_channel($title, $vars['link'], $description, $items, $language->language);
+  $vars['items'] = $items;
+  $vars['channel_elements'] = format_xml_elements($style->channel_elements);
 
   drupal_set_header('Content-Type: application/rss+xml; charset=utf-8');
+}
+
+/**
+ * Default theme function for all RSS rows.
+ */
+function template_preprocess_views_view_row_rss(&$vars) {
+  $view     = &$vars['view'];
+  $options  = &$vars['options'];
+  $item     = &$vars['row'];
+
+  $vars['title'] = check_plain($item->title);
+  $vars['link'] = check_url($item->link);
+  $vars['description'] = check_plain($item->description);
+  $vars['item_elements'] = empty($item->elements) ? '' : format_xml_elements($item->elements);
 }
 
 /**

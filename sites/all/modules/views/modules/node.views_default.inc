@@ -1,5 +1,5 @@
 <?php
-// $Id: node.views_default.inc,v 1.9 2008/10/07 21:24:15 merlinofchaos Exp $
+// $Id: node.views_default.inc,v 1.10 2008/10/28 20:19:40 merlinofchaos Exp $
 /**
  * @file
  * Contains default views on behalf of the node module.
@@ -285,6 +285,7 @@ function node_views_default_views() {
   $view->api_version = 2;
   $view->disabled = TRUE; /* Edit this to true to make a default view disabled initially */
   $handler = $view->new_display('default', 'Defaults', 'default');
+  $handler->override_option('title', 'Monthly archive');
   $handler->override_option('sorts', array(
     'created' => array(
       'id' => 'created',

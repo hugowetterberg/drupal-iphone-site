@@ -1,5 +1,5 @@
 <?php
-// $Id: views_ui.module,v 1.106 2008/10/07 22:05:28 merlinofchaos Exp $
+// $Id: views_ui.module,v 1.108 2008/12/03 02:39:45 merlinofchaos Exp $
 /**
  * @file views_ui.module
  * Provide structure for the administrative interface to Views.
@@ -153,18 +153,11 @@ function views_ui_menu() {
 /*
  * Implementation of hook_help()
  */
-function views_ui_help($path, $arg) {
+function views_ui_help($path, $arg = '') {
   switch ($path) {
     case 'admin/build/views/tools/convert':
       return '<p>' . t('The converter will make a best-effort attempt to convert a Views 1 view to Views 2. This conversion is not reliable; you will very likely have to make adjustments to your view to get it to match. You can import Views 1 views through the normal Import tab.') . '</p>';
   }
-}
-
-/*
- * Implementation of hook_perm()
- */
-function views_perm() {
-  return array('administer views');
 }
 
 /*

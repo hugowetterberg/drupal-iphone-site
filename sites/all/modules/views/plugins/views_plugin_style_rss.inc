@@ -1,5 +1,5 @@
 <?php
-// $Id: views_plugin_style_rss.inc,v 1.1 2008/09/03 19:21:30 merlinofchaos Exp $
+// $Id: views_plugin_style_rss.inc,v 1.2 2008/12/02 00:02:06 merlinofchaos Exp $
 /**
  * @file
  * Contains the RSS style plugin.
@@ -65,6 +65,16 @@ class views_plugin_style_rss extends views_plugin_style {
     );
   }
 
+  /**
+   * Return an array of additional XHTML elements to add to the channel.
+   *
+   * @return
+   *   An array that can be passed to format_xml_elements().
+   */
+  function get_channel_elements() {
+    return array();
+  }
+
   function render() {
     if (empty($this->row_plugin)) {
       vpr('views_plugin_style_default: Missing row plugin');
@@ -75,6 +85,15 @@ class views_plugin_style_rss extends views_plugin_style {
     // This will be filled in by the row plugin and is used later on in the
     // theming output.
     $this->namespaces = array();
+
+    // Fetch any additional elements for the channel and merge in their
+    // namespaces.
+    $this->channel_elements = $this->get_channel_elements();
+    foreach ($this->channel_elements as $element) {
+      if (isset($element['namespace'])) {
+        $this->namespaces = array_merge($this->namespaces, $element['namespace']);
+      }
+    }
 
     foreach ($this->view->result as $row) {
       $rows .= $this->row_plugin->render($row);

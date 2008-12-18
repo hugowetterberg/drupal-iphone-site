@@ -1,5 +1,5 @@
 <?php
-// $Id: admin.inc,v 1.142 2008/10/14 17:48:14 merlinofchaos Exp $
+// $Id: admin.inc,v 1.149 2008/12/02 16:04:59 merlinofchaos Exp $
 /**
  * @file admin.inc
  * Provides the Views' administrative interface.
@@ -138,32 +138,35 @@ function template_preprocess_views_ui_list_views(&$vars) {
       $item->displays = implode(', ', array_keys($item->displays));
     }
 
-
     $item->description = check_plain($view->description);
-
+    $item->classes = empty($view->disabled) ? 'view-enabled' : 'view-disabled';
     $items[] = $item;
+
+    $sort = intval(empty($view->disabled) xor $form_state['values']['sort'] == 'asc');
 
     switch ($form_state['values']['order']) {
       case 'name':
       default:
-        $sorts[] = strtolower($view->name);
+        $sort .= strtolower($view->name);
         break;
       case 'title':
-        $sorts[] = strtolower($title);
+        $sort .= strtolower($title);
         break;
       case 'path':
-        $sorts[] = strtolower($raw_path); // $path;
+        $sort .= strtolower($raw_path); // $path;
         break;
       case 'type':
-        $sorts[] = $view->type . $view->name;
+        $sort .= $view->type . $view->name;
         break;
       case 'tag':
-        $sorts[] = strtolower($view->tag);
+        $sort .= strtolower($view->tag);
         break;
       case 'desc':
-        $sorts[] = strtolower($view->description);
+        $sort .= strtolower($view->description);
         break;
     }
+
+    $sorts[] = $sort;
   }
 
   if ($form_state['values']['sort'] == 'desc') {
@@ -697,7 +700,8 @@ function views_ui_export_page(&$form_state, $view) {
     '#type' => 'textarea',
     '#title' => $view->name,
     '#default_value' => $code,
-    '#rows' => $lines);
+    '#rows' => $lines,
+  );
   return $form;
 }
 
@@ -1216,12 +1220,12 @@ function template_preprocess_views_ui_edit_item(&$vars) {
     }
     $handler->init($view, $field);
 
-    $field_name = $handler->ui_name();
+    $field_name = $handler->ui_name(TRUE);
     if (!empty($field['relationship']) && !empty($relationships[$field['relationship']])) {
       $field_name = '(' . $relationships[$field['relationship']] . ') ' . $field_name;
     }
 
-    $fields[$id]['title'] = l($field_name, "admin/build/views/nojs/config-item/$view->name/$display->id/$type/$id", array('attributes' => array('class' => 'views-ajax-link')));
+    $fields[$id]['title'] = l($field_name, "admin/build/views/nojs/config-item/$view->name/$display->id/$type/$id", array('attributes' => array('class' => 'views-ajax-link'), 'html' => TRUE));
     $fields[$id]['class'] = views_ui_item_css($display->id . '-' . $type . '-' . $id);
     if (!empty($view->changed_sections[$display->id . '-' . $type . '-' . $id])) {
       $fields[$id]['changed'] = TRUE;
@@ -1756,26 +1760,6 @@ function views_ui_analyze_view_button(&$form_state, $view) {
 }
 
 /**
- * Format an analysis message.
- */
-function views_ui_analysis($message, $type = 'error') {
-  return array('message' => $message, 'type' => $type);
-}
-
-/**
- * Implementation of hook_views_analyze().
- */
-function views_ui_views_analyze($view) {
-  $ret = array();
-  // Check for something other than the default display:
-  if (count($view->display) < 2) {
-    $ret[] = views_ui_analysis(t('This view has only a default display and therefore will not be placed anywhere on your site; perhaps you want to add a page or a block display.'), 'warning');
-  }
-
-  return $ret;
-}
-
-/**
  * Form constructor callback to display analysis information on a view
  */
 function views_ui_analyze_view_form(&$form_state) {
@@ -1784,42 +1768,13 @@ function views_ui_analyze_view_form(&$form_state) {
   $form['#title'] = t('View analysis');
   $form['#section'] = 'analyze';
 
-  $messages = array();
-
-  $view->init_display();
-  $messages = module_invoke_all('views_analyze', $view);
-
-  if (empty($messages)) {
-    $messages = array(views_ui_analysis(t('View analysis can find nothing to report.'), 'ok'));
-  }
-
-  $types = array('ok' => array(), 'warning' => array(), 'error' => array());
-  foreach ($messages as $message) {
-    if (empty($types[$message['type']])) {
-      $types[$message['type']] = array();
-    }
-    $types[$message['type']][] = $message['message'];
-  }
-
-  $output = '';
-  foreach ($types as $type => $messages) {
-    $message = '';
-    if (count($messages) > 1) {
-      $message = theme('item_list', $messages);
-    }
-    else if ($messages) {
-      $message = array_shift($messages);
-    }
-
-    if ($message) {
-      $output .= "<div class=\"$type\">$message</div>";
-    }
-  }
+  views_include('analyze');
+  $messages = views_analyze_view($view);
 
   $form['analysis'] = array(
     '#prefix' => '<div class="form-item">',
     '#suffix' => '</div>',
-    '#value' => $output,
+    '#value' => views_analyze_format_result($view, $messages),
   );
 
   // Inform the standard button function that we want an OK button.
@@ -1879,7 +1834,7 @@ function views_ui_edit_details_form(&$form_state) {
     '#title' => t('View tag'),
     '#description' => t('Enter an optional tag for this view; it is used only to help sort views on the administrative page.'),
     '#default_value' => $view->tag,
-    // TODO: This should be an autocomplete field.
+    '#autocomplete_path' => 'admin/views/ajax/autocomplete/tag',
   );
 
   views_ui_standard_form_buttons($form, $form_state, 'views_ui_edit_details_form');
@@ -2876,7 +2831,7 @@ function views_fetch_fields($base, $type) {
   static $fields = array();
   if (empty($fields)) {
     $data = views_fetch_data();
-    $start = microtime();
+    $start = views_microtime();
     // This constructs this ginormous multi dimensional array to
     // collect the important data about fields. In the end,
     // the structure looks a bit like this (using nid as an example)
@@ -2946,7 +2901,7 @@ function views_fetch_fields($base, $type) {
         }
       }
     }
-//    vsm('Views UI data build time: ' . (microtime() - $start) * 1000 . ' ms');
+//    vsm('Views UI data build time: ' . (views_microtime() - $start) * 1000 . ' ms');
   }
 
   // If we have an array of base tables available, go through them

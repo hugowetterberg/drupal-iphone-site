@@ -1,5 +1,5 @@
 <?php
-// $Id: views_plugin_display_page.inc,v 1.3 2008/10/08 22:59:59 merlinofchaos Exp $
+// $Id: views_plugin_display_page.inc,v 1.4 2008/12/02 16:45:00 merlinofchaos Exp $
 /**
  * @file
  * Contains the page display plugin.
@@ -298,15 +298,28 @@ class views_plugin_display_page extends views_plugin_display {
           '#dependency' => array('radio:menu[type]' => array('normal')),
           '#access' => (VERSION < 6.5),
         );
-        $form['menu']['name'] = array(
-          '#title' => t('Menu'),
-          '#type' => 'select',
-          '#options' => menu_get_menus(),
-          '#default_value' => $menu['name'],
-          '#description' => t('Insert item into an available menu.'), //
-          '#process' => array('views_process_dependency'),
-          '#dependency' => array('radio:menu[type]' => array('normal')),
-        );
+
+        // Only display the menu selector if menu module is enabled.
+        if (module_exists('menu')) {
+          $form['menu']['name'] = array(
+            '#title' => t('Menu'),
+            '#type' => 'select',
+            '#options' => menu_get_menus(),
+            '#default_value' => $menu['name'],
+            '#description' => t('Insert item into an available menu.'), //
+            '#process' => array('views_process_dependency'),
+            '#dependency' => array('radio:menu[type]' => array('normal')),
+          );
+        }
+        else {
+          $form['menu']['name'] = array(
+            '#type' => 'value',
+            '#value' => $menu['name'],
+          );
+          $form['menu']['markup'] = array(
+            '#value' => t('Menu selection requires the activation of menu module.'),
+          );
+        }
         $form['menu']['weight'] = array(
           '#suffix' => '</div>',
           '#title' => t('Weight'),

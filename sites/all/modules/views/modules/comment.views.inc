@@ -1,5 +1,5 @@
 <?php
-// $Id: comment.views.inc,v 1.25 2008/10/16 17:21:36 merlinofchaos Exp $
+// $Id: comment.views.inc,v 1.28 2008/12/02 22:17:41 merlinofchaos Exp $
 /**
  * @file
  * Provide views data and handlers for comment.module
@@ -93,7 +93,7 @@ function comment_views_data() {
   // name (of comment author)
   $data['comments']['name'] = array(
     'title' => t('Author'),
-    'help' => t('The name of the poster.'),
+    'help' => t("The name of the comment's author. Can be rendered as a link to the author's homepage."),
     'field' => array(
       'handler' => 'views_handler_field_comment_username',
       'click sortable' => TRUE,
@@ -112,7 +112,7 @@ function comment_views_data() {
   // homepage
   $data['comments']['homepage'] = array(
     'title' => t("Author's website"),
-    'help' => t("The website address of the comment's author. Can be a link. The homepage can also be linked with the Name field. Will be empty if posted by a registered user."),
+    'help' => t("The website address of the comment's author. Can be rendered as a link. Will be empty if the author is a registered user."),
     'field' => array(
       'handler' => 'views_handler_field_url',
       'click sortable' => TRUE,
@@ -155,6 +155,7 @@ function comment_views_data() {
     'filter' => array(
       'handler' => 'views_handler_filter_boolean_operator',
       'label' => t('Moderated'),
+      'type' => 'yes-no',
     ),
     'sort' => array(
       'handler' => 'views_handler_sort',
@@ -223,7 +224,7 @@ function comment_views_data() {
 
   $data['comments']['uid'] = array(
     'title' => t('User'),
-    'help' => t('The user who wrote the comment.'),
+    'help' => t("The User ID of the comment's author."),
     'relationship' => array(
       'base' => 'users',
       'field' => 'uid',
@@ -396,6 +397,7 @@ function comment_views_plugins() {
         'help' => t('Display the comment as RSS.'),
         'handler' => 'views_plugin_row_comment_rss',
         'path' => drupal_get_path('module', 'views') . '/modules/comment', // not necessary for most modules
+        'theme' => 'views_view_row_rss',
         'base' => array('comments'), // only works with 'comment' as base.
         'type' => 'feed',
         'help topic' => 'style-comment-rss',

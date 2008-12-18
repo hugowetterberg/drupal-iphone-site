@@ -1,5 +1,5 @@
 <?php
-//$Id: user.views.inc,v 1.52 2008/10/08 20:56:02 merlinofchaos Exp $
+//$Id: user.views.inc,v 1.55 2008/12/02 19:37:08 merlinofchaos Exp $
 /**
  * @file
  * Provide views data and handlers for user.module
@@ -71,6 +71,7 @@ function user_views_data() {
     'help' => t('Filter the view to the currently logged in user.'),
     'filter' => array(
       'handler' => 'views_handler_filter_user_current',
+      'type' => 'yes-no',
     ),
   );
 
@@ -94,7 +95,7 @@ function user_views_data() {
   // Note that this field implements field level access control.
   $data['users']['mail'] = array(
     'title' => t('E-mail'), // The item it appears as on the UI,
-    'help' => t('Email address for a given user. This field is not normally shown to users, so be cautious when using it.'), // The help that appears on the UI,
+    'help' => t('Email address for a given user. This field is normally not shown to users, so be cautious when using it.'), // The help that appears on the UI,
     'field' => array(
       'handler' => 'views_handler_field_user_mail',
       'click sortable' => TRUE,
@@ -115,6 +116,11 @@ function user_views_data() {
     'field' => array(
       'handler' => 'views_handler_field_user_picture',
       'click sortable' => TRUE,
+    ),
+    'filter' => array(
+      'handler' => 'views_handler_filter_boolean_operator_string',
+      'label' => t('Has Avatar'),
+      'type' => 'yes-no',
     ),
   );
 
@@ -178,6 +184,7 @@ function user_views_data() {
     'filter' => array(
       'handler' => 'views_handler_filter_boolean_operator',
       'label' => t('Active'),
+      'type' => 'yes-no',
     ),
     'sort' => array(
       'handler' => 'views_handler_sort',

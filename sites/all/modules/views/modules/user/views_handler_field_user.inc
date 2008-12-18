@@ -1,5 +1,5 @@
 <?php
-// $Id: views_handler_field_user.inc,v 1.1 2008/09/03 19:21:30 merlinofchaos Exp $
+// $Id: views_handler_field_user.inc,v 1.2 2008/11/19 22:44:30 merlinofchaos Exp $
 
 /**
  * Field handler to provide simple renderer that allows linking to a user.
@@ -34,7 +34,7 @@ class views_handler_field_user extends views_handler_field {
   }
 
   function render_link($data, $values) {
-    if (!empty($this->options['link_to_user']) && user_access('access user profiles') && $values->{$this->aliases['uid']}) {
+    if (!empty($this->options['link_to_user']) && user_access('access user profiles') && $values->{$this->aliases['uid']} && $data !== NULL && $data !== '') {
       return l($data, "user/" . $values->{$this->aliases['uid']}, array('html' => TRUE));
     }
     else {

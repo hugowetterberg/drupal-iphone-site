@@ -1,5 +1,5 @@
 <?php
-// $Id: views_handler_field_taxonomy.inc,v 1.1 2008/09/03 19:21:30 merlinofchaos Exp $
+// $Id: views_handler_field_taxonomy.inc,v 1.2 2008/11/19 22:44:30 merlinofchaos Exp $
 
 /**
  * Field handler to provide simple renderer that allows linking to a taxonomy
@@ -42,7 +42,7 @@ class views_handler_field_taxonomy extends views_handler_field {
    * Data should be made XSS safe prior to calling this function.
    */
   function render_link($data, $values) {
-    if (!empty($this->options['link_to_taxonomy']) && !empty($values->{$this->aliases['tid']})) {
+    if (!empty($this->options['link_to_taxonomy']) && !empty($values->{$this->aliases['tid']}) && $data !== NULL && $data !== '') {
       $term = new stdClass();
       $term->tid = $values->{$this->aliases['tid']};
       $term->vid = $values->{$this->aliases['vid']};

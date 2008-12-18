@@ -1,5 +1,5 @@
 <?php
-// $Id: views_handler_field_upload_description.inc,v 1.1 2008/09/03 19:21:30 merlinofchaos Exp $
+// $Id: views_handler_field_upload_description.inc,v 1.2 2008/11/19 22:44:30 merlinofchaos Exp $
 
 /**
  * Field handler to provide a list of roles.
@@ -61,7 +61,7 @@ class views_handler_field_upload_description extends views_handler_field_prerend
    * Data should be made XSS safe prior to calling this function.
    */
   function render_link($data, $value) {
-    if (!empty($this->options['link_to_file']) && $value->{$this->aliases['fid']}) {
+    if (!empty($this->options['link_to_file']) && $value->{$this->aliases['fid']} && $data !== NULL && $data !== '') {
       $values = $this->items[$value->{$this->aliases['fid']}];
       return l($data, file_create_url($values->filepath), array('html' => TRUE));
     }

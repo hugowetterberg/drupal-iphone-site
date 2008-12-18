@@ -1,4 +1,4 @@
-/* $Id: views-list.css,v 1.8 2008/07/09 18:52:43 merlinofchaos Exp $ */
+/* $Id: views-list.css,v 1.9 2008/10/28 18:11:42 merlinofchaos Exp $ */
 
 table.views-entry {
   margin: 2px 0;
@@ -51,4 +51,8 @@ body form#views-ui-list-views-form {
   position: relative;
   top: 2px;
   padding-right: 3px;
+}
+
+table.view-disabled {
+  color: #aaa;
 }

@@ -1,4 +1,4 @@
-// $Id: ajax_view.js,v 1.12 2008/10/15 22:09:19 merlinofchaos Exp $
+// $Id: ajax_view.js,v 1.13 2008/12/02 18:35:50 merlinofchaos Exp $
 
 /**
  * @file ajaxView.js
@@ -102,9 +102,11 @@ Drupal.behaviors.ViewsAjaxView = function() {
         .find('ul.pager > li > a')
         .each(function () {
           var viewData = Drupal.Views.parseQueryString($(this).attr('href'));
-          $.each(settings, function (key, setting) {
-            viewData[key] = setting;
-          });
+          if (!viewData['view_name']) {
+            $.each(settings, function (key, setting) {
+              viewData[key] = setting;
+            });
+          }
 
           $(this)
             .click(function () {

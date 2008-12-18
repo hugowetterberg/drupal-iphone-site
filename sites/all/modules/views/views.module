@@ -1,5 +1,5 @@
 <?php
-// $Id: views.module,v 1.317 2008/10/16 17:21:36 merlinofchaos Exp $
+// $Id: views.module,v 1.322 2008/12/16 18:52:04 merlinofchaos Exp $
 /**
  * @file
  * Primarily Drupal hooks and global API functions to manipulate views.
@@ -112,7 +112,7 @@ function views_preprocess_node(&$vars) {
     $vars['view'] = &$vars['node']->view;
     $vars['template_files'][] = 'node-view-' . $vars['node']->view->name;
     if(!empty($vars['node']->view->current_display)) {
-      $vars['template_files'][] = 'node-view-' . $vars['node']->view->name . '-'. $vars['node']->view->current_display;
+      $vars['template_files'][] = 'node-view-' . $vars['node']->view->name . '-' . $vars['node']->view->current_display;
     }
   }
 }
@@ -121,13 +121,13 @@ function views_preprocess_node(&$vars) {
  * A theme preprocess function to automatically allow view-based node
  * templates if called from a view.
  */
-function views_preprocess_comment_view(&$vars) {
+function views_preprocess_comment(&$vars) {
   // The 'view' attribute of the node is added in template_preprocess_views_view_row_comment()
   if (!empty($vars['node']->view) && !empty($vars['node']->view->name)) {
     $vars['view'] = &$vars['node']->view;
     $vars['template_files'][] = 'comment-view-' . $vars['node']->view->name;
     if(!empty($vars['node']->view->current_display)) {
-      $vars['template_files'][] = 'comment-view-' . $vars['node']->view->name . '-'. $vars['node']->view->current_display;
+      $vars['template_files'][] = 'comment-view-' . $vars['node']->view->name . '-' . $vars['node']->view->current_display;
     }
   }
 }
@@ -135,8 +135,8 @@ function views_preprocess_comment_view(&$vars) {
 /*
  * Implementation of hook_perm()
  */
-function views_ui_perm() {
-  return array('access all views');
+function views_perm() {
+  return array('access all views', 'administer views');
 }
 
 /**
@@ -339,7 +339,7 @@ function views_block($op = 'list', $delta = 0, $edit = array()) {
 
       return $items;
     case 'view':
-      $start = microtime();
+      $start = views_microtime();
       // if this is 32, this should be an md5 hash.
       if (strlen($delta) == 32) {
         $hashes = variable_get('views_block_hashes', array());
@@ -371,7 +371,7 @@ function views_block($op = 'list', $delta = 0, $edit = array()) {
       if ($view = views_get_view($name)) {
         if ($view->access($display_id)) {
           $output = $view->execute_display($display_id);
-          vpr("Block $view->name execute time: " . (microtime() - $start) * 1000 . "ms");
+          vpr("Block $view->name execute time: " . (views_microtime() - $start) * 1000 . "ms");
           $view->destroy();
           return $output;
         }
@@ -1127,4 +1127,12 @@ function views_views_exportables($op = 'list', $views = NULL, $name = 'foo') {
 
     return $code;
   }
+}
+
+/**
+ * Microtime helper function to return a float time value (php4 & php5 safe).
+ */
+function views_microtime() {
+  list($usec, $sec) = explode(' ', microtime());
+  return (float)$sec + (float)$usec;
 }

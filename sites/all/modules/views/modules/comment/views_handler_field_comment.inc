@@ -1,5 +1,5 @@
 <?php
-// $Id: views_handler_field_comment.inc,v 1.2 2008/09/10 00:16:14 merlinofchaos Exp $
+// $Id: views_handler_field_comment.inc,v 1.3 2008/11/19 22:44:29 merlinofchaos Exp $
 /**
  * Field handler to allow linking to a comment
  */
@@ -34,7 +34,7 @@ class views_handler_field_comment extends views_handler_field {
   }
 
   function render_link($data, $values) {
-    if (!empty($this->options['link_to_comment'])) {
+    if (!empty($this->options['link_to_comment']) && $data !== NULL && $data !== '') {
       return l($data, "node/" . $values->{$this->aliases['nid']}, array('html' => TRUE, 'fragment' => "comment-" . $values->{$this->aliases['cid']}));
     }
     else {

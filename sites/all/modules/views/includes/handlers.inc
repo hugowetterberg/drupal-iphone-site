@@ -1,5 +1,5 @@
 <?php
-// $Id: handlers.inc,v 1.96 2008/09/30 23:59:04 merlinofchaos Exp $
+// $Id: handlers.inc,v 1.101 2008/12/02 16:04:59 merlinofchaos Exp $
 /**
  * @file handlers.inc
  * Defines the various handler objects to help build and display views.
@@ -85,7 +85,7 @@ function views_include_handler($definition, $type, $count = 0) {
  * Prepare a handler's data by checking defaults and such.
  */
 function _views_prepare_handler($definition, $data, $field) {
-  foreach (array('group', 'title', 'help', 'real field') as $key) {
+  foreach (array('group', 'title', 'title short', 'help', 'real field') as $key) {
     if (!isset($definition[$key])) {
       // First check the field level
       if (!empty($data[$field][$key])) {
@@ -107,11 +107,11 @@ function _views_prepare_handler($definition, $data, $field) {
 function views_fetch_handler_data($handler = NULL) {
   static $cache = NULL;
   if (!isset($cache)) {
-    $start = microtime();
+    $start = views_microtime();
 
     $cache = views_discover_handlers();
 
-    vpr('Views handlers build time: ' . (microtime() - $start) * 1000 . ' ms');
+    vpr('Views handlers build time: ' . (views_microtime() - $start) * 1000 . ' ms');
   }
 
   if (!$handler) {
@@ -265,8 +265,9 @@ class views_handler extends views_object {
   /**
    * Return a string representing this handler's name in the UI.
    */
-  function ui_name() {
-    return t('!group: !title', array('!group' => $this->definition['group'], '!title' => $this->definition['title']));
+  function ui_name($short = FALSE) {
+    $title = ($short && isset($this->definition['title short'])) ? $this->definition['title short'] : $this->definition['title'];
+    return t('!group: !title', array('!group' => $this->definition['group'], '!title' => $title));
   }
 
   /**
@@ -675,7 +676,16 @@ class views_many_to_one_helper {
               'numeric' => !empty($this->handler->definition['numeric']),
             ),
           );
-          $alias = $this->handler->table_aliases[$value] = $this->add_table($join, $this->handler->table . '_' . $value);
+
+          // The table alias needs to be unique to this value across the
+          // multiple times the filter or argument is called by the view.
+          if (!isset($this->handler->view->many_to_one_aliases[$field][$value])) {
+            if (!isset($this->handler->view->many_to_one_count[$field])) {
+              $this->handler->view->many_to_one_count[$field] = 0;
+            }
+            $this->handler->view->many_to_one_aliases[$field][$value] = $this->handler->table . '_value_' . ($this->handler->view->many_to_one_count[$field]++);
+          }
+          $alias = $this->handler->table_aliases[$value] = $this->add_table($join, $this->handler->view->many_to_one_aliases[$field][$value]);
 
           // and set table_alias to the first of these.
           if (empty($this->handler->table_alias)) {
@@ -1052,6 +1062,9 @@ function views_views_handlers() {
       ),
       'views_handler_filter_boolean_operator' => array(
         'parent' => 'views_handler_filter',
+      ),
+      'views_handler_filter_boolean_operator_string' => array(
+        'parent' => 'views_handler_filter_boolean_operator',
       ),
       'views_handler_filter_in_operator' => array(
         'parent' => 'views_handler_filter',

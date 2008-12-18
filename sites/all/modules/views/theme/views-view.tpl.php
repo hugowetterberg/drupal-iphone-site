@@ -1,10 +1,11 @@
 <?php
-// $Id: views-view.tpl.php,v 1.10 2008/09/22 20:50:58 merlinofchaos Exp $
+// $Id: views-view.tpl.php,v 1.11 2008/12/02 18:35:50 merlinofchaos Exp $
 /**
  * @file views-view.tpl.php
  * Main view template
  *
  * Variables available:
+ * - $css_name: A css-safe version of the view name.
  * - $header: The view header
  * - $footer: The view footer
  * - $rows: The results of the view query, if any

@@ -1,5 +1,5 @@
 <?php
-// $Id: views_handler_argument_string.inc,v 1.2 2008/09/25 00:09:08 merlinofchaos Exp $
+// $Id: views_handler_argument_string.inc,v 1.3 2008/11/19 20:10:07 merlinofchaos Exp $
 
 /**
  * Basic argument handler to implement string arguments that may have length
@@ -183,15 +183,13 @@ class views_handler_argument_string extends views_handler_argument {
       default:
         return $string;
       case 'upper':
-        return strtoupper($string);
+        return mb_strtoupper($string);
       case 'lower':
-        return strtolower($string);
-      case 'upper':
-        return strtoupper($string);
+        return mb_strtolower($string);
       case 'ucfirst':
-        return ucfirst($string);
+        return mb_strtoupper(mb_substr($string, 0, 1)) . mb_substr($string, 1);
       case 'ucwords':
-        return ucwords($string);
+        return mb_convert_case($string, MB_CASE_TITLE);
     }
   }
 

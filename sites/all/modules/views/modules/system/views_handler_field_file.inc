@@ -1,5 +1,5 @@
 <?php
-// $Id: views_handler_field_file.inc,v 1.1 2008/09/03 19:21:30 merlinofchaos Exp $
+// $Id: views_handler_field_file.inc,v 1.2 2008/11/19 22:44:29 merlinofchaos Exp $
 /**
  * Field handler to provide simple renderer that allows linking to a file.
  */
@@ -38,7 +38,7 @@ class views_handler_field_file extends views_handler_field {
    * Data should be made XSS safe prior to calling this function.
    */
   function render_link($data, $values) {
-    if (!empty($this->options['link_to_file'])) {
+    if (!empty($this->options['link_to_file']) && $data !== NULL && $data !== '') {
       return l($data, file_create_url($values->{$this->aliases['filepath']}), array('html' => TRUE));
     }
     else {

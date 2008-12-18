@@ -1,41 +1,42 @@
-# $Id: views.pot,v 1.6 2008/09/12 06:57:46 hass Exp $
+# $Id: views.pot,v 1.8 2008/11/06 22:38:56 hass Exp $
 #
 # LANGUAGE translation of Drupal (general)
 # Copyright YEAR NAME <EMAIL@ADDRESS>
 # Generated from files:
-#  views.module,v 1.307 2008/09/10 19:26:37 merlinofchaos
-#  admin.inc,v 1.133 2008/09/10 21:29:15 merlinofchaos
-#  views_ui.module,v 1.104 2008/09/04 07:10:06 merlinofchaos
+#  views.module,v 1.317 2008/10/16 17:21:36 merlinofchaos
+#  admin.inc,v 1.146 2008/10/28 22:50:00 merlinofchaos
+#  views_ui.module,v 1.106 2008/10/07 22:05:28 merlinofchaos
 #  views_export.module,v 1.2 2008/06/25 21:42:20 merlinofchaos
 #  views.info,v 1.7 2007/08/12 06:52:14 merlinofchaos
 #  views_ui.info,v 1.10 2008/01/09 00:05:08 merlinofchaos
 #  views_export.info,v 1.1 2008/06/12 16:17:25 merlinofchaos
-#  plugins.inc,v 1.148 2008/09/11 22:47:42 merlinofchaos
-#  convert.inc,v 1.11 2008/06/26 16:41:01 merlinofchaos
-#  theme.inc,v 1.56 2008/09/10 19:26:37 merlinofchaos
-#  views.install,v 1.41 2008/06/03 23:50:44 merlinofchaos
-#  docs.php,v 1.9 2008/09/03 19:21:28 merlinofchaos
-#  views_handler_argument.inc,v 1.2 2008/09/10 22:00:18 merlinofchaos
-#  comment.views.inc,v 1.22 2008/09/11 22:47:42 merlinofchaos
-#  node.views.inc,v 1.85 2008/09/11 22:47:42 merlinofchaos
-#  views_plugin_display.inc,v 1.8 2008/09/11 22:47:42 merlinofchaos
-#  views_plugin_display_page.inc,v 1.2 2008/09/08 22:50:17 merlinofchaos
-#  views_handler_field.inc,v 1.2 2008/09/10 00:16:14 merlinofchaos
-#  views_handler_filter.inc,v 1.1 2008/09/03 19:21:28 merlinofchaos
+#  plugins.inc,v 1.151 2008/10/28 19:23:50 merlinofchaos
+#  convert.inc,v 1.12 2008/10/08 00:14:01 merlinofchaos
+#  theme.inc,v 1.63 2008/10/28 17:46:14 merlinofchaos
+#  views.install,v 1.42 2008/10/14 19:51:55 merlinofchaos
+#  docs.php,v 1.10 2008/10/02 22:54:56 merlinofchaos
+#  views_handler_argument.inc,v 1.4 2008/10/08 00:14:00 merlinofchaos
+#  views_handler_relationship_translation.inc,v 1.1 2008/09/30 22:07:15 merlinofchaos
+#  comment.views.inc,v 1.25 2008/10/16 17:21:36 merlinofchaos
+#  node.views.inc,v 1.87 2008/10/16 17:09:52 merlinofchaos
+#  views_plugin_display.inc,v 1.16 2008/10/28 20:28:56 merlinofchaos
+#  views_plugin_display_page.inc,v 1.3 2008/10/08 22:59:59 merlinofchaos
+#  views_handler_field.inc,v 1.5 2008/10/16 19:38:52 merlinofchaos
+#  views_handler_filter.inc,v 1.4 2008/10/20 19:35:53 merlinofchaos
 #  views_handler_relationship.inc,v 1.1 2008/09/03 19:21:28 merlinofchaos
 #  views_handler_sort.inc,v 1.1 2008/09/03 19:21:28 merlinofchaos
-#  views_handler_argument_date.inc,v 1.1 2008/09/03 19:21:28 merlinofchaos
+#  views_handler_argument_date.inc,v 1.2 2008/10/07 21:26:23 merlinofchaos
 #  views_handler_argument_many_to_one.inc,v 1.1 2008/09/03 19:21:28 merlinofchaos
 #  views_handler_argument_numeric.inc,v 1.1 2008/09/03 19:21:28 merlinofchaos
-#  views_handler_argument_string.inc,v 1.1 2008/09/03 19:21:28 merlinofchaos
-#  taxonomy.views.inc,v 1.45 2008/09/10 22:00:18 merlinofchaos
+#  views_handler_argument_string.inc,v 1.2 2008/09/25 00:09:08 merlinofchaos
+#  taxonomy.views.inc,v 1.49 2008/10/01 17:20:58 merlinofchaos
 #  views_handler_argument_null.inc,v 1.1 2008/09/03 19:21:28 merlinofchaos
 #  views_handler_field_boolean.inc,v 1.1 2008/09/03 19:21:28 merlinofchaos
 #  views_handler_filter_boolean_operator.inc,v 1.2 2008/09/10 01:08:06 merlinofchaos
-#  views_handler_filter_in_operator.inc,v 1.1 2008/09/03 19:21:28 merlinofchaos
+#  views_handler_filter_in_operator.inc,v 1.4 2008/09/24 22:28:06 merlinofchaos
 #  views_plugin_display_attachment.inc,v 1.1 2008/09/03 19:21:30 merlinofchaos
 #  views_handler_field_date.inc,v 1.1 2008/09/03 19:21:28 merlinofchaos
-#  views_handler_field_numeric.inc,v 1.1 2008/09/03 19:21:28 merlinofchaos
+#  views_handler_field_numeric.inc,v 1.4 2008/10/23 01:04:24 merlinofchaos
 #  views_handler_field_prerender_list.inc,v 1.1 2008/09/03 19:21:28 merlinofchaos
 #  views_plugin_row_node_rss.inc,v 1.1 2008/09/03 19:21:29 merlinofchaos
 #  views_plugin_style_list.inc,v 1.1 2008/09/03 19:21:30 merlinofchaos
@@ -43,39 +44,42 @@
 #  views_plugin_style_summary_unformatted.inc,v 1.1 2008/09/03 19:21:30 merlinofchaos
 #  views_handler_field_url.inc,v 1.1 2008/09/03 19:21:28 merlinofchaos
 #  views_handler_field_accesslog_path.inc,v 1.1 2008/09/03 19:21:30 merlinofchaos
-#  views_handler_filter_numeric.inc,v 1.3 2008/09/10 01:08:06 merlinofchaos
-#  views_handler_filter_string.inc,v 1.2 2008/09/10 01:08:06 merlinofchaos
+#  views_handler_filter_numeric.inc,v 1.6 2008/10/28 20:11:20 merlinofchaos
+#  views_handler_filter_string.inc,v 1.6 2008/10/28 20:13:34 merlinofchaos
 #  views_handler_filter_date.inc,v 1.1 2008/09/03 19:21:28 merlinofchaos
 #  views_handler_filter_equality.inc,v 1.2 2008/09/10 01:08:06 merlinofchaos
 #  views_handler_filter_many_to_one.inc,v 1.1 2008/09/03 19:21:28 merlinofchaos
 #  system.views.inc,v 1.7 2008/09/03 19:21:29 merlinofchaos
 #  views_plugin_access.inc,v 1.1 2008/09/08 22:50:17 merlinofchaos
-#  views_plugin_style_table.inc,v 1.2 2008/09/04 06:46:04 merlinofchaos
+#  views_plugin_style_table.inc,v 1.5 2008/10/15 22:25:36 merlinofchaos
 #  views_handler_sort_date.inc,v 1.1 2008/09/03 19:21:28 merlinofchaos
 #  views_handler_sort_formula.inc,v 1.1 2008/09/03 19:21:28 merlinofchaos
-#  view.inc,v 1.128 2008/09/11 20:07:48 merlinofchaos
-#  views_plugin_style.inc,v 1.1 2008/09/04 06:17:37 merlinofchaos
-#  user.views.inc,v 1.48 2008/09/03 19:21:29 merlinofchaos
-#  statistics.views.inc,v 1.8 2008/09/03 19:21:29 merlinofchaos
+#  view.inc,v 1.138 2008/10/29 19:09:49 merlinofchaos
+#  views_plugin_style.inc,v 1.4 2008/10/08 00:14:01 merlinofchaos
+#  user.views.inc,v 1.52 2008/10/08 20:56:02 merlinofchaos
+#  statistics.views.inc,v 1.9 2008/10/28 20:21:37 merlinofchaos
 #  upload.views.inc,v 1.14 2008/09/10 21:29:15 merlinofchaos
 #  views_plugin_display_block.inc,v 1.1 2008/09/03 19:21:30 merlinofchaos
-#  views_plugin_display_feed.inc,v 1.2 2008/09/10 18:28:39 merlinofchaos
+#  views_plugin_display_feed.inc,v 1.3 2008/09/30 18:52:15 merlinofchaos
 #  book.views.inc,v 1.4 2008/07/02 17:42:57 merlinofchaos
-#  ajax.inc,v 1.17 2008/09/10 20:15:50 merlinofchaos
+#  ajax.inc,v 1.19 2008/09/22 20:50:58 merlinofchaos
+#  analyze.inc,v 1.1 2008/10/28 22:50:00 merlinofchaos
 #  form.inc,v 1.10 2008/06/25 21:10:10 merlinofchaos
-#  handlers.inc,v 1.92 2008/09/03 19:21:29 merlinofchaos
+#  handlers.inc,v 1.98 2008/10/28 17:47:49 merlinofchaos
 #  views_plugin_access_role.inc,v 1.1 2008/09/08 22:50:17 merlinofchaos
-#  views_plugin_access_perm.inc,v 1.1 2008/09/08 22:50:17 merlinofchaos
-#  ajax.js,v 1.22 2008/08/19 23:21:45 merlinofchaos
-#  ajax_view.js,v 1.5 2008/05/27 22:31:59 merlinofchaos
+#  views_plugin_access_perm.inc,v 1.2 2008/09/17 22:26:55 merlinofchaos
+#  ajax.js,v 1.23 2008/10/08 00:14:01 merlinofchaos
+#  ajax_view.js,v 1.12 2008/10/15 22:09:19 merlinofchaos
 #  tabs.js,v 1.3 2008/03/30 15:58:26 merlinofchaos
 #  views_handler_argument_term_node_tid_depth.inc,v 1.1 2008/09/03 19:21:30 merlinofchaos
-#  views_handler_filter_node_language.inc,v 1.1 2008/09/03 19:21:29 merlinofchaos
+#  translation.views.inc,v 1.2 2008/10/01 17:20:58 merlinofchaos
 #  poll.views.inc,v 1.2 2008/03/12 04:32:07 merlinofchaos
-#  profile.views.inc,v 1.8 2008/09/03 19:21:29 merlinofchaos
-#  search.views.inc,v 1.13 2008/09/12 00:06:43 merlinofchaos
-#  views_handler_filter_term_node_tid.inc,v 1.1 2008/09/03 19:21:30 merlinofchaos
+#  profile.views.inc,v 1.9 2008/09/24 21:21:21 merlinofchaos
+#  search.views.inc,v 1.14 2008/09/25 00:39:18 merlinofchaos
 #  views_plugin_argument_validate_taxonomy_term.inc,v 1.2 2008/09/10 16:17:54 merlinofchaos
+#  views_handler_filter_term_node_tid.inc,v 1.5 2008/10/20 21:32:28 merlinofchaos
+#  views_handler_filter_node_language.inc,v 1.1 2008/09/03 19:21:29 merlinofchaos
+#  views_handler_filter_node_language.inc,v 1.1 2008/09/30 22:07:15 merlinofchaos
 #  views_handler_filter_upload_fid.inc,v 1.1 2008/09/03 19:21:30 merlinofchaos
 #  views.views.inc,v 1.5 2008/09/03 19:21:29 merlinofchaos
 #  views_handler_argument_comment_user_uid.inc,v 1.1 2008/09/03 19:21:29 merlinofchaos
@@ -95,11 +99,12 @@
 #  views_handler_field_comment_username.inc,v 1.1 2008/09/03 19:21:29 merlinofchaos
 #  views_handler_field_node_comment.inc,v 1.1 2008/09/03 19:21:29 merlinofchaos
 #  views_handler_filter_node_comment.inc,v 1.1 2008/09/03 19:21:29 merlinofchaos
-#  views_handler_field_node_new_comments.inc,v 1.1 2008/09/03 19:21:29 merlinofchaos
+#  views_handler_field_node_new_comments.inc,v 1.2 2008/09/22 21:59:39 merlinofchaos
 #  views_plugin_row_comment_view.inc,v 1.1 2008/09/03 19:21:29 merlinofchaos
 #  views_plugin_row_node_view.inc,v 1.1 2008/09/03 19:21:29 merlinofchaos
-#  views_handler_argument_dates_various.inc,v 1.1 2008/09/03 19:21:29 merlinofchaos
+#  views_handler_argument_dates_various.inc,v 1.2 2008/09/30 21:30:16 merlinofchaos
 #  views_handler_argument_node_language.inc,v 1.1 2008/09/03 19:21:29 merlinofchaos
+#  views_handler_argument_node_language.inc,v 1.1 2008/09/30 22:07:15 merlinofchaos
 #  views_handler_argument_node_type.inc,v 1.1 2008/09/03 19:21:29 merlinofchaos
 #  views_handler_field_history_user_timestamp.inc,v 1.1 2008/09/03 19:21:29 merlinofchaos
 #  views_handler_field_node.inc,v 1.1 2008/09/03 19:21:29 merlinofchaos
@@ -116,11 +121,11 @@
 #  views_handler_argument_term_node_tid.inc,v 1.1 2008/09/03 19:21:30 merlinofchaos
 #  views_handler_argument_vocabulary_vid.inc,v 1.1 2008/09/03 19:21:30 merlinofchaos
 #  views_handler_field_taxonomy.inc,v 1.1 2008/09/03 19:21:30 merlinofchaos
-#  views_handler_field_term_node_tid.inc,v 1.1 2008/09/03 19:21:30 merlinofchaos
+#  views_handler_field_term_node_tid.inc,v 1.2 2008/09/22 18:13:51 merlinofchaos
 #  views_handler_field_user.inc,v 1.1 2008/09/03 19:21:30 merlinofchaos
 #  views_handler_field_user_mail.inc,v 1.1 2008/09/03 19:21:30 merlinofchaos
 #  views_handler_filter_user_current.inc,v 1.1 2008/09/03 19:21:30 merlinofchaos
-#  views_handler_filter_user_name.inc,v 1.1 2008/09/03 19:21:30 merlinofchaos
+#  views_handler_filter_user_name.inc,v 1.2 2008/09/22 23:41:14 merlinofchaos
 #  views_plugin_argument_default_user.inc,v 1.1 2008/09/03 19:21:30 merlinofchaos
 #  views_plugin_access_none.inc,v 1.1 2008/09/08 22:50:17 merlinofchaos
 #  views_plugin_argument_default.inc,v 1.1 2008/09/03 19:21:30 merlinofchaos
@@ -133,14 +138,14 @@
 #  views-more.tpl.php,v 1.2 2008/04/11 08:46:26 merlinofchaos
 #  views-ui-edit-item.tpl.php,v 1.9 2008/08/08 16:57:44 merlinofchaos
 #  views-ui-edit-tab.tpl.php,v 1.11 2008/08/08 16:57:44 merlinofchaos
-#  views-ui-edit-view.tpl.php,v 1.8 2008/05/14 00:52:10 merlinofchaos
-#  views-ui-list-views.tpl.php,v 1.5 2008/05/08 05:29:30 merlinofchaos
+#  views-ui-edit-view.tpl.php,v 1.9 2008/10/08 00:14:01 merlinofchaos
+#  views-ui-list-views.tpl.php,v 1.6 2008/10/28 18:11:43 merlinofchaos
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2008-09-12 08:56+0200\n"
+"POT-Creation-Date: 2008-11-06 21:18+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -149,31 +154,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: views.module:585
+#: views.module:629
 msgid "Broken handler @table.@field"
 msgstr ""
 
-#: views.module:703
+#: views.module:747
 msgid "Skipping broken view @view"
 msgstr ""
 
-#: views.module:750;790 includes/admin.inc:92;207;207;612
+#: views.module:794;834 includes/admin.inc:98;216;216;621
 msgid "Overridden"
 msgstr ""
 
-#: views.module:753;786 views_ui.module:280 includes/admin.inc:91;206;206;579;757
+#: views.module:797;830 views_ui.module:289 includes/admin.inc:97;215;215;588;766
 msgid "Default"
 msgstr ""
 
-#: views.module:891 includes/admin.inc:286 views_export/views_export.module:116
+#: views.module:935 includes/admin.inc:295 views_export/views_export.module:116
 msgid "Apply"
 msgstr ""
 
-#: views.module:137 views_ui.module:23 views.info:0;0 views_ui.info:0 views_export/views_export.info:0
+#: views.module:151 views_ui.module:26 views.info:0;0 views_ui.info:0 views_export/views_export.info:0
 msgid "Views"
 msgstr ""
 
-#: views.module:141
+#: views.module:155
 msgid "Ajax callback for view loading."
 msgstr ""
 
@@ -181,51 +186,55 @@ msgstr ""
 msgid "views"
 msgstr ""
 
-#: views_ui.module:153
+#: views_ui.module:159
 msgid "The converter will make a best-effort attempt to convert a Views 1 view to Views 2. This conversion is not reliable; you will very likely have to make adjustments to your view to get it to match. You can import Views 1 views through the normal Import tab."
 msgstr ""
 
-#: views_ui.module:25
+#: views_ui.module:265
+msgid "Changes cannot be made to a locked view."
+msgstr ""
+
+#: views_ui.module:28
 msgid "Views are customized lists of content on your system; they are highly configurable and give you control over how lists of content are presented."
 msgstr ""
 
-#: views_ui.module:29 includes/plugins.inc:104;135
+#: views_ui.module:32 includes/plugins.inc:135
 msgid "List"
 msgstr ""
 
-#: views_ui.module:35 includes/admin.inc:1169;1169;2203
+#: views_ui.module:38 includes/admin.inc:1178;1178;2165
 msgid "Add"
 msgstr ""
 
-#: views_ui.module:40 includes/admin.inc:715
+#: views_ui.module:43 includes/admin.inc:724
 msgid "Import"
 msgstr ""
 
-#: views_ui.module:46
+#: views_ui.module:49
 msgid "Tools"
 msgstr ""
 
-#: views_ui.module:52
+#: views_ui.module:55
 msgid "Basic"
 msgstr ""
 
-#: views_ui.module:60 includes/convert.inc:30
+#: views_ui.module:63 includes/convert.inc:30
 msgid "Convert"
 msgstr ""
 
-#: views_ui.module:61
+#: views_ui.module:64
 msgid "Convert stored Views 1 views."
 msgstr ""
 
-#: views_ui.module:67;80;85
+#: views_ui.module:70;83;88
 msgid "Delete view"
 msgstr ""
 
-#: views_ui.module:73
+#: views_ui.module:76
 msgid "Convert view"
 msgstr ""
 
-#: views_ui.module:110 includes/admin.inc:87 theme/theme.inc:90
+#: views_ui.module:113 includes/admin.inc:93 theme/theme.inc:89
 msgid "Edit"
 msgstr ""
 
@@ -353,96 +362,104 @@ msgstr ""
 msgid "Front page feed"
 msgstr ""
 
-#: handlers/views_handler_argument.inc:112
+#: handlers/views_handler_argument.inc:102 modules/translation/views_handler_relationship_translation.inc:23
 msgid "All"
 msgstr ""
 
-#: handlers/views_handler_argument.inc:129 includes/admin.inc:263;374 modules/comment.views.inc:44 modules/node.views.inc:85;431 plugins/views_plugin_display.inc:586 plugins/views_plugin_display_page.inc:282;327
+#: handlers/views_handler_argument.inc:119 includes/admin.inc:272;383 modules/comment.views.inc:44 modules/node.views.inc:85;413 plugins/views_plugin_display.inc:592 plugins/views_plugin_display_page.inc:285;348
 msgid "Title"
 msgstr ""
 
-#: handlers/views_handler_argument.inc:131
-msgid "The title to use when this argument is present; it will override the title of the view and titles from previous arguments. You can use percent substitution here to replace with argument titles. Use \"%1\" for the first argument, \"%2\" for the second, etc."
+#: handlers/views_handler_argument.inc:121
+msgid "The title to use when this argument is present. It will override the title of the view and titles from previous arguments. You can use percent substitution here to replace with argument titles. Use \"%1\" for the first argument, \"%2\" for the second, etc."
 msgstr ""
 
-#: handlers/views_handler_argument.inc:144
+#: handlers/views_handler_argument.inc:134
 msgid "Action to take if argument is not present"
 msgstr ""
 
-#: handlers/views_handler_argument.inc:156
+#: handlers/views_handler_argument.inc:146
 msgid "Wildcard"
 msgstr ""
 
-#: handlers/views_handler_argument.inc:159
+#: handlers/views_handler_argument.inc:149
 msgid "If this value is received as an argument, the argument will be ignored; i.e, \"all values\""
 msgstr ""
 
-#: handlers/views_handler_argument.inc:165
+#: handlers/views_handler_argument.inc:155
 msgid "Wildcard title"
 msgstr ""
 
-#: handlers/views_handler_argument.inc:168
+#: handlers/views_handler_argument.inc:158
 msgid "The title to use for the wildcard in substitutions elsewhere."
 msgstr ""
 
-#: handlers/views_handler_argument.inc:191
+#: handlers/views_handler_argument.inc:181
 msgid "Validator options"
 msgstr ""
 
-#: handlers/views_handler_argument.inc:196
+#: handlers/views_handler_argument.inc:186
 msgid "Validator"
 msgstr ""
 
-#: handlers/views_handler_argument.inc:200
+#: handlers/views_handler_argument.inc:190
 msgid "<Basic validation>"
 msgstr ""
 
-#: handlers/views_handler_argument.inc:239
+#: handlers/views_handler_argument.inc:229
 msgid "Action to take if argument does not validate"
 msgstr ""
 
-#: handlers/views_handler_argument.inc:258
+#: handlers/views_handler_argument.inc:248
 msgid "Display all values"
 msgstr ""
 
-#: handlers/views_handler_argument.inc:263
+#: handlers/views_handler_argument.inc:253
 msgid "Hide view / Page not found (404)"
 msgstr ""
 
-#: handlers/views_handler_argument.inc:268
+#: handlers/views_handler_argument.inc:258
 msgid "Display empty text"
 msgstr ""
 
-#: handlers/views_handler_argument.inc:273
+#: handlers/views_handler_argument.inc:263
 msgid "Summary, sorted ascending"
 msgstr ""
 
-#: handlers/views_handler_argument.inc:280
+#: handlers/views_handler_argument.inc:270
 msgid "Summary, sorted descending"
 msgstr ""
 
-#: handlers/views_handler_argument.inc:287
+#: handlers/views_handler_argument.inc:277
 msgid "Provide default argument"
 msgstr ""
 
-#: handlers/views_handler_argument.inc:320
+#: handlers/views_handler_argument.inc:310
 msgid "Provide default argument options"
 msgstr ""
 
-#: handlers/views_handler_argument.inc:330
+#: handlers/views_handler_argument.inc:320
 msgid "Default argument type"
 msgstr ""
 
-#: handlers/views_handler_argument.inc:718 handlers/views_handler_field.inc:214 handlers/views_handler_filter.inc:590 handlers/views_handler_relationship.inc:133 handlers/views_handler_sort.inc:66
+#: handlers/views_handler_argument.inc:708 handlers/views_handler_field.inc:227 handlers/views_handler_filter.inc:592 handlers/views_handler_relationship.inc:133 handlers/views_handler_sort.inc:66
 msgid "Broken/missing handler"
 msgstr ""
 
-#: handlers/views_handler_argument.inc:726 handlers/views_handler_field.inc:222 handlers/views_handler_filter.inc:598 handlers/views_handler_relationship.inc:141 handlers/views_handler_sort.inc:74
+#: handlers/views_handler_argument.inc:716 handlers/views_handler_field.inc:235 handlers/views_handler_filter.inc:600 handlers/views_handler_relationship.inc:141 handlers/views_handler_sort.inc:74
 msgid "The handler for this item is broken or missing and cannot be used. If a module provided the handler and was disabled, re-enabling the module may restore it. Otherwise, you should probably delete this item."
 msgstr ""
 
 #: handlers/views_handler_argument_date.inc:29
 msgid "Current date"
+msgstr ""
+
+#: handlers/views_handler_argument_date.inc:30
+msgid "Current node's creation time"
+msgstr ""
+
+#: handlers/views_handler_argument_date.inc:31
+msgid "Current node's update time"
 msgstr ""
 
 #: handlers/views_handler_argument_many_to_one.inc:45 handlers/views_handler_argument_numeric.inc:30
@@ -465,7 +482,7 @@ msgstr ""
 msgid "Do not display items with no value in summary"
 msgstr ""
 
-#: handlers/views_handler_argument_many_to_one.inc:95;109 handlers/views_handler_argument_numeric.inc:45;57 modules/taxonomy.views.inc:109;188;270
+#: handlers/views_handler_argument_many_to_one.inc:95;109 handlers/views_handler_argument_numeric.inc:45;57 modules/taxonomy.views.inc:129;208;292
 msgid "Uncategorized"
 msgstr ""
 
@@ -549,19 +566,19 @@ msgstr ""
 msgid "Transform spaces to dashes in URL"
 msgstr ""
 
-#: handlers/views_handler_field.inc:135 handlers/views_handler_filter.inc:322 handlers/views_handler_relationship.inc:78
+#: handlers/views_handler_field.inc:146 handlers/views_handler_filter.inc:322 handlers/views_handler_relationship.inc:78
 msgid "Label"
 msgstr ""
 
-#: handlers/views_handler_field.inc:137
+#: handlers/views_handler_field.inc:148
 msgid "The label for this field that will be displayed to end users if the style requires it."
 msgstr ""
 
-#: handlers/views_handler_field.inc:141
+#: handlers/views_handler_field.inc:152
 msgid "Exclude from display"
 msgstr ""
 
-#: handlers/views_handler_field.inc:143
+#: handlers/views_handler_field.inc:154
 msgid "Check this box to not display this field, but still load it in the view.  Use this option to not show a grouping field in each record, or when doing advanced theming."
 msgstr ""
 
@@ -589,11 +606,11 @@ msgstr ""
 msgid "If checked, true will be displayed as false."
 msgstr ""
 
-#: handlers/views_handler_field_boolean.inc:49 handlers/views_handler_filter_boolean_operator.inc:47 handlers/views_handler_filter_in_operator.inc:25 plugins/views_plugin_display.inc:627;636;653;661;790 plugins/views_plugin_display_attachment.inc:63;69
+#: handlers/views_handler_field_boolean.inc:49 handlers/views_handler_filter_boolean_operator.inc:47 handlers/views_handler_filter_in_operator.inc:25 plugins/views_plugin_display.inc:633;642;659;667;717;803;1207 plugins/views_plugin_display_attachment.inc:63;69
 msgid "Yes"
 msgstr ""
 
-#: handlers/views_handler_field_boolean.inc:49 handlers/views_handler_filter_boolean_operator.inc:47 handlers/views_handler_filter_in_operator.inc:25 plugins/views_plugin_display.inc:627;636;653;661;790;798 plugins/views_plugin_display_attachment.inc:63;69
+#: handlers/views_handler_field_boolean.inc:49 handlers/views_handler_filter_boolean_operator.inc:47 handlers/views_handler_filter_in_operator.inc:25 plugins/views_plugin_display.inc:633;642;659;667;717;803;811;1207 plugins/views_plugin_display_attachment.inc:63;69
 msgid "No"
 msgstr ""
 
@@ -701,7 +718,7 @@ msgstr ""
 msgid "Simple separator"
 msgstr ""
 
-#: handlers/views_handler_field_prerender_list.inc:40 includes/admin.inc:3007 plugins/views_plugin_row_fields.inc:47 plugins/views_plugin_style_summary_unformatted.inc:30
+#: handlers/views_handler_field_prerender_list.inc:40 includes/admin.inc:2974 plugins/views_plugin_row_fields.inc:47 plugins/views_plugin_style_summary_unformatted.inc:30
 msgid "Separator"
 msgstr ""
 
@@ -734,7 +751,7 @@ msgid "Hide"
 msgstr ""
 
 #: handlers/views_handler_filter.inc:218
-msgid "This item is currently exposed. If you <strong>hide</strong> it, users will not able to change the filter as they view it."
+msgid "This item is currently exposed. If you <strong>hide</strong> it, users will not be able to change the filter as they view it."
 msgstr ""
 
 #: handlers/views_handler_filter.inc:289
@@ -786,18 +803,18 @@ msgid "Remember the last setting the user gave this filter."
 msgstr ""
 
 #: handlers/views_handler_filter.inc:359
-msgid "The identifier is required if the filter is\n        exposed."
+msgid "The identifier is required if the filter is exposed."
 msgstr ""
 
-#: handlers/views_handler_filter.inc:365
+#: handlers/views_handler_filter.inc:364
 msgid "This identifier is not allowed."
 msgstr ""
 
-#: handlers/views_handler_filter.inc:466
+#: handlers/views_handler_filter.inc:465
 msgid "<Any>"
 msgstr ""
 
-#: handlers/views_handler_filter_boolean_operator.inc:58 handlers/views_handler_filter_in_operator.inc:136 handlers/views_handler_filter_numeric.inc:243 handlers/views_handler_filter_string.inc:111
+#: handlers/views_handler_filter_boolean_operator.inc:58 handlers/views_handler_filter_in_operator.inc:175 handlers/views_handler_filter_numeric.inc:247 handlers/views_handler_filter_string.inc:111
 msgid "exposed"
 msgstr ""
 
@@ -825,7 +842,7 @@ msgstr ""
 msgid "Is not equal to"
 msgstr ""
 
-#: handlers/views_handler_filter_equality.inc:26 handlers/views_handler_filter_numeric.inc:148;163 handlers/views_handler_filter_string.inc:162
+#: handlers/views_handler_filter_equality.inc:26 handlers/views_handler_filter_numeric.inc:148;163 handlers/views_handler_filter_string.inc:170
 msgid "Value"
 msgstr ""
 
@@ -849,7 +866,7 @@ msgstr ""
 msgid "Is not one of"
 msgstr ""
 
-#: handlers/views_handler_filter_in_operator.inc:154 modules/system.views.inc:209 plugins/views_plugin_access.inc:55
+#: handlers/views_handler_filter_in_operator.inc:193 modules/system.views.inc:209 plugins/views_plugin_access.inc:55
 msgid "Unknown"
 msgstr ""
 
@@ -877,11 +894,11 @@ msgstr ""
 msgid "<="
 msgstr ""
 
-#: handlers/views_handler_filter_numeric.inc:40 handlers/views_handler_filter_string.inc:29;35
+#: handlers/views_handler_filter_numeric.inc:40 handlers/views_handler_filter_string.inc:29
 msgid "="
 msgstr ""
 
-#: handlers/views_handler_filter_numeric.inc:46
+#: handlers/views_handler_filter_numeric.inc:46 handlers/views_handler_filter_string.inc:35
 msgid "!="
 msgstr ""
 
@@ -945,7 +962,7 @@ msgstr ""
 msgid "And"
 msgstr ""
 
-#: handlers/views_handler_filter_numeric.inc:248
+#: handlers/views_handler_filter_numeric.inc:253
 msgid "@min and @max"
 msgstr ""
 
@@ -997,12 +1014,12 @@ msgstr ""
 msgid "!has"
 msgstr ""
 
-#: handlers/views_handler_filter_string.inc:118
+#: handlers/views_handler_filter_string.inc:126
 msgid "Case sensitive"
 msgstr ""
 
-#: handlers/views_handler_filter_string.inc:120
-msgid "Case sensitive filters may be faster; MySQL might ignore case sensitivity."
+#: handlers/views_handler_filter_string.inc:128
+msgid "Case sensitive filters may be faster. MySQL might ignore case sensitivity."
 msgstr ""
 
 #: handlers/views_handler_relationship.inc:80
@@ -1029,11 +1046,11 @@ msgstr ""
 msgid "Sort order"
 msgstr ""
 
-#: handlers/views_handler_sort.inc:55 plugins/views_plugin_style_table.inc:147
+#: handlers/views_handler_sort.inc:55 plugins/views_plugin_style_table.inc:149
 msgid "Ascending"
 msgstr ""
 
-#: handlers/views_handler_sort.inc:55 plugins/views_plugin_style_table.inc:147
+#: handlers/views_handler_sort.inc:55 plugins/views_plugin_style_table.inc:149
 msgid "Descending"
 msgstr ""
 
@@ -1073,604 +1090,608 @@ msgstr ""
 msgid "views_handler_sort_formula missing default: @formula"
 msgstr ""
 
-#: includes/admin.inc:34
+#: includes/admin.inc:36
+msgid "If you <a href=\"@modules\">enable the advanced help module</a>, Views will provide more and better help. <a href=\"@hide\">Hide this message.</a>"
+msgstr ""
+
+#: includes/admin.inc:39
 msgid "If you install the advanced help module from !href, Views will provide more and better help. <a href=\"@hide\">Hide this message.</a>"
 msgstr ""
 
-#: includes/admin.inc:88;969 theme/theme.inc:97 views_export/views_export.module:128
+#: includes/admin.inc:94;978 theme/theme.inc:96 views_export/views_export.module:128
 msgid "Export"
 msgstr ""
 
-#: includes/admin.inc:89;974 theme/theme.inc:102
+#: includes/admin.inc:95;983 theme/theme.inc:101
 msgid "Clone"
 msgstr ""
 
-#: includes/admin.inc:92
+#: includes/admin.inc:98
 msgid "Revert"
 msgstr ""
 
-#: includes/admin.inc:92;625;838 includes/convert.inc:35;109
+#: includes/admin.inc:98;634;847 includes/convert.inc:35;108
 msgid "Delete"
 msgstr ""
 
-#: includes/admin.inc:97
+#: includes/admin.inc:103
 msgid "Disable"
 msgstr ""
 
-#: includes/admin.inc:100
+#: includes/admin.inc:106
 msgid "Enable"
 msgstr ""
 
-#: includes/admin.inc:106
+#: includes/admin.inc:112
 msgid "Warning! Broken view!"
 msgstr ""
 
-#: includes/admin.inc:121 includes/view.inc:1602
+#: includes/admin.inc:127 includes/view.inc:1666
 msgid "Broken"
 msgstr ""
 
-#: includes/admin.inc:180
+#: includes/admin.inc:189
 msgid "Install the advanced help module for the getting started"
 msgstr ""
 
-#: includes/admin.inc:183
+#: includes/admin.inc:192
 msgid "Not sure what to do? Try the \"!getting-started\" page."
 msgstr ""
 
-#: includes/admin.inc:197;204;2169
+#: includes/admin.inc:206;213;2131
 msgid "<All>"
 msgstr ""
 
-#: includes/admin.inc:198 plugins/views_plugin_style.inc:76
+#: includes/admin.inc:207 plugins/views_plugin_style.inc:76
 msgid "<None>"
 msgstr ""
 
-#: includes/admin.inc:202
+#: includes/admin.inc:211
 msgid "Storage"
 msgstr ""
 
-#: includes/admin.inc:205;205 includes/view.inc:1105;1155
+#: includes/admin.inc:214;214 includes/view.inc:1165;1215
 msgid "Normal"
 msgstr ""
 
-#: includes/admin.inc:219;266 modules/node.views.inc:140 plugins/views_plugin_display_page.inc:270
+#: includes/admin.inc:228;275 modules/node.views.inc:140 plugins/views_plugin_display_page.inc:273
 msgid "Type"
 msgstr ""
 
-#: includes/admin.inc:237;264;1054 views_export/views_export.module:146
+#: includes/admin.inc:246;273;1063 views_export/views_export.module:146
 msgid "Tag"
 msgstr ""
 
-#: includes/admin.inc:253
+#: includes/admin.inc:262
 msgid "Displays"
 msgstr ""
 
-#: includes/admin.inc:260
+#: includes/admin.inc:269
 msgid "Sort by"
 msgstr ""
 
-#: includes/admin.inc:262 modules/system.views.inc:69 modules/user.views.inc:59;79 plugins/views_plugin_display.inc:574
+#: includes/admin.inc:271 modules/system.views.inc:69 modules/user.views.inc:59;79 plugins/views_plugin_display.inc:580
 msgid "Name"
 msgstr ""
 
-#: includes/admin.inc:265;382 modules/statistics.views.inc:146 modules/system.views.inc:88 plugins/views_plugin_display_page.inc:199
+#: includes/admin.inc:274;391 modules/statistics.views.inc:149 modules/system.views.inc:88 plugins/views_plugin_display_page.inc:202
 msgid "Path"
 msgstr ""
 
-#: includes/admin.inc:267 includes/convert.inc:21 modules/upload.views.inc:56 views_export/views_export.module:146
+#: includes/admin.inc:276 includes/convert.inc:21 modules/upload.views.inc:56 views_export/views_export.module:146
 msgid "Description"
 msgstr ""
 
-#: includes/admin.inc:274
+#: includes/admin.inc:283
 msgid "Order"
 msgstr ""
 
-#: includes/admin.inc:276
+#: includes/admin.inc:285
 msgid "Up"
 msgstr ""
 
-#: includes/admin.inc:277
+#: includes/admin.inc:286
 msgid "Down"
 msgstr ""
 
-#: includes/admin.inc:361;392
+#: includes/admin.inc:370;401
 msgid "Query"
 msgstr ""
 
-#: includes/admin.inc:363
+#: includes/admin.inc:372
 msgid "These queries were run during view rendering:"
 msgstr ""
 
-#: includes/admin.inc:368
-msgid "[@time ms] "
+#: includes/admin.inc:377
+msgid "[@time ms]"
 msgstr ""
 
-#: includes/admin.inc:371
+#: includes/admin.inc:380
 msgid "Other queries"
 msgstr ""
 
-#: includes/admin.inc:379
+#: includes/admin.inc:388
 msgid "This display has no path."
 msgstr ""
 
-#: includes/admin.inc:384
+#: includes/admin.inc:393
 msgid "Query build time"
 msgstr ""
 
-#: includes/admin.inc:384;385;386
+#: includes/admin.inc:393;394;395
 msgid "@time ms"
 msgstr ""
 
-#: includes/admin.inc:385
+#: includes/admin.inc:394
 msgid "Query execute time"
 msgstr ""
 
-#: includes/admin.inc:386
+#: includes/admin.inc:395
 msgid "View render time"
 msgstr ""
 
-#: includes/admin.inc:392
+#: includes/admin.inc:401
 msgid "No query was run"
 msgstr ""
 
-#: includes/admin.inc:399
+#: includes/admin.inc:408
 msgid "Unable to preview due to validation errors."
 msgstr ""
 
-#: includes/admin.inc:450
+#: includes/admin.inc:459
 msgid "Display"
 msgstr ""
 
-#: includes/admin.inc:458 includes/view.inc:1806
+#: includes/admin.inc:467 includes/view.inc:1870
 msgid "Arguments"
 msgstr ""
 
-#: includes/admin.inc:460
+#: includes/admin.inc:469
 msgid "Separate arguments with a / as though they were a URL path."
 msgstr ""
 
-#: includes/admin.inc:466
+#: includes/admin.inc:475
 msgid "Preview"
 msgstr ""
 
-#: includes/admin.inc:504
-msgid "Clone view @view"
+#: includes/admin.inc:513
+msgid "Clone view %view"
 msgstr ""
 
-#: includes/admin.inc:517;704 includes/convert.inc:20
+#: includes/admin.inc:526;713 includes/convert.inc:20
 msgid "View name"
 msgstr ""
 
-#: includes/admin.inc:518
+#: includes/admin.inc:527
 msgid "This is the unique name of the view. It must contain only alphanumeric characters and underscores; it is used to identify the view internally and to generate unique theming template names for this view. If overriding a module provided view, the name must not be changed or instead a new view will be created."
 msgstr ""
 
-#: includes/admin.inc:526;1864
+#: includes/admin.inc:535;1826
 msgid "View description"
 msgstr ""
 
-#: includes/admin.inc:527;1865
+#: includes/admin.inc:536;1827
 msgid "This description will appear on the Views administrative UI to tell you what the view is about."
 msgstr ""
 
-#: includes/admin.inc:533;1871
+#: includes/admin.inc:542;1833
 msgid "View tag"
 msgstr ""
 
-#: includes/admin.inc:534;1872
+#: includes/admin.inc:543;1834
 msgid "Enter an optional tag for this view; it is used only to help sort views on the administrative page."
 msgstr ""
 
-#: includes/admin.inc:546
+#: includes/admin.inc:555
 msgid "View type"
 msgstr ""
 
-#: includes/admin.inc:547
+#: includes/admin.inc:556
 msgid "The view type is the primary table for which information is being retrieved. The view type controls what arguments, fields, sort criteria and filters are available, so once this is set it <strong>cannot be changed</strong>."
 msgstr ""
 
-#: includes/admin.inc:558
+#: includes/admin.inc:567
 msgid "Next"
 msgstr ""
 
-#: includes/admin.inc:574;749
+#: includes/admin.inc:583;758
 msgid "View name must be alphanumeric or underscores only."
 msgstr ""
 
-#: includes/admin.inc:580
+#: includes/admin.inc:589
 msgid "You must use a unique name for this view."
 msgstr ""
 
-#: includes/admin.inc:613
+#: includes/admin.inc:622
 msgid "Are you sure you want to revert the view %name?"
 msgstr ""
 
-#: includes/admin.inc:614
+#: includes/admin.inc:623
 msgid "Reverting the view will delete the view that is in the database, reverting it to the original default view. Any changes you have made will be lost and cannot be recovered."
 msgstr ""
 
-#: includes/admin.inc:617 includes/convert.inc:105
+#: includes/admin.inc:626 includes/convert.inc:105
 msgid "Are you sure you want to delete the view %name?"
 msgstr ""
 
-#: includes/admin.inc:618
+#: includes/admin.inc:627
 msgid "Deleting a view cannot be undone."
 msgstr ""
 
-#: includes/admin.inc:626;662;831;1320 includes/convert.inc:110
+#: includes/admin.inc:635;671;840;1329 includes/convert.inc:109
 msgid "Cancel"
 msgstr ""
 
-#: includes/admin.inc:635
+#: includes/admin.inc:644
 msgid "The view has been deleted."
 msgstr ""
 
-#: includes/admin.inc:647
+#: includes/admin.inc:656
 msgid "There is no lock on view %view to break."
 msgstr ""
 
-#: includes/admin.inc:657
+#: includes/admin.inc:666
 msgid "Are you sure you want to break the lock on view %name?"
 msgstr ""
 
-#: includes/admin.inc:660
+#: includes/admin.inc:669
 msgid "By breaking this lock, any unsaved changes made by !user will be lost!"
 msgstr ""
 
-#: includes/admin.inc:661
+#: includes/admin.inc:670
 msgid "Break lock"
 msgstr ""
 
-#: includes/admin.inc:678
-msgid "Edit view \"%view\""
+#: includes/admin.inc:680
+msgid "The lock has been broken and you may now edit this view."
 msgstr ""
 
-#: includes/admin.inc:705
+#: includes/admin.inc:687
+msgid "Edit view %view"
+msgstr ""
+
+#: includes/admin.inc:714
 msgid "Enter the name to use for this view if it is different from the source view. Leave blank to use the name of the view."
 msgstr ""
 
-#: includes/admin.inc:710
+#: includes/admin.inc:719
 msgid "Paste view code here"
 msgstr ""
 
-#: includes/admin.inc:732
+#: includes/admin.inc:741
 msgid "Unable to interpret view code."
 msgstr ""
 
-#: includes/admin.inc:740
+#: includes/admin.inc:749
 msgid "You are importing a view created in Views version 1. You may need to adjust some parameters to work correctly in version 2."
 msgstr ""
 
-#: includes/admin.inc:743
+#: includes/admin.inc:752
 msgid "That view is not compatible with this version of Views."
 msgstr ""
 
-#: includes/admin.inc:758
+#: includes/admin.inc:767
 msgid "A view by that name already exists; please choose a different name"
 msgstr ""
 
-#: includes/admin.inc:767
+#: includes/admin.inc:776
 msgid "Display plugin @plugin is not available."
 msgstr ""
 
-#: includes/admin.inc:774
+#: includes/admin.inc:783
 msgid "Style plugin @plugin is not available."
 msgstr ""
 
-#: includes/admin.inc:780
+#: includes/admin.inc:789
 msgid "Row plugin @plugin is not available."
 msgstr ""
 
-#: includes/admin.inc:790
+#: includes/admin.inc:799
 msgid "@type handler @table.@field is not available."
 msgstr ""
 
-#: includes/admin.inc:803
+#: includes/admin.inc:812
 msgid "Unable to import view."
 msgstr ""
 
-#: includes/admin.inc:824;852
+#: includes/admin.inc:833;861
 msgid "Save"
 msgstr ""
 
-#: includes/admin.inc:876
+#: includes/admin.inc:885
 msgid "The view has been saved."
 msgstr ""
 
-#: includes/admin.inc:920
+#: includes/admin.inc:929
 msgid "Unknown or missing table name"
 msgstr ""
 
-#: includes/admin.inc:925
+#: includes/admin.inc:934
 msgid "Click on an item to edit that item's details."
 msgstr ""
 
-#: includes/admin.inc:928
+#: includes/admin.inc:937
 msgid "This view has a broken default display and cannot be used."
 msgstr ""
 
-#: includes/admin.inc:964
-msgid "break this lock"
-msgstr ""
-
-#: includes/admin.inc:970 theme/theme.inc:98
+#: includes/admin.inc:979 theme/theme.inc:97
 msgid "Export this view"
 msgstr ""
 
-#: includes/admin.inc:975 theme/theme.inc:103
+#: includes/admin.inc:984 theme/theme.inc:102
 msgid "Create a copy of this view"
 msgstr ""
 
-#: includes/admin.inc:986
+#: includes/admin.inc:995
 msgid "View \"!display\""
 msgstr ""
 
-#: includes/admin.inc:987
+#: includes/admin.inc:996
 msgid "Go to the real page for this display"
 msgstr ""
 
-#: includes/admin.inc:1053;3041 includes/plugins.inc:218 plugins/views_plugin_display.inc:581;698;710 plugins/views_plugin_display_attachment.inc:90 plugins/views_plugin_display_block.inc:73 plugins/views_plugin_display_feed.inc:104 plugins/views_plugin_display_page.inc:190
+#: includes/admin.inc:1062;3008 includes/plugins.inc:218 plugins/views_plugin_display.inc:587;704;723 plugins/views_plugin_display_attachment.inc:90 plugins/views_plugin_display_block.inc:73 plugins/views_plugin_display_feed.inc:108 plugins/views_plugin_display_page.inc:193
 msgid "None"
 msgstr ""
 
-#: includes/admin.inc:1131
+#: includes/admin.inc:1140
 msgid "Invalid"
 msgstr ""
 
-#: includes/admin.inc:1132
+#: includes/admin.inc:1141
 msgid "Error: Display @display refers to a plugin named '@plugin', but that plugin doesn't exist!"
 msgstr ""
 
-#: includes/admin.inc:1167;1167
+#: includes/admin.inc:1176;1176
 msgid "Rearrange"
 msgstr ""
 
-#: includes/admin.inc:1207;2254;2424;2492;2577
+#: includes/admin.inc:1216;2216;2391;2459;2544
 msgid "Error: handler for @table > @field doesn't exist!"
 msgstr ""
 
-#: includes/admin.inc:1226;1226;1235
+#: includes/admin.inc:1235;1235;1244
 msgid "Settings"
 msgstr ""
 
-#: includes/admin.inc:1231 plugins/views_plugin_display.inc:592;610
+#: includes/admin.inc:1240 plugins/views_plugin_display.inc:598;616
 msgid "Missing style plugin"
 msgstr ""
 
-#: includes/admin.inc:1235 plugins/views_plugin_display.inc:605;620
+#: includes/admin.inc:1244 plugins/views_plugin_display.inc:611;626
 msgid "Change settings for this style"
 msgstr ""
 
-#: includes/admin.inc:1238
-msgid " &nbsp; Style: !style"
+#: includes/admin.inc:1247
+msgid "&nbsp; Style: !style"
 msgstr ""
 
-#: includes/admin.inc:1269
-msgid "Invalid display id while regenerating tabs"
+#: includes/admin.inc:1278
+msgid "Invalid display id found while regenerating tabs"
 msgstr ""
 
-#: includes/admin.inc:1302
+#: includes/admin.inc:1311
 msgid "Update"
 msgstr ""
 
-#: includes/admin.inc:1320
+#: includes/admin.inc:1329
 msgid "Ok"
 msgstr ""
 
-#: includes/admin.inc:1589
+#: includes/admin.inc:1600
 msgid "Unable to initialize default display"
 msgstr ""
 
-#: includes/admin.inc:1621
+#: includes/admin.inc:1632
 msgid "Add display"
 msgstr ""
 
-#: includes/admin.inc:1661
+#: includes/admin.inc:1672
 msgid "Remove display"
 msgstr ""
 
-#: includes/admin.inc:1672
+#: includes/admin.inc:1683
 msgid "Restore display"
 msgstr ""
 
-#: includes/admin.inc:1744
+#: includes/admin.inc:1755
 msgid "Analyze"
 msgstr ""
 
-#: includes/admin.inc:1764
-msgid "This view has only a default display and therefore will not be placed anywhere on your site; perhaps you want to add a page or a block display."
-msgstr ""
-
-#: includes/admin.inc:1776
+#: includes/admin.inc:1767
 msgid "View analysis"
 msgstr ""
 
-#: includes/admin.inc:1785
-msgid "View analysis can find nothing to report."
-msgstr ""
-
-#: includes/admin.inc:1859
+#: includes/admin.inc:1821
 msgid "View details"
 msgstr ""
 
-#: includes/admin.inc:1900;1954;2009;2155;2247;2417;2485;2570
+#: includes/admin.inc:1862;1916;1971;2117;2209;2384;2452;2537
 msgid "Invalid display id @display"
 msgstr ""
 
-#: includes/admin.inc:1958
+#: includes/admin.inc:1920
 msgid "Configure @type"
 msgstr ""
 
-#: includes/admin.inc:2013
+#: includes/admin.inc:1975
 msgid "Rearrange @type"
 msgstr ""
 
-#: includes/admin.inc:2056
+#: includes/admin.inc:2018
 msgid "Broken field @id"
 msgstr ""
 
-#: includes/admin.inc:2096;2105;2333;2442
+#: includes/admin.inc:2058;2067;2300
 msgid "Remove"
 msgstr ""
 
-#: includes/admin.inc:2096;2096
+#: includes/admin.inc:2058;2058
 msgid "Remove this item"
 msgstr ""
 
-#: includes/admin.inc:2102
+#: includes/admin.inc:2064
 msgid "No fields available."
 msgstr ""
 
-#: includes/admin.inc:2105 modules/book.views.inc:57 modules/taxonomy.views.inc:115 modules/upload.views.inc:90 plugins/views_plugin_display_page.inc:291
+#: includes/admin.inc:2067 modules/book.views.inc:57 modules/taxonomy.views.inc:135 modules/upload.views.inc:90 plugins/views_plugin_display_page.inc:312
 msgid "Weight"
 msgstr ""
 
-#: includes/admin.inc:2161
+#: includes/admin.inc:2123
 msgid "Add @type"
 msgstr ""
 
-#: includes/admin.inc:2172
+#: includes/admin.inc:2134
 msgid "Groups"
 msgstr ""
 
-#: includes/admin.inc:2191
+#: includes/admin.inc:2153
 msgid "!group: !field"
 msgstr ""
 
-#: includes/admin.inc:2200
+#: includes/admin.inc:2162
 msgid "There are no @types available to add."
 msgstr ""
 
-#: includes/admin.inc:2297
+#: includes/admin.inc:2259
 msgid "Do not use a relationship"
 msgstr ""
 
-#: includes/admin.inc:2306 includes/view.inc:1830;1831
+#: includes/admin.inc:2273 includes/view.inc:1894;1895
 msgid "Relationship"
 msgstr ""
 
-#: includes/admin.inc:2319
-msgid "Configure @type \"@item\""
+#: includes/admin.inc:2286
+msgid "Configure @type %item"
 msgstr ""
 
-#: includes/admin.inc:2432
-msgid "Configure extra settings for @type \"@item\""
+#: includes/admin.inc:2399
+msgid "Configure extra settings for @type %item"
 msgstr ""
 
-#: includes/admin.inc:2497
-msgid "Change summary style for @type \"@item\""
+#: includes/admin.inc:2464
+msgid "Change summary style for @type %item"
 msgstr ""
 
-#: includes/admin.inc:2520;2534
+#: includes/admin.inc:2487;2501
 msgid "Internal error: broken plugin."
 msgstr ""
 
-#: includes/admin.inc:2584
-msgid "Configure summary style for @type \"@item\""
+#: includes/admin.inc:2551
+msgid "Configure summary style for @type %item"
 msgstr ""
 
-#: includes/admin.inc:2676
+#: includes/admin.inc:2643
 msgid "Clear Views' cache"
 msgstr ""
 
-#: includes/admin.inc:2682
+#: includes/admin.inc:2649
 msgid "Add Views signature to all SQL queries"
 msgstr ""
 
-#: includes/admin.inc:2683
+#: includes/admin.inc:2650
 msgid "All Views-generated queries will include a special 'VIEWS' = 'VIEWS' string in the WHERE clause. This makes identifying Views queries in database server logs simpler, but should only be used when troubleshooting."
 msgstr ""
 
-#: includes/admin.inc:2689
+#: includes/admin.inc:2656
 msgid "Disable views data caching"
 msgstr ""
 
-#: includes/admin.inc:2690
+#: includes/admin.inc:2657
 msgid "Views caches data about tables, modules and views available, to increase performance. By checking this box, Views will skip this cache and always rebuild this data when needed. This can have a serious performance impact on your site."
 msgstr ""
 
-#: includes/admin.inc:2696
+#: includes/admin.inc:2663
 msgid "Ignore missing advanced help module"
 msgstr ""
 
-#: includes/admin.inc:2697
+#: includes/admin.inc:2664
 msgid "Views uses the advanced help module to provide help text; if this module is not present Views will complain, unless this setting is checked."
 msgstr ""
 
-#: includes/admin.inc:2703
+#: includes/admin.inc:2670
 msgid "Show query above live preview"
 msgstr ""
 
-#: includes/admin.inc:2704
+#: includes/admin.inc:2671
 msgid "The live preview feature will show you the output of the view you're creating, as well as the view. Check here to show the query and other information above the view; leave this unchecked to show that information below the view."
 msgstr ""
 
-#: includes/admin.inc:2710
+#: includes/admin.inc:2677
 msgid "Show other queries run during render during live preview"
 msgstr ""
 
-#: includes/admin.inc:2711
+#: includes/admin.inc:2678
 msgid "Drupal has the potential to run many queries while a view is being rendered. Checking this box will display every query run during view render as part of the live preview."
 msgstr ""
 
-#: includes/admin.inc:2717
+#: includes/admin.inc:2684
 msgid "Do not show hover links over views"
 msgstr ""
 
-#: includes/admin.inc:2718
+#: includes/admin.inc:2685
 msgid "To make it easier to administrate your views, Views provides 'hover' links to take you to the edit and export screen of a view whenever the view is used. This can be distracting on some themes, though; if it is problematic, you can turn it off here."
 msgstr ""
 
-#: includes/admin.inc:2724
+#: includes/admin.inc:2691
 msgid "Enable views performance statistics via the Devel module"
 msgstr ""
 
-#: includes/admin.inc:2725
+#: includes/admin.inc:2692
 msgid "Check this to enable some Views query and performance statistics <em>if Devel is installed</em>."
 msgstr ""
 
-#: includes/admin.inc:2731
+#: includes/admin.inc:2698
 msgid "Disable javascript with Views"
 msgstr ""
 
-#: includes/admin.inc:2732
+#: includes/admin.inc:2699
 msgid "If you are having problems with the javascript, you can disable it here; the Views UI should degrade and still be usable without javascript, it just not as good."
 msgstr ""
 
-#: includes/admin.inc:2740
+#: includes/admin.inc:2707
 msgid "Page region to output performance statistics"
 msgstr ""
 
-#: includes/admin.inc:2753
+#: includes/admin.inc:2720
 msgid "The cache has been cleared."
 msgstr ""
 
-#: includes/admin.inc:2919
+#: includes/admin.inc:2886
 msgid "Error: missing @component"
 msgstr ""
 
-#: includes/admin.inc:3005 includes/view.inc:1801
+#: includes/admin.inc:2972 includes/view.inc:1865
 msgid "Field"
 msgstr ""
 
-#: includes/admin.inc:3006
+#: includes/admin.inc:2973
 msgid "Column"
 msgstr ""
 
-#: includes/admin.inc:3009
+#: includes/admin.inc:2976
 msgid "Sortable"
 msgstr ""
 
-#: includes/admin.inc:3013
+#: includes/admin.inc:2980
 msgid "Default sort"
 msgstr ""
 
-#: includes/ajax.inc:73
+#: includes/ajax.inc:82
 msgid "Server reports invalid input error."
 msgstr ""
 
-#: includes/ajax.inc:74
+#: includes/ajax.inc:83
 msgid "Error"
+msgstr ""
+
+#: includes/analyze.inc:38
+msgid "View analysis can find nothing to report."
+msgstr ""
+
+#: includes/analyze.inc:104
+msgid "This view has only a default display and therefore will not be placed anywhere on your site; perhaps you want to add a page or a block display."
 msgstr ""
 
 #: includes/convert.inc:14
@@ -1697,11 +1718,11 @@ msgstr ""
 msgid "Unable to convert view."
 msgstr ""
 
-#: includes/convert.inc:108
+#: includes/convert.inc:107
 msgid "This action cannot be undone."
 msgstr ""
 
-#: includes/convert.inc:118
+#: includes/convert.inc:117
 msgid "The view has been deleted"
 msgstr ""
 
@@ -1717,11 +1738,11 @@ msgstr ""
 msgid "!group: !title"
 msgstr ""
 
-#: includes/handlers.inc:506
+#: includes/handlers.inc:507
 msgid "Reduce duplicates"
 msgstr ""
 
-#: includes/handlers.inc:507
+#: includes/handlers.inc:508
 msgid "This filter can cause items that have more than one of the selected options to appear as duplicate results. If this filter causes duplicate results to occur, this checkbox can reduce those duplicates; however, the more terms it has to search for, the less performant the query will be, so use this with caution."
 msgstr ""
 
@@ -1761,6 +1782,10 @@ msgstr ""
 msgid "Displays rows one after another."
 msgstr ""
 
+#: includes/plugins.inc:104
+msgid "HTML List"
+msgstr ""
+
 #: includes/plugins.inc:105
 msgid "Displays rows as an HTML list."
 msgstr ""
@@ -1782,7 +1807,7 @@ msgid "Displays rows in a table."
 msgstr ""
 
 #: includes/plugins.inc:136
-msgid "Displays the default summary summary as a list."
+msgid "Displays the default summary as a list."
 msgstr ""
 
 #: includes/plugins.inc:145
@@ -1797,7 +1822,7 @@ msgstr ""
 msgid "Generates an RSS feed from a view."
 msgstr ""
 
-#: includes/plugins.inc:173 includes/view.inc:1799
+#: includes/plugins.inc:173 includes/view.inc:1863
 msgid "Fields"
 msgstr ""
 
@@ -1838,71 +1863,71 @@ msgid "Access will be granted to users with the specified permission string."
 msgstr ""
 
 #: includes/view.inc:261
-msgid "set_display called with invalid display id @display"
+msgid "set_display() called with invalid display id @display."
 msgstr ""
 
-#: includes/view.inc:1003
+#: includes/view.inc:1063
 msgid "Home"
 msgstr ""
 
-#: includes/view.inc:1800
+#: includes/view.inc:1864
 msgid "fields"
 msgstr ""
 
-#: includes/view.inc:1802
+#: includes/view.inc:1866
 msgid "field"
 msgstr ""
 
-#: includes/view.inc:1807
+#: includes/view.inc:1871
 msgid "arguments"
 msgstr ""
 
-#: includes/view.inc:1808;1809
+#: includes/view.inc:1872;1873
 msgid "Argument"
 msgstr ""
 
-#: includes/view.inc:1813
+#: includes/view.inc:1877
 msgid "Sort criteria"
 msgstr ""
 
-#: includes/view.inc:1814
+#: includes/view.inc:1878
 msgid "sort criteria"
 msgstr ""
 
-#: includes/view.inc:1815
+#: includes/view.inc:1879
 msgid "Sort criterion"
 msgstr ""
 
-#: includes/view.inc:1816
+#: includes/view.inc:1880
 msgid "sort criterion"
 msgstr ""
 
-#: includes/view.inc:1820
+#: includes/view.inc:1884
 msgid "Filters"
 msgstr ""
 
-#: includes/view.inc:1821
+#: includes/view.inc:1885
 msgid "filters"
 msgstr ""
 
-#: includes/view.inc:1822
+#: includes/view.inc:1886
 msgid "Filter"
 msgstr ""
 
-#: includes/view.inc:1823
+#: includes/view.inc:1887
 msgid "filter"
 msgstr ""
 
-#: includes/view.inc:1828
+#: includes/view.inc:1892
 msgid "Relationships"
 msgstr ""
 
-#: includes/view.inc:1829
+#: includes/view.inc:1893
 msgid "relationships"
 msgstr ""
 
 #: js/ajax.js:0;0;0;0;0;0;0 js/ajax_view.js:0;0;0
-msgid "An error occurred at "
+msgid "An error occurred at @path."
 msgstr ""
 
 #: js/tabs.js:0
@@ -1945,7 +1970,7 @@ msgstr ""
 msgid "The order of pages in the book hierarchy.  Remember to sort by weight too if you want exactly the right order."
 msgstr ""
 
-#: modules/book.views.inc:110 modules/taxonomy.views.inc:237
+#: modules/book.views.inc:110 modules/taxonomy.views.inc:259
 msgid "Parent"
 msgstr ""
 
@@ -1969,7 +1994,7 @@ msgstr ""
 msgid "The title of the comment."
 msgstr ""
 
-#: modules/comment.views.inc:63 modules/node.views.inc:376
+#: modules/comment.views.inc:63 modules/node.views.inc:358
 msgid "Body"
 msgstr ""
 
@@ -2029,7 +2054,7 @@ msgstr ""
 msgid "Provide a simple link to view the comment."
 msgstr ""
 
-#: modules/comment.views.inc:176 modules/node.views.inc:250 modules/user.views.inc:204
+#: modules/comment.views.inc:176 modules/node.views.inc:250 modules/user.views.inc:202
 msgid "Edit link"
 msgstr ""
 
@@ -2037,7 +2062,7 @@ msgstr ""
 msgid "Provide a simple link to edit the comment."
 msgstr ""
 
-#: modules/comment.views.inc:185 modules/node.views.inc:258;490 modules/user.views.inc:212
+#: modules/comment.views.inc:185 modules/node.views.inc:258;472 modules/user.views.inc:210
 msgid "Delete link"
 msgstr ""
 
@@ -2065,7 +2090,7 @@ msgstr ""
 msgid "Sort by the threaded order. This will keep child comments together with their parents."
 msgstr ""
 
-#: modules/comment.views.inc:214;220;255 modules/node.views.inc:24;29;90;375;390;502;643;654;666 modules/upload.views.inc:43
+#: modules/comment.views.inc:214;220;255 modules/node.views.inc:24;29;90;357;372;484;616;627;639 modules/upload.views.inc:43
 msgid "Node"
 msgstr ""
 
@@ -2073,7 +2098,7 @@ msgstr ""
 msgid "The node the comment is a reply to."
 msgstr ""
 
-#: modules/comment.views.inc:225;231 modules/node.views.inc:363 modules/statistics.views.inc:201 modules/user.views.inc:23;27;221
+#: modules/comment.views.inc:225;231 modules/node.views.inc:345 modules/statistics.views.inc:204 modules/user.views.inc:23;27;219
 msgid "User"
 msgstr ""
 
@@ -2173,7 +2198,7 @@ msgstr ""
 msgid "The node ID of the node."
 msgstr ""
 
-#: modules/node.views.inc:86;432
+#: modules/node.views.inc:86;414
 msgid "The title of the node."
 msgstr ""
 
@@ -2193,7 +2218,7 @@ msgstr ""
 msgid "The type of a node (for example, \"blog entry\", \"forum post\", \"story\", etc)."
 msgstr ""
 
-#: modules/node.views.inc:159;167;181 modules/upload.views.inc:82
+#: modules/node.views.inc:159;167;181 modules/translation.views.inc:106 modules/upload.views.inc:82
 msgid "Published"
 msgstr ""
 
@@ -2245,143 +2270,135 @@ msgstr ""
 msgid "Provide a simple link to delete the node."
 msgstr ""
 
-#: modules/node.views.inc:267 modules/node/views_handler_filter_node_language.inc:9
-msgid "Language"
-msgstr ""
-
-#: modules/node.views.inc:268
-msgid "The language the content is in."
-msgstr ""
-
-#: modules/node.views.inc:285;466 modules/user.views.inc:125
+#: modules/node.views.inc:267;448 modules/user.views.inc:123
 msgid "Created date"
 msgstr ""
 
-#: modules/node.views.inc:286
+#: modules/node.views.inc:268
 msgid "In the form of CCYYMMDD."
 msgstr ""
 
-#: modules/node.views.inc:294
+#: modules/node.views.inc:276
 msgid "Created year + month"
 msgstr ""
 
-#: modules/node.views.inc:295
+#: modules/node.views.inc:277
 msgid "In the form of YYYYMM."
 msgstr ""
 
-#: modules/node.views.inc:303
+#: modules/node.views.inc:285
 msgid "Created year"
 msgstr ""
 
-#: modules/node.views.inc:304
+#: modules/node.views.inc:286
 msgid "In the form of YYYY."
 msgstr ""
 
-#: modules/node.views.inc:312
+#: modules/node.views.inc:294
 msgid "Created month"
 msgstr ""
 
-#: modules/node.views.inc:313
+#: modules/node.views.inc:295
 msgid "In the form of MM (01 - 12)."
 msgstr ""
 
-#: modules/node.views.inc:321
+#: modules/node.views.inc:303
 msgid "Created day"
 msgstr ""
 
-#: modules/node.views.inc:322
+#: modules/node.views.inc:304
 msgid "In the form of DD (01 - 31)."
 msgstr ""
 
-#: modules/node.views.inc:330
+#: modules/node.views.inc:312
 msgid "Created week"
 msgstr ""
 
-#: modules/node.views.inc:331
+#: modules/node.views.inc:313
 msgid "In the form of WW (01 - 53)."
 msgstr ""
 
-#: modules/node.views.inc:343;348
+#: modules/node.views.inc:325;330
 msgid "Node revision"
 msgstr ""
 
-#: modules/node.views.inc:349
+#: modules/node.views.inc:331
 msgid "Node revisions are a history of changes to nodes."
 msgstr ""
 
-#: modules/node.views.inc:364
+#: modules/node.views.inc:346
 msgid "Relate a node revision to the user who created the revision."
 msgstr ""
 
-#: modules/node.views.inc:369
+#: modules/node.views.inc:351
 msgid "user"
 msgstr ""
 
-#: modules/node.views.inc:377
+#: modules/node.views.inc:359
 msgid "The actual, full data in the body field; this may not be valid data on all node types."
 msgstr ""
 
-#: modules/node.views.inc:391
+#: modules/node.views.inc:373
 msgid "Teaser"
 msgstr ""
 
-#: modules/node.views.inc:392
+#: modules/node.views.inc:374
 msgid "The stored teaser field. This may not be valid or useful data on all node types."
 msgstr ""
 
-#: modules/node.views.inc:405
+#: modules/node.views.inc:387
 msgid "Vid"
 msgstr ""
 
-#: modules/node.views.inc:406
+#: modules/node.views.inc:388
 msgid "The revision ID of the node revision."
 msgstr ""
 
-#: modules/node.views.inc:452
+#: modules/node.views.inc:434
 msgid "Log message"
 msgstr ""
 
-#: modules/node.views.inc:453
+#: modules/node.views.inc:435
 msgid "The log message entered when the revision was created."
 msgstr ""
 
-#: modules/node.views.inc:467
+#: modules/node.views.inc:449
 msgid "The date the node revision was created."
 msgstr ""
 
-#: modules/node.views.inc:482
+#: modules/node.views.inc:464
 msgid "Revert link"
 msgstr ""
 
-#: modules/node.views.inc:483
+#: modules/node.views.inc:465
 msgid "Provide a simple link to revert to the revision."
 msgstr ""
 
-#: modules/node.views.inc:491
+#: modules/node.views.inc:473
 msgid "Provide a simple link to delete the node revision."
 msgstr ""
 
-#: modules/node.views.inc:518
+#: modules/node.views.inc:500
 msgid "Has new content"
 msgstr ""
 
-#: modules/node.views.inc:521
+#: modules/node.views.inc:503
 msgid "Show a marker if the node has new or updated content."
 msgstr ""
 
-#: modules/node.views.inc:524
+#: modules/node.views.inc:506
 msgid "Show only nodes that have new content."
 msgstr ""
 
-#: modules/node.views.inc:644;655
+#: modules/node.views.inc:617;628
 msgid "Display the node with standard node view."
 msgstr ""
 
-#: modules/node.views.inc:673
+#: modules/node.views.inc:646
 msgid "Node ID from URL"
 msgstr ""
 
-#: modules/node.views.inc:735
+#: modules/node.views.inc:708
 msgid "Display %display has no access control but does not contain a filter for published nodes."
 msgstr ""
 
@@ -2389,7 +2406,7 @@ msgstr ""
 msgid "Poll"
 msgstr ""
 
-#: modules/poll.views.inc:38;47 modules/user.views.inc:173;182
+#: modules/poll.views.inc:38;47 modules/user.views.inc:171;180
 msgid "Active"
 msgstr ""
 
@@ -2433,7 +2450,7 @@ msgstr ""
 msgid "Profile date %field-name."
 msgstr ""
 
-#: modules/search.views.inc:23;77;88;106;161
+#: modules/search.views.inc:23;77;88;106;163
 msgid "Search"
 msgstr ""
 
@@ -2469,7 +2486,7 @@ msgstr ""
 msgid "The terms to search for."
 msgstr ""
 
-#: modules/search.views.inc:162
+#: modules/search.views.inc:164
 msgid "Display the results with standard search view."
 msgstr ""
 
@@ -2501,67 +2518,67 @@ msgstr ""
 msgid "The most recent time the node has been viewed."
 msgstr ""
 
-#: modules/statistics.views.inc:86;91
+#: modules/statistics.views.inc:89;94
 msgid "Access log"
 msgstr ""
 
-#: modules/statistics.views.inc:92
+#: modules/statistics.views.inc:95
 msgid "Stores site access information."
 msgstr ""
 
-#: modules/statistics.views.inc:106
+#: modules/statistics.views.inc:109
 msgid "Session ID"
 msgstr ""
 
-#: modules/statistics.views.inc:107
+#: modules/statistics.views.inc:110
 msgid "Browser session ID of user that visited page."
 msgstr ""
 
-#: modules/statistics.views.inc:126
+#: modules/statistics.views.inc:129
 msgid "Page title"
 msgstr ""
 
-#: modules/statistics.views.inc:127
+#: modules/statistics.views.inc:130
 msgid "Title of page visited."
 msgstr ""
 
-#: modules/statistics.views.inc:147
+#: modules/statistics.views.inc:150
 msgid "Internal path to page visited (relative to Drupal root.)"
 msgstr ""
 
-#: modules/statistics.views.inc:166
+#: modules/statistics.views.inc:169
 msgid "Referrer"
 msgstr ""
 
-#: modules/statistics.views.inc:167
+#: modules/statistics.views.inc:170
 msgid "Referrer URI."
 msgstr ""
 
-#: modules/statistics.views.inc:182
+#: modules/statistics.views.inc:185
 msgid "Hostname"
 msgstr ""
 
-#: modules/statistics.views.inc:183
+#: modules/statistics.views.inc:186
 msgid "Hostname of user that visited the page."
 msgstr ""
 
-#: modules/statistics.views.inc:202
+#: modules/statistics.views.inc:205
 msgid "The user who visited the site."
 msgstr ""
 
-#: modules/statistics.views.inc:212
+#: modules/statistics.views.inc:215
 msgid "Timer"
 msgstr ""
 
-#: modules/statistics.views.inc:213
+#: modules/statistics.views.inc:216
 msgid "Time in milliseconds that the page took to load."
 msgstr ""
 
-#: modules/statistics.views.inc:228
+#: modules/statistics.views.inc:231
 msgid "Timestamp"
 msgstr ""
 
-#: modules/statistics.views.inc:229
+#: modules/statistics.views.inc:232
 msgid "Timestamp of when the page was visited."
 msgstr ""
 
@@ -2629,7 +2646,7 @@ msgstr ""
 msgid "Permanent"
 msgstr ""
 
-#: modules/taxonomy.views.inc:24;67;132;150;204;244;281;292
+#: modules/taxonomy.views.inc:24;67;152;170;226;266;303;314
 msgid "Taxonomy"
 msgstr ""
 
@@ -2649,7 +2666,7 @@ msgstr ""
 msgid "The taxonomy vocabulary ID"
 msgstr ""
 
-#: modules/taxonomy.views.inc:70;96;192
+#: modules/taxonomy.views.inc:70;116;213
 msgid "Term"
 msgstr ""
 
@@ -2657,84 +2674,128 @@ msgstr ""
 msgid "Taxonomy terms are attached to nodes."
 msgstr ""
 
-#: modules/taxonomy.views.inc:97
-msgid "Taxonomy terms. Note that using this can cause duplicate nodes to appear in views; you must add filters to reduce the result set."
-msgstr ""
-
-#: modules/taxonomy.views.inc:107
-msgid "Taxonomy term name"
-msgstr ""
-
-#: modules/taxonomy.views.inc:116
-msgid "The term weight field"
-msgstr ""
-
-#: modules/taxonomy.views.inc:128
-msgid "Term description"
-msgstr ""
-
-#: modules/taxonomy.views.inc:129
-msgid "The description associated with a taxonomy term."
-msgstr ""
-
-#: modules/taxonomy.views.inc:140 modules/taxonomy/views_handler_filter_term_node_tid.inc:37
-msgid "Vocabulary"
-msgstr ""
-
-#: modules/taxonomy.views.inc:141
-msgid "Filter the results of \"Taxonomy: Term\" to a particular vocabulary."
-msgstr ""
-
-#: modules/taxonomy.views.inc:176 modules/taxonomy/views_plugin_argument_validate_taxonomy_term.inc:35
+#: modules/taxonomy.views.inc:96;196 modules/taxonomy/views_plugin_argument_validate_taxonomy_term.inc:35
 msgid "Term ID"
 msgstr ""
 
-#: modules/taxonomy.views.inc:177
+#: modules/taxonomy.views.inc:97;197
 msgid "The taxonomy term ID"
 msgstr ""
 
-#: modules/taxonomy.views.inc:179
+#: modules/taxonomy.views.inc:117
+msgid "Taxonomy terms. Note that using this can cause duplicate nodes to appear in views; you must add filters to reduce the result set."
+msgstr ""
+
+#: modules/taxonomy.views.inc:127
+msgid "Taxonomy term name."
+msgstr ""
+
+#: modules/taxonomy.views.inc:136
+msgid "The term weight field"
+msgstr ""
+
+#: modules/taxonomy.views.inc:148
+msgid "Term description"
+msgstr ""
+
+#: modules/taxonomy.views.inc:149
+msgid "The description associated with a taxonomy term."
+msgstr ""
+
+#: modules/taxonomy.views.inc:160 modules/taxonomy/views_handler_filter_term_node_tid.inc:37
+msgid "Vocabulary"
+msgstr ""
+
+#: modules/taxonomy.views.inc:161
+msgid "Filter the results of \"Taxonomy: Term\" to a particular vocabulary."
+msgstr ""
+
+#: modules/taxonomy.views.inc:199
 msgid "All terms"
 msgstr ""
 
-#: modules/taxonomy.views.inc:180
-msgid "Display all taxonomy terms associated with a node."
+#: modules/taxonomy.views.inc:200
+msgid "Display all taxonomy terms associated with a node from specified vocabularies."
 msgstr ""
 
-#: modules/taxonomy.views.inc:232
+#: modules/taxonomy.views.inc:254
 msgid "Parent term"
 msgstr ""
 
-#: modules/taxonomy.views.inc:233
-msgid "The parent term of the term. This can produce records entries if you are using a vocabulary that allows multiple parents."
+#: modules/taxonomy.views.inc:255
+msgid "The parent term of the term. This can produce duplicate entries if you are using a vocabulary that allows multiple parents."
 msgstr ""
 
-#: modules/taxonomy.views.inc:265
+#: modules/taxonomy.views.inc:287
 msgid "Term synonym"
 msgstr ""
 
-#: modules/taxonomy.views.inc:266
+#: modules/taxonomy.views.inc:288
 msgid "Term synonyms may be used to find terms by alternate names."
 msgstr ""
 
-#: modules/taxonomy.views.inc:282
+#: modules/taxonomy.views.inc:304
 msgid "Term ID (with depth)"
 msgstr ""
 
-#: modules/taxonomy.views.inc:283
+#: modules/taxonomy.views.inc:305
 msgid "The depth filter is more complex, so provides fewer options."
 msgstr ""
 
-#: modules/taxonomy.views.inc:293
+#: modules/taxonomy.views.inc:315
 msgid "Term ID depth modifier"
 msgstr ""
 
-#: modules/taxonomy.views.inc:294
+#: modules/taxonomy.views.inc:316
 msgid "Allows the \"depth\" for Taxonomy: Term ID (with depth) to be modified via an additional argument."
 msgstr ""
 
-#: modules/taxonomy.views.inc:350
+#: modules/taxonomy.views.inc:372
 msgid "Taxonomy term"
+msgstr ""
+
+#: modules/translation.views.inc:31;48;80;97
+msgid "Node translation"
+msgstr ""
+
+#: modules/translation.views.inc:32 modules/node/views_handler_filter_node_language.inc:9 modules/translation/views_handler_filter_node_language.inc:9
+msgid "Language"
+msgstr ""
+
+#: modules/translation.views.inc:33
+msgid "The language the content is in."
+msgstr ""
+
+#: modules/translation.views.inc:49
+msgid "Translation set node ID"
+msgstr ""
+
+#: modules/translation.views.inc:50
+msgid "The ID of the translation set the content belongs to."
+msgstr ""
+
+#: modules/translation.views.inc:69;74
+msgid "Source translation"
+msgstr ""
+
+#: modules/translation.views.inc:70
+msgid "The source that this content was translated from."
+msgstr ""
+
+#: modules/translation.views.inc:81;84;91
+msgid "Translations"
+msgstr ""
+
+#: modules/translation.views.inc:82;85
+msgid "Versions of content in different languages."
+msgstr ""
+
+#: modules/translation.views.inc:98
+msgid "Translation status"
+msgstr ""
+
+#: modules/translation.views.inc:99
+msgid "The translation status of the node--whether or not the translation needs to be updated."
 msgstr ""
 
 #: modules/upload.views.inc:25;112
@@ -2818,71 +2879,75 @@ msgid "E-mail"
 msgstr ""
 
 #: modules/user.views.inc:97
-msgid "Email address for a given user. Only accessible to users with <em>administer users</em> permission"
+msgid "Email address for a given user. This field is not normally shown to users, so be cautious when using it."
 msgstr ""
 
-#: modules/user.views.inc:114
+#: modules/user.views.inc:112
 msgid "Picture"
 msgstr ""
 
-#: modules/user.views.inc:115
+#: modules/user.views.inc:113
 msgid "The user's picture, if allowed."
 msgstr ""
 
-#: modules/user.views.inc:126
+#: modules/user.views.inc:124
 msgid "The date the user was created."
 msgstr ""
 
-#: modules/user.views.inc:141
+#: modules/user.views.inc:139
 msgid "Last access"
 msgstr ""
 
-#: modules/user.views.inc:142
+#: modules/user.views.inc:140
 msgid "The user's last access date."
 msgstr ""
 
-#: modules/user.views.inc:157
+#: modules/user.views.inc:155
 msgid "Last login"
 msgstr ""
 
-#: modules/user.views.inc:158
+#: modules/user.views.inc:156
 msgid "The user's last login date."
 msgstr ""
 
-#: modules/user.views.inc:174
+#: modules/user.views.inc:172
 msgid "Whether a user is active or blocked."
 msgstr ""
 
-#: modules/user.views.inc:191
+#: modules/user.views.inc:189
 msgid "Signature"
 msgstr ""
 
-#: modules/user.views.inc:192
+#: modules/user.views.inc:190
 msgid "The user's signature."
 msgstr ""
 
-#: modules/user.views.inc:205
+#: modules/user.views.inc:203
 msgid "Provide a simple link to edit the user."
 msgstr ""
 
-#: modules/user.views.inc:213
+#: modules/user.views.inc:211
 msgid "Provide a simple link to delete the user."
 msgstr ""
 
-#: modules/user.views.inc:242
+#: modules/user.views.inc:240
 msgid "Roles"
 msgstr ""
 
-#: modules/user.views.inc:243
+#: modules/user.views.inc:241
 msgid "Roles that a user belongs to."
 msgstr ""
 
-#: modules/user.views.inc:255
+#: modules/user.views.inc:253
 msgid "No role"
 msgstr ""
 
-#: modules/user.views.inc:298
+#: modules/user.views.inc:296
 msgid "User ID from URL"
+msgstr ""
+
+#: modules/user.views.inc:302
+msgid "User ID from logged in user"
 msgstr ""
 
 #: modules/views.views.inc:18
@@ -2965,11 +3030,11 @@ msgstr ""
 msgid "Display links"
 msgstr ""
 
-#: modules/node/views_handler_argument_dates_various.inc:161
+#: modules/node/views_handler_argument_dates_various.inc:167
 msgid "Week @week"
 msgstr ""
 
-#: modules/node/views_handler_argument_node_language.inc:29
+#: modules/node/views_handler_argument_node_language.inc:29 modules/translation/views_handler_argument_node_language.inc:29
 msgid "Unknown language"
 msgstr ""
 
@@ -2989,11 +3054,11 @@ msgstr ""
 msgid "revert"
 msgstr ""
 
-#: modules/node/views_handler_filter_node_language.inc:10
+#: modules/node/views_handler_filter_node_language.inc:10 modules/translation/views_handler_filter_node_language.inc:10
 msgid "Current user's language"
 msgstr ""
 
-#: modules/node/views_handler_filter_node_language.inc:10
+#: modules/node/views_handler_filter_node_language.inc:10 modules/translation/views_handler_filter_node_language.inc:10
 msgid "No language"
 msgstr ""
 
@@ -3157,11 +3222,11 @@ msgstr ""
 msgid "An invalid vocabulary is selected. Please change it in the options."
 msgstr ""
 
-#: modules/taxonomy/views_handler_filter_term_node_tid.inc:91;125
+#: modules/taxonomy/views_handler_filter_term_node_tid.inc:91;147
 msgid "Select terms from vocabulary @voc"
 msgstr ""
 
-#: modules/taxonomy/views_handler_filter_term_node_tid.inc:224
+#: modules/taxonomy/views_handler_filter_term_node_tid.inc:255
 msgid "Unable to find term: @terms"
 msgid_plural "Unable to find terms: @terms"
 msgstr[0] ""
@@ -3185,6 +3250,26 @@ msgstr ""
 
 #: modules/taxonomy/views_plugin_argument_validate_taxonomy_term.inc:41
 msgid "Select the form of this argument; if using term name, it is generally more efficient to convert it to a term ID and use Taxonomy: Term ID rather than Taxonomy: Term Name\" as an argument."
+msgstr ""
+
+#: modules/translation/views_handler_filter_node_language.inc:10
+msgid "Default site language"
+msgstr ""
+
+#: modules/translation/views_handler_relationship_translation.inc:24
+msgid "Current language"
+msgstr ""
+
+#: modules/translation/views_handler_relationship_translation.inc:25
+msgid "Default language"
+msgstr ""
+
+#: modules/translation/views_handler_relationship_translation.inc:32
+msgid "Translation option"
+msgstr ""
+
+#: modules/translation/views_handler_relationship_translation.inc:33
+msgid "The translation options allows you to select which translation or translations in a translation set join on. Select \"Current language\" or \"Default language\" to join on the translation in the current or default language respectively. Select a specific language to join on a translation in that language. If you select \"All\", each translation will create a new row, which may appear to cause duplicates."
 msgstr ""
 
 #: modules/upload/views_handler_field_upload_fid.inc:27
@@ -3215,15 +3300,15 @@ msgstr ""
 msgid "Is the logged in user"
 msgstr ""
 
-#: modules/user/views_handler_filter_user_name.inc:25
+#: modules/user/views_handler_filter_user_name.inc:28
 msgid "Usernames"
 msgstr ""
 
-#: modules/user/views_handler_filter_user_name.inc:26
+#: modules/user/views_handler_filter_user_name.inc:29
 msgid "Enter a comma separated list of user names."
 msgstr ""
 
-#: modules/user/views_handler_filter_user_name.inc:105
+#: modules/user/views_handler_filter_user_name.inc:112
 msgid "Unable to find user: @users"
 msgid_plural "Unable to find users: @users"
 msgstr[0] ""
@@ -3285,416 +3370,436 @@ msgstr ""
 msgid "Enter PHP code that returns TRUE or FALSE. No return is the same as FALSE, so be SURE to return something if you do not want to declare the argument invalid. Do not use &lt;?php ?&gt;. The argument to validate will be \"$argument\" and the view will be \"$view\". You may change the argument by setting \"$handler->argument\"."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:552
+#: plugins/views_plugin_display.inc:558
 msgid "Broken field"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:569
+#: plugins/views_plugin_display.inc:575
 msgid "Basic settings"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:576
+#: plugins/views_plugin_display.inc:582
 msgid "Change the name of this display."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:588
+#: plugins/views_plugin_display.inc:594
 msgid "Change the title that this display will use."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:598
+#: plugins/views_plugin_display.inc:604
 msgid "Style"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:600
+#: plugins/views_plugin_display.inc:606
 msgid "Change the style plugin."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:614
+#: plugins/views_plugin_display.inc:620
 msgid "Row style"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:616
+#: plugins/views_plugin_display.inc:622
 msgid "Change the row plugin."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:626
+#: plugins/views_plugin_display.inc:632
 msgid "Use AJAX"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:628
+#: plugins/views_plugin_display.inc:634
 msgid "Change whether or not this display will use AJAX."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:635
+#: plugins/views_plugin_display.inc:641
 msgid "Use pager"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:636
+#: plugins/views_plugin_display.inc:642
 msgid "Mini"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:637
+#: plugins/views_plugin_display.inc:643
 msgid "Change this display's pager setting."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:644;809
+#: plugins/views_plugin_display.inc:650;822
 msgid "Items per page"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:644;809 plugins/views_plugin_style_summary.inc:43
+#: plugins/views_plugin_display.inc:650;822 plugins/views_plugin_style_summary.inc:43
 msgid "Items to display"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:645
+#: plugins/views_plugin_display.inc:651
 msgid "Unlimited"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:646
+#: plugins/views_plugin_display.inc:652
 msgid "Change how many items to display."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:652
+#: plugins/views_plugin_display.inc:658
 msgid "More link"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:654
+#: plugins/views_plugin_display.inc:660
 msgid "Specify whether this display will provide a \"more\" link."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:660;836
+#: plugins/views_plugin_display.inc:666;849
 msgid "Distinct"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:662;833
+#: plugins/views_plugin_display.inc:668;846
 msgid "Display only distinct items, without duplicates."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:675
+#: plugins/views_plugin_display.inc:681
 msgid "Access"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:677
+#: plugins/views_plugin_display.inc:683
 msgid "Specify access control type for this display."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:681
+#: plugins/views_plugin_display.inc:687
 msgid "Change settings for this access type."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:701
+#: plugins/views_plugin_display.inc:707
 msgid "Link display"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:703
+#: plugins/views_plugin_display.inc:709
 msgid "Specify which display this display will link to."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:708;884
+#: plugins/views_plugin_display.inc:716
+msgid "Exposed form in block"
+msgstr ""
+
+#: plugins/views_plugin_display.inc:718
+msgid "Allow the exposed form to appear in a block instead of the view."
+msgstr ""
+
+#: plugins/views_plugin_display.inc:721;897
 msgid "Header"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:708;900
+#: plugins/views_plugin_display.inc:721;913
 msgid "Footer"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:708;916
+#: plugins/views_plugin_display.inc:721;929
 msgid "Empty text"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:724
+#: plugins/views_plugin_display.inc:737
 msgid "Unknown/missing format"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:732
+#: plugins/views_plugin_display.inc:745
 msgid "Change this display's !name."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:738
+#: plugins/views_plugin_display.inc:751
 msgid "Theme"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:739
+#: plugins/views_plugin_display.inc:752
 msgid "Information"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:740
+#: plugins/views_plugin_display.inc:753
 msgid "Get information on how to theme this display"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:766
+#: plugins/views_plugin_display.inc:779
 msgid "The name of this display"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:769
+#: plugins/views_plugin_display.inc:782
 msgid "This title will appear only in the administrative interface for the View."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:774
+#: plugins/views_plugin_display.inc:787
 msgid "The title of this view"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:777
+#: plugins/views_plugin_display.inc:790
 msgid "This title will be displayed with the view, wherever titles are normally displayed; i.e, as the page title, block title, etc."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:782
+#: plugins/views_plugin_display.inc:795
 msgid "Use AJAX when available to load this view"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:786
+#: plugins/views_plugin_display.inc:799
 msgid "If set, this view will use an AJAX mechanism for paging, table sorting and exposed filters. This means the entire page will not refresh. It is not recommended that you use this if this view is the main content of the page as it will prevent deep linking to specific pages, but it is very useful for side content."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:795
+#: plugins/views_plugin_display.inc:808
 msgid "Use a pager for this view"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:798
+#: plugins/views_plugin_display.inc:811
 msgid "Full pager"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:798
+#: plugins/views_plugin_display.inc:811
 msgid "Mini pager"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:803
+#: plugins/views_plugin_display.inc:816
 msgid "Pager element"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:804
+#: plugins/views_plugin_display.inc:817
 msgid "Unless you're experiencing problems with pagers related to this view, you should leave this at 0. If using multiple pagers on one page you may need to set this number to a higher value so as not to conflict within the ?page= array. Large values will add a lot of commas to your URLs, so avoid if possible."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:813
+#: plugins/views_plugin_display.inc:826
 msgid "The number of items to display per page. Enter 0 for no limit."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:818
+#: plugins/views_plugin_display.inc:831
 msgid "Offset"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:819
+#: plugins/views_plugin_display.inc:832
 msgid "The number of items to skip. For example, if this field is 3, the first 3 items will be skipped and not displayed. Offset can not be used if items to display is 0; instead use a very large number there."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:824
+#: plugins/views_plugin_display.inc:837
 msgid "Add a more link to the bottom of the display."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:827
+#: plugins/views_plugin_display.inc:840
 msgid "Create more link"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:828
+#: plugins/views_plugin_display.inc:841
 msgid "This will add a more link to the bottom of this view, which will link to the page view. If you have more than one page view, the link will point to the display specified in 'Link display' above."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:837
+#: plugins/views_plugin_display.inc:850
 msgid "This will make the view display only distinct items. If there are multiple identical items, each will be displayed only once. You can use this to try and remove duplicates from a view, though it does not always work. Note that this can slow queries down, so use it with caution."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:842
+#: plugins/views_plugin_display.inc:855
 msgid "Access restrictions"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:861;941
+#: plugins/views_plugin_display.inc:874;954
 msgid "You may also adjust the !settings for the currently selected style by clicking on the icon."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:861;941;986
+#: plugins/views_plugin_display.inc:874;954;999
 msgid "settings"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:869
+#: plugins/views_plugin_display.inc:882
 msgid "Access options"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:887;903
+#: plugins/views_plugin_display.inc:900;916
 msgid "Display even if view has no result"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:894
+#: plugins/views_plugin_display.inc:907
 msgid "Text to display at the top of the view. May contain an explanation or links or whatever you like. Optional."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:910
+#: plugins/views_plugin_display.inc:923
 msgid "Text to display beneath the view. May contain an explanation or links or whatever you like. Optional."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:921
+#: plugins/views_plugin_display.inc:934
 msgid "Text to display if the view has no results. Optional."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:927
+#: plugins/views_plugin_display.inc:940
 msgid "How should this view be styled"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:933
+#: plugins/views_plugin_display.inc:946
 msgid "If the style you choose has settings, be sure to click the settings button that will appear next to it in the View summary."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:947
+#: plugins/views_plugin_display.inc:960
 msgid "Style options"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:958
+#: plugins/views_plugin_display.inc:971
 msgid "Row style options"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:973
+#: plugins/views_plugin_display.inc:986
 msgid "How should each row in this view be styled"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:986
+#: plugins/views_plugin_display.inc:999
 msgid "You may also adjust the !settings for the currently selected row style by clicking on the icon."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:992
+#: plugins/views_plugin_display.inc:1005
 msgid "Which display to use for path"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:1001
+#: plugins/views_plugin_display.inc:1014
 msgid "Which display to use to get this display's path for things like summary links, rss feed links, more links, etc."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:1006
+#: plugins/views_plugin_display.inc:1019
 msgid "Theming information"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:1014
+#: plugins/views_plugin_display.inc:1027
 msgid "Display output"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:1018
+#: plugins/views_plugin_display.inc:1031
 msgid "Alternative display output"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:1025
+#: plugins/views_plugin_display.inc:1038
 msgid "Style output"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:1029
+#: plugins/views_plugin_display.inc:1042
 msgid "Alternative style"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:1036
+#: plugins/views_plugin_display.inc:1049
 msgid "Row style output"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:1040
+#: plugins/views_plugin_display.inc:1053
 msgid "Alternative row style"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:1048
+#: plugins/views_plugin_display.inc:1061
 msgid "Field @field (ID: @id)"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:1056
+#: plugins/views_plugin_display.inc:1069
 msgid "This section lists all possible templates for the display plugin and for the style plugins, ordered roughly from the least specific to the most specific. The active template for each plugin -- which is the most specific template found on the system -- is highlighted in bold."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:1071
+#: plugins/views_plugin_display.inc:1084
 msgid "Rescan template files"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:1077
+#: plugins/views_plugin_display.inc:1090
 msgid "<strong>Important!</strong> When adding, removing, or renaming template files, it is necessary to make Drupal aware of the changes by making it rescan the files on your system. By clicking this button you clear Drupal's theme registry and thereby trigger this rescanning process. The highlighted templates above will then reflect the new state of your system."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:1083
+#: plugins/views_plugin_display.inc:1096
 msgid "Theming information (display)"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:1084;1111;1140;1169
+#: plugins/views_plugin_display.inc:1097;1124;1153;1182
 msgid "Back to !info."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:1084;1111;1140;1169
+#: plugins/views_plugin_display.inc:1097;1124;1153;1182
 msgid "theming information"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:1087
+#: plugins/views_plugin_display.inc:1100
 msgid "This display has no theming information"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:1090
+#: plugins/views_plugin_display.inc:1103
 msgid "This is the default theme template used for this display."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:1096
+#: plugins/views_plugin_display.inc:1109
 msgid "This is an alternative template for this display."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:1110
+#: plugins/views_plugin_display.inc:1123
 msgid "Theming information (style)"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:1116
+#: plugins/views_plugin_display.inc:1129
 msgid "This display has no style theming information"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:1119
+#: plugins/views_plugin_display.inc:1132
 msgid "This is the default theme template used for this style."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:1125
+#: plugins/views_plugin_display.inc:1138
 msgid "This is an alternative template for this style."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:1139;1168
+#: plugins/views_plugin_display.inc:1152;1181
 msgid "Theming information (row style)"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:1145
+#: plugins/views_plugin_display.inc:1158
 msgid "This display has no row style theming information"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:1148;1171
+#: plugins/views_plugin_display.inc:1161;1184
 msgid "This is the default theme template used for this row style."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:1154
+#: plugins/views_plugin_display.inc:1167
 msgid "This is an alternative template for this row style."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:1211
+#: plugins/views_plugin_display.inc:1199
+msgid "Put the exposed form in a block"
+msgstr ""
+
+#: plugins/views_plugin_display.inc:1203
+msgid "If set, any exposed widgets will not appear with this view. Instead, a block will be made available to the Drupal block administration system, and the exposed form will appear there. Note that this block must be enabled manually, Views will not enable it for you."
+msgstr ""
+
+#: plugins/views_plugin_display.inc:1238
 msgid "File found in folder @template-path"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:1215
+#: plugins/views_plugin_display.inc:1242
 msgid "(File not found, in folder @template-path)"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:1369
+#: plugins/views_plugin_display.inc:1399
 msgid "Override"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:1374
+#: plugins/views_plugin_display.inc:1404
 msgid "Status: using default values."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:1378
+#: plugins/views_plugin_display.inc:1408
 msgid "Update default display"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:1383
+#: plugins/views_plugin_display.inc:1413
 msgid "Use default"
 msgstr ""
 
-#: plugins/views_plugin_display.inc:1388
+#: plugins/views_plugin_display.inc:1418
 msgid "Status: using overridden values."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:1600
-msgid "Display @display uses fields but there are none defined for it or all are excluded."
+#: plugins/views_plugin_display.inc:1633
+msgid "Display \"@display\" uses fields but there are none defined for it or all are excluded."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:1605
-msgid "Display @display uses path but path is undefined."
+#: plugins/views_plugin_display.inc:1638
+msgid "Display \"@display\" uses a path but the path is undefined."
 msgstr ""
 
-#: plugins/views_plugin_display.inc:1610
-msgid "Display @display has an invalid style plugin."
+#: plugins/views_plugin_display.inc:1643
+msgid "Display \"@display\" has an invalid style plugin."
+msgstr ""
+
+#: plugins/views_plugin_display.inc:1659
+msgid "Exposed form: @view-@display_id"
 msgstr ""
 
 #: plugins/views_plugin_display_attachment.inc:35
@@ -3725,11 +3830,11 @@ msgstr ""
 msgid "Position"
 msgstr ""
 
-#: plugins/views_plugin_display_attachment.inc:80 plugins/views_plugin_display_feed.inc:94
+#: plugins/views_plugin_display_attachment.inc:80 plugins/views_plugin_display_feed.inc:98
 msgid "Multiple displays"
 msgstr ""
 
-#: plugins/views_plugin_display_attachment.inc:95;136 plugins/views_plugin_display_feed.inc:109;136
+#: plugins/views_plugin_display_attachment.inc:95;136 plugins/views_plugin_display_feed.inc:113;140
 msgid "Attach to"
 msgstr ""
 
@@ -3805,143 +3910,151 @@ msgstr ""
 msgid "This sets the default status for Drupal's built-in block caching method; this requires that caching be turned on in block administration, and be careful because you have little control over when this cache is flushed."
 msgstr ""
 
-#: plugins/views_plugin_display_feed.inc:82
+#: plugins/views_plugin_display_feed.inc:86
 msgid "Feed settings"
 msgstr ""
 
-#: plugins/views_plugin_display_feed.inc:86
+#: plugins/views_plugin_display_feed.inc:90
 msgid "Using the site name"
 msgstr ""
 
-#: plugins/views_plugin_display_feed.inc:128
+#: plugins/views_plugin_display_feed.inc:132
 msgid "Use the site name for the title"
 msgstr ""
 
-#: plugins/views_plugin_display_feed.inc:145
+#: plugins/views_plugin_display_feed.inc:149
 msgid "The feed icon will be available only to the selected displays."
 msgstr ""
 
-#: plugins/views_plugin_display_feed.inc:151
+#: plugins/views_plugin_display_feed.inc:155
 msgid "This view will be displayed by visiting this path on your site. It is recommended that the path be something like \"path/%/%/feed\" or \"path/%/%/rss.xml\", putting one % in the path for each argument you have defined in the view."
 msgstr ""
 
-#: plugins/views_plugin_display_page.inc:185
+#: plugins/views_plugin_display_page.inc:188
 msgid "Page settings"
 msgstr ""
 
-#: plugins/views_plugin_display_page.inc:210
+#: plugins/views_plugin_display_page.inc:213
 msgid "No menu"
 msgstr ""
 
-#: plugins/views_plugin_display_page.inc:213
+#: plugins/views_plugin_display_page.inc:216
 msgid "Normal: @title"
 msgstr ""
 
-#: plugins/views_plugin_display_page.inc:217
+#: plugins/views_plugin_display_page.inc:220
 msgid "Tab: @title"
 msgstr ""
 
-#: plugins/views_plugin_display_page.inc:227
+#: plugins/views_plugin_display_page.inc:230;302
 msgid "Menu"
 msgstr ""
 
-#: plugins/views_plugin_display_page.inc:233
+#: plugins/views_plugin_display_page.inc:236
 msgid "Change settings for the parent menu"
 msgstr ""
 
-#: plugins/views_plugin_display_page.inc:246
+#: plugins/views_plugin_display_page.inc:249
 msgid "The menu path or URL of this view"
 msgstr ""
 
-#: plugins/views_plugin_display_page.inc:250
+#: plugins/views_plugin_display_page.inc:253
 msgid "This view will be displayed by visiting this path on your site. You may use \"%\" in your URL to represent values that will be used for arguments: For example, \"node/%/feed\"."
 msgstr ""
 
-#: plugins/views_plugin_display_page.inc:256
+#: plugins/views_plugin_display_page.inc:259
 msgid "Menu item entry"
 msgstr ""
 
-#: plugins/views_plugin_display_page.inc:273
+#: plugins/views_plugin_display_page.inc:276
 msgid "No menu entry"
 msgstr ""
 
-#: plugins/views_plugin_display_page.inc:274
+#: plugins/views_plugin_display_page.inc:277
 msgid "Normal menu entry"
 msgstr ""
 
-#: plugins/views_plugin_display_page.inc:275;322
+#: plugins/views_plugin_display_page.inc:278;343
 msgid "Menu tab"
 msgstr ""
 
-#: plugins/views_plugin_display_page.inc:276
+#: plugins/views_plugin_display_page.inc:279
 msgid "Default menu tab"
 msgstr ""
 
-#: plugins/views_plugin_display_page.inc:285
+#: plugins/views_plugin_display_page.inc:288
 msgid "If set to normal or tab, enter the text to use for the menu item."
 msgstr ""
 
-#: plugins/views_plugin_display_page.inc:294
-msgid "If set to tab, enter the weight of the item. The lower the weight the higher/further left it will appear."
+#: plugins/views_plugin_display_page.inc:295
+msgid "Warning: Changing this item's menu will not work reliably in Drupal 6.4 or earlier. Please upgrade your copy of Drupal at !url."
 msgstr ""
 
-#: plugins/views_plugin_display_page.inc:300
+#: plugins/views_plugin_display_page.inc:306
+msgid "Insert item into an available menu."
+msgstr ""
+
+#: plugins/views_plugin_display_page.inc:315
+msgid "The lower the weight the higher/further left it will appear."
+msgstr ""
+
+#: plugins/views_plugin_display_page.inc:321
 msgid "Default tab options"
 msgstr ""
 
-#: plugins/views_plugin_display_page.inc:309
+#: plugins/views_plugin_display_page.inc:330
 msgid "When providing a menu item as a tab, Drupal needs to know what the parent menu item of that tab will be. Sometimes the parent will already exist, but other times you will need to have one created. The path of a parent item will always be the same path with the last part left off. i.e, if the path to this view is <em>foo/bar/baz</em>, the parent path would be <em>foo/bar</em>."
 msgstr ""
 
-#: plugins/views_plugin_display_page.inc:320
+#: plugins/views_plugin_display_page.inc:341
 msgid "Parent menu item"
 msgstr ""
 
-#: plugins/views_plugin_display_page.inc:322
+#: plugins/views_plugin_display_page.inc:343
 msgid "Already exists"
 msgstr ""
 
-#: plugins/views_plugin_display_page.inc:322
+#: plugins/views_plugin_display_page.inc:343
 msgid "Normal menu item"
 msgstr ""
 
-#: plugins/views_plugin_display_page.inc:330
+#: plugins/views_plugin_display_page.inc:351
 msgid "If creating a parent menu item, enter the title of the item."
 msgstr ""
 
-#: plugins/views_plugin_display_page.inc:336
+#: plugins/views_plugin_display_page.inc:357
 msgid "Tab weight"
 msgstr ""
 
-#: plugins/views_plugin_display_page.inc:340
+#: plugins/views_plugin_display_page.inc:361
 msgid "If the parent menu item is a tab, enter the weight of the tab. The lower the number, the more to the left it will be."
 msgstr ""
 
-#: plugins/views_plugin_display_page.inc:354
+#: plugins/views_plugin_display_page.inc:375
 msgid "\"$arg\" is no longer supported. Use % instead."
 msgstr ""
 
-#: plugins/views_plugin_display_page.inc:358
+#: plugins/views_plugin_display_page.inc:379
 msgid "\"%\" may not be used for the first segment of a path."
 msgstr ""
 
-#: plugins/views_plugin_display_page.inc:368
+#: plugins/views_plugin_display_page.inc:389
 msgid "Views cannot create normal menu items for paths with a % in them."
 msgstr ""
 
-#: plugins/views_plugin_display_page.inc:375
+#: plugins/views_plugin_display_page.inc:396
 msgid "A display whose path ends with a % cannot be a tab."
 msgstr ""
 
-#: plugins/views_plugin_display_page.inc:380
+#: plugins/views_plugin_display_page.inc:401
 msgid "Title is required for this menu type."
 msgstr ""
 
-#: plugins/views_plugin_display_page.inc:411
+#: plugins/views_plugin_display_page.inc:432
 msgid "Display @display is set to use a menu but the menu title is not set."
 msgstr ""
 
-#: plugins/views_plugin_display_page.inc:417
+#: plugins/views_plugin_display_page.inc:438
 msgid "Display @display is set to use a parent menu but the parent menu title is not set."
 msgstr ""
 
@@ -3962,10 +4075,10 @@ msgid "Grouping field"
 msgstr ""
 
 #: plugins/views_plugin_style.inc:94
-msgid "You may optionally specify a field by which to group the records.  Leave blank to not group."
+msgid "You may optionally specify a field by which to group the records. Leave blank to not group."
 msgstr ""
 
-#: plugins/views_plugin_style.inc:182
+#: plugins/views_plugin_style.inc:191
 msgid "Style @style requires a row style but the row plugin is invalid."
 msgstr ""
 
@@ -4017,31 +4130,31 @@ msgstr ""
 msgid "Display items inline"
 msgstr ""
 
-#: plugins/views_plugin_style_table.inc:124
+#: plugins/views_plugin_style_table.inc:126
 msgid "You need at least one field before you can configure your table settings"
 msgstr ""
 
-#: plugins/views_plugin_style_table.inc:133
+#: plugins/views_plugin_style_table.inc:135
 msgid "Override normal sorting if click sorting is used"
 msgstr ""
 
-#: plugins/views_plugin_style_table.inc:139
+#: plugins/views_plugin_style_table.inc:141
 msgid "Enable Drupal style \"sticky\" table headers (Javascript)"
 msgstr ""
 
-#: plugins/views_plugin_style_table.inc:141
+#: plugins/views_plugin_style_table.inc:143
 msgid "(Sticky header effects will not be active for preview below, only on live output.)"
 msgstr ""
 
-#: plugins/views_plugin_style_table.inc:146
+#: plugins/views_plugin_style_table.inc:148
 msgid "Default sort order"
 msgstr ""
 
-#: plugins/views_plugin_style_table.inc:149
+#: plugins/views_plugin_style_table.inc:151
 msgid "If a default sort order is selected, what order should it use by default."
 msgstr ""
 
-#: plugins/views_plugin_style_table.inc:235
+#: plugins/views_plugin_style_table.inc:237
 msgid "Place fields into columns; you may combine multiple fields into the same column. If you do, the separator in the column specified will be used to separate the fields. Check the sortable box to make that column click sortable, and check the default sort radio to determine which column will be sorted by default, if any. You may control column order and field labels in the fields section."
 msgstr ""
 
@@ -4062,7 +4175,7 @@ msgid "View settings"
 msgstr ""
 
 #: theme/views-ui-edit-view.tpl.php:11
-msgid "This view is being edited by user !user, and is therefore locked from editing by others. This lock is !age old. Click here to !break."
+msgid "This view is being edited by user !user, and is therefore locked from editing by others. This lock is !age old. Click here to <a href=\"!break\">break this lock</a>."
 msgstr ""
 
 #: theme/views-ui-edit-view.tpl.php:16
@@ -4093,23 +4206,23 @@ msgstr ""
 msgid "Path: !path"
 msgstr ""
 
-#: theme/theme.inc:91
+#: theme/theme.inc:90
 msgid "Edit this view"
 msgstr ""
 
-#: theme/theme.inc:291
+#: theme/theme.inc:307
 msgid "sort by @s"
 msgstr ""
 
-#: theme/theme.inc:514
+#: theme/theme.inc:559
 msgid "‹‹"
 msgstr ""
 
-#: theme/theme.inc:515
+#: theme/theme.inc:560
 msgid "››"
 msgstr ""
 
-#: theme/theme.inc:525
+#: theme/theme.inc:570
 msgid "@current of @max"
 msgstr ""
 

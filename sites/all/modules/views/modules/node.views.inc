@@ -1,5 +1,5 @@
 <?php
-// $Id: node.views.inc,v 1.87 2008/10/16 17:09:52 merlinofchaos Exp $
+// $Id: node.views.inc,v 1.91 2008/12/02 22:17:41 merlinofchaos Exp $
 /**
  * @file
  * Provide views data and handlers for node.module
@@ -157,7 +157,7 @@ function node_views_data() {
   // published status
   $data['node']['status'] = array(
     'title' => t('Published'),
-    'help' => t('The published status of the node.'),
+    'help' => t('Whether or not the node is published.'),
     'field' => array(
       'handler' => 'views_handler_field_boolean',
       'click sortable' => TRUE,
@@ -165,6 +165,7 @@ function node_views_data() {
     'filter' => array(
       'handler' => 'views_handler_filter_boolean_operator',
       'label' => t('Published'),
+      'type' => 'yes-no',
     ),
     'sort' => array(
       'handler' => 'views_handler_sort',
@@ -178,14 +179,14 @@ function node_views_data() {
     'filter' => array(
       'field' => 'status',
       'handler' => 'views_handler_filter_node_status',
-      'label' => t('Published'),
+      'label' => t('Published or admin'),
     ),
   );
 
   // promote status
   $data['node']['promote'] = array(
     'title' => t('Promoted to front page'),
-    'help' => t('The front page of the node.'),
+    'help' => t('Whether or not the node is promoted to the front page.'),
     'field' => array(
       'handler' => 'views_handler_field_boolean',
       'click sortable' => TRUE,
@@ -193,6 +194,7 @@ function node_views_data() {
     'filter' => array(
       'handler' => 'views_handler_filter_boolean_operator',
       'label' => t('Promoted to front page'),
+      'type' => 'yes-no',
     ),
     'sort' => array(
       'handler' => 'views_handler_sort',
@@ -211,6 +213,7 @@ function node_views_data() {
     'filter' => array(
       'handler' => 'views_handler_filter_boolean_operator',
       'label' => t('Moderated'),
+      'type' => 'yes-no',
     ),
     'sort' => array(
       'handler' => 'views_handler_sort',
@@ -229,6 +232,7 @@ function node_views_data() {
     'filter' => array(
       'handler' => 'views_handler_filter_boolean_operator',
       'label' => t('Sticky'),
+      'type' => 'yes-no',
     ),
     'sort' => array(
       'handler' => 'views_handler_sort',
@@ -628,6 +632,7 @@ function node_views_plugins() {
         'help' => t('Display the node with standard node view.'),
         'handler' => 'views_plugin_row_node_rss',
         'path' => drupal_get_path('module', 'views') . '/modules/node', // not necessary for most modules
+        'theme' => 'views_view_row_rss',
         'base' => array('node'), // only works with 'node' as base.
         'uses options' => TRUE,
         'type' => 'feed',
@@ -673,7 +678,7 @@ function template_preprocess_views_view_row_node(&$vars) {
   $vars['node'] = node_view($node, $options['teaser'], FALSE, $options['links']);
   $vars['comments'] = NULL;
   if (!empty($options['comments']) && function_exists('comment_render')) {
-    $vars['comments'] = comment_render($vars['node']);
+    $vars['comments'] = comment_render($node);
   }
 }
 

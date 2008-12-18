@@ -1,5 +1,5 @@
 <?php
-// $Id: views_plugin_display.inc,v 1.14 2008/10/14 19:51:56 merlinofchaos Exp $
+// $Id: views_plugin_display.inc,v 1.17 2008/12/02 20:23:21 merlinofchaos Exp $
 /**
  * @file
  * Contains the base display plugin.
@@ -402,7 +402,7 @@ class views_plugin_display extends views_plugin {
     }
 
     $display_id = $this->get_link_display();
-    if ($display_id && !empty($this->view->display[$display_id])) {
+    if ($display_id && !empty($this->view->display[$display_id]) && is_object($this->view->display[$display_id]->handler)) {
       return $this->view->display[$display_id]->handler->get_path();
     }
   }
@@ -1276,7 +1276,7 @@ class views_plugin_display extends views_plugin {
    * Perform any necessary changes to the form values prior to storage.
    * There is no need for this function to actually store the data.
    */
-  function options_submit($form, &$form_state) {
+  function options_submit(&$form, &$form_state) {
     $section = $form_state['section'];
     switch ($section) {
       case 'display_title':
@@ -1630,17 +1630,17 @@ class views_plugin_display extends views_plugin {
       }
 
       if (!$fields) {
-        $errors[] = t('Display @display uses fields but there are none defined for it or all are excluded.', array('@display' => $this->display->display_title));
+        $errors[] = t('Display "@display" uses fields but there are none defined for it or all are excluded.', array('@display' => $this->display->display_title));
       }
     }
 
     if ($this->has_path() && !$this->get_option('path')) {
-      $errors[] = t('Display @display uses path but path is undefined.', array('@display' => $this->display->display_title));
+      $errors[] = t('Display "@display" uses a path but the path is undefined.', array('@display' => $this->display->display_title));
     }
 
     $style = $this->get_plugin();
     if (empty($style)) {
-      $errors[] = t('Display @display has an invalid style plugin.', array('@display' => $this->display->display_title));
+      $errors[] = t('Display "@display" has an invalid style plugin.', array('@display' => $this->display->display_title));
     }
     else {
       $result = $style->validate();

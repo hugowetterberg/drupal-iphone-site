@@ -1,5 +1,5 @@
 <?php
-// $Id: query.inc,v 1.29 2008/10/14 18:00:35 merlinofchaos Exp $
+// $Id: query.inc,v 1.32 2008/10/28 20:08:10 merlinofchaos Exp $
 /**
  * @file query.inc
  * Defines the query object which is the underlying layer in a View.
@@ -282,6 +282,12 @@ class views_query {
       $alias = $table;
     }
 
+    // Check this again to make sure we don't blow up existing aliases for already
+    // adjusted joins.
+    if (isset($this->table_queue[$alias])) {
+      return $alias;
+    }
+
     $alias = $this->mark_table($table, $relationship, $alias);
 
     // If no alias is specified, give it the default.
@@ -500,6 +506,13 @@ class views_query {
       // Safety! Don't modify an original here.
       $join = drupal_clone($join);
 
+      // Do we need to try to ensure a path?
+      if ($join->left_table != $this->relationships[$relationship]['table'] &&
+          $join->left_table != $this->relationships[$relationship]['base'] &&
+          !isset($this->tables[$relationship][$join->left_table]['alias'])) {
+        $this->ensure_table($join->left_table, $relationship);
+      }
+
       // First, if this is our link point/anchor table, just use the relationship
       if ($join->left_table == $this->relationships[$relationship]['table']) {
         $join->left_table = $relationship;
@@ -695,7 +708,9 @@ class views_query {
     // Add the clause and the args.
     if (is_array($args)) {
       $this->where[$group]['clauses'][] = $clause;
-      $this->where[$group]['args'] = array_merge($this->where[$group]['args'], $args);
+      // we use array_values() here to prevent array_merge errors as keys from multiple
+      // sources occasionally collide.
+      $this->where[$group]['args'] = array_merge($this->where[$group]['args'], array_values($args));
     }
   }
 
@@ -741,7 +756,7 @@ class views_query {
     // Add the clause and the args.
     if (is_array($args)) {
       $this->having[$group]['clauses'][] = $clause;
-      $this->having[$group]['args'] = array_merge($this->having[$group]['args'], $args);
+      $this->having[$group]['args'] = array_merge($this->having[$group]['args'], array_values($args));
     }
   }
 

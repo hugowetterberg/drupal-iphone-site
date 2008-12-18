@@ -1,5 +1,5 @@
 <?php
-// $Id: views_export.module,v 1.2 2008/06/25 21:42:20 merlinofchaos Exp $
+// $Id: views_export.module,v 1.3 2008/12/02 16:12:50 merlinofchaos Exp $
 
 /**
  * @file views_export.module
@@ -186,7 +186,34 @@ function views_export_export_form_submit(&$form, &$form_state) {
   $lines = substr_count($code, "\n");
 
   $types = system_elements();
-  $element = array(
+
+  $api = "/**\n";
+  $api .= " * Implementation of hook_views_api().\n";
+  $api .= " */\n";
+  $api .= "function @module_views_api() {\n";
+  $api .= "  return array(\n";
+  $api .= "    'api' => 2,\n";
+  $api .= "    'path' => drupal_get_path('module', '@module'),\n";
+  $api .= "    //'path' => drupal_get_path('module', '@module') . '/includes',\n";
+  $api .= "  );\n";
+  $api .= "}";
+
+  $api = strtr($api, array('@module' => check_plain($form_state['values']['name'])));
+
+  $element_api = array(
+    '#title' => t('Put this in @module.module in your modules/@module directory', array('@module' => $form_state['values']['name'])),
+    '#type' => 'textarea',
+    '#id' => 'export-api-textarea',
+    '#name' => 'export-api-textarea',
+    '#attributes' => array(),
+    '#rows' => 9,
+    '#cols' => 60,
+    '#value' => $api,
+    '#parents' => array('dummy'),
+    '#required' => FALSE,
+  ) + $types['textarea'];
+
+  $element_hook = array(
     '#title' => t('Put this in @module.views_default.inc in your modules/@module directory or modules/@module/includes directory', array('@module' => $form_state['values']['name'])),
     '#type' => 'textarea',
     '#id' => 'export-textarea',
@@ -199,6 +226,7 @@ function views_export_export_form_submit(&$form, &$form_state) {
   ) + $types['textarea'];
 
 
-  $form_state['output'] = theme('textarea', $element);
+  $form_state['output'] = theme('textarea', $element_api);
+  $form_state['output'] .= theme('textarea', $element_hook);
 }
 

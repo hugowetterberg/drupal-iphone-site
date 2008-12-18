@@ -1,5 +1,5 @@
 <?php
-// $Id: view.inc,v 1.136 2008/10/16 17:06:25 merlinofchaos Exp $
+// $Id: view.inc,v 1.143 2008/12/16 19:03:48 merlinofchaos Exp $
 /**
  * @file view.inc
  * Provides the view object type and associated methods.
@@ -46,6 +46,8 @@ class view extends views_db_object {
   var $exposed_data = array();
   var $exposed_input = array();
 
+  // Used to store views that were previously running if we recurse.
+  var $old_view = array();
   /**
    * Constructor
    */
@@ -542,7 +544,7 @@ class view extends views_db_object {
     // Attempt to load from cache.
     // @todo Load a build_info from cache.
 
-    $start = microtime();
+    $start = views_microtime();
     // If that fails, let's build!
     $this->build_info = array();
 
@@ -573,7 +575,7 @@ class view extends views_db_object {
 
     // Arguments can, in fact, cause this whole thing to abort.
     if (!$this->_build_arguments()) {
-      $this->build_time = microtime() - $start;
+      $this->build_time = views_microtime() - $start;
       return $this->built;
     }
 
@@ -617,7 +619,7 @@ class view extends views_db_object {
     $this->build_info['count_query'] = $this->query->query(TRUE);
     $this->build_info['query_args'] = $this->query->get_where_args();
     $this->built = TRUE;
-    $this->build_time = microtime() - $start;
+    $this->build_time = views_microtime() - $start;
     return TRUE;
   }
 
@@ -687,7 +689,7 @@ class view extends views_db_object {
         $external = TRUE;
       }
 
-      $start = microtime();
+      $start = views_microtime();
       if (!empty($this->pager['items_per_page'])) {
         // We no longer use pager_query() here because pager_query() does not
         // support an offset. This is fine as we don't actually need pager
@@ -735,7 +737,7 @@ class view extends views_db_object {
         db_set_active();
       }
     }
-    $this->execute_time = microtime() - $start;
+    $this->execute_time = views_microtime() - $start;
     $this->executed = TRUE;
   }
 
@@ -753,7 +755,7 @@ class view extends views_db_object {
       return;
     }
 
-    $start = microtime();
+    $start = views_microtime();
     if (!empty($this->live_preview) && variable_get('views_show_additional_queries', FALSE)) {
       $this->start_query_capture();
     }
@@ -765,7 +767,7 @@ class view extends views_db_object {
 
     // Let modules modify the view just prior to executing it.
     foreach (module_implements('views_pre_render') as $module) {
-      $function = $module . '_views_pre_view';
+      $function = $module . '_views_pre_render';
       $function($this);
     }
 
@@ -783,7 +785,7 @@ class view extends views_db_object {
     if (!empty($this->live_preview) && variable_get('views_show_additional_queries', FALSE)) {
       $this->end_query_capture();
     }
-    $this->render_time = microtime() - $start;
+    $this->render_time = views_microtime() - $start;
     return $output;
   }
 
@@ -799,35 +801,21 @@ class view extends views_db_object {
       }
     }
 
-    $old_view = views_get_current_view();
-    views_set_current_view($this);
-
-    // Let modules modify the view just prior to executing it.
-    foreach (module_implements('views_pre_view') as $module) {
-      $function = $module . '_views_pre_view';
-      $function($this, $display_id, $args);
-    }
-
-    // Prepare the view with the information we have.
-    $this->set_arguments($args);
-
-    $this->attach_displays();
-
-    // Allow the display handler to set up for execution
-    $this->display_handler->pre_execute();
+    $this->pre_execute($args);
 
     // Execute the view
     $output = $this->display_handler->execute();
 
-    // unset current view so we can be properly destructed later on.
-    views_set_current_view(isset($old_view) ? $old_view : FALSE);
+    $this->post_execute();
     return $output;
   }
 
   /**
    * Preview the given display, with the given arguments.
-   * To be called externally, probably by an AJAX handler
-   * of some flavor.
+   *
+   * To be called externally, probably by an AJAX handler of some flavor.
+   * Can also be called when views are embedded, as this guarantees
+   * normalized output.
    */
   function preview($display_id = NULL, $args = array()) {
     if (empty($this->current_display) || $this->current_display != $display_id) {
@@ -836,28 +824,54 @@ class view extends views_db_object {
       }
     }
 
-    $old_view = views_get_current_view();
+    $this->preview = TRUE;
+    $this->pre_execute($args);
+    // Preview the view.
+    $output = $this->display_handler->preview();
+
+    $this->post_execute();
+    return $output;
+  }
+
+  /**
+   * Run attachments and let the display do what it needs to do prior
+   * to running.
+   */
+  function pre_execute($args = array()) {
+    $this->old_view[] = views_get_current_view();
     views_set_current_view($this);
 
-    // Prepare the view with the information we have.
-    $this->set_arguments($args);
+    // Let modules modify the view just prior to executing it.
+    foreach (module_implements('views_pre_view') as $module) {
+      $function = $module . '_views_pre_view';
+      $function($this, $display_id, $args);
+    }
 
-    $this->preview = TRUE;
+    // Prepare the view with the information we have, but only if we were
+    // passed arguments, as they may have been set previously.
+    if ($args) {
+      $this->set_arguments($args);
+    }
 
     $this->attach_displays();
 
     // Allow the display handler to set up for execution
     $this->display_handler->pre_execute();
-
-    // Preview the view.
-    $output = $this->display_handler->preview();
-
-    // unset current view so we can be properly destructed later on.
-    // Return the previous value in case we're an attachment.
-    views_set_current_view(isset($old_view) ? $old_view : FALSE);
-    return $output;
   }
 
+  /**
+   * Unset the current view, mostly.
+   */
+  function post_execute() {
+    // unset current view so we can be properly destructed later on.
+    // Return the previous value in case we're an attachment.
+
+    if ($this->old_view) {
+      $old_view = array_pop($this->old_view);
+    }
+
+    views_set_current_view(isset($old_view) ? $old_view : FALSE);
+  }
   /**
    * Run attachment displays for the view.
    */
@@ -1430,8 +1444,13 @@ class view extends views_db_object {
         unset($this->style_plugin);
       }
 
+      // Clear these to make sure the view can be processed/used again.
       if (isset($this->display_handler)) {
         unset($this->display_handler);
+      }
+
+      if (isset($this->current_display)) {
+        unset($this->current_display);
       }
 
       if (isset($this->query)) {

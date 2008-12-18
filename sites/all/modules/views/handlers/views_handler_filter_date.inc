@@ -1,5 +1,5 @@
 <?php
-// $Id: views_handler_filter_date.inc,v 1.1 2008/09/03 19:21:28 merlinofchaos Exp $
+// $Id: views_handler_filter_date.inc,v 1.3 2008/11/26 19:01:44 merlinofchaos Exp $
 
 /**
  * Filter to handle dates stored as a timestamp.
@@ -77,7 +77,7 @@ class views_handler_filter_date extends views_handler_filter_numeric {
         form_error($form['value'], t('Invalid date format.'));
       }
     }
-    else {
+    elseif ($operators[$operator]['values'] == 2) {
       $min = strtotime($value['min']);
       if ($min == -1 || $min === FALSE) {
         form_error($form['min'], t('Invalid date format.'));
@@ -101,7 +101,7 @@ class views_handler_filter_date extends views_handler_filter_numeric {
     // Don't filter if value(s) are empty.
     $operators = $this->operators();
     if (!empty($this->options['expose']['use_operator']) && !empty($this->options['expose']['operator'])) {
-      $operator = $form_state['values'][$this->options['expose']['operator']];
+      $operator = $input[$this->options['expose']['operator']];
     }
     else {
       $operator = $this->operator;

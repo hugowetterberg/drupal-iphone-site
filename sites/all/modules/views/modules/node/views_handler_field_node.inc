@@ -1,5 +1,5 @@
 <?php
-// $Id: views_handler_field_node.inc,v 1.1 2008/09/03 19:21:29 merlinofchaos Exp $
+// $Id: views_handler_field_node.inc,v 1.2 2008/11/19 22:44:29 merlinofchaos Exp $
 /**
  * @file
  * Contains the basic 'node' field handler.
@@ -41,7 +41,7 @@ class views_handler_field_node extends views_handler_field {
    * Data should be made XSS safe prior to calling this function.
    */
   function render_link($data, $values) {
-    if (!empty($this->options['link_to_node'])) {
+    if (!empty($this->options['link_to_node']) && $data !== NULL && $data !== '') {
       return l($data, "node/" . $values->{$this->aliases['nid']}, array('html' => TRUE));
     }
     else {
