@@ -1,5 +1,5 @@
 <?php
-// $Id: devel_generate.inc,v 1.14.2.8 2008/09/18 17:00:28 weitzman Exp $
+// $Id: devel_generate.inc,v 1.14.2.9 2008/11/14 14:35:01 weitzman Exp $
 // If not in 'safe mode', increase the maximum execution time:
 if (!ini_get('safe_mode')) {
   set_time_limit(240);
@@ -66,6 +66,7 @@ function devel_generate_add_comments($node, $users, $num_comments, $title_length
     $comment->format = FILTER_FORMAT_DEFAULT;
     $comment->name = 'devel generate';
     $comment->mail = 'devel_generate@example.com';
+    $comment->timestamp = rand($node->created, time());
 
     switch ($i % 3) {
       case 1:

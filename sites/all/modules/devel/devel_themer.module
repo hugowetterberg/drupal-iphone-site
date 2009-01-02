@@ -7,7 +7,7 @@ function devel_themer_menu() {
   $items = array();
 
   $items['admin/settings/devel_themer'] = array(
-    'title' => 'Devel Themer',
+    'title' => 'Theme Developer',
     'description' => 'Display or hide the textual template log',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('devel_themer_admin_settings'),
@@ -76,7 +76,7 @@ function devel_themer_ajax_variables($request_id, $call) {
 function devel_themer_toggle($action) {
   $function = $action == 'enable' ? 'module_enable' : 'module_disable';
   $$function('devel_themer');
-  drupal_set_message(t("Devel Themer module $action"));
+  drupal_set_message(t('Devel Themer module %action.', array('%action' => $action)));
   drupal_goto();
 }
 
@@ -144,14 +144,15 @@ function devel_themer_theme_registry_alter($theme_registry) {
 function devel_themer_log() {
   if (isset($GLOBALS['devel_theme_calls'])) {
     foreach ($GLOBALS['devel_theme_calls'] as $counter => $call) {
-      $id = "devel_theme_log_link_$counter";
-      $marker = "<div id=\"$id\" class=\"devel_theme_log_link\"></div>\n";
+      // Sometimes $call is a string.  Not sure why.
+      if (is_array($call)) {
+        $id = "devel_theme_log_link_$counter";
+        $marker = "<div id=\"$id\" class=\"devel_theme_log_link\"></div>\n";
 
-      $used = $call['used'];
-      if ($call['type'] == 'func') {
-        $name = $call['name']. '()';
-        foreach ($call['candidates'] as $candidate) {
-          foreach ($candidate as $item) {
+        $used = $call['used'];
+        if ($call['type'] == 'func') {
+          $name = $call['name']. '()';
+          foreach ($call['candidates'] as $item) {
             if ($item == $used) {
               $items[] = "<strong>$used</strong>";
             }
@@ -160,20 +161,20 @@ function devel_themer_log() {
             }
           }
         }
-      }
-      else {
-        $name = $call['name'];
-        foreach ($call['candidates'] as $item) {
-          if ($item == basename($used)) {
-            $items[] = "<strong>$used</strong>";
-          }
-          else {
-            $items[] = $item;
+        else {
+          $name = $call['name'];
+          foreach ($call['candidates'] as $item) {
+            if ($item == basename($used)) {
+              $items[] = "<strong>$used</strong>";
+            }
+            else {
+              $items[] = $item;
+            }
           }
         }
+        $rows[] = array($call['duration'], $marker. $name, implode(', ', $items));
+        unset($items);
       }
-      $rows[] = array($call['duration'], $marker. $name, implode(', ', $items));
-      unset($items);
     }
     $header = array('Duration (ms)', 'Template/Function', "Candidate template files or function names");
     $output = theme('table', $header, $rows);
@@ -377,7 +378,18 @@ function devel_themer_theme_twin() {
       $reflect = new ReflectionFunction($info['devel_function_intercept']);
       $params = $reflect->getParameters();
       for ($i=0; $i < count($args); $i++) {
-        $meta['variables'][$params[$i]->getName()] = $args[$i];
+        // The implementation of the theme function may recieve less parameters than were passed to it.
+        if ($i < count($params)) {
+          $meta['variables'][$params[$i]->getName()] = $args[$i];
+        }
+        else {
+          // @TODO:  Consider informing theme developers of theme functions that accept less parameters
+          //         than are passed to them. This could be disabled by default, with an option to 
+          //         enable at admin/settings/devel_themer.  Given this is a theme developer module 
+          //         used by implementors of theme override functions, it would probably be a useful
+          //         default feature.
+          $meta['variables'][] = $args[$i];
+        }
       }
     }
     else {
@@ -471,7 +483,7 @@ function devel_themer_exit() {
     // Write the variables information to the a file. It will be retrieved on demand via AJAX.
     // We used to write this to DB but was getting 'Warning: Got a packet bigger than 'max_allowed_packet' bytes'
     // Writing to temp dir means we don't worry about folder existence/perms and cleanup is free.
-    file_put_contents(file_directory_temp(). "/devel_themer_$request_id", serialize($GLOBALS['devel_themer_server']));
+    devel_put_contents(file_directory_temp(). "/devel_themer_$request_id", serialize($GLOBALS['devel_themer_server']));
 
     $GLOBALS['devel_theme_calls']['request_id'] = $request_id;
     $GLOBALS['devel_theme_calls']['devel_themer_uri'] = url("devel_themer/variables/$request_id");
@@ -573,4 +585,21 @@ function devel_themer_popup() {
 EOT;
 
   drupal_add_js(array('thmr_popup' => $popup), 'setting');
+}
+
+// Temporary - for D6 only since we support PHP4
+function devel_put_contents($n, $d, $flag = false) {
+    if (function_exists('file_put_contents')){
+        file_put_contents($n, $d, $flag);
+    } else {
+        $mode = ($flag == FILE_APPEND || strtoupper($flag) == 'FILE_APPEND') ? 'a' : 'w';
+        $f = @fopen($n, $mode);
+        if ($f === false) {
+            return 0;
+        } else {
+            if (is_array($d)) $d = implode($d);
+            fwrite($f, $d);
+            fclose($f);
+        }
+    }
 }
