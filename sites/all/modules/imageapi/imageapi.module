@@ -1,5 +1,5 @@
 <?php
-// $Id: imageapi.module,v 1.21 2008/07/14 20:40:49 drewish Exp $
+// $Id: imageapi.module,v 1.23 2008/11/16 07:16:11 dopry Exp $
 
 /**
  * @file
@@ -53,7 +53,8 @@ function imageapi_menu() {
     foreach ($toolkits as $module => $info) {
       if (function_exists($module .'_settings_form')) {
         $items['admin/settings/imageapi/config/'. $module] = array(
-          'title' => $info['name'],
+          'title' => '@name',
+          'title arguments' => array('@name' => $info['name']),
           'page callback' => 'drupal_get_form',
           'page arguments' => array($module .'_settings_form'),
           'access arguments' => array('administer imageapi'),
@@ -367,7 +368,7 @@ function imageapi_image_close($image, $destination = '') {
     $destination = $image->source;
   }
   if ($return = call_user_func($image->toolkit .'_image_close', $image, $destination)) {
-    if (@chmod($destination, 0775)) {
+    if (@chmod($destination, 0664)) {
       return $return;
     }
     watchdog('imageapi', 'Could not set permissons on destination file: %file', array('%file' => $destination));

@@ -1,4 +1,4 @@
-<?php  // $Id: imageapi_imagemagick.module,v 1.16 2008/08/08 18:03:16 drewish Exp $
+<?php  // $Id: imageapi_imagemagick.module,v 1.17.2.1 2009/01/05 23:01:17 drewish Exp $
 
 /**
  * @file
@@ -21,7 +21,7 @@ function imageapi_imagemagick_settings_form() {
   $form['imageapi_imagemagick_quality'] = array(
     '#type' => 'textfield',
     '#title' => t('Compression Quality'),
-    '#description' => t('Ranges from 1 to 100. Higher values mean better image quality, but bigger files.'),
+    '#description' => t('Ranges from 0 to 100. Higher values mean better image quality, but bigger files.'),
     '#size' => 10,
     '#maxlength' => 3,
     '#default_value' => variable_get('imageapi_imagemagick_quality', 75),
@@ -92,7 +92,7 @@ function imageapi_imagemagick_validate_path($element) {
 
 function imageapi_imagemagick_quality_element_validate($element) {
   if ($element['#value'] < 0 || $element['#value'] > 100) {
-    form_set_error($element['#name'], t('Compression Quality must be a value between 1 and 100.'));
+    form_set_error($element['#name'], t('Compression Quality must be a value between 0 and 100.'));
   }
 }
 
@@ -174,7 +174,7 @@ function _imageapi_imagemagick_check_path($path) {
 function _imageapi_imagemagick_convert_exec($command_args, &$output, &$errors) {
   $convert_path = variable_get('imageapi_imagemagick_convert', '/usr/bin/convert');
   if ($errors = _imageapi_imagemagick_check_path($convert_path)) {
-    watchdog('imageapi imagemagick', implode('<br />', $errors), WATCHDOG_ERROR);
+    watchdog('imageapi imagemagick', '!errors', array('!errors' => implode('<br />', $errors)), WATCHDOG_ERROR);
     return false;
   }
 
