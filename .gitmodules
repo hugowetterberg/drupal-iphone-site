@@ -1,3 +1,6 @@
 [submodule "sites/all/modules/cobalt"]
 	path = sites/all/modules/cobalt
 	url = git://github.com/hugowetterberg/cobalt.git
+[submodule "sites/all/modules/imagecache_action_cover"]
+	path = sites/all/modules/imagecache_action_cover
+	url = git://github.com/hugowetterberg/imagecache_action_cover.git
