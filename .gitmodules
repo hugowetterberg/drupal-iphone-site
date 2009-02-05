@@ -4,3 +4,6 @@
 [submodule "sites/all/modules/imagecache_action_cover"]
 	path = sites/all/modules/imagecache_action_cover
 	url = git://github.com/hugowetterberg/imagecache_action_cover.git
+[submodule "sites/all/modules/nodeformcols"]
+	path = sites/all/modules/nodeformcols
+	url = git://github.com/hugowetterberg/nodeformcols.git
