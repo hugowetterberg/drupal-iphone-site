@@ -1,9 +1,8 @@
 <?php
-// $Id: flag.views_bookmark.inc,v 1.1.2.3 2008/10/10 17:00:01 quicksketch Exp $
+// $Id: flag.views_bookmark.inc,v 1.1.2.8 2009/02/10 04:27:35 quicksketch Exp $
 
 /**
- * @file flag.view_bookmark.inc
- *
+ * @file
  * Upgrade code to migrate from Views bookmark to Flag module.
  */
 
@@ -42,7 +41,6 @@ function flag_views_bookmark_update_prepare() {
   // Ensure the Flag tables are not installed.
   if (db_table_exists('flags')) {
     // Remove Flag tables if already present.
-    include_once(drupal_get_path('module', 'flag') .'/flag.install');
     flag_uninstall();
   }
 
@@ -50,7 +48,7 @@ function flag_views_bookmark_update_prepare() {
   $vb_schema = drupal_get_installed_schema_version('views_bookmark');
   $ret = array();
   if (!empty($vb_schema) && $vb_schema <= 5102) {
-    for ($version = $vb_schema; $version <= 5102; $version++) {
+    for ($version = $vb_schema + 1; $version <= 5102; $version++) {
       $update_function = 'flag_views_bookmark_update_'. $version;
       if (function_exists($update_function)) {
         $ret += $update_function();
@@ -134,9 +132,8 @@ function flag_views_bookmark_update_tables() {
   $ret[] = update_sql("ALTER TABLE {flags} ADD PRIMARY KEY (fid)");
   $ret[] = update_sql("ALTER TABLE {flag_types} ADD INDEX (fid)");
   $ret[] = update_sql("ALTER TABLE {flag_counts} ADD PRIMARY KEY (fid, content_type, content_id)");
-  $ret[] = update_sql("ALTER TABLE {flag_content} ADD INDEX fid_content_type (fid, content_type)");
-  $ret[] = update_sql("ALTER TABLE {flag_content} ADD INDEX content_type_cotnent_id (content_type, content_id)");
-  $ret[] = update_sql("ALTER TABLE {flag_content} ADD PRIMARY KEY (fid, content_type, content_id, uid)");
+  $ret[] = update_sql("ALTER TABLE {flag_content} ADD fcid int unsigned NOT NULL auto_increment FIRST, ADD PRIMARY KEY (fcid)");
+  $ret[] = update_sql("ALTER TABLE {flag_content} ADD UNIQUE INDEX fid_content_type_content_id_uid (fid, content_type, content_id, uid)");
   $ret[] = update_sql("ALTER TABLE {flag_content} ADD INDEX content_type_content_id (content_type, content_id)");
   $ret[] = update_sql("ALTER TABLE {flag_content} ADD INDEX content_type_uid (content_type, uid)");
 
@@ -177,7 +174,7 @@ if (!function_exists('update_sql')) {
  */
 function flag_views_bookmark_update_1() {
   $ret = array();
-  switch($GLOBALS['db_type']) {
+  switch ($GLOBALS['db_type']) {
     case 'mysql':
     case 'mysqli':
       $ret[] = update_sql('ALTER TABLE {views_bookmarks} DROP INDEX vbid');
@@ -195,7 +192,7 @@ function flag_views_bookmark_update_1() {
  */
 function flag_views_bookmark_update_2() {
   $ret = array();
-  switch($GLOBALS['db_type']) {
+  switch ($GLOBALS['db_type']) {
     case 'mysql':
     case 'mysqli':
     $ret[] = update_sql("CREATE TABLE if not exists {views_bookmark_node_count} (
@@ -211,12 +208,12 @@ function flag_views_bookmark_update_2() {
 
 function flag_views_bookmark_update_3() {
   $ret = array();
-  switch($GLOBALS['db_type']) {
+  switch ($GLOBALS['db_type']) {
     case 'mysql':
     case 'mysqli':
       $result = db_query('SELECT vbid, nid, count(uid) as count FROM {views_bookmark_nodes} GROUP BY vbid, nid');
       while ($row = db_fetch_object($result)) {
-        $ret[] = update_sql("INSERT INTO {flag_node_count} VALUES ($row->vbid, $row->nid, $row->count)");
+        $ret[] = update_sql("INSERT INTO {views_bookmark_node_count} VALUES ($row->vbid, $row->nid, $row->count)");
       }
       break;
   }
@@ -225,10 +222,10 @@ function flag_views_bookmark_update_3() {
 
 function flag_views_bookmark_update_4() {
   $ret = array();
-  switch($GLOBALS['db_type']) {
+  switch ($GLOBALS['db_type']) {
     case 'mysql':
     case 'mysqli':
-      $ret[] = update_sql("ALTER TABLE {flags} ADD show_on_form int(1) unsigned NOT NULL default '0'");
+      $ret[] = update_sql("ALTER TABLE {views_bookmarks} ADD show_on_form int(1) unsigned NOT NULL default '0'");
       break;
   }
   return $ret;
@@ -239,12 +236,12 @@ function flag_views_bookmark_update_4() {
  */
 function flag_views_bookmark_update_5() {
   $ret = array();
-  switch($GLOBALS['db_type']) {
+  switch ($GLOBALS['db_type']) {
     case 'mysql':
     case 'mysqli':
       $timestamp = time();
-      $ret[] = update_sql("ALTER TABLE {flag_nodes} ADD timestamp int(11) unsigned NOT NULL default '0'");
-      $ret[] = update_sql("UPDATE {flag_nodes} SET timestamp = $timestamp WHERE timestamp = 0");
+      $ret[] = update_sql("ALTER TABLE {views_bookmark_nodes} ADD timestamp int(11) unsigned NOT NULL default '0'");
+      $ret[] = update_sql("UPDATE {views_bookmark_nodes} SET timestamp = $timestamp WHERE timestamp = 0");
       break;
   }
   return $ret;
@@ -255,11 +252,11 @@ function flag_views_bookmark_update_5() {
  */
 function flag_views_bookmark_update_6() {
   $ret = array();
-  switch($GLOBALS['db_type']) {
+  switch ($GLOBALS['db_type']) {
     case 'mysql':
     case 'mysqli':
-      $ret[] = update_sql("ALTER TABLE {flags} ADD mark_message varchar(255) default '' AFTER mark_long");
-      $ret[] = update_sql("ALTER TABLE {flags} ADD unmark_message varchar(255) default '' AFTER unmark_long");
+      $ret[] = update_sql("ALTER TABLE {views_bookmarks} ADD mark_message varchar(255) default '' AFTER mark_long");
+      $ret[] = update_sql("ALTER TABLE {views_bookmarks} ADD unmark_message varchar(255) default '' AFTER unmark_long");
       break;
   }
   return $ret;
@@ -301,7 +298,7 @@ function flag_views_bookmark_update_5101() {
  */
 function flag_views_bookmark_update_5102() {
   // Because of a certain FAPI trait, when the admin didn't selected any
-  // roles on the flag configuration form it's as if he selected the
+  // roles on the bookmark configuration form it's as if he selected the
   // 'anonymous role'. We clear this bogus selection.
   //
   // (Note: update_sql() doesn't support %placeholders, so we embed the value

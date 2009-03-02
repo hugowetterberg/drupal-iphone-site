@@ -1,5 +1,10 @@
 <?php
-// $Id: flag_handler_field_ops.inc,v 1.1.2.2 2008/09/18 15:37:47 mooffie Exp $
+// $Id: flag_handler_field_ops.inc,v 1.1.2.5 2008/12/03 14:10:00 mooffie Exp $
+
+/**
+ * @file
+ * Contains the flag Ops field handler.
+ */
 
 /**
  * Views field handler for the Flag operations links (flag/unflag).
@@ -32,6 +37,22 @@ class flag_handler_field_ops extends views_handler_field {
     else {
       return $this->view->relationship[$parent]->alias;
     }
+  }
+
+  function options(&$options) {
+    parent::options($options);
+    $options['link_type'] = '';
+  }
+
+  function options_form(&$form, &$form_state) {
+    parent::options_form($form, $form_state);
+
+    $form['link_type'] = array(
+      '#type' => 'radios',
+      '#title' => t('Link type'),
+      '#options' => array('' => t('Use flag link settings')) + _flag_link_type_options(),
+      '#default_value' => $this->options['link_type'],
+    );
   }
 
   /**
@@ -71,7 +92,7 @@ class flag_handler_field_ops extends views_handler_field {
     $left_table = $this->view->relationship[$this->options['relationship']]->table_alias;
     $this->aliases['content_id'] = $this->query->add_field($left_table, $info['join field']);
   }
-  
+
   /**
    * Find out if the flag applies to each item seen on the page. It's done in a
    * separate DB query to to avoid complexity and to make 'many to one' tests
@@ -94,7 +115,7 @@ class flag_handler_field_ops extends views_handler_field {
     }
     $this->flag_applies = $ids ? $flag->applies_to_content_id_array(array_keys($ids)) : array();
   }
-  
+
   function render($values) {
     $flag = $this->get_flag();
 
@@ -105,12 +126,15 @@ class flag_handler_field_ops extends views_handler_field {
 
     $content_id = $values->{$this->aliases['content_id']};
     $is_flagged = $values->{$this->aliases['is_flagged']};
-    
+
     if (!isset($this->flag_applies[$content_id])) {
       // Flag does not apply to this content.
       return;
     }
-    
+
+    if (!empty($this->options['link_type'])) {
+      $flag->link_type = $this->options['link_type'];
+    }
     return $flag->theme($is_flagged ? 'unflag' : 'flag', $content_id);
   }
 }

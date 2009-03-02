@@ -1,5 +1,10 @@
 <?php
-// $Id: flag_handler_argument_content_id.inc,v 1.1.2.1 2008/10/04 00:20:35 quicksketch Exp $
+// $Id: flag_handler_argument_content_id.inc,v 1.1.2.2 2008/12/03 14:10:00 mooffie Exp $
+
+/**
+ * @file
+ * Contains the content ID argument handler.
+ */
 
 /**
  * Handler to accept an argument of the content ID of any object.

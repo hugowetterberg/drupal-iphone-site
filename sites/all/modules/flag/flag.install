@@ -1,13 +1,20 @@
 <?php
-// $Id: flag.install,v 1.2.2.20 2008/10/22 21:50:20 quicksketch Exp $
+// $Id: flag.install,v 1.2.2.28 2009/02/20 21:56:40 quicksketch Exp $
+
+/**
+ * @file
+ * Flag module install/schema/update hooks.
+ */
 
 /**
  * Implementation of hook_install().
  */
 function flag_install() {
+  // Load the flag API in case we want to use it when installing.
+  include_once(drupal_get_path('module', 'flag') .'/flag.module');
+
   // If Views Bookmark is available, skip the install and do an upgrade instead.
   if (strpos($GLOBALS['db_type'], 'mysql') === 0) {
-    include_once(drupal_get_path('module', 'flag') .'/flag.module');
     include_once(drupal_get_path('module', 'flag') .'/includes/flag.views_bookmark.inc');
     if (flag_views_bookmark_update_needed()) {
       flag_views_bookmark_update();
@@ -18,25 +25,28 @@ function flag_install() {
   $success = drupal_install_schema('flag');
 
   if ($success) {
-    // Insert a starting record.
-    // Note that UI strings in the following SQL, e.g. "Bookmark this", aren't
-    // wrapped in t() and that's intentional: they are passed to t() later,
-    // thus allowing for multilingual sites.
-    $options = array(
+    // Install a demonstration flag.
+    $flag = flag_flag::factory_by_content_type('node');
+    $configuration = array(
+      'name' => 'bookmarks',
+      'global' => 0,
       'show_on_page' => 1,
       'show_on_teaser' => 1,
       'show_on_form' => 1,
+      // The following UI labels aren't wrapped in t() because they are written
+      // to the DB in English. They are passed to t() later, thus allowing for
+      // multilingual sites.
+      'title' => 'Bookmarks',
       'flag_short' => 'Bookmark this',
       'flag_long' => 'Add this post to your bookmarks',
       'flag_message' => 'This post has been added to your bookmarks',
       'unflag_short' => 'Unbookmark this',
       'unflag_long' => 'Remove this post from your bookmarks',
       'unflag_message' => 'This post has been removed from your bookmarks',
+      'types' => array('story', 'forum', 'blog'),
     );
-    db_query("INSERT INTO {flags} (content_type, name, title, roles, global, options) VALUES ('node', 'bookmarks', 'Bookmarks', '2', 0, '%s')", serialize($options));
-    db_query("INSERT INTO {flag_types} (fid, type) VALUES (1, 'story')");
-    db_query("INSERT INTO {flag_types} (fid, type) VALUES (1, 'forum')");
-    db_query("INSERT INTO {flag_types} (fid, type) VALUES (1, 'blog')");
+    $flag->form_input($configuration);
+    $flag->save();
   }
 
   if ($success) {
@@ -75,6 +85,15 @@ function flag_requirements($phase) {
       $requirements['flag_content_clash']['description'] = _flag_flag_content_message();
     }
   }
+
+  if (module_exists('translation') && !module_exists('translation_helpers')) {
+    $requirements['flag_translation']['title'] = $t('Flag');
+    $requirements['flag_translation']['severity'] = REQUIREMENT_ERROR;
+    $requirements['flag_translation']['description'] = $t('To have the flag module work with translations, you need to install and enable the <a href="http://drupal.org/project/translation_helpers">Translation helpers</a> module.');
+    if ($phase == 'runtime') {
+      $requirements['flag_translation']['value'] = $t('Translation helpers module not found.');
+    }
+  }
   return $requirements;
 }
 
@@ -110,7 +129,7 @@ function flag_schema() {
         'type' => 'varchar',
         'length' => '32',
         'not null' => TRUE,
-        'default' => ''
+        'default' => '',
       ),
       'name' => array(
         'type' => 'varchar',
@@ -138,17 +157,22 @@ function flag_schema() {
       ),
       'options' => array(
         'type' => 'text',
-        'default' => NULL,
+        'not null' => FALSE,
       ),
     ),
     'primary key' => array('fid'),
     'unique keys' => array(
-      'name' => array('name')
+      'name' => array('name'),
     ),
   );
 
   $schema['flag_content'] = array(
     'fields' => array(
+      'fcid' => array(
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
       'fid' => array(
         'type' => 'int',
         'size' => 'small',
@@ -160,7 +184,7 @@ function flag_schema() {
         'type' => 'varchar',
         'length' => '32',
         'not null' => TRUE,
-        'default' => ''
+        'default' => '',
       ),
       'content_id' => array(
         'type' => 'int',
@@ -182,7 +206,10 @@ function flag_schema() {
         'disp-size' => 11,
       )
     ),
-    'primary key' => array('fid', 'content_type', 'content_id', 'uid'),
+    'primary key' => array('fcid'),
+    'unique keys' => array(
+      'fid_content_type_content_id_uid' => array('fid', 'content_type', 'content_id', 'uid'),
+    ),
     'indexes' => array(
       'content_type_content_id' => array('content_type', 'content_id'),
       'content_type_uid' => array('content_type', 'uid'),
@@ -349,7 +376,7 @@ function flag_update_6001() {
       $options['unflag_message'] = $flag->unflag_message;
       db_query("UPDATE {flags} SET options = '%s' WHERE fid = %d", serialize($options), $flag->fid);
     }
-  
+
     db_drop_field($ret, 'flags', 'flag_short');
     db_drop_field($ret, 'flags', 'flag_long');
     db_drop_field($ret, 'flags', 'flag_message');
@@ -357,6 +384,48 @@ function flag_update_6001() {
     db_drop_field($ret, 'flags', 'unflag_long');
     db_drop_field($ret, 'flags', 'unflag_message');
   }
+  return $ret;
+}
+
+/**
+ * Add a 'serial' primary key, fcid, to the flag_content table.
+ */
+function flag_update_6002() {
+  $ret = array();
+
+  if (!_flag_column_exists('flag_content', 'fcid')) {
+    db_drop_primary_key($ret, 'flag_content');
+    db_add_field($ret, 'flag_content', 'fcid', array(
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ), array(
+        'primary key' => array('fcid'),
+      )
+    );
+    db_add_unique_key($ret, 'flag_content', 'fid_content_type_content_id_uid', array('fid', 'content_type', 'content_id', 'uid'));
+  }
+  return $ret;
+}
+
+/**
+ * Remove the previous default views that are no longer bundled with Flag.
+ *
+ * These views are saved to the database so that they are preserved.
+ */
+function flag_update_6003() {
+  $ret = array();
+
+  $flags = flag_get_flags();
+  foreach ($flags as $name => $flag) {
+    if ($view = views_get_view('flags_'. $name)) {
+      if (!$view->disabled && $view->type == t('Default')) {
+        $view->save();
+        $ret[] = array('success' => TRUE, 'query' => t('The view %name as been saved to the database. Flag no longer provides this view by default.', array('%name' => $view->name)));
+      }
+    }
+  }
+
   return $ret;
 }
 

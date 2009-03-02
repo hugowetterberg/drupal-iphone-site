@@ -1,5 +1,5 @@
 <?php
-//$Id: flag.views_convert.inc,v 1.1.2.1 2008/09/16 09:02:39 mooffie Exp $
+//$Id: flag.views_convert.inc,v 1.1.2.2 2008/11/09 08:40:01 mooffie Exp $
 /**
  * @file
  * Update Views 1 views provided by both views_bookmark and flag modules.
@@ -14,7 +14,6 @@
  */
 function flag_views_convert($display, $type, &$view, $field, $id) {
   static $flag_name;
-  $flags = flag_get_flags();
 
   // First, replace any sign of views_bookmark with flag's Views 1 equivelant.
   $key_search = array(
@@ -26,8 +25,8 @@ function flag_views_convert($display, $type, &$view, $field, $id) {
   foreach ($field as $property => $value) {
     foreach ($key_search as $search => $replace) {
       if (!empty($value) && is_string($value) && preg_match('/'. $search .'/', $value, $matches)) {
-        $fid = $matches[1];
-        $replace = $replace . $flags[$fid]->name;
+        $flag = flag_get_flag(NULL, $matches[1]);
+        $replace = $replace . $flag->name;
         $field[$property] = preg_replace('/'. $search .'/', $replace, $value);
       }
     }

@@ -1,13 +1,14 @@
 <?php
-// $Id: flag.inc,v 1.1.2.19 2008/10/16 16:13:00 mooffie Exp $
+// $Id: flag.inc,v 1.1.2.28 2009/02/15 21:14:21 quicksketch Exp $
+
 /**
- * @file flag.inc
+ * @file
  * Implements various flags. Uses object oriented style inspired by that
  * of Views 2.
  */
 
 /**
- * Implmenetation of hook_flag_definitions()
+ * Implementation of hook_flag_definitions().
  *
  * Defines the flags this module implements.
  *
@@ -42,6 +43,11 @@ function flag_fetch_definition($content_type = NULL) {
   static $cache;
   if (!isset($cache)) {
     $cache = module_invoke_all('flag_definitions');
+    if (!isset($cache['node'])) {
+      // We want our API to be available in hook_install, but our module is not
+      // enabled by then, so let's load our implementation directly:
+      $cache += flag_flag_definitions();
+    }
   }
 
   if (isset($content_type)) {
@@ -120,7 +126,7 @@ class flag_flag {
    *
    * @static
    */
-  function factory($row) {
+  function factory_by_row($row) {
     $flag = flag_create_handler($row->content_type);
 
     // Lump all data unto the object...
@@ -145,7 +151,24 @@ class flag_flag {
 
     return $flag;
   }
-  
+
+  /**
+   * Create a complete flag (except an FID) from an array definition.
+   */
+  function factory_by_array($config) {
+    $flag = flag_create_handler($config['content_type']);
+
+    foreach ($config as $option => $value) {
+      $flag->$option = $value;
+    }
+
+    if (is_array($config['locked'])) {
+      $flag->locked = drupal_map_assoc($config['locked']);
+    }
+
+    return $flag;
+  }
+
   /**
    * Another factory method. Returns a new, "empty" flag; e.g., one suitable for
    * the "Add new flag" page.
@@ -160,15 +183,18 @@ class flag_flag {
    * Declares the options this flag supports, and their default values.
    *
    * Derived classes should want to override this.
-   */ 
+   */
   function default_options() {
     return array(
       'flag_short' => '',
       'flag_long' => '',
       'flag_message' => '',
+      'flag_confirmation' => '',
       'unflag_short' => '',
       'unflag_long' => '',
       'unflag_message' => '',
+      'unflag_confirmation' => '',
+      'link_type' => 'toggle',
     );
   }
 
@@ -182,7 +208,7 @@ class flag_flag {
 
   /**
    * Default constructor. Loads the default options.
-   */  
+   */
   function construct() {
     $options = $this->default_options();
     foreach ($options as $option => $value) {
@@ -198,7 +224,7 @@ class flag_flag {
     // stray FormAPI fields because we aren't touching unknown properties anyway.
     foreach ($form_values as $field => $value) {
       $this->$field = $value;
-    } 
+    }
     // But checkboxes need some massaging:
     $this->roles = array_values(array_filter($this->roles));
     $this->types = array_values(array_filter($this->types));
@@ -212,7 +238,7 @@ class flag_flag {
   function validate() {
     $this->validate_name();
   }
-  
+
   function validate_name() {
     // Ensure a safe machine name.
     if (!preg_match('/^[a-z_][a-z0-9_]*$/', $this->name)) {
@@ -286,7 +312,7 @@ class flag_flag {
   function applies_to_content_id($content_id) {
     return $this->applies_to_content_object($this->fetch_content($content_id));
   }
-  
+
   /**
    * Given a content object, returns its ID.
    * Derived classes must implement this.
@@ -353,7 +379,7 @@ class flag_flag {
       // users.
       return FALSE;
     }
-    
+
     if (!$skip_permission_check && !$this->user_access($account)) {
       // User has no permission to use this flag.
       return FALSE;
@@ -363,9 +389,10 @@ class flag_flag {
       return FALSE;
     }
 
-    // Clear the counters cache; We don't want code running after us to report
-    // wrong counts.
+    // Clear various caches; We don't want code running after us to report
+    // wrong counts or false flaggings.
     flag_get_counts(NULL, NULL, TRUE);
+    flag_get_user_flags(NULL, NULL, NULL, TRUE);
 
     // Perform the flagging or unflagging of this flag.
     $uid = $this->global ? 0 : $account->uid;
@@ -396,15 +423,9 @@ class flag_flag {
    */
   function is_flagged($content_id, $uid = NULL) {
     $uid = !isset($uid) ? $GLOBALS['user']->uid : $uid;
-
-    // flag_get_user_flags() alreday does caching, but nevertheless we manage a
-    // cache of our own to save on function calls.
-    static $flag_status = array();
-    if (!isset($flag_status[$uid][$this->content_type][$content_id])) {
-      $flag_status[$uid][$this->content_type][$content_id] = flag_get_user_flags($this->content_type, $content_id, $uid);
-    }
-
-    return isset($flag_status[$uid][$this->content_type][$content_id][$this->name]);
+    // flag_get_user_flags() does caching.
+    $user_flags = flag_get_user_flags($this->content_type, $content_id, $uid);
+    return isset($user_flags[$this->name]);
   }
 
   /**
@@ -513,11 +534,11 @@ class flag_flag {
    * Replaces tokens in a label. Only the 'global' token context is regognized
    * by default, so derived classes should override this method to add all
    * token contexts they understand.
-   */  
+   */
   function replace_tokens($label, $contexts, $content_id) {
     return token_replace_multiple($label, $contexts);
   }
-  
+
   /**
    * Returns the token types this flag understands in labels. These are used
    * for narrowing down the token list shown in the help box to only the
@@ -677,7 +698,7 @@ class flag_flag {
 
   /**
    * Options are stored serialized in the database.
-   */  
+   */
   function get_serialized_options() {
     $option_names = array_keys($this->default_options());
     $options = array();
@@ -695,6 +716,28 @@ class flag_flag {
     db_query('DELETE FROM {flag_content} WHERE fid = %d', $this->fid);
     db_query('DELETE FROM {flag_types} WHERE fid = %d', $this->fid);
     db_query('DELETE FROM {flag_counts} WHERE fid = %d', $this->fid);
+  }
+
+  /**
+   * Disable a flag provided by a module.
+   */
+  function disable() {
+    if (isset($this->module)) {
+      $flag_status = variable_get('flag_default_flag_status', array());
+      $flag_status[$this->name] = FALSE;
+      variable_set('flag_default_flag_status', $flag_status);
+    }
+  }
+
+  /**
+   * Enable a flag provided by a module.
+   */
+  function enable() {
+    if (isset($this->module)) {
+      $flag_status = variable_get('flag_default_flag_status', array());
+      $flag_status[$this->name] = TRUE;
+      variable_set('flag_default_flag_status', $flag_status);
+    }
   }
 
   /**
@@ -721,7 +764,7 @@ class flag_flag {
    */
   function theme_suggestions() {
     $suggestions = array();
-    $suggestions[] = 'flag_' . $this->name;
+    $suggestions[] = 'flag__' . $this->name;
     $suggestions[] = 'flag';
     return $suggestions;
   }
@@ -737,27 +780,45 @@ class flag_node extends flag_flag {
       'show_on_page' => TRUE,
       'show_on_teaser' => TRUE,
       'show_on_form' => FALSE,
+      'i18n' => 0,
     );
     return $options;
   }
-  
+
   function options_form(&$form) {
     parent::options_form($form);
+    // Note there isn't a translation helpers module in Drupal 5,
+    // this feature is essentially Drupal 6 only.
+    $form['i18n'] = array(
+      '#type' => 'radios',
+      '#title' => t('Internationalization'),
+      '#options' => array(
+        '1' => t('Flag translations of content as a group'),
+        '0' => t('Flag each translation of content separately'),
+      ),
+      '#default_value' => $this->i18n,
+      '#description' => t('Flagging translations as a group effectively allows users to flag the original piece of content regardless of the translation they are viewing. Changing this setting will <strong>not</strong> update content that has been flagged already.'),
+      '#access' => module_exists('translation_helpers'),
+      '#weight' => 5,
+    );
     $form['display']['show_on_teaser'] = array(
       '#type' => 'checkbox',
       '#title' => t('Display link on node teaser'),
       '#default_value' => $this->show_on_teaser,
+      '#access' => empty($this->locked['show_on_teaser']),
     );
     $form['display']['show_on_page'] = array(
       '#type' => 'checkbox',
       '#title' => t('Display link on node page'),
       '#default_value' => $this->show_on_page,
+      '#access' => empty($this->locked['show_on_page']),
     );
     $form['display']['show_on_form'] = array(
       '#type' => 'checkbox',
       '#title' => t('Display checkbox on node edit form'),
       '#default_value' => $this->show_on_form,
       '#description' => t('If you elect to have a checkbox on the node edit form, you may specify its initial state in the settings form <a href="@content-types-url">for each content type</a>.', array('@content-types-url' => url('admin/content/types'))),
+      '#access' => empty($this->locked['show_on_form']),
     );
   }
 
@@ -776,11 +837,40 @@ class flag_node extends flag_flag {
     return $node->nid;
   }
 
+  /**
+   * Adjust the Content ID to find the translation parent if i18n-enabled.
+   *
+   * @param $content_id
+   *   The nid for the content.
+   * @return
+   *   The tnid if available, the nid otherwise.
+   */
+  function get_translation_id($content_id) {
+    if ($this->i18n) {
+      $node = $this->fetch_content($content_id);
+      if (!empty($node->tnid)) {
+        $content_id = $node->tnid;
+      }
+    }
+    return $content_id;
+  }
+
   function uses_hook_link($teaser) {
     if ($teaser && $this->show_on_teaser || !$teaser && $this->show_on_page) {
       return TRUE;
     }
     return FALSE;
+  }
+
+  function flag($action, $content_id, $account = NULL, $skip_permission_check = FALSE) {
+    $content_id = $this->get_translation_id($content_id);
+    return parent::flag($action, $content_id, $account, $skip_permission_check);
+  }
+
+
+  function is_flagged($content_id, $uid = NULL) {
+    $content_id = $this->get_translation_id($content_id);
+    return parent::is_flagged($content_id, $uid);
   }
 
   function get_labels_token_types() {
@@ -840,7 +930,7 @@ class flag_node extends flag_flag {
     }
     return $passed;
   }
-  
+
 }
 
 /**
@@ -854,13 +944,14 @@ class flag_comment extends flag_flag  {
     );
     return $options;
   }
-  
+
   function options_form(&$form) {
     parent::options_form($form);
     $form['display']['show_on_comment'] = array(
       '#type' => 'checkbox',
       '#title' => t('Display link under comment'),
       '#default_value' => $this->show_on_comment,
+      '#access' => empty($this->locked['show_on_comment']),
     );
   }
 
@@ -874,7 +965,7 @@ class flag_comment extends flag_flag  {
     }
     return FALSE;
   }
-  
+
   function get_content_id($comment) {
     return $comment->cid;
   }
@@ -948,7 +1039,7 @@ class flag_user extends flag_flag {
     );
     return $options;
   }
-  
+
   function options_form(&$form) {
     parent::options_form($form);
     $form['types'] = array(
@@ -960,6 +1051,7 @@ class flag_user extends flag_flag {
       '#type' => 'checkbox',
       '#title' => t('Display link on user profile page'),
       '#default_value' => $this->show_on_profile,
+      '#access' => empty($this->locked['show_on_profile']),
     );
   }
 
@@ -975,7 +1067,7 @@ class flag_user extends flag_flag {
     }
     return FALSE;
   }
-  
+
   function get_content_id($user) {
     return $user->uid;
   }

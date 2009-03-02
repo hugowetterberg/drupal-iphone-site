@@ -1,4 +1,4 @@
-// $Id: flag.js,v 1.1.2.4 2008/10/10 06:52:31 quicksketch Exp $
+// $Id: flag.js,v 1.1.2.7 2008/12/16 11:59:31 mooffie Exp $
 
 /**
  * Terminology:
@@ -15,7 +15,7 @@ Drupal.flagLink = function(context) {
    * @param element
    *   The <A> element.
    * @return
-   *   The new <A> elemenet.
+   *   The new link.
    */
   function updateLink(element, newHtml) {
     var $newLink = $(newHtml);
@@ -38,14 +38,14 @@ Drupal.flagLink = function(context) {
     // Replace the old link with the new one.
     $wrapper.after($newLink).remove();
 
-    // So it won't crash on Drupal 5.
-    if (Drupal.attachBehaviors) {
+    if (Drupal.attachBehaviors) { // So it won't crash on Drupal 5.
       Drupal.attachBehaviors($newLink.get(0));
     }
 
     $('.flag-message', $newLink).fadeIn();
+    return $newLink.get(0);
   }
-  
+
   /**
    * A click handler that is attached to all <A class="flag"> elements.
    */
@@ -76,7 +76,12 @@ Drupal.flagLink = function(context) {
       success: function (data) {
         if (data.status) {
           // Success.
-          updateLink(element, data.newLink);
+          data.link = $wrapper.get(0);
+          $.event.trigger('flagGlobalBeforeLinkUpdate', [data]);
+          if (!data.preventDefault) { // A handler may cancel updating the link.
+            data.link = updateLink(element, data.newLink);
+          }
+          $.event.trigger('flagGlobalAfterLinkUpdate', [data]);
         }
         else {
           // Failure.
@@ -91,7 +96,7 @@ Drupal.flagLink = function(context) {
     return false;
   }
 
-  $('a.flag:not(.flag-processed)').addClass('flag-processed').click(flagClick);
+  $('a.flag-link-toggle:not(.flag-processed)').addClass('flag-processed').click(flagClick);
 };
 
 

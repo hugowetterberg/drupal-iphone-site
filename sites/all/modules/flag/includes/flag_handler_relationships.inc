@@ -1,5 +1,10 @@
 <?php
-// $Id: flag_handler_relationships.inc,v 1.1.2.6 2008/10/04 00:20:35 quicksketch Exp $
+// $Id: flag_handler_relationships.inc,v 1.1.2.8 2008/12/03 14:10:00 mooffie Exp $
+
+/**
+ * @file
+ * Contains various relationship handlers.
+ */
 
 /**
  * Specialized relationship handler associating flags and content.
@@ -7,7 +12,7 @@
  * @ingroup views
  */
 class flag_handler_relationship_content extends views_handler_relationship {
-  
+
   function option_definition() {
     $options = parent::option_definition();
 
@@ -90,7 +95,7 @@ class flag_handler_relationship_counts extends views_handler_relationship {
 
   function option_definition() {
     $options = parent::option_definition();
-    
+
     $content_type = $this->definition['flag type'];
     $options['flag'] = array('default' => flag_views_flag_default($content_type));
     $options['required'] = array('default' => 1);

@@ -1,5 +1,10 @@
 <?php
-// $Id: flag_handler_filter_flagged.inc,v 1.1.2.4 2008/09/19 13:19:46 mooffie Exp $
+// $Id: flag_handler_filter_flagged.inc,v 1.1.2.5 2008/12/03 14:10:00 mooffie Exp $
+
+/**
+ * @file
+ * Contains the flagged content filter handler.
+ */
 
 /**
  * Handler to filter for content that has not been flagged.

@@ -1,5 +1,5 @@
 <?php
-// $Id: flag.views.inc,v 1.1.2.7 2008/10/13 11:29:01 mooffie Exp $
+// $Id: flag.views.inc,v 1.1.2.9 2008/12/03 14:09:59 mooffie Exp $
 
 /**
  * @file
@@ -41,7 +41,7 @@ function flag_views_handlers() {
 }
 
 /**
- * Implementation of hook_views_plugins
+ * Implementation of hook_views_plugins().
  */
 function flag_views_plugins() {
   return array(
@@ -89,7 +89,7 @@ function flag_views_data() {
     'field' => array(
       'handler' => 'views_handler_field_date',
       'click sortable' => TRUE,
-     ),
+    ),
     'sort' => array(
       'handler' => 'views_handler_sort_date',
     ),
@@ -107,7 +107,7 @@ function flag_views_data() {
     'help' => t('The unique ID of the object that has been flagged.'),
     'argument' => array(
       'handler' => 'flag_handler_argument_content_id',
-    )
+    ),
   );
 
   // Specialized is null/is not null filter.
@@ -136,7 +136,7 @@ function flag_views_data() {
     'field' => array(
       'handler' => 'views_handler_field_numeric',
       'click sortable' => TRUE,
-     ),
+    ),
     'sort' => array(
       'handler' => 'views_handler_sort',
     ),
@@ -174,7 +174,7 @@ function flag_views_data_alter(&$data) {
         'relationship field' => $info['join field'],
       ),
     );
-  
+
     // Add the flag counter relationship.
     $data[$info['views table']]['flag_count_rel'] = array(
       'group' => t('Flags'),

@@ -1,11 +1,12 @@
-; $Id: flag.info,v 1.2 2008/06/10 01:35:09 quicksketch Exp $
+; $Id: flag.info,v 1.2.2.2 2009/02/20 22:43:19 quicksketch Exp $
 name = Flag
-description = Create customized flags that users can set on nodes.
+description = Create customized flags that users can set on content.
 core = 6.x
+package = Flags
 
-; Information added by drupal.org packaging script on 2008-11-07
-version = "6.x-1.0-beta6"
+; Information added by drupal.org packaging script on 2009-02-22
+version = "6.x-1.0-rc1"
 core = "6.x"
 project = "flag"
-datestamp = "1226097914"
+datestamp = "1235273428"
 

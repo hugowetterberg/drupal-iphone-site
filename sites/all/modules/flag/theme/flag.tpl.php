@@ -1,9 +1,9 @@
 <?php
-// $Id: flag.tpl.php,v 1.1.2.3 2008/10/10 06:52:31 quicksketch Exp $
+// $Id: flag.tpl.php,v 1.1.2.6 2008/12/03 14:10:00 mooffie Exp $
 
 /**
- * @file flag.tpl.php
- * Default theme implementation to display a flag link, and a message after the action 
+ * @file
+ * Default theme implementation to display a flag link, and a message after the action
  * is carried out.
  *
  * Available variables:
@@ -12,9 +12,10 @@
  *   following variables don't suffice.
  * - $flag_name_css: The flag name, with all "_" replaced with "-". For use in 'class'
  *   attributes.
+ * - $flag_classes: A space-separated list of CSS classes that should be applied to the link.
  *
  * - $action: The action the link is about to carry out, either "flag" or "unflag".
- * - $last_action: The action, as a passive English verb, either "flagged" or 
+ * - $last_action: The action, as a passive English verb, either "flagged" or
  *   "unflagged", that led to the current status of the flag.
  *
  * - $link_href: The URL for the flag link.
@@ -26,8 +27,8 @@
  *   flagged. If displaying to the user immediately after flagging, this value
  *   will be boolean TRUE. This is usually used in conjunction with immedate
  *   JavaScript-based toggling of flags.
- * - $setup: TRUE when this template is parsed for the first time; Use this 
- *   flag to carry out procedures that are needed only once; e.g., linking to CSS 
+ * - $setup: TRUE when this template is parsed for the first time; Use this
+ *   flag to carry out procedures that are needed only once; e.g., linking to CSS
  *   and JS files.
  *
  * NOTE: This template spaces out the <span> tags for clarity only. When doing some
@@ -40,7 +41,7 @@
   }
 ?>
 <span class="flag-wrapper flag-<?php echo $flag_name_css; ?>">
-  <a href="<?php echo $link_href; ?>" title="<?php echo $link_title; ?>" class="flag <?php echo $action; ?>-action <?php echo $after_flagging ? $last_action : ''; ?>"><?php echo $link_text; ?></a><span class="flag-throbber">&nbsp;</span>
+  <a href="<?php echo $link_href; ?>" title="<?php echo $link_title; ?>" class="<?php print $flag_classes ?>"><?php echo $link_text; ?></a><span class="flag-throbber">&nbsp;</span>
   <?php if ($after_flagging): ?>
     <span class="flag-message flag-<?php echo $last_action; ?>-message">
       <?php echo $message_text; ?>
