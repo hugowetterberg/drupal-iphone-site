@@ -7,3 +7,6 @@
 [submodule "sites/all/modules/nodeformcols"]
 	path = sites/all/modules/nodeformcols
 	url = git://github.com/hugowetterberg/nodeformcols.git
+[submodule "sites/all/modules/simple_geo"]
+	path = sites/all/modules/simple_geo
+	url = git://github.com/hugowetterberg/simple_geo.git
