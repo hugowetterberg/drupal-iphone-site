@@ -1,0 +1,71 @@
+<?php
+// $Id: autoload.module,v 1.1.2.3 2008/12/02 05:19:39 crell Exp $
+/**
+ * Implementation of hook_init().
+ */
+function autoload_init() {
+  spl_autoload_register('autoload_class');
+}
+
+/**
+ * Implementation of hook_flush_caches9).
+ */
+function autoload_flush_caches() {
+  // Force a rescan of the autload hook.
+  autoload_get_lookup(TRUE);
+}
+
+/**
+ * Autoload function for registered classes.
+ */
+function autoload_class($class) {
+  static $lookup;
+
+  if (empty($lookup)) {
+    $lookup = autoload_get_lookup();
+  }
+
+   if (!empty($lookup[$class])) {
+    require_once dirname($_SERVER['SCRIPT_FILENAME']) .'/'. $lookup[$class];
+  }
+}
+
+/**
+ * Build and return the lookup table for classes and interfaces.
+ *
+ * @return
+ *   The lookup table for what classes are stored where.
+ */
+function autoload_get_lookup($reset = FALSE) {
+
+  if (!$reset && ($cache = cache_get('autoload:')) && isset($cache->data)) {
+    return $cache->data;
+  }
+  else {
+    // We need to manually call each module so that we can know which module
+    // a given item came from.
+    $classes = array();
+    foreach (module_implements('autoload_info') as $module) {
+      $class_items = call_user_func($module .'_autoload_info');
+      if (isset($class_items) && is_array($class_items)) {
+        foreach (array_keys($class_items) as $item) {
+          $class_items[$item]['module'] = $module;
+        }
+        $classes = array_merge($classes, $class_items);
+      }
+    }
+    // Alter the menu as defined in modules, keys class and interface names.
+    drupal_alter('autoload_info', $classes);
+
+    // Derive the full path name and store just the lookup table itself.
+    $lookup = array();
+    foreach ($classes as $class => $item) {
+      $file_path = isset($item['file path']) ? $item['file path'] : drupal_get_path('module', $item['module']);
+      $lookup[$class] = $file_path .'/'. $item['file'];
+    }
+
+    // Save the lookup table, then return it.
+    cache_set('autoload:', $lookup);
+    return $lookup;
+  }
+}

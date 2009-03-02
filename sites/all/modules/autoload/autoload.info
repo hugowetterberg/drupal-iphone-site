@@ -1,0 +1,12 @@
+; $Id: autoload.info,v 1.1 2008/10/03 05:43:31 crell Exp $
+name = Autoload
+description = Helper module to autoload classes under PHP 5.
+php = 5.1.2
+core = 6.x
+
+; Information added by drupal.org packaging script on 2008-12-02
+version = "6.x-1.2"
+core = "6.x"
+project = "autoload"
+datestamp = "1228195501"
+
