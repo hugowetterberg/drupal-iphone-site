@@ -1,5 +1,5 @@
 <?php
-// $Id: date_repeat.module,v 1.30.4.7 2008/11/21 16:27:35 karens Exp $
+// $Id: date_repeat.module,v 1.30.4.11 2009/02/27 16:37:38 karens Exp $
 /**
  * @file
  *
@@ -39,17 +39,17 @@ function date_repeat_theme() {
 function FREQ_options() {
   return array(
     'NONE' => t('-- Period'),
-    'DAILY' => t('Day(s)'),
-    'WEEKLY' => t('Week(s)'),
-    'MONTHLY' => t('Month(s)'),
-    'YEARLY' => t('Year(s)'),
+    'DAILY' => date_t('Days', 'datetime_plural'),
+    'WEEKLY' => date_t('Weeks', 'datetime_plural'),
+    'MONTHLY' => date_t('Months', 'datetime_plural'),
+    'YEARLY' => date_t('Years', 'datetime_plural'),
   );
 }
 
 function INTERVAL_options() {
   $options = array(
     0 => t('-- Frequency'),
-    1 => t('Every'),
+    1 => date_t('Every', 'date_order'),
   );
   for ($i = 2; $i < 367; $i++) {
     $options[$i] = t('Every @number', array('@number' => $i));
@@ -66,13 +66,13 @@ function INTERVAL_options() {
  */
 function date_repeat_dow_day_options($translated = TRUE) {
   return array(
-    'SU' => $translated ? t('Sunday') : 'Sunday',
-    'MO' => $translated ? t('Monday') : 'Monday',
-    'TU' => $translated ? t('Tuesday') : 'Tuesday',
-    'WE' => $translated ? t('Wednesday') : 'Wednesday',
-    'TH' => $translated ? t('Thursday') : 'Thursday',
-    'FR' => $translated ? t('Friday') : 'Friday',
-    'SA' => $translated ? t('Saturday') : 'Saturday',
+    'SU' => $translated ? date_t('Sunday', 'day_name') : 'Sunday',
+    'MO' => $translated ? date_t('Monday', 'day_name') : 'Monday',
+    'TU' => $translated ? date_t('Tuesday', 'day_name') : 'Tuesday',
+    'WE' => $translated ? date_t('Wednesday', 'day_name') : 'Wednesday',
+    'TH' => $translated ? date_t('Thursday', 'day_name') : 'Thursday',
+    'FR' => $translated ? date_t('Friday', 'day_name') : 'Friday',
+    'SA' => $translated ? date_t('Saturday', 'day_name') : 'Saturday',
   );
 }
 
@@ -92,17 +92,17 @@ function date_repeat_dow_day_options_ordered($week_start) {
  */
 function date_repeat_dow_count_options() {
   return array(
-    '' => t('Every'),
-    '1' => t('First'),
-    '2' => t('Second'),
-    '3' => t('Third'),
-    '4' => t('Fourth'),
-    '5' => t('Fifth'),
-    '-1' => t('Last'),
-    '-2' => t('Next to last'),
-    '-3' => t('Second from last'),
-    '-4' => t('Third from last'),
-    '-5' => t('Fourth from last')
+    '' => date_t('Every', 'date_order'),
+    '1' => date_t('First', 'date_order'),
+    '2' => date_t('Second', 'date_order'),
+    '3' => date_t('Third', 'date_order'),
+    '4' => date_t('Fourth', 'date_order'),
+    '5' => date_t('Fifth', 'date_order'),
+    '-1' => date_t('Last', 'date_order_reverse'),
+    '-2' => date_t('Next to last', 'date_order_reverse'),
+    '-3' => date_t('Third from last', 'date_order_reverse'),
+    '-4' => date_t('Fourth from last', 'date_order_reverse'),
+    '-5' => date_t('Fifth from last', 'date_order_reverse')
   );
 }
 
@@ -156,7 +156,7 @@ function date_repeat_days_ordered($week_start_day) {
  *
  * Constructs a human-readable description of the rule.
  */
-function date_repeat_rrule_description($rrule, $start_date, $format = 'D M d Y') {
+function date_repeat_rrule_description($rrule, $format = 'D M d Y') {
   // Empty or invalid value.
   if (empty($rrule) || !strstr($rrule, 'RRULE')) {
     return;
@@ -164,34 +164,33 @@ function date_repeat_rrule_description($rrule, $start_date, $format = 'D M d Y')
   
   require_once('./'. drupal_get_path('module', 'date_api') .'/date_api_ical.inc');
   require_once('./'. drupal_get_path('module', 'date_repeat') .'/date_repeat_calc.inc');
-
+  
+  // Make sure there will be an empty description for any unused parts.
+  $description = array(
+    '!interval' => '', 
+    '!byday' => '', 
+    '!bymonth' => '', 
+    '!count' => '',
+    '!until' => '', 
+    '!except' => '',
+    '!week_starts_on' => '',
+    );
   $parts = date_repeat_split_rrule($rrule);
   $exceptions = $parts[1];
   $rrule = $parts[0];
-  $description = array(t('Repeats') .' ');
   $interval = INTERVAL_options();
   switch ($rrule['FREQ']) {
     case 'WEEKLY':
-      $description[] = format_plural($rrule['INTERVAL'], 'every week', 'every @count weeks') .' ';
+      $description['!interval'] = format_plural($rrule['INTERVAL'], 'every week', 'every @count weeks') .' ';
       break;
     case 'MONTHLY':
-      if (!empty($rrule['BYMONTH'])) {
-        $description[] = format_plural($rrule['INTERVAL'], 'every ', 'every @count') .' '; 
-      }
-      else {
-        $description[] = format_plural($rrule['INTERVAL'], 'every month', 'every @count months') .' ';
-      }
+      $description['!interval'] = format_plural($rrule['INTERVAL'], 'every month', 'every @count months') .' ';
       break;
     case 'YEARLY':
-      $description[] = format_plural($rrule['INTERVAL'], 'every year', 'every @count years') .' ';
+      $description['!interval'] = format_plural($rrule['INTERVAL'], 'every year', 'every @count years') .' ';
       break;
     default:
-      if (!empty($rrule['BYDAY'])) {
-        $description[] = format_plural($rrule['INTERVAL'], 'every ', 'every @count') .' '; 
-      }
-      else {
-        $description[] = format_plural($rrule['INTERVAL'], 'every day', 'every @count days') .' ';
-      }
+      $description['!interval'] = format_plural($rrule['INTERVAL'], 'every day', 'every @count days') .' ';
       break;
   }
   
@@ -203,16 +202,13 @@ function date_repeat_rrule_description($rrule, $start_date, $format = 'D M d Y')
       $day = substr($byday, -2);
       $count = intval(str_replace(' '. $day, '', $byday));
       if ($count = intval(str_replace(' '. $day, '', $byday))) {
-        $results[] = t('!count !day', array('!count' => strtolower($counts[$count]), '!day' => $days[$day])) .' ';
+        $results[] = trim(t('!repeats_every_interval on the !date_order !day_of_week', array('!repeats_every_interval ' => '', '!date_order' => strtolower($counts[$count]), '!day_of_week' => $days[$day])));
       }
       else {
-        $results[] = t('every !day', array('!day' => $days[$day])) .' ';
+        $results[] = trim(t('!repeats_every_interval every !day_of_week', array('!repeats_every_interval ' => '', '!day_of_week' => $days[$day])));
       }
     }
-    $description[] = t('!days', array('!days' => implode(' '. t(' and ') .' ', $results)));
-  }
-  if (!empty($rrule['BYMONTHDAY'])) {
-    $description[] = t('on day @number', array('@number' => implode(', ', $rrule['BYMONTHDAY']))) .' ';
+    $description['!byday'] = implode(' '. t('and') .' ', $results);
   }
   if (!empty($rrule['BYMONTH'])) {
     if (sizeof($rrule['BYMONTH']) < 12) {
@@ -221,31 +217,36 @@ function date_repeat_rrule_description($rrule, $start_date, $format = 'D M d Y')
       foreach ($rrule['BYMONTH'] as $month) {
         $results[] = $months[$month];
       }
-      $description[] = implode(', ', $results) .' ';
+      if (!empty($rrule['BYMONTHDAY'])) {
+        $description['!bymonth'] = trim(t('!repeats_every_interval on the !month_days of !month_names', array('!repeats_every_interval ' => '', '!month_days' => implode(', ', $rrule['BYMONTHDAY']), '!month_names' => implode(', ', $results))));
+      }
+      else {
+        $description['!bymonth'] = trim(t('!repeats_every_interval on !month_names', array('!repeats_every_interval ' => '', '!month_names' => implode(', ', $results))));
+      }
     }
   }
   if ($rrule['INTERVAL'] < 1) {
     $rrule['INTERVAL'] = 1;
   }
   if (!empty($rrule['COUNT'])) {
-    $description[] = t('for !times occurences', array('!times' => $rrule['COUNT'])) .' ';
+    $description['!count'] = trim(t('!repeats_every_interval !count times', array('!repeats_every_interval ' => '', '!count' => $rrule['COUNT'])));
   }
   if (!empty($rrule['UNTIL'])) {
     $until = date_ical_date($rrule['UNTIL']);
-    $description[] = t('until !until', array('!until' => date_format_date($until, 'custom', $format))) .' ';
+    $description['!until'] = trim(t('!repeats_every_interval until !until_date', array('!repeats_every_interval ' => '', '!until_date' => date_format_date($until, 'custom', $format))));
   }
   if ($exceptions) {
     $values = array();
     foreach ($exceptions as $exception) {
       $values[] = date_format_date(date_ical_date($exception), 'custom', $format);
     }
-    $description[] = t('except !dates', array('!dates' => implode(', ', $values))) .' ';
+    $description['!except'] = trim(t('!repeats_every_interval except !except_dates', array('!repeats_every_interval ' => '', '!except_dates' => implode(', ', $values))));
   }
   if (!empty($rrule['WKST'])) {
     $day_names = date_repeat_dow_day_options();
-    //$description[] = t('where the week starts on !start ', array('!start' => $day_names[$rrule['WKST']]));
+    $description['!week_starts_on'] = trim(t('!repeats_every_interval where the week start on !day_of_week', array('!repeats_every_interval ' => '', '!day_of_week' => $day_names[trim($rrule['WKST'])])));
   }
-  return implode($description);
+  return t('Repeats !interval !bymonth !byday !count !until !except.', $description);
 }
 
 /**

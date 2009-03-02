@@ -1,5 +1,5 @@
 <?php
-//$Id: date_elements.inc,v 1.46.2.2.2.39 2008/11/30 19:34:39 karens Exp $
+//$Id: date_elements.inc,v 1.46.2.2.2.52 2009/02/27 15:47:39 karens Exp $
 /**
  * @file
  * Date forms and form themes and validation.
@@ -23,15 +23,15 @@ function _date_field_validate($op, &$node, $field, &$items, $teaser, $page) {
         $error_field = $field['field_name'] .']['. $delta .']['. $processed;
         $error_field .= $field['widget']['type'] == 'date_select' ? '][year' : '';
         if ($processed == 'value' && $field['todate']
-          && !date_is_valid($item['value'], $field['type'])
-          && (date_is_valid($item['value2'], $field['type']))) {
-          form_set_error($error_field, t("A 'From date' date is required for %field %delta", array('%delta' => $field['multiple'] ? intval($delta + 1) : '', '%field' => t($field['widget']['label']))));
+          && !date_is_valid($item['value'], $field['type'], $field['granularity'])
+          && (date_is_valid($item['value2'], $field['type'], $field['granularity']))) {
+          form_set_error($error_field, t("A 'From date' date is required for field %field %delta.", array('%delta' => $field['multiple'] ? intval($delta + 1) : '', '%field' => t($field['widget']['label']))));
         }
         if ($processed == 'value2'
           && $field['todate'] == 'required' && ($field['required']
-          && date_is_valid($item['value'], $field['type'])
-          && !date_is_valid($item['value2'], $field['type']))) {
-          form_set_error($error_field, t("A 'To date' is required for %field %delta", array('%delta' => $field['multiple'] ? intval($delta + 1) : '', '%field' => t($field['widget']['label']))));
+          && date_is_valid($item['value'], $field['type'], $field['granularity'])
+          && !date_is_valid($item['value2'], $field['type'], $field['granularity']))) {
+          form_set_error($error_field, t("A 'To date' is required for field %field %delta.", array('%delta' => $field['multiple'] ? intval($delta + 1) : '', '%field' => t($field['widget']['label']))));
         }
       }
     }
@@ -43,7 +43,10 @@ function _date_field_validate($op, &$node, $field, &$items, $teaser, $page) {
  */
 function _date_field_update($op, &$node, $field, &$items, $teaser, $page) {
   $field_name = $field['field_name'];
-
+  if (empty($items)) {
+    //$node->$field_name = array(); // Not sure about this, CCK should handle it.
+    return;
+  }
   $format = $field['type'] == DATE_ISO ? DATE_FORMAT_ISO : DATE_FORMAT_UNIX;
   $timezone = date_get_timezone($field['tz_handling'], array_key_exists('timezone', $items[0]) ? $items[0]['timezone'] : '');
   $db_info = content_database_info($field);
@@ -56,16 +59,7 @@ function _date_field_update($op, &$node, $field, &$items, $teaser, $page) {
       unset($items[$delta]);
       continue;
     }
-    // For convenience, we process all possible columns in the element,
-    // but now we need to remove columns not used by this field.
-    if (is_array($item)) {
-      $keys = array_keys($item);
-      foreach ($keys as $column => $value) {
-        if (!in_array($column, $columns)) {
-          unset($items[$delta][$column]);
-        }
-      }
-    }
+
     // Special case for ISO dates which may have been given artificial values for
     // some date parts to make them into valid dates.
     if ($field['type'] == DATE_ISO) {
@@ -167,7 +161,7 @@ function _date_widget(&$form, &$form_state, &$field, $items, $delta = 0) {
       '#delta' => $delta,
       '#default_value' => $timezone,
       '#weight' => $field['widget']['weight'] + .2,
-      );
+      );  
   }
   
   // Add a date repeat form element, if needed.
@@ -208,20 +202,21 @@ function date_local_date($form, $form_state, $delta, $item, $timezone, $field, $
         return NULL;
       }
       else {
-        $date = date_make_date($item['value'], $timezone);
+        $date = date_make_date($item['value'], $timezone, DATE_DATETIME, $field['granularity']);
       }
     }
     // Special case for 'now' when using dates with no timezone,
     // make sure 'now' isn't adjusted to UTC value of 'now'.
     elseif ($field['tz_handling'] == 'none') {
-      $date = date_make_date('now', date_default_timezone_name());
+      $date = date_now();
     }
     else {
-      $date = date_make_date('now', $timezone);
+      $date = date_now($timezone);
     }
   }
   else {
     $value = $item[$part];
+      
     // Special case for ISO dates to create a valid date object for formatting.
     if ($field['type'] == DATE_ISO) {
       $value = date_fuzzy_datetime($value);
@@ -230,7 +225,7 @@ function date_local_date($form, $form_state, $delta, $item, $timezone, $field, $
       $db_timezone = date_get_timezone_db($field['tz_handling']);
       $value = date_convert($value, $field['type'], DATE_DATETIME, $db_timezone);
     }
-    $date = date_make_date($value, date_get_timezone_db($field['tz_handling']));
+    $date = date_make_date($value, date_get_timezone_db($field['tz_handling']), DATE_DATETIME, $field['granularity']);
     date_timezone_set($date, timezone_open($timezone));
   }
   if (is_object($date) && empty($item[$part]) && $default_value == 'strtotime' && !empty($default_value_code)) {
@@ -319,16 +314,16 @@ function date_combo_process($element, $edit, &$form_state, $form) {
       $element[$from_field]['#type'] = 'date_text';
       break;
   }
-
+  
   // If this field uses the 'To', add matching element
   // for the 'To' date, and adapt titles to make it clear which
   // is the 'From' and which is the 'To'.
 
   if (!empty($field['todate'])) {
     $element['#date_float'] = TRUE;
-    $element[$from_field]['#title']  = t($field['widget']['label']) .' '. t('From date');
+    $element[$from_field]['#title']  = t('From date');
     $element[$to_field] = $element[$from_field];
-    $element[$to_field]['#title'] = t($field['widget']['label']) .' '. t('To date');
+    $element[$to_field]['#title'] = t('To date');
     $element[$to_field]['#default_value'] = isset($element['#value'][$to_field]) ? $element['#value'][$to_field] : '';
     $element[$to_field]['#required'] = false;
     $element[$to_field]['#weight'] += .1;
@@ -340,7 +335,23 @@ function date_combo_process($element, $edit, &$form_state, $form) {
   else {
     $element[$from_field]['#description'] = $description;
   }
-
+  
+  // Creat label for error messages that make sense in multiple values
+  // and when the title field is left blank.
+  if (!empty($field['multiple']) && empty($field['repeat'])) {
+    $element[$from_field]['#date_title'] = t('@field_name From date value #@delta', array('@field_name' => $field['widget']['label'], '@delta' => $delta + 1));
+    if (!empty($field['todate'])) {
+      $element[$to_field]['#date_title'] = t('@field_name To date value #@delta', array('@field_name' => $field['widget']['label'], '@delta' => $delta + 1));
+    }
+  }
+  elseif (!empty($field['todate'])) {
+    $element[$from_field]['#date_title'] = t('@field_name From date', array('@field_name' => $field['widget']['label']));
+    $element[$to_field]['#date_title'] = t('@field_name To date', array('@field_name' => $field['widget']['label']));
+  }
+  else {
+    $element[$from_field]['#date_title'] = $field['widget']['label'];
+  }
+  
   // Make sure field info will be available to the validator which
   // does not get the values in $form.
   $form_state['#field_info'][$field['field_name']] = $field;
@@ -373,6 +384,13 @@ function date_combo_validate($element, &$form_state) {
   $offset_field = 'offset';
   $offset_field2 = 'offset2';
   
+  // Unfortunately, due to the fact that much of the processing is already
+  // done by the time we get here, it is not possible highlight the field
+  // with an error, we just try to explain which element is creating the
+  // problem in the error message.
+  $parent = $element['#parents'];
+  $error_field = array_pop($parent);
+  $errors = array();
   if (empty($item[$from_field])) {
     $item[$from_field] = NULL;
     $item[$to_field]   = NULL;
@@ -381,11 +399,10 @@ function date_combo_validate($element, &$form_state) {
     $item[$offset_field2] = NULL;
     form_set_value($element, $item, $form_state);
   }
-  elseif (!form_get_errors()) {
+  else {
         
     // Check todate input for blank values and substitute in fromdate
     // values where needed, then re-compute the todate with those values.
-
     if ($field['todate']) {
       $merged_date = array();
       $to_date_empty = TRUE;
@@ -405,8 +422,7 @@ function date_combo_validate($element, &$form_state) {
       // duplicate messages on every date part, so the error will 
       // only go on the first.  
       if ($to_date_empty && $field['todate'] == 'required') {
-        $error_field = implode('][', $element['#parents']) .'][value2]['. array_shift(array_keys($merged_date));
-        form_set_error($error_field, t('Some value must be entered in the To date.'));
+        $errors[] = t('Some value must be entered in the To date.');
       }
 
       $element[$to_field]['#value'] = $merged_date;
@@ -420,11 +436,10 @@ function date_combo_validate($element, &$form_state) {
       $item[$to_field] = $item[$from_field];
     }
     if ($item[$from_field] > $item[$to_field]) {
-      $error_field = implode('][', $element['#parents']) .'][value2]['. array_shift(array_keys($merged_date));
       $element[$to_field]['#value'] = $merged_date;
       $to_date = date_input_value($field, $element[$to_field]);
       form_set_value($element[$to_field], $to_date, $form_state);
-      form_set_error($error_field, t('The To date must be greater than the From date.'));
+      $errors[] = t('The To date must be greater than the From date.');
     }
     else {
       // Convert input dates back to their UTC values and re-format to ISO
@@ -432,19 +447,49 @@ function date_combo_validate($element, &$form_state) {
       $timezone = !empty($item[$tz_field]) ? $item[$tz_field] : $element['#date_timezone'];
       $timezone_db = date_get_timezone_db($field['tz_handling']);
       $item[$tz_field] = $timezone;
-      $from_date = date_make_date($item[$from_field], $timezone);
+
+      // Use fuzzy_datetime before conversion to get proper value
+      // when granularity is 'year' or 'year' and 'month' only.
+      // Without this, we'd end up defaulting to 'now'.
+      $from_date = date_fuzzy_datetime($item[$from_field]);
+      $from_date = date_make_date($from_date, $timezone);
       $item[$offset_field] = date_offset_get($from_date);
+      
       $to_date = date_make_date($item[$to_field], $timezone);
+      $test_from = date_format($from_date, 'r');
+      $test_to = date_format($to_date, 'r');
+      
       $item[$offset_field2] = date_offset_get($to_date);
       date_timezone_set($from_date, timezone_open($timezone_db));
       date_timezone_set($to_date, timezone_open($timezone_db));
       $item[$from_field] = date_format($from_date, date_type_format($field['type']));
       $item[$to_field] = date_format($to_date, date_type_format($field['type']));
-      
       if (isset($form_values[$field_name]['rrule'])) {
         $item['rrule'] = $form_values[$field['field_name']]['rrule'];
       }
-      form_set_value($element, $item, $form_state);
+      
+      // Test a roundtrip back to the original timezone to catch
+      // invalid dates, like 2AM on the day that spring daylight savings
+      // time begins in the US.
+      date_timezone_set($from_date, timezone_open($timezone));
+      date_timezone_set($to_date, timezone_open($timezone));
+      if ($test_from != date_format($from_date, 'r')) {
+        $errors[] = t('The From date is invalid.');
+      }
+      if ($test_to != date_format($to_date, 'r')) {
+        $errors[] = t('The To date is invalid.');
+      }
+      if (empty($errors)) {
+        form_set_value($element, $item, $form_state);
+      }
+    }
+  }
+  if (!empty($errors)) {
+    if ($field['multiple']) {
+      form_set_error($error_field, t('There are errors in @field_name value #@delta:', array('@field_name' => $field['widget']['label'], '@delta' => $delta + 1)) . theme('item_list', $errors));
+    }
+    else {
+      form_set_error($error_field, t('There are errors in @field_name:', array('@field_name' => $field['widget']['label'])) . theme('item_list', $errors));      
     }
   }
 }

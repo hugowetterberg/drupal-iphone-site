@@ -4,7 +4,7 @@
   clear:both;
   display: inline-block;
   vertical-align:top;
-  margin-right: 0.5em;
+  margin-right: 0.5em; /* LTR */
 }
 .container-inline-date .form-item {
   float:none;
@@ -12,7 +12,7 @@
   margin:0;
 }
 .container-inline-date .form-item .form-item {
-  float:left;
+  float: left; /* LTR */
 }
 .container-inline-date .form-item,
 .container-inline-date .form-item input {
@@ -25,10 +25,11 @@
 .container-inline-date .form-item input,
 .container-inline-date .form-item select,
 .container-inline-date .form-item option {
-  margin-right:5px;}
+  margin-right: 5px; /* LTR */
+}
 
 .container-inline-date .date-spacer {
-  margin-left:-5px;
+  margin-left: -5px; /* LTR */
 }
 .views-right-60 .container-inline-date div {
   padding:0;
@@ -39,7 +40,7 @@
   float:none;
   width:auto;
   clear:both;
-  }
+}
 
 /* Fixes for date popup css so it will behave in Drupal */
 #calendar_div, #calendar_div td, #calendar_div th {
@@ -70,9 +71,9 @@ span.date-display-separator {
 }
 
 .date-repeat-input {
-  float:left;
+  float: left; /* LTR */
   width:auto;
-  margin-right:5px;
+  margin-right: 5px; /* LTR */
 }
 .date-repeat-input select {
   min-width:7em;
@@ -82,9 +83,12 @@ span.date-display-separator {
   float:none;
 }
 
+.date-views-filter-wrapper {
+  min-width:250px;
+}
 .date-views-filter input {
-  float:left !important;
-  margin-right:2px !important;
+  float: left !important; /* LTR */
+  margin-right: 2px !important; /* LTR */
   padding:0 !important;
   width:12em;
   min-width:12em;
@@ -94,19 +98,19 @@ span.date-display-separator {
   width:100%;
 }
 .date-nav div.date-prev {
-  text-align: left;
+  text-align: left; /* LTR */
   width:24%;
-  float:left;
+  float: left; /* LTR */
 }
 .date-nav div.date-next {
-  text-align: right;
+  text-align: right; /* LTR */
   width:24%;
-  float:right;
+  float: right; /* LTR */
 }
 .date-nav div.date-heading {
   text-align:center;
   width:50%;
-  float:left;
+  float: left; /* LTR */
 }
 .date-nav div.date-heading h3 {
   margin:0;
@@ -147,3 +151,22 @@ span.date-display-separator {
    display: block; 	 
  } 	 
  /* End hide from IE-mac */
+
+.date-container .date-format-delete {
+  margin-top: 1.8em;
+  margin-left: 1.5em;
+  float: left;
+}
+.date-container .date-format-name {
+  float: left;
+}
+.date-container .date-format-type {
+  float: left;
+  padding-left: 10px;
+}
+
+.date-container .select-container {
+  clear: left;
+  float: left;
+}
+

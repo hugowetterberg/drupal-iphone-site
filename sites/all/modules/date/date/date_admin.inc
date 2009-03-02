@@ -1,5 +1,5 @@
 <?php
-//$Id: date_admin.inc,v 1.40.2.3.2.25 2008/11/30 12:38:36 karens Exp $
+//$Id: date_admin.inc,v 1.40.2.3.2.37 2009/02/27 17:05:21 karens Exp $
 /**
  * @file
  * Date administration code.
@@ -45,17 +45,12 @@ function _date_widget_settings($op, &$field) {
  * so do it in a custom function.
  */
 function date_widget_settings_validate(&$form, &$form_state) {
+  // TODO Not sure there is any limitation any more in this version. Need to check.  
   if ($form_state['values']['widget_type'] == 'date_popup') {
     // Only a limited set of formats is available for the Date Popup module
     if (!empty($form_state['values']['input_format_custom']) || !in_array($form_state['values']['input_format'], date_popup_formats())) {
       form_set_value($form['input_format_custom'], NULL, $form_state);
       form_set_value($form['input_format'], DATE_FORMAT_DATETIME, $form_state);
-    }
-    // The jQuery calendar requires year, month, and day or it won't work.
-    $date_parts = array('year', 'month', 'day');
-    $intersection = array_intersect($date_parts, $form_state['values']['granularity']);
-    if ($intersection != $date_parts) {
-      form_set_error('granularity', t('The Date Popup widget will not work unless granularity includes year, month, and day.'));
     }
   }
   if (isset($form_state['values']['advanced']['label_position'])) {
@@ -72,15 +67,21 @@ function date_widget_settings_form($widget) {
     '#element_validate' => array('date_widget_settings_validate'),
     );
   $form['input']['default_value'] = array(
-    '#type' => 'radios', '#title' => t('Default value'),
+    '#type' => 'select', '#title' => t('Default value'),
     '#default_value' => !empty($widget['default_value']) ? $widget['default_value'] : 'blank',
     '#options' => array('blank' => t('Blank'), 'now' => t('Now'), 'strtotime' => t('Relative')),
+    '#description' => t("A default value to use for this field. If you select 'Relative', add details below."),
+    );
+  $form['input']['default_value2'] = array(
+    '#type' => 'select', '#title' => t('Default value for To date'),
+    '#default_value' => !empty($widget['default_value2']) ? $widget['default_value2'] : 'same',
+    '#options' => array('same' => t('Same as From date'), 'blank' => t('Blank'), 'now' => t('Now'), 'strtotime' => t('Relative')),
     '#description' => t("A default value to use for this field. If you select 'Relative', add details below."),
     );
   $form['input']['default'] = array(
     '#type' => 'fieldset',
     '#title' => t('Customize Default Value'),
-    '#description' => t("<p>The custom value for a Relative default should be something that describes a time by reference to the current day using strtotime, like '+90 days' (90 days from the day the field is created) or '+1 Saturday' (the next Saturday). See !strtotime for more details.</p>", array('!strtotime' => l(t('strtotime'), 'http://www.php.net/manual/en/function.strtotime.php'))),
+    '#description' => '<p>' . t("The custom value for a Relative default should be something that describes a time by reference to the current day using strtotime, like '+90 days' (90 days from the day the field is created) or '+1 Saturday' (the next Saturday). See !strtotime for more details.", array('!strtotime' => l(t('strtotime'), 'http://www.php.net/manual/en/function.strtotime.php'))) . '</p>',
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
     );
@@ -89,43 +90,39 @@ function date_widget_settings_form($widget) {
     '#default_value' => isset($widget['default_value_code']) ? $widget['default_value_code'] : '',
     );
 
-  $form['input']['default']['default_value2'] = array(
-    '#type' => 'radios', '#title' => t('Default value for To date'),
-    '#default_value' => !empty($widget['default_value2']) ? $widget['default_value2'] : 'same',
-    '#options' => array('same' => t('Same as From date'), 'blank' => t('Blank'), 'now' => t('Now'), 'strtotime' => t('Relative')),
-    '#description' => t("A default value to use for this field. If you select 'Relative', add details below."),
-    );
   $form['input']['default']['default_value_code2'] = array(
     '#type' => 'textfield', '#title' => t('Custom value for To date'),
-    '#default_value' => isset($widget['default_value_code2']) ? $widget['default_value_code2'] : '',
+    '#default_value' => !empty($widget['default_value_code2']) ? $widget['default_value_code2'] : '',
     );
 
   $options = array();
   if ($widget['type'] == 'date_popup' && module_exists('date_popup')) {
     $formats = date_popup_formats();
+    $default_format = array_shift($formats);
   }
   else {
     // example input formats must show all possible date parts, so add seconds.
-    $formats = str_replace('i', 'i:s', date_short_formats());
+    $formats = str_replace('i', 'i:s', array_keys(date_get_formats('short')));
     $formats = drupal_map_assoc($formats);
+    $default_format = str_replace('i', 'i:s', variable_get('date_format_short', 'm/d/Y - H:i'));
   }
   $now = date_example_date();
   foreach ($formats as $f) {
     $options[$f] = date_format_date($now, 'custom', $f);
   }
-  $default_format = array_shift($formats);
   $form['input']['input_format'] = array(
     '#type' => 'select', '#title' => t('Input format'),
-    '#default_value' => isset($widget['input_format']) ? $widget['input_format'] : $default_format,
+    '#default_value' => !empty($widget['input_format']) ? $widget['input_format'] : $default_format,
     '#options' => $options,
     '#description' => t('Set the order and format for the date parts in the input form. The format will be adapted to remove values not in the granularity for this field.'),
   );
+  
   // Only a limited set of formats is available for the Date Popup module
   if ($widget['type'] != 'date_popup') {
     $form['input']['format']['input_format_custom'] = array(
-      '#type' => 'textfield',  '#title' => t('*Custom input format'),
-      '#default_value' => isset($widget['input_format_custom']) ? $widget['input_format_custom'] : '',
-      '#description' => t('The custom format, if provided, will override the input format selected above. See more about custom date formats below.'),
+      '#type' => 'textfield',  '#title' => t('Custom input format'),
+      '#default_value' => !empty($widget['input_format_custom']) ? $widget['input_format_custom'] : '',
+      '#description' => t("The custom format, if provided, will override the input format selected above. The custom format, if provided, will override the selected display or input options. Define a php date format string like 'm-d-Y H:i' (see <a href=\"@link\">http://php.net/date</a> for more details).", array('@link' => 'http://php.net/date')),
     );
   }
   else {
@@ -248,25 +245,7 @@ function _date_field_settings($op, $field) {
 
     case 'save':
 
-      $options = array('granularity', 'timezone_db', 'tz_handling', 'todate', 'repeat', 'repeat_collapsed');
-      for ($i = 0; $i <= 3; $i++) {
-        switch ($i) {
-        case(1):
-          $name = 'long';
-          break;
-        case(2):
-          $name = 'medium';
-          break;
-        case(3):
-          $name = 'short';
-          break;
-        default:
-          $name = 'default';
-        }
-        $append = ($i > 0 ? '_'. $name : '');
-        $options[] = 'output_format_date'. $append;
-        $options[] = 'output_format_custom'. $append;
-      }
+      $options = array('granularity', 'timezone_db', 'tz_handling', 'todate', 'repeat', 'repeat_collapsed', 'default_format');
       return $options;
 
     case 'database columns':
@@ -285,12 +264,21 @@ function _date_field_settings($op, $field) {
       // date argument and filter handlers created by the Date API.
       unset($data[$table_alias][$field['field_name'] .'_value']['argument']);
       unset($data[$table_alias][$field['field_name'] .'_value']['filter']);
-  
+      
       // Add in another set of fields for the To date.
       if (!empty($field['todate'])) {
+        $data[$table_alias][$field['field_name'] .'_value']['title'] .= ' - value';
+        $data[$table_alias][$field['field_name'] .'_value']['title short'] .= ' - value';
+        $data[$table_alias][$field['field_name'] .'_value']['field']['title'] .= ' - value';
+        $data[$table_alias][$field['field_name'] .'_value']['field']['title short'] .= ' - value';
+        
         $data[$table_alias][$field['field_name'] .'_value2'] = $data[$table_alias][$field['field_name'] .'_value'];
-        $data[$table_alias][$field['field_name'] .'_value']['title'] = t('!label (!field value)', array('!label' => t($field['widget']['label']), '!field' => $field['field_name']));
-        $data[$table_alias][$field['field_name'] .'_value2']['title'] = t('!label (!field value2)', array('!label' => t($field['widget']['label']), '!field' => $field['field_name']));
+        $data[$table_alias][$field['field_name'] .'_value2']['title'] .= '2';
+        $data[$table_alias][$field['field_name'] .'_value2']['title short'] .= '2';
+        $data[$table_alias][$field['field_name'] .'_value2']['field']['title'] .= '2';
+        $data[$table_alias][$field['field_name'] .'_value2']['field']['title short'] .= '2';
+        $data[$table_alias][$field['field_name'] .'_value2']['field']['field'] .= '2';
+        $data[$table_alias][$field['field_name'] .'_value2']['sort']['field'] .= '2';
       }
       return $data;
   }
@@ -301,26 +289,30 @@ function _date_field_settings($op, $field) {
  */
 function date_columns($field) {
   if ($field['type'] == 'date') {
-    $db_columns['value'] = array('type' => 'varchar', 'length' => 20, 'not null' => FALSE, 'sortable' => TRUE);
+    $db_columns['value'] = array('type' => 'varchar', 'length' => 20, 'not null' => FALSE, 'sortable' => TRUE, 'views' => TRUE);
   }
   elseif ($field['type'] == 'datestamp') {
-    $db_columns['value'] = array('type' => 'int', 'not null' => FALSE, 'sortable' => TRUE);
+    $db_columns['value'] = array('type' => 'int', 'not null' => FALSE, 'sortable' => TRUE, 'views' => TRUE);
   }
   elseif ($field['type'] == 'datetime') {
-    $db_columns['value'] = array('type' => 'datetime', 'not null' => FALSE, 'sortable' => TRUE);
+    $db_columns['value'] = array('type' => 'datetime', 'not null' => FALSE, 'sortable' => TRUE, 'views' => TRUE);
   }
   // If a second date is needed for 'To date', just make a copy of the first one.
   if (!empty($field['todate'])) {
     $db_columns['value2'] = $db_columns['value'];
+    
+    // We don't want CCK to create additional columns, just the first.
+    // We modify them our own way in views data.
+    $db_columns['value2']['views'] = FALSE;
   }
   // timezone and offset columns are used only if date-specific dates are chosen.
   if (isset($field['tz_handling']) && $field['tz_handling'] == 'date') {
-    $db_columns['timezone'] = array('type' => 'varchar', 'length' => 50, 'not null' => FALSE, 'sortable' => TRUE);
-    $db_columns['offset'] = array('type' => 'int', 'not null' => FALSE, 'sortable' => TRUE);
-    if (!empty($field['todate'])) $db_columns['offset2'] = array('type' => 'int', 'not null' => FALSE, 'sortable' => TRUE);
+    $db_columns['timezone'] = array('type' => 'varchar', 'length' => 50, 'not null' => FALSE, 'sortable' => TRUE, 'views' => FALSE);
+    $db_columns['offset'] = array('type' => 'int', 'not null' => FALSE, 'sortable' => TRUE, 'views' => FALSE);
+    if (!empty($field['todate'])) $db_columns['offset2'] = array('type' => 'int', 'not null' => FALSE, 'sortable' => TRUE, 'views' => FALSE);
   }
   if (isset($field['repeat']) && $field['repeat'] == 1) {
-    $db_columns['rrule'] = array('type' => 'text', 'not null' => FALSE, 'sortable' => FALSE);
+    $db_columns['rrule'] = array('type' => 'text', 'not null' => FALSE, 'sortable' => FALSE, 'views' => FALSE);
   }
   return $db_columns;
 }
@@ -362,19 +354,18 @@ function date_field_settings_form($field) {
     '#multiple' => TRUE,
     '#description' => t('Set the date elements to be stored (at least a year is required).'),
     );
-  $form['output']['simple'] = date_formatter_setup_form($field, 0);
-  $form['output']['simple']['#title'] = t('Default Display');
-  $form['output']['simple']['#description'] = theme('advanced_help_topic', 'date_api', 'date-display') . t('Set up formatting for the date display.');
-
-  $form['output']['advanced'] = array(
-    '#type' => 'fieldset', '#title' => t('Additional Display Settings'),
-    '#collapsible' => TRUE,
-    '#collapsed' => TRUE,
-    '#description' => t('Options other than the default are made available to views and themes. Possible formats are default, long, medium, and short.'),
-  );
-  for ($i = 1; $i <= 3; $i++) {
-    $form['output']['advanced'][$i] = date_formatter_setup_form($field, $i);
+  $format_types = array();  
+  foreach (date_get_format_types('', TRUE) as $name => $info) {
+    $format_types[$name] = $info['title'];
   }
+  $form['default_format'] = array(
+    '#type' => 'select', 
+    '#title' => t('Default Display'),
+    '#default_value' => !empty($field['default_format']) ? $field['default_format'] : 'medium',
+    '#options' => $format_types,
+    '#description' => t('Select a default format type to be used for the date display. Visit the <a href="@date-time-page">Date and time date format page</a> to add and edit format types.', array('@date-time-page' => base_path() .'admin/settings/date-time/formats')),
+    );
+
   $description = t('Select the timezone handling method to be used for this date field.');
   $description .= date_data_loss_warning('Time zone handling');
   $form['tz_handling'] = array(
@@ -401,8 +392,6 @@ function date_field_settings_form($field) {
       );
   }
 
-  $form['#suffix'] = '<div class="form-item"><div class="description">'. t("* The custom format, if provided, will override the selected display or input options. Define a php date format string like 'm-d-Y H:i' (see !link for more details).", array('!link' => l('http://php.net/date', 'http://php.net/date'))) .'</div></div>';
-
   return $form;
 }
 
@@ -422,51 +411,7 @@ function date_field_settings_validate(&$form, &$form_state) {
 }
 
 function date_data_loss_warning($name) {
-  return t('<p class="error">Changing the %name setting after data has been created could result in the loss of data!</p>', array('%name' => $name));
-}
-
-/**
- *  A form to create a date formatter option
- */
-function date_formatter_setup_form($field, $delta) {
-
-  switch ($delta) {
-  case(1):
-    $name = 'long';
-    $label = t('Long');
-    $default = variable_get('date_format_long',  'l, F j, Y - H:i');
-    break;
-  case(2):
-    $name = 'medium';
-    $label = t('Medium');
-    $default = variable_get('date_format_medium',  'D, m/d/Y - H:i');
-    break;
-  case(3):
-    $name = 'short';
-    $label = t('Short');
-    $default = variable_get('date_format_short', 'm/d/Y - H:i');
-    break;
-  default:
-    $name = 'default';
-    $label = t('Default');
-    $default = variable_get('date_format_short', 'm/d/Y - H:i');
-  }
-  $append = ($delta > 0 ? '_'. $name : '');
-  $form = array(
-    '#type' => 'fieldset', '#title' => $label,
-    );
-
-  $form['output_format_date'. $append] = array(
-    '#type' => 'select', '#title' => t('Date display'),
-    '#default_value' => isset($field['output_format_date'. $append]) ? $field['output_format_date'. $append] : $default,
-    '#options' => date_format_options(),
-    '#multiple' => false,
-  );
-  $form['output_format_custom'. $append] = array(
-    '#type' => 'textfield', '#title' => t('*Custom display format'),
-    '#default_value' => isset($field['output_format_custom'. $append]) ? $field['output_format_custom'. $append] : '',
-  );
-  return $form;
+  return '<p class="error">' . t('Changing the %name setting after data has been created could result in the loss of data!', array('%name' => $name)) . '</p>';
 }
 
 /**
@@ -541,14 +486,7 @@ function date_field_default_values($field_type, $widget_type, $tz_handling, $ove
     'todate' => 'optional',
     'repeat' => in_array($widget_type, $repeat_widgets) ? 1 : 0,
     'repeat_collapsed' => 0, 
-    'output_format_date' => variable_get('date_format_short', 'm/d/Y - H:i'),
-    'output_format_custom' => '', 
-    'output_format_date_long' => variable_get('date_format_long',  'l, F j, Y - H:i'),
-    'output_format_custom_long' => '', 
-    'output_format_date_medium' => variable_get('date_format_medium',  'D, m/d/Y - H:i'),
-    'output_format_custom_medium' => '', 
-    'output_format_date_short' => variable_get('date_format_short', 'm/d/Y - H:i'),
-    'output_format_custom_short' => '',
+    'default_format' => 'medium',
     );
   $base_widget_values = array (
     'label' => '',
@@ -616,6 +554,8 @@ function date_field_default_values($field_type, $widget_type, $tz_handling, $ove
       }
     }
   }
+  // Make sure multiple gets set correctly for repeating dates.
+  if ($field['repeat']) $field['multiple'] = 1;
   
   // Reset columns and db_storage, which may need to be 
   // adjusted to the new values.
@@ -623,4 +563,148 @@ function date_field_default_values($field_type, $widget_type, $tz_handling, $ove
   $field['db_storage'] = content_storage_type($field);
   
   return $field;
+}
+
+/**
+ * Formatter settings.
+ * 
+ * Form element used both in the date_handler_field_multiple Views handler
+ * and on the CCK Display fields page.
+ */
+function _date_formatter_settings($form_state = NULL, $field, $options = array(), $views_form = FALSE) {
+  $field_name = $field['field_name'];
+  $type_name = isset($options['type_name']) ? $options['type_name'] : NULL;
+  $context = isset($options['context']) ? $options['context'] : NULL;
+  if (empty($options['fromto'])) {
+    $options = date_formatter_get_settings($field_name, $type_name, $context);
+  }
+  
+  $form = array();
+  $form['fromto'] = array(
+    '#access' => $field['todate'],
+    '#weight' => 5,
+    );
+  if (isset($options['fromto']) && isset($options['fromto']['fromto'])) {
+    $default = $options['fromto']['fromto'];
+  }
+  else {
+    $default = 'both';
+  }
+  $form['fromto']['fromto'] = array(
+    '#type' => 'select',
+    '#options' => array(
+      'both' => t('Display From and To dates'), 
+      'value' => t('Display From date only'), 
+      'value2' => t('Display To date only'),
+      ),
+    '#default_value' => $default,
+    '#weight' => 1,
+  );  
+
+  $form['multiple'] = array(
+    '#access' => $field['multiple'],
+    '#weight' => 6,
+  );
+
+  // Make the string translatable by keeping it as a whole rather than
+  // translating prefix and suffix separately.
+  if (isset($options['multiple']) && isset($options['multiple']['multiple_number'])) {
+    $default = $options['multiple']['multiple_number'];    
+  }
+  else {
+    $default = '';
+  }
+  list($prefix, $suffix) = explode('@count', t('Show @count value(s)'));
+  $form['multiple']['multiple_number'] = array(
+    '#type' => 'textfield',
+    '#size' => 5,
+    '#field_prefix' => theme('advanced_help_topic', 'date_api', 'date-display') . $prefix,
+    '#field_suffix' => $suffix,
+    '#default_value' => $default,
+    '#weight' => 1,
+  );
+  if ($views_form) {
+    $form['multiple']['multiple_number'] += array(
+      '#process' => array('views_process_dependency'),
+      '#dependency' => array('edit-options-multiple-group' => array(TRUE)),
+    );
+  }
+  
+  if (isset($options['multiple']) && isset($options['multiple']['multiple_from'])) {
+    $default = $options['multiple']['multiple_from'];    
+  }
+  else {
+    $default = '';
+  }
+  list($prefix, $suffix) = explode('@count', t('starting from @count'));
+  $form['multiple']['multiple_from'] = array(
+    '#type' => 'textfield',
+    '#size' => 15,
+    '#field_prefix' => $prefix,
+    '#field_suffix' => $suffix,
+    '#default_value' => $default,
+    '#weight' => 2,
+  );
+  if ($views_form) {
+    $form['multiple']['multiple_from'] += array(
+      '#process' => array('views_process_dependency'),
+      '#dependency' => array('edit-options-multiple-group' => array(TRUE)),
+    );
+  }
+
+  if (isset($options['multiple']) && isset($options['multiple']['multiple_to'])) {
+    $default = $options['multiple']['multiple_to'];    
+  }
+  else {
+    $default = '';
+  }
+  list($prefix, $suffix) = explode('@count', t('ending on @count'));
+  $form['multiple']['multiple_to'] = array(
+    '#type' => 'textfield',
+    '#size' => 15,
+    '#field_prefix' => $prefix,
+    '#field_suffix' => $suffix,
+    '#default_value' => $default,
+    '#weight' => 3,
+  );
+  if ($views_form) {
+    $form['multiple']['multiple_to'] += array(
+      '#process' => array('views_process_dependency'),
+      '#dependency' => array('edit-options-multiple-group' => array(TRUE)),
+    );
+  }
+  
+  $form['repeat'] = array(
+    '#access' => $field['repeat'],
+    '#weight' => 7,
+  );
+  if (isset($options['repeat']) && isset($options['repeat']['show_repeat_rule'])) {
+    $default = $options['repeat']['show_repeat_rule'];
+  }
+  else {
+    $default = 'show';
+  }
+  $form['repeat']['show_repeat_rule'] = array(
+    '#type' => 'select',
+    '#options' => array(
+      'show' => t('Display repeat rule'), 
+      'hide' => t('Hide repeat rule')),
+    '#default_value' => $default,
+  );
+
+  if (!$views_form) {
+    $form['field'] = array(
+      '#type' => 'value',
+      '#value' => $field,
+      );
+    $form['type_name'] = array(
+      '#type' => 'value',
+      '#value' => $type_name,
+      );  
+    $form['context'] = array(
+      '#type' => 'value',
+      '#value' => $context,
+      );  
+  }
+  return $form;
 }

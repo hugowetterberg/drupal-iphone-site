@@ -1,5 +1,5 @@
 <?php
-// $Id: date_popup.module,v 1.42.2.1.2.32 2008/11/30 15:50:24 karens Exp $
+// $Id: date_popup.module,v 1.42.2.1.2.42 2009/02/24 15:54:28 karens Exp $
 /**
  * @file
  * A module to enable jquery calendar and time entry popups.
@@ -58,14 +58,11 @@ function date_popup_init() {
  * requiring a duplicate copy of the settings/code for every element
  * that uses them, but is much faster.  We could combine the logic by
  * putting the ids for each unique function/settings combo into
- * Drupal.settings and searching for each listed id but I don't feel
- * like writing that code right now.
+ * Drupal.settings and searching for each listed id.
  *
  * @param $pfx
  *   The CSS class prefix to search the DOM for.
  *   TODO : unused ?
- * @param $id
- *   The id of the enclosing form element.
  * @param $func
  *   The jQuery function to invoke on each DOM element containing the
  * returned CSS class.
@@ -75,7 +72,7 @@ function date_popup_init() {
  *   The CSS id to assign to the element that should have
  * $func($settings) invoked on it.
  */
-function date_popup_js_settings_id($pfx, $id, $func, $settings) {
+function date_popup_js_settings_id($id, $func, $settings) {
   static $js_added = FALSE;
   static $id_count = array();
 
@@ -169,15 +166,17 @@ function date_popup_process($element, $edit, $form_state, $form) {
   require_once('./'. drupal_get_path('module', 'date_api') .'/date_api_elements.inc');
 
   $date = NULL;
+  $granularity = date_format_order($element['#date_format']);
+  
   if (!empty($edit)) {
     $input = $edit['date'] . (!empty($edit['time']) ? ' '. $edit['time'] : '');
     $datetime = date_convert_from_custom($input, $element['#date_format']);
-    $date = date_make_date($datetime, $element['#date_timezone'], DATE_DATETIME);
+    $date = date_make_date($datetime, $element['#date_timezone'], DATE_DATETIME, $granularity);
   }
   elseif (!empty($element['#value'])) {
-    $date = date_make_date($element['#value'], $element['#date_timezone']);
+    $date = date_make_date($element['#value'], $element['#date_timezone'], DATE_DATETIME, $granularity);
   }
-
+  
   date_increment_round($date, $element['#date_increment']);
   $granularity = date_format_order($element['#date_format']);
   $element['#tree'] = TRUE;
@@ -191,7 +190,6 @@ function date_popup_process($element, $edit, $form_state, $form) {
   else {
     $element['#element_validate'] = array('date_popup_validate');
   }
-  
   return $element;
 }
 
@@ -205,24 +203,21 @@ function date_popup_process_date(&$element, $edit = NULL, $date = NULL) {
   $date_format = (date_limit_format($element['#date_format'], $date_granularity));
 
   if (empty($date_granularity)) return array();
-
-  // Center the range around the current year, but expand it far
-  // enough so it will pick up the year value in the field in case
-  // the value in the field is outside the initial range.
+  
   // The datepicker can't handle zero or negative values like 0:+1
   // even though the Date API can handle them, so rework the value
   // we pass to the datepicker to use defaults it can accept.
   $this_year = date_format(date_now(), 'Y');
-  $value_year = is_object($date) ? date_format($date, 'Y') : $this_year;
-  $range = explode(':', $element['#date_year_range']);
-  $min_year = min($value_year, $this_year + $range[0]);
-  $max_year = max($value_year, $this_year + $range[1]);
-  $year_range = sprintf('%+d', $min_year - $this_year) .':'. sprintf('%+d', $max_year - $this_year);
-  
+  $range = date_range_years($element['#date_year_range'], $date);
+  if ($range[0] > $this_year) {
+    $range[0] = $this_year;
+  }
+  $year_range = date_range_string($range);
+
   $settings = array(
-    'prevText' => '&lt;'. t('Prev'),
-    'nextText' => t('Next') .'&gt;',
-    'currentText' => t('Today'),
+    'prevText' => '&lt;'. date_t('Prev', 'date_nav'),
+    'nextText' => date_t('Next', 'date_nav') .'&gt;',
+    'currentText' => date_t('Today', 'date_nav'),
     'clearText' => t('Clear'),
     'closeText' => t('Close'),
     'firstDay' => intval(variable_get('date_first_day', 0)),
@@ -243,7 +238,7 @@ function date_popup_process_date(&$element, $edit = NULL, $date = NULL) {
     );    
   
   // Create a unique id for each set of custom settings.
-  $id = date_popup_js_settings_id('jquery-calendar', $element['#id'], 'datepicker', $settings);
+  $id = date_popup_js_settings_id($element['#id'], 'datepicker', $settings);
   $sub_element = array(
     '#type' => 'textfield',
     '#default_value' => (!empty($element['#value']['date']) || !empty($edit['date'])) && is_object($date) ? date_format($date, $date_format) : '',
@@ -251,7 +246,9 @@ function date_popup_process_date(&$element, $edit = NULL, $date = NULL) {
     '#size' => !empty($element['#size']) ? $element['#size'] : 20,
     '#maxlength' => !empty($element['#maxlength']) ? $element['#maxlength'] : 30,
     );
-   
+  if (!empty($element['#force_value'])) {
+    $sub_element['#value'] = $sub_element['#default_value'];
+  }
   // TODO, figure out exactly when we want this description. In many places it is not desired.
   $sub_element['#description'] = ' '. t('Format: @date', array('@date' => date($date_format, time())));
   return $sub_element;
@@ -276,7 +273,7 @@ function date_popup_process_time(&$element, $edit = NULL, $date = NULL) {
     );
 
   // Create a unique id for each set of custom settings.
-  $id = date_popup_js_settings_id('jquery-timeentry', $element['#id'], 'timeEntry', $settings);
+  $id = date_popup_js_settings_id($element['#id'], 'timeEntry', $settings);
   $sub_element = array(
     '#type' => 'textfield',
     '#default_value' => (!empty($element['#value']['time']) || !empty($edit['time'])) && is_object($date) ? date_format($date, $time_format) : '',
@@ -284,6 +281,9 @@ function date_popup_process_time(&$element, $edit = NULL, $date = NULL) {
     '#size' => 10,
     '#maxlength' => 10,
     );
+  if (!empty($element['#force_value'])) {
+    $sub_element['#value'] = $sub_element['#default_value'];
+  }
   // TODO, figure out exactly when we want this description. In many places it is not desired.
   $sub_element['#description'] = t('Format: @date', array('@date' => date($time_format, time())));
   return ($sub_element);
@@ -304,14 +304,15 @@ function date_popup_validate($element, &$form_state) {
   $granularity = $element['#granularity'];
   $date_granularity = array_intersect($granularity, array('month', 'day', 'year'));
   $time_granularity = array_intersect($granularity, array('hour', 'minute', 'second'));
+  $label = !empty($element['#date_title']) ? $element['#date_title'] : (!empty($element['#title']) ? $element['#title'] : '');
   
   // If the field is empty and not required, set it to empty and return.
   // If the field is empty and required, set error message and return.
   $error_field = implode('][', $element['#parents']);
-  if (empty($element['#value']['date']) && empty($element['#value']['time'])) {
+  if (empty($element['#value']['date'])) {
     if ($element['#required']) {
       // Set message on both date and time to get them highlighted properly.
-      $message = t('%field is required.', array('%field' => $element['#title']));
+      $message = t('Field %field is required.', array('%field' => $label));
       if (!empty($date_granularity)) {
         form_set_error($error_field .'][date', $message);  
         $message = ' ';
@@ -335,7 +336,7 @@ function date_popup_validate($element, &$form_state) {
   }
   else {
     // Set message on both date and time to get them highlighted properly.
-    $message = t('%field is invalid.', array('%field' => $element['#title']));
+    $message = t('Field %field is invalid.', array('%field' => $label));
     if (!empty($date_granularity)) {
       form_set_error($error_field .'][date', $message);  
       $message = ' ';
@@ -370,8 +371,8 @@ function date_popup_input_value($element, $auto_complete = FALSE) {
     $time = date_convert_from_custom(trim(!empty($element['#value']['time']) ? $element['#value']['time'] : ''), $time_format);
     $value = trim(substr($date, 0, 10) .' '. substr($time, 11, 8));
   }
-  if (date_is_valid($value, DATE_DATETIME)) {
-    $date = date_make_date($value, $element['#date_timezone'], DATE_DATETIME);
+  if (date_is_valid($value, DATE_DATETIME, $granularity)) {
+    $date = date_make_date($value, $element['#date_timezone'], DATE_DATETIME, $granularity);
     $value = date_convert($date, DATE_OBJECT, DATE_DATETIME);
     return $value;
   }

@@ -1,5 +1,5 @@
 <?php
-// $Id: theme.inc,v 1.1.4.28 2008/11/20 12:28:59 karens Exp $
+// $Id: theme.inc,v 1.1.4.33 2009/02/17 17:04:31 karens Exp $
 /**
  *  Preprocessor to construct back and next navigation from the date argument.
  */
@@ -11,7 +11,7 @@ function template_preprocess_date_navigation(&$vars) {
   $min_date = is_object($view->date_info->min_date) ? $view->date_info->min_date : date_now();
   $max_date = is_object($view->date_info->max_date) ? $view->date_info->max_date : date_now();
   
-  if (!isset($view->date_info->hide_nav)) {
+  if (empty($view->date_info->hide_nav)) {
     $prev_date = drupal_clone($min_date);
     date_modify($prev_date, '-1 '. $view->date_info->granularity);
     $next_date = drupal_clone($min_date);
@@ -61,6 +61,7 @@ function template_preprocess_date_navigation(&$vars) {
 	if (!empty($view->date_info->block) && $view->date_info->granularity == 'month') {
 	  $link = TRUE;
   }
+  
   $nav_title = theme('date_nav_title', $view->date_info->granularity, $view, $link);
   $vars['nav_title'] = $nav_title;
   $vars['block'] = !empty($view->date_info->block);
@@ -144,7 +145,9 @@ function template_preprocess_date_vcalendar(&$vars) {
   // Format the event results as iCal expects.
   $events_in = $vars['events'];
   $events = array();
+  $rows = $vars['rows'];
   foreach ($events_in as $uid => $event) {
+    $row = array_shift($rows);
     // Omit any items with empty dates.
     if (!empty($event['start'])) {
       $events[$uid] = $event;
@@ -155,9 +158,10 @@ function template_preprocess_date_vcalendar(&$vars) {
       else {
         $events[$uid]['timezone'] = '';
       }
-      $events[$uid]['start'] = date_format($event['start'], DATE_FORMAT_ICAL);
+      $date_format = ($row->calendar_all_day == TRUE) ? DATE_FORMAT_ICAL_DATE : DATE_FORMAT_ICAL;
+      $events[$uid]['start'] = date_format($event['start'], $date_format);
       if ($event['start'] && $event['end']) {
-        $events[$uid]['end'] = date_format($event['end'], DATE_FORMAT_ICAL);
+        $events[$uid]['end'] = date_format($event['end'], $date_format);
       }
       else {
         $events[$uid]['end'] = $events[$uid]['start'];
@@ -299,25 +303,25 @@ function theme_date_part_minsec_prefix($element) {
  *   Properties used: title, value, options, description, required and attributes.
  */
 function theme_date_part_label_year($part_type, $element) {
-  return t('Year');
+  return date_t('Year', 'datetime');
 }
 function theme_date_part_label_month($part_type, $element) {
-  return t('Month');
+  return date_t('Month', 'datetime');
 }
 function theme_date_part_label_day($part_type, $element) {
-  return t('Day');
+  return date_t('Day', 'datetime');
 }
 function theme_date_part_label_hour($part_type, $element) {
-  return t('Hour');
+  return date_t('Hour', 'datetime');
 }
 function theme_date_part_label_minute($part_type, $element) {
-  return t('Minute');
+  return date_t('Minute', 'datetime');
 }
 function theme_date_part_label_second($part_type, $element) {
-  return t('Second');
+  return date_t('Second', 'datetime');
 }
 function theme_date_part_label_ampm($part_type, $element) {
-  return t('am/pm');
+  return ' ';
 }
 function theme_date_part_label_timezone($part_type, $element) {
   return t('Timezone');

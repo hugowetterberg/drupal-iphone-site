@@ -1,8 +1,106 @@
-//$Id: CHANGELOG.txt,v 1.1.8.283 2008/12/02 19:43:01 karens Exp $
+//$Id: CHANGELOG.txt,v 1.1.8.375 2009/02/27 14:17:27 karens Exp $
 Date Module 6.x
 =================
 Version 6.2-dev
 =================
+
+- #376880 Move back/next symbols back into link.
+- Exposed filter was not testing empty values correctly.
+- Add Advanced help for new formatter settings.
+- Add formatter settings for node and view to control which multiple value to display when.
+- Improve interpretation of argument date ranges.
+- Improve handling of translation for Date repeat rules.
+- #347645 Mark 'To date' required if it is.
+- #345215, #309921 Rework the way multiple 'From date' and 'To date' fields are identified in validation errors.
+- #375551 The 'All day' formatting should not be applied to format_interval formats.
+- Date PHP4: fix inconsistency in offset computation for first two hours of the day dst changes.
+- Date PHP4: eliminate some needless cycles to improve performance.
+- Add test files to import RRULEs in .ics, all day dates in .ics, and date info in .csv formats used by Yahoo Calendar and Outlook.
+- iCal TRIGGER can either be a date or a duration.
+- Fix to iCal: alter the end date of all day events to match the to date.
+  The ical practice of setting the End date as the next day won't work for our interal use of this value.
+- Fix to iCal: leave 'all day' notice in the individual date components as well
+  as the top level so it is available in each portion of the VEVENT array, needed for FeedAPI parsing.
+- Fix broken date link in calendar created by Date Tools.
+- Make the default value for the 'To date' easier to see in the field settings.
+- Update date argument summary for recent changes in Views.
+- #345077 Make sure duplicate copies of the date field each get to theme the raw, unaltered, data.
+- #375551 Fix fatal typo in reworked date_format_date() function.
+- #338253 Re-work the Date repeat description to provide more context for translations.
+- #338253 Re-work date_t() to create a more robust method of handling translations of abbreviations and other short strings.
+- The date filter should not be setting the view dates, the style should do that.
+- Add 'value' and 'value2' hints to views fields and use new CCK views data.
+- Give the Date browser a better path with no underscore.
+- #370961 Date format update was not PostgreSQL-safe.
+- #337301 Move hook_schema_alter from date_api.module to date_api.install.
+- #367688 Fix date format css to display remove link better.
+- Add our custom date formats as values on the core locale form so we don't get errors on submission if they are missing.
+- #348241 Don't unset view copy on node because it interferes with template suggestions. Need to watch this for possible performance problems.
+- #364770 Add new date link needs to convert underscore to hyphen.
+- Can't use date-clear attribute on timezone list.
+- #370092 Add all-day checkbox to date field and use it in calendar.
+- #347090 Fix southern hemisphere timezone adjustment for PHP4.
+- Make sure un-exposed filter checks for defaults to find values like 'now'.
+- Fix bug that caused date_select to end up as current date.
+- #364919 Fix typo in html link for date format information.
+- #360670 Rework date_range to better handle absolute as well as relative years in argument and filter.
+- #367970 Fix date filter bugs, better handling for partial dates and force date popup to use the right default value.
+- #313369 Repeating date with exceptions created error when exceptions data is appended.
+- #363424 Empty value should be object, not array.
+- Fix bad PHP4 regex that caused endless looping in calendar and broken logic elsewhere.
+- by stella, nedjo, grugnog2, and catch: #318008 Create new system for handling flexible date formats that can be adapted by locale.
+- Make sure prev/next links point to the right path when another argument precedes the date argument and is empty.
+- Don't try to set date argument when another argument precedes it.
+- Make sure theme functions can be discovered even when called from unexpected places, like embedded views.
+- Make the PHP4 code forgiving enough to accept '+ 1 month' instead of '+1 month'.
+- Overcome Views form handling to make sure text and Date popup exposed filters will default to the right values.
+- #348276 Remove class date-clear-block from timezone element.
+- #217153 Remove asterisks from custom format now that they are explained in advanced help.
+- #292942 Only load timezone js file in timezone forms.
+- #313427 Don't add the date field to the view, it may be enough to join the table in.
+- #356564 Add Date popup option for exposed date filters.
+- #349306 Incorporate year range into date filter year option.
+- #312403 Add NULL/NOT NULL handling to date filter.
+- #356305 Date filters needed a rewrite to properly handle between with more than one date field.
+- #350656 Fix broken handling for 'time ago'.
+- #307578 Add permissions for viewing date repeats tab.
+- Clean out unused part of Date Popup jQuery code for easier maintenance.
+- #347080 Fix PHP4 southern timezone computation and New Zealand region.
+- #353327 Check for Event 2 timezone table before trying to use it.
+- #310633 Rework 'all day' logic to correctly handle increments.
+- #345953 Fix report of update failure from missing content_check_update() function. 
+- #348157 Beautiful new datepicker popup themes and images from hass. Thanks!
+- #357226 Don't translate menu items.
+- #357094 Remove extra parenthesis.
+- #346752 Add RTL css code.
+- #324290 Don't validate when $items is empty.
+- #348375 Add missing php tags in template.
+- #347878 Translation fixes.
+- Add new module 'Date tools' with date wizard to easily create a simple date content type with an auto-configured related calendar.
+- #313704 Make sure date db timezone does not get removed before token handling.
+- #313704 Fix token 'From date' value that was using 'To date' value.
+- #327897 Fix To-view token in date_token.inc
+- #345862 Fix missing close comment tag in datepicker css.
+- Date input and display formats were not properly defaulting to the site default values.
+- Improve the template and css for the exposed date filter to keep date parts lined up next to each other.
+- Fix handling for fixed date default value in date filter.
+- Get rid of DURATION time part details in iCal array, we only need the DATA and DURATION.
+- #282521 Do more work on LOCATION to split out UID and handle odd upcoming.org location identifiers.
+- Add more error trapping to ical parser.
+- Add handling to ical parser for odd upcoming.org location format.
+- #341705 Fix broken iCal DURATION parsing.
+- Add some protection against empty or missing info in ical parser.
+- #343126 Fix date argument handler type assignment.
+- #343190 Add validity testing to date_api_ical_build_rrule().
+- #307166 Make sure timestamps with missing granularity parts in select widgets get defaulted to empty values and saved correctly.
+- #341203 Make sure there is no SQL error if there are no fields.
+- Add ability to analyze a period to period argument, like P1M--P1Y.
+- Adapt Date Argument/Date Browser code to work correctly if only a period is used.
+- #324063 Remove unneeded break.
+- #320596 Add hook to date_api_fields() so custom modules can add date fields to the Date argument and filter.
+- #341964 Get missing back/next links back in year.
+- Add date_increment_round() to date_content_generate to make sure generated dates match increment settings.
+- Move Date repeat form help to Advanced Help instead of using collapsed fieldset.
 
 Version 6.2-rc6
 =================

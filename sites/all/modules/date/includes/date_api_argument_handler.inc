@@ -1,5 +1,5 @@
 <?php
-// $Id: date_api_argument_handler.inc,v 1.1.2.22 2008/12/02 17:32:35 karens Exp $
+// $Id: date_api_argument_handler.inc,v 1.1.2.34 2009/02/26 17:18:53 karens Exp $
 /**
  * Date API argument handler.
  */
@@ -29,7 +29,7 @@ class date_api_argument_handler extends views_handler_argument_date {
     
     // Set the view range, do this only if not already set in case there are multiple date arguments.
     if (empty($this->view->date_info->min_allowed_year)) {
-      $range = $this->year_range();
+      $range = date_range_years($this->options['year_range']);
       $this->view->date_info->min_allowed_year = !empty($range) && is_array($range) ? $range[0] : variable_get('min_allowed_year', 100);
       $this->view->date_info->max_allowed_year = !empty($range) && is_array($range) ? $range[1] : variable_get('max_allowed_year', 4000);
     }
@@ -57,7 +57,7 @@ class date_api_argument_handler extends views_handler_argument_date {
     parent::options_form($form, $form_state);
     $options = $this->date_handler->date_parts();
     unset($options['second'], $options['minute']);
-    $options += array('week' => t('Week'));
+    $options += array('week' => date_t('Week', 'datetime'));
     $form['granularity'] = array(
       '#title' => t('Granularity'),
       '#type' => 'radios',
@@ -71,7 +71,7 @@ class date_api_argument_handler extends views_handler_argument_date {
       '#title' => t('Date year range'),
       '#type' => 'textfield',
       '#default_value' => $this->options['year_range'],
-      '#description' => t("Set the allowable minimum and maximum year range for this argument, either a -X:+X offset from the current year, like '-3:+3' or an absolute minimum and maximum year, like '2005:2010'.  When the argument is set to a date outside the range, the page will be returned as 'Page not found (404)'."),
+      '#description' => t("Set the allowable minimum and maximum year range for this argument, either a -X:+X offset from the current year, like '-3:+3' or an absolute minimum and maximum year, like '2005:2010'. When the argument is set to a date outside the range, the page will be returned as 'Page not found (404)'."),
     );
     
     $fields = date_api_fields();
@@ -120,16 +120,6 @@ class date_api_argument_handler extends views_handler_argument_date {
     if ($form_state['values']['form_id'] == 'views_ui_config_item_form') {
       $form_state['values']['options']['date_fields'] = array_filter($form_state['values']['options']['date_fields']);
     }
-  }
-  
-  function year_range() {
-    $year_range = explode(':', $this->options['year_range']);
-    if (substr($this->options['year_range'], 0, 1) == '-' || $year_range[0] < 0) {
-      $this_year = date_format(date_now(), 'Y');
-      $year_range[0] = $this_year + $year_range[0];
-      $year_range[1] = $this_year + $year_range[1];
-    }
-    return $year_range;
   }
   
   // Update the summary values to show selected granularity.
@@ -226,15 +216,9 @@ class date_api_argument_handler extends views_handler_argument_date {
     $format = $date_handler->views_formats($this->options['granularity'], 'sql');
     $this->formula = $date_handler->sql_format($format, $date_handler->sql_field($field['fullname']));
     
-    $this->ensure_my_table();
-    
-    // Make sure this field is added to the query so we have all necessary tables.
-    $this->query->add_field($field['table_name'], $field['field_name']);
-      
     // Add the computed field.
     $this->base_alias = $this->name_alias = $this->query->add_field(NULL, $this->formula, $field['query_name']);
-    $this->query->set_count_field(NULL, $this->formula, $field['query_name']);    
-
+       
     return $this->summary_basics(FALSE);
   }
 
@@ -264,9 +248,8 @@ class date_api_argument_handler extends views_handler_argument_date {
    * is the wildcard, since query() is skipped when the wildcard is used.
    */
   function pre_query() { 
-    
     // Unset invalid date values before the query runs.
-    if (!empty($this->view->args)) {
+    if (!empty($this->view->args) && count($this->view->args) > $this->position) {
       $argument = $this->view->args[$this->position];
       $parts = $this->date_handler->arg_parts($argument);
       if (empty($parts[0]['date']) && empty($parts[0]['period'])) {
@@ -281,14 +264,6 @@ class date_api_argument_handler extends views_handler_argument_date {
         // Explicitly add this table using add_table so Views does not
         // remove it if it is a duplicate, since that will break the query.
         $this->query->add_table($field['table_name'], NULL, NULL, $field['table_name']);
-        // Make sure the real field is added to the query.
-        $this->query->add_field($field['table_name'], $field['field_name']);
-        foreach ($field['related_fields'] as $related) {
-          $bits = explode('.', $related);
-          if ($bits[1] != $field['field_name']) {
-            $this->query->add_field($field['table_name'], $bits[1]);
-          }
-        }
       }
     }
   }
@@ -317,23 +292,29 @@ class date_api_argument_handler extends views_handler_argument_date {
     
     $parts = $this->date_handler->arg_parts($this->argument);
     
-    foreach ($parts[0]['date'] as $key => $part) {
-      // The last part evaluated is the one that will 'stick'
-      // as the date type.
-      $this->granularity = $key;
-      $this->$key = $part;
+    foreach ($parts as $type) {
+      foreach ($type as $part) {
+        foreach ($part as $key => $value) {
+          if (!empty($value)) {
+            // The last part evaluated is the one that will 'stick'
+            // as the date type.
+            $this->granularity = $key;
+            $this->$key = $value;
+          }
+        }
+      }
     }
+    
     $range = $this->date_handler->arg_range($this->argument);
     $min_date = $range[0];
     $max_date = $range[1];
-    
     $this->min_date = $min_date;
     $this->max_date = $max_date;
     
     // See if we're outside the allowed date range for our argument.
     if (date_format($min_date, 'Y') < $this->view->date_info->min_allowed_year || date_format($max_date, 'Y') > $this->view->date_info->max_allowed_year) {
       drupal_not_found();
-      break;
+      exit;
     }
     
     // The second option seems to work better in the block view if 

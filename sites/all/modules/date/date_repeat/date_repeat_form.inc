@@ -1,5 +1,5 @@
 <?php
-// $Id: date_repeat_form.inc,v 1.15.4.8 2008/11/09 12:01:51 karens Exp $
+// $Id: date_repeat_form.inc,v 1.15.4.13 2009/02/16 23:46:08 karens Exp $
 /**
  * @file
  * Code to add a date repeat selection form to a date field and create
@@ -63,12 +63,12 @@ function _date_repeat_rrule_process($element, $edit, $form_state, $form) {
     date_timezone_set($until_date, timezone_open($timezone));
     $UNTIL = date_format($until_date, DATE_FORMAT_DATETIME);
   }
-
+  $parent_collapsed = !empty($rrule['INTERVAL']) || !empty($rrule['FREQ']) ? 0 : (!empty($element['#date_repeat_collapsed']) ? $element['#date_repeat_collapsed'] : 0);
   $element['#type'] = 'fieldset';
   $element['#title'] = t('Repeat');
-  $element['#description'] = t('Choose a frequency and period to repeat this date. If nothing is selected, the date will not repeat.');
+  $element['#description'] = theme('advanced_help_topic', 'date_api', 'date-repeat-form') . t('Choose a frequency and period to repeat this date. If nothing is selected, the date will not repeat.');
   $element['#collapsible'] = TRUE;
-  $element['#collapsed'] = !empty($element['#date_repeat_collapsed']) ? $element['#date_repeat_collapsed'] : 0;
+  $element['#collapsed'] = $parent_collapsed;
   
   // Make sure we don't get floating parts where we don't want them.
   $element['#prefix'] = '<div class="date-clear">';
@@ -129,7 +129,7 @@ function _date_repeat_rrule_process($element, $edit, $form_state, $form) {
 
   $element['advanced']['BYMONTH'] = array(
     '#type' => 'select',
-    '#title' => t('Month'),
+    '#title' => date_t('Month', 'datetime'),
     '#default_value' => !empty($rrule['BYMONTH']) ? $rrule['BYMONTH'] : '',
     '#options' => array('' => t('-- Any')) + date_month_names(TRUE),
     '#multiple' => TRUE,
@@ -164,7 +164,7 @@ function _date_repeat_rrule_process($element, $edit, $form_state, $form) {
   $element['exceptions'] = array(
     '#type' => 'fieldset',
     '#collapsible' => TRUE,
-    '#collapased' => empty($exceptions) ? TRUE : FALSE,
+    '#collapsed' => empty($exceptions) ? TRUE : FALSE,
     '#title' => t('Except'),
     '#description' => t('Dates to omit from the list of repeating dates.'),
     '#prefix' => '<div class="date-repeat">',
@@ -192,13 +192,6 @@ function _date_repeat_rrule_process($element, $edit, $form_state, $form) {
       'granularity' => array('#type' => 'hidden', '#value' => serialize(array('year', 'month', 'day'))),
       );
   }
-  $element['help'] = array(
-    '#type' => 'fieldset',
-    '#title' => t('Help'),
-    '#collapsible' => TRUE,
-    '#collapsed' => TRUE,
-    '#description' => t("<p>Dates will match any selection within the same box [January OR June]. When more than one box has criteria selected, all of them are combined to create repeats [[January OR June] AND [Day 1 OR Day 15]]. Positive numbers count from the beginning of the period. Negative numbers count from the end of the period, i.e. -1 is the last, -2 is the next to last, etc.</p><ul><li>If you select 'Every Year' above, and 'March' from 'Month' and '1' and '15' from 'Day of Month' in the Advanced options you will be selecting the 1st and 15th days of March of every year.</li><li>If you select 'Every other Month' above, and 'Second Tuesday' in the Advanced options you will be selecting the second Tuesday of every other month.</li><li>If you select 'Every Year' above, and 'Second Tuesday' in the Advanced options you will be selecting the second Tuesday of every year.</li><li>If you select 'Every Month' above, and 'January' and 'June' and 'First Saturday' in the Advanced options, you will be selecting the first Saturday in January or June.</li><li>If you select 'Every Month' above, and '-1' from 'Day of Month' in the Advanced options you will be selecting the last day of every month.</li></ul>"),
-    );
   return $element;
 }
 
@@ -212,11 +205,9 @@ function date_repeat_merge($form_values, $element) {
   if (array_key_exists('advanced', $form_values) || array_key_exists('exceptions', $form_values)) {
     if (!array_key_exists('advanced', $form_values)) $form_values['advanced'] = array();
     if (!array_key_exists('exceptions', $form_values)) $form_values['exceptions'] = array();
-    if (!array_key_exists('help', $form_values)) $form_values['help'] = array();
     $form_values = array_merge($form_values, (array) $form_values['advanced'], (array) $form_values['exceptions']);
     unset($form_values['advanced']);
     unset($form_values['exceptions']);
-    unset($form_values['help']);
   }
   if (array_key_exists('BYDAY', $form_values)) unset($form_values['BYDAY']['']);
   if (array_key_exists('BYMONTH', $form_values)) unset($form_values['BYMONTH']['']);
@@ -264,7 +255,7 @@ function theme_date_repeat_current_exceptions($rows = array()) {
       $rows_info[] = array(drupal_render($value['action']), drupal_render($value['display']));
     }
   }
-  return theme('table', array(t('Delete'), t('Current Exceptions')), $rows_info);
+  return theme('table', array(t('Delete'), t('Current exceptions')), $rows_info);
 }
 
 /**

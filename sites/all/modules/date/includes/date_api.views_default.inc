@@ -1,5 +1,5 @@
 <?php
-//$Id: date_api.views_default.inc,v 1.1.2.3 2008/12/02 17:32:35 karens Exp $
+//$Id: date_api.views_default.inc,v 1.1.2.5 2009/02/15 13:31:08 karens Exp $
 function date_api_views_default_views() {
  
 $view = new view;
@@ -10,7 +10,7 @@ $view->view_php = '';
 $view->base_table = 'node';
 $view->is_cacheable = FALSE;
 $view->api_version = 2;
-$view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+$view->disabled = TRUE; /* Edit this to true to make a default view disabled initially */
 $handler = $view->new_display('default', 'Defaults', 'default');
 $handler->override_option('arguments', array(
   'date_argument' => array(
@@ -65,7 +65,7 @@ $handler->override_option('row_options', array(
   'comments' => 0,
 ));
 $handler = $view->new_display('page', 'Page', 'page');
-$handler->override_option('path', 'date_browser');
+$handler->override_option('path', 'date-browser');
 $handler->override_option('menu', array(
   'type' => 'none',
   'title' => '',
@@ -83,7 +83,7 @@ $handler->override_option('row_plugin', 'fields');
 $handler->override_option('row_options', array());
 $handler->override_option('attachment_position', 'before');
 $handler->override_option('inherit_arguments', TRUE);
-$handler->override_option('inherit_exposed_filters', FALSE);
+$handler->override_option('inherit_exposed_filters', TRUE);
 $handler->override_option('displays', array(
   'page' => 'page',
   'default' => 0,

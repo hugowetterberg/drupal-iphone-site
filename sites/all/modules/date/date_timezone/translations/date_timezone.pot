@@ -1,9 +1,9 @@
-# $Id: date_timezone.pot,v 1.1.2.1 2008/09/06 21:28:01 karens Exp $
+# $Id: date_timezone.pot,v 1.1.2.4 2009/02/17 11:06:08 karens Exp $
 #
 # LANGUAGE translation of Drupal (general)
 # Copyright YEAR NAME <EMAIL@ADDRESS>
 # Generated from files:
-#  date_timezone.module,v 1.18.2.3.2.4 2008/08/30 13:57:40 karens
+#  date_timezone.module,v 1.18.2.3.2.11 2009/01/13 14:37:48 karens
 #  date_timezone.install,v 1.7.2.2.2.6 2008/09/06 14:20:10 karens
 #  date_timezone.info,v 1.3.4.1 2008/06/27 14:14:01 karens
 #
@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2008-09-06 16:21-0500\n"
+"POT-Creation-Date: 2009-02-17 04:58-0600\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -20,35 +20,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: (duplicate) date_timezone.module:19 date_timezone.install:45 
-msgid "The Date Timezone module requires you to !link."
+#: date_timezone.module:18
+msgid "The Date Timezone module requires you to <a href=\"@link\">set the site timezone name</a>."
 msgstr ""
 
-#: (duplicate) date_timezone.module:19 date_timezone.install:45 
-msgid "set the site timezone name"
-msgstr ""
-
-#: date_timezone.module:60;95
+#: date_timezone.module:63;118
 msgid "Default time zone"
 msgstr ""
 
-#: date_timezone.module:63
+#: date_timezone.module:66
 msgid "Select the default site time zone. If in doubt, choose the timezone that is closest to your location which has the same rules for daylight saving time."
 msgstr ""
 
-#: date_timezone.module:98
-msgid "Select your current local time.  If in doubt, choose the timezone that is closest to your location which has the same rules for daylight saving time. Dates and times throughout this site will be displayed using this time zone."
+#: date_timezone.module:121
+msgid "Select your current local time. If in doubt, choose the timezone that is closest to your location which has the same rules for daylight saving time. Dates and times throughout this site will be displayed using this time zone."
 msgstr ""
 
-#: date_timezone.module:205
+#: date_timezone.module:259
 msgid "timezone"
 msgstr ""
 
-#: date_timezone.module:205
+#: date_timezone.module:259
 msgid "Detected time zone: %timezone; client date: %date; abbreviation: %abbreviation; offset: %offset; daylight saving time: %is_daylight_saving_time."
 msgstr ""
 
-#: date_timezone.module:29
+#: date_timezone.module:28
 msgid "User timezone"
 msgstr ""
 
@@ -1582,6 +1578,14 @@ msgstr ""
 
 #: date_timezone.install:601
 msgid "UTC"
+msgstr ""
+
+#: (duplicate) date_timezone.install:45 
+msgid "The Date Timezone module requires you to !link."
+msgstr ""
+
+#: (duplicate) date_timezone.install:45 
+msgid "set the site timezone name"
 msgstr ""
 
 #: (duplicate) date_timezone.install:51 

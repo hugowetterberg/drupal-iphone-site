@@ -1,5 +1,5 @@
 <?php
-// $Id: date-views-filter-form.tpl.php,v 1.1.2.3 2008/07/22 14:45:28 karens Exp $
+// $Id: date-views-filter-form.tpl.php,v 1.1.2.4 2008/12/08 12:15:57 karens Exp $
 /**
  * @file
  * Template to display the Views date filter form.
@@ -27,7 +27,7 @@
  * $description
  */
 ?>
-<div>
+<div class="date-views-filter-wrapper">
 <div class="container-inline-date date-clear">
 <?php if (!empty($date) || !empty($adjustment)) : ?> 
   <div class="date-clear"> 

@@ -5,9 +5,9 @@ dependencies[] = date_api
 dependencies[] = date_timezone
 package = Date/Time
 core = 6.x
-; Information added by drupal.org packaging script on 2008-12-02
-version = "6.x-2.0-rc6"
+; Information added by drupal.org packaging script on 2009-02-27
+version = "6.x-2.0"
 core = "6.x"
 project = "date"
-datestamp = "1228247410"
+datestamp = "1235756424"
 

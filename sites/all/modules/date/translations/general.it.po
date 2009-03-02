@@ -1,0 +1,121 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2009-01-11 11:03+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: thePanz <thepanz@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: date_api_elements.inc:146
+#: date_popup/date_popup.module:256;288
+msgid "Format: @date"
+msgstr "Formato: @date"
+
+#: date_api_sql.inc:514
+#: date_api.module:432
+#: theme/theme.inc:302
+msgid "Year"
+msgstr "Anno"
+
+#: date_api_sql.inc:514
+#: date_api.module:432
+#: date_repeat/date_repeat_form.inc:132
+#: theme/theme.inc:305
+msgid "Month"
+msgstr "Mese"
+
+#: date_api_sql.inc:514
+#: date_api.module:432
+#: theme/theme.inc:308
+msgid "Day"
+msgstr "Giorno"
+
+#: date_api_sql.inc:515
+#: date_api.module:433
+#: theme/theme.inc:311
+msgid "Hour"
+msgstr "Ora"
+
+#: date_api_sql.inc:515
+#: date_api.module:433
+#: theme/theme.inc:314
+msgid "Minute"
+msgstr "Minuto"
+
+#: date_api_sql.inc:515
+#: date_api.module:433
+#: date_repeat/date_repeat.module:97
+#: theme/theme.inc:317
+msgid "Second"
+msgstr "Secondo"
+
+#: date_api_sql.inc:695
+#: date/date_admin.inc:361
+#: date_tools/date_tools.module:153
+#: includes/date_api_argument_handler.inc:62
+msgid "Granularity"
+msgstr "Granularità"
+
+#: date_api.module:175
+#: date_repeat/date_repeat.module:69
+msgid "Sunday"
+msgstr "Domenica"
+
+#: date_api.module:175
+#: date_repeat/date_repeat.module:70
+msgid "Monday"
+msgstr "Lunedì"
+
+#: date_api.module:175
+#: date_repeat/date_repeat.module:71
+msgid "Tuesday"
+msgstr "Martedì"
+
+#: date_api.module:176
+#: date_repeat/date_repeat.module:72
+msgid "Wednesday"
+msgstr "Mercoledì"
+
+#: date_api.module:176
+#: date_repeat/date_repeat.module:73
+msgid "Thursday"
+msgstr "Giovedì"
+
+#: date_api.module:176
+#: date_repeat/date_repeat.module:74
+msgid "Friday"
+msgstr "Venerdì"
+
+#: date_api.module:177
+#: date_repeat/date_repeat.module:75
+msgid "Saturday"
+msgstr "Sabato"
+
+#: date/date_admin.inc:77;95
+#: date_popup/date_popup.module:269
+msgid "Now"
+msgstr "Adesso"
+
+#: date/date_elements.inc:335
+#: includes/date_api_filter_handler.inc:240
+msgid "From date"
+msgstr "Data iniziale"
+
+#: date/date_elements.inc:337
+#: includes/date_api_filter_handler.inc:243
+msgid "To date"
+msgstr "Data finale"
+
+#: date/date.module:26
+#: date_repeat/date_repeat.module:171
+msgid "Repeats"
+msgstr "Ripetizione"
+
+#: date_php4/date_php4.module:54
+#: date_tools/date_tools.module:193
+msgid "Save"
+msgstr "Salva"
+

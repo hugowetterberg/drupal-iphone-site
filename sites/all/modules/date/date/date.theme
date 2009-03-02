@@ -1,5 +1,5 @@
 <?php
-//$Id: date.theme,v 1.6.4.29 2008/11/18 14:04:54 karens Exp $
+//$Id: date.theme,v 1.6.4.41 2009/02/27 16:37:38 karens Exp $
 /**
  * @file
  * Theme functions.
@@ -46,41 +46,74 @@
  *   $dates['value2']['formatted_time'] - only the time part of the formatted To date
  */
 function theme_date_display_combination($element) {
-  $node = $element['#node'];
+  static $repeating_ids = array();
   
-  // Prepare the node in case it is a view with multiple values 
-  // so it will display the right values.
-  date_prepare_node($node);
-    
+  $node = $element['#node'];
   $field_name = $element['#field_name'];
+  $context = !empty($node->content) ? $node->content[$field_name]['#context'] : '';
+  $type_name = $element['#type_name'];
   $fields = content_fields();
   $field = $fields[$field_name];
   $item = $element['#item'];
     
-  // There could be more than one date field in a view or on a node.
+  // Get the formatter settings, either the default settings for this node
+  // type or the View settings stored in $node->date_info.
+  $options = date_formatter_get_settings($field_name, $type_name, $context);
+  if (!empty($node->date_info) && !empty($node->date_info->formatter_settings)) {
+    $options = $node->date_info->formatter_settings;
+  }
+    
   // If date_id is set for this field and the delta doesn't match, don't display it.
-  foreach ($node->date_id as $key => $id) {
-    list($module, $nid, $field_name, $delta, $other) = explode(':', $id);
-    if ($field_name == $field['field_name'] && isset($item['#delta']) && $delta != $item['#delta']) {
-      return;
+  if (!empty($node->date_id)) {
+    foreach ((array) $node->date_id as $key => $id) {
+      list($module, $nid, $field_name, $delta, $other) = explode(':', $id);
+      if ($field_name == $field['field_name'] && isset($item['#delta']) && $delta != $item['#delta']) {
+        return;
+      }
     }
   }
-  
-  // Special test for repeating dates with no date id set.
-  // Only display the start date unless we're showing all dates.
-  if (empty($node->date_id) && empty($node->date_repeat_show) && !empty($field['repeat']) 
-  && isset($item['#delta']) && $item['#delta'] != 0) {
-    return;
+
+  $output = '';
+    
+  // Check the formatter settings to see if the repeat rule should be
+  // displayed. Show it only with the first multiple value date.
+  if (!in_array($node->nid, $repeating_ids) && module_exists('date_repeat') 
+  && !empty($item['rrule']) && $options['repeat']['show_repeat_rule'] == 'show') {
+    require_once('./'. drupal_get_path('module', 'date') .'/date_repeat.inc');
+    $output .= theme('date_repeat_display', $field, $item, $node);
+    $repeating_ids[] = $node->nid;
   }
-  
+   
+  // If this is a full node or a pseudo node created by grouping
+  // multiple values, see exactly which values are supposed to be visible.
+  if (isset($node->$field_name)) {
+    $node = date_prepare_node($node, $field, $type_name, $context, $options);
+    // Did the current value get removed by formatter settings?
+    if (empty($node->{$field_name}[$item['#delta']])) {
+      return $output;
+    }
+    // Adjust the $element values to match the changes.
+    $element['#node'] = $node;
+  }
+    
   // Call the right theme for this formatter.
+  // Update the element with values that might have been altered by 
+  // date_prepare_node() and figure out which values to display.
   $dates = date_formatter_process($element);
-  $date1 = $dates['value']['formatted'];
-  if (isset($dates['value2'])) {
-    $date2 = $dates['value2']['formatted'];
-  }
-  else {
-    $date2 = $date1;
+
+  switch ($options['fromto']['fromto']) {
+    case 'value':
+      $date1 = $dates['value']['formatted'];
+      $date2 = $date1;
+      break;    
+    case 'value2':
+      $date2 = $dates['value2']['formatted'];
+      $date1 = $date2;
+      break;
+    default:
+      $date1 = $dates['value']['formatted'];
+      $date2 = $dates['value2']['formatted'];  
+      break;
   }
   
   // Pull the timezone, if any, out of the formatted result and tack it
@@ -89,12 +122,10 @@ function theme_date_display_combination($element) {
   if ($timezone) {
     $timezone = ' ' . $timezone;
   }
-
   $date1 = str_replace($timezone, '', $date1);
   $date2 = str_replace($timezone, '', $date2);
     
   // No date values, display nothing.
-  $output = '';
   if (empty($date1) && empty($date2)) {
     $output .= '';
   }
@@ -123,10 +154,7 @@ function theme_date_display_combination($element) {
       '<span class="date-display-separator"> - </span>'.
       '<span class="date-display-end">'. $date2 . $timezone. '</span>';
   }
-  if (module_exists('date_repeat') && !empty($item['rrule'])) {
-    require_once('./'. drupal_get_path('module', 'date') .'/date_repeat.inc');
-    $output .= theme('date_repeat_display', $field, $item, $node, $dates);
-  }
+  
   return $output;
 }
 
@@ -143,30 +171,56 @@ function theme_date_display_combination($element) {
  */
 function theme_date_format_interval($element) {
   $node = $element['#node'];
-  // If we're trying to display only a single date on a node, see if
-  // this is the right one.
-  if (isset($node->date_id)) {
-    list($module, $nid, $field_name, $delta, $other) = explode(':', $node->date_id);
-    $id_field = $node->{$field_name};
-    $id_date = $id_field[$delta];
-    if ($id_date != $element['#item']) {
-      return;
+  $field_name = $element['#field_name'];
+  $context = !empty($node->content) ? $node->content[$field_name]['#context'] : '';
+  $type_name = $element['#type_name'];
+  $fields = content_fields();
+  $field = $fields[$field_name];
+  $item = $element['#item'];
+    
+  // Get the formatter settings, either the default settings for this node
+  // type or the View settings stored in $node->date_info.
+  $options = date_formatter_get_settings($field_name, $type_name, $context);
+  if (!empty($node->date_info) && !empty($node->date_info->formatter_settings)) {
+    $options = $node->date_info->formatter_settings;
+  }
+  
+  // If date_id is set for this field and the delta doesn't match, don't display it.
+  if (!empty($node->date_id)) {
+    foreach ((array) $node->date_id as $key => $id) {
+      list($module, $nid, $field_name, $delta, $other) = explode(':', $id);
+      if ($field_name == $field['field_name'] && isset($item['#delta']) && $delta != $item['#delta']) {
+        return;
+      }
     }
   }
-
+   
+  // If this is not coming from Views, it is the full node.
+  // If we aren't retrieving a specific value, adjust the node values 
+  // to match the formatter settings, removing values we should not see.
+  if (!empty($node->content) && empty($node->date_id)) {
+    $node = date_prepare_node($node, $field, $type_name, $context, $options);
+    
+    // Did the current value get removed by formatter settings?
+    if (empty($node->{$field_name}[$item['#delta']])) {
+      return;
+    }
+    // Adjust the $element values to match the changes.
+    $element['#node'] = $node;
+  }
   $dates = date_formatter_process($element);
   return theme('date_time_ago', $dates['value']['local']['object'], $dates['value2']['local']['object']);
 }
 
 function theme_date_time_ago($start_date, $end_date) {
   // Time to compare dates to
-  $now = date_format(date_make_date('now', date_default_timezone()), DATE_FORMAT_DATETIME);
+  $now = date_format(date_now(), DATE_FORMAT_DATETIME);
   $start = date_format($start_date, DATE_FORMAT_DATETIME);
-  $end = date_format($start_date, DATE_FORMAT_DATETIME);
+  $end = date_format($end_date, DATE_FORMAT_DATETIME);
   
   // 1) The date is entirely in the future
   if ($now < $start) {
-    return t('!time from now', array('!time' => date_format_interval($start, 2)));
+    return t('!time from now', array('!time' => date_format_interval($start_date, 2)));
   }
   // 2) Ongoing date
   elseif ($now > $start && $now <= $end) {
@@ -175,7 +229,7 @@ function theme_date_time_ago($start_date, $end_date) {
   }
   // 3) Date is in the past (format_interval added 'ago' to the value).
   else {
-    return date_format_interval($start, 2);
+    return date_format_interval($start_date, 2);
   }
 }
 
@@ -186,13 +240,10 @@ function theme_date_time_ago($start_date, $end_date) {
  * add in ways to store the description in the date so it isn't regenerated
  * over and over and find a way to allow description to be shown or hidden.
  */
-function theme_date_repeat_display($field, $item, $node = NULL, $dates) {
-  // If $field['field_name'] isn't set, this isn't a node, and is
-  // probably on a calendar view. The description is too expensive an
-  // operation to run on every field in a view, so don't do it.
+function theme_date_repeat_display($field, $item, $node = NULL) {
   $output = '';
-  if (isset($node->$field['field_name']) && ($item['#delta'] == 0 || !empty($item['#show_rrule']))) {
-    $output = date_repeat_rrule_description($item['rrule'], $dates['value']['local']['object']);
+  if (!empty($item['rrule'])) {
+    $output = date_repeat_rrule_description($item['rrule']);
     $output = '<div>'. $output .'</div>';
   }
   return $output;
@@ -201,6 +252,7 @@ function theme_date_repeat_display($field, $item, $node = NULL, $dates) {
 /**
  * Adjust from/to date format to account for 'all day'.
  *
+ * @param array $field, the field definition for this date field.
  * @param string $which, which value to return, 'date1' or 'date2'.
  * @param object $date1, a date/time object for the 'from' date.
  * @param object $date2, a date/time object for the 'to' date.
@@ -209,34 +261,46 @@ function theme_date_repeat_display($field, $item, $node = NULL, $dates) {
  * @param object $view, the view this node comes from, if applicable.
  * @return formatted date.
  */
-function theme_date_all_day($which, $date1, $date2, $format, $node, $view = NULL) {
-  if (empty($date1) || !is_object($date1)) {
-    return '';
+function theme_date_all_day($field, $which, $date1, $date2, $format, $node, $view = NULL) {
+  if (empty($date1) || !is_object($date1) || $format == 'format_interval') {
+    return;
   }
   if (empty($date2)) {
     $date2 = $date1;
   }
   $granularity = array_pop(date_format_order($format));
+  if (empty($field['granularity'])) {
+    $field['granularity'] = date_format_order($format);
+  }
+  $increment = $field['widget']['increment'];
+  $max_seconds = array_pop(date_seconds('s', TRUE, $increment));
+  $max_minutes = array_pop(date_minutes('i', TRUE, $increment));
+  
   switch ($granularity) {
     case 'second':
-      $max_comp = date_format($date2, 'H:i:s') == '23:59:59';
+      $min_comp = date_format($date1, 'H:i:s') == '00:00:00';
+      $max_comp = date_format($date2, 'H:i:s') == '00:00:00' || date_format($date2, 'H:i:s') == '23:'. $max_minutes .':'. $max_seconds;
       break;
     case 'minute':
-      $max_comp = date_format($date2, 'H:i') == '23:59';
+      $min_comp = date_format($date1, 'H:i') == '00:00';
+      $max_comp = date_format($date2, 'H:i:s') == '00:00:00' || date_format($date2, 'H:i') == '23:'. $max_minutes;
       break;
     case 'hour':
-      $max_comp = date_format($date2, 'H') == '23';
+      $min_comp = date_format($date1, 'H') == '00';
+      $max_comp = date_format($date2, 'H:i:s') == '00:00:00' || date_format($date2, 'H') == '23';
       break;
     default:
+      $min_comp = TRUE;
       $max_comp = FALSE;
   }
+  
   // Time runs from midnight to the maximum time -- call it 'All day'.
-  if (date_format($date1, 'H:i:s') == '00:00:00' && $max_comp) {
+  if (date_has_time($field['granularity']) && $min_comp && $max_comp) {
     $format = date_limit_format($format, array('year', 'month', 'day'));
     return trim(date_format_date($$which, 'custom', $format) .' '. theme('date_all_day_label'));
   }
   // There is no time, use neither 'All day' nor time.
-  elseif (date_format($date1, 'H:i:s') == '00:00:00' && date_format($date2, 'H:i:s') == '00:00:00') {
+  elseif (!date_has_time($field['granularity'])) {
     $format = date_limit_format($format, array('year', 'month', 'day'));
     return date_format_date($$which, 'custom', $format);
   }
@@ -250,6 +314,6 @@ function theme_date_all_day($which, $date1, $date2, $format, $node, $view = NULL
  * Theme the way an 'all day' label will look.
  */
 function theme_date_all_day_label() {
-  return t('(All day)');
+  return '('. date_t('All day', 'datetime') .')';
 }
 /** @} End of addtogroup themeable */

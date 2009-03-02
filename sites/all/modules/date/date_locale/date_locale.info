@@ -1,0 +1,14 @@
+; $Id: date_locale.info,v 1.1.2.1 2009/01/25 13:03:13 karens Exp $
+name = Date Locale
+description = Allows the site admin to configure multiple formats for date/time display to taylor dates for a specific locale or audience.
+package = Date/Time
+dependencies[] = date_api
+dependencies[] = locale
+core = 6.x
+
+; Information added by drupal.org packaging script on 2009-02-27
+version = "6.x-2.0"
+core = "6.x"
+project = "date"
+datestamp = "1235756424"
+

@@ -1,5 +1,5 @@
 <?php
-// $Id: date_api_fields.inc,v 1.1.2.3 2008/11/20 12:09:40 karens Exp $
+// $Id: date_api_fields.inc,v 1.1.2.5 2008/12/08 11:38:42 karens Exp $
 /**
  *  Identify all potential date/timestamp fields.
  *
@@ -19,7 +19,11 @@ function _date_api_fields($base = 'node') {
     $table_name = $tmp[0];
     $alias = str_replace('.', '_', $name);
       
-    $handler = views_get_handler($table_name, $field_name, 'field');
+    if (!$handler = views_get_handler($table_name, $field_name, 'field')) {
+      continue; 
+    }
+    
+    $handler_name = $handler->definition['handler'];
     $type = '';
     
     // For cck fields, get the date type.
@@ -41,6 +45,22 @@ function _date_api_fields($base = 'node') {
       $type = 'timestamp';
     }
     
+    // Allow custom modules to provide date fields.
+    // Look for the first module to respond, we can't have more
+    // than one definition for a field.
+    
+    // Custom fields should use the 'views_handler_field_date' handler and
+    // return an array like array('sql_type' => DATE_ISO, 'tz_handling' => 'site');
+    // when the hook is called with their table.field_name.
+    elseif ($handler_name == 'views_handler_field_date') {
+      foreach (module_implements('date_api_fields') as $module) {
+        $function = $module .'_date_api_fields';
+        if ($custom = $function("$table_name.$field_name")) {
+          $type = 'custom';
+          break;
+        }
+      }
+    }
 
     // Don't do anything if this is not a date field we can handle.
     if (!empty($type)) {
@@ -129,6 +149,13 @@ function _date_api_fields($base = 'node') {
         'related_fields' => $related_fields,
         'delta_field' => $delta_field,
       );
+      
+      // Allow the custom fields to over-write values.
+      if (!empty($custom)) {
+        foreach ($custom as $key => $val) {
+          $fields['name'][$name][$key] = $val;
+        }
+      }
       if (isset($handler->content_field)) {
         if (substr($field_name, -1) == '2') {
           $len = (strlen($field_name) - 7);

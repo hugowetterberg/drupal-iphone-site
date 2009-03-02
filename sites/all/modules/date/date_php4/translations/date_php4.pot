@@ -1,16 +1,16 @@
-# $Id: date_php4.pot,v 1.1.2.1 2008/09/06 21:28:01 karens Exp $
+# $Id: date_php4.pot,v 1.1.2.4 2009/02/17 11:06:07 karens Exp $
 #
 # LANGUAGE translation of Drupal (general)
 # Copyright YEAR NAME <EMAIL@ADDRESS>
 # Generated from files:
-#  date_php4.module,v 1.4.6.1 2008/08/30 13:57:39 karens
+#  date_php4.module,v 1.4.6.5 2008/10/05 17:05:20 karens
 #  date_php4.info,v 1.3 2008/02/18 19:32:28 karens
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2008-09-06 16:20-0500\n"
+"POT-Creation-Date: 2009-02-17 04:54-0600\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -19,12 +19,44 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: date_php4.module:0
-msgid "date_php4"
+#: date_php4.module:44
+msgid "Date PHP4 Settings"
 msgstr ""
 
-#: date_php4.info:0
+#: date_php4.module:47
+msgid "TRUE"
+msgstr ""
+
+#: date_php4.module:47
+msgid "FALSE"
+msgstr ""
+
+#: date_php4.module:49
+msgid "Use PHP default timezone"
+msgstr ""
+
+#: date_php4.module:50
+msgid "Getting date computations working correctly in PHP versions earlier than PHP 5.2 involves extra computations that add a lot of overhead. These computations are needed because the timezone PHP uses on date computations may not match the site or user timezone or other date-specific timezones. We can speed processing up if we assume that PHP is using the correct timezone, but need to do more time-intensive processing if it is not. If timezone adjustments do not seem to be working correctly in your setup, you can set this option to FALSE to force the system to use the more accurate, but slower, timezone computations."
+msgstr ""
+
+#: date_php4.module:54
+msgid "Save"
+msgstr ""
+
+#: date_php4.module:20
+msgid "administer date_php4 settings"
+msgstr ""
+
+#: date_php4.module:29 date_php4.info:0
 msgid "Date PHP4"
+msgstr ""
+
+#: date_php4.module:30
+msgid "Date PHP4 setup."
+msgstr ""
+
+#: date_php4.module:0
+msgid "date_php4"
 msgstr ""
 
 #: date_php4.info:0

@@ -1,17 +1,17 @@
-# $Id: date_repeat.pot,v 1.1.2.1 2008/09/06 21:28:01 karens Exp $
+# $Id: date_repeat.pot,v 1.1.2.4 2009/02/17 11:06:08 karens Exp $
 #
 # LANGUAGE translation of Drupal (general)
 # Copyright YEAR NAME <EMAIL@ADDRESS>
 # Generated from files:
-#  date_repeat_form.inc,v 1.15.4.5 2008/08/30 13:57:40 karens
-#  date_repeat.module,v 1.30.4.2 2008/08/30 13:57:40 karens
+#  date_repeat_form.inc,v 1.15.4.13 2009/02/16 23:46:08 karens
+#  date_repeat.module,v 1.30.4.9 2009/02/17 02:13:30 karens
 #  date_repeat.info,v 1.5 2008/02/18 19:32:29 karens
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2008-09-06 16:20-0500\n"
+"POT-Creation-Date: 2009-02-17 04:57-0600\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -20,237 +20,121 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: date_repeat_form.inc:60
+#: date_repeat_form.inc:68
 msgid "Repeat"
 msgstr ""
 
-#: date_repeat_form.inc:61
+#: date_repeat_form.inc:69
 msgid "Choose a frequency and period to repeat this date. If nothing is selected, the date will not repeat."
 msgstr ""
 
-#: date_repeat_form.inc:97
+#: date_repeat_form.inc:101
 msgid "Until"
 msgstr ""
 
-#: date_repeat_form.inc:98
-msgid "Date to stop repeating this item. The 'Until' date will NOT be included in the results."
-msgstr ""
-
-#: date_repeat_form.inc:119
-msgid "Advanced"
+#: date_repeat_form.inc:102
+msgid "Date to stop repeating this item."
 msgstr ""
 
 #: date_repeat_form.inc:122
-msgid "If no advanced options are selected, the date will repeat on the day of week of the start date for weekly repeats, otherwise on the month and day of the start date. Use the options below to override that behavior to select specific months and days to repeat on. Use the 'Except' box to input dates that should be omitted from the results. "
+msgid "Advanced"
 msgstr ""
 
-#: date_repeat_form.inc:129
-msgid "Month"
+#: date_repeat_form.inc:125
+msgid "If no advanced options are selected, the date will repeat on the day of week of the start date for weekly repeats, otherwise on the month and day of the start date. Use the options below to override that behavior to select specific months and days to repeat on. Use the 'Except' box to input dates that should be omitted from the results."
 msgstr ""
 
-#: date_repeat_form.inc:131;142;153
+#: date_repeat_form.inc:134;145;156
 msgid "-- Any"
 msgstr ""
 
-#: date_repeat_form.inc:140
+#: date_repeat_form.inc:143
 msgid "Day of Month"
 msgstr ""
 
-#: date_repeat_form.inc:151
+#: date_repeat_form.inc:154
 msgid "Day of Week"
 msgstr ""
 
-#: date_repeat_form.inc:165
+#: date_repeat_form.inc:168
 msgid "Except"
 msgstr ""
 
-#: date_repeat_form.inc:166
+#: date_repeat_form.inc:169
 msgid "Dates to omit from the list of repeating dates."
 msgstr ""
 
-#: date_repeat_form.inc:194
-msgid "Help"
-msgstr ""
-
-#: date_repeat_form.inc:197
-msgid "<p>Dates will match any selection within the same box [January OR June]. When more than one box has criteria selected, all of them are combined to create repeats [[January OR June] AND [Day 1 OR Day 15]]. Positive numbers count from the beginning of the period. Negative numbers count from the end of the period, i.e. -1 is the last, -2 is the next to last, etc.</p><ul><li>If you select 'Every Year' above, and 'March' from 'Month' and '1' and '15' from 'Day of Month' in the Advanced options you will be selecting the 1st and 15th days of March of every year.</li><li>If you select 'Every other Month' above, and 'Second Tuesday' in the Advanced options you will be selecting the second Tuesday of every other month.</li><li>If you select 'Every Year' above, and 'Second Tuesday' in the Advanced options you will be selecting the second Tuesday of every year.</li><li>If you select 'Every Month' above, and 'January' and 'June' and 'First Saturday' in the Advanced options, you will be selecting the first Saturday in January or June.</li><li>If you select 'Every Month' above, and '-1' from 'Day of Month' in the Advanced options you will be selecting the last day of every month.</li></ul>"
-msgstr ""
-
-#: date_repeat_form.inc:264
+#: date_repeat_form.inc:258
 msgid "Delete"
 msgstr ""
 
-#: date_repeat_form.inc:264
-msgid "Current Exceptions"
+#: date_repeat_form.inc:258
+msgid "Current exceptions"
 msgstr ""
 
 #: date_repeat.module:41
 msgid "-- Period"
 msgstr ""
 
-#: date_repeat.module:42
-msgid "Day(s)"
-msgstr ""
-
-#: date_repeat.module:43
-msgid "Week(s)"
-msgstr ""
-
-#: date_repeat.module:44
-msgid "Month(s)"
-msgstr ""
-
-#: date_repeat.module:45
-msgid "Year(s)"
-msgstr ""
-
 #: date_repeat.module:51
 msgid "-- Frequency"
-msgstr ""
-
-#: date_repeat.module:52;95
-msgid "Every"
 msgstr ""
 
 #: date_repeat.module:55
 msgid "Every @number"
 msgstr ""
 
-#: date_repeat.module:69
-msgid "Sunday"
+#: date_repeat.module:205
+msgid "!repeats_every_interval on the !date_order !day_of_week"
 msgstr ""
 
-#: date_repeat.module:70
-msgid "Monday"
+#: date_repeat.module:208
+msgid "!repeats_every_interval every !day_of_week"
 msgstr ""
 
-#: date_repeat.module:71
-msgid "Tuesday"
+#: date_repeat.module:211
+msgid "and"
 msgstr ""
 
-#: date_repeat.module:72
-msgid "Wednesday"
+#: date_repeat.module:236
+msgid "!repeats_every_interval until !until_date"
 msgstr ""
 
-#: date_repeat.module:73
-msgid "Thursday"
+#: date_repeat.module:243
+msgid "!repeats_every_interval except !except_dates"
 msgstr ""
 
-#: date_repeat.module:74
-msgid "Friday"
+#: date_repeat.module:247
+msgid "!repeats_every_interval where the week start on !day_of_week"
 msgstr ""
 
-#: date_repeat.module:75
-msgid "Saturday"
-msgstr ""
-
-#: date_repeat.module:96
-msgid "First"
-msgstr ""
-
-#: date_repeat.module:97
-msgid "Second"
-msgstr ""
-
-#: date_repeat.module:98
-msgid "Third"
-msgstr ""
-
-#: date_repeat.module:99
-msgid "Fourth"
-msgstr ""
-
-#: date_repeat.module:100
-msgid "Fifth"
-msgstr ""
-
-#: date_repeat.module:101
-msgid "Last"
-msgstr ""
-
-#: date_repeat.module:102
-msgid "Next to last"
-msgstr ""
-
-#: date_repeat.module:103
-msgid "Second from last"
-msgstr ""
-
-#: date_repeat.module:104
-msgid "Third from last"
-msgstr ""
-
-#: date_repeat.module:105
-msgid "Fourth from last"
-msgstr ""
-
-#: date_repeat.module:166
-msgid "Repeats "
-msgstr ""
-
-#: date_repeat.module:175
-msgid "the !count !day "
-msgstr ""
-
-#: date_repeat.module:178
-msgid "every !day "
-msgstr ""
-
-#: date_repeat.module:181
-msgid "!days"
-msgstr ""
-
-#: date_repeat.module:181
-msgid " and "
+#: date_repeat.module:249
+msgid "Repeats !interval !bymonth !byday !count !until !except."
 msgstr ""
 
 #: date_repeat.module:184
-msgid "day @number"
-msgstr ""
+msgid "every week"
+msgid_plural "every @count weeks"
+msgstr[0] ""
+msgstr[1] ""
 
-#: date_repeat.module:202
-msgid "every week "
-msgstr ""
+#: date_repeat.module:187
+msgid "every month"
+msgid_plural "every @count months"
+msgstr[0] ""
+msgstr[1] ""
 
-#: date_repeat.module:202
-msgid "every @count weeks "
-msgstr ""
+#: date_repeat.module:190
+msgid "every year"
+msgid_plural "every @count years"
+msgstr[0] ""
+msgstr[1] ""
 
-#: date_repeat.module:205
-msgid "every month "
-msgstr ""
-
-#: date_repeat.module:205
-msgid "every @count months "
-msgstr ""
-
-#: date_repeat.module:208
-msgid "every year "
-msgstr ""
-
-#: date_repeat.module:208
-msgid "every @count years "
-msgstr ""
-
-#: date_repeat.module:211
-msgid "every day "
-msgstr ""
-
-#: date_repeat.module:211
-msgid "every @count days "
-msgstr ""
-
-#: date_repeat.module:215
-msgid "for !times occurences "
-msgstr ""
-
-#: date_repeat.module:219
-msgid "until !until "
-msgstr ""
-
-#: date_repeat.module:226
-msgid "except !dates "
-msgstr ""
+#: date_repeat.module:193
+msgid "every day"
+msgid_plural "every @count days"
+msgstr[0] ""
+msgstr[1] ""
 
 #: date_repeat.module:0
 msgid "date_repeat"

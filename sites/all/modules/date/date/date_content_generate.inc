@@ -5,6 +5,8 @@
  * Included only when needed.
  */
 function _date_content_generate($node, $field) {
+  include_once('./'. drupal_get_path('module', 'date_api') .'/date_api_elements.inc');
+  
   $node_field = array();
   if (isset($field['widget']['year_range'])) {
     $split = explode(':', $field['widget']['year_range']);
@@ -23,13 +25,17 @@ function _date_content_generate($node, $field) {
 	$max_days = $leap ? 366 : 365;
 	$seconds = mt_rand(0, ($max_days * 86400));
 	date_modify($start, "+$seconds seconds");
-
+	$increment = $field['widget']['increment'];
+  date_increment_round($start, $increment);
+    
 	// Modify To date by 1 hour to 3 days, shorter for repeating dates
 	// longer for others.
 	$start2 = drupal_clone($start);
 	$max = !empty($field['repeat']) ? 720 : 4320;
+	$max = 240;
   date_modify($start2, '+'. mt_rand(60, $max) .' minutes');  
-    
+  date_increment_round($start2, $increment);
+      
   if ($field['tz_handling'] == 'date') {
     // Choose a random timezone.
     // Not all keys exist, so we have to check.
@@ -137,6 +143,7 @@ function _date_content_generate($node, $field) {
         
     }
     date_modify($start2, '+'. max(1, $forward) .' years');
+    date_increment_round($start2, $increment);
     $until = date_format($start2, 'Y-m-d H:i:s');
     $form_values['UNTIL'] = array('datetime' => $until, 'tz' => 'UTC');
     $form_values['COUNT'] = $max_items;

@@ -1,5 +1,5 @@
 <?php
-// $Id: date_php4.inc,v 1.27.4.28 2008/11/03 18:11:19 karens Exp $
+// $Id: date_php4.inc,v 1.27.4.35 2009/02/23 22:16:04 karens Exp $
 
 /**
  * @file
@@ -94,10 +94,6 @@ if (!function_exists('date_create')) {
     $date->value = $date_out;
     $date->timestamp = date_datetime2timestamp($date->value, $timezone);
     $date->timezone = $timezone;
-    if (!date_is_valid($date, DATE_OBJECT)) {
-      // Must be a value we can't interpret. Throw an error.
-      return NULL;
-    }
     return $date;
   }
 }
@@ -342,7 +338,7 @@ if (!function_exists('timezone_offset_get')) {
     }
     $timestamp = $date->timestamp;
     if ($offsets[$timezone]['dst'] == 1) {
-      if (date_is_dst($timestamp, $timezone)) {
+      if (date_is_dst($timestamp, $timezone, $offsets[$timezone]['dst'])) {
         return $offsets[$timezone]['dst_offset'];
       }
     }
@@ -405,10 +401,10 @@ if (!function_exists('date_modify')) {
       require_once('./'. drupal_get_path('module', 'date_php4') .'/date_php4_calc.inc');
       $days = date_week_days_untranslated();
       $dows = array_flip($days);
-      preg_match('/([+|-])([0-9]{1,32})(\s)?([day(s)?|week(s)?|month(s)?|year(s)?|hour(s)?|minute(s)?|second(s)?|Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday]{1,10})/', $change, $results);
+      preg_match('/([+|-])\s?([0-9]{1,32})\s?([day(s)?|week(s)?|month(s)?|year(s)?|hour(s)?|minute(s)?|second(s)?|Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday]{1,10})/', $change, $results);
       $direction = $results[1];
       $count = $results[2];
-      $item = $results[4];
+      $item = $results[3];
       if (empty($results) || empty($item)) {
         return;
       }
@@ -608,7 +604,7 @@ function date_is_dst($timestamp, $timezone = NULL) {
     include(drupal_get_path('module', 'date_php4') .'/date_php4_tz_map.inc');
   }
   $region = array_key_exists($timezone, $timezone_map) ? $timezone_map[$timezone]['dst_region'] : 0;
-      
+           
   // This should really be done with date_date() to get the right timezone
   // adjustment for the year, but that leads to circular code that won't
   // work, so we're stuck with date(), which hopefully will create the right
@@ -694,31 +690,31 @@ function date_is_dst($timestamp, $timezone = NULL) {
       break;
     case 13: // EU and other European countries
       // start of DST (last Sunday in March 1 am UTC)
-      $dststart = strtotime("-1 week sunday UTC", strtotime("1 april $year UTC")) + 3600;
+      $dststart = strtotime("-1 week sunday UTC", strtotime("1 april $year UTC"));
       // end of DST in Europe (last Sunday in October 1 am UTC)
-      $dstend = strtotime("-1 week sunday UTC", strtotime("1 november $year UTC")) + 3600;
+      $dstend = strtotime("-1 week sunday UTC", strtotime("1 november $year UTC"));
       break;
     case 14: // Russian Federation
       // start of DST (last Sunday in March 2 am local time)
-      $dststart = strtotime("-1 week sunday UTC", strtotime("1 april $year UTC")) + 7200;
+      $dststart = strtotime("-1 week sunday UTC", strtotime("1 april $year UTC"));
       // end of DST (last Sunday in October 2 am local time)
-      $dstend = strtotime("-1 week sunday UTC", strtotime("1 november $year UTC")) + 7200;
+      $dstend = strtotime("-1 week sunday UTC", strtotime("1 november $year UTC"));
       break;
     case 15: // Northern America (where applicable)
       // start of DST  (where applicable) (first Sunday in April before 2007,
       // after that second Sunday in March, 2 am local time)
       if ($year < 2007) {
-        $dststart = strtotime("1 week sunday UTC", strtotime("1 april $year UTC")) + 7200;
+        $dststart = strtotime("1 week sunday UTC", strtotime("1 april $year UTC"));
       }
       else {
-        $dststart = strtotime("1 week sunday UTC", strtotime("1 march $year UTC")) + 7200;
+        $dststart = strtotime("1 week sunday UTC", strtotime("1 march $year UTC"));
       }
       // end of DST (where applicable) (last Sunday in October 2 am local time)
       if ($year < 2007) {
-        $dstend = strtotime("-1 week sunday UTC", strtotime("1 november $year UTC")) + 7200;
+        $dstend = strtotime("-1 week sunday UTC", strtotime("1 november $year UTC"));
       }
       else {
-        $dstend = strtotime("1 week sunday UTC", strtotime("1 november $year UTC")) + 7200;
+        $dstend = strtotime("1 week sunday UTC", strtotime("1 november $year UTC"));
       }
       break;
     case 16: // Cuba
@@ -755,7 +751,7 @@ function date_is_dst($timestamp, $timezone = NULL) {
   // Have to use reverse logic in southern hemisphere.
   $southern = array(9, 10, 11, 12, 17, 18, 19, 20);
   if (in_array($region, $southern)) {
-    return !($timestamp >= $dststart && $dstend <= $timestamp);
+    return !($timestamp <= $dststart && $dstend <= $timestamp);
   }
   else {
     return ($dststart <= $timestamp && $timestamp <= $dstend);

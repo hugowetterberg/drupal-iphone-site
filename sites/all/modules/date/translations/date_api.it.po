@@ -1,0 +1,118 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2009-01-11 11:03+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: thePanz <thepanz@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: date_api_elements.inc:405
+msgid "The year must be a number between %min and %max."
+msgstr "L'anno deve essere un numero compreso tra %min e %max."
+
+#: date_api_elements.inc:414
+msgid "The month must be a number between 1 and 12."
+msgstr "Il mese deve essere un numero compreso tra 1 e 12."
+
+#: date_api_elements.inc:424
+msgid "The day must be a number between !min and !max."
+msgstr "Il giorno deve essere un numero compreso tra !min e !max."
+
+#: date_api_elements.inc:431
+msgid "The hour must be a number between !min and !max."
+msgstr "L'ora deve essere un numero compreso tra !min e !max."
+
+#: date_api_elements.inc:438
+msgid "The minute must be a number between !min and !max."
+msgstr "I minuti devono essere compresi tra !min e !max."
+
+#: date_api_elements.inc:445
+msgid "The second must be a number between !min and !max."
+msgstr "I secondi devono essere compresi tra !min e !max."
+
+#: date_api_elements.inc:458
+msgid "A valid value is required."
+msgstr "Inserire una data valida."
+
+#: date_api_elements.inc:461
+msgid "Field %field has errors."
+msgstr "Il campo %field è errato."
+
+#: date_api_elements.inc:507
+msgid "A valid date is required for %title."
+msgstr "Inserire una data valida per %title."
+
+#: date_api_ical.inc:86;95;101;122
+msgid "date ical"
+msgstr "date ical"
+
+#: date_api_ical.inc:86
+msgid "HTTP Request Error importing %filename: @error"
+msgstr "Errore \"HTTP Request Error\" durante l'importazione di %filename: @error"
+
+#: date_api_ical.inc:95
+msgid "Failed to open file: %filename"
+msgstr "Impossibile aprire il file: %filename"
+
+#: date_api_ical.inc:101
+msgid "Invalid calendar file: %filename"
+msgstr "File di calendario non valido: %filename"
+
+#: date_api_ical.inc:122
+msgid "Invalid calendar file."
+msgstr "File di calendario non valido."
+
+#: date_api.module:354
+msgid "am"
+msgstr "am"
+
+#: date_api.module:354
+msgid "pm"
+msgstr "pm"
+
+#: date_api.module:494
+msgid "!timezone"
+msgstr "!timezone"
+
+#: date_api.module:558
+msgid "!time ago"
+msgstr "!time ago"
+
+#: date_api.module:1718
+msgid "Per-user timezone name."
+msgstr "Nome del fuso-orario impostato per ogni utente."
+
+#: date_api.module:0
+msgid "date_api"
+msgstr "date_api"
+
+#: (duplicate) date_api.install:103
+msgid "The Date API module requires the <a href=\"@link\">Date PHP4 module</a> for PHP versions less than 5.2."
+msgstr "il modulo Date API richiede la presenza del modulo <a href=\"@link\">Date PHP4</a> per versioni di PHP precedenti alla 5.2."
+
+#: (duplicate) date_api.install:107
+msgid "Date API requirements"
+msgstr "dipendenze di Date API"
+
+#: date_api.info:0
+#: date_tools/date_tools.module:399
+msgid "Date API"
+msgstr "Date API"
+
+#: date_api.info:0
+msgid "A Date API that can be used by other modules."
+msgstr "Funzioni di Date API che possono essere utilizzate da altri moduli."
+
+#: date_api.info:0
+#: date/date.info:0
+#: date_php4/date_php4.info:0
+#: date_popup/date_popup.info:0
+#: date_repeat/date_repeat.info:0
+#: date_timezone/date_timezone.info:0
+#: date_tools/date_tools.info:0
+msgid "Date/Time"
+msgstr "Data/Ora"
+

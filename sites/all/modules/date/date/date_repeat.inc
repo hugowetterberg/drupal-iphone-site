@@ -1,5 +1,5 @@
 <?php
-//$Id: date_repeat.inc,v 1.22.2.1.2.18 2008/11/28 13:19:40 karens Exp $
+//$Id: date_repeat.inc,v 1.22.2.1.2.22 2009/02/21 12:53:25 karens Exp $
 /**
  * @file
  * Implementation of Date Repeat API calculations for the CCK Date field.
@@ -44,6 +44,7 @@ function _date_repeat_widget(&$element, $field, $items, $delta) {
     '#date_repeat_widget' => str_replace('_repeat', '', $field['widget']['type']),
     '#date_repeat_collapsed' => $field['repeat_collapsed'],
     );
+
   return $element;
 }
 /**
@@ -135,12 +136,12 @@ function date_repeat_build_dates($rrule = NULL, $values = NULL, $field, $item) {
   // things like '+1 Tuesday', so adjust back to localtime.
   $timezone = date_get_timezone($field['tz_handling'], $item['timezone']);
   $timezone_db = date_get_timezone_db($field['tz_handling']);
-  $start = date_make_date($item['value'], $timezone_db, $field['type']);
+  $start = date_make_date($item['value'], $timezone_db, $field['type'], $field['granularity']);
   if ($timezone != $timezone_db){
     date_timezone_set($start, timezone_open($timezone));
   }
   if (!empty($item['value2']) && $item['value2'] != $item['value']) {
-    $end = date_make_date($item['value2'], date_get_timezone_db($field['tz_handling']), $field['type']);
+    $end = date_make_date($item['value2'], date_get_timezone_db($field['tz_handling']), $field['type'], $field['granularity']);
     date_timezone_set($end, timezone_open($timezone));
   }
   else {
@@ -154,24 +155,23 @@ function date_repeat_build_dates($rrule = NULL, $values = NULL, $field, $item) {
     $end = date_ical_date($values['UNTIL'], $timezone);
   }
   $end_datetime = date_format($end, DATE_FORMAT_DATETIME);
-
+  
   // Split the RRULE into RRULE and EXDATE parts.
   $parts = date_repeat_split_rrule($rrule);
-  $rule = explode("\n", $rrule);
   $parsed_exceptions = (array) $parts[1];
   $exceptions = array();
   foreach ($parsed_exceptions as $exception) {
     $date = date_ical_date($exception);
     $exceptions[] = date_format($date, 'Y-m-d');
   }
-
+  
   $dates = date_repeat_calc($rrule, $start_datetime, $end_datetime, $exceptions, $timezone);
   $value = array();
   foreach ($dates as $delta => $date) {
     // date_repeat_calc always returns DATE_DATETIME dates, which is
     // not necessarily $field['type'] dates.
     // Convert returned dates back to db timezone before storing.
-    $date_start = date_make_date($date, $timezone, DATE_DATETIME);  
+    $date_start = date_make_date($date, $timezone, DATE_DATETIME, $field['granularity']);  
     date_timezone_set($date_start, timezone_open($timezone_db));    
     $date_end = drupal_clone($date_start);
     date_modify($date_end, '+'. $duration .' seconds');

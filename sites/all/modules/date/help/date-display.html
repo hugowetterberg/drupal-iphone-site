@@ -3,16 +3,50 @@
 <pre>
 print content_format('field_date', $node->field_date[0], 'iso');
 </pre>
-<p>The formatter options are:</p>
+
+<h3>Formatter settings</h3>
+<p>In many places you can further control the way multiple value dates will be displayed with formatter settings. The formatter settings look like:</p>
+
+<div class="form-item" id="">
+ <select name="" class="form-select" id="" ><option value="default" selected="selected">Default</option><option value="format_interval">As Time Ago</option><option value="long">Long</option><option value="medium">Medium</option><option value="short">Short</option><option value="date">Date only</option><option value="time">Time only</option><option value="hidden">&lt;Hidden&gt;</option></select>
+
+</div>
+<div class="form-item" id="">
+ <select name="" class="form-select" id="" ><option value="both" selected="selected">Display From and To dates</option><option value="value">Display From date only</option><option value="value2">Display To date only</option></select>
+</div>
+<div class="form-item" id="">
+ <span class="field-prefix">Show </span> <input type="text" maxlength="128" name="" id="" size="5" value="5" class="form-text" /> <span class="field-suffix"> value(s)</span>
+</div>
+
+<div class="form-item" id="">
+ <span class="field-prefix">starting from </span> <input type="text" maxlength="128" name="" id="" size="15" value="now" class="form-text" /> <span class="field-suffix"></span>
+</div>
+<div class="form-item" id="">
+ <span class="field-prefix">ending on </span> <input type="text" maxlength="128" name="" id="" size="15" value="now +2 weeks" class="form-text" /> <span class="field-suffix"></span>
+</div>
+<div class="form-item" id="">
+ <select name="" class="form-select" id="" ><option value="show" selected="selected">Display repeat rule</option><option value="hide">Hide repeat rule</option></select>
+</div>
+
+<p>The number of values should be a numeric value, or blank to show all dates that match your other options. 
+'Starting from' and 'Ending on' can be a fixed dates in ISO format (like 2009-03-03T10:30:00) or relative times like 'now' or 'now +1 day'.
+</p>
+
+<h3>Formats and Format Types</h3>
+<p>Formatter options include:</p>
 <dl>
 <dt>default</dt>
 <dd>The main way to display this date, configured in the Date settings, defaults to the site short format.</dd>
 <dt>short</dt>
-<dd>An alternative way to display this date, configured in the Date settings, defaults to the site short format.</dd>
+<dd>The site short format.</dd>
 <dt>medium</dt>
-<dd>An alternative way to display this date, configured in the Date settings, defaults to the site medium format.</dd>
+<dd>The site medium format.</dd>
 <dt>long</dt>
-<dd>An alternative way to display this date, configured in the Date settings, defaults to the site long format.</dd>
+<dd>The site long format.</dd>
+<dt>time</dt>
+<dd>Display the date time only, using the time format in the default display.</dd>
+<dt>time_timezone</dt>
+<dd>Display the date time and timezone, using the time format in the default display.</dd>
 <dt>iso</dt>
 <dd>Display the date in the standard ISO format of YYYY-MM-DDTHH:MM:SS.</dd>
 <dt>ical</dt>
@@ -22,4 +56,4 @@ print content_format('field_date', $node->field_date[0], 'iso');
 <dt>format_interval</dt>
 <dd>Display the date as 'XX days, XX hours ago' or 'XX months, XX days from now'.</dd>
 </dl>
-<p> To set up the configurable options, edit the field settings and scroll down to the section called 'Default display'. You can set the default display there, or open up the collapsible fieldset called 'Additional display settings' to set up other alternative display formats. You can either select a pre-configured display format from the drop-down selector, or input a custom format. The custom format, if provided, will override the selected display or input options. Define a php date format string like 'm-d-Y H:i' (see <a href="http://php.net/date">http://php.net/date</a> for more details on custom format strings.)</p>
+<p> To set up custom formats and formatters, go to <a href="&base_url&admin/settings/date-time/formats">admin/settings/date-time/formats</a>. You can either use a pre-configured display format, or create your own formatters and formats. Define a php date format string like 'm-d-Y H:i' (see <a href="http://php.net/date">http://php.net/date</a> for more details on custom format strings.)</p>

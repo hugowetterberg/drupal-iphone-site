@@ -1,5 +1,5 @@
 <?php
-// $Id: date_repeat_calc.inc,v 1.8.4.13 2008/11/21 21:09:07 karens Exp $
+// $Id: date_repeat_calc.inc,v 1.8.4.15 2009/02/21 12:53:25 karens Exp $
 /**
  * @file
  * Code to compute the dates that match an iCal RRULE.
@@ -37,14 +37,19 @@ function _date_repeat_calc($rrule, $start, $end, $exceptions, $timezone) {
   if (empty($timezone)) {
     $timezone = date_default_timezone_name();
   }
-
+  
+  // Make sure the 'EXCEPTIONS' string isn't appended to the rule.
+  $parts = split("\n", $rrule);
+  if (count($parts)) {
+    $rrule = $parts[0];
+  }
   // Get the parsed array of rule values.
   $rrule = date_ical_parse_rrule('RRULE:', $rrule);
   
   // Create a date object for the start and end dates.
   $start_date = date_make_date($start, $timezone);
   $end_date = date_make_date($end, $timezone);
-
+  
   // If the rule has an UNTIL, see if that is earlier than the end date.
   if (!empty($rrule['UNTIL'])) {
     $until_date = date_ical_date($rrule['UNTIL']);
