@@ -1,5 +1,5 @@
 <?php
-// $Id: theme-settings.php,v 1.1.2.1 2008/10/07 03:48:51 jwolf Exp $
+// $Id: theme-settings.php,v 1.1 2009/02/28 23:33:58 jwolf Exp $
 
 /**
 * Implementation of THEMEHOOK_settings() function.
@@ -10,6 +10,24 @@
 *   array A form array.
 */
 function phptemplate_settings($saved_settings) {
+
+  // Only open one of the general or node setting fieldsets at a time
+  $js = <<<SCRIPT
+    $(document).ready(function(){
+      $("fieldset.general_settings > legend > a").click(function(){
+      	if(!$("fieldset.node_settings").hasClass("collapsed")) {
+          Drupal.toggleFieldset($("fieldset.node_settings"));
+      	}
+      });
+      $("fieldset.node_settings > legend > a").click(function(){
+      	if (!$("fieldset.general_settings").hasClass("collapsed")) {
+          Drupal.toggleFieldset($("fieldset.general_settings"));
+      	}
+      });
+    });
+SCRIPT;
+  drupal_add_js($js, 'inline');
+
   // Get the node types
   $node_types = node_get_types('names');
  
@@ -64,6 +82,7 @@ function phptemplate_settings($saved_settings) {
     'comment_node_prefix_default'           => '',
     'comment_node_suffix_default'           => '',
     'comment_enable_content_type'           => 0,
+    'rebuild_registry'                      => 0,
   );
   
   // Make the default content-type settings the same as the default theme settings,
@@ -140,7 +159,7 @@ function phptemplate_settings($saved_settings) {
   // TNT Fieldset
   $form['tnt_container'] = array(
     '#type' => 'fieldset',
-    '#title' => t('Acquia Marina settings'),
+    '#title' => t('Acquia Slate settings'),
     '#description' => t('Use these settings to change what and how information is displayed in your theme.'),
     '#collapsible' => TRUE,
     '#collapsed' => false,
@@ -152,8 +171,8 @@ function phptemplate_settings($saved_settings) {
     '#title' => t('General settings'),
     '#collapsible' => TRUE,
     '#collapsed' => FALSE,
-    );
-  
+    '#attributes' => array('class' => 'general_settings'),
+  );
   
   // Mission Statement
   $form['tnt_container']['general_settings']['mission_statement'] = array(
@@ -243,7 +262,8 @@ function phptemplate_settings($saved_settings) {
     '#title' => t('Node settings'),
     '#description' => t('Here you can make adjustments to which information is shown with your content, and how it is displayed.  You can modify these settings so they apply to all content types, or check the "Use content-type specific settings" box to customize them for each content type.  For example, you may want to show the date on stories, but not pages.'),
     '#collapsible' => TRUE,
-    '#collapsed' => FALSE,
+    '#collapsed' => TRUE,
+    '#attributes' => array('class' => 'node_settings'),
   );
   
   // Author & Date Settings
@@ -734,7 +754,20 @@ function phptemplate_settings($saved_settings) {
       $form['tnt_container']['seo']['meta']['meta_keywords']['#disabled'] = 'disabled';
       $form['tnt_container']['seo']['meta']['meta_description']['#disabled'] = 'disabled';
   }
-  
+  // Development settings
+  $form['tnt_container']['themedev'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Theme development settings'),
+    '#collapsible' => TRUE,
+    '#collapsed' => $settings['rebuild_registry'] ? FALSE : TRUE,
+  );
+ $form['tnt_container']['themedev']['rebuild_registry'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Rebuild theme registry on every page.'),
+    '#default_value' => $settings['rebuild_registry'],
+    '#description' => t('During theme development, it can be very useful to continuously <a href="!link">rebuild the theme registry</a>. WARNING: this is a huge performance penalty and must be turned off on production websites.', array('!link' => 'http://drupal.org/node/173880#theme-registry')),
+  );
+
   // Return theme settings form
   return $form;
 }  

@@ -1,5 +1,5 @@
 <?php 
-// $Id: node.tpl.php,v 1.1 2008/10/01 03:26:19 jwolf Exp $ 
+// $Id$ 
 ?>
 
 <!-- start node.tpl.php -->

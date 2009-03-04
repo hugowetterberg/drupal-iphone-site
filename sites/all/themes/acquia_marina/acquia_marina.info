@@ -1,4 +1,4 @@
-; $Id: acquia_marina.info,v 1.1.2.2 2008/10/24 08:17:02 jwolf Exp $
+; $Id$
 
 name = Acquia Marina
 description = <a href="http://www.acquia.com">Acquia's</a> Marina theme is ideal for blogs and community sites. Includes advanced theme settings and 15 flexible content regions for a variety of layouts. By <a href="http://www.topnotchthemes.com">TopNotchThemes</a>
@@ -33,9 +33,9 @@ features[] = search
 features[] = favicon
 features[] = primary_links
 
-; Information added by drupal.org packaging script on 2008-12-22
+; Information added by Acquia.com packaging script
 version = "6.x-1.5"
 core = "6.x"
 project = "acquia_marina"
-datestamp = "1229917202"
+acquia = "1"
 

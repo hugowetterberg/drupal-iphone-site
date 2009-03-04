@@ -1,5 +1,5 @@
 <?php 
-// $Id: box.tpl.php,v 1.1 2008/10/01 03:26:19 jwolf Exp $
+// $Id$
 ?>
 
 <!-- start box.tpl.php -->

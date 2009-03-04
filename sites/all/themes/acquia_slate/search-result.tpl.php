@@ -1,5 +1,5 @@
 <?php
-// $Id$
+// $Id: search-result.tpl.php,v 1.1 2009/02/28 23:33:58 jwolf Exp $
 
 /**
  * @file search-result.tpl.php

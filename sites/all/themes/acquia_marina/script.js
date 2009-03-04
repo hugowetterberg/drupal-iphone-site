@@ -1,4 +1,4 @@
-// $Id: script.js,v 1.1 2008/10/01 03:26:19 jwolf Exp $ 
+// $Id$ 
 
 Drupal.behaviors.tntIEFixes = function (context) {
   // IE6 & less-specific functions

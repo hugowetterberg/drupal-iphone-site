@@ -1,17 +1,16 @@
 <?php
-// $Id: template.php,v 1.1.2.7 2008/12/09 03:47:12 jwolf Exp $
-
-/**
- * Force refresh of theme registry.
- * DEVELOPMENT USE ONLY - COMMENT OUT FOR PRODUCTION
- */
-// drupal_rebuild_theme_registry();
-
+// $Id: template.php,v 1.1 2009/02/28 23:33:58 jwolf Exp $
 
 /**
  * Initialize theme settings
  */
-if (is_null(theme_get_setting('user_notverified_display'))) {
+if (is_null(theme_get_setting('user_notverified_display')) || theme_get_setting('rebuild_registry')) {
+	
+  // Auto-rebuild the theme registry during theme development.
+  if(theme_get_setting('rebuild_registry')) {
+    drupal_set_message(t('The theme registry has been rebuilt. <a href="!link">Turn off</a> this feature on production websites.', array('!link' => url('admin/build/themes/settings/' . $GLOBALS['theme']))), 'warning');
+  }
+
   global $theme_key;
   // Get node types
   $node_types = node_get_types('names');
@@ -67,6 +66,7 @@ if (is_null(theme_get_setting('user_notverified_display'))) {
     'comment_node_prefix_default'           => '',
     'comment_node_suffix_default'           => '',
     'comment_enable_content_type'           => 0,
+    'rebuild_registry'                      => 0,
   );
   
   // Make the default content-type settings the same as the default theme settings,
@@ -165,7 +165,7 @@ function phptemplate_preprocess(&$vars) {
 
 
 function phptemplate_preprocess_page(&$vars) {
-  // Remove sidebars if disabled
+  // Remove sidebars if disabled e.g., for Panels
   if (!$vars['show_blocks']) {
     $vars['sidebar_first'] = '';
     $vars['sidebar_last'] = '';
@@ -183,7 +183,7 @@ function phptemplate_preprocess_page(&$vars) {
     $body_classes[] = (arg(0) == 'forum') ? 'forum' : '';                                                   // Page is Forum page
   }
   $body_classes[] = (module_exists('panels_page') && (panels_page_get_current())) ? 'panels' : '';        // Page is Panels page
-  $body_classes[] = 'layout-'. (($vars['sidebar_first']) ? 'first-main' : 'main') . (($vars['sidebar_last']) ? '-last' : '');  // Page sidebars are active
+  $body_classes[] = 'layout-'. (($vars['sidebar_first'] || $vars['secondary_links']) ? 'first-main' : 'main') . (($vars['sidebar_last']) ? '-last' : '');  // Page sidebars are active
   if ($vars['preface_first'] || $vars['preface_middle'] || $vars['preface_last']) {                       // Preface regions are active
     $preface_regions = 'preface';
     $preface_regions .= ($vars['preface_first']) ? '-first' : '';
@@ -275,8 +275,8 @@ function phptemplate_preprocess_page(&$vars) {
         }
     }
   }
-  $vars['head_title'] = strip_tags($vars['head_title']);                       // Remove any potential html tags
-  
+  $vars['head_title'] = strip_tags($vars['head_title']);                                        // Remove any potential html tags
+
   if (!module_exists('nodewords')) {
     if (theme_get_setting('meta_keywords') !== '') {
       $keywords = '<meta name="keywords" content="'. theme_get_setting('meta_keywords') .'" />';
@@ -293,7 +293,7 @@ function phptemplate_preprocess_page(&$vars) {
 
 function phptemplate_preprocess_block(&$vars) {
   // Add regions with rounded blocks (e.g., sidebar_first, sidebar_last) to $rounded_regions array
-  $rounded_regions = array('sidebar_first','sidebar_last','postscript_first','postscript_middle','postscript_last');
+  $rounded_regions = array(sidebar_first);
   $vars['rounded_block'] = (in_array($vars['block']->region, $rounded_regions)) ? TRUE : FALSE;
 }
 
@@ -367,13 +367,13 @@ function phptemplate_preprocess_node(&$vars) {
     $node_content_type = (theme_get_setting('readmore_enable_content_type') == 1) ? $vars['node']->type : 'default';
     $vars['node']->links['node_read_more'] = array(
       'title' => _themesettings_link(
-      theme_get_setting('readmore_prefix_'. $node_content_type),
-      theme_get_setting('readmore_suffix_'. $node_content_type),
-      theme_get_setting('readmore_'. $node_content_type),
-      'node/'. $vars['node']->nid,
-      array(
-        'attributes' => array('title' => theme_get_setting('readmore_title_'. $node_content_type)), 
-        'query' => NULL, 'fragment' => NULL, 'absolute' => FALSE, 'html' => TRUE
+        theme_get_setting('readmore_prefix_'. $node_content_type),
+        theme_get_setting('readmore_suffix_'. $node_content_type),
+        theme_get_setting('readmore_'. $node_content_type),
+        'node/'. $vars['node']->nid,
+        array(
+          'attributes' => array('title' => theme_get_setting('readmore_title_'. $node_content_type)), 
+          'query' => NULL, 'fragment' => NULL, 'absolute' => FALSE, 'html' => TRUE
         )
       ),
       'attributes' => array('class' => 'readmore-item'),
@@ -385,13 +385,13 @@ function phptemplate_preprocess_node(&$vars) {
     if ($vars['teaser']) {
       $vars['node']->links['comment_add'] = array(
         'title' => _themesettings_link(
-        theme_get_setting('comment_add_prefix_'. $node_content_type),
-        theme_get_setting('comment_add_suffix_'. $node_content_type),
-        theme_get_setting('comment_add_'. $node_content_type),
-        "comment/reply/".$vars['node']->nid,
-        array(
-          'attributes' => array('title' => theme_get_setting('comment_add_title_'. $node_content_type)), 
-          'query' => NULL, 'fragment' => 'comment-form', 'absolute' => FALSE, 'html' => TRUE
+          theme_get_setting('comment_add_prefix_'. $node_content_type),
+          theme_get_setting('comment_add_suffix_'. $node_content_type),
+          theme_get_setting('comment_add_'. $node_content_type),
+          "comment/reply/".$vars['node']->nid,
+          array(
+            'attributes' => array('title' => theme_get_setting('comment_add_title_'. $node_content_type)), 
+            'query' => NULL, 'fragment' => 'comment-form', 'absolute' => FALSE, 'html' => TRUE
           )
         ),
         'attributes' => array('class' => 'comment-add-item'),
@@ -401,13 +401,13 @@ function phptemplate_preprocess_node(&$vars) {
     else {
       $vars['node']->links['comment_add'] = array(
         'title' => _themesettings_link(
-        theme_get_setting('comment_node_prefix_'. $node_content_type),
-        theme_get_setting('comment_node_suffix_'. $node_content_type),
-        theme_get_setting('comment_node_'. $node_content_type),
-        "comment/reply/".$vars['node']->nid,
-        array(
-          'attributes' => array('title' => theme_get_setting('comment_node_title_'. $node_content_type)), 
-          'query' => NULL, 'fragment' => 'comment-form', 'absolute' => FALSE, 'html' => TRUE
+          theme_get_setting('comment_node_prefix_'. $node_content_type),
+          theme_get_setting('comment_node_suffix_'. $node_content_type),
+          theme_get_setting('comment_node_'. $node_content_type),
+          "comment/reply/".$vars['node']->nid,
+          array(
+            'attributes' => array('title' => theme_get_setting('comment_node_title_'. $node_content_type)), 
+            'query' => NULL, 'fragment' => 'comment-form', 'absolute' => FALSE, 'html' => TRUE
           )
         ),
         'attributes' => array('class' => 'comment-node-item'),
@@ -639,4 +639,33 @@ function phptemplate_file($element) {
  */
 function _themesettings_link($prefix, $suffix, $text, $path, $options) {
   return $prefix . (($text) ? l($text, $path, $options) : '') . $suffix;
+}
+
+/**
+ * Function spanify firstword 
+ */
+function wordlimit($string, $length = 50, $ellipsis = "...") {
+  $words = explode(' ', strip_tags($string));
+  if (count($words) > $length)
+    return implode(' ', array_slice($words, 0, $length)) . $ellipsis;
+  else
+    return $string;
+}
+
+// Override theme_button for expanding graphic buttons
+function phptemplate_button($element) {
+  if (isset($element['#attributes']['class'])) {
+    $element['#attributes']['class'] = 'form-'. $element['#button_type'] .' '. $element['#attributes']['class'];
+  }
+  else {
+    $element['#attributes']['class'] = 'form-'. $element['#button_type'];
+  }
+
+  // Wrap visible inputs with span tags for button graphics
+  if (stristr($element['#attributes']['style'], 'display: none;') || stristr($element['#attributes']['class'], 'fivestar-submit')) {
+    return '<input type="submit" '. (empty($element['#name']) ? '' : 'name="'. $element['#name'] .'" ')  .'id="'. $element['#id'].'" value="'. check_plain($element['#value']) .'" '. drupal_attributes($element['#attributes']) ." />\n";
+  }
+  else {
+    return '<span class="button-wrapper"><span class="button"><span><input type="submit" '. (empty($element['#name']) ? '' : 'name="'. $element['#name'] .'" ')  .'id="'. $element['#id'].'" value="'. check_plain($element['#value']) .'" '. drupal_attributes($element['#attributes']) ." /></span></span></span>\n";
+  }
 }

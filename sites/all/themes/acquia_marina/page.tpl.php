@@ -1,5 +1,5 @@
 <?php
-// $Id: page.tpl.php,v 1.1.2.4 2008/12/21 23:38:55 jwolf Exp $
+// $Id: page.tpl.php,v 1.1.2.3 2008/11/25 22:42:34 jwolf Exp $
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
