@@ -1,5 +1,5 @@
 <?php
-// $Id: content_handler_field_multiple.inc,v 1.1.2.13 2008/11/11 00:34:46 yched Exp $
+// $Id: content_handler_field_multiple.inc,v 1.1.2.16 2009/03/17 22:58:06 yched Exp $
 
 /**
  * @file
@@ -15,16 +15,18 @@ class content_handler_field_multiple extends content_handler_field {
     $field = $this->content_field;
     parent::init($view, $options);
 
-    $this->defer_query = $options['multiple']['group'] && $field['multiple'];
+    $this->defer_query = !empty($options['multiple']['group']) && $field['multiple'];
 
     if ($this->defer_query) {
       // Grouped field: ditch the existing additional_fields (field columns + delta).
       // In the main query we'll only need:
       // - vid, which will be used to retrieve the actual values in pre_render,
-      // - node type, which wil be used to render the results.
+      // - node type and nid, which wil be used in the pseudo-node used when
+      // rendering.
       $this->additional_fields = array(
-        'vid' => array('table' => 'node', 'field' => 'vid'),
         'type' => array('table' => 'node', 'field' => 'type'),
+        'nid' => array('table' => 'node', 'field' => 'nid'),
+        'vid' => array('table' => 'node', 'field' => 'vid'),
       );
     }
   }
@@ -195,9 +197,12 @@ class content_handler_field_multiple extends content_handler_field {
       }
 
       // Build a pseudo-node from the retrieved values.
-      $node = $values;
+      $node = drupal_clone($values);
       // content_format and formatters will need a 'type'.
       $node->type = $values->{$this->aliases['type']};
+      $node->nid = $values->{$this->aliases['nid']};
+      $node->vid = $values->{$this->aliases['vid']};
+
       // Some formatters need to behave differently depending on the build_mode
       // (for instance: preview), so we provide one.
       $node->build_mode = NODE_BUILD_NORMAL;
@@ -242,7 +247,15 @@ class content_handler_field_multiple extends content_handler_field {
     }
 
     if (!empty($this->options['link_to_node']) && $data !== NULL && $data !== '') {
-      return l($data, "node/" . $values->nid, array('html' => TRUE));
+      if (method_exists('render_as_link', 'views_handler_field')) {
+        // Views 2.3+
+        $this->options['alter']['make_link'] = TRUE;
+        $this->options['alter']['path'] = "node/" . $values->{$this->aliases['nid']};
+      }
+      else {
+        // Views up to 2.2
+        return l($data, "node/" . $values->nid, array('html' => TRUE));
+      }
     }
     else {
       return $data;

@@ -1,5 +1,5 @@
 <?php
-// $Id: nodereference.module,v 1.138.2.45 2008/11/05 19:40:19 yched Exp $
+// $Id: nodereference.module,v 1.138.2.50 2009/03/18 21:00:58 yched Exp $
 
 /**
  * @file
@@ -92,19 +92,20 @@ function nodereference_field_settings($op, $field) {
           }
         }
 
+        $form['advanced'] = array(
+           '#type' => 'fieldset',
+           '#title' => t('Advanced - Nodes that can be referenced (View)'),
+           '#collapsible' => TRUE,
+           '#collapsed' => !isset($field['advanced_view']) || $field['advanced_view'] == '--',
+         );
         if (count($views) > 1) {
-          $form['advanced'] = array(
-             '#type' => 'fieldset',
-             '#title' => t('Advanced - Nodes that can be referenced (View)'),
-             '#collapsible' => TRUE,
-             '#collapsed' => !isset($field['advanced_view']) || $field['advanced_view'] == '--',
-           );
           $form['advanced']['advanced_view'] = array(
             '#type' => 'select',
             '#title' => t('View used to select the nodes'),
             '#options' => $views,
             '#default_value' => isset($field['advanced_view']) ? $field['advanced_view'] : '--',
-            '#description' => t('Choose the "Views module" view that selects the nodes that can be referenced.<br />Note:<ul><li>Only views that have fields will work for this purpose.</li><li>This will discard the "Content types" settings above. Use the view\'s "filters" section instead.</li><li>Use the view\'s "fields" section to display additional informations about candidate nodes on node creation/edition form.</li><li>Use the view\'s "sort criteria" section to determine the order in which candidate nodes will be displayed.</li></ul>'),
+            '#description' => t('<p>Choose the "Views module" view that selects the nodes that can be referenced.<br />Note:</p>') .
+              t('<ul><li>Only views that have fields will work for this purpose.</li><li>This will discard the "Content types" settings above. Use the view\'s "filters" section instead.</li><li>Use the view\'s "fields" section to display additional informations about candidate nodes on node creation/edition form.</li><li>Use the view\'s "sort criteria" section to determine the order in which candidate nodes will be displayed.</li></ul>'),
           );
           $form['advanced']['advanced_view_args'] = array(
             '#type' => 'textfield',
@@ -112,6 +113,12 @@ function nodereference_field_settings($op, $field) {
             '#default_value' => isset($field['advanced_view_args']) ? $field['advanced_view_args'] : '',
             '#required' => FALSE,
             '#description' => t('Provide a comma separated list of arguments to pass to the view.'),
+          );
+        }
+        else {
+          $form['advanced']['no_view_help'] = array(
+            '#value' => t('<p>The list of nodes that can be referenced can be based on a "Views module" view but no appropriate views were found. <br />Note:</p>') .
+              t('<ul><li>Only views that have fields will work for this purpose.</li><li>This will discard the "Content types" settings above. Use the view\'s "filters" section instead.</li><li>Use the view\'s "fields" section to display additional informations about candidate nodes on node creation/edition form.</li><li>Use the view\'s "sort criteria" section to determine the order in which candidate nodes will be displayed.</li></ul>'),
           );
         }
       }
@@ -139,7 +146,13 @@ function nodereference_field_settings($op, $field) {
       // Filter: swap the handler to the 'in' operator.
       $data[$table_alias][$field['field_name'] .'_nid']['filter']['handler'] = 'content_handler_filter_many_to_one';
       // Argument: use node.title for summaries.
-      $data[$table_alias][$field['field_name'] .'_nid']['argument']['name table'] = 'node';
+      $data["node_$table_alias"]['table']['join']['node'] = array(
+        'table' => 'node',
+        'field' => 'nid',
+        'left_table' => $table_alias,
+        'left_field' => $field['field_name'] .'_nid',
+      );
+      $data[$table_alias][$field['field_name'] .'_nid']['argument']['name table'] = "node_$table_alias";
       $data[$table_alias][$field['field_name'] .'_nid']['argument']['name field'] = 'title';
       // Relationship: add a relationship for related node.
       $data[$table_alias][$field['field_name'] .'_nid']['relationship'] = array(
@@ -182,17 +195,27 @@ function nodereference_field($op, &$node, $field, &$items, $teaser, $page) {
       // Extract nids to check.
       $ids = array();
       foreach ($items as $delta => $item) {
-        if (is_array($item) && !empty($item['nid']) && is_numeric($item['nid'])) {
-          $ids[] = $item['nid'];
+        if (is_array($item) && !empty($item['nid'])) {
+          if (is_numeric($item['nid'])) {
+            $ids[] = $item['nid'];
+          }
+          else {
+            $error_element = isset($item['_error_element']) ? $item['_error_element'] : '';
+            if (is_array($item) && isset($item['_error_element'])) unset($item['_error_element']);
+            form_set_error($error_element, t("%name: invalid input.", array('%name' => t($field['widget']['label']))));
+          }
         }
       }
-      $refs = _nodereference_potential_references($field, '', NULL, $ids);
-      foreach ($items as $delta => $item) {
-        if (is_array($item)) {
-          $error_element = isset($item['_error_element']) ? $item['_error_element'] : '';
-          if (is_array($item) && isset($item['_error_element'])) unset($item['_error_element']);
-          if (!empty($item['nid']) && !isset($refs[$item['nid']])) {
-            form_set_error($error_element, t("%name: this post can't be referenced.", array('%name' => t($field['widget']['label']))));
+      // Prevent performance hog if there are no ids to check.
+      if ($ids) {
+        $refs = _nodereference_potential_references($field, '', NULL, $ids);
+        foreach ($items as $delta => $item) {
+          if (is_array($item)) {
+            $error_element = isset($item['_error_element']) ? $item['_error_element'] : '';
+            if (is_array($item) && isset($item['_error_element'])) unset($item['_error_element']);
+            if (!empty($item['nid']) && !isset($refs[$item['nid']])) {
+              form_set_error($error_element, t("%name: this post can't be referenced.", array('%name' => t($field['widget']['label']))));
+            }
           }
         }
       }
@@ -674,9 +697,7 @@ function nodereference_allowed_values($field) {
 
   $options = array();
   foreach ($references as $key => $value) {
-    // Views theming runs check_plain (htmlentities) on the values.
-    // We reverse that with html_entity_decode.
-    $options[$key] = html_entity_decode(strip_tags($value['rendered']), ENT_QUOTES);
+    $options[$key] = $value['rendered'];
   }
   return $options;
 }
@@ -730,7 +751,7 @@ function _nodereference_potential_references($field, $string = '', $match = 'con
     }
 
     // Store the results.
-    $results[$cid] = $references;
+    $results[$cid] = !empty($references) ? $references : array();
   }
 
   return $results[$cid];
@@ -858,7 +879,7 @@ function _nodereference_potential_references_standard($field, $string = '', $mat
   while ($node = db_fetch_object($result)) {
     $references[$node->nid] = array(
       'title' => $node->node_title,
-      'rendered' => $node->node_title,
+      'rendered' => check_plain($node->node_title),
     );
   }
 

@@ -1,4 +1,63 @@
-//$Id: CHANGELOG.txt,v 1.1.6.269 2008/11/12 00:00:04 yched Exp $
+//$Id: CHANGELOG.txt,v 1.1.6.312 2009/03/18 21:00:58 yched Exp $
+
+CCK 6.x-2.2
+===========
+
+IMPORTANT:
+This release fixes a security issue (XSS vulnerability) in nodereference and userreference modules.
+All sites are using CCK for Drupal 6 are strongly encouraged to upgrade to CCK 2.2.
+Note that the Drupal 5 versions are not affected.
+See the Security Annoucement on http://drupal.org/node/406520 for more informations.
+
+
+Features:
+- #361311 Add poll settings forms to Manage fields screen.
+- Add book form to Manage fields screen.
+- #131953 by markus_petrux - Views integration: expose additional db columns.
+- #349987 by Michelle - Panels integration for fieldgroups.
+- #362216 by markus_petrux - sort the admin/content/types/fields overview by field name.
+- #242583 by jmiccolis - Number: Push maximum 'scale' setting up to 10 for decimal fields.
+- Correct RTL display.
+- #405452 - Views integration: Update to Views 2.3 API ('link to node'), with 2.2 compatibility preserved.
+
+Bugfixes:
+- #392476 Make sure CCK textarea fields in a View don't have a span wrapped around a block-level element.
+- Fix devel_generate for decimal and float values.
+- #358700 Can't use array_slice() on assoc array in PHP4.
+- #196421 Prefixed tables weren't getting queried correctly.
+- Don't assume display_settings[$context] always exists, newly enabled modules may add new contexts that weren't there when the field was last edited.
+- #339537 by markus_petrux: fix orphan fields in {content_group_fields} table when fields are removed.
+- Views integration: use shorter titles in Views admin summaries (see http://drupal.org/node/326034).
+- #334290 by drewish - Userreference: user names not displayed in Views summaries.
+- #343138 by duellj - Fix tokens for empty noderef / userref fields.
+- #343306 Validate text 'max length' to be a positive integer
+- #344004 by markus_petrux - Diff integration : fix error on non-'core CCK' field types.
+- Diff integration: limit the number of additional queries for noderef/userref.
+- Diff integration: refactored around a new hook_content_diff_values() to save contrib field modules the
+burden of implementing hook_diff. For most field types, the default content_field_content_diff_values()
+should be enough, though.
+- #344216 by dbabbage: Fix incorrect url to Schema module in tests descriptions.
+- #336174 Move actual field access check in content.module, with content_permission.module providing one permission-based implementation.
+- #336174 (followup) Make sure content_view_field() and content_format() both respect field access rules.
+- #351929 by lyricnz - Views integration: make sure formatters get a pseudo-node with enough info.
+- #355712 by fractile81 - Fieldgroup: fix extraneous cache clears.
+- #356666 by flobruit - fix 'exclude' display setting wrongly set across shared instances of a field.
+- Fix 'undefined variable' notice when submitting field settings form with 'php code for default value.
+- #353012 User reference - fix duplicate 'reverse links' on user profile pages when the same user is referenced by several userref fields in a node. Also improves performance.
+- #342427 Views integration - fix summaries for nodereference and userreference fields.
+- #363456 by dww - Fix some cases of bogus d-n-d reordering of 'pseudo-fields'.
+- #366935 by drewish - Make the 'Views mode' feature in noderef / ueserref visible even if no usable View exists yet.
+- #371306 fix duplicate HTML when using the JS-'add more' button.
+- #370004 by dopry - Fix JS-'add more' button breaking fielfield's AHAH upload.
+- #374213 by rpanna - Fieldgroup: All field instances removed their groups when one instance is deleted from a content type.
+- #356158 by markus_petrux - Fix more (hopefully all ?) cases of bogus d-n-d reordering of 'pseudo-fields'.
+- #381876 by DamienMcKenna - Content Copy: Fix formatting glitch in exported type definitions.
+- #346202 Fieldgroup: let the 'simple' template be overridable (thks fiskit) + allow template variants.
+- #382004 by elcuco - Field name and group name fields should stay LTR for RTL languages.
+- #360712 by tombigel - CSS tweaks for RTL languages.
+- #375316 Nodereference/Userreference: Ensure allowed values always return at least an empty array.
+- #368155 Nodereference/Userreference: Fix performance issue on large sites when validating empty noderef/userref fields.
+- #319778 Optionwidgets: Fix double encoding issues for &, >, <,... chars in select lists.
 
 CCK 6.x-2.1
 ===========
@@ -12,7 +71,6 @@ Other fixes:
 - Uninstall forgot to remove some variables.
 - #331794 Fix false positives for "The default value is invalid" error message.
 - #331995 Fix 'invalid argument for foreach' warning on nodes with inexistent type.
-- #331033 Views integration: Fix fatal error in content_handler_field.inc in some circumstances.
 - Views integration: make sure our own render_link doesn't output empty links (see #332679).
 
 CCK 6.x-2.0

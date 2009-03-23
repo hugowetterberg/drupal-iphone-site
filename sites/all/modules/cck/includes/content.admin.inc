@@ -1,5 +1,5 @@
 <?php
-// $Id: content.admin.inc,v 1.181.2.59 2008/11/10 15:07:10 yched Exp $
+// $Id: content.admin.inc,v 1.181.2.64 2009/03/01 13:48:44 yched Exp $
 
 /**
  * @file
@@ -60,6 +60,9 @@ function theme_content_overview_links() {
 function content_fields_list() {
   $fields = content_fields();
   $field_types = _content_field_types();
+
+  // Sort fields by field name.
+  ksort($fields);
 
   $header = array(t('Field name'), t('Field type'), t('Used in'));
   $rows = array();
@@ -242,7 +245,10 @@ function content_field_overview_form(&$form_state, $type_name) {
       ),
       'field_name' => array(
         '#type' => 'textfield',
-        '#field_prefix' => 'field_',
+        // This field should stay LTR even for RTL languages.
+        '#field_prefix' => '<span dir="ltr">field_',
+        '#field_suffix' => '</span>&lrm;',
+        '#attributes' => array('dir'=>'ltr'),
         '#size' => 15,
         '#description' => t('Field name (a-z, 0-9, _)'),
       ),
@@ -310,7 +316,10 @@ function content_field_overview_form(&$form_state, $type_name) {
       ),
       'group_name' => array(
         '#type' => 'textfield',
-        '#field_prefix' => 'group_',
+        // This field should stay LTR even for RTL languages.
+        '#field_prefix' => '<span dir="ltr">group_',
+        '#field_suffix' => '</span>&lrm;',
+        '#attributes' => array('dir'=>'ltr'),
         '#size' => 15,
         '#description' => t('Group name (a-z, 0-9, _)'),
       ),
@@ -1207,6 +1216,7 @@ function content_field_edit_form_validate($form, &$form_state) {
 
     if (isset($form_values['default_value_php']) &&
     ($php = trim($form_values['default_value_php']))) {
+      $error = FALSE;
       ob_start();
       $return = eval($php);
       ob_end_clean();
@@ -1828,4 +1838,34 @@ function content_field_replace($nid, $updates) {
   }
   node_save($node);
   return $node;
+}
+
+/**
+ * Helper form element validator : integer.
+ */
+function _element_validate_integer($element, &$form_state) {
+  $value = $element['#value'];
+  if ($value !== '' && (!is_numeric($value) || intval($value) != $value)) {
+    form_error($element, t('%name must be an integer.', array('%name' => $element['#title'])));
+  }
+}
+
+/**
+ * Helper form element validator : integer > 0.
+ */
+function _element_validate_integer_positive($element, &$form_state) {
+  $value = $element['#value'];
+  if ($value !== '' && (!is_numeric($value) || intval($value) != $value || $value <= 0)) {
+    form_error($element, t('%name must be a positive integer.', array('%name' => $element['#title'])));
+  }
+}
+
+/**
+ * Helper form element validator : number.
+ */
+function _element_validate_number($element, &$form_state) {
+  $value = $element['#value'];
+  if ($value != '' && !is_numeric($value)) {
+    form_error($element, t('%name must be a number.', array('%name' => $element['#title'])));
+  }
 }
