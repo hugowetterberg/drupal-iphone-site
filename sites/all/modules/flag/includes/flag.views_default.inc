@@ -1,5 +1,5 @@
 <?php
-// $Id: flag.views_default.inc,v 1.1.2.4 2009/02/20 21:56:41 quicksketch Exp $
+// $Id: flag.views_default.inc,v 1.1.2.5 2009/02/22 22:20:39 quicksketch Exp $
 
 /**
  * @file
@@ -145,8 +145,9 @@ function flag_views_default_views() {
   /* Individual users user/%/bookmarks tab. */
 
   // Additional relationship for this view.
-  $relationships['flag_content_rel']['user_scope'] = 'all';
-  $relationships_tab = $relationships + array(
+  $relationships_tab = $relationships;
+  $relationships_tab['flag_content_rel']['user_scope'] = 'all';
+  $relationships_tab += array(
     'uid' => array(
       'label' => 'bookmarks_user',
       'required' => 1,

@@ -1,5 +1,5 @@
 <?php
-// $Id: flag.module,v 1.11.2.65 2009/02/22 03:15:52 quicksketch Exp $
+// $Id: flag.module,v 1.11.2.68 2009/03/14 06:13:54 quicksketch Exp $
 
 /**
  * @file
@@ -360,6 +360,10 @@ function flag_user($op, &$edit, &$account, $category = NULL) {
           // Flag does not apply to this content.
           continue;
         }
+        if (!$flag->uses_hook_link(array())){
+          // Flag not set to appear on profile.
+          continue;
+        }
         $account->content['flags'][$flag->name] = array(
           // @todo Make this better
           '#type' => 'item',
@@ -468,6 +472,13 @@ function theme_flag_admin_page($flags, $default_flags) {
   }
   else {
     $output .= '<p>' . t('Flagging an item may trigger <a href="@actions-url">actions</a>.', array('@actions-url' => url('admin/build/flags/actions'))) . '</p>';
+  }
+  
+  if (!module_exists('rules')) {
+    $output .= '<p>' . t('Flagging an item may trigger <em>rules</em>. However, you don\'t have the <a href="@rule-url">Rules</a> module enabled, so you won\'t be able to enjoy this feature. The Rules module provides more flexibilty and more options than the flag actions do.', array('@rules-url' => url('http://drupal.org/project/rules'))) . '</p>';
+  }
+  else {
+    $output .= '<p>' . t('Flagging an item may trigger <a href="@rules-url">rules</a>.', array('@rules-url' => url('admin/rules/trigger'))) . '</p>';
   }
 
   $output .= '<p>' . t('To learn about the various ways to use flags, please check out the <a href="@handbook-url">Flag module handbook</a>.', array('@handbook-url' => 'http://drupal.org/handbook/modules/flag')) . '</p>';
@@ -955,6 +966,12 @@ function flag_flag($action, $flag, $content_id, $account) {
     }
 
   }
+
+  if (module_exists('rules')) {
+    $event_name = ($action == 'flag' ? 'flag_flagged_' : 'flag_unflagged_') . $flag->name;
+    $arguments = array('flag' => $flag, 'flag_content_id' => $content_id, 'flagging_user' => $account);
+    rules_invoke_event($event_name, $arguments);
+  }
 }
 
 /**
@@ -1028,6 +1045,9 @@ function flag_theme() {
     'flag_admin_page' => array(
       'arguments' => array('flags' => NULL, 'default_flags' => NULL),
     ),
+    'flag_rules_radios' => array(
+      'arguments' => array(),
+    ),
   );
 }
 
@@ -1071,7 +1091,7 @@ function template_preprocess_flag(&$variables) {
 
   $variables['link_href'] = check_url(url($link['href'], $link));
   $variables['link_text'] = isset($link['title']) ? $link['title'] : strip_tags($flag->get_label($action . '_short', $content_id), '<em><strong><img>');
-  $variables['link_title'] = isset($link['attributes']['title']) ? $link['attributes']['title'] : strip_tags($flag->get_label($action . '_long', $content_id));
+  $variables['link_title'] = isset($link['attributes']['title']) ? check_plain($link['attributes']['title']) : check_plain(strip_tags($flag->get_label($action . '_long', $content_id)));
   $variables['flag_name_css'] = str_replace('_', '-', $flag->name);
   $variables['last_action'] = ($action == 'flag' ? 'unflagged' : 'flagged');
   $variables['flag_classes_array'] = array();

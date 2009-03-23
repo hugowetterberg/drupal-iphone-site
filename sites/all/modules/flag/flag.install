@@ -1,5 +1,5 @@
 <?php
-// $Id: flag.install,v 1.2.2.28 2009/02/20 21:56:40 quicksketch Exp $
+// $Id: flag.install,v 1.2.2.31 2009/03/14 05:57:36 quicksketch Exp $
 
 /**
  * @file
@@ -86,13 +86,11 @@ function flag_requirements($phase) {
     }
   }
 
-  if (module_exists('translation') && !module_exists('translation_helpers')) {
+  if ($phase == 'runtime' && module_exists('translation') && !module_exists('translation_helpers')) {
     $requirements['flag_translation']['title'] = $t('Flag');
     $requirements['flag_translation']['severity'] = REQUIREMENT_ERROR;
     $requirements['flag_translation']['description'] = $t('To have the flag module work with translations, you need to install and enable the <a href="http://drupal.org/project/translation_helpers">Translation helpers</a> module.');
-    if ($phase == 'runtime') {
-      $requirements['flag_translation']['value'] = $t('Translation helpers module not found.');
-    }
+    $requirements['flag_translation']['value'] = $t('Translation helpers module not found.');
   }
   return $requirements;
 }
@@ -416,6 +414,12 @@ function flag_update_6002() {
 function flag_update_6003() {
   $ret = array();
 
+  // Bail out if Views doesn't exist.
+  if (!function_exists('views_get_view')) {
+    return $ret;
+  }
+
+  drupal_load('module', 'flag');
   $flags = flag_get_flags();
   foreach ($flags as $name => $flag) {
     if ($view = views_get_view('flags_'. $name)) {
