@@ -1,16 +1,14 @@
-# $Id: theme.pot,v 1.1.2.2 2009/01/11 10:06:29 hass Exp $
+# $Id: theme.pot,v 1.1.2.3 2009/03/08 09:32:11 hass Exp $
 #
 # LANGUAGE translation of Drupal (theme)
 # Copyright YEAR NAME <EMAIL@ADDRESS>
-# Generated from files:
-#  date-navigation.tpl.php,v 1.1.4.7 2008/10/19 14:23:47 karens
-#  theme.inc,v 1.1.4.29 2008/12/03 15:44:27 karens
+# Generated from file: theme.inc,v 1.1.4.33 2009/02/17 17:04:31 karens
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2009-01-11 11:03+0100\n"
+"POT-Creation-Date: 2009-03-07 19:12+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -19,23 +17,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: theme/date-navigation.tpl.php:38
-msgid "« prev"
-msgstr ""
-
-#: theme/date-navigation.tpl.php:46
-msgid "next »"
-msgstr ""
-
-#: theme/theme.inc:89
+#: theme/theme.inc:90
 msgid "Week of @date"
 msgstr ""
 
-#: theme/theme.inc:320
-msgid "am/pm"
-msgstr ""
-
-#: theme/theme.inc:323
+#: theme/theme.inc:327
 msgid "Timezone"
 msgstr ""
 

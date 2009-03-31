@@ -1,5 +1,5 @@
 <?php
-// $Id: date.install,v 1.37.2.5.2.26 2009/02/15 11:32:48 karens Exp $
+// $Id: date.install,v 1.37.2.5.2.28 2009/03/25 12:04:38 karens Exp $
 function date_install_clear() {
   cache_clear_all('date_', 'cache', '*');
   drupal_load('module', 'content');
@@ -541,7 +541,7 @@ function date_update_6005() {
   // We need to abort and tell the user to re-run it.
   // We need a custom abort process because the content_check_update could be OK
   // but we still need to update these values.
-  if (!db_table_exists('date_format_types')) {
+  if (!db_table_exists('date_format') || !db_table_exists('date_format_types')) {
     drupal_set_message(t('Some updates are still pending. Please return to <a href="@update-php">update.php</a> and run the remaining updates.', array('@update-php' => base_path() .'update.php?op=selection')), 'error', FALSE);
     $ret['#abort'] = array('success' => FALSE, 'query' => t('Some updates are still pending.<br/>Please re-run the update script.'));
     return $ret;
@@ -718,11 +718,11 @@ function date_install_create_format($field, $title, $name, $format) {
   if (empty($title)) {
     $type = str_replace($field['field_name'] .'_', '', $name);
     $field = $fields[$field['field_name']];
-    $title = $field['widget']['label'] .' '. $type;  
+    $title = $field['widget']['label'];  
   }
   variable_set('date_format_'. $name, $format);
   db_query("INSERT INTO {date_format_types} (type, title, locked) VALUES('%s', '%s', 0)", $name, $title);
-  if (!db_result(db_query("SELECT dfid FROM {date_format} WHERE format='%s'", $format))) {
+  if (!db_result(db_query("SELECT dfid FROM {date_format} WHERE format='%s' AND type='%s'", $format, 'custom'))) {
     db_query("INSERT INTO {date_format} (format, type, locked) VALUES('%s', '%s', 0)", $format, 'custom');
   }
 }

@@ -1,5 +1,5 @@
 <?php
-// $Id: date_popup.module,v 1.42.2.1.2.42 2009/02/24 15:54:28 karens Exp $
+// $Id: date_popup.module,v 1.42.2.1.2.43 2009/03/25 15:31:42 karens Exp $
 /**
  * @file
  * A module to enable jquery calendar and time entry popups.
@@ -246,6 +246,8 @@ function date_popup_process_date(&$element, $edit = NULL, $date = NULL) {
     '#size' => !empty($element['#size']) ? $element['#size'] : 20,
     '#maxlength' => !empty($element['#maxlength']) ? $element['#maxlength'] : 30,
     );
+  // Views exposed filters are treated as submitted even if not,
+  // so force the #default value in that case.  
   if (!empty($element['#force_value'])) {
     $sub_element['#value'] = $sub_element['#default_value'];
   }
@@ -281,6 +283,8 @@ function date_popup_process_time(&$element, $edit = NULL, $date = NULL) {
     '#size' => 10,
     '#maxlength' => 10,
     );
+  // Views exposed filters are treated as submitted even if not,
+  // so force the #default value in that case.  
   if (!empty($element['#force_value'])) {
     $sub_element['#value'] = $sub_element['#default_value'];
   }

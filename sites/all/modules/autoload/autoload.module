@@ -1,5 +1,5 @@
 <?php
-// $Id: autoload.module,v 1.1.2.3 2008/12/02 05:19:39 crell Exp $
+// $Id: autoload.module,v 1.1.2.5 2009/03/17 21:57:58 crell Exp $
 /**
  * Implementation of hook_init().
  */
@@ -8,7 +8,7 @@ function autoload_init() {
 }
 
 /**
- * Implementation of hook_flush_caches9).
+ * Implementation of hook_flush_caches().
  */
 function autoload_flush_caches() {
   // Force a rescan of the autload hook.
@@ -21,12 +21,16 @@ function autoload_flush_caches() {
 function autoload_class($class) {
   static $lookup;
 
-  if (empty($lookup)) {
+  if (!isset($lookup)) {
     $lookup = autoload_get_lookup();
   }
 
    if (!empty($lookup[$class])) {
-    require_once dirname($_SERVER['SCRIPT_FILENAME']) .'/'. $lookup[$class];
+    // require() is safe because if the file were already included
+    // autoload wouldn't have been triggered.  The dirname() stuff
+    // is backported from Drupal 7 to get an absolute path, which
+    // includes faster on disk.
+    require dirname($_SERVER['SCRIPT_FILENAME']) .'/'. $lookup[$class];
   }
 }
 

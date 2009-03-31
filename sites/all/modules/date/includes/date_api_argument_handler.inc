@@ -1,5 +1,5 @@
 <?php
-// $Id: date_api_argument_handler.inc,v 1.1.2.34 2009/02/26 17:18:53 karens Exp $
+// $Id: date_api_argument_handler.inc,v 1.1.2.36 2009/03/20 18:29:42 karens Exp $
 /**
  * Date API argument handler.
  */
@@ -74,7 +74,7 @@ class date_api_argument_handler extends views_handler_argument_date {
       '#description' => t("Set the allowable minimum and maximum year range for this argument, either a -X:+X offset from the current year, like '-3:+3' or an absolute minimum and maximum year, like '2005:2010'. When the argument is set to a date outside the range, the page will be returned as 'Page not found (404)'."),
     );
     
-    $fields = date_api_fields();
+    $fields = date_api_fields($this->view->base_table);
     $options = array();
     foreach ($fields['name'] as $name => $field) {
       $options[$name] = $field['label'];
@@ -124,7 +124,7 @@ class date_api_argument_handler extends views_handler_argument_date {
   
   // Update the summary values to show selected granularity.
   function admin_summary() {
-    $fields = date_api_fields();
+    $fields = date_api_fields($this->view->base_table);
     if (!empty($this->options['date_fields'])) {
       $output = array();
       foreach ($this->options['date_fields'] as $field) {
@@ -223,7 +223,7 @@ class date_api_argument_handler extends views_handler_argument_date {
   }
 
   function get_query_fields() {
-    $fields = date_api_fields();
+    $fields = date_api_fields($this->view->base_table);
     $fields = $fields['name'];
     $min_date = isset($this->min_date) ? $this->min_date : NULL;
     $min_utc = isset($this->min_utc) ? $this->min_utc : NULL;
@@ -276,8 +276,18 @@ class date_api_argument_handler extends views_handler_argument_date {
   function query() {
     $block_identifier = date_block_identifier($this->view);
     if (!empty($this->view->block_identifier) || isset($_GET[$block_identifier])) {
+      // Retrieve the block arguments in a way that will work for
+      // urls like user/%/calendar/2009-04.
       if (!empty($_GET[$block_identifier])) {
-        $mini_args = explode('/', str_replace($this->view->get_path() .'/', '', $_GET[$block_identifier]));
+        $path_args = explode('/', $this->view->get_path());
+        $mini_args = explode('/', $_GET[$block_identifier]);
+        foreach ($path_args as $pos => $key) {
+          if ($path_args[$pos] != '%') {
+            unset($mini_args[$pos]);
+          }
+        }
+        // Get rid of gaps in the array caused by embedded args.
+        $mini_args = array_values($mini_args);
         $this->view->args = $mini_args;
       }
       $i = 0;
@@ -289,7 +299,6 @@ class date_api_argument_handler extends views_handler_argument_date {
         $i++;
       }
     }
-    
     $parts = $this->date_handler->arg_parts($this->argument);
     
     foreach ($parts as $type) {

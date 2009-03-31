@@ -1,4 +1,4 @@
-# $Id: date_repeat.de.po,v 1.1.2.5 2009/01/11 11:00:56 hass Exp $
+# $Id: date_repeat.de.po,v 1.1.2.8 2009/03/08 14:32:41 hass Exp $
 #
 # LANGUAGE translation of Drupal (general)
 # Copyright YEAR NAME <EMAIL@ADDRESS>
@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2009-01-11 11:03+0100\n"
-"PO-Revision-Date: 2009-01-11 11:50+0100\n"
+"POT-Creation-Date: 2009-03-07 19:12+0100\n"
+"PO-Revision-Date: 2009-03-08 15:31+0100\n"
 "Last-Translator: Alexander Haß\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -47,7 +47,7 @@ msgstr ""
 
 #: date_repeat/date_repeat_form.inc:134;145;156
 msgid "-- Any"
-msgstr "-- Jeder"
+msgstr "-- Jeden"
 
 #: date_repeat/date_repeat_form.inc:143
 msgid "Day of Month"
@@ -63,7 +63,7 @@ msgstr "Ausgenommen"
 
 #: date_repeat/date_repeat_form.inc:169
 msgid "Dates to omit from the list of repeating dates."
-msgstr "Auszulassende Termine in der Liste der Serientermine."
+msgstr "Auszulassende Termine in der Serienterminliste."
 
 #: date_repeat/date_repeat_form.inc:258
 msgid "Delete"
@@ -71,127 +71,82 @@ msgstr "Löschen"
 
 #: date_repeat/date_repeat_form.inc:258
 msgid "Current exceptions"
-msgstr "Derzeitige Ausnahmen"
+msgstr "Aktuelle Ausnahmen"
 
 #: date_repeat/date_repeat.module:41
 msgid "-- Period"
 msgstr "-- Zeitspanne"
 
-#: date_repeat/date_repeat.module:42
-msgid "Day(s)"
-msgstr "Tag(e)"
-
-#: date_repeat/date_repeat.module:43
-msgid "Week(s)"
-msgstr "Woche(n)"
-
-#: date_repeat/date_repeat.module:44
-msgid "Month(s)"
-msgstr "Monat(e)"
-
-#: date_repeat/date_repeat.module:45
-msgid "Year(s)"
-msgstr "Jahr(e)"
-
 #: date_repeat/date_repeat.module:51
 msgid "-- Frequency"
 msgstr "-- Frequenz"
-
-#: date_repeat/date_repeat.module:52;95
-msgid "Every"
-msgstr "Alle"
 
 #: date_repeat/date_repeat.module:55
 msgid "Every @number"
 msgstr "Alle @number"
 
-#: date_repeat/date_repeat.module:96
-msgid "First"
-msgstr "Erster"
+#: date_repeat/date_repeat.module:205
+#, fuzzy
+msgid "!repeats_every_interval on the !date_order !day_of_week"
+msgstr "!repeats_every_interval am !date_order !day_of_week"
 
-#: date_repeat/date_repeat.module:98
-msgid "Third"
-msgstr "Dritter"
+#: date_repeat/date_repeat.module:208
+#, fuzzy
+msgid "!repeats_every_interval every !day_of_week"
+msgstr "!repeats_every_interval jeden !day_of_week"
 
-#: date_repeat/date_repeat.module:99
-msgid "Fourth"
-msgstr "Vierter"
+#: date_repeat/date_repeat.module:211
+msgid "and"
+msgstr "und"
 
-#: date_repeat/date_repeat.module:100
-msgid "Fifth"
-msgstr "Fünfter"
+#: date_repeat/date_repeat.module:221
+#, fuzzy
+msgid "!repeats_every_interval on the !month_days of !month_names"
+msgstr "!repeats_every_interval am !month_days im !month_names"
 
-#: date_repeat/date_repeat.module:101
-msgid "Last"
-msgstr "Letzter"
+#: date_repeat/date_repeat.module:224
+#, fuzzy
+msgid "!repeats_every_interval on !month_names"
+msgstr "!repeats_every_interval im !month_names"
 
-#: date_repeat/date_repeat.module:102
-msgid "Next to last"
-msgstr "Nächsten zum Letzten"
+#: date_repeat/date_repeat.module:232
+#, fuzzy
+msgid "!repeats_every_interval !count times"
+msgstr "!repeats_every_interval !count times"
 
-#: date_repeat/date_repeat.module:103
-msgid "Second from last"
-msgstr "Zweiter vom Letzten"
+#: date_repeat/date_repeat.module:236
+#, fuzzy
+msgid "!repeats_every_interval until !until_date"
+msgstr "!repeats_every_interval bis zum !until_date"
 
-#: date_repeat/date_repeat.module:104
-msgid "Third from last"
-msgstr "Dritter vom Letzten"
+#: date_repeat/date_repeat.module:243
+#, fuzzy
+msgid "!repeats_every_interval except !except_dates"
+msgstr "!repeats_every_interval ausgenommen !except_dates"
 
-#: date_repeat/date_repeat.module:105
-msgid "Fourth from last"
-msgstr "Vierter vom Letzten"
+#: date_repeat/date_repeat.module:247
+#, fuzzy
+msgid "!repeats_every_interval where the week start on !day_of_week"
+msgstr "!repeats_every_interval wenn die Woche am !day_of_week beginnt"
 
-#: date_repeat/date_repeat.module:206
-msgid "!count !day"
-msgstr "!count !day"
+#: date_repeat/date_repeat.module:249
+#, fuzzy
+msgid "Repeats !interval !bymonth !byday !count !until !except."
+msgstr "Wiederholt sich !interval !bymonth !byday !count !until !except."
 
-#: date_repeat/date_repeat.module:209
-msgid "every !day"
-msgstr "jeden !day"
-
-#: date_repeat/date_repeat.module:212
-msgid "!days"
-msgstr "!days"
-
-#: date_repeat/date_repeat.module:212
-msgid " and "
-msgstr " und "
-
-#: date_repeat/date_repeat.module:215
-msgid "on day @number"
-msgstr "am @number-Tag"
-
-#: date_repeat/date_repeat.module:231
-msgid "for !times occurences"
-msgstr "für !times-Vorkommnisse"
-
-#: date_repeat/date_repeat.module:235
-msgid "until !until"
-msgstr "bis !until"
-
-#: date_repeat/date_repeat.module:242
-msgid "except !dates"
-msgstr "ausgenommen !dates"
-
-#: date_repeat/date_repeat.module:175
+#: date_repeat/date_repeat.module:184
 msgid "every week"
 msgid_plural "every @count weeks"
 msgstr[0] "jede Woche"
 msgstr[1] "jede @count-Wochen"
 
-#: date_repeat/date_repeat.module:179;190
-msgid "every "
-msgid_plural "every @count"
-msgstr[0] "jeden "
-msgstr[1] "jeden @count"
-
-#: date_repeat/date_repeat.module:182
+#: date_repeat/date_repeat.module:187
 msgid "every month"
 msgid_plural "every @count months"
 msgstr[0] "jeden Monat"
 msgstr[1] "alle @count-Monate"
 
-#: date_repeat/date_repeat.module:186
+#: date_repeat/date_repeat.module:190
 msgid "every year"
 msgid_plural "every @count years"
 msgstr[0] "jedes Jahr"
@@ -215,6 +170,52 @@ msgstr "Terminserien-API"
 msgid "A Date Repeat API to calculate repeating dates and times from iCal rules."
 msgstr "Ein Terminserien-API zur Berechnung von sich wiederholenden Terminen und Zeiten aus iCal-Regeln."
 
+#~ msgid "Day(s)"
+#~ msgstr "Tag(e)"
+#~ msgid "Week(s)"
+#~ msgstr "Woche(n)"
+#~ msgid "Month(s)"
+#~ msgstr "Monat(e)"
+#~ msgid "Year(s)"
+#~ msgstr "Jahr(e)"
+#~ msgid "Every"
+#~ msgstr "Alle"
+#~ msgid "First"
+#~ msgstr "Erster"
+#~ msgid "Third"
+#~ msgstr "Dritter"
+#~ msgid "Fourth"
+#~ msgstr "Vierter"
+#~ msgid "Fifth"
+#~ msgstr "Fünfter"
+#~ msgid "Last"
+#~ msgstr "Letzter"
+#~ msgid "Next to last"
+#~ msgstr "Nächsten zum Letzten"
+#~ msgid "Second from last"
+#~ msgstr "Zweiter vom Letzten"
+#~ msgid "Third from last"
+#~ msgstr "Dritter vom Letzten"
+#~ msgid "Fourth from last"
+#~ msgstr "Vierter vom Letzten"
+#~ msgid "!count !day"
+#~ msgstr "!count !day"
+#~ msgid "every !day"
+#~ msgstr "jeden !day"
+#~ msgid "!days"
+#~ msgstr "!days"
+#~ msgid "on day @number"
+#~ msgstr "am @number-Tag"
+#~ msgid "for !times occurences"
+#~ msgstr "für !times-Vorkommnisse"
+#~ msgid "until !until"
+#~ msgstr "bis !until"
+#~ msgid "except !dates"
+#~ msgstr "ausgenommen !dates"
+#~ msgid "every "
+#~ msgid_plural "every @count"
+#~ msgstr[0] "jeden "
+#~ msgstr[1] "jeden @count"
 #~ msgid ""
 #~ "Date to stop repeating this item. The 'Until' date will NOT be included "
 #~ "in the results."

@@ -1,10 +1,13 @@
 <?php
-// $Id: date_api_fields.inc,v 1.1.2.5 2008/12/08 11:38:42 karens Exp $
+// $Id: date_api_fields.inc,v 1.1.2.7 2009/03/20 16:57:15 karens Exp $
 /**
  *  Identify all potential date/timestamp fields.
  *
  *  @return
- *   array with fieldname, type, and table
+ *    array with fieldname, type, and table.
+ *  @see 
+ *    date_api_date_api_fields() which implements 
+ *    the hook_date_api_fields() for the core date fields.
  */
 function _date_api_fields($base = 'node') {
   $cid = 'date_api_fields_'. $base;
@@ -27,6 +30,7 @@ function _date_api_fields($base = 'node') {
     $type = '';
     
     // For cck fields, get the date type.
+    $custom = array();
     if (isset($handler->content_field)) {
       if ($handler->content_field['type'] == 'date') {
         $type = 'cck_string';
@@ -39,19 +43,7 @@ function _date_api_fields($base = 'node') {
       }
     }
     
-    // This is a core timestamp field.
-    elseif (strstr($field_name, 'timestamp') || strstr($field_name, 'updated') 
-      || strstr($field_name, 'created') || strstr($field_name, 'changed')) {
-      $type = 'timestamp';
-    }
-    
     // Allow custom modules to provide date fields.
-    // Look for the first module to respond, we can't have more
-    // than one definition for a field.
-    
-    // Custom fields should use the 'views_handler_field_date' handler and
-    // return an array like array('sql_type' => DATE_ISO, 'tz_handling' => 'site');
-    // when the hook is called with their table.field_name.
     elseif ($handler_name == 'views_handler_field_date') {
       foreach (module_implements('date_api_fields') as $module) {
         $function = $module .'_date_api_fields';

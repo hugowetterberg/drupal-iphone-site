@@ -1,5 +1,5 @@
 <?php
-// $Id: date_tools.module,v 1.1.2.10 2009/02/27 15:04:28 karens Exp $
+// $Id: date_tools.module,v 1.1.2.14 2009/03/18 12:43:54 karens Exp $
 
 /**
  * Implementation of hook_help().
@@ -15,7 +15,7 @@ function date_tools_help($section, $arg) {
         drupal_set_message(t('The following modules are required for the wizard to work:') .'<ul><li>'. implode('</li><li>', $disabled_modules) .'</li></ul>', 'error');
       }
       $output =        
-      t('Fill out the following form to auto-create a date content type, with a datetime field and matching pre-configured calendar. A calendar and upcoming events block will be created, an ical feed will be added to the calendar, and the mini calendar, calendar legend, and upcoming events blocks will be added to the sidebar of the default theme. Nodes created from this new content type will include a link to the calendar, and the calendar will have a link to the \'add new date\' form. If the Signup module is enabled, Signups will also be enabled for this field.') .
+      t('Fill out the following form to auto-create a date content type, with a datetime field and matching pre-configured calendar. A calendar and upcoming events block will be created, an ical feed will be added to the calendar, and the mini calendar, calendar legend, and upcoming events blocks will be added to the sidebar of the default theme. Nodes created from this new content type will include a link to the calendar, and the calendar will have a link to the \'add new date\' form. If the Signup module is enabled, Signups will also be enabled for this field. You can also add new date fields to an existing content type by entering the existing content type name instead of creating a new one.') .
       '</p><p>'.
       t('Only a limited set of options are displayed here to make this easy to set up. Once the date has been created you will be able to make other changes to the date settings and add other fields to your new content type on the Manage fields screen, and make changes to the calendar on the Views edit page.') .
       '</p>';
@@ -88,6 +88,13 @@ function date_tools_menu() {
     'type' => MENU_LOCAL_TASK,
     'weight' => 4,
   );
+  $items['date/tools/remove'] = array(
+    'title'    => 'Remove calendar',
+    'access arguments'   => array('administer nodes'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('date_tools_remove_form', 3),
+    'type' => MENU_CALLBACK,
+  );
   return $items;
 }
 
@@ -97,73 +104,154 @@ function date_tools_menu() {
 function date_tools_page() {
   $choices = array();
   $choices[] = t('Dates and calendars can be complicated to set up. The !date_wizard makes it easy to create a simple date content type and related calendar.', array('!date_wizard' => l(t('Date wizard'), 'admin/content/date/tools/date_wizard')));
-  return '<ul><li>'. implode('</li><li>', $choices) .'</li></ul>';
+  $content = '<ul><li>'. implode('</li><li>', $choices) .'</li></ul>';
+
+  if (module_exists('calendar')) {
+    $calendar_options = variable_get('calendar_default_view_options', array());
+    $calendars = array();
+    $node_types = node_get_types();
+    foreach ($calendar_options as $key => $option) {
+      $type_name = str_replace('calendar_', '', $key);
+      if (array_key_exists($type_name, $node_types)) {
+        $type = $node_types[$type_name];
+        $calendars[] = array(
+          l($type->name, 'admin/content/node-type/'. $type_name .'/fields'), 
+          l($key, 'admin/build/views/edit/'. $key), 
+          t('The calendar %view is a default calendar created for the content type %type_name.', array('%view' => $key, '%type_name' => $type->name)),
+          l(t('remove !view', array('!view' => $key)), 'date/tools/remove/' . $key),
+        );
+      }
+      else {
+        // Do some cleanup while we're here if we have default calendars
+        // for non-existent content types.
+        calendar_remove($type_name);
+      }
+    }
+    if (!empty($calendars)) {
+      $headers = array(t('Content Type'), t('Calendar'), t('Description'), t('Operations'));
+      $content .= theme('table', $headers, $calendars);
+    }
+  }
+  
+  return $content;
+}
+
+/**
+ * Menu callback; present a form for removing a field from a content type.
+ */
+function date_tools_remove_form(&$form_state, $view_name) {
+  $form = array();
+  $form['view_name'] = array(
+    '#type' => 'value',
+    '#value' => $view_name,
+  );
+  $output = confirm_form($form,
+    t('Are you sure you want to remove the view %view?', array('%view' => $view_name)),
+    'admin/content/date/tools',
+    t('This action cannot be undone.'),
+    t('Remove'), t('Cancel')
+  );
+
+  return $output;
+}
+
+/**
+ * Remove a field from a content type.
+ */
+function date_tools_remove_form_submit($form, &$form_state) {
+  $form_values = $form_state['values'];
+  $view_name = $form_values['view_name'];
+  
+  if ($view_name && $form_values['confirm']) {
+    calendar_remove($view_name);
+    drupal_set_message(t('Removed calendar %calendar.', array(
+      '%calendar' => $view_name)));
+  }
+  $form_state['redirect'] = 'admin/content/date/tools';
 }
 
 function date_tools_wizard_form() {
   
   $form = array();
-  $form['type_name'] = array(
+  $form['type'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Content type'),
+    );
+  $form['type']['type_name'] = array(
     '#type' => 'textfield',
     '#default_value' => 'date',
     '#title' => t('Content type name'),
-    '#description' => t('Machine-readable name. Allowed values: (a-z, 0-9, _). Must not be an existing content type name.'),
+    '#description' => t('Machine-readable name. Allowed values: (a-z, 0-9, _). If this is not an existing content type, the content type will be created.'),
     ); 
-  $form['name'] = array(
+  $form['type']['name'] = array(
     '#type' => 'textfield',
     '#default_value' => t('Date'),
     '#title' => t('Content type label'),
-    '#description' => t('The human-readable name for this content type.'),
+    '#description' => t('The human-readable name for this content type. Only needed when creating a new content type.'),
     ); 
-  $form['type_description'] = array(
+  $form['type']['type_description'] = array(
     '#type' => 'textarea',
     '#default_value' => t('A date content type that is linked to a Views calendar.'),
     '#title' => t('Content type description'),
+    '#description' => t('A description for the content type. Only needed when creating a new content type.'),
     );      
-  $form['field_name'] = array(
+  $form['field'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Date field'),
+    );
+  $form['field']['field_name'] = array(
     '#type' => 'textfield',
     '#default_value' => 'date',
     '#field_prefix' => 'field_',
     '#title' => t('Date field name'),
     '#description' => t('Machine-readable name. Allowed values: (a-z, 0-9, _) Must not be an existing field name.'),
     );
-  $form['label'] = array(
+  $form['field']['label'] = array(
     '#tree' => TRUE,
     '#type' => 'textfield',
     '#default_value' => t('Date'),
     '#title' => t('Date field label'),
     '#description' => t('The human-readable label for this field.'),
     );
-  $form['field_type'] = array(
-    '#type' => 'value',
-    '#options' => date_tools_wizard_field_types(),
-    '#default_value' => 'datetime',
-    '#title' => t('Date field type'),
-    );
-  $form['widget_type'] = array(
-    '#type' => 'radios',
+  $form['field']['widget_type'] = array(
+    '#type' => 'select',
     '#options' => date_tools_wizard_widget_types(),
     '#default_value' => 'date_select',
     '#title' => t('Date widget type'),
     );
-  $form['granularity'] = array(
-    '#type' => 'value',
-    '#options' => date_granularity_names(),
-    '#default_value' => array('month', 'day', 'year', 'hour', 'minute'),
-    '#title' => t('Granularity'),
-    );  
-  $form['tz_handling'] = array(
-    '#type' => 'value',
-    '#options' => date_tools_wizard_tz_handling(),
-    '#default_value' => 'site',
-    '#title' => t('Date timezone handling'),
-    );
-  $form['repeat'] = array(
+  $form['field']['repeat'] = array(
     '#type' => 'select',
     '#default_value' => 0,
     '#options' => array(0 => t('No'), 1 => t('Yes')),
     '#title' => t('Show repeating date options'),
     );  
+  $form['field']['advanced'] = array(
+    '#type' => 'fieldset',
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+    '#title' => t('Advanced options'),
+    );
+  $form['field']['advanced']['field_type'] = array(
+    '#type' => 'select',
+    '#options' => date_tools_wizard_field_types(),
+    '#default_value' => 'datetime',
+    '#title' => t('Date field type'),
+    '#description' => t("The recommend type is Datetime, except for historical dates or dates with only year or month granularity. Older or incomplete dates should use the Date type (an ISO date)."),
+    );
+  $form['field']['advanced']['granularity'] = array(
+    '#type' => 'select',
+    '#options' => date_granularity_names(),
+    '#default_value' => array('month', 'day', 'year', 'hour', 'minute'),
+    '#title' => t('Granularity'),
+    '#multiple' => TRUE,
+    );  
+  $form['field']['advanced']['tz_handling'] = array(
+    '#type' => 'select',
+    '#options' => date_tools_wizard_tz_handling(),
+    '#default_value' => 'site',
+    '#title' => t('Date timezone handling'),
+    '#description' => t("Timezone handling should be set to 'none' for granularity without time elements.")
+    );
   $form['calendar'] = array(
     '#type' => 'select',
     '#default_value' => 1,
@@ -199,19 +287,26 @@ function date_tools_wizard_form_validate(&$form, &$form_state) {
   $type_name = $form_state['values']['type_name'];
   $field_name = 'field_'. $form_state['values']['field_name'];
   if (db_result(db_query("SELECT type FROM {node_type} WHERE type='%s'", $type_name))) {
-    form_set_error('type_name', t('This content type name already exists.'));
+    drupal_set_message(t('This content type name already exists, adding new field to existing content type.'));
   }
   if (db_result(db_query("SELECT field_name FROM {content_node_field_instance} WHERE field_name='%s' AND type_name='%s'", $field_name, $type_name))) {
     form_set_error('field_name', t('This field name already exists.'));
+  }
+  if (!date_has_time($form_state['values']['granularity']) && $form_state['values']['tz_handling'] != 'none') {
+    form_set_error('tz_handling', t('Timezone handling must be none for granularity without time.'));
   }
 }
 
 function date_tools_wizard_form_submit(&$form, &$form_state) {
   $view_name = date_tools_wizard_build($form_state['values']);
   menu_rebuild();
-  drupal_set_message(t('Change the calendar as needed and save the view.'), 'error');
-  $form['#redirect'] = 'admin/build/views/edit/'. $view_name;
-  //$form['#redirect'] = 'admin/content/node-type/'. str_replace('_', '-', $form_state['values']['type_name']) .'/fields';
+  if (!empty($view_name)) {
+    drupal_set_message(t('Change the calendar as needed and save the view.'), 'error');
+    $form['#redirect'] = 'admin/build/views/edit/'. $view_name;
+  }
+  else {
+    $form['#redirect'] = 'admin/content/node-type/'. str_replace('_', '-', $form_state['values']['type_name']) .'/fields';
+  }
 }
 
 function date_tools_wizard_build($form_values) {
@@ -223,15 +318,32 @@ function date_tools_wizard_build($form_values) {
     $widget_type .= '_repeat';
   }
   
+  // Create a node type if it doesn't already exist.
+  // This makes it possible to add additional date fields to 
+  // an existing type.
+  $types = node_get_types('names');
   $type_settings = array();
   if (!empty($signup)) {
     $type_settings['signup_node_default_state'] = 'enabled_on';
     $type_settings['signup_date_field'] = $field_name;
     variable_set('signup_fieldset_collapsed', 0);
     variable_set("signup_date_field_$type_name", $field_name);
+    variable_set('signup_node_default_state_'. $type_name, 'enabled_on');
   }
-  
-  date_tools_wizard_create_content_type($name, $type_name, $type_description, $type_settings);
+  if (!array_key_exists($type_name, $types)) {
+    date_tools_wizard_create_content_type($name, $type_name, $type_description, $type_settings);
+  }
+  else {
+    $types = node_get_types();
+    $type = $types[$type_name];
+    if (!empty($type_settings)) {
+      foreach ($type_settings as $key => $setting) {
+        $type->$key = $setting;
+      }
+      node_type_save($type);
+    }
+    $name = $type->name;
+  }
   
   $field_settings = array(
     'field_name' => $field_name,
@@ -256,7 +368,7 @@ function date_tools_wizard_build($form_values) {
     $location_field = date_tools_wizard_create_location_field($type_name);
     $location_field_name = $location_field['field_name'];
   }
-  
+  $view_name = '';
   if (!empty($calendar)) {
     $view_name = date_tools_wizard_create_calendar($name, $type_name, $date_field, $location_field);
     if (!empty($blocks)) {
@@ -455,7 +567,7 @@ function date_tools_wizard_disabled_modules($options = array()) {
 function date_tools_wizard_field_types() {
   $field_types = array();  
   foreach (date_field_info() as $name => $info) {
-    $field_types[$name] = $info['label'] .' - '. $info['description'];
+    $field_types[$name] = $info['label']; //.' - '. $info['description'];
   }
   return $field_types;  
 }
@@ -463,7 +575,7 @@ function date_tools_wizard_field_types() {
 function date_tools_wizard_widget_types() {
   $widget_types = array();  
   foreach (date_widget_info() as $name => $info) {
-    if (!strstr($name, '_repeat') && $name != 'date_text') {
+    if (!strstr($name, '_repeat')) {
       $widget_types[$name] = $info['label'];
     }
   }
@@ -502,6 +614,7 @@ function date_tools_wizard_create_content_type($name, $type_name, $description, 
     'custom' => '1',
     'modified' => '1',
     'locked' => '0',
+    'url_str' => str_replace('_', '-', $type_name),
   );
   
   // Allow overrides of these values.
@@ -596,8 +709,8 @@ function date_tools_wizard_create_date_field($field_type, $widget_type, $tz_hand
     'label_position' => 'above',
   );
   
-  $overrides = $base_overrides + $overrides;
-  $overrides['widget'] = $widget_overrides + $overrides['widget'];
+  $overrides = array_merge($base_overrides, $overrides);
+  $overrides['widget'] = array_merge($widget_overrides, $overrides['widget']);
     
   // Get field default values for this combination of field and widget type,
   // using a helper function in the Date module.

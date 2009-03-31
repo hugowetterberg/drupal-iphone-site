@@ -1,22 +1,25 @@
-# $Id: date.pot,v 1.1.2.4 2009/02/17 11:06:07 karens Exp $
+# $Id: date.pot,v 1.1.2.5 2009/03/08 09:32:10 hass Exp $
 #
-# LANGUAGE translation of Drupal (general)
+# LANGUAGE translation of Drupal (date)
 # Copyright YEAR NAME <EMAIL@ADDRESS>
 # Generated from files:
-#  date_admin.inc,v 1.40.2.3.2.34 2009/02/16 11:14:16 karens
-#  date_elements.inc,v 1.46.2.2.2.49 2009/02/13 22:42:47 karens
-#  date_repeat.inc,v 1.22.2.1.2.21 2009/02/10 15:52:56 karens
+#  date_admin.inc,v 1.40.2.3.2.38 2009/03/03 15:16:54 karens
+#  date_elements.inc,v 1.46.2.2.2.52 2009/02/27 15:47:39 karens
+#  date_handler_field_multiple.inc,v 1.1.2.12 2009/02/27 14:48:34 karens
+#  date_repeat.inc,v 1.22.2.1.2.22 2009/02/21 12:53:25 karens
 #  date_token.inc,v 1.2.2.1.2.5 2009/01/06 22:48:31 karens
-#  date.module,v 1.61.2.4.2.47 2009/02/13 23:07:50 karens
-#  date.theme,v 1.6.4.35 2009/02/16 23:46:08 karens
+#  date.module,v 1.61.2.4.2.52 2009/02/27 17:05:20 karens
+#  date.theme,v 1.6.4.42 2009/03/01 22:35:22 karens
 #  date.install,v 1.37.2.5.2.26 2009/02/15 11:32:48 karens
 #  date.info,v 1.3 2008/02/18 19:32:28 karens
+#  date_tools.module,v 1.1.2.10 2009/02/27 15:04:28 karens
+#  date_api.views.inc,v 1.1.2.6 2008/11/30 13:58:27 karens
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2009-02-17 04:52-0600\n"
+"POT-Creation-Date: 2009-03-07 19:12+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -25,483 +28,535 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: date_admin.inc:25
+#: date/date_admin.inc:25
 msgid "The Strtotime default value is invalid."
 msgstr ""
 
-#: date_admin.inc:31
+#: date/date_admin.inc:31
 msgid "The Strtotime default value for the To Date is invalid."
 msgstr ""
 
-#: date_admin.inc:35
+#: date/date_admin.inc:35
 msgid "Years back and forward must be in the format -9:+9."
 msgstr ""
 
-#: date_admin.inc:70
+#: date/date_admin.inc:70
 msgid "Default value"
 msgstr ""
 
-#: date_admin.inc:72;90
+#: date/date_admin.inc:72;78
 msgid "Blank"
 msgstr ""
 
-#: date_admin.inc:72;90
-msgid "Now"
-msgstr ""
-
-#: date_admin.inc:72;90
+#: date/date_admin.inc:72;78
 msgid "Relative"
 msgstr ""
 
-#: date_admin.inc:73;91
+#: date/date_admin.inc:73;79
 msgid "A default value to use for this field. If you select 'Relative', add details below."
 msgstr ""
 
-#: date_admin.inc:77
-msgid "Customize Default Value"
-msgstr ""
-
-#: date_admin.inc:78
-msgid "The custom value for a Relative default should be something that describes a time by reference to the current day using strtotime, like '+90 days' (90 days from the day the field is created) or '+1 Saturday' (the next Saturday). See !strtotime for more details."
-msgstr ""
-
-#: date_admin.inc:78
-msgid "strtotime"
-msgstr ""
-
-#: date_admin.inc:83
-msgid "Custom value for From date"
-msgstr ""
-
-#: date_admin.inc:88
+#: date/date_admin.inc:76
 msgid "Default value for To date"
 msgstr ""
 
-#: date_admin.inc:90
+#: date/date_admin.inc:78
 msgid "Same as From date"
 msgstr ""
 
-#: date_admin.inc:94
+#: date/date_admin.inc:83
+msgid "Customize Default Value"
+msgstr ""
+
+#: date/date_admin.inc:84
+msgid "The custom value for a Relative default should be something that describes a time by reference to the current day using strtotime, like '+90 days' (90 days from the day the field is created) or '+1 Saturday' (the next Saturday). See !strtotime for more details."
+msgstr ""
+
+#: date/date_admin.inc:84
+msgid "strtotime"
+msgstr ""
+
+#: date/date_admin.inc:89
+msgid "Custom value for From date"
+msgstr ""
+
+#: date/date_admin.inc:94
 msgid "Custom value for To date"
 msgstr ""
 
-#: date_admin.inc:114
+#: date/date_admin.inc:114
 msgid "Input format"
 msgstr ""
 
-#: date_admin.inc:117
+#: date/date_admin.inc:117
 msgid "Set the order and format for the date parts in the input form. The format will be adapted to remove values not in the granularity for this field."
 msgstr ""
 
-#: date_admin.inc:123
+#: date/date_admin.inc:123
 msgid "Custom input format"
 msgstr ""
 
-#: date_admin.inc:125
+#: date/date_admin.inc:125
 msgid "The custom format, if provided, will override the input format selected above. The custom format, if provided, will override the selected display or input options. Define a php date format string like 'm-d-Y H:i' (see <a href=\"@link\">http://php.net/date</a> for more details)."
 msgstr ""
 
-#: date_admin.inc:137
+#: date/date_admin.inc:137
 msgid "Years back and forward"
 msgstr ""
 
-#: date_admin.inc:141
+#: date/date_admin.inc:141
 msgid "Number of years to go back and forward in the year selection list, default is -3:+3."
 msgstr ""
 
-#: date_admin.inc:144
+#: date/date_admin.inc:144
 msgid "Time increment"
 msgstr ""
 
-#: date_admin.inc:147
+#: date/date_admin.inc:147
 msgid "Increment the minute and second fields by this amount."
 msgstr ""
 
-#: date_admin.inc:172
+#: date/date_admin.inc:172
 msgid "Customize Date Parts"
 msgstr ""
 
-#: date_admin.inc:178
+#: date/date_admin.inc:178
 msgid "Above"
 msgstr ""
 
-#: date_admin.inc:178
+#: date/date_admin.inc:178
 msgid "Within"
 msgstr ""
 
-#: date_admin.inc:178
+#: date/date_admin.inc:178
 msgid "None"
 msgstr ""
 
-#: date_admin.inc:180
+#: date/date_admin.inc:180
 msgid "Position of date part labels"
 msgstr ""
 
-#: date_admin.inc:181
+#: date/date_admin.inc:181
 msgid "The location of date part labels, like 'Year', 'Month', or 'Day'. 'Above' will display them as titles above each date part. 'Within' will insert the label as the first option in the select list and in blank textfields. 'None' will not label any of the date parts. The exact text in the label is controlled by themes like 'date_part_label_year' and 'date_part_label_month'."
 msgstr ""
 
-#: date_admin.inc:224
+#: date/date_admin.inc:224
 msgid "Input Type"
 msgstr ""
 
-#: date_admin.inc:224
+#: date/date_admin.inc:224
 msgid "Select list"
 msgstr ""
 
-#: date_admin.inc:224
+#: date/date_admin.inc:224
 msgid "Text field"
 msgstr ""
 
-#: date_admin.inc:239
+#: date/date_admin.inc:239
 msgid "Granularity must include a year."
 msgstr ""
 
-#: date_admin.inc:242
+#: date/date_admin.inc:242
 msgid "Dates without hours granularity must not use any timezone handling."
 msgstr ""
 
-#: date_admin.inc:342
+#: date/date_admin.inc:347
 msgid "Display a matching second date field as a 'To date'. If marked 'Optional' field will be presented but not required. If marked 'Required' the 'To date' will be required if the 'From date' is required or filled in."
 msgstr ""
 
-#: date_admin.inc:345
+#: date/date_admin.inc:350
 msgid "To Date"
 msgstr ""
 
-#: date_admin.inc:346
+#: date/date_admin.inc:351
 msgid "Never"
 msgstr ""
 
-#: date_admin.inc:346
+#: date/date_admin.inc:351
 msgid "Optional"
 msgstr ""
 
-#: date_admin.inc:346
+#: date/date_admin.inc:351
 msgid "Required"
 msgstr ""
 
-#: date_admin.inc:351
-msgid "Granularity"
-msgstr ""
-
-#: date_admin.inc:355
+#: date/date_admin.inc:360
 msgid "Set the date elements to be stored (at least a year is required)."
 msgstr ""
 
-#: date_admin.inc:363
+#: date/date_admin.inc:368
 msgid "Default Display"
 msgstr ""
 
-#: date_admin.inc:366
+#: date/date_admin.inc:371
 msgid "Select a default format type to be used for the date display. Visit the <a href=\"@date-time-page\">Date and time date format page</a> to add and edit format types."
 msgstr ""
 
-#: date_admin.inc:369
+#: date/date_admin.inc:374
 msgid "Select the timezone handling method to be used for this date field."
 msgstr ""
 
-#: date_admin.inc:373
+#: date/date_admin.inc:378
 msgid "Time zone handling"
 msgstr ""
 
-#: date_admin.inc:389
+#: date/date_admin.inc:394
 msgid "Expanded"
 msgstr ""
 
-#: date_admin.inc:389
+#: date/date_admin.inc:394
 msgid "Collapsed"
 msgstr ""
 
-#: date_admin.inc:390
+#: date/date_admin.inc:395
 msgid "Repeat display"
 msgstr ""
 
-#: date_admin.inc:391
+#: date/date_admin.inc:396
 msgid "Should the repeat options form start out expanded or collapsed? Set to 'Collapsed' to make those options less obtrusive."
 msgstr ""
 
-#: date_admin.inc:414
+#: date/date_admin.inc:419
 msgid "Changing the %name setting after data has been created could result in the loss of data!"
 msgstr ""
 
-#: date_admin.inc:427
+#: date/date_admin.inc:432
 msgid "Site's time zone"
 msgstr ""
 
-#: date_admin.inc:428
+#: date/date_admin.inc:433
 msgid "Date's time zone"
 msgstr ""
 
-#: date_admin.inc:429
+#: date/date_admin.inc:434
 msgid "User's time zone"
 msgstr ""
 
-#: date_admin.inc:431
+#: date/date_admin.inc:436
 msgid "No time zone conversion"
 msgstr ""
 
-#: date_elements.inc:28
+#: date/date_admin.inc:601
+msgid "Display From and To dates"
+msgstr ""
+
+#: date/date_admin.inc:602
+msgid "Display From date only"
+msgstr ""
+
+#: date/date_admin.inc:603
+msgid "Display To date only"
+msgstr ""
+
+#: date/date_admin.inc:622
+msgid "Show @count value(s)"
+msgstr ""
+
+#: date/date_admin.inc:644
+msgid "starting from @count"
+msgstr ""
+
+#: date/date_admin.inc:666
+msgid "ending on @count"
+msgstr ""
+
+#: date/date_admin.inc:695
+msgid "Display repeat rule"
+msgstr ""
+
+#: date/date_admin.inc:696
+msgid "Hide repeat rule"
+msgstr ""
+
+#: date/date_elements.inc:28
 msgid "A 'From date' date is required for field %field %delta."
 msgstr ""
 
-#: date_elements.inc:34
+#: date/date_elements.inc:34
 msgid "A 'To date' is required for field %field %delta."
 msgstr ""
 
-#: date_elements.inc:337
-msgid "From date"
-msgstr ""
-
-#: date_elements.inc:339
-msgid "To date"
-msgstr ""
-
-#: date_elements.inc:344
+#: date/date_elements.inc:331
 msgid "Empty 'To date' values will use the 'From date' values."
 msgstr ""
 
-#: date_elements.inc:417
+#: date/date_elements.inc:342
+msgid "@field_name From date value #@delta"
+msgstr ""
+
+#: date/date_elements.inc:344
+msgid "@field_name To date value #@delta"
+msgstr ""
+
+#: date/date_elements.inc:348
+msgid "@field_name From date"
+msgstr ""
+
+#: date/date_elements.inc:349
+msgid "@field_name To date"
+msgstr ""
+
+#: date/date_elements.inc:425
 msgid "Some value must be entered in the To date."
 msgstr ""
 
-#: date_elements.inc:435
+#: date/date_elements.inc:442
 msgid "The To date must be greater than the From date."
 msgstr ""
 
-#: date_repeat.inc:77
+#: date/date_elements.inc:477
+msgid "The From date is invalid."
+msgstr ""
+
+#: date/date_elements.inc:480
+msgid "The To date is invalid."
+msgstr ""
+
+#: date/date_elements.inc:489
+msgid "There are errors in @field_name value #@delta:"
+msgstr ""
+
+#: date/date_elements.inc:492
+msgid "There are errors in @field_name:"
+msgstr ""
+
+#: date/date_handler_field_multiple.inc:36
+msgid "Group multiple values"
+msgstr ""
+
+#: date/date_handler_field_multiple.inc:39
+msgid "If unchecked, each item in the field will create a new row, which may appear to cause duplicates. This setting is not compatible with click-sorting in table displays."
+msgstr ""
+
+#: date/date_repeat.inc:77
 msgid "The UNTIL value is required for repeating dates."
 msgstr ""
 
-#: date_token.inc:12
+#: date/date_token.inc:12
 msgid "The raw date value."
 msgstr ""
 
-#: date_token.inc:13
+#: date/date_token.inc:13
 msgid "The formatted date."
 msgstr ""
 
-#: date_token.inc:14
+#: date/date_token.inc:14
 msgid "The raw date timestamp."
 msgstr ""
 
-#: date_token.inc:15
+#: date/date_token.inc:15
 msgid "Date year (four digit)"
 msgstr ""
 
-#: date_token.inc:16
+#: date/date_token.inc:16
 msgid "Date year (two digit)"
 msgstr ""
 
-#: date_token.inc:17
+#: date/date_token.inc:17
 msgid "Date month (full word)"
 msgstr ""
 
-#: date_token.inc:18
+#: date/date_token.inc:18
 msgid "Date month (abbreviated)"
 msgstr ""
 
-#: date_token.inc:19
+#: date/date_token.inc:19
 msgid "Date month (two digit, zero padded)"
 msgstr ""
 
-#: date_token.inc:20
+#: date/date_token.inc:20
 msgid "Date month (one or two digit)"
 msgstr ""
 
-#: date_token.inc:21
+#: date/date_token.inc:21
 msgid "Date week (two digit)"
 msgstr ""
 
-#: date_token.inc:22
+#: date/date_token.inc:22
 msgid "Date date (YYYY-MM-DD)"
 msgstr ""
 
-#: date_token.inc:23
+#: date/date_token.inc:23
 msgid "Date day (full word)"
 msgstr ""
 
-#: date_token.inc:24
+#: date/date_token.inc:24
 msgid "Date day (abbreviation)"
 msgstr ""
 
-#: date_token.inc:25
+#: date/date_token.inc:25
 msgid "Date day (two digit, zero-padded)"
 msgstr ""
 
-#: date_token.inc:26
+#: date/date_token.inc:26
 msgid "Date day (one or two digit)"
 msgstr ""
 
-#: date_token.inc:28
+#: date/date_token.inc:28
 msgid "If the field has a to-date defined, the same tokens exist in the form: [to-????], where ???? is the normal token."
 msgstr ""
 
-#: date.module:121
+#: date/date.module:121
 msgid "Store a date in the database as an ISO date, recommended for historical or partial dates."
 msgstr ""
 
-#: date.module:125
+#: date/date.module:125
 msgid "Store a date in the database as a timestamp, deprecated format to suppport legacy data."
 msgstr ""
 
-#: date.module:129
+#: date/date.module:129
 msgid "Store a date in the database as a datetime field, recommended for complete dates and times that may need timezone conversion."
 msgstr ""
 
-#: date.module:140
+#: date/date.module:140
 msgid "Select List"
 msgstr ""
 
-#: date.module:148
+#: date/date.module:148
 msgid "Select List with Repeat options"
 msgstr ""
 
-#: date.module:156
+#: date/date.module:156
 msgid "Text Field with custom input format"
 msgstr ""
 
-#: date.module:164
+#: date/date.module:164
 msgid "Text Field with Repeat options"
 msgstr ""
 
-#: date.module:174
+#: date/date.module:174
 msgid "Text Field with Date Pop-up calendar"
 msgstr ""
 
-#: date.module:182
+#: date/date.module:182
 msgid "Text Field with Date Pop-up and Repeat options"
 msgstr ""
 
-#: date.module:221
+#: date/date.module:221
 msgid "Default"
 msgstr ""
 
-#: date.module:224
+#: date/date.module:224
 msgid "As Time Ago"
 msgstr ""
 
-#: date.module:415
+#: date/date.module:420
 msgid "Complete documentation for the Date and Date API modules is available at <a href=\"@link\">http://drupal.org/node/92460</a>."
 msgstr ""
 
-#: date.module:683
+#: date/date.module:716
 msgid "Add format type"
 msgstr ""
 
-#: date.module:687
+#: date/date.module:720
 msgid "Name"
 msgstr ""
 
-#: date.module:688
+#: date/date.module:721
 msgid "The human-readable name for this format type."
 msgstr ""
 
-#: date.module:695
+#: date/date.module:728
 msgid "Type"
 msgstr ""
 
-#: date.module:696
+#: date/date.module:729
 msgid "The machine-readable name of this format type. <br>This name must contain only lowercase letters, numbers, and underscores and must be unique."
 msgstr ""
 
-#: date.module:714
+#: date/date.module:747
 msgid "The format type must contain only alphanumeric characters and underscores."
 msgstr ""
 
-#: date.module:718
+#: date/date.module:751
 msgid "This format type already exists.  Please enter a unique type."
 msgstr ""
 
-#: date.module:40
+#: date/date.module:40
 msgid "view date repeats"
 msgstr ""
 
-#: date.module:28
+#: date/date.module:28
 msgid "Repeats"
 msgstr ""
 
-#: date.module:0 date.theme:0
+#: date/date.module:0 date/date.theme:0
 msgid "date"
 msgstr ""
 
-#: date.theme:168
+#: date/date.theme:223
 msgid "!time from now"
 msgstr ""
 
-#: date.theme:173
+#: date/date.theme:228
 msgid "ongoing"
 msgstr ""
 
-#: date.install:448
+#: date/date.install:448
 msgid "All date fields using the jscalendar widget have been changed to use the text widget instead, since the jscalendar widget is no longer supported. Enable the Date Popup module to make a jQuery popup calendar available and edit the field settings to select it."
 msgstr ""
 
-#: date.install:485
+#: date/date.install:485
 msgid "All repeating date fields have been updated to use the new repeating widgets."
 msgstr ""
 
-#: date.install:530
+#: date/date.install:530
 msgid "The database has been updated to correct the stored timezone for fields using timezone 'none'."
 msgstr ""
 
-#: date.install:545
+#: date/date.install:545
 msgid "Some updates are still pending. Please return to <a href=\"@update-php\">update.php</a> and run the remaining updates."
 msgstr ""
 
-#: date.install:546
+#: date/date.install:546
 msgid "Some updates are still pending.<br/>Please re-run the update script."
 msgstr ""
 
-#: date.install:565
+#: date/date.install:565
 msgid "Time"
 msgstr ""
 
-#: date.install:566
+#: date/date.install:566
 msgid "Time with timezone"
 msgstr ""
 
-#: date.install:567
+#: date/date.install:567
 msgid "iCal"
 msgstr ""
 
-#: date.install:568
+#: date/date.install:568
 msgid "Timestamp"
 msgstr ""
 
-#: date.install:569
+#: date/date.install:569
 msgid "Feed"
 msgstr ""
 
-#: date.install:570
+#: date/date.install:570
 msgid "ISO"
 msgstr ""
 
-#: date.install:651
+#: date/date.install:651
 msgid "Field %field formats were converted to custom formats."
 msgstr ""
 
-#: date.install:654
+#: date/date.install:654
 msgid "The old format type %from_format for field %field was converted to the new format type %to_format."
 msgstr ""
 
-#: date.install:680
+#: date/date.install:680
 msgid "The display settings for field %field in content type %type_name were updated."
 msgstr ""
 
-#: date.install:709
+#: date/date.install:709
 msgid "Date display formats are now included with the system date and time settings. Please visit <a href=\"@date-time-page\">the Date and time format page</a> to see the new format types."
 msgstr ""
 
-#: date.info:0
+#: date/date.info:0 date_tools/date_tools.module:114;133;409 includes/date_api.views.inc:127;128;137;138
 msgid "Date"
 msgstr ""
 
-#: date.info:0
+#: date/date.info:0
 msgid "Defines CCK date/time fields and widgets."
-msgstr ""
-
-#: date.info:0
-msgid "Date/Time"
 msgstr ""
 

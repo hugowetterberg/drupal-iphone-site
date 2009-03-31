@@ -122,7 +122,7 @@ date_part_extract();
 ============================================================================
 Date calculation and navigation
 ============================================================================
-date_diff() will find the time difference between any two days, measured
+date_difference() will find the time difference between any two days, measured
 in seconds, minutes, hours, days, months, weeks, or years.
 
 date_days_in_month();
@@ -131,7 +131,7 @@ date_weeks_in_year();
 date_last_day_of_month();
 date_day_of_week();
 date_day_of_week_name();
-date_diff();
+date_difference();
 
 ============================================================================
 Date regex and format helpers 

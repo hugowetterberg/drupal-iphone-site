@@ -1,5 +1,5 @@
 <?php
-// $Id: date.module,v 1.61.2.4.2.52 2009/02/27 17:05:20 karens Exp $
+// $Id: date.module,v 1.61.2.4.2.53 2009/03/19 23:22:32 karens Exp $
 
 /**
  * @file
@@ -279,13 +279,16 @@ function date_theme() {
       ),  
   );
 
-  $format_types = date_get_format_types('', TRUE);
-  if (!empty($format_types)) {
-    foreach ($format_types as $type => $type_info) {
-      $themes['date_formatter_' . $type] = $base + array(
-        'arguments' => array('element' => NULL), 
-        'function' => 'theme_date_display_combination',
-      );
+  // Table isn't available first time date_theme() is called in update.php.
+  if (db_table_exists('date_format_types')) {
+    $format_types = date_get_format_types('', TRUE);
+    if (!empty($format_types)) {
+      foreach ($format_types as $type => $type_info) {
+        $themes['date_formatter_' . $type] = $base + array(
+          'arguments' => array('element' => NULL), 
+          'function' => 'theme_date_display_combination',
+        );
+      }
     }
   }
 

@@ -1,5 +1,5 @@
 <?php
-// $Id: date_api.install,v 1.16.2.1.2.14 2009/02/16 23:46:08 karens Exp $
+// $Id: date_api.install,v 1.16.2.1.2.19 2009/03/21 10:18:00 karens Exp $
 function date_api_set_variables() {
   /**
    * Set absolute minimum and maximum year for dates on this site.
@@ -55,7 +55,7 @@ function date_api_schema() {
       'type' => array(
         'description' => 'The date format type, e.g. medium.',
         'type' => 'varchar',
-        'length' => 255,
+        'length' => 200,
         'not null' => TRUE,
       ),
       'title' => array(
@@ -87,13 +87,13 @@ function date_api_schema() {
       'format' => array(
         'description' => 'The date format string.',
         'type' => 'varchar',
-        'length' => 255,
+        'length' => 100,
         'not null' => TRUE,
       ),
       'type' => array(
         'description' => 'The date format type, e.g. medium.',
         'type' => 'varchar',
-        'length' => 255,
+        'length' => 200,
         'not null' => TRUE,
       ),
       'locked' => array(
@@ -105,7 +105,7 @@ function date_api_schema() {
       ),
     ),
     'primary key' => array('dfid'),
-    'unique keys' => array('format' => array('format')),
+    'unique keys' => array('format' => array('format', 'type')),
   );
 
   $schema['date_format_locale'] = array(
@@ -114,13 +114,13 @@ function date_api_schema() {
       'format' => array(
         'description' => 'The date format string.',
         'type' => 'varchar',
-        'length' => 255,
+        'length' => 100,
         'not null' => TRUE,
       ),
       'type' => array(
         'description' => 'The date format type, e.g. medium.',
         'type' => 'varchar',
-        'length' => 255,
+        'length' => 200,
         'not null' => TRUE,
       ),
       'language' => array(
@@ -208,11 +208,14 @@ function date_api_uninstall() {
     variable_del($variable);
   }
 
-  $displays = array(
-    'date_nav', 
+  if (db_table_exists('views_display')) {
+    $displays = array(
+      'date_nav', 
     );
-  db_query("DELETE FROM {views_display} WHERE display_plugin IN ('". implode("','", $displays) ."')");
-  db_query("DELETE FROM {cache_views}");
+    db_query("DELETE FROM {views_display} WHERE display_plugin IN ('". implode("','", $displays) ."')");
+    db_query("DELETE FROM {cache_views}");
+  }
+
   drupal_uninstall_schema('date_api');
   return $ret;
 }
@@ -281,7 +284,7 @@ function date_api_update_5201() {
 function date_api_update_6000() {
   $ret = array();
   // don't attempt to upgrade if views is not yet upgraded.
-  if (drupal_get_installed_schema_version('views', TRUE) < 6000) {
+  if (module_exists('views') && drupal_get_installed_schema_version('views', TRUE) < 6000) {
     $ret = array();
     drupal_set_message(t('date module cannot be updated until after Views has been updated. Please return to <a href="@update-php">update.php</a> and run the remaining updates.', array('@update-php' => base_path() .'update.php?op=selection')), 'warning', FALSE);
     $ret['#abort'] = array('success' => FALSE, 'query' => t('date.module has updates, but cannot be updated until views.module is updated first.'));
@@ -299,7 +302,7 @@ function date_api_update_6000() {
 function date_api_update_6001() {
   $ret = array();
   // don't attempt to upgrade if views is not yet upgraded.
-  if (drupal_get_installed_schema_version('views', TRUE) < 6000) {
+  if (module_exists('views') && drupal_get_installed_schema_version('views', TRUE) < 6000) {
     $ret = array();
     drupal_set_message(t('date module cannot be updated until after Views has been updated. Please return to <a href="@update-php">update.php</a> and run the remaining updates.', array('@update-php' => base_path() .'update.php?op=selection')), 'warning', FALSE);
     $ret['#abort'] = array('success' => FALSE, 'query' => t('date.module has updates, but cannot be updated until views.module is updated first.'));
@@ -325,7 +328,7 @@ function date_api_update_6001() {
 function date_api_update_6002() {
   $ret = array();
   // don't attempt to upgrade if views is not yet upgraded.
-  if (drupal_get_installed_schema_version('views', TRUE) < 6000) {
+  if (module_exists('views') && drupal_get_installed_schema_version('views', TRUE) < 6000) {
     $ret = array();
     drupal_set_message(t('date module cannot be updated until after Views has been updated. Please return to <a href="@update-php">update.php</a> and run the remaining updates.', array('@update-php' => base_path() .'update.php?op=selection')), 'warning', FALSE);
     $ret['#abort'] = array('success' => FALSE, 'query' => t('date.module has updates, but cannot be updated until views.module is updated first.'));
@@ -337,7 +340,7 @@ function date_api_update_6002() {
     'fields' => array(
       'type' => array(
         'type' => 'varchar',
-        'length' => 255,
+        'length' => 200,
         'not null' => TRUE,
       ),
       'title' => array(
@@ -364,12 +367,12 @@ function date_api_update_6002() {
       ),
       'format' => array(
         'type' => 'varchar',
-        'length' => 255,
+        'length' => 100,
         'not null' => TRUE,
       ),
       'type' => array(
         'type' => 'varchar',
-        'length' => 255,
+        'length' => 200,
         'not null' => TRUE,
       ),
       'locked' => array(
@@ -380,7 +383,7 @@ function date_api_update_6002() {
       ),
     ),
     'primary key' => array('dfid'),
-    'unique keys' => array('format' => array('format')),
+    'unique keys' => array('format' => array('format', 'type')),
   );
 
   $schema['date_format_locale'] = array(
@@ -392,7 +395,7 @@ function date_api_update_6002() {
       ),
       'type' => array(
         'type' => 'varchar',
-        'length' => 255,
+        'length' => 200,
         'not null' => TRUE,
       ),
       'language' => array(
@@ -409,5 +412,17 @@ function date_api_update_6002() {
   db_create_table($ret, 'date_format', $schema['date_format']);
   db_create_table($ret, 'date_format_locale', $schema['date_format_locale']);
 
+  return $ret;
+}
+
+function date_api_update_6003() {
+  $ret = array();
+  db_change_field($ret, 'date_format_types', 'type', 'type', array('type' => 'varchar', 'length' => 200, 'not null' => TRUE));
+  db_change_field($ret, 'date_format', 'type', 'type', array('type' => 'varchar', 'length' => 200, 'not null' => TRUE));
+  db_change_field($ret, 'date_format', 'format', 'format', array('type' => 'varchar', 'length' => 100, 'not null' => TRUE));
+  db_change_field($ret, 'date_format_locale', 'type', 'type', array('type' => 'varchar', 'length' => 200, 'not null' => TRUE));
+  db_change_field($ret, 'date_format_locale', 'format', 'format', array('type' => 'varchar', 'length' => 100, 'not null' => TRUE));
+  db_drop_unique_key($ret, 'date_format', 'format');
+  db_add_unique_key($ret, 'date_format', 'format', array('format', 'type'));
   return $ret;
 }

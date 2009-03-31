@@ -1,4 +1,4 @@
-# $Id: theme.de.po,v 1.1.2.2 2009/01/11 11:00:56 hass Exp $
+# $Id: theme.de.po,v 1.1.2.3 2009/03/08 10:35:47 hass Exp $
 #
 # LANGUAGE translation of Drupal (theme)
 # Copyright YEAR NAME <EMAIL@ADDRESS>
@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2009-01-11 11:03+0100\n"
-"PO-Revision-Date: 2009-01-11 12:00+0100\n"
+"POT-Creation-Date: 2009-03-07 19:12+0100\n"
+"PO-Revision-Date: 2009-03-08 11:34+0100\n"
 "Last-Translator: Alexander Haß\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,24 +20,12 @@ msgstr ""
 "X-Poedit-Language: German\n"
 "X-Poedit-Country: GERMANY\n"
 
-#: theme/date-navigation.tpl.php:38
-msgid "« prev"
-msgstr "« vorherige"
-
-#: theme/date-navigation.tpl.php:46
-msgid "next »"
-msgstr "nächste »"
-
-#: theme/theme.inc:89
+#: theme/theme.inc:90
 #, fuzzy
 msgid "Week of @date"
 msgstr "Woche von @date"
 
-#: theme/theme.inc:320
-msgid "am/pm"
-msgstr "vormittags/nachmittags"
-
-#: theme/theme.inc:323
+#: theme/theme.inc:327
 msgid "Timezone"
 msgstr "Zeitzone"
 

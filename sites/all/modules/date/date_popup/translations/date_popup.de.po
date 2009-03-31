@@ -1,4 +1,4 @@
-# $Id: date_popup.de.po,v 1.1.2.3 2009/01/11 11:00:56 hass Exp $
+# $Id: date_popup.de.po,v 1.1.2.4 2009/03/08 09:32:12 hass Exp $
 #
 # LANGUAGE translation of Drupal (general)
 # Copyright YEAR NAME <EMAIL@ADDRESS>
@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2009-01-11 11:03+0100\n"
-"PO-Revision-Date: 2009-01-11 11:50+0100\n"
+"POT-Creation-Date: 2009-03-07 19:12+0100\n"
+"PO-Revision-Date: 2009-03-07 19:49+0100\n"
 "Last-Translator: Alexander Haß\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,50 +21,36 @@ msgstr ""
 "X-Poedit-Language: German\n"
 "X-Poedit-Country: GERMANY\n"
 
-#: date_popup/date_popup.module:223
-#, fuzzy
-msgid "Prev"
-msgstr "Vorherige Seite"
-
-#: date_popup/date_popup.module:224
-#, fuzzy
-msgid "Next"
-msgstr "nächste Seite"
-
-#: date_popup/date_popup.module:225
-msgid "Today"
-msgstr "Heute"
-
-#: date_popup/date_popup.module:226
+#: date_popup/date_popup.module:221
 msgid "Clear"
 msgstr "Leeren"
 
-#: date_popup/date_popup.module:227
+#: date_popup/date_popup.module:222
 msgid "Close"
 msgstr "Schließen"
 
-#: date_popup/date_popup.module:269
+#: date_popup/date_popup.module:266
 msgid "Previous field"
 msgstr "Vorheriges Feld"
 
-#: date_popup/date_popup.module:269
+#: date_popup/date_popup.module:266
 msgid "Next field"
 msgstr "Nächstes Feld"
 
-#: date_popup/date_popup.module:269
+#: date_popup/date_popup.module:266
 msgid "Increment"
 msgstr "Hochzählen"
 
-#: date_popup/date_popup.module:269
+#: date_popup/date_popup.module:266
 msgid "Decrement"
 msgstr "Herunterzählen"
 
-#: date_popup/date_popup.module:314
+#: date_popup/date_popup.module:315
 msgid "Field %field is required."
 msgstr "Das Feld %field muss ausgefüllt werden."
 
 # not literally
-#: date_popup/date_popup.module:338
+#: date_popup/date_popup.module:339
 msgid "Field %field is invalid."
 msgstr "Das Feld %field enthält einen ungültigen Wert."
 
@@ -72,20 +58,12 @@ msgstr "Das Feld %field enthält einen ungültigen Wert."
 msgid "date_popup"
 msgstr "date_popup"
 
-#: (duplicate) date_popup/date_popup.install:14
-msgid "Download jquery.timeentry.pack.js and jquery.timeentry.css from the jquery-timeentry home page at <a href=\"@link\">http://home.iprimus.com.au/kbwood/jquery/timeEntry.html</a> and install them in the /lib/ folder of the Date Popup module."
-msgstr ""
-
-#: (duplicate) date_popup/date_popup.install:18
-msgid "Date Popup requirements"
-msgstr ""
-
 #: date_popup/date_popup.info:0
-#: date_tools/date_tools.module:405
+#: date_tools/date_tools.module:416
 msgid "Date Popup"
 msgstr "Datumspopup"
 
 #: date_popup/date_popup.info:0
 msgid "Enables jquery popup calendars and time entry widgets for selecting dates and times."
-msgstr ""
+msgstr "Aktiviert jQuery-Popup-Kalender und Zeit-Steuerelemente für die Auswahl von Terminen und Zeiten."
 

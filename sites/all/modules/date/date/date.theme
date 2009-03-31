@@ -1,5 +1,5 @@
 <?php
-//$Id: date.theme,v 1.6.4.41 2009/02/27 16:37:38 karens Exp $
+//$Id: date.theme,v 1.6.4.42 2009/03/01 22:35:22 karens Exp $
 /**
  * @file
  * Theme functions.
@@ -100,7 +100,7 @@ function theme_date_display_combination($element) {
   // Update the element with values that might have been altered by 
   // date_prepare_node() and figure out which values to display.
   $dates = date_formatter_process($element);
-
+  
   switch ($options['fromto']['fromto']) {
     case 'value':
       $date1 = $dates['value']['formatted'];
@@ -124,7 +124,7 @@ function theme_date_display_combination($element) {
   }
   $date1 = str_replace($timezone, '', $date1);
   $date2 = str_replace($timezone, '', $date2);
-    
+   
   // No date values, display nothing.
   if (empty($date1) && empty($date2)) {
     $output .= '';

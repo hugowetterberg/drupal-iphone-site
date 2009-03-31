@@ -1,5 +1,5 @@
 <?php
-// $Id: date_api.admin.inc,v 1.1.2.1 2009/01/25 13:03:13 karens Exp $
+// $Id: date_api.admin.inc,v 1.1.2.2 2009/03/19 23:22:32 karens Exp $
 
 /**
  * @file
@@ -128,6 +128,13 @@ function date_api_date_format_form_elements(&$form) {
     $type_info = date_get_format_types($type);
 
     date_api_date_format_select_field($form, $type, $type_info, $default, $choices, 1);
+  }
+}
+
+function date_api_date_time_settings_validate($form, &$form_state) {
+  $formats = date_get_formats('custom');
+  if (!empty($formats) && in_array($form_state['values']['add_date_format'], array_keys($formats))) {
+    form_set_error('add_date_format', t('This format already exists.  Please enter a unique format string.'));
   }
 }
 

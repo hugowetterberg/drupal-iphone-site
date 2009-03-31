@@ -1,5 +1,5 @@
 <?php
-// $Id: date_api.module,v 1.64.2.5.2.71 2009/02/17 14:37:14 karens Exp $
+// $Id: date_api.module,v 1.64.2.5.2.78 2009/03/25 12:04:38 karens Exp $
 /**
  * @file
  * This module will make the date API available to other modules.
@@ -769,7 +769,11 @@ function date_now($timezone = NULL) {
  *    dates so they pass validation and don't get reset to 'now'.
  */
 function date_make_date($date, $timezone = NULL, $type = DATE_DATETIME, $granularity = array('year', 'month', 'day', 'hour', 'minute')) {
-  
+  // No value or one that can't be used.
+  if (empty($date) || is_array($date)) {
+    return NULL;
+  }
+
   // Special handling for partial dates that don't need precision.
   $max_granularity = array_pop($granularity);
   if (in_array($max_granularity, array('year', 'month')) || $type == DATE_ISO || $type == DATE_ARRAY) {
@@ -783,7 +787,7 @@ function date_make_date($date, $timezone = NULL, $type = DATE_DATETIME, $granula
   if (empty($timezone) || !date_timezone_is_valid($timezone)) {
     $timezone = date_default_timezone_name();
   }
-  if (!date_is_valid($date, $type, $granularity) || empty($date)) {
+  if (!date_is_valid($date, $type, $granularity)) {
     $date = 'now';
   }
   if (!empty($timezone) && !empty($date)) {
@@ -970,9 +974,9 @@ function date_difference($date1_in, $date2_in, $measure = 'seconds', $type = DAT
       case 'seconds':
         return $diff;
       case 'minutes':
-        return $diff * 60;
+        return $diff / 60;
       case 'hours':
-        return $diff * 24 * 60;
+        return $diff / 3600;
       case 'years':
         return $year_diff;
 
@@ -1478,7 +1482,7 @@ function date_limit_value($date, $granularity, $type = DATE_DATETIME) {
 }
 
 /**
- * Rewrite a format string so it only inludes elements from a
+ * Rewrite a format string so it only includes elements from a
  * specified granularity array.
  *
  * Example:
@@ -1541,7 +1545,15 @@ function date_limit_format($format, $granularity) {
   $format = preg_replace('`^([\-/\.,:])`', '', $format);
   // Remove orpaned punctuation at the end of the string.
   $format = preg_replace('([\-/\.,:]$)', '', $format);
-  return trim($format);
+  // Trim any whitespace from the result.
+  $format = trim($format);
+  
+  // After removing the non-desired parts of the format, test if the only 
+  // things left are escaped, non-date, characters. If so, return nothing.
+  if (!$test = preg_replace('(\\\\\w{1})', '', $format)) {
+    return '';
+  }
+  return $format;
 }
 
 /**
@@ -1847,7 +1859,7 @@ function date_format_save($date_format) {
     drupal_write_record('date_format', $format);
   }
   else {
-    drupal_write_record('date_format', $format, 'format');
+    drupal_write_record('date_format', $format, array('format', 'type'));
   }
 
   $languages = language_list('enabled');
@@ -1905,6 +1917,11 @@ function date_format_delete($date_format_id) {
 function _date_format_types_build() {
   $types = array();
 
+  // Prevent errors in the upgrade before the date_format_types table exists.
+  if (defined('MAINTENANCE_MODE') && !db_table_exists('date_format_types')) {
+    return $types;
+  }
+
   // Get list of modules which implement hook_date_format_types().
   $modules = module_implements('date_format_types');
 
@@ -1954,6 +1971,11 @@ function _date_format_types_build() {
  */
 function _date_formats_build() {
   $date_formats = array();
+
+  // Prevent errors in the upgrade before the date_format table exists.
+  if (defined('MAINTENANCE_MODE') && !db_table_exists('date_format')) {
+    return $date_formats;
+  }
 
   // First handle hook_date_format_types().
   $types = _date_format_types_build();
@@ -2119,6 +2141,49 @@ function date_api_views_api() {
 }
 
 /**
+ * Implementation of hook_date_api_fields().
+ * on behalf of core fields.
+ * 
+ * All modules that create custom fields that use the 
+ * 'views_handler_field_date' handler can provide
+ * additional information here about the type of
+ * date they create so the date can be used by
+ * the Date API views date argument and date filter.
+ */
+function date_api_date_api_fields($field) {
+  $values = array(
+    // The type of date: DATE_UNIX, DATE_ISO, DATE_DATETIME.
+    'sql_type' => DATE_UNIX, 
+    // Timezone handling options: 'none', 'site', 'date', 'utc'.
+    'tz_handling' => 'site',
+    // Needed only for dates that use 'date' tz_handling.
+    'timezone_field' => '', 
+    // Needed only for dates that use 'date' tz_handling.
+    'offset_field' => '', 
+    // Array of "table.field" values for related fields that should be 
+    // loaded automatically in the Views SQL.
+    'related_fields' => array(),
+    // Granularity of this date field's db data. 
+    'granularity' => array('year', 'month', 'day', 'hour', 'minute', 'second'),
+  );
+  
+  switch ($field) {
+    case 'users.created':
+    case 'users.access':
+    case 'users.login':
+    case 'node.created':
+    case 'node.changed':
+    case 'node_revisions.timestamp':
+    case 'files.timestamp':
+    case 'node_counter.timestamp':
+    case 'accesslog.timestamp':
+    case 'comments.timestamp':
+    case 'node_comment_statistics.last_comment_timestamp':  
+      return $values;
+  }
+}
+
+/**
  * Rebuild the theme registry and all the caches.
  * needed to pick up changes created by updated Views API
  * and other changes to Views definitions.
@@ -2266,6 +2331,9 @@ function date_querystring($view, $extra_params = array()) {
 }
 
 function date_block_identifier($view) {
+  if (!empty($view->block_identifier)) {
+    return $view->block_identifier;
+  }
   return isset($view->date_info->block_identifier) ? $view->date_info->block_identifier : NULL;
 }
 

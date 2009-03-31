@@ -1,4 +1,4 @@
-# $Id: date_timezone.de.po,v 1.1.2.5 2009/01/11 11:00:56 hass Exp $
+# $Id: date_timezone.de.po,v 1.1.2.6 2009/03/08 09:32:12 hass Exp $
 #
 # LANGUAGE translation of Drupal (general)
 # Copyright YEAR NAME <EMAIL@ADDRESS>
@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2009-01-11 11:03+0100\n"
-"PO-Revision-Date: 2009-01-11 11:52+0100\n"
+"POT-Creation-Date: 2009-03-07 19:12+0100\n"
+"PO-Revision-Date: 2009-03-07 19:56+0100\n"
 "Last-Translator: Alexander Haß\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,11 +21,11 @@ msgstr ""
 "X-Poedit-Language: German\n"
 "X-Poedit-Country: GERMANY\n"
 
-#: date_timezone/date_timezone.module:19
+#: date_timezone/date_timezone.module:18
 msgid "The Date Timezone module requires you to <a href=\"@link\">set the site timezone name</a>."
 msgstr ""
 
-#: date_timezone/date_timezone.module:63;115
+#: date_timezone/date_timezone.module:63;118
 msgid "Default time zone"
 msgstr "Standard-Zeitzone"
 
@@ -33,19 +33,19 @@ msgstr "Standard-Zeitzone"
 msgid "Select the default site time zone. If in doubt, choose the timezone that is closest to your location which has the same rules for daylight saving time."
 msgstr ""
 
-#: date_timezone/date_timezone.module:118
+#: date_timezone/date_timezone.module:121
 msgid "Select your current local time. If in doubt, choose the timezone that is closest to your location which has the same rules for daylight saving time. Dates and times throughout this site will be displayed using this time zone."
 msgstr ""
 
-#: date_timezone/date_timezone.module:256
+#: date_timezone/date_timezone.module:259
 msgid "timezone"
 msgstr "Zeitzone"
 
-#: date_timezone/date_timezone.module:256
+#: date_timezone/date_timezone.module:259
 msgid "Detected time zone: %timezone; client date: %date; abbreviation: %abbreviation; offset: %offset; daylight saving time: %is_daylight_saving_time."
 msgstr ""
 
-#: date_timezone/date_timezone.module:29
+#: date_timezone/date_timezone.module:28
 msgid "User timezone"
 msgstr "Die Zeitzone des Benutzers."
 
@@ -1610,7 +1610,7 @@ msgid "Date Timezone requirements"
 msgstr ""
 
 #: date_timezone/date_timezone.info:0
-#: date_tools/date_tools.module:400
+#: date_tools/date_tools.module:411
 msgid "Date Timezone"
 msgstr ""
 

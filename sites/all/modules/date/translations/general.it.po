@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2009-01-11 11:03+0100\n"
+"POT-Creation-Date: 2009-03-07 19:12+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: thePanz <thepanz@gmail.com>\n"
 "Language-Team: \n"
@@ -9,113 +9,82 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: date_api_elements.inc:146
-#: date_popup/date_popup.module:256;288
+#: date_api.admin.inc:147
+#: date_locale/date_locale.module:252
+msgid "Configuration saved."
+msgstr "Configurazione salvata."
+
+#: date_api.admin.inc:165;201
+#: date_locale/date_locale.module:214
+msgid "Cancel"
+msgstr "Annulla"
+
+#: date_api_elements.inc:148
+#: date_popup/date_popup.module:253;288
 msgid "Format: @date"
 msgstr "Formato: @date"
 
-#: date_api_sql.inc:514
-#: date_api.module:432
-#: theme/theme.inc:302
-msgid "Year"
-msgstr "Anno"
-
-#: date_api_sql.inc:514
-#: date_api.module:432
-#: date_repeat/date_repeat_form.inc:132
-#: theme/theme.inc:305
-msgid "Month"
-msgstr "Mese"
-
-#: date_api_sql.inc:514
-#: date_api.module:432
-#: theme/theme.inc:308
-msgid "Day"
-msgstr "Giorno"
-
-#: date_api_sql.inc:515
-#: date_api.module:433
-#: theme/theme.inc:311
-msgid "Hour"
-msgstr "Ora"
-
-#: date_api_sql.inc:515
-#: date_api.module:433
-#: theme/theme.inc:314
-msgid "Minute"
-msgstr "Minuto"
-
-#: date_api_sql.inc:515
-#: date_api.module:433
-#: date_repeat/date_repeat.module:97
-#: theme/theme.inc:317
-msgid "Second"
-msgstr "Secondo"
-
 #: date_api_sql.inc:695
-#: date/date_admin.inc:361
+#: date/date_admin.inc:356
 #: date_tools/date_tools.module:153
 #: includes/date_api_argument_handler.inc:62
 msgid "Granularity"
 msgstr "Granularità"
 
-#: date_api.module:175
-#: date_repeat/date_repeat.module:69
-msgid "Sunday"
-msgstr "Domenica"
-
-#: date_api.module:175
-#: date_repeat/date_repeat.module:70
-msgid "Monday"
-msgstr "Lunedì"
-
-#: date_api.module:175
-#: date_repeat/date_repeat.module:71
-msgid "Tuesday"
-msgstr "Martedì"
-
-#: date_api.module:176
-#: date_repeat/date_repeat.module:72
-msgid "Wednesday"
-msgstr "Mercoledì"
-
-#: date_api.module:176
-#: date_repeat/date_repeat.module:73
-msgid "Thursday"
-msgstr "Giovedì"
-
-#: date_api.module:176
-#: date_repeat/date_repeat.module:74
-msgid "Friday"
-msgstr "Venerdì"
-
-#: date_api.module:177
-#: date_repeat/date_repeat.module:75
-msgid "Saturday"
-msgstr "Sabato"
-
-#: date/date_admin.inc:77;95
-#: date_popup/date_popup.module:269
+#: date/date_admin.inc:72;78
+#: date_popup/date_popup.module:266
 msgid "Now"
 msgstr "Adesso"
 
-#: date/date_elements.inc:335
-#: includes/date_api_filter_handler.inc:240
+#: date/date_admin.inc:275;276;277;278
+#: date/date_elements.inc:324
+#: includes/date_api_filter_handler.inc:256
 msgid "From date"
 msgstr "Data iniziale"
 
-#: date/date_elements.inc:337
-#: includes/date_api_filter_handler.inc:243
+#: date/date_admin.inc:280;281;282;283
+#: date/date_elements.inc:326
+#: includes/date_api_filter_handler.inc:259
 msgid "To date"
 msgstr "Data finale"
 
-#: date/date.module:26
-#: date_repeat/date_repeat.module:171
-msgid "Repeats"
-msgstr "Ripetizione"
-
+#: date_locale/date_locale.module:209
 #: date_php4/date_php4.module:54
 #: date_tools/date_tools.module:193
 msgid "Save"
 msgstr "Salva"
+
+#: date_tools/date_tools.module:419
+#: includes/date_api_filter_handler.inc:77
+msgid "Text"
+msgstr "Testo"
+
+#~ msgid "Year"
+#~ msgstr "Anno"
+#~ msgid "Month"
+#~ msgstr "Mese"
+#~ msgid "Day"
+#~ msgstr "Giorno"
+#~ msgid "Hour"
+#~ msgstr "Ora"
+#~ msgid "Minute"
+#~ msgstr "Minuto"
+#~ msgid "Second"
+#~ msgstr "Secondo"
+#~ msgid "Sunday"
+#~ msgstr "Domenica"
+#~ msgid "Monday"
+#~ msgstr "Lunedì"
+#~ msgid "Tuesday"
+#~ msgstr "Martedì"
+#~ msgid "Wednesday"
+#~ msgstr "Mercoledì"
+#~ msgid "Thursday"
+#~ msgstr "Giovedì"
+#~ msgid "Friday"
+#~ msgstr "Venerdì"
+#~ msgid "Saturday"
+#~ msgstr "Sabato"
+#~ msgid "Repeats"
+#~ msgstr "Ripetizione"
 

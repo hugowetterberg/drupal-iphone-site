@@ -1,9 +1,33 @@
-//$Id: CHANGELOG.txt,v 1.1.8.375 2009/02/27 14:17:27 karens Exp $
+//$Id: CHANGELOG.txt,v 1.1.8.395 2009/03/25 15:44:17 karens Exp $
 Date Module 6.x
 =================
 Version 6.2-dev
 =================
 
+Version 6.2.1
+=============
+- #411496 Select widget in Views was not getting forced to the right value when using 'now+' defaults.
+- #395156 Hide errors during multiple passes of date_format creation.
+- #395156 Update new format table definitions to be sure indexes are not too long for MYSQL to create the tables.
+- #365771 Make sure date filter doesn't try to use Date popup widget if that module is disabled.
+= #406876 Adapt Views block argument handling to adapt to arguments like user/%/calendar/2009-05.
+- #385880 Add non-node date handling for Views arguments and filters.
+- #400992 Add time and datetime tokens.
+- #408176 Fix token handling of empty values.
+- #399180 Test for Views tables before uninstalling them.
+- #369811 Fix problems with duplicate date formats in new format system.
+- #354989 Make sure year-only date does not regress to YYYY-00-00 00:00:00, which will end up as previous year.
+- #398258 Fix problems handling blank text widget values and general form processing cleanup.
+- #405408 Update simpletests.
+- #397420 Fix miscalculation errors in date_difference.
+- #360967 Add method for deleting a custom default calendar.
+- #376224 Add 'From date' and 'To date' to Views titles.
+- #375864 Make sure date_limit_format() doesn't keep formats that are only escaped strings.
+- #386124 Updates that test for Views version should work even if Views is not installed.
+- #386406 Date filter was not picking up right default value in some situations.
+
+Version 6.2.0
+=============
 - #376880 Move back/next symbols back into link.
 - Exposed filter was not testing empty values correctly.
 - Add Advanced help for new formatter settings.
