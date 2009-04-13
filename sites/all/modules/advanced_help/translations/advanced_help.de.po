@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: German translation for Advanced Help module\n"
-"POT-Creation-Date: 2008-10-05 22:43+0200\n"
-"PO-Revision-Date: 2008-10-05 23:07+0100\n"
+"POT-Creation-Date: 2008-10-18 17:11+0200\n"
+"PO-Revision-Date: 2008-10-18 17:12+0100\n"
 "Last-Translator: Alexander Haß\n"
 "Language-Team: Frank Tartler <rastatt@drupal.org>\n"
 "MIME-Version: 1.0\n"
@@ -13,54 +13,67 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-#: advanced_help.module:121
+#: advanced_help.module:120;186;389;437;689;53
+msgid "Help"
+msgstr "Hilfe"
+
+#: advanced_help.module:132
 msgid "Search results"
 msgstr "Suchergebnisse"
 
-#: advanced_help.module:124
+#: advanced_help.module:135
 msgid "Your search yielded no results"
 msgstr "Die Suche lieferte keine Ergebnisse."
 
-#: advanced_help.module:163
+#: advanced_help.module:174
 msgid "Enable the search module to search help."
 msgstr "Das Suchmodul aktivieren, um die Hilfe zu durchsuchen."
 
-#: advanced_help.module:177
+#: advanced_help.module:188
 msgid "@module help index"
 msgstr "@module-Hilfe-Index"
 
-#: advanced_help.module:207
+#: advanced_help.module:218
 msgid "Module help index"
 msgstr "Modul-Hilfe-Index"
 
-#: advanced_help.module:289;49
+#: advanced_help.module:300;60
 msgid "Search help"
 msgstr "Hilfe durchsuchen"
 
 # formal
-#: advanced_help.module:304
+#: advanced_help.module:315
 msgid "Please enter some keywords."
 msgstr "Bitte geben Sie Wörter ein, nach denen gesucht werden soll."
 
-#: advanced_help.module:378;426;668
-msgid "Help"
-msgstr "Hilfe"
-
-#: advanced_help.module:382
+#: advanced_help.module:393
 msgid "Missing help topic."
 msgstr "Das Hilfethema ist nicht vorhanden."
 
-#: advanced_help.module:403
+#: advanced_help.module:405
+msgid "Home"
+msgstr "Startseite"
+
+#: advanced_help.module:584
+msgid "Up"
+msgstr "nach oben"
+
+#: advanced_help.module:414
 msgid "view advanced help topic"
 msgstr "Thema der erweiterten Hilfe ansehen"
 
-#: advanced_help.module:403
+#: advanced_help.module:414
 msgid "view advanced help popup"
 msgstr "Popup-Fenster der erweiterten Hilfe ansehen"
 
-#: advanced_help.module:403
+#: advanced_help.module:414
 msgid "view advanced help index"
 msgstr "Index der erweiterten Hilfe ansehen"
+
+#: advanced_help.module:45
+#: advanced_help.info:0
+msgid "Advanced help"
+msgstr "Erweiterte Hilfe"
 
 #: advanced_help.module:0
 msgid "advanced_help"
@@ -85,10 +98,6 @@ msgstr "Die Themen-ID."
 #: advanced_help.install:51
 msgid "The language this search index relates to."
 msgstr "Die Sprache auf den sich dieser Index bezieht."
-
-#: advanced_help.info:0
-msgid "Advanced help"
-msgstr "Erweiterte Hilfe"
 
 #: advanced_help.info:0
 msgid "Allow advanced help and documentation."

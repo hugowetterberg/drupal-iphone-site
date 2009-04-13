@@ -1,5 +1,5 @@
 <?php
-// $Id: admin.inc,v 1.151 2009/01/30 00:20:34 merlinofchaos Exp $
+// $Id: admin.inc,v 1.154 2009/04/07 20:48:28 merlinofchaos Exp $
 /**
  * @file admin.inc
  * Provides the Views' administrative interface.
@@ -552,6 +552,7 @@ function views_ui_add_form(&$form_state) {
     '#required' => TRUE,
     '#maxlength' => 32,
     '#default_value' => $view ? $view->name : '',
+    '#attributes' => array('dir'=>'ltr'),
   );
 
   $form['description'] = array(
@@ -2292,7 +2293,8 @@ function views_ui_config_item_form(&$form_state) {
           // We want this relationship option to get saved even if the user
           // skips submitting the form.
           $view->set_item_option($display_id, $type, $id, 'relationship', $rel);
-          views_ui_cache_set($view);
+          $temp_view = $view->clone_view();
+          views_ui_cache_set($temp_view);
         }
 
         $form['options']['relationship'] = array(
@@ -2734,6 +2736,13 @@ function views_ui_admin_tools() {
     '#title' => t('Page region to output performance statistics'),
     '#default_value' => variable_get('views_devel_region', 'footer'),
     '#options' => $regions,
+  );
+
+  $form['views_exposed_filter_any_label'] = array(
+    '#type' => 'select',
+    '#title' => t('Label for "Any" value on optional single-select exposed filters'),
+    '#options' => array('old_any' => t('<Any>'), 'new_any' => t('- Any -')),
+    '#default_value' => variable_get('views_exposed_filter_any_label', 'old_any'),
   );
 
   return system_settings_form($form);

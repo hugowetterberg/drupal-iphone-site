@@ -1,7 +1,7 @@
-<!-- $Id: ini-file.html,v 1.6 2008/09/15 19:01:56 merlinofchaos Exp $ -->
+<!-- $Id: ini-file.html,v 1.8 2008/10/27 22:27:03 merlinofchaos Exp $ -->
 The advanced help configuration file is in simple .ini file format, divided into sections for each help file, plus an optional section for global settings that might be inherited for each help file.
 
-The first line of an advanced help ini file should be ;$Id: ini-file.html,v 1.6 2008/09/15 19:01:56 merlinofchaos Exp $ which will be a comment providing the CVS identifier for the file. The ; indicates a comment character. Anything after the ; will be ignored.
+The first line of an advanced help ini file should be ;&#x24;Id &#x24; which will be a comment providing the CVS identifier for the file. The ; indicates a comment character. Anything after the ; will be ignored.
 
 Global settings may be put into a section named <strong>[advanced help settings]</strong> -- this means that this name is reserved and it cannot be a help file in any module. The following settings may be set in this section:
 <dl>
@@ -15,6 +15,8 @@ Global settings may be put into a section named <strong>[advanced help settings]
 <dd>May be set to override the module name as displayed in both the module index as well as the navigation and breadcrumb trail. In general this does not need to be set, but a few modules may want to use a more friendly name than appears in the .info file.</dd>
 <dt><strong>index name</strong></dt>
 <dd>This may be set to change the name of the module in the module index. It overrides the 'name' setting above, as well as the module name in its .info file.</dd>
+<dt><strong>hide</strong></dt>
+<dd>This may be used to hide a module in the module index. This is particularly useful for modules who insert their help files into the hierarchy of another module, as might be done by modules that extend Views or CCK. By setting "hide = TRUE" the module will not appear as its own entry.</dd>
 </dl>
 
 Each section after that will correspond to a single help file, and each one may have the following settings:

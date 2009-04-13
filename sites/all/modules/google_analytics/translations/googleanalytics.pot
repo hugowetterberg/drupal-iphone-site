@@ -1,17 +1,17 @@
-# $Id: googleanalytics.pot,v 1.4.2.5 2008/11/25 23:04:43 hass Exp $
+# $Id: googleanalytics.pot,v 1.4.2.7 2009/03/29 12:21:27 hass Exp $
 #
 # LANGUAGE translation of Drupal (general)
 # Copyright YEAR NAME <EMAIL@ADDRESS>
 # Generated from files:
-#  googleanalytics.admin.inc,v 1.4.2.9 2008/11/23 09:44:34 hass
-#  googleanalytics.module,v 1.19.2.6 2008/10/13 21:48:49 hass
+#  googleanalytics.admin.inc,v 1.4.2.12 2009/03/08 11:38:26 hass
+#  googleanalytics.module,v 1.19.2.9 2009/03/29 11:03:01 hass
 #  googleanalytics.info,v 1.7.2.2 2008/09/18 18:39:45 hass
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2008-11-26 00:02+0100\n"
+"POT-Creation-Date: 2009-03-29 14:19+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -129,7 +129,7 @@ msgid "Make sure you will not associate (or permit any third party to associate)
 msgstr ""
 
 #: googleanalytics.admin.inc:126
-msgid "Selecting one or more values is supported. To select multiple items, hold down CTRL while selecting fields."
+msgid "Selecting one or more values is supported. To select multiple items, hold down CTRL (PC) or &#8984; (Mac) while selecting fields."
 msgstr ""
 
 #: googleanalytics.admin.inc:136
@@ -213,54 +213,62 @@ msgid "If checked, internal search keywords are tracked. You must configure your
 msgstr ""
 
 #: googleanalytics.admin.inc:211
-msgid "Custom JavaScript code"
+msgid "Track AdSense ads"
 msgstr ""
 
-#: googleanalytics.admin.inc:214
-msgid "You can add custom Google Analytics <a href=\"@snippets\">code snippets</a> here. These will be added to every page that Google Analytics appears on. Before you add custom code to the below textarea's you should read <a href=\"@ga_concepts_overview\">Google Analytics Tracking Code - Functional Overview</a> and the <a href=\"@ga_js_api\">Google Analytics Tracking API</a> documentation. <strong>Do not include the &lt;script&gt; tags</strong>, and always end your code with a semicolon (;)."
+#: googleanalytics.admin.inc:212
+msgid "If checked, your AdSense ads will be tracked in your Google Analytics account."
 msgstr ""
 
 #: googleanalytics.admin.inc:218
+msgid "Custom JavaScript code"
+msgstr ""
+
+#: googleanalytics.admin.inc:221
+msgid "You can add custom Google Analytics <a href=\"@snippets\">code snippets</a> here. These will be added to every page that Google Analytics appears on. Before you add custom code to the below textarea's you should read <a href=\"@ga_concepts_overview\">Google Analytics Tracking Code - Functional Overview</a> and the <a href=\"@ga_js_api\">Google Analytics Tracking API</a> documentation. <strong>Do not include the &lt;script&gt; tags</strong>, and always end your code with a semicolon (;)."
+msgstr ""
+
+#: googleanalytics.admin.inc:225
 msgid "Code snippet (before)"
 msgstr ""
 
-#: googleanalytics.admin.inc:222
+#: googleanalytics.admin.inc:229
 msgid "Code in this textarea will be added <strong>before</strong> pageTracker._trackPageview()."
 msgstr ""
 
-#: googleanalytics.admin.inc:226
+#: googleanalytics.admin.inc:233
 msgid "Code snippet (after)"
 msgstr ""
 
-#: googleanalytics.admin.inc:230
+#: googleanalytics.admin.inc:237
 msgid "Code in this textarea will be added <strong>after</strong> pageTracker._trackPageview(). This is useful if you'd like to track a site in two accounts."
 msgstr ""
 
-#: googleanalytics.admin.inc:235
+#: googleanalytics.admin.inc:242
 msgid "JavaScript scope"
 msgstr ""
 
-#: googleanalytics.admin.inc:236
+#: googleanalytics.admin.inc:243
 msgid "<strong>Warning:</strong> Google recommends adding the external JavaScript files to footer for performance reasons."
 msgstr ""
 
-#: googleanalytics.admin.inc:238
+#: googleanalytics.admin.inc:245
 msgid "Footer"
 msgstr ""
 
-#: googleanalytics.admin.inc:239
+#: googleanalytics.admin.inc:246
 msgid "Header"
 msgstr ""
 
-#: googleanalytics.admin.inc:249
+#: googleanalytics.admin.inc:256
 msgid "A valid Google Analytics account number is case sensitive and formatted like UA-xxxxxx-x."
 msgstr ""
 
-#: googleanalytics.admin.inc:254;257
+#: googleanalytics.admin.inc:261;264
 msgid "Do not add the tracker code provided by Google into the javascript code snippets! This module already builds the tracker code based on your Google Analytics account number and settings."
 msgstr ""
 
-#: googleanalytics.admin.inc:260;263
+#: googleanalytics.admin.inc:267;270
 msgid "Do not include the &lt;script&gt; tags in the javascript code snippets."
 msgstr ""
 
@@ -268,23 +276,35 @@ msgstr ""
 msgid "<a href=\"@ga_url\">Google Analytics</a> is a free statistics package based on the excellent Urchin system. This module provides services to better integrate Drupal with Google Analytics."
 msgstr ""
 
-#: googleanalytics.module:179
+#: googleanalytics.module:186
 msgid "Google Analytics configuration"
 msgstr ""
 
-#: googleanalytics.module:186
-msgid "User tracking"
+#: googleanalytics.module:194
+msgid "Disable user tracking"
 msgstr ""
 
-#: googleanalytics.module:207
+#: googleanalytics.module:195
+msgid "Users are tracked by default, but you are able to opt out."
+msgstr ""
+
+#: googleanalytics.module:199
+msgid "Enable user tracking"
+msgstr ""
+
+#: googleanalytics.module:200
+msgid "Users are <em>not</em> tracked by default, but you are able to opt in."
+msgstr ""
+
+#: googleanalytics.module:228
 msgid "Google Analytics module"
 msgstr ""
 
-#: googleanalytics.module:208
+#: googleanalytics.module:229
 msgid "Google Analytics module has not been configured yet. Please configure its settings from the <a href=\"@url\">Google Analytics settings page</a>."
 msgstr ""
 
-#: googleanalytics.module:210
+#: googleanalytics.module:231
 msgid "Not configured"
 msgstr ""
 

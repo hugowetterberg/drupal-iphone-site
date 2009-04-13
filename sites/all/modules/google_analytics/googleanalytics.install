@@ -1,5 +1,5 @@
 <?php
-// $Id: googleanalytics.install,v 1.6.2.8 2008/11/22 22:53:37 hass Exp $
+// $Id: googleanalytics.install,v 1.6.2.9 2009/03/08 11:38:26 hass Exp $
 
 /**
  * @file
@@ -32,6 +32,7 @@ function googleanalytics_uninstall() {
   variable_del('googleanalytics_cache');
   variable_del('googleanalytics_last_cache');
   variable_del('googleanalytics_site_search');
+  variable_del('googleanalytics_trackadsense');
   variable_del('googleanalytics_js_scope');
   variable_del('googleanalytics_custom');
   variable_del('googleanalytics_roles');

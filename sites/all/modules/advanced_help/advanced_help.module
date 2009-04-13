@@ -1,5 +1,5 @@
 <?php
-// $Id: advanced_help.module,v 1.32 2008/10/17 21:49:42 merlinofchaos Exp $
+// $Id: advanced_help.module,v 1.41 2008/10/28 17:33:47 merlinofchaos Exp $
 /**
  * @file advanced_help.module
  *
@@ -72,6 +72,15 @@ function advanced_help_menu() {
   );
 
   return $items;
+}
+
+/**
+* Inplementation of hook_menu_alter().
+**/
+function advanced_help_menu_alter(&$callbacks) {
+  // We need to fix the menu item provided by search module to restrict access.
+  $callbacks['search/advanced_help/%menu_tail']['access callback'] = 'user_access';
+  $callbacks['search/advanced_help/%menu_tail']['access arguments'] = array('view advanced help index');
 }
 
 /**
@@ -164,6 +173,7 @@ function advanced_help_search_view() {
  */
 function advanced_help_index_page($module = '') {
   $topics = advanced_help_get_topics();
+  $settings = advanced_help_get_settings();
 
   // Print a search widget.
   $output = '';
@@ -201,7 +211,7 @@ function advanced_help_index_page($module = '') {
 
     $items = array();
     foreach ($modules as $module => $module_name) {
-      if (!empty($topics[$module])) {
+      if (!empty($topics[$module]) && empty($settings[$module]['hide'])) {
         if (isset($settings[$module]['index name'])) {
           $name = $settings[$module]['index name'];
         }
@@ -270,7 +280,7 @@ function advanced_help_get_topic_hierarchy(&$topics) {
         $parent = '';
       }
       else if (strpos($info['parent'], '%')) {
-        list($parent, $parent_module) = explode($info['parent'], '%');
+        list($parent_module, $parent) = explode('%', $info['parent']);
         if (empty($topics[$parent_module][$parent])) {
           // If it doesn't exist, top level.
           $parent = '';
@@ -474,6 +484,15 @@ function theme_advanced_help_topic($module, $topic, $type = 'icon') {
  * Load and render a help topic.
  */
 function advanced_help_get_topic_filename($module, $topic) {
+  $info = advanced_help_get_topic_file_info($module, $topic);
+  if ($info) {
+    return "./$info[path]/$info[file]";
+  }
+}
+/**
+ * Load and render a help topic.
+ */
+function advanced_help_get_topic_file_info($module, $topic) {
   init_theme();
   global $language;
 
@@ -491,7 +510,7 @@ function advanced_help_get_topic_filename($module, $topic) {
 
   foreach ($paths as $path) {
     if (file_exists("./$path/$info[file]")) {
-      return "./$path/$info[file]";
+      return array('path' => $path, 'file' => $info['file']);
     }
   }
 }
@@ -500,21 +519,15 @@ function advanced_help_get_topic_filename($module, $topic) {
  * Load and render a help topic.
  */
 function advanced_help_view_topic($module, $topic, $popup = FALSE) {
-  $file = advanced_help_get_topic_filename($module, $topic);
-  $info = advanced_help_get_topic($module, $topic);
-  if ($file) {
+  $file_info = advanced_help_get_topic_file_info($module, $topic);
+  if ($file_info) {
+    $info = advanced_help_get_topic($module, $topic);
+    $file = "./$file_info[path]/$file_info[file]";
+
     // @todo is this trusted output?
     $output = file_get_contents($file);
     // Make some exchanges. The strtr is because url() translates $ into %24
     // but we need to change it back for the regex replacement.
-
-    // Run the line break filter if requested
-    if (!empty($info['line break'])) {
-      // Remove the header since it adds an extra <br /> to the filter.
-      $output = preg_replace('/^<!--[^\n]*-->\n/', '', $output);
-
-      $output = _filter_autop($output);
-    }
 
     // Change 'topic:' to the URL for another help topic.
     if ($popup) {
@@ -535,10 +548,23 @@ function advanced_help_view_topic($module, $topic, $popup = FALSE) {
     $output = preg_replace('/src="path:([^"]+)"/', 'src="' . $base_path . $info['path'] . '/$1"', $output);
     $output = str_replace('&path&', $base_path . $info['path'] .'/', $output);
 
+    // Change 'trans_path:' to the URL to the actual help directory.
+    $output = preg_replace('/href="trans_path:([^"]+)"/', 'href="' . $base_path . $file_info['path'] . '/$1"', $output);
+    $output = preg_replace('/src="trans_path:([^"]+)"/', 'src="' . $base_path . $file_info['path'] . '/$1"', $output);
+    $output = str_replace('&trans_path&', $base_path . $file_info['path'] .'/', $output);
+
     // Change 'base_url:' to the URL to the site.
     $output = preg_replace('/href="base_url:([^"]+)"/', 'href="' . strtr(url('$1'), array('%24' => '$')) . '"', $output);
     $output = preg_replace('/src="base_url:([^"]+)"/', 'src="' . strtr(url('$1'), array('%24' => '$')) . '"', $output);
     $output = str_replace('&base_url&', $base_path, $output);
+
+    // Run the line break filter if requested
+    if (!empty($info['line break'])) {
+      // Remove the header since it adds an extra <br /> to the filter.
+      $output = preg_replace('/^<!--[^\n]*-->\n/', '', $output);
+
+      $output = _filter_autop($output);
+    }
 
     if (!empty($info['navigation'])) {
       $topics = advanced_help_get_topics();
@@ -640,20 +666,40 @@ function _advanced_help_parse_ini() {
         $path = "$module_path/help";
         $info = parse_ini_file("./$module_path/help/$module.help.ini", TRUE);
       }
-      else if (file_exists("$help_path/$module/$module.help.ini")) {
+      elseif (file_exists("$help_path/$module/$module.help.ini")) {
         $path = "$help_path/$module";
         $info = parse_ini_file("./$help_path/$module/$module.help.ini", TRUE);
       }
+      elseif (!file_exists("$module_path/help")) {
+        // Look for one or more README files.
+        $files = file_scan_directory("./$module_path", '^(README|readme).*\.(txt|TXT)$', array('.', '..', 'CVS'), 0, FALSE);
+        $path = "./$module_path";
+        foreach ($files as $name => $fileinfo) {
+          $info[$fileinfo->basename] = array('line break' => TRUE, 'readme file' => TRUE, 'file' => $fileinfo->basename, 'title' => $fileinfo->name);
+        }
+      }
+
       if (!empty($info)) {
         // Get translated titles:
         global $language;
+        $translation = array();
         if (file_exists("$module_path/translations/help/$language->language/$module.help.ini")) {
           $translation = parse_ini_file("$module_path/translations/help/$language->language/$module.help.ini", TRUE);
         }
+
         $cache['settings'][$module] = array();
         if (!empty($info['advanced help settings'])) {
           $cache['settings'][$module] = $info['advanced help settings'];
           unset($info['advanced help settings']);
+
+          // Check translated strings for translatable global settings.
+          if (isset($translation['advanced help settings']['name'])) {
+            $cache['settings']['name'] = $translation['advanced help settings']['name'];
+          }
+          if (isset($translation['advanced help settings']['index name'])) {
+            $cache['settings']['index name'] = $translation['advanced help settings']['index name'];
+          }
+
         }
 
         foreach ($info as $name => $topic) {
@@ -666,7 +712,7 @@ function _advanced_help_parse_ini() {
             'parent' => isset($topic['parent']) ? $topic['parent'] : 0,
             'popup width' => isset($topic['popup width']) ? $topic['popup width'] : 500,
             'popup height' => isset($topic['popup height']) ? $topic['popup height'] : 500,
-            'file' => $file . '.html', // require extension
+            'file' => isset($topic['readme file']) ? $file : $file . '.html', // require extension
             'path' => $path, // not in .ini file
             'line break' => isset($topic['line break']) ? $topic['line break'] : (isset($cache['settings'][$module]['line break']) ? $cache['settings'][$module]['line break'] : FALSE),
             'navigation' => isset($topic['navigation']) ? $topic['navigation'] : (isset($cache['settings'][$module]['navigation']) ? $cache['settings'][$module]['navigation'] : TRUE),

@@ -1,5 +1,5 @@
 <?php
-// $Id: devel.module,v 1.258.2.48 2009/03/16 19:44:34 weitzman Exp $
+// $Id: devel.module,v 1.258.2.50 2009/04/02 18:05:20 jjeff Exp $
 
 // This module holds functions useful for Drupal development.
 // Please contribute!
@@ -319,9 +319,9 @@ function devel_display_source($standalone = TRUE) {
 function devel_highlight_file($path = NULL, $standalone = FALSE) {
   if (file_exists($path)) {
     $source = highlight_file($path, TRUE);
-    // add anchor links before all functions
-    // with doxygen
-    $source = preg_replace('!(\/\*\*.*?\*\/.*?)<br.*?function.*?#0000BB">(.*?)<\/span>!', '<a id="$2"></a> $0', $source);
+    // add anchor links before all functions so that we can link to a function within the source
+    // ** commented out because regexes aren't working **
+    //$source = preg_replace('!(\/\*\*.*?\*\/.*?)<br.*?function.*?#0000BB">(.*?)<\/span>!', '<a id="$2"></a> $0', $source);
     //$source = preg_replace('!(\/\*\*.*?\*\/).*?function.*?#0000BB">(.*?)<\/span>!', '<a id="$2"></a> $0', $source);
     if ($standalone) {
       $source = <<<EOT
@@ -524,10 +524,10 @@ function devel_block($op = 'list', $delta = 0, $edit = array()) {
 }
 
 function devel_block_switch_user() {
-  $block['subject'] = t('Switch user');
   $links = devel_switch_user_list();
   if (!empty($links)) {
-    $block['content'] = theme('item_list', $links);
+    $block['subject'] = t('Switch user');
+    $block['content'] = theme('links', $links);
     $block['content'] .= drupal_get_form('devel_switch_user_form');
     return $block;
   }
@@ -555,14 +555,25 @@ function devel_switch_user_list() {
       $users = db_query_range("SELECT DISTINCT u.uid, u.name, u.access FROM {users} u LEFT JOIN {users_roles} r ON u.uid = r.uid WHERE $where_sql ORDER BY u.access DESC", 0, $list_size);
     }
     while ($user = db_fetch_object($users)) {
-      $links[$user->uid] = l(theme('placeholder', $user->name), 'devel/switch/'. $user->name, array('attributes' => array('title' => t('This user can switch back.')), 'query' => $dest, 'html' => TRUE));
+      $links[$user->uid] = array(
+        'title' => theme('placeholder', $user->name),
+        'href' => 'devel/switch/' . $user->name,
+        'query' => $dest,
+        'attributes' => array('title' => t('This user can switch back.')),
+        'html' => TRUE,
+      );
     }
     $num_links = count($links);
     if ($num_links < $list_size) {
       // If we don't have enough, add distinct uids until we hit $list_size.
       $users = db_query_range('SELECT uid, name, access FROM {users} WHERE uid > 0 AND uid NOT IN ('. implode(',', array_keys($links)) .') ORDER BY access DESC', 0, $list_size - $num_links);
       while (($user = db_fetch_object($users)) && count($links) < $list_size) {
-        $links[$user->uid] = l($user->name ? $user->name : 'anon', 'devel/switch/'. $user->name, array('attributes' => array('title' => t('Caution: this user will be unable switch back.')), 'query' => $dest));
+        $links[$user->uid] = array(
+          'title' => $user->name ? $user->name : 'anon',
+          'href' => 'devel/switch/' . $user->name,
+          'query' => $dest,
+          'attributes' => array('title' => t('Caution: this user will be unable switch back.')),
+        );
       }
     }
   }

@@ -1,5 +1,5 @@
 <?php
-// $Id: googleanalytics.module,v 1.19.2.6 2008/10/13 21:48:49 hass Exp $
+// $Id: googleanalytics.module,v 1.19.2.10 2009/04/01 18:10:36 hass Exp $
 
 /*
  * @file
@@ -77,6 +77,11 @@ function googleanalytics_init() {
       drupal_add_js(array('googleanalytics' => $link_settings), 'setting', 'header');
       drupal_add_js(drupal_get_path('module', 'googleanalytics') .'/googleanalytics.js', 'module', $scope);
     }
+
+    // Custom tracking.
+    if (variable_get('googleanalytics_trackadsense', FALSE)) {
+      drupal_add_js('window.google_analytics_uacct = ' . drupal_to_js($id) . ';', 'inline', 'header');
+    }
   }
 }
 
@@ -149,7 +154,8 @@ function googleanalytics_footer($main = 0) {
     $codesnippet_after = variable_get('googleanalytics_codesnippet_after', '');
 
     // Build tracker code for footer.
-    $script = 'var pageTracker = _gat._getTracker('. drupal_to_js($id) .');';
+    $script = 'try{';
+    $script .= 'var pageTracker = _gat._getTracker('. drupal_to_js($id) .');';
     if (!empty($segmentation)) {
       $script .= $segmentation;
     }
@@ -160,6 +166,7 @@ function googleanalytics_footer($main = 0) {
     if (!empty($codesnippet_after)) {
       $script .= $codesnippet_after;
     }
+    $script .= '} catch(err) {}';
 
     drupal_add_js($script, 'inline', 'footer');
   }
@@ -181,9 +188,21 @@ function googleanalytics_user($type, $edit, &$account, $category = NULL) {
           '#collapsible' => TRUE,
           '#tree' => TRUE
         );
+
+        switch ($custom) {
+          case 1:
+            $description = t('Users are tracked by default, but you are able to opt out.');
+            break;
+
+          case 2:
+            $description = t('Users are <em>not</em> tracked by default, but you are able to opt in.');
+            break;
+        }
+
         $form['googleanalytics']['custom'] = array(
           '#type' => 'checkbox',
-          '#title' => t('User tracking'),
+          '#title' => t('Enable user tracking'),
+          '#description' => $description,
           '#default_value' => isset($account->googleanalytics['custom']) ? $account->googleanalytics['custom'] : ($custom == 1)
         );
 

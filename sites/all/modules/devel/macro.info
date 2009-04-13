@@ -4,9 +4,9 @@ description = Allows administrators to record and playback form submissions.
 package = Development
 core = 6.x
 
-; Information added by drupal.org packaging script on 2009-03-31
-version = "6.x-1.15"
+; Information added by drupal.org packaging script on 2009-04-10
+version = "6.x-1.16"
 core = "6.x"
 project = "devel"
-datestamp = "1238471714"
+datestamp = "1239375932"
 

@@ -1,19 +1,19 @@
-# $Id: ja.po,v 1.3.2.5 2008/11/26 08:29:02 imagine Exp $
+# $Id: ja.po,v 1.3.2.6 2009/03/30 04:50:10 imagine Exp $
 # -----------------------------------------------------------------------------
 # Japanese translation of Drupal (modules-googleanalytics)
 #
-# Copyright (c) 2006-2008  Drupal Japan  ( http://drupal.jp/ )  /
+# Copyright (c) 2006-2009  Drupal Japan  ( http://drupal.jp/ )  /
 #                          Takafumi      ( jp.drupal@imagine **reverse order**)
 #
 # Generated from file:
-#  googleanalytics.admin.inc,v 1.4.2.9 2008/11/23 09:44:34 hass
-#  googleanalytics.module,v 1.19.2.6 2008/10/13 21:48:49 hass
+#  googleanalytics.admin.inc,v 1.4.2.12 2009/03/08 11:38:26 hass
+#  googleanalytics.module,v 1.19.2.8 2009/03/08 11:38:26 hass
 #  googleanalytics.info,v 1.7.2.2 2008/09/18 18:39:45 hass
 #
 # -----------------------------------------------------------------------------
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2008-11-26 15:30+0900\n"
+"POT-Creation-Date: 2009-03-30 13:25+0900\n"
 "Last-Translator: Takafumi <jp.drupal@imagine **reverse order**>\n"
 "Language-Team: Drupal Japan\n"
 "MIME-Version: 1.0\n"
@@ -130,8 +130,8 @@ msgid "Make sure you will not associate (or permit any third party to associate)
 msgstr "あなたが Google Analytics サービスを使用する（または第三者が利用する）にあたり、ウェブサイト（または第三者のウェブサイト）から集めたデータを、ソースを問わず個人情報と関連づけない（または第三者に関連づけさせない）ようにしてください。 詳細については「<a href=\"@ga_tos\">Google Analytics サービス利用規約</a>」の「プライバシー」を参照してください。"
 
 #: googleanalytics.admin.inc:126
-msgid "Selecting one or more values is supported. To select multiple items, hold down CTRL while selecting fields."
-msgstr "複数の値を選択することもできます。 複数のアイテムを選択するには、Ctrlキーを押下しながらフィールドを選択してください。"
+msgid "Selecting one or more values is supported. To select multiple items, hold down CTRL (PC) or &#8984; (Mac) while selecting fields."
+msgstr "複数の値を選択することもできます。 複数のアイテムを選択するには、Ctrlキー(PC)/&#8984;(Mac)を押下しながらフィールドを選択してください。"
 
 #: googleanalytics.admin.inc:136
 msgid "Link tracking settings"
@@ -214,54 +214,62 @@ msgid "If checked, internal search keywords are tracked. You must configure your
 msgstr "チェックを入れると、内部の検索キーワードがトラックされます。内部のクエリパラメータの<strong>検索</strong>を使用するには、Googleアカウントの設定が必要となります。 詳細については「<a href=\"@url\">サイト内検索を設定する方法</a>」を参照してください。"
 
 #: googleanalytics.admin.inc:211
+msgid "Track AdSense ads"
+msgstr "AdSense広告のトラック"
+
+#: googleanalytics.admin.inc:212
+msgid "If checked, your AdSense ads will be tracked in your Google Analytics account."
+msgstr "チェックを入れると、AdSense広告がGoogle Analyticsアカウントでトラックされます。"
+
+#: googleanalytics.admin.inc:218
 msgid "Custom JavaScript code"
 msgstr "カスタムJavaScriptコード"
 
-#: googleanalytics.admin.inc:214
+#: googleanalytics.admin.inc:221
 msgid "You can add custom Google Analytics <a href=\"@snippets\">code snippets</a> here. These will be added to every page that Google Analytics appears on. Before you add custom code to the below textarea's you should read <a href=\"@ga_concepts_overview\">Google Analytics Tracking Code - Functional Overview</a> and the <a href=\"@ga_js_api\">Google Analytics Tracking API</a> documentation. <strong>Do not include the &lt;script&gt; tags</strong>, and always end your code with a semicolon (;)."
 msgstr "ここに、カスタムGoogle Analyticsの<a href=\"@snippets\">コードスニペット</a>を追加することができます。 これらはGoogle Analyticsが現れる、すべてのページに追加されます。 以下のテキストエリアにカスタムコードを加える前に、<a href=\"@ga_concepts_overview\">Google Analytics Tracking Code - Functional Overview</a> と <a href=\"@ga_js_api\">Google Analytics Tracking API</a> のドキュメントを読むべきです。 <strong>&lt;script&gt; タグは含めず</strong>、 コードの終端には常にセミコロン (;) を付加してください。"
 
-#: googleanalytics.admin.inc:218
+#: googleanalytics.admin.inc:225
 msgid "Code snippet (before)"
 msgstr "コードスニペット（前）"
 
-#: googleanalytics.admin.inc:222
+#: googleanalytics.admin.inc:229
 msgid "Code in this textarea will be added <strong>before</strong> pageTracker._trackPageview()."
 msgstr "このテキストエリアのコードは、pageTracker._trackPageview() の<strong>前</strong>に追加されます。"
 
-#: googleanalytics.admin.inc:226
+#: googleanalytics.admin.inc:233
 msgid "Code snippet (after)"
 msgstr "コードスニペット（後）"
 
-#: googleanalytics.admin.inc:230
+#: googleanalytics.admin.inc:237
 msgid "Code in this textarea will be added <strong>after</strong> pageTracker._trackPageview(). This is useful if you'd like to track a site in two accounts."
 msgstr "このテキストエリアのコードは、pageTracker._trackPageview() の<strong>後</strong>に追加されます。 これは2つのアカウントでサイトをトラックしたい場合に役立ちます。"
 
-#: googleanalytics.admin.inc:235
+#: googleanalytics.admin.inc:242
 msgid "JavaScript scope"
 msgstr "JavaScriptのスコープ"
 
-#: googleanalytics.admin.inc:236
+#: googleanalytics.admin.inc:243
 msgid "<strong>Warning:</strong> Google recommends adding the external JavaScript files to footer for performance reasons."
 msgstr "<strong>警告：</strong> Google はパフォーマンスの理由から、フッタに外部JavaScriptを追加することを推奨しています。"
 
-#: googleanalytics.admin.inc:238
+#: googleanalytics.admin.inc:245
 msgid "Footer"
 msgstr "フッタ"
 
-#: googleanalytics.admin.inc:239
+#: googleanalytics.admin.inc:246
 msgid "Header"
 msgstr "ヘッダ"
 
-#: googleanalytics.admin.inc:249
+#: googleanalytics.admin.inc:256
 msgid "A valid Google Analytics account number is case sensitive and formatted like UA-xxxxxx-x."
 msgstr "有効なGoogle Analyticsのアカウント番号は大文字・小文字が区別され、UA-xxxxxx-x のような形式です。"
 
-#: googleanalytics.admin.inc:254;257
+#: googleanalytics.admin.inc:261;264
 msgid "Do not add the tracker code provided by Google into the javascript code snippets! This module already builds the tracker code based on your Google Analytics account number and settings."
 msgstr "Javascriptコードスニペット内に、Googleから提供されたトラッカーコードを加えないでください！ このモジュールは、Google Analyticsのアカウント番号と設定に基づいたトラッカーコードをすでに構築しています。"
 
-#: googleanalytics.admin.inc:260;263
+#: googleanalytics.admin.inc:267;270
 msgid "Do not include the &lt;script&gt; tags in the javascript code snippets."
 msgstr "Javascriptコードスニペットに &lt;script&gt; タグを含めないでください。"
 
@@ -269,23 +277,35 @@ msgstr "Javascriptコードスニペットに &lt;script&gt; タグを含めな�
 msgid "<a href=\"@ga_url\">Google Analytics</a> is a free statistics package based on the excellent Urchin system. This module provides services to better integrate Drupal with Google Analytics."
 msgstr "<a href=\"@ga_url\">Google Analytics</a>は、優れたUrchinシステムに基づいたフリーの統計パッケージです。 このモジュールは、DrupalとGoogle Analyticsをより良く統合するためのサービスを提供します。"
 
-#: googleanalytics.module:179
+#: googleanalytics.module:186
 msgid "Google Analytics configuration"
 msgstr "Google Analyticsの設定"
 
-#: googleanalytics.module:186
-msgid "User tracking"
-msgstr "ユーザのトラッキング"
+#: googleanalytics.module:194
+msgid "Disable user tracking"
+msgstr "ユーザのトラッキングを無効化"
 
-#: googleanalytics.module:207
+#: googleanalytics.module:195
+msgid "Users are tracked by default, but you are able to opt out."
+msgstr "デフォルトでユーザはトラックされますが、あなたはそれを拒否することもできます。"
+
+#: googleanalytics.module:199
+msgid "Enable user tracking"
+msgstr "ユーザのトラッキングを有効化"
+
+#: googleanalytics.module:200
+msgid "Users are <em>not</em> tracked by default, but you are able to opt in."
+msgstr "デフォルトでユーザはトラックされませんが、あなたはそれを許可することもできます。"
+
+#: googleanalytics.module:228
 msgid "Google Analytics module"
 msgstr "Google Analytics モジュール"
 
-#: googleanalytics.module:208
+#: googleanalytics.module:229
 msgid "Google Analytics module has not been configured yet. Please configure its settings from the <a href=\"@url\">Google Analytics settings page</a>."
 msgstr "Google Analyticsモジュールは未設定です。 <a href=\"@url\">Google Analyticsの設定ページ</a>で設定を行ってください。"
 
-#: googleanalytics.module:210
+#: googleanalytics.module:231
 msgid "Not configured"
 msgstr "設定されていません"
 
