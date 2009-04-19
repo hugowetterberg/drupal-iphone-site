@@ -6,9 +6,9 @@ dependencies[] = content
 dependencies[] = filefield
 package = CCK
 
-; Information added by drupal.org packaging script on 2009-03-20
-version = "6.x-3.0-beta3"
+; Information added by drupal.org packaging script on 2009-04-01
+version = "6.x-3.0-rc1"
 core = "6.x"
 project = "imagefield"
-datestamp = "1237534251"
+datestamp = "1238618152"
 

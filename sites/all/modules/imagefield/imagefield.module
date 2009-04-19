@@ -1,5 +1,5 @@
 <?php
-// $Id: imagefield.module,v 1.87 2009/03/20 06:37:36 quicksketch Exp $
+// $Id: imagefield.module,v 1.94 2009/03/29 05:20:07 quicksketch Exp $
 
 /**
  * @file
@@ -15,7 +15,6 @@ function imagefield_init() {
   // field_file hooks and callbacks.
   module_load_include('inc', 'imagefield', 'imagefield_file');
   module_load_include('inc', 'imagefield', 'imagefield_widget');
-  drupal_add_css(drupal_get_path('module', 'imagefield') .'/imagefield.css');
 }
 
 /**
@@ -80,17 +79,16 @@ function imagefield_theme() {
  */
 function imagefield_elements() {
   $elements = array();
-  $elements['imagefield_widget'] =  array(
-    // Indicate to FormAPI that this element needs processing and is not simply a render element.
-    '#input' => TRUE,
-    // Delegate element processing to FileField, then call ImageField.
-    '#process' => array('filefield_widget_process', 'imagefield_widget_process'),
-    // See imagefield_widget[#process] documentation.
-    '#value_callback' => 'imagefield_widget_value',
-    // Delegate element validation to FileField, then call ImageField.
-    '#element_validate' => array('filefield_widget_validate', 'imagefield_widget_validate'),
-    '#description' => t('Changes made to the attachments are not permanent until you save this post.'),
-  );
+
+  // An ImageField is really just a FileField with extra processing.
+  $filefield_elements = filefield_elements();
+  $elements['imagefield_widget'] = $filefield_elements['filefield_widget'];
+  $elements['imagefield_widget']['#process'][] = 'imagefield_widget_process';
+  $elements['imagefield_widget']['#element_validate'][] = 'imagefield_widget_validate';
+
+  // ImageField needs a separate value callback to save its alt and title texts.
+  $elements['imagefield_widget']['#value_callback'] = 'imagefield_widget_value';
+
   return $elements;
 }
 
@@ -112,6 +110,17 @@ function imagefield_file_download($filepath) {
       return array(
         'Content-Type: ' . $info['mime'],
         'Content-Length: ' . filesize($thumb_full_path)
+      );
+    }
+  }
+
+  // Return headers for default images.
+  if (strpos($filepath, 'imagefield_default_images') !== FALSE) {
+    $full_path = file_create_path($filepath);
+    if ($info = getimagesize($full_path)) {
+      return array(
+        'Content-Type: ' . $info['mime'],
+        'Content-Length: ' . filesize($full_path)
       );
     }
   }
@@ -160,28 +169,47 @@ function imagefield_widget(&$form, &$form_state, $field, $items, $delta = 0) {
   }
 
   // Start with the FileField widget as a basic start.
-  $element = module_invoke('filefield', 'widget', $form, $form_state, $field, $items, $delta);
+  // Note that FileField needs to modify $form by reference.
+  $element = filefield_widget($form, $form_state, $field, $items, $delta);
+
+  // Add ImageField specific validators.
+  $element['#upload_validators'] = array_merge($element['#upload_validators'], imagefield_widget_upload_validators($field));
+
+  return $element;
+}
+
+/**
+ * Get the additional upload validators for an image field.
+ *
+ * @param $field
+ *   The CCK field array.
+ * @return
+ *   An array suitable for passing to file_save_upload() or the file field
+ *   element's '#upload_validators' property.
+ */
+function imagefield_widget_upload_validators($field) {
+  $validators = array();
 
   // Ensure that only web images are supported.
   $web_extensions = array('jpg', 'jpeg', 'gif', 'png');
-  $extensions = array_filter(explode(' ', $element['#upload_validators']['filefield_validate_extensions'][0]));
+  $extensions = array_filter(explode(' ', $field['widget']['file_extensions']));
   if (empty($extensions)) {
     $extensions = $web_extensions;
   }
-  $element['#upload_validators']['filefield_validate_extensions'][0] = implode(' ', array_intersect($extensions, $web_extensions));
+  $validators['filefield_validate_extensions'][0] = implode(' ', array_intersect($extensions, $web_extensions));
 
   // Add the image validator as a basic safety check.
-  $element['#upload_validators']['filefield_validate_is_image'] = array();
+  $validators['filefield_validate_is_image'] = array();
 
   // Add validators for resolutions.
   if (!empty($field['widget']['max_resolution']) || !empty($field['widget']['min_resolution'])) {
-    $element['#upload_validators']['filefield_validate_image_resolution'] = array(
+    $validators['filefield_validate_image_resolution'] = array(
       $field['widget']['max_resolution'],
       $field['widget']['min_resolution'],
     );
   }
 
-  return $element;
+  return $validators;
 }
 
 /**
@@ -256,10 +284,11 @@ function theme_imagefield_image($file, $alt = '', $title = '', $attributes = NUL
   if (!empty($title)) {
     $attributes['title'] = $title;
   }
-  if (!empty($alt)) {
-    $attributes['alt'] = $alt;
-  }
-  $url = file_create_url($file['filepath']) . '?' . $file['timestamp'];
+  // Alt text should be added even if it is an empty string.
+  $attributes['alt'] = $alt;
+  // Add a timestamp to the URL to ensure it is immediately updated after editing.
+  $query_character = (variable_get('file_downloads', FILE_DOWNLOADS_PUBLIC) == FILE_DOWNLOADS_PRIVATE && variable_get('clean_url', '0') == '0') ? '&' : '?';
+  $url = file_create_url($file['filepath']) . $query_character . $file['timestamp'];
   $attributes['src'] = $url;
   $attributes = drupal_attributes($attributes);
   return '<img '. $attributes .' />';

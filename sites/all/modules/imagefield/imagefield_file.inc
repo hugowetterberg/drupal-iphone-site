@@ -1,24 +1,10 @@
 <?php
-// $Id: imagefield_file.inc,v 1.15 2009/03/19 03:36:52 quicksketch Exp $
+// $Id: imagefield_file.inc,v 1.17 2009/04/01 19:47:22 quicksketch Exp $
 
 /**
  * @file
  * hook_file and imagefield file functions.
  */
-
-/**
- * Implementation of hook_file_references().
- */
-function imagefield_file_references($file) {
-  $references = 0;
-  foreach (content_fields() as $field) {
-    if ($field['type'] != 'imagefield') {
-      continue;
-    }
-    $references += field_file_references($file, $field);
-  }
-  return array('imagefield' => $references);
-}
 
 /**
  * Implementation of hook_file_insert().
@@ -86,9 +72,14 @@ function imagefield_create_admin_thumb($source, $destination) {
   // Ensure the destination directory exists and is writable.
   $directories = explode('/', $destination);
   array_pop($directories); // Remove the file itself.
+  // Get the file system directory.
+  $file_system = file_directory_path();
   foreach ($directories as $directory) {
     $full_path = isset($full_path) ? $full_path . '/' . $directory : $directory;
-    field_file_check_directory($full_path, FILE_CREATE_DIRECTORY);
+    // Don't check directories outside the file system path.
+    if (strpos($full_path, $file_system) === 0) {
+      field_file_check_directory($full_path, FILE_CREATE_DIRECTORY);
+    }
   }
 
   // Create the thumbnail.

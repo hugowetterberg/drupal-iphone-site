@@ -1,8 +1,8 @@
-/* $Id: imagefield.css,v 1.8 2009/03/13 05:25:06 quicksketch Exp $ */
+/* $Id: imagefield.css,v 1.9 2009/03/28 03:09:27 quicksketch Exp $ */
 
 .filefield-element .imagefield-preview {
-  width: 100px;
-  height: 100px;
+  min-width: 100px;
+  min-height: 100px;
 }
 
 .filefield-element .imagefield-text {
