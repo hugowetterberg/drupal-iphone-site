@@ -1,18 +1,20 @@
 <?php
-// $Id: field_file.inc,v 1.27 2009/03/19 01:50:08 quicksketch Exp $
+// $Id: field_file.inc,v 1.31 2009/03/30 01:19:34 quicksketch Exp $
+
 /**
  * @file
  * Common functionality for file handling CCK field modules.
  */
 
 /**
- * Load a file object from the database.
+ * Load a file from the database.
  *
  * @param $fid
  *   A numeric file id or string containing the file path.
- *
  * @param $reset
  *   Whether to reset the internal file_load cache.
+ * @return
+ *   A file array.
  */
 function field_file_load($fid, $reset = NULL) {
   // Reset internal cache.
@@ -44,23 +46,23 @@ function field_file_load($fid, $reset = NULL) {
       $function($file);
     }
 
-    // Cache the fully loaded file for later reusability.
+    // Cache the fully loaded file for later use.
     $files = _field_file_cache($file);
   }
 
-  // Cast to array for field. hook_file() expects objects as well as
-  // core file functions.
+  // Cast to an array for the field storage.
+  // Contrary to fields, hook_file() and core file functions expect objects.
   return (array)$files[$fid];
 }
 
 /**
- * Save a file upload to a new location. The source file is validated as a
- * proper upload and handled as such. By implementing hook_file($op = 'insert'),
- * modules are able to act on the file upload and to add their own properties
- * to the file.
+ * Save a file upload to a new location.
+ * The source file is validated as a proper upload and handled as such. By
+ * implementing hook_file($op = 'insert'), modules are able to act on the file
+ * upload and to add their own properties to the file.
  *
- * The file will be added to the files table as a temporary file. Temporary files
- * are periodically cleaned. To make the file permanent file call
+ * The file will be added to the files table as a temporary file. Temporary
+ * files are periodically cleaned. To make the file permanent file call
  * file_set_status() to change its status.
  *
  * @param $source
@@ -110,7 +112,6 @@ function field_file_save_upload($source, $validators = array(), $dest = FALSE) {
  *   not provided or is not writable, the temporary directory will be used.
  * @return
  *   An array containing the file information, or 0 in the event of an error.
- *
  */
 function field_file_save_file($filepath, $validators = array(), $dest = FALSE) {
   global $user;
@@ -369,23 +370,14 @@ function field_file_strip_path($path) {
   return $path;
 }
 
-
 /**
- * return references to a file by a single field.
+ * Return a count of the references to a file by all modules.
  */
-
-function field_file_references($file, $field) {
-  $db_info = content_database_info($field);
-  $references = db_result(db_query(
-    'SELECT count('. $db_info['columns']['fid']['column'] .')
-      FROM {'. $db_info['table'] .'}
-      WHERE '. $db_info['columns']['fid']['column'] .' = %d', $file->fid
-  ));
-
-  // If a field_name is present in the file object, the file is being deleted
-  // from this field, decrement the number of total references by one.
-  if (isset($file->field_name) && $field['field_name'] == $file->field_name) {
-    --$references;
+function field_file_references($file) {
+  $references = (array) module_invoke_all('file_references', $file);
+  $reference_count = 0;
+  foreach ($references as $module => $count) {
+    $reference_count += $count;
   }
-  return $references;
+  return $reference_count;
 }

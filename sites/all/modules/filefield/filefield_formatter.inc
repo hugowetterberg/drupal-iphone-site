@@ -1,5 +1,5 @@
 <?php
-// $Id: filefield_formatter.inc,v 1.11 2009/03/20 06:37:36 quicksketch Exp $
+// $Id: filefield_formatter.inc,v 1.12 2009/03/28 06:13:07 quicksketch Exp $
 /**
  * @file
  * FileField: Defines a CCK file field type.
@@ -67,7 +67,8 @@ function theme_filefield_formatter_url_plain($element) {
 }
 
 /**
- * Theme function for any file that is managed by filefield.
+ * Theme function for any file that is managed by FileField.
+ *
  * It doesn't really format stuff by itself but rather redirects to other
  * formatters that are telling us they want to handle the concerned file.
  *
@@ -76,11 +77,7 @@ function theme_filefield_formatter_url_plain($element) {
  * in any case, please use theme('filefield') instead.
  */
 function theme_filefield_item($file, $field) {
-  if (!filefield_view_access($field['field_name'])) {
-    return '<!-- you do not have access to view this file -->';
-  }
-
-  if (filefield_file_listed($file, $field)) {
+  if (filefield_view_access($field['field_name']) && filefield_file_listed($file, $field)) {
     return theme('filefield_file', $file);
   }
   return '';

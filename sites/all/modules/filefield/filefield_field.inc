@@ -1,11 +1,14 @@
 <?php
-// $Id: filefield_field.inc,v 1.22 2009/03/20 05:14:12 quicksketch Exp $
+// $Id: filefield_field.inc,v 1.28 2009/04/01 19:58:07 quicksketch Exp $
 
 /**
  * @file
- * FileField field hooks and callbacks.
+ * FileField CCK field hooks and callbacks.
  */
 
+/**
+ * Implementation of CCK's hook_field_settings($op = 'form').
+ */
 function filefield_field_settings_form($field) {
   drupal_add_js(drupal_get_path('module', 'filefield') .'/filefield.js');
 
@@ -35,13 +38,16 @@ function filefield_field_settings_form($field) {
   return $form;
 }
 
-function filefield_field_settings_validate($field) {
-}
-
+/**
+ * Implementation of CCK's hook_field_settings($op = 'save').
+ */
 function filefield_field_settings_save($field) {
   return array('list_field', 'list_default', 'description_field');
 }
 
+/**
+ * Implementation of CCK's hook_field_settings($op = 'database_columns').
+ */
 function filefield_field_settings_database_columns($field) {
   return array(
     'fid' => array('type' => 'int', 'not null' => FALSE),
@@ -50,6 +56,9 @@ function filefield_field_settings_database_columns($field) {
   );
 }
 
+/**
+ * Implementation of CCK's hook_field_settings($op = 'views_data').
+ */
 function filefield_field_settings_views_data($field) {
   $data = content_views_field_views_data($field);
   $db_info = content_database_info($field);
@@ -74,10 +83,8 @@ function filefield_field_settings_views_data($field) {
   return $data;
 }
 
-
-
 /**
- * Implementation of CCK's hook_field().
+ * Implementation of CCK's hook_field($op = 'load').
  */
 function filefield_field_load($node, $field, &$items, $teaser, $page) {
   if (empty($items)) {
@@ -103,10 +110,16 @@ function filefield_field_load($node, $field, &$items, $teaser, $page) {
   return array($field['field_name'] => $items);
 }
 
+/**
+ * Implementation of CCK's hook_field($op = 'insert').
+ */
 function filefield_field_insert($node, $field, &$items, $teaser, $page) {
   return filefield_field_update($node, $field, $items, $teaser, $page);
 }
 
+/**
+ * Implementation of CCK's hook_field($op = 'update').
+ */
 function filefield_field_update($node, $field, &$items, $teaser, $page) {
 
   // Accumulator to gather current fid to compare with the original node
@@ -123,8 +136,7 @@ function filefield_field_update($node, $field, &$items, $teaser, $page) {
     }
   }
 
-  // if this is a new node... there are no
-  // old items to worry about.
+  // If this is a new node there are no old items to worry about.
   if ($node->is_new) {
     return;
   } 
@@ -134,40 +146,84 @@ function filefield_field_update($node, $field, &$items, $teaser, $page) {
   // If there are, figure out which ones must go.
   if ($node->revision == 0 && !empty($orig->$field['field_name'])) {
     foreach ($orig->$field['field_name'] as $oitem) {
-      if (!in_array($oitem['fid'], $curfids)) {
+      if (isset($oitem['fid']) && !in_array($oitem['fid'], $curfids)) {
         // For hook_file_references, remember that this is being deleted.
         $oitem['field_name'] = $field['field_name'];
-        field_file_delete($oitem); 
+        filefield_field_delete_file($oitem, $field); 
       }
     }
   }
 }
 
+/**
+ * Implementation of CCK's hook_field($op = 'delete_revision').
+ */
 function filefield_field_delete_revision($node, $field, &$items, $teaser, $page) {
   foreach ($items as $delta => $item) {
     // For hook_file_references, remember that this is being deleted.
     $item['field_name'] = $field['field_name'];
-    if (field_file_delete($item)) {
+    if (filefield_field_delete_file($item, $field)) {
       $items[$delta] = NULL;
     }
   }
 }
 
-
+/**
+ * Implementation of CCK's hook_field($op = 'delete').
+ */
 function filefield_field_delete($node, $field, &$items, $teaser, $page) {
   foreach ($items as $delta => $item) {
-    // For hook_file_references, remember that this is being deleted.
+    // For hook_file_references(), remember that this is being deleted.
     $item['field_name'] = $field['field_name'];
-    field_file_delete($item);
+    // Pass in the nid of the node that is being removed so all references can
+    // be counted in hook_file_references().
+    $item['delete_nid'] = $node->nid;
+    filefield_field_delete_file($item, $field);
   }
 }
 
+/**
+ * Check that FileField controls a file before attempting to deleting it.
+ */
+function filefield_field_delete_file($file, $field) {
+  $file = (object) $file;
+
+  // Remove the field_name and delete_nid properties so that references can be
+  // counted including the files to be deleted.
+  $field_name = isset($file->field_name) ? $file->field_name : NULL;
+  $delete_nid = isset($file->delete_nid) ? $file->delete_nid : NULL;
+  unset($file->field_name, $file->delete_nid);
+
+  // To prevent FileField from deleting files it doesn't know about, check the
+  // FileField reference count. Temporary files can be deleted because they
+  // are not yet associated with any content at all.
+  if ($file->status == 0 || filefield_get_file_reference_count($file, $field) > 0) {
+    $file->field_name = $field_name;
+    $file->delete_nid = $delete_nid;
+    return field_file_delete($file);
+  }
+
+  // Even if the file is not deleted, return TRUE to indicate the FileField
+  // record can be removed from the FileField database tables.
+  return TRUE;
+}
+
+/**
+ * Implementation of CCK's hook_field($op = 'sanitize').
+ */
 function filefield_field_sanitize($node, $field, &$items, $teaser, $page) {
   foreach ($items as $delta => $item) {
     // Cleanup $items during node preview.
     if (empty($item['fid']) || !empty($item['delete'])) {
-      $items[$delta] = NULL;
-      continue;
+      // Check for default images at the widget level.
+      // TODO: Provide an API to ImageField to do this itself?
+      if (!empty($field['widget']['use_default_image']) && !empty($field['widget']['default_image']['filepath'])) {
+        $items[$delta] = $field['widget']['default_image'];
+      }
+      else {
+        $items[$delta] = NULL;
+        continue;
+      }
     }
     // Load the complete file if a filepath is not available.
     if (!empty($item['fid']) && empty($item['filepath'])) {
@@ -176,11 +232,21 @@ function filefield_field_sanitize($node, $field, &$items, $teaser, $page) {
     // Add nid so formatters can create a link to the node.
     $items[$delta]['nid'] = $node->nid;
 
+    // TODO: This is only necessary for Views, which doesn't call the "load"
+    // $op. It might be preferable to move this to Views integration somehow.
+    if (!empty($items['data']) && is_string($items[$delta]['data'])) {
+      $item['data'] = unserialize($item['data']);
+    }
+    // Temporary fix to unserialize data serialized multiple times.
+    // See the FileField issue http://drupal.org/node/402860.
+    // And the CCK issue http://drupal.org/node/407446.
+    while (!empty($items[$delta]['data']) && is_string($items[$delta]['data'])) {
+      $items[$delta]['data'] = unserialize($items[$delta]['data']);
+    }
+
     // Verify the file exists on the server.
     if (!empty($item['filepath']) && !file_exists($item['filepath'])) {
       watchdog('filefield', 'FileField was trying to display the file %file, but it does not exist.', array('%file' => $item['filepath']));
     }
   }
 }
-
-

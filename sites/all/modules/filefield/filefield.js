@@ -1,4 +1,4 @@
-// $Id: filefield.js,v 1.16 2009/03/09 05:07:35 quicksketch Exp $
+// $Id: filefield.js,v 1.17 2009/03/30 04:43:52 quicksketch Exp $
 
 /**
  * Auto-attach standard client side file input validation.
@@ -12,7 +12,7 @@ Drupal.behaviors.filefieldValidateAutoAttach = function(context) {
      * Add client side validation for the input[type=file] accept attribute.
      */
     var accept = this.accept.replace(/,\s*/g, '|');
-    if (accept.length > 1) {
+    if (accept.length > 1 && this.value.length > 0) {
       var v = new RegExp('\\.(' + accept + ')$', 'gi');
       if (!v.test(this.value)) {
         var error = Drupal.t("The selected file %filename cannot not be uploaded. Only files with the following extensions are allowed: %extensions.",
