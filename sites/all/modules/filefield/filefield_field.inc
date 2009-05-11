@@ -1,5 +1,5 @@
 <?php
-// $Id: filefield_field.inc,v 1.28 2009/04/01 19:58:07 quicksketch Exp $
+// $Id: filefield_field.inc,v 1.31 2009/04/20 22:30:08 quicksketch Exp $
 
 /**
  * @file
@@ -50,9 +50,9 @@ function filefield_field_settings_save($field) {
  */
 function filefield_field_settings_database_columns($field) {
   return array(
-    'fid' => array('type' => 'int', 'not null' => FALSE),
-    'list' => array('type' => 'int', 'size' => 'tiny', 'not null' => FALSE),
-    'data' => array('type' => 'text', 'serialize' => TRUE),
+    'fid' => array('type' => 'int', 'not null' => FALSE, 'views' => TRUE),
+    'list' => array('type' => 'int', 'size' => 'tiny', 'not null' => FALSE, 'views' => TRUE),
+    'data' => array('type' => 'text', 'serialize' => TRUE, 'views' => TRUE),
   );
 }
 
@@ -63,9 +63,6 @@ function filefield_field_settings_views_data($field) {
   $data = content_views_field_views_data($field);
   $db_info = content_database_info($field);
   $table_alias = content_views_tablename($field);
-
-  // Set our own field handler so that we can hook the file formatter
-  // configuration table into the options form.
 
   // By defining the relationship, we already have a "Has file" filter
   // plus all the filters that Views already provides for files.
@@ -80,6 +77,27 @@ function filefield_field_settings_views_data($field) {
     'label' => t($field['widget']['label']),
     'content_field_name' => $field['field_name'],
   );
+
+  // Use the Views boolean handler for filtering the list value.
+  $data[$table_alias][$field['field_name'] .'_list']['filter']['handler'] = 'views_handler_filter_boolean_operator';
+
+  // Add our special handler for serialized data.
+  $data[$table_alias][$field['field_name'] .'_data']['field'] = array(
+    'title' => $data[$table_alias][$field['field_name'] .'_data']['title'],
+    'title short' => $data[$table_alias][$field['field_name'] .'_data']['title short'],
+    'field' => $db_info['columns']['data']['column'],
+    'table' => $db_info['table'],
+    'handler' => 'filefield_handler_field_data',
+    'click sortable' => FALSE,
+    'access callback' => 'content_access',
+    'access arguments' => array('view', $field),
+  );
+
+  // Remove handlers that are probably unnecessary.
+  unset($data[$table_alias][$field['field_name'] .'_data']['filter']);
+  unset($data[$table_alias][$field['field_name'] .'_data']['argument']);
+  unset($data[$table_alias][$field['field_name'] .'_list']['argument']);
+
   return $data;
 }
 
@@ -144,7 +162,7 @@ function filefield_field_update($node, $field, &$items, $teaser, $page) {
   // Delete items from original node if no new revision was created.
   $orig = node_load($node->nid); 
   // If there are, figure out which ones must go.
-  if ($node->revision == 0 && !empty($orig->$field['field_name'])) {
+  if (empty($node->revision) && !empty($orig->$field['field_name'])) {
     foreach ($orig->$field['field_name'] as $oitem) {
       if (isset($oitem['fid']) && !in_array($oitem['fid'], $curfids)) {
         // For hook_file_references, remember that this is being deleted.
@@ -219,6 +237,7 @@ function filefield_field_sanitize($node, $field, &$items, $teaser, $page) {
       // TODO: Provide an API to ImageField to do this itself?
       if (!empty($field['widget']['use_default_image']) && !empty($field['widget']['default_image']['filepath'])) {
         $items[$delta] = $field['widget']['default_image'];
+        $items[$delta]['default'] = TRUE;
       }
       else {
         $items[$delta] = NULL;

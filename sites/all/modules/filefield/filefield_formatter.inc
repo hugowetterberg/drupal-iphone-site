@@ -1,5 +1,5 @@
 <?php
-// $Id: filefield_formatter.inc,v 1.12 2009/03/28 06:13:07 quicksketch Exp $
+// $Id: filefield_formatter.inc,v 1.13 2009/04/09 16:12:49 quicksketch Exp $
 /**
  * @file
  * FileField: Defines a CCK file field type.
@@ -117,8 +117,7 @@ function theme_filefield_file($file) {
   // at http://darrelopry.com/story/microformats-and-media-rfc-if-you-js-or-css
   $options = array(
     'attributes' => array(
-      'type' => $file['filemime'],
-      'length' => $file['filesize'],
+      'type' => $file['filemime'] . '; length=' . $file['filesize'],
     ),
   );
 

@@ -1,5 +1,5 @@
 <?php
-// $Id: filefield.install,v 1.29 2009/03/27 04:21:32 quicksketch Exp $
+// $Id: filefield.install,v 1.31 2009/04/20 16:51:49 quicksketch Exp $
 /**
  * @file
  * FileField: Defines a CCK file field type.
@@ -40,6 +40,56 @@ function filefield_enable() {
 function filefield_disable() {
   drupal_load('module', 'content');
   content_notify('disable', 'filefield');
+}
+
+/**
+ * Implementation of hook_requirements().
+ *
+ * Display information about getting upload progress bars working.
+ */
+function filefield_requirements($phase) {
+  $requirements = array();
+  // Ensure translations don't break at install time
+  $t = get_t();
+
+  // Report Drupal version
+  if ($phase == 'runtime') {
+    $implementation = filefield_progress_implementation();
+    $apache = strpos($_SERVER["SERVER_SOFTWARE"], 'Apache') !== FALSE;
+    $php_52 = version_compare(phpversion(), '5.2.0', '>');
+    if (!$apache || !$php_52) {
+      $value = $t('Not enabled');
+      $description = $t('Your server is not capable of displaying file upload progress. File upload progress requires PHP 5.2 and an Apache server.');
+      $severity = REQUIREMENT_INFO;
+    }
+    elseif (!$implementation && extension_loaded('apc')) {
+      $value = $t('Not enabled');
+      $description = $t('Your server is capable of displaying file upload progress through APC, but it is not enabled. Add <code>apc.rfc1867 = 1</code> to your php.ini configuration. Alternatively, it is recommended to use <a href="http://pecl.php.net/package/uploadprogress">PECL uploadprogress</a>, which supports more than one simultaneous upload.');
+      $severity = REQUIREMENT_WARNING;
+    }
+    elseif (!$implementation) {
+      $value = $t('Not enabled');
+      $description = t('Your server is capable of displaying file upload progress, but does not have the required libraries. It is recommended to install the <a href="http://pecl.php.net/package/uploadprogress">PECL uploadprogress library<a> (prefered) or to install <a href="http://us2.php.net/apc">APC</a>.');
+      $severity = REQUIREMENT_WARNING;
+    }
+    elseif ($implementation == 'apc') {
+      $value = $t('Enabled (<a href="http://php.net/manual/en/apc.configuration.php#ini.apc.rfc1867">APC RFC1867</a>)');
+      $description = t('Your server is capable of displaying file upload progress using APC RFC1867. Note that only one upload at a time is supported. It is recommneded to use the <a href="http://pecl.php.net/package/uploadprogress">PECL uploadprogress library<a> if possible.');
+      $severity = REQUIREMENT_OK;
+    }
+    elseif ($implementation == 'uploadprogress') {
+      $value = $t('Enabled (<a href="http://pecl.php.net/package/uploadprogress">PECL uploadprogress</a>)');
+      $severity = REQUIREMENT_OK;
+    }
+    $requirements['filefield_progress'] = array(
+      'title' => $t('Upload progress'),
+      'value' => $value,
+      'severity' => $severity,
+      'description' => $description,
+    );
+  }
+
+  return $requirements;
 }
 
 /**
@@ -152,12 +202,19 @@ function filefield_update_6100() {
   $fields = content_fields();
   foreach ($fields as $field) {
     if ($field['type'] == 'filefield') {
-      $field['list_field'] = empty($field['force_list_default']);
-      $field['description_field'] = $field['show_description'];
+      if (isset($field['force_list_default'])) {
+        $field['list_field'] = !$field['force_list_default'];
+      }
+      if (isset($field['show_description'])) {
+        $field['description_field'] = $field['show_description'];
+      }
       _content_field_write($field);
       $ret[] = array('success' => TRUE, 'query' => t('The File field %field has been updated with new settings.', array('%field' => $field['field_name'])));
     }
   }
+
+  cache_clear_all('*', content_cache_tablename(), TRUE);
+  cache_clear_all('*', 'cache', TRUE);
 
   return $ret;
 }

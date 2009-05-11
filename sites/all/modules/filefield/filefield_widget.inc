@@ -1,5 +1,5 @@
 <?php
-// $Id: filefield_widget.inc,v 1.76 2009/03/31 19:02:44 quicksketch Exp $
+// $Id: filefield_widget.inc,v 1.86 2009/04/20 22:51:44 quicksketch Exp $
 
 /**
  * @file
@@ -21,6 +21,19 @@ function filefield_widget_settings_form($widget) {
     '#size' => 64,
     '#description' => t('Extensions a user can upload to this field. Separate extensions with a space and do not include the leading dot. Leaving this blank will allow users to upload a file with any extension.'),
     '#weight' => 1,
+  );
+
+  $form['progress_indicator'] = array(
+    '#type' => 'radios',
+    '#title' => t('Progress indicator'),
+    '#options' => array(
+      'bar' => t('Bar with progress meter'),
+      'throbber' => t('Throbber'),
+    ),
+    '#default_value' => empty($widget['progress_indicator']) ? 'bar' : $widget['progress_indicator'],
+    '#description' => t('Your server supports upload progress capabilities. The "throbber" display does not indicate progress but takes up less room on the form, you may want to use it if you\'ll only be uploading small files or if experiencing problems with the progress bar.'),
+    '#weight' => 5,
+    '#access' => filefield_progress_implementation(),
   );
 
   $form['path_settings'] = array(
@@ -73,7 +86,7 @@ function filefield_widget_settings_form($widget) {
  * Implementation of CCK's hook_widget_settings($op == 'save').
  */
 function filefield_widget_settings_save($widget) {
-  return array('file_extensions', 'file_path', 'max_filesize_per_file', 'max_filesize_per_node');
+  return array('file_extensions', 'file_path', 'progress_indicator', 'max_filesize_per_file', 'max_filesize_per_node');
 }
 
 function _filefield_widget_settings_file_path_validate($element, &$form_state) {
@@ -110,14 +123,28 @@ function _filefield_widget_settings_max_filesize_per_node_validate($element, &$f
  *
  * @param $field
  *   A CCK field array.
+ * @param $account
+ *   The user account object to calculate the file path for.
  * @return
  *   The files directory path, with any tokens replaced.
  */
-function filefield_widget_file_path($field_instance) {
-  $dest = $field_instance['widget']['file_path'];
+function filefield_widget_file_path($field, $account = NULL) {
+  $account = isset($account) ? $account : $GLOBALS['user'];
+  $dest = $field['widget']['file_path'];
+  // Replace user level tokens.
+  // Node level tokens require a lot of complexity like temporary storage
+  // locations when values don't exist. See the filefield_paths module.
   if (module_exists('token')) {
-    global $user;
-    $dest = token_replace($dest, 'user', $user);
+    $dest = token_replace($dest, 'user', $account);
+  }
+  // Replace nasty characters in the path if possible.
+  if (module_exists('transliteration')) {
+    module_load_include('inc', 'transliteration');
+    $dest_array = array_filter(explode('/', $dest));
+    foreach ($dest_array as $key => $directory) {
+      $dest_array[$key] = transliteration_clean_filename($directory);
+    }
+    $dest = implode('/', $dest_array);
   }
 
   return file_directory_path() .'/'. $dest;
@@ -134,13 +161,13 @@ function filefield_widget_file_path($field_instance) {
  */
 function filefield_save_upload($element) {
   $upload_name = $element['#field_name'] .'_'. $element['#delta'];
-  $field_instance = content_fields($element['#field_name'], $element['#type_name']);
+  $field = content_fields($element['#field_name'], $element['#type_name']);
 
   if (empty($_FILES['files']['name'][$upload_name])) {
     return 0;
   }
 
-  $dest = filefield_widget_file_path($field_instance);
+  $dest = filefield_widget_file_path($field);
   if (!field_file_check_directory($dest, FILE_CREATE_DIRECTORY)) {
     watchdog('filefield', 'The upload directory %directory for the file field %field (content type %type) could not be created or is not accessible. A newly uploaded file could not be saved in this directory as a consequence, and the upload was canceled.', array('%directory' => $dest, '%field' => $element['#field_name'], '%type' => $element['#type_name']));
     form_set_error($upload_name, t('The file could not be uploaded.'));
@@ -266,12 +293,45 @@ function filefield_widget_process($element, $edit, &$form_state, $form) {
   // $form_state['clicked_button'] is only available after this #process
   // callback is finished.
   if (_form_button_was_clicked($element['filefield_remove'])) {
+    // Delete the file if it is currently unused. Note that field_file_delete()
+    // does a reference check in addition to our basic status check.
+    if (isset($edit['fid'])) {
+      $removed_file = field_file_load($edit['fid']);
+      if ($removed_file['status'] == 0) {
+        field_file_delete($removed_file);
+      }
+    }
     $item = array('fid' => 0, 'list' => $field['list_default'], 'data' => array('description' => ''));
   }
 
   // Set access on the buttons.
   $element['filefield_upload']['#access'] = empty($item['fid']);
   $element['filefield_remove']['#access'] = !empty($item['fid']);
+
+  // Add progress bar support to the upload if possible.
+  $progress_indicator = isset($field['widget']['progress_indicator']) ? $field['widget']['progress_indicator'] : 'bar';
+  if ($progress_indicator != 'throbber' && $implementation = filefield_progress_implementation()) {
+    $upload_progress_key = md5(mt_rand());
+
+    if ($implementation == 'uploadprogress') {
+      $element['UPLOAD_IDENTIFIER'] = array(
+        '#type' => 'hidden',
+        '#value' => $upload_progress_key,
+        '#attributes' => array('class' => 'filefield-progress'),
+      );
+    }
+    elseif ($implementation == 'apc') {
+      $element['APC_UPLOAD_PROGRESS'] = array(
+        '#type' => 'hidden',
+        '#value' => $upload_progress_key,
+        '#attributes' => array('class' => 'filefield-progress'),
+      );
+    }
+
+    // Add the upload progress callback.
+    $element['filefield_upload']['#ahah']['progress']['type'] = 'bar';
+    $element['filefield_upload']['#ahah']['progress']['path'] = 'filefield/progress/' . $upload_progress_key;
+  }
 
   // Set the FID.
   $element['fid'] = array(
@@ -298,16 +358,17 @@ function filefield_widget_process($element, $edit, &$form_state, $form) {
       '#type' => 'textfield',
       '#title' => t('Description'),
       '#value' => isset($item['data']['description']) ? $item['data']['description'] : '',
+      '#type' => variable_get('filefield_description_type', 'textfield'),
+      '#maxlength' => variable_get('filefield_description_length', 128),
     );
   }
 
   if ($field['list_field']) {
     $element['list'] = array(
-      '#type' => 'checkbox',
+      '#type' => empty($item['fid']) ? 'hidden' : 'checkbox',
       '#title' => t('List'),
       '#value' => isset($item['list']) ? $item['list'] : $field['list_default'],
       '#attributes' => array('class' => 'filefield-list'),
-      '#access' => !empty($item['fid']),
     );
   }
   else {
@@ -357,7 +418,7 @@ function filefield_widget_validate(&$element, &$form_state) {
         // but hook_file_delete() needs to be implemented first.
         $references = module_invoke('filefield', 'file_references', $file);
         if ($references['filefield'] == 0) {
-          form_error($element, t('Referencing to the file used the %field field is not allowed.', array('%field' => $element['#title'])));
+          form_error($element, t('Referencing to the file used in the %field field is not allowed.', array('%field' => $element['#title'])));
         }
       }
     }
@@ -471,18 +532,5 @@ function filefield_node_form_validate($form, &$form_state) {
                                     )
                                   ));
     }
-  }
-}
-
-/**
- * Additional #submit handler for the node form.
- */
-function filefield_node_form_submit($form, &$form_state) {
-  // Only add additional submit handling on save.
-  if ($form_state['values']['op'] == t('Save')) {
-    // TODO: Immediately delete temporary files that were uploaded but never
-    // saved. This isn't critical to do, since any file not saved with the node
-    // will by cleaned up by system_cron() after 6 hours.
-    return;
   }
 }

@@ -1,5 +1,5 @@
 <?php
-// $Id: filefield.module,v 1.186 2009/03/30 16:08:54 quicksketch Exp $
+// $Id: filefield.module,v 1.197 2009/04/16 01:00:59 quicksketch Exp $
 
 /**
  * @file
@@ -39,6 +39,12 @@ function filefield_menu() {
     'access arguments' => array(3),
     'type' => MENU_CALLBACK,
   );
+  $items['filefield/progress'] = array(
+    'page callback' => 'filefield_progress',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
+
   return $items;
 }
 
@@ -199,6 +205,16 @@ function filefield_file_download($file) {
 }
 
 /**
+ * Implementation of hook_views_api().
+ */
+function filefield_views_api() {
+  return array(
+    'api' => 2.0,
+    'path' => drupal_get_path('module', 'filefield') . '/views',
+  );
+}
+
+/**
  * Implementation of hook_form_alter().
  *
  * Set the enctype on forms that need to accept file uploads.
@@ -248,7 +264,7 @@ function filefield_field_settings($op, $field) {
 }
 
 /**
- * Implementtation of CCK's hook_field().
+ * Implementation of CCK's hook_field().
  */
 function filefield_field($op, $node, $field, &$items, $teaser, $page) {
   module_load_include('inc', 'filefield', 'filefield_field');
@@ -281,9 +297,6 @@ function filefield_widget(&$form, &$form_state, $field, $items, $delta = 0) {
   // we validate at the field level ourselves.
   if (empty($form['#validate']) || !in_array('filefield_node_form_validate', $form['#validate'])) {
     $form['#validate'][] = 'filefield_node_form_validate';
-  }
-  if (empty($form['#submit']) || !in_array('filefield_node_form_submit', $form['#submit'])) {
-    $form['#submit'][] = 'filefield_node_form_submit';
   }
   $form['#attributes'] = array('enctype' => 'multipart/form-data');
 
@@ -344,6 +357,27 @@ function filefield_content_is_empty($item, $field) {
 }
 
 /**
+ * Implementation of CCK's hook_default_value().
+ *
+ * Note this is a widget-level hook, so it does not affect ImageField or other
+ * modules that extend FileField.
+ *
+ * @see content_default_value()
+ */
+function filefield_default_value(&$form, &$form_state, $field, $delta) {
+  // Reduce the default number of upload fields to one.
+  // CCK will automatically add one more field than necessary.
+  if (!isset($form_state['item_count'][$field['field_name']])) {
+    $form_state['item_count'][$field['field_name']] = 0;
+  }
+
+  // The default value is actually handled in hook_widget().
+  // hook_default_value() is only helpful for new nodes, and we need to affect
+  // all widgets, such as when a new field is added via "Add another item".
+  return array();
+}
+
+/**
  * Implementation of CCK's hook_widget_info().
  */
 function filefield_widget_info() {
@@ -380,6 +414,20 @@ function filefield_field_formatter_info() {
       'description' => t('Displays a full URL to the file.'),
     ),
   );
+}
+
+/**
+ * Implementation of CCK's hook_content_generate(). Used by generate.module.
+ */
+function filefield_content_generate($node, $field) {
+  module_load_include('inc', 'filefield', 'filefield.devel');
+
+  if (content_handle('widget', 'multiple values', $field) == CONTENT_HANDLE_MODULE) {
+    return content_devel_multiple('_filefield_content_generate', $node, $field);
+  }
+  else {
+    return _filefield_content_generate($node, $field);
+  }
 }
 
 /**
@@ -433,7 +481,8 @@ function filefield_js($type_name, $field_name, $delta) {
 
   if (empty($field) || empty($_POST['form_build_id'])) {
     // Invalid request.
-    print drupal_to_js(array('data' => ''));
+    drupal_set_message(t('An unrecoverable error occurred. The uploaded file likely exceeded the maximum file size (@size) that this server supports.', array('@size' => format_size(file_upload_max_size()))), 'error');
+    print drupal_to_js(array('data' => theme('status_messages')));
     exit;
   }
 
@@ -444,7 +493,8 @@ function filefield_js($type_name, $field_name, $delta) {
 
   if (!$form) {
     // Invalid form_build_id.
-    print drupal_to_js(array('data' => ''));
+    drupal_set_message(t('An unrecoverable error occurred. This form was missing from the server cache. Try reloading the page and submitting again.'), 'error');
+    print drupal_to_js(array('data' => theme('status_messages')));
     exit;
   }
 
@@ -510,17 +560,59 @@ function filefield_js($type_name, $field_name, $delta) {
 }
 
 /**
+ * Menu callback for upload progress.
+ */
+function filefield_progress($key) {
+  $progress = array(
+    'message' => t('Starting upload...'),
+    'percentage' => -1,
+  );
+
+  $implementation = filefield_progress_implementation();
+  if ($implementation == 'uploadprogress') {
+    $status = uploadprogress_get_info($key);
+    if (isset($status['bytes_uploaded']) && !empty($status['bytes_total'])) {
+      $progress['message'] = t('Uploading... (@current of @total)', array('@current' => format_size($status['bytes_uploaded']), '@total' => format_size($status['bytes_total'])));
+      $progress['percentage'] = round(100 * $status['bytes_uploaded'] / $status['bytes_total']);
+    }
+  }
+  elseif ($implementation == 'apc') {
+    $status = apc_fetch('upload_' . $key);
+    if (isset($status['current']) && !empty($status['total'])) {
+      $progress['message'] = t('Uploading... (@current of @total)', array('@current' => format_size($status['current']), '@total' => format_size($status['total'])));
+      $progress['percentage'] = round(100 * $status['current'] / $status['total']);
+    }
+  }
+
+  drupal_json($progress);
+}
+
+/**
+ * Determine which upload progress implementation to use, if any available.
+ */
+function filefield_progress_implementation() {
+  static $implementation;
+  if (!isset($implementation)) {
+    $implementation = FALSE;
+
+    // We prefer the PECL extension uploadprogress because it supports multiple
+    // simultaneous uploads. APC only supports one at a time.
+    if (extension_loaded('uploadprogress')) {
+      $implementation = 'uploadprogress';
+    }
+    elseif (extension_loaded('apc') && ini_get('apc.rfc1867')) {
+      $implementation = 'apc';
+    }
+  }
+  return $implementation;
+}
+
+/**
  * Implementation of hook_file_references().
  */
 function filefield_file_references($file) {
-  $references = 0;
-  foreach (content_fields() as $field) {
-    if ($field['type'] != 'filefield') {
-      continue;
-    }
-    $references += filefield_get_file_reference_count($file, $field);
-  }
-  return array('filefield' => $references);
+  $count = filefield_get_file_reference_count($file);
+  return $count ? array('filefield' => $count) : NULL;
 }
 
 /**
@@ -636,14 +728,25 @@ function filefield_validate_size_help($size) {
 function filefield_validate_image_resolution(&$file, $maximum_dimensions = 0, $minimum_dimensions = 0) {
   $errors = array();
 
+  list($max_width, $max_height) = explode('x', $maximum_dimensions);
+  list($min_width, $min_height) = explode('x', $minimum_dimensions);
+
   // Check first that the file is an image.
   if ($info = image_get_info($file->filepath)) {
     if ($maximum_dimensions) {
       // Check that it is smaller than the given dimensions.
-      list($width, $height) = explode('x', $maximum_dimensions);
-      if ($info['width'] > $width || $info['height'] > $height) {
+      if ($info['width'] > $max_width || $info['height'] > $max_height) {
+        $ratio = min($max_width/$info['width'], $max_height/$info['height']);
+        // Check for exact dimension requirements (scaling allowed).
+        if (strcmp($minimum_dimensions, $maximum_dimensions) == 0 && $info['width']/$max_width != $info['height']/$max_height) {
+          $errors[] = t('The image must be exactly %dimensions pixels.', array('%dimensions' => $maximum_dimensions));
+        }
+        // Check that scaling won't drop the image below the minimum dimensions.
+        elseif (image_get_toolkit() && (($info['width'] * $ratio < $min_width) || ($info['height'] * $ratio < $min_height))) {
+          $errors[] = t('The image will not fit between the dimensions of %min_dimensions and %max_dimensions pixels.', array('%min_dimensions' => $minimum_dimensions, '%max_dimensions' => $maximum_dimensions));
+        }
         // Try to resize the image to fit the dimensions.
-        if (image_get_toolkit() && image_scale($file->filepath, $file->filepath, $width, $height)) {
+        elseif (image_get_toolkit() && @image_scale($file->filepath, $file->filepath, $max_width, $max_height)) {
           drupal_set_message(t('The image was resized to fit within the maximum allowed dimensions of %dimensions pixels.', array('%dimensions' => $maximum_dimensions)));
 
           // Clear the cached filesize and refresh the image information.
@@ -657,10 +760,9 @@ function filefield_validate_image_resolution(&$file, $maximum_dimensions = 0, $m
       }
     }
 
-    if ($minimum_dimensions) {
+    if ($minimum_dimensions && empty($errors)) {
       // Check that it is larger than the given dimensions.
-      list($width, $height) = explode('x', $minimum_dimensions);
-      if ($info['width'] < $width || $info['height'] < $height) {
+      if ($info['width'] < $min_width || $info['height'] < $min_height) {
         $errors[] = t('The image is too small; the minimum dimensions are %dimensions pixels.', array('%dimensions' => $minimum_dimensions));
       }
     }
@@ -739,38 +841,132 @@ function filefield_validate_associate_field(&$file, $field) {
  ******************************************************************************/
 
 /**
+ * Return an array of file fields within a node type or by field name.
+ *
+ * @param $field
+ *   Optional. May be either a field array or a field name.
+ * @param $node_type
+ *   Optional. The node type to filter the list of fields.
+ */
+function filefield_get_field_list($node_type = NULL, $field = NULL) {
+  // Build the list of fields to be used for retrieval.
+  if (isset($field)) {
+    if (is_string($field)) {
+      $field = content_fields($field, $node_type);
+    }
+    $fields = array($field['field_name'] => $field);
+  }
+  elseif (isset($node_type)) {
+    $type = content_types($node_type);
+    $fields = $type['fields'];
+  }
+  else {
+    $fields = content_fields();
+  }
+
+  // Filter down the list just to file fields.
+  foreach ($fields as $key => $field) {
+    if ($field['type'] != 'filefield') {
+      unset($fields[$key]);
+    }
+  }
+
+  return $fields;
+}
+
+/**
  * Count the number of times the file is referenced within a field.
  *
  * @param $file
  *   A file object.
  * @param $field
- *   The CCK field array.
+ *   Optional. The CCK field array or field name as a string.
  * @return
  *   An integer value.
  */
-function filefield_get_file_reference_count($file, $field) {
-  $db_info = content_database_info($field);
-  $references = db_result(db_query(
-    'SELECT count('. $db_info['columns']['fid']['column'] .')
-      FROM {'. $db_info['table'] .'}
-      WHERE '. $db_info['columns']['fid']['column'] .' = %d', $file->fid
-  ));
+function filefield_get_file_reference_count($file, $field = NULL) {
+  $fields = filefield_get_field_list(NULL, $field);
+  $file = (object) $file;
 
-  // If a field_name is present in the file object, the file is being deleted
-  // from this field.
-  if (isset($file->field_name) && $field['field_name'] == $file->field_name) {
-    // If deleting the entire node, count how many references to decrement.
-    if (isset($file->delete_nid)) {
-      $node_references = db_result(db_query(
-        'SELECT count('. $db_info['columns']['fid']['column'] .')
-          FROM {'. $db_info['table'] .'}
-          WHERE '. $db_info['columns']['fid']['column'] .' = %d AND nid = %d', $file->fid, $file->delete_nid
-      ));
-      $references = $references - $node_references;
-    }
-    else {
-      $references = $references - 1;
+  $references = 0;
+  foreach ($fields as $field) {
+    $db_info = content_database_info($field);
+    $references += db_result(db_query(
+      'SELECT count('. $db_info['columns']['fid']['column'] .')
+        FROM {'. $db_info['table'] .'}
+        WHERE '. $db_info['columns']['fid']['column'] .' = %d', $file->fid
+    ));
+
+    // If a field_name is present in the file object, the file is being deleted
+    // from this field.
+    if (isset($file->field_name) && $field['field_name'] == $file->field_name) {
+      // If deleting the entire node, count how many references to decrement.
+      if (isset($file->delete_nid)) {
+        $node_references = db_result(db_query(
+          'SELECT count('. $db_info['columns']['fid']['column'] .')
+            FROM {'. $db_info['table'] .'}
+            WHERE '. $db_info['columns']['fid']['column'] .' = %d AND nid = %d', $file->fid, $file->delete_nid
+        ));
+        $references = $references - $node_references;
+      }
+      else {
+        $references = $references - 1;
+      }
     }
   }
+
   return $references;
+}
+
+/**
+ * Get a list of node IDs that reference a file.
+ *
+ * @param $file
+ *   The file object for which to find references.
+ * @param $field
+ *   Optional. The CCK field array or field name as a string.
+ * @return
+ *   An array of IDs grouped by NID: array([nid] => array([vid1], [vid2])).
+ */
+function filefield_get_file_references($file, $field = NULL) {
+  $fields = filefield_get_field_list(NULL, $field);
+  $file = (object) $file;
+
+  $references = array();
+  foreach ($fields as $field) {
+    $db_info = content_database_info($field);
+    $sql = 'SELECT nid, vid FROM {'. $db_info['table'] .'} WHERE '. $db_info['columns']['fid']['column'] .' = %d';
+    $result = db_query($sql, $file->fid);
+    while ($row = db_fetch_object($result)) {
+      $references[$row->nid][$row->vid] = $row->vid;
+    }
+  }
+
+  return $references;
+}
+
+/**
+ * Get all FileField files connected to a node ID.
+ *
+ * @param $nid
+ *   The node object.
+ * @param $field_name
+ *   Optional. The CCK field array or field name as a string.
+ * @return
+ *   An array of all files attached to that field (or all fields).
+ */
+function filefield_get_node_files($node, $field = NULL) {
+  $fields = filefield_get_field_list($node->type, $field);
+
+  // Get the file rows.
+  foreach ($fields as $field) {
+    $db_info = content_database_info($field);
+    $sql =  'SELECT f.* FROM {files} f INNER JOIN {' . $db_info['table'] . '} c ON f.fid = c.' . $db_info['columns']['fid']['column'] . ' AND c.vid = %d';
+    $result = db_query($sql, $node->vid);
+    while ($file = db_fetch_array($result)) {
+      $files[$file['fid']] = $file;
+    }
+  }
+
+  return $files;
 }

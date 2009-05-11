@@ -1,5 +1,5 @@
 <?php
-// $Id: filefield.test,v 1.5 2009/03/28 02:56:23 quicksketch Exp $
+// $Id: filefield.test,v 1.6 2009/04/10 15:54:49 quicksketch Exp $
 
 class FileFieldTestCase extends DrupalWebTestCase {
   protected $admin_user;
@@ -108,7 +108,7 @@ class FileFieldTestCase extends DrupalWebTestCase {
 
     $matches = array();
     preg_match('/node\/([0-9]+)/', $this->getUrl(), $matches);
-    return $matches[1];
+    return isset($matches[1]) ? $matches[1] : FALSE;
   }
 
   /**

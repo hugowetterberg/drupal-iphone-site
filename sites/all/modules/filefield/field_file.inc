@@ -1,5 +1,5 @@
 <?php
-// $Id: field_file.inc,v 1.31 2009/03/30 01:19:34 quicksketch Exp $
+// $Id: field_file.inc,v 1.32 2009/04/12 21:22:17 quicksketch Exp $
 
 /**
  * @file
@@ -193,7 +193,7 @@ function field_file_save_file($filepath, $validators = array(), $dest = FALSE) {
 }
 
 /**
- * Update an field item file. Delete marked items if neccessary and set new items as permamant.
+ * Save a node file. Delete items if necessary and set new items as permanent.
  *
  * @param $node
  *    Node object this file is be associated with.
