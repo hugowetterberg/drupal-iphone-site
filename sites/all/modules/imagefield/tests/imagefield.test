@@ -209,6 +209,17 @@ class ImageFieldValidateTestCase extends FileFieldValidateTestCase {
     $image_info = image_get_info($node_file['filepath']);
     $this->assertTrue(($image_info['height'] == $height && $image_info['width'] == $width), t('Resized image has proper dimensions.'));
 
+    // Check that a scaled image will fit between the resolutions.
+    $widget_options = array('min_resolution' => '300x200', 'max_resolution' => '340x220');
+    $this->updateFileField($this->field['field_name'], $type->name, array(), $widget_options);
+    $nid = $this->uploadNodeFile($test_file, $this->field['field_name'], $type->name);
+    $this->assertRaw('The image was resized to fit within the maximum allowed dimensions', t('Image was resized when fitting between maximum and minimum dimensions.'));
+
+    // Check that an image not fitting between dimensions will not upload.
+    $widget_options = array('min_resolution' => '220x360', 'max_resolution' => '240x360');
+    $this->updateFileField($this->field['field_name'], $type->name, array(), $widget_options);
+    $nid = $this->uploadNodeFile($test_file, $this->field['field_name'], $type->name);
+    $this->assertRaw('The image will not fit between the dimensions of', t('Image was not uploaded when not fitting between maximum and minimum dimensions.'));
   }
 
   /**

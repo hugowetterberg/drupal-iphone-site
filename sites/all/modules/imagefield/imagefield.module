@@ -1,5 +1,5 @@
 <?php
-// $Id: imagefield.module,v 1.94 2009/03/29 05:20:07 quicksketch Exp $
+// $Id: imagefield.module,v 1.99 2009/04/20 23:57:17 quicksketch Exp $
 
 /**
  * @file
@@ -9,19 +9,18 @@
 /**
  * Implementation of hook_init().
  *
- * Load required includes and css files.
+ * Load required includes.
  */
 function imagefield_init() {
-  // field_file hooks and callbacks.
+  // If FileField is not available, immediately disable ImageField.
+  if (!module_exists('filefield')) {
+    module_disable(array('imagefield'));
+    drupal_set_message(t('The ImageField module has been disabled. The <a href="http://drupal.org/project/filefield">FileField module</a> needs to be installed for it to work properly.'));
+    return;
+  }
+
   module_load_include('inc', 'imagefield', 'imagefield_file');
   module_load_include('inc', 'imagefield', 'imagefield_widget');
-}
-
-/**
- * Implementation of hook_perm().
- */
-function imagefield_perm() {
-  return array('view imagefield uploads');
 }
 
 /**
@@ -157,7 +156,7 @@ function imagefield_widget_settings($op, $widget) {
 }
 
 /**
- * Implementation of hook_widget().
+ * Implementation of CCK's hook_widget().
  *
  * Assign default properties to item and delegate to FileField.
  */
@@ -238,6 +237,13 @@ function imagefield_field_formatter_info() {
 }
 
 /**
+ * Implementation of CCK's hook_default_value().
+ */
+function imagefield_default_value(&$form, &$form_state, $field, $delta) {
+  return filefield_default_value($form, $form_state, $field, $delta);
+}
+
+/**
  * Implementation of hook_form_[form_id]_alter().
  *
  * Modify the add new field form to make "Image" the default formatter.
@@ -284,11 +290,18 @@ function theme_imagefield_image($file, $alt = '', $title = '', $attributes = NUL
   if (!empty($title)) {
     $attributes['title'] = $title;
   }
+
   // Alt text should be added even if it is an empty string.
   $attributes['alt'] = $alt;
+
   // Add a timestamp to the URL to ensure it is immediately updated after editing.
-  $query_character = (variable_get('file_downloads', FILE_DOWNLOADS_PUBLIC) == FILE_DOWNLOADS_PRIVATE && variable_get('clean_url', '0') == '0') ? '&' : '?';
-  $url = file_create_url($file['filepath']) . $query_character . $file['timestamp'];
+  $query_string = '';
+  if (isset($file['timestamp'])) {
+    $query_character = (variable_get('file_downloads', FILE_DOWNLOADS_PUBLIC) == FILE_DOWNLOADS_PRIVATE && variable_get('clean_url', '0') == '0') ? '&' : '?';
+    $query_string = $query_character . $file['timestamp'];
+  }
+
+  $url = file_create_url($file['filepath']) . $query_string;
   $attributes['src'] = $url;
   $attributes = drupal_attributes($attributes);
   return '<img '. $attributes .' />';

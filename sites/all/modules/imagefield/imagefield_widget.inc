@@ -1,22 +1,13 @@
 <?php
-// $Id: imagefield_widget.inc,v 1.34 2009/03/28 03:10:11 quicksketch Exp $
+// $Id: imagefield_widget.inc,v 1.37 2009/04/20 23:51:35 quicksketch Exp $
 
 /**
  * @file
  * ImageField widget hooks and callbacks.
- *
- * This file is loaded by fileifeld.module and the callbacks it contains are
- * invoked by filefield.module. This happens because imagefield delegates it's
- * CCK hooks and callbacks to filefield in imagefield.module.
  */
 
 /**
- * @defgroup "FileField widget settings callbacks"
- * @{
- *
- * These callbacks are invoked by filefield_widget_settings. Their
- * return values are merged with and will override filefields' widget
- * settings callback's return values.
+ * Implementation of CCK's hook_widget_settings($op = 'form').
  */
 function imagefield_widget_settings_form($widget) {
   $form = module_invoke('filefield', 'widget_settings', 'form', $widget);
@@ -28,7 +19,7 @@ function imagefield_widget_settings_form($widget) {
     '#size' => 15,
     '#maxlength' => 10,
     '#description' => t('The maximum allowed image size expressed as WIDTHxHEIGHT (e.g. 640x480). Set to 0 for no restriction. If a larger image is uploaded, it will be resized to reflect the given width and height. Resizing images on upload will cause the loss of <a href="http://en.wikipedia.org/wiki/Exchangeable_image_file_format">EXIF data</a> in the image.'),
-    '#weight' => 2,
+    '#weight' => 2.1,
   );
   $form['min_resolution'] = array(
     '#type' => 'textfield',
@@ -38,17 +29,7 @@ function imagefield_widget_settings_form($widget) {
     '#maxlength' => 10,
     '#description' =>
     t('The minimum allowed image size expressed as WIDTHxHEIGHT (e.g. 640x480). Set to 0 for no restriction. If an image that is smaller than these dimensions is uploaded it will be rejected.'),
-    '#weight' => 2,
-  );
-
-  $form['file_extensions'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Permitted upload file extensions'),
-    '#default_value' => !empty($widget['file_extensions']) ? $widget['file_extensions'] : 'jpg jpeg png gif',
-    '#size' => 64,
-    '#maxlength' => 64,
-    '#description' => t('Extensions a user can upload to this field. Separate extensions with a space and do not include the leading dot. Only jpg, png, and gif images are supported with this widget.'),
-    '#weight' => 2,
+    '#weight' => 2.2,
   );
 
   $form['alt_settings'] = array(
@@ -84,6 +65,15 @@ function imagefield_widget_settings_form($widget) {
     '#title' => t('Enable custom title text'),
     '#default_value' =>  !empty($widget['custom_title']) ? $widget['custom_title'] : 0,
     '#description' => t('Enable user input title text for images.'),
+  );
+  $form['title_settings']['title_type'] = array(
+    '#type' => 'select',
+    '#title' => t('Input type'),
+    '#options' => array(
+      'textfield' => 'textfield',
+      'textarea' => 'textarea'),
+    '#default_value' => !empty($widget['title_type']) ? $widget['title_type'] : 'textfield',
+    '#description' => t('Choose type of field to be displayed to the user.'),
   );
   $form['title_settings']['title'] = array(
     '#type' => 'textfield',
@@ -167,11 +157,12 @@ function _imagefield_widget_settings_default_validate($element, &$form_state) {
 
   // Make the file permanent and store it in the form.
   file_set_status($file, FILE_STATUS_PERMANENT);
+  $file->timestamp = time();
   $form_state['values']['default_image'] = (array)$file;
  }
 
 /**
- * Validate callback for the CCK widget form.
+ * Implementation of CCK's hook_widget_settings($op = 'validate').
  */
 function imagefield_widget_settings_validate($widget) {
   // Check that only web images are specified in the callback.
@@ -190,12 +181,11 @@ function imagefield_widget_settings_validate($widget) {
 }
 
 /**
- * Save callback for the CCK widget form.
+ * Implementation of CCK's hook_widget_settings($op = 'save').
  */
 function imagefield_widget_settings_save($widget) {
-  // TODO: Rename custom_alt and custom_title to alt_custom and title_custom.
   $filefield_settings = module_invoke('filefield', 'widget_settings', 'save', $widget);
-  return array_merge($filefield_settings, array('max_resolution', 'min_resolution', 'alt',  'custom_alt', 'title', 'custom_title', 'default_image', 'use_default_image'));
+  return array_merge($filefield_settings, array('max_resolution', 'min_resolution', 'alt',  'custom_alt', 'title', 'custom_title', 'title_type', 'default_image', 'use_default_image'));
 }
 
 /**
@@ -228,7 +218,7 @@ function imagefield_widget_process($element, $edit, &$form_state, $form) {
   }
 
   // Check if using the default alt text and replace tokens.
-  $default_alt = (!$field['widget']['custom_alt'] || ($file['status'] == 0 && empty($file['data']['alt'])));
+  $default_alt = (!$field['widget']['custom_alt'] || (empty($file['status']) && empty($file['data']['alt'])));
   if ($default_alt && function_exists('token_replace')) {
     $field['widget']['alt'] = token_replace($field['widget']['alt'], 'user', $GLOBALS['user']);
   }
@@ -246,12 +236,21 @@ function imagefield_widget_process($element, $edit, &$form_state, $form) {
   }
 
   // Check if using the default title and replace tokens.
-  $default_title = (!$field['widget']['custom_title'] || ($file['status'] == 0 && empty($file['data']['title'])));
+  $default_title = (!$field['widget']['custom_title'] || (empty($file['status']) && empty($file['data']['title'])));
   if ($default_title && function_exists('token_replace')) {
     $field['widget']['title'] = token_replace($field['widget']['title'], 'user', $GLOBALS['user']);
   }
+
+  // If the custom title is enabled, input type defaults to textfield.
+  if (!empty($field['widget']['custom_title'])) {
+    $title_type = !empty($field['widget']['title_type']) ? $field['widget']['title_type'] : 'textfield';
+  }
+  else {
+    $title_type = 'value';
+  }
+
   $element['data']['title'] = array(
-    '#type' => $field['widget']['custom_title'] ? 'textfield' : 'value',
+    '#type' => $title_type,
     '#title' => t('Title'),
     '#default_value' => $default_title ? $field['widget']['title'] : $file['data']['title'],
     '#description' => t('The title is used as a tool tip when the user hovers the mouse over the image.'),

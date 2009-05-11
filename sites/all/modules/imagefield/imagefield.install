@@ -1,5 +1,5 @@
 <?php
-// $Id: imagefield.install,v 1.30 2009/03/21 03:06:07 quicksketch Exp $
+// $Id: imagefield.install,v 1.31 2009/04/15 20:15:03 quicksketch Exp $
 
 /**
  * Implementation of hook_install().
@@ -142,23 +142,25 @@ function imagefield_update_6004(&$context) {
       // Update format names.
       $display_settings = array('teaser', 'full');
       foreach ($display_settings as $display_context) {
-        switch ($field['display_settings'][$display_context]['format']) {
-          case 'imagefield_nodelink':
-            $field['display_settings'][$display_context]['format'] = 'image_nodelink';
-            break;
-          case 'imagefield_imagelink':
-            $field['display_settings'][$display_context]['format'] = 'image_imagelink';
-            break;
-          case 'imagefield_path':
-            $field['display_settings'][$display_context]['format'] = 'path_plain';
-            break;
-          case 'imagefield_url':
-            $field['display_settings'][$display_context]['format'] = 'url_plain';
-            break;
-          case 'imagefield_default':
-          case 'default':
-            $field['display_settings'][$display_context]['format'] = 'image_plain';
-            break;
+        if (isset($field['display_settings'][$display_context])) {
+          switch ($field['display_settings'][$display_context]['format']) {
+            case 'imagefield_nodelink':
+              $field['display_settings'][$display_context]['format'] = 'image_nodelink';
+              break;
+            case 'imagefield_imagelink':
+              $field['display_settings'][$display_context]['format'] = 'image_imagelink';
+              break;
+            case 'imagefield_path':
+              $field['display_settings'][$display_context]['format'] = 'path_plain';
+              break;
+            case 'imagefield_url':
+              $field['display_settings'][$display_context]['format'] = 'url_plain';
+              break;
+            case 'imagefield_default':
+            case 'default':
+              $field['display_settings'][$display_context]['format'] = 'image_plain';
+              break;
+          }
         }
       }
 
@@ -262,6 +264,7 @@ function imagefield_update_6004(&$context) {
     }
     else {
       $query = "UPDATE {". $table ."} SET $col_data = '%s', $col_list = %d WHERE vid = %d";
+      $row['delta'] = 0;
     }
 
     // Serialize it and store it back to the db.

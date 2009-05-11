@@ -1,5 +1,5 @@
 <?php
-// $Id: imagefield_file.inc,v 1.17 2009/04/01 19:47:22 quicksketch Exp $
+// $Id: imagefield_file.inc,v 1.18 2009/04/14 01:28:52 quicksketch Exp $
 
 /**
  * @file
@@ -86,9 +86,11 @@ function imagefield_create_admin_thumb($source, $destination) {
   if ($info['width'] <= $size[0] && $info['height'] <= $size[1]) {
     file_copy($source, $destination);
   }
-  else {
-    image_scale($source, $destination, $size[0], $size[1]);
+  elseif (image_get_toolkit() && @image_scale($source, $destination, $size[0], $size[1])) {
     // Set permissions. This is done for us when using file_copy().
     @chmod($destination, 0664);
+  }
+  else {
+    drupal_set_message(t('An image thumbnail was not able to be created.'), 'error');
   }
 }
