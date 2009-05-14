@@ -1,5 +1,5 @@
 <?php
-// $Id: logintoboggan.module,v 1.133.2.9 2009/03/21 12:09:20 thehunmonkgroup Exp $
+// $Id: logintoboggan.module,v 1.133.2.14 2009/05/13 16:37:52 thehunmonkgroup Exp $
 
 /**
  * @file
@@ -32,9 +32,9 @@ function logintoboggan_cron() {
     $validating_id = logintoboggan_validating_id();
     // As a safety check, make sure that we have a non-core role as the
     // pre-auth role -- otherwise skip.
-    if ($validating_id > DRUPAL_AUTHENTICATED_RID) {
+    if (!in_array($validating_id, array(DRUPAL_ANONYMOUS_RID, DRUPAL_AUTHENTICATED_RID))) {
       $purge_time = time() - $purge_interval;
-      $accounts = db_query("SELECT u.uid, u.name FROM {users} u INNER JOIN {users_roles} ur ON u.uid = ur.uid WHERE ur.rid = %d AND u.access < %d", $validating_id, $purge_time);
+      $accounts = db_query("SELECT u.uid, u.name FROM {users} u INNER JOIN {users_roles} ur ON u.uid = ur.uid WHERE ur.rid = %d AND u.created < %d", $validating_id, $purge_time);
 
       $purged_users = array();
       // Delete the users from the system.
@@ -67,6 +67,7 @@ function logintoboggan_help($path, $arg) {
       <li>Optionally redirect the user to a specific page when using the 'Immediate login' feature.</li>
       <li>Optionally redirect the user to a specific page upon validation of their e-mail address.</li>
       <li>Optionally display a user message indicating a successful login.</li>
+      <li>Optionally have unvalidated users purged from the system at a pre-defined interval (please read the CAVEATS section of INSTALL.txt for important information on configuring this feature!).</li>
       </ol>
       These features may be turned on or off in the Login Toboggan <a href=\"!url\">settings</a>.</p>
       <p>Because this module completely reorients the Drupal login process you will probably want to edit the welcome e-mail on the <a href=\"!user_settings\">user settings</a> page. For instance if you have enabled the 'Set password' option, you probably should not send the user's password out in the welcome e-mail (also note when the 'Set password' option is enabled, the !login_url becomes a verification url that the user MUST visit in order to enable authenticated status). The following is an example welcome e-mail:</p>
@@ -76,7 +77,13 @@ function logintoboggan_help($path, $arg) {
       return $output;
       break;
     case 'admin/user/logintoboggan':
-      $output = t('<p>Customize your login and registration system. More help can be found <a href="!url">here</a>.</p>', array('!url' => url('admin/help/logintoboggan')));
+      if (module_exists('help')) {
+        $help_text =  t("More help can be found at <a href=\"!help\">LoginToboggan help</a>.", array('!help' => url('admin/help/logintoboggan')));
+      }
+      else {
+        $help_text = '';
+      }
+      $output = t("<p>Customize your login and registration system. $help_text</p>");
 
       return $output;
   }
@@ -149,12 +156,21 @@ function logintoboggan_form_alter(&$form, $form_state, $form_id) {
       $account = user_load(array('uid' => arg(1)));
       $id = logintoboggan_validating_id();
       $in_pre_auth_role = in_array($id, array_keys($account->roles));
-      // Messages aren't necessary if pre-auth role is authenticated user.
-      if ($in_pre_auth_role && user_access('administer users') && $id != DRUPAL_AUTHENTICATED_RID) {
-        if ((variable_get('user_register', 1) == 2)) {
-          $form['account']['status']['#description'] = t('If this user was created using the "Immediate Login" feature of LoginToboggan, and they are also awaiting adminstrator approval on their account, you must remove them from the site\'s pre-authorized role in the "Roles" section below, or they will not receive authenticated user permissions!');
+      // Messages are only necessary for user admins, and aren't necessary if
+      // pre-auth role is authenticated user.
+      if (user_access('administer users') && isset($form['account']['roles']) && $id != DRUPAL_AUTHENTICATED_RID) {
+        // User is still in the pre-auth role, so let the admin know.
+        if ($in_pre_auth_role) {
+          if ((variable_get('user_register', 1) == 2)) {
+            $form['account']['status']['#description'] = t('If this user was created using the "Immediate Login" feature of LoginToboggan, and they are also awaiting adminstrator approval on their account, you must remove them from the site\'s pre-authorized role in the "Roles" section below, or they will not receive authenticated user permissions!');
+          }
+          $form['account']['roles']['#description'] = t("The user is assigned LoginToboggan's pre-authorized role, and is not currently receiving authenticated user permissions.");
         }
-        $form['account']['roles']['#description'] = t("The user is assigned LoginToboggan's pre-authorized role, and is not currently receiving authenticated user permissions.");
+        // User is no longer in the pre-auth role, so remove the option to add
+        // them back.
+        else {
+          unset($form['account']['roles']['#options'][$id]);
+        }
       }
       break;
 
@@ -172,7 +188,7 @@ function logintoboggan_form_alter(&$form, $form_state, $form_id) {
       $form['submit']['#attributes']['tabindex']  = '3';
       if (variable_get('logintoboggan_login_with_email', 0)) {
         // LT's validation function must run first.
-        $form['#validate'] = array('logintoboggan_user_login_validate') + $form['#validate'];
+        $form['#validate'] = array_merge(array('logintoboggan_user_login_validate'), $form['#validate']);
         // Use theme functions to print the username field's textual labels.
         $form['name']['#title']       = theme('lt_username_title', $form_id);
         $form['name']['#description'] = theme('lt_username_description', $form_id);
@@ -248,6 +264,15 @@ function logintoboggan_form_alter(&$form, $form_state, $form_id) {
           $length = $min_pass ? t('between !min and', array('!min' => $min_pass)) : t('no more than');
           $form['pass']['#description'] = t('Please choose a password for your account; it must be !length 30 characters.', array('!length' => $length));
         }
+      }
+      break;
+
+    // Unset the ability to add the pre-auth role in the user admin interface.
+    case 'user_admin_account':
+      $id = logintoboggan_validating_id();
+      $add = t('Add a role to the selected users');
+      if ($id != DRUPAL_AUTHENTICATED_RID && isset($form['options']['operation']['#options'][$add]["add_role-$id"])) {
+        unset($form['options']['operation']['#options'][$add]["add_role-$id"]);
       }
       break;
   }
@@ -529,6 +554,9 @@ function logintoboggan_theme() {
     'lt_login_link' => array(
       'arguments' => array(),
     ),
+    'lt_login_successful_message' => array(
+      'arguments' => array('account'),
+    ),
   );
 }
 
@@ -602,7 +630,7 @@ function _logintoboggan_toggleboggan ($form) {
 }
 
 function logintoboggan_main_settings(&$form_state) {
-  $version = str_replace(array('$Re'.'vision:', '$Da'.'te:', '$'), array('', '', ''), '<p style="font-size:x-small">Login Toboggan version: <b>$Revision: 1.133.2.9 $</b>, $Date: 2009/03/21 12:09:20 $</p>');
+  $version = str_replace(array('$Re'.'vision:', '$Da'.'te:', '$'), array('', '', ''), '<p style="font-size:x-small">Login Toboggan version: <b>$Revision: 1.133.2.14 $</b>, $Date: 2009/05/13 16:37:52 $</p>');
 
   $_disabled = t('disabled');
   $_enabled = t('enabled');
@@ -634,11 +662,17 @@ function logintoboggan_main_settings(&$form_state) {
     '#description' => t('User will have to type the same e-mail address into both fields. This helps to confirm that they\'ve typed the correct address.'),
   );
 
+  if (module_exists('help')) {
+    $help_text =  t(" More help in writing the e-mail message can be found at <a href=\"!help\">LoginToboggan help</a>.", array('!help' => url('admin/help/logintoboggan')));
+  }
+  else {
+    $help_text = '';
+  }
   $form['registration']['user_email_verification'] = array(
     '#type' => 'checkbox',
     '#title' => t('Set password'),
     '#default_value' => !variable_get('user_email_verification', TRUE) ? 1 : 0,
-    '#description' => t("This will allow users to choose their initial password when registering (note that this setting is merely a mirror of the <a href=\"!settings\">Require e-mail verification when a visitor creates an account</a> setting, and is merely here for convenience).  If selected, users will be assigned to the role below. They will not be assigned to the 'authenticated user' role until they confirm their e-mail address by following the link in their registration e-mail. It is HIGHLY recommended that you set up a 'pre-authorized' role with limited permissions for this purpose. <br />NOTE: If you enable this feature, you should edit the <a href=\"!settings\">Welcome, no approval required</a> text -- more help in writing the e-mail message can be found at <a href=\"!help\">LoginToboggan help</a>.", array('!settings' => url('admin/user/settings'), '!help' => url('admin/help/logintoboggan'))),
+    '#description' => t("This will allow users to choose their initial password when registering (note that this setting is merely a mirror of the <a href=\"!settings\">Require e-mail verification when a visitor creates an account</a> setting, and is merely here for convenience).  If selected, users will be assigned to the role below. They will not be assigned to the 'authenticated user' role until they confirm their e-mail address by following the link in their registration e-mail. It is HIGHLY recommended that you set up a 'pre-authorized' role with limited permissions for this purpose. <br />NOTE: If you enable this feature, you should edit the <a href=\"!settings\">Welcome, no approval required</a> text.", array('!settings' => url('admin/user/settings'))) . $help_text,
   );
 
   // Grab the roles that can be used for pre-auth.  Remove the anon role, as it's not a valid choice.
@@ -649,7 +683,7 @@ function logintoboggan_main_settings(&$form_state) {
     '#title' => t('Non-authenticated role'),
     '#options' => $roles,
     '#default_value' => variable_get('logintoboggan_pre_auth_role', DRUPAL_AUTHENTICATED_RID),
-    '#description' => t('If "Set password" is selected, users will be able to login before their e-mail address has been authenticated. Therefore, you must choose a role for new non-authenticated users. Users will be removed from this role and assigned to the "authenticated user" role once they follow the link in their welcome e-mail. <a href="!url">Add new roles</a>.', array('!url' => url('admin/user/roles'))),
+    '#description' => t('If "Set password" is selected, users will be able to login before their e-mail address has been authenticated. Therefore, you must choose a role for new non-authenticated users. Users will be removed from this role and assigned to the "authenticated user" role once they follow the link in their welcome e-mail. <a href="!url">Add new roles</a>. <strong>WARNING: changing this setting after initial site setup can cause undesirable results, including unintended deletion of users -- change with extreme caution!</strong>', array('!url' => url('admin/user/roles'))),
   );
 
   $purge_options = array(
@@ -673,7 +707,7 @@ function logintoboggan_main_settings(&$form_state) {
     '#title' => t('Delete unvalidated users after'),
     '#options' => $purge_options,
     '#default_value' => variable_get('logintoboggan_purge_unvalidated_user_interval', 0),
-    '#description' => t("If enabled, users that are still in the 'Non-authenticated role' set above will be deleted automatically from the system, if the set time interval since their last login has passed. This can be used to automatically purge spambot registrations. Note: this requires cron, and also requires that the 'Set password' option above is enabled.")
+    '#description' => t("If enabled, users that are still in the 'Non-authenticated role' set above will be deleted automatically from the system, if the set time interval since their initial account creation has passed. This can be used to automatically purge spambot registrations. Note: this requires cron, and also requires that the 'Set password' option above is enabled. <strong>WARNING: changing this setting after initial site setup can cause undesirable results, including unintended deletion of users -- change with extreme caution! (please read the CAVEATS section of INSTALL.txt for important information on configuring this feature)</strong>")
   );
 
   $form['registration']['logintoboggan_immediate_login_on_register'] = array(
@@ -993,23 +1027,31 @@ function logintoboggan_eml_rehash($password, $timestamp, $mail){
  */
 function logintoboggan_user($op, &$edit, &$user_edit, $category = NULL) {
   global $user;
-  if ($op == 'form' && $category == 'account' && ($user->uid == $user_edit->uid || user_access('administer users'))) {
+  if ($op == 'form' && $category == 'account') {
     // User is editing their own account settings, or user admin
     // is editing their account.
-    if (!variable_get('user_email_verification', TRUE) && array_key_exists(logintoboggan_validating_id(), $user_edit->roles) && variable_get('user_register', 1) == 1) {
-      // User is still in pre-authorized role; display link to re-send e-mail.
-      $form['revalidate'] = array(
-        '#type' => 'fieldset',
-        '#title' => t('Account validation'),
-        '#weight' => -10,
-      );
-      $form['revalidate']['revalidate_link'] = array(
-        '#value' => l(t('re-send validation e-mail'), 'toboggan/revalidate/'. $user_edit->uid),
-      );
-      return $form;
+    if ($user->uid == $user_edit->uid || user_access('administer users')) {
+      // Display link to re-send validation e-mail.
+      // Re-validate link appears if:
+      //   1. Users can create their own password.
+      //   2. User is still in the validating role.
+      //   3. Users can create accounts without admin approval.
+      //   4. The validating role is not the authorized user role.
+      $validating_id = logintoboggan_validating_id();
+      if (!variable_get('user_email_verification', TRUE) && array_key_exists($validating_id, $user_edit->roles) && (variable_get('user_register', 1) == 1) && ($validating_id > DRUPAL_AUTHENTICATED_RID)) {
+        $form['revalidate'] = array(
+          '#type' => 'fieldset',
+          '#title' => t('Account validation'),
+          '#weight' => -10,
+        );
+        $form['revalidate']['revalidate_link'] = array(
+          '#value' => l(t('re-send validation e-mail'), 'toboggan/revalidate/'. $user_edit->uid),
+        );
+        return $form;
+      }
     }
   } elseif ($op == 'login' && variable_get('logintoboggan_login_successful_message', 0)) {
-    drupal_set_message(t('Login successful.'));
+    drupal_set_message(theme('lt_login_successful_message', $user_edit));
   }
   elseif ($op == 'load') {
     // Just loaded the user into $user_edit.
@@ -1282,3 +1324,12 @@ function theme_lt_login_link() {
   }
 }
 
+/**
+ * Theme the login successful message.
+ *
+ * @param $account
+ *   A user object representing the user being logged in.
+ */
+function theme_lt_login_successful_message($account) {
+  return t('Login successful.');
+}
