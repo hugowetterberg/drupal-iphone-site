@@ -1,5 +1,5 @@
 <?php
-// $Id: date_tools.module,v 1.1.2.14 2009/03/18 12:43:54 karens Exp $
+// $Id: date_tools.module,v 1.1.2.15 2009/05/11 02:23:56 karens Exp $
 
 /**
  * Implementation of hook_help().
@@ -33,7 +33,7 @@ function date_tools_menu() {
   $items['admin/content/date/tools'] = array(
     'title'    => 'Date Tools',
     'description' => 'Tools to import and auto-create dates and calendars.',
-    'access arguments'   => array('administer nodes'),
+    'access arguments'   => array('use date tools'),
     'page callback' => 'date_tools_page',
     'type' => MENU_NORMAL_ITEM,
   );
@@ -58,7 +58,7 @@ function date_tools_menu() {
     );
   $items['admin/content/date/tools/import'] = array(
     'title'    => 'Import',
-    'access arguments'   => array('administer nodes'),
+    'access arguments'   => array('use date tools'),
     'page callback' => 'drupal_get_form',
     'page arguments' => array('date_tools_copy_import_ical_form'),
     'type' => MENU_LOCAL_TASK,
@@ -66,7 +66,7 @@ function date_tools_menu() {
   );
   $items['admin/content/date/tools/import/ical'] = array(
     'title'    => 'iCal import',
-    'access arguments'   => array('administer nodes'),
+    'access arguments'   => array('use date tools'),
     'page callback' => 'drupal_get_form',
     'page arguments' => array('date_tools_copy_import_ical_form'),
     'type' => MENU_LOCAL_TASK,
@@ -74,7 +74,7 @@ function date_tools_menu() {
   );
   $items['admin/content/date/tools/import/event'] = array(
     'title'    => 'Event import',
-    'access arguments'   => array('administer nodes'),
+    'access arguments'   => array('use date tools'),
     'page callback' => 'drupal_get_form',
     'page arguments' => array('date_tools_copy_import_event_form'),
     'type' => MENU_LOCAL_TASK,
@@ -82,7 +82,7 @@ function date_tools_menu() {
   );
   $items['admin/content/date/tools/import/csv'] = array(
     'title'    => 'CSV import',
-    'access arguments'   => array('administer nodes'),
+    'access arguments'   => array('use date tools'),
     'page callback' => 'drupal_get_form',
     'page arguments' => array('date_tools_copy_import_csv_form'),
     'type' => MENU_LOCAL_TASK,
@@ -90,7 +90,7 @@ function date_tools_menu() {
   );
   $items['date/tools/remove'] = array(
     'title'    => 'Remove calendar',
-    'access arguments'   => array('administer nodes'),
+    'access arguments'   => array('use date tools'),
     'page callback' => 'drupal_get_form',
     'page arguments' => array('date_tools_remove_form', 3),
     'type' => MENU_CALLBACK,

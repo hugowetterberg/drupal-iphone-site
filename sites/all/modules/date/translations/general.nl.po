@@ -1,4 +1,4 @@
-# $Id: general.nl.po,v 1.1.2.1 2009/03/08 09:36:24 hass Exp $
+# $Id: general.nl.po,v 1.1.2.2 2009/05/10 11:05:12 karens Exp $
 #
 # LANGUAGE translation of Drupal (general)
 # Copyright YEAR NAME <EMAIL@ADDRESS>
@@ -22,9 +22,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Date 6.x-2.0\n"
 "POT-Creation-Date: 2009-01-11 11:03+0100\n"
-"PO-Revision-Date: 2009-03-02 11:37+0100\n"
-"Last-Translator: Joost van der Locht <joost@trisum.nl>\n"
-"Language-Team: Dutch Translation <joost@trisum.nl>\n"
+"PO-Revision-Date: 2009-05-05 14:29+0100\n"
+"Last-Translator: seutje <seutje@gmail.com>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -85,37 +85,37 @@ msgstr "Nauwkeurigheid"
 #: date_api.module:175
 #: date_repeat/date_repeat.module:69
 msgid "Sunday"
-msgstr "Zondag"
+msgstr "zondag"
 
 #: date_api.module:175
 #: date_repeat/date_repeat.module:70
 msgid "Monday"
-msgstr "Maandag"
+msgstr "maandag"
 
 #: date_api.module:175
 #: date_repeat/date_repeat.module:71
 msgid "Tuesday"
-msgstr "Dinsdag"
+msgstr "dinsdag"
 
 #: date_api.module:176
 #: date_repeat/date_repeat.module:72
 msgid "Wednesday"
-msgstr "Woensdag"
+msgstr "woensdag"
 
 #: date_api.module:176
 #: date_repeat/date_repeat.module:73
 msgid "Thursday"
-msgstr "Donderdag"
+msgstr "donderdag"
 
 #: date_api.module:176
 #: date_repeat/date_repeat.module:74
 msgid "Friday"
-msgstr "Vrijdag"
+msgstr "vrijdag"
 
 #: date_api.module:177
 #: date_repeat/date_repeat.module:75
 msgid "Saturday"
-msgstr "Zaterdag"
+msgstr "zaterdag"
 
 #: date/date_admin.inc:77;95
 #: date_popup/date_popup.module:269

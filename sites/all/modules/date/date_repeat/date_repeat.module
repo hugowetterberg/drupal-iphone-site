@@ -1,5 +1,5 @@
 <?php
-// $Id: date_repeat.module,v 1.30.4.11 2009/02/27 16:37:38 karens Exp $
+// $Id: date_repeat.module,v 1.30.4.12 2009/05/12 09:58:59 karens Exp $
 /**
  * @file
  *
@@ -91,19 +91,7 @@ function date_repeat_dow_day_options_ordered($week_start) {
  * Helper function for BYDAY options.
  */
 function date_repeat_dow_count_options() {
-  return array(
-    '' => date_t('Every', 'date_order'),
-    '1' => date_t('First', 'date_order'),
-    '2' => date_t('Second', 'date_order'),
-    '3' => date_t('Third', 'date_order'),
-    '4' => date_t('Fourth', 'date_order'),
-    '5' => date_t('Fifth', 'date_order'),
-    '-1' => date_t('Last', 'date_order_reverse'),
-    '-2' => date_t('Next to last', 'date_order_reverse'),
-    '-3' => date_t('Third from last', 'date_order_reverse'),
-    '-4' => date_t('Fourth from last', 'date_order_reverse'),
-    '-5' => date_t('Fifth from last', 'date_order_reverse')
-  );
+  return array('' => date_t('Every', 'date_order')) + date_order_translated();
 }
 
 /**

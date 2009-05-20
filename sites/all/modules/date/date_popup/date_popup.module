@@ -1,5 +1,5 @@
 <?php
-// $Id: date_popup.module,v 1.42.2.1.2.43 2009/03/25 15:31:42 karens Exp $
+// $Id: date_popup.module,v 1.42.2.1.2.48 2009/05/12 12:57:45 karens Exp $
 /**
  * @file
  * A module to enable jquery calendar and time entry popups.
@@ -201,7 +201,6 @@ function date_popup_process_date(&$element, $edit = NULL, $date = NULL) {
   $date_granularity = array_intersect($granularity, array('month', 'day', 'year'));
   $time_granularity = array_intersect($granularity, array('hour', 'minute', 'second'));
   $date_format = (date_limit_format($element['#date_format'], $date_granularity));
-
   if (empty($date_granularity)) return array();
   
   // The datepicker can't handle zero or negative values like 0:+1
@@ -245,6 +244,7 @@ function date_popup_process_date(&$element, $edit = NULL, $date = NULL) {
     '#id' => $id,    
     '#size' => !empty($element['#size']) ? $element['#size'] : 20,
     '#maxlength' => !empty($element['#maxlength']) ? $element['#maxlength'] : 30,
+    '#attributes' => $element['#attributes'],
     );
   // Views exposed filters are treated as submitted even if not,
   // so force the #default value in that case.  
@@ -267,7 +267,7 @@ function date_popup_process_time(&$element, $edit = NULL, $date = NULL) {
 
   $spinner_text = array(t('Now'), t('Previous field'), t('Next field'), t('Increment'), t('Decrement'));
   $settings = array(
-    'show24Hours' => strpos($element['#date_format'], 'H') ? TRUE : FALSE,
+    'show24Hours' => strpos($element['#date_format'], 'H') !== FALSE ? TRUE : FALSE,
     'showSeconds' => (in_array('second', $granularity) ? TRUE : FALSE),
     'timeSteps' => array(1, intval($element['#date_increment']), (in_array('second', $granularity) ? $element['#date_increment'] : 0)),
     'spinnerImage' => '',
@@ -309,6 +309,7 @@ function date_popup_validate($element, &$form_state) {
   $date_granularity = array_intersect($granularity, array('month', 'day', 'year'));
   $time_granularity = array_intersect($granularity, array('hour', 'minute', 'second'));
   $label = !empty($element['#date_title']) ? $element['#date_title'] : (!empty($element['#title']) ? $element['#title'] : '');
+  $label = t($label);
   
   // If the field is empty and not required, set it to empty and return.
   // If the field is empty and required, set error message and return.
@@ -375,6 +376,7 @@ function date_popup_input_value($element, $auto_complete = FALSE) {
     $time = date_convert_from_custom(trim(!empty($element['#value']['time']) ? $element['#value']['time'] : ''), $time_format);
     $value = trim(substr($date, 0, 10) .' '. substr($time, 11, 8));
   }
+  
   if (date_is_valid($value, DATE_DATETIME, $granularity)) {
     $date = date_make_date($value, $element['#date_timezone'], DATE_DATETIME, $granularity);
     $value = date_convert($date, DATE_OBJECT, DATE_DATETIME);

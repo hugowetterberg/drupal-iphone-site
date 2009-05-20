@@ -1,5 +1,5 @@
 <?php
-// $Id: date.module,v 1.61.2.4.2.53 2009/03/19 23:22:32 karens Exp $
+// $Id: date.module,v 1.61.2.4.2.56 2009/05/11 02:23:56 karens Exp $
 
 /**
  * @file
@@ -260,6 +260,10 @@ function date_theme() {
         'format' => NULL, 'node' => NULL, 'view' => NULL)),
     'date_all_day_label' => array(
       'arguments' => array()),
+    'date_display_single' => array(
+      'arguments' => array('date' => NULL, 'timezone' => NULL)),
+    'date_display_range' => array(
+      'arguments' => array('date1' => NULL, 'date2' => NULL, 'timezone' => NULL)),
     'date_time_ago' => array(
       'arguments' => array('start_date' => NULL, 'end_date' => NULL)),  
     'date_text_parts' => array(
@@ -549,7 +553,10 @@ function date_formatter_format($formatter, $field_name) {
   if (empty($format)) {
     $format = $default_format;
   }
-  return date_limit_format($format, date_granularity($field));
+  // A selected format might include timezone information.
+  $granularity = date_granularity($field);
+  array_push($granularity, 'timezone');
+  return date_limit_format($format, $granularity);
 }
 
 /**

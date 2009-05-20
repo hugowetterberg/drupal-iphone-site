@@ -1,5 +1,5 @@
 <?php
-//$Id: date.theme,v 1.6.4.42 2009/03/01 22:35:22 karens Exp $
+//$Id: date.theme,v 1.6.4.48 2009/05/11 02:23:56 karens Exp $
 /**
  * @file
  * Theme functions.
@@ -50,7 +50,7 @@ function theme_date_display_combination($element) {
   
   $node = $element['#node'];
   $field_name = $element['#field_name'];
-  $context = !empty($node->content) ? $node->content[$field_name]['#context'] : '';
+  $context = !empty($node->content) && !empty($node->content[$field_name]) ? $node->content[$field_name]['#context'] : '';
   $type_name = $element['#type_name'];
   $fields = content_fields();
   $field = $fields[$field_name];
@@ -131,10 +131,10 @@ function theme_date_display_combination($element) {
   }
   // From and To dates match or there is no To date, display a complete single date.
   elseif ($date1 == $date2 || empty($date2)) {
-    $output .= '<span class="date-display-single">'. $date1 . $timezone .'</span>';
+    $output .= theme('date_display_single', $date1, $timezone);
   }
   // Same day, different times, don't repeat the date but show both From and To times.
-  elseif ($dates['value']['formatted_date'] == $dates['value2']['formatted_date']) {
+  elseif (date_has_time($field['granularity']) && $dates['value']['formatted_date'] == $dates['value2']['formatted_date']) {
     // Replace the original time with the from/to time in the formatted start date.  
     // Make sure that parentheses or brackets wrapping the time will be retained in the
     // final result.
@@ -142,20 +142,26 @@ function theme_date_display_combination($element) {
     $time1 = preg_replace('([\)\]]$)', '', $time1);
     $time2 = preg_replace('`^([\(\[])`', '', $dates['value2']['formatted_time']);
     $time2 = preg_replace('([\)\]]$)', '', $time2);
-    $time = '<span class="date-display-start">'. $time1 .'</span>'.
-      '<span class="date-display-separator"> - </span>'.
-      '<span class="date-display-end">'. $time2 .'</span>';
+    $time = theme('date_display_range', $time1, $time2);
     $replaced = str_replace($time1, $time, $date1);
-    $output .= '<span class="date-display-single">'. $replaced . $timezone .'</span> ';
+    $output .= theme('date_display_single', $replaced, $timezone);
   }
   // Different days, display both in their entirety.
   else {
-    $output .= '<span class="date-display-start">'. $date1 .'</span>'.
-      '<span class="date-display-separator"> - </span>'.
-      '<span class="date-display-end">'. $date2 . $timezone. '</span>';
+    $output .= theme('date_display_range', $date1, $date2, $timezone);
   }
   
   return $output;
+}
+
+function theme_date_display_single($date, $timezone = NULL) {
+  return '<span class="date-display-single">'. $date . $timezone .'</span>';
+}
+
+function theme_date_display_range($date1, $date2, $timezone = NULL) {
+  return '<span class="date-display-start">'. $date1 .'</span>'.
+      '<span class="date-display-separator"> - </span>' .
+      '<span class="date-display-end">'. $date2 . $timezone. '</span>';
 }
 
 /**

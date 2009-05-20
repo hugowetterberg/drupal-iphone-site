@@ -1,5 +1,5 @@
 <?php
-// $Id: date_timezone.module,v 1.18.2.3.2.11 2009/01/13 14:37:48 karens Exp $
+// $Id: date_timezone.module,v 1.18.2.3.2.12 2009/03/26 10:25:50 karens Exp $
 /**
  * @file
  * This module will make the alter the user and site timezone forms to
@@ -172,7 +172,11 @@ function date_timezone_update_site($element, &$form_state) {
   if (module_exists('event') && db_table_exists('event_timezones')) {
     $event_zone = date_event_zonelist_by_name(str_replace('_', ' ', $timezone));
     // The event module will update the timezone and zone id, using this value.
-    form_set_value($element['date_default_timezone'], $event_zone['timezone'] .'|'. $offset, $form_state);
+    if (!empty($event_zone['timezone'])) {
+        form_set_value($element['date_default_timezone'], $event_zone['timezone'] .'|'. $offset, $form_state);
+    } else {
+        form_set_value($element['date_default_timezone'], $offset, $form_state); 
+    }
   }
   else {
     form_set_value($element['date_default_timezone'], $offset, $form_state);
@@ -194,7 +198,11 @@ function date_timezone_update_user($element, &$form_state) {
   if (module_exists('event') && db_table_exists('event_timezones')) {
     $event_zone = date_event_zonelist_by_name(str_replace('_', ' ', $timezone));
     // The event module will update the timezone and zone id using this value.
-    form_set_value($element['timezone'], $event_zone['timezone'] .'|'. $offset, $form_state);
+    if (!empty($event_zone['timezone'])) {
+        form_set_value($element['timezone'], $event_zone['timezone'] .'|'. $offset, $form_state);
+    } else {
+        form_set_value($element['timezone'], $offset, $form_state); 
+    }
   }
   else {
     form_set_value($element['timezone'], $offset, $form_state);

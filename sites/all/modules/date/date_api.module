@@ -1,5 +1,5 @@
 <?php
-// $Id: date_api.module,v 1.64.2.5.2.78 2009/03/25 12:04:38 karens Exp $
+// $Id: date_api.module,v 1.64.2.5.2.85 2009/05/12 12:57:45 karens Exp $
 /**
  * @file
  * This module will make the date API available to other modules.
@@ -692,7 +692,7 @@ function date_format_date($date, $type = 'medium', $format = '', $langcode = NUL
       // The timezone name translations can use t().  
       case 'e':
       case 'T':
-        $datestring .= t($c);
+        $datestring .= t(date_format($date, $c));
         break;
       // Remaining date parts need no translation.
       case 'O':
@@ -1432,6 +1432,10 @@ function date_has_time($granularity) {
   return sizeof(array_intersect($granularity, array('hour', 'minute', 'second'))) > 0 ? TRUE : FALSE;
 }
 
+function date_has_date($granularity) {
+  if (!is_array($granularity)) $granularity = array();
+  return sizeof(array_intersect($granularity, array('year', 'month', 'day'))) > 0 ? TRUE : FALSE;
+}
 /**
  * Recalculate a date so it only includes elements from a granularity
  * array. Helps prevent errors when unwanted values round up and ensures
@@ -1498,13 +1502,28 @@ function date_limit_value($date, $granularity, $type = DATE_DATETIME) {
  *   a format string with all other elements removed
  */
 function date_limit_format($format, $granularity) {
-  // Get rid of dash separating date and time if either is missing.
-  if (!date_has_time($granularity)
-    || sizeof(array_intersect($granularity, array('year', 'month', 'day')) == 0)) {
-    $regex[] = '( -)';
+  // If punctuation has been escaped, remove the escaping.
+  // Done using strtr because it is easier than getting the
+  // escape character extracted using preg_replace.
+  $replace = array(
+    '\-' => '-',
+    '\:' => ':',
+    "\'" => "'",
+    '\.' => '.',
+    '\,' => ',',
+    );
+  $format = strtr($format, $replace); 
+  
+  // Get the 'T' out of ISO date formats that don't have
+  // both date and time.
+  if (!date_has_time($granularity) || !date_has_date($granularity)) {
+    $format = str_replace('\T', ' ', $format);
+    $format = str_replace('T', ' ', $format);
   }
+  
+  $regex = array();
   if (!date_has_time($granularity)) {
-      $regex[] = '((?<!\\\\)[a|A])';
+    $regex[] = '((?<!\\\\)[a|A])';
   }
   // Create regular expressions to remove selected values from string.
   // Use (?<!\\\\) to keep escaped letters from being removed.
@@ -1529,7 +1548,7 @@ function date_limit_format($format, $granularity) {
         $regex[] = '([\-/\.,:]?\s?(?<!\\\\)[s])';
         break;
       case 'timezone':
-        $regex[] = '([\-/\.,:]?\s?(?<!\\\\)[OZPe])';
+        $regex[] = '([\-/\.,:]?\s?(?<!\\\\)[TOZPe])';
         break;
     
     }
@@ -1541,16 +1560,18 @@ function date_limit_format($format, $granularity) {
 
   // Remove selected values from string.
   $format = trim(preg_replace($regex, array(), $format));
-  // Remove orpaned punctuation at the beginning of the string.
-  $format = preg_replace('`^([\-/\.,:])`', '', $format);
-  // Remove orpaned punctuation at the end of the string.
-  $format = preg_replace('([\-/\.,:]$)', '', $format);
+  // Remove orphaned punctuation at the beginning of the string.
+  $format = preg_replace('`^([\-/\.,:\'])`', '', $format);
+  // Remove orphaned punctuation at the end of the string.
+  $format = preg_replace('([\-/\.,:\']$)', '', $format);
+  $format = preg_replace('(\\$)', '', $format);
+    
   // Trim any whitespace from the result.
   $format = trim($format);
   
   // After removing the non-desired parts of the format, test if the only 
   // things left are escaped, non-date, characters. If so, return nothing.
-  if (!$test = preg_replace('(\\\\\w{1})', '', $format)) {
+  if (!$test = trim(preg_replace('(\\\\\w{1})', '', $format))) {
     return '';
   }
   return $format;
@@ -2129,6 +2150,40 @@ function date_format_options() {
 }
 
 /**
+ * Helper function for BYDAY options in Date Repeat
+ * and for converting back and forth from '+1' to 'First'.
+ */
+function date_order_translated() {
+  return array(
+    '+1' => date_t('First', 'date_order'),
+    '+2' => date_t('Second', 'date_order'),
+    '+3' => date_t('Third', 'date_order'),
+    '+4' => date_t('Fourth', 'date_order'),
+    '+5' => date_t('Fifth', 'date_order'),
+    '-1' => date_t('Last', 'date_order_reverse'),
+    '-2' => date_t('Next to last', 'date_order_reverse'),
+    '-3' => date_t('Third from last', 'date_order_reverse'),
+    '-4' => date_t('Fourth from last', 'date_order_reverse'),
+    '-5' => date_t('Fifth from last', 'date_order_reverse')
+  );
+}
+
+function date_order() {
+  return array(
+    '+1' => 'First',
+    '+2' => 'Second',
+    '+3' => 'Third',
+    '+4' => 'Fourth',
+    '+5' => 'Fifth',
+    '-1' => 'Last',
+    '-2' => 'Next to last',
+    '-3' => 'Third from last',
+    '-4' => 'Fourth from last',
+    '-5' => 'Fifth from last'
+  );
+}
+
+/**
  * Implementation of hook_views_api().
  *
  * This one is used as the base to reduce errors when updating.
@@ -2454,4 +2509,11 @@ function date_range_string($years) {
     $max = '+'. ($years[1] - $this_year);
   }
   return $min .':'. $max;
+}
+
+/**
+ * Implement hook_date_api_tables().
+ */
+function date_api_date_api_tables() {
+  return array('node', 'comment', 'users');
 }

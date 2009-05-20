@@ -1,5 +1,5 @@
 <?php
-// $Id: date_api_fields.inc,v 1.1.2.7 2009/03/20 16:57:15 karens Exp $
+// $Id: date_api_fields.inc,v 1.1.2.8 2009/04/27 17:46:09 karens Exp $
 /**
  *  Identify all potential date/timestamp fields.
  *
@@ -10,6 +10,10 @@
  *    the hook_date_api_fields() for the core date fields.
  */
 function _date_api_fields($base = 'node') {
+  // Make sure $base is never empty.
+  if (empty($base)) {
+    $base = 'node';
+  }
   $cid = 'date_api_fields_'. $base;
   cache_clear_all($cid, 'cache_views');
   

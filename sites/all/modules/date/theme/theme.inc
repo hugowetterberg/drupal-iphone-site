@@ -1,5 +1,5 @@
 <?php
-// $Id: theme.inc,v 1.1.4.33 2009/02/17 17:04:31 karens Exp $
+// $Id: theme.inc,v 1.1.4.34 2009/05/10 13:48:19 karens Exp $
 /**
  *  Preprocessor to construct back and next navigation from the date argument.
  */
@@ -52,9 +52,37 @@ function template_preprocess_date_navigation(&$vars) {
   if (!empty($prev_date) && !empty($vars['prev_url']) && date_format($prev_date, 'Y') < $view->date_info->min_allowed_year) {
     $vars['prev_url'] = '';    
   }
+
+  $vars['prev_options'] += array('attributes' => array());
+  $vars['next_options'] += array('attributes' => array());
+  $prev_title = '';
+  $next_title = '';
+
+  // Build next/prev link titles.
+  switch($view->date_info->granularity) {
+    case 'year':
+      $prev_title = t('Navigate to previous year');
+      $next_title = t('Navigate to next year');
+      break;
+    case 'month':
+      $prev_title = t('Navigate to previous month');
+      $next_title = t('Navigate to next month');
+      break;
+    case 'week':
+      $prev_title = t('Navigate to previous week');
+      $next_title = t('Navigate to next week');
+      break;      
+    case 'day':
+      $prev_title = t('Navigate to previous day');
+      $next_title = t('Navigate to next day');
+      break;
+  }
+  $vars['prev_options']['attributes'] += array('title' => $prev_title);
+  $vars['next_options']['attributes'] += array('title' => $next_title);
   
-  $vars['prev_options'] += array('attributes' => array('rel' => 'nofollow'));
-  $vars['next_options'] += array('attributes' => array('rel' => 'nofollow'));
+  // Add nofollow for next/prev links.
+  $vars['prev_options']['attributes'] += array('rel' => 'nofollow');
+  $vars['next_options']['attributes'] += array('rel' => 'nofollow');
   
   $link = FALSE;
   // Month navigation titles are used as links in the block view.
@@ -94,7 +122,8 @@ function theme_date_nav_title($granularity, $view, $link = FALSE, $format = NULL
   // TODO Update this.
   if (!empty($view->date_info->mini) || $link) {
   	// Month navigation titles are used as links in the mini view.
-  	return l($title, $view->date_info->url);
+   $attributes = array('title' => t('View full page month'));
+  	return l($title, $view->date_info->url, array('attributes' => $attributes));
   }
   else {
     return $title;

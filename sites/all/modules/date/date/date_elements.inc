@@ -1,5 +1,5 @@
 <?php
-//$Id: date_elements.inc,v 1.46.2.2.2.57 2009/03/20 00:28:33 karens Exp $
+//$Id: date_elements.inc,v 1.46.2.2.2.62 2009/05/14 14:58:04 karens Exp $
 /**
  * @file
  * Date forms and form themes and validation.
@@ -193,7 +193,7 @@ function date_local_date($form, $form_state, $delta, $item, $timezone, $field, $
     $default_value = $field['widget']['default_value2'];
     $default_value_code = $field['widget']['default_value_code2'];
   }
-  if (empty($item[$part])) {
+  if (empty($item) || empty($item[$part])) {
     if (empty($default_value) || $default_value == 'blank' || $delta > 0) {
       return NULL;
     }
@@ -216,7 +216,7 @@ function date_local_date($form, $form_state, $delta, $item, $timezone, $field, $
   }
   else {
     $value = $item[$part];
-      
+     
     // Special case for ISO dates to create a valid date object for formatting.
     if ($field['type'] == DATE_ISO) {
       $value = date_fuzzy_datetime($value);
@@ -226,6 +226,9 @@ function date_local_date($form, $form_state, $delta, $item, $timezone, $field, $
       $value = date_convert($value, $field['type'], DATE_DATETIME, $db_timezone);
     }
     $date = date_make_date($value, date_get_timezone_db($field['tz_handling']), DATE_DATETIME, $field['granularity']);
+    if (empty($date)) {
+      return NULL;
+    }
     date_timezone_set($date, timezone_open($timezone));
   }
   if (is_object($date) && empty($item[$part]) && $default_value == 'strtotime' && !empty($default_value_code)) {
@@ -257,6 +260,10 @@ function _date_elements() {
  * Process an individual date element.
  */
 function date_combo_process($element, $edit, &$form_state, $form) {
+  if (isset($element['#access']) && empty($element['#access'])) {
+    return;
+  }
+
   $field_name = $element['#field_name'];
   $field = $form['#field_info'][$field_name];
   $delta = $element['#delta'];
@@ -277,7 +284,7 @@ function date_combo_process($element, $edit, &$form_state, $form) {
 
   $element[$from_field] = array(
     '#field'         => $field,
-    '#title'         => !$field['multiple'] ? t($field['widget']['label']) : '',
+    '#title'         => (!$field['multiple'] || $field['repeat']) ? t($field['widget']['label']) : '',
     '#weight'        => $field['widget']['weight'],
     '#required'      => ($field['required'] && $delta == 0) ? 1 : 0,
     '#default_value' => isset($element['#value'][$from_field]) ? $element['#value'][$from_field] : '',
@@ -336,7 +343,7 @@ function date_combo_process($element, $edit, &$form_state, $form) {
     $element[$from_field]['#description'] = $description;
   }
   
-  // Creat label for error messages that make sense in multiple values
+  // Create label for error messages that make sense in multiple values
   // and when the title field is left blank.
   if (!empty($field['multiple']) && empty($field['repeat'])) {
     $element[$from_field]['#date_title'] = t('@field_name From date value #@delta', array('@field_name' => $field['widget']['label'], '@delta' => $delta + 1));
@@ -568,9 +575,10 @@ function theme_date_combo($element) {
   if (!$field['todate']) {
     return $element['#children'];
   }
+  
   // Group from/to items together in fieldset.
   $fieldset = array(
-    '#title' => $field['widget']['label'] .' '. ($element['#delta'] > 0 ? intval($element['#delta'] + 1) : ''),
+    '#title' => t($field['widget']['label']) .' '. ($element['#delta'] > 0 ? intval($element['#delta'] + 1) : ''),
     '#value' => $element['#children'],
     '#collapsible' => FALSE,
     '#collapsed' => FALSE,

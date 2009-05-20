@@ -1,23 +1,16 @@
-# $Id: date_api.nl.po,v 1.1.2.1 2009/03/08 09:36:24 hass Exp $
-#
-# LANGUAGE translation of Drupal (general)
-# Copyright YEAR NAME <EMAIL@ADDRESS>
-# Generated from files:
-#  date_api.module,v 1.64.2.5.2.69 2009/02/17 11:31:53 karens
-#  date_api.install,v 1.16.2.1.2.14 2009/02/16 23:46:08 karens
-#  date_api.info,v 1.6 2008/02/18 19:32:28 karens
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: PROJECT VERSION\n"
+"Project-Id-Version: \n"
 "POT-Creation-Date: 2009-02-17 06:19-0600\n"
-"PO-Revision-Date: 2009-03-02 12:45+0100\n"
-"Last-Translator: Joost van der Locht <joost@trisum.nl>\n"
-"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2009-05-05 14:25+0100\n"
+"Last-Translator: seutje <seutje@gmail.com>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"X-Poedit-Language: Dutch\n"
+"X-Poedit-Country: NETHERLANDS\n"
 
 #: date_api.module:421
 #, fuzzy
@@ -27,7 +20,7 @@ msgstr "Lang"
 #: date_api.module:422
 #, fuzzy
 msgid "Medium"
-msgstr "Midden"
+msgstr "Halflang"
 
 #: date_api.module:423
 #, fuzzy
@@ -40,11 +33,11 @@ msgstr "!timezone"
 
 #: date_api.module:615
 msgid "!day-name Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday"
-msgstr "!day-name Zondag|Maandag|Dinsdag|Woensdag|Dodnerdag|Vrijdag|Zaterdag"
+msgstr "!day-name zondag|maandag|dinsdag|woensdag|donderdag|vrijdag|zaterdag"
 
 #: date_api.module:616
 msgid "!day-abbreviation Sun|Mon|Tue|Wed|Thu|Fri|Sat"
-msgstr "!day-abbreviation Zon|Maa|Din|Woe|Don|Vri|Zat"
+msgstr "!day-abbreviation zon|maa|din|woe|don|vri|zat"
 
 #: date_api.module:617
 msgid "!day-abbreviation S|M|T|W|T|F|S"
@@ -52,7 +45,7 @@ msgstr "!day-abbreviation Z|M|D|W|D|V|Z"
 
 #: date_api.module:618
 msgid "!day-abbreviation SU|MO|TU|WE|TH|FR|SA"
-msgstr "!day-abbreviation Zo|Ma|Di|Wo|Do|Vr|Za"
+msgstr "!day-abbreviation zo|ma|di|wo|do|vr|za"
 
 #: date_api.module:619
 msgid "!ampm-abbreviation am|pm|AM|PM"
@@ -68,11 +61,11 @@ msgstr "!datetime_plural Jaren|Maanden|Dagen|Weken|Uren|Minuten|Seconden"
 
 #: date_api.module:622
 msgid "!date_order Every|First|Second|Third|Fourth|Fifth"
-msgstr "!date_order Iedere|Eerste\"Tweede|Derde|Vierde|Vijfde"
+msgstr "!date_order Iedere|Eerste|Tweede|Derde|Vierde|Vijfde"
 
 #: date_api.module:623
 msgid "!date_order |Last|Next to last|Third from last|Fourth from last|Fifth from last"
-msgstr "!date_order |Laatste|Enerlaatste|Tweedelaatste|Derdelaatste|Vierdelaatste"
+msgstr "!date_order |Laatste|Voorlaatste|Tweedelaatste|Derdelaatste|Vierdelaatste"
 
 #: date_api.module:624
 msgid "!date_nav Prev|Next|Today"
@@ -80,11 +73,11 @@ msgstr "!date_nav Vorige|Volgende|Vandaag"
 
 #: date_api.module:627
 msgid "!month-name |January|February|March|April|May|June|July|August|September|October|November|December"
-msgstr "!month-name |Januari|Februari|Maart|April|Mei|Juni|Juli|Augustus|September|Oktober|November|December"
+msgstr "!month-name |januari|februari|maart|april|mei|juni|juli|augustus|september|oktober|november|december"
 
 #: date_api.module:628
 msgid "!month-abbreviation |Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec"
-msgstr "!month-abbreviation |Jan|Feb|Mar|Apr|Mei|Jun|Jul|Aug|Sep|Okt|Nov|Dec"
+msgstr "!month-abbreviation |jan|feb|mar|apr|mei|jun|jul|aug|sep|okt|nov|dec"
 
 #: date_api.module:735
 #, fuzzy

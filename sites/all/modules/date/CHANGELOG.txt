@@ -1,8 +1,46 @@
-//$Id: CHANGELOG.txt,v 1.1.8.395 2009/03/25 15:44:17 karens Exp $
+//$Id: CHANGELOG.txt,v 1.1.8.428 2009/05/14 17:10:46 karens Exp $
 Date Module 6.x
 =================
 Version 6.2-dev
 =================
+
+Version 6.2.2
+=============
+
+- #451858 Fix date_timezone_set() when date is empty while adding new item.
+-  Fix date_limit_format() to be sure the 'T' is stripped out of ISO dates with only date or only time.
+- #432368 Don't force default value in exposed filter if default is empty.
+- #369020 Switch '+1 Sunday' to 'First Sunday' to over PHP5 bug.
+- #444960 Fix Date Tools permissions.
+- #315443 Make sure 'within' labels don't break when used in text fields.
+- #423710 Make date navigation more accessible with titles.
+- #424388 Pass #attributes from element to Date Popup.
+- #381370 Remove escaping for colon and double quote per ical spec.
+- #426810 Fix HTML syntax in advanced help files.
+- #456460 Break out simple themes for date_display_single and date_display_double for easier control by themers of separator and other html.
+- #384258 Fix broken handling of 24 hour time in Date Popup.
+- #401152 Fix broken handling of long month name in input format.
+- #452420 Revert change of hyphen to dash in date display, dash is handled badly by token and elsewhere.
+- #347080 Using 'first' and 'last' is more reliable than '+1 week' in strtotime().
+- #369020 Fix bug when finding first or last Mon/Tue/Wed/Thu/Fri/Sat/Sun of month.
+- #427830 Postgres can't handle \T.
+- #414446 Avoid php errors when context is missing.
+- #444272 by Darren Oh, add Date views conversion from Views 1 to Views 2.
+- #428828 Make sure date $fields array always has expected format, even when empty.
+- #341463 Repeating date with no To date was missing form label.
+- #404866 Make sure labels are translated.
+- #442526 Add missing space to navigation template.
+- #375864 Clean up date_limit_format() to handle more odd formats.
+- #447616 Allow custom tables as well as custom fields to use Date argument and filter.
+- #338253 Fixes to translation of timezone names.
+- #409476 Make sure empty UNTIL date is not parsed into RRULE.
+- Make sure $base is never empty when identifying date fields for date filter and argument.
+- #317105 Update Isreal DST rules.
+- #408770 Abort date_combo processing when user has no #access.
+- #388728 Change dash to en dash in date range theme.
+- #414290 Update timezone form_alter to account for difference between Event version 1 and 2.
+- Broke un-exposed filters when fixing exposed filters, fixing them again.
+- Non-node date fields need better descriptions and field limits.
 
 Version 6.2.1
 =============

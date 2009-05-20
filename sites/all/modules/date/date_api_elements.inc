@@ -1,5 +1,5 @@
 <?php
-//$Id: date_api_elements.inc,v 1.49.2.1.2.47 2009/03/25 15:31:42 karens Exp $
+//$Id: date_api_elements.inc,v 1.49.2.1.2.50 2009/05/11 02:23:56 karens Exp $
 /**
  * @file
  * Date API elements themes and validation.
@@ -239,7 +239,7 @@ function date_parts_element($element, $date, $format) {
   $order = array_flip($granularity);
 
   $hours_format  = strpos(strtolower($element['#date_format']), 'a') ? 'g': 'G';
-  $month_function  = strpos($element['#date_format'], 'F') ? 'date_month_names' : 'date_month_names_abbr';
+  $month_function  = strpos($element['#date_format'], 'F') !== FALSE ? 'date_month_names' : 'date_month_names_abbr';
   $count = 0;
   $increment = min(intval($element['#date_increment']), 1);
   foreach ($granularity as $field) {
@@ -305,8 +305,10 @@ function date_parts_element($element, $date, $format) {
       $sub_element[$field]['#theme'] = 'date_textfield_element';
       $sub_element[$field]['#size'] = 7;
       if ($element['#date_label_position'] == 'within') {
-        $sub_element[$field]['#options'] = array(
-          '-'. $label => '-'. $label) + $sub_element[$field]['#options'];
+        if (is_array($sub_element[$field]['#options'])) {
+          $sub_element[$field]['#options'] = array(
+            '-'. $label => '-'. $label) + $sub_element[$field]['#options'];
+        }
         if (empty($sub_element[$field]['#default_value'])) {
           $sub_element[$field]['#default_value'] = '-'. $label;
         }
@@ -594,6 +596,7 @@ function date_convert_from_custom($date, $format) {
   $regex2 = str_replace('a', '(am|pm)', $regex2);
   preg_match('`^'. $regex2 .'$`', $date, $values);
   array_shift($values);
+  
   // if we did not find all the values for the patterns in the format, abort
   if (count($letters) != count($values)) {
     return  NULL;

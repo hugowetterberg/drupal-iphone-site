@@ -1,4 +1,4 @@
-# $Id: includes.nl.po,v 1.1.2.1 2009/03/08 09:36:24 hass Exp $
+# $Id: includes.nl.po,v 1.1.2.2 2009/05/10 11:05:12 karens Exp $
 #
 # LANGUAGE translation of Drupal (includes)
 # Copyright YEAR NAME <EMAIL@ADDRESS>
@@ -12,9 +12,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Date 6.x-2.0\n"
 "POT-Creation-Date: 2009-01-11 11:03+0100\n"
-"PO-Revision-Date: 2009-03-02 12:19+0100\n"
-"Last-Translator: Joost van der Locht <joost@trisum.nl>\n"
-"Language-Team: Dutch translations <joost@trisum.nl>\n"
+"PO-Revision-Date: 2009-05-05 14:31+0100\n"
+"Last-Translator: seutje <seutje@gmail.com>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -106,7 +106,7 @@ msgstr "U moet minimaal één datumveld kiezen voor deze parameter."
 #: includes/date_api_argument_handler.inc:111
 #: includes/date_api_filter_handler.inc:143
 msgid "Date year range must be in the format -9:+9 or 2005:2010."
-msgstr "Het datumbereik voor haar moet in het formaat 09:+9 of 2005:2010 zijn."
+msgstr "Het datumbereik voor haar moet in het formaat -9:+9 of 2005:2010 zijn."
 
 #: includes/date_api_filter_handler.inc:75
 msgid "Select"
