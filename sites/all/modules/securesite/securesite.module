@@ -1,0 +1,264 @@
+<?php
+// $Id: securesite.module,v 1.43.2.11 2009/03/09 14:48:26 darrenoh Exp $
+
+/**
+ * @file
+ * Enables HTTP authentication or an HTML form to restrict site access.
+ */
+
+/**
+ * Secure Site status: Disabled
+ */
+define('SECURESITE_DISABLED', 0);
+
+/**
+ * Secure Site status: Always on
+ */
+define('SECURESITE_ALWAYS', 1);
+
+/**
+ * Secure Site status: Only when site is offline
+ */
+define('SECURESITE_OFFLINE', 2);
+
+/**
+ * Secure Site status: Only for restricted pages
+ */
+define('SECURESITE_403', 3);
+
+/**
+ * Secure Site type: HTML log-in form
+ */
+define('SECURESITE_FORM', 1);
+
+/**
+ * Secure Site type: Web browser HTTP Auth security
+ */
+define('SECURESITE_BASIC', 2);
+
+/**
+ * Secure Site type: HTTP digest
+ */
+define('SECURESITE_DIGEST', 3);
+
+/**
+ * Implementation of hook_help().
+ */
+function securesite_help($path, $arg) {
+  switch ($path) {
+    case 'admin/help#securesite':
+      module_load_include('inc', 'securesite', 'securesite.admin');
+      return _securesite_admin_help();
+  }
+}
+
+/**
+ * Implementation of hook_perm().
+ */
+function securesite_perm() {
+  return array('access secured pages');
+}
+
+/**
+ * Implementation of hook_menu().
+ */
+function securesite_menu() {
+  $items['securesite_403'] = array(
+    'page callback' => '_securesite_403',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+    'file' => 'securesite.inc',
+  );
+  $items['admin/settings/securesite'] = array(
+    'title' => 'Secure Site',
+    'description' => 'Enables HTTP Auth security or an HTML form to restrict site access.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('securesite_admin_settings'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'securesite.admin.inc',
+  );
+  return $items;
+}
+
+/**
+ * Implementation of hook_form_$form-id_alter().
+ */
+function securesite_form_system_error_reporting_settings_alter(&$form, &$form_state) {
+  if (variable_get('securesite_enabled', SECURESITE_DISABLED) == SECURESITE_403) {
+    $form['securesite_403'] = $form['site_403'];
+    $form['securesite_403']['#default_value'] = variable_get('securesite_403', variable_get('site_403', ''));
+    $form['securesite_403']['#weight'] = 0;
+    unset($form['site_403']);
+  }
+}
+
+/**
+ * Implementation of hook_boot().
+ */
+function securesite_boot() {
+  global $user;
+  // Did the user send credentials that we accept?
+  $type = _securesite_mechanism();
+  if ($type !== FALSE && (isset($_SESSION['securesite_repeat']) ? !$_SESSION['securesite_repeat'] : TRUE)) {
+    drupal_bootstrap(DRUPAL_BOOTSTRAP_FULL);
+    module_load_include('inc', 'securesite');
+    _securesite_boot($type);
+  }
+  // If credentials are missing and user is not logged in, request new credentials.
+  elseif (empty($user->uid) && !isset($_SESSION['securesite_guest'])) {
+    unset($_SESSION['securesite_repeat']);
+    $types = variable_get('securesite_type', array(SECURESITE_BASIC));
+    sort($types, SORT_NUMERIC);
+    drupal_bootstrap(DRUPAL_BOOTSTRAP_FULL);
+    module_load_include('inc', 'securesite');
+    if (_securesite_forced()) {
+      _securesite_dialog(array_pop($types));
+    }
+  }
+}
+
+/**
+ * Return the authentication method used by the client, or FALSE if the client
+ * did not send credentials.
+ */
+function _securesite_mechanism() {
+  static $mechanism;
+  if (!isset($mechanism)) {
+    // PHP in CGI mode work-arounds. Sometimes "REDIRECT_" prefixes $_SERVER
+    // variables. See http://www.php.net/reserved.variables.
+    if (empty($_SERVER['HTTP_AUTHORIZATION']) && !empty($_SERVER['REDIRECT_HTTP_AUTHORIZATION'])) {
+      $_SERVER['HTTP_AUTHORIZATION'] = $_SERVER['REDIRECT_HTTP_AUTHORIZATION'];
+    }
+    if (!empty($_SERVER['HTTP_AUTHORIZATION'])) {
+      list($type, $authorization) = explode(' ', $_SERVER['HTTP_AUTHORIZATION'], 2);
+      switch (drupal_strtolower($type)) {
+        case 'digest':
+          $_SERVER['PHP_AUTH_DIGEST'] = $authorization;
+          break;
+        case 'basic':
+          list($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']) = explode(':', base64_decode($authorization), 2);
+          break;
+      }
+    }
+    $mechanism = FALSE;
+    $types = variable_get('securesite_type', array(SECURESITE_BASIC));
+    rsort($types, SORT_NUMERIC);
+    foreach ($types as $type) {
+      switch ($type) {
+        case SECURESITE_DIGEST:
+          if (isset($_SERVER['PHP_AUTH_DIGEST'])) {
+            $mechanism = SECURESITE_DIGEST;
+            break 2;
+          }
+          break;
+        case SECURESITE_BASIC:
+          if ((isset($_SERVER['PHP_AUTH_USER']) || isset($_SERVER['PHP_AUTH_PW']))) {
+            $mechanism = SECURESITE_BASIC;
+            break 2;
+          }
+          break;
+        case SECURESITE_FORM:
+          if (isset($_POST['form_id']) && $_POST['form_id'] == 'securesite_user_login') {
+            $mechanism = SECURESITE_FORM;
+            break 2;
+          }
+          break;
+      }
+    }
+  }
+  return $mechanism;
+}
+
+/**
+ * Implementation of hook_user().
+ *
+ * When users logout, show the HTTP Auth dialog to make sure the HTTP Auth
+ * credentials are cleared
+ */
+function securesite_user($op, &$edit, &$user) {
+  switch ($op) {
+    case 'validate':
+      if (!array_key_exists('name', form_set_error()) && isset($edit['name']) && $edit['name'] == variable_get('securesite_guest_name', '')) {
+        form_set_error('name', t('The name %name is being used as the %site guest name.', array('%name' => $edit['name'], '%site' => variable_get('site_name', 'Drupal'))));
+      }
+      break;
+    case 'insert':
+    case 'load':
+    case 'update':
+      if (in_array(SECURESITE_DIGEST, variable_get('securesite_type', array(SECURESITE_BASIC))) && isset($edit['pass'])) {
+        $edit['name'] = isset($edit['name']) ? $edit['name'] : $user->name;
+        $script = variable_get('securesite_password_script', drupal_get_path('module', 'securesite') .'/digest_md5/stored_passwords.php');
+        $values = array(
+          'username='. escapeshellarg($edit['name']),
+          'realm='. escapeshellarg(variable_get('securesite_realm', variable_get('site_name', 'Drupal'))),
+          'pass='. escapeshellarg($edit['pass']),
+          'op=create',
+        );
+        exec($script .' '. implode(' ', $values), $output, $status);
+        if ($user->name != $edit['name']) {
+          securesite_user('delete', $edit, $user);
+        }
+      }
+      break;
+    case 'delete':
+      if (in_array(SECURESITE_DIGEST, variable_get('securesite_type', array(SECURESITE_BASIC)))) {
+        $script = variable_get('securesite_password_script', drupal_get_path('module', 'securesite') .'/digest_md5/stored_passwords.php');
+        $values = array(
+          'username='. escapeshellarg($user->name),
+          'realm='. escapeshellarg(variable_get('securesite_realm', variable_get('site_name', 'Drupal'))),
+          'op=delete',
+        );
+        exec($script .' '. implode(' ', $values));
+      }
+      break;
+    case 'logout':
+      $types = variable_get('securesite_type', array(SECURESITE_BASIC));
+      if ((in_array(SECURESITE_BASIC, $types) || in_array(SECURESITE_DIGEST, $types)) && !empty($_SESSION['securesite_login'])) {
+        module_load_include('inc', 'securesite');
+        // Load the anonymous user.
+        $user = drupal_anonymous_user();
+        // Safari will attempt to use old credentials before requesting new credentials
+        // from the user. Logging out requires that the WWW-Authenticate header be sent
+        // twice.
+        $user_agent = (isset($_SERVER['HTTP_USER_AGENT']) ? drupal_strtolower($_SERVER['HTTP_USER_AGENT']) : '');
+        if ($user_agent != str_replace('safari', '', $user_agent)) {
+          session_set_save_handler('sess_open', 'sess_close', 'sess_read', 'sess_write', 'sess_destroy_sid', 'sess_gc');
+          session_start();
+          $_SESSION['securesite_repeat'] = TRUE;
+        }
+        // Clear stored credentials.
+        _securesite_dialog(array_pop($types));
+      }
+      break;
+  }
+}
+
+/**
+ * Implementation of hook_theme().
+ */
+function securesite_theme() {
+  $themes = theme_get_registry();
+  return array(
+    'securesite_page' => array(
+      'template' => 'securesite-page',
+      'arguments' => array('content' => NULL, 'show_blocks' => FALSE, 'show_messages' => TRUE),
+      'path' => drupal_get_path('module', 'securesite') .'/theme',
+    ),
+    'securesite_user_login' => array(
+      'template' => 'securesite-user-login',
+      'arguments' => array('form' => NULL),
+      'file' => 'securesite.theme.inc',
+      'path' => drupal_get_path('module', 'securesite') .'/theme',
+    ),
+    'securesite_user_pass' => array(
+      'template' => 'securesite-user-pass',
+      'arguments' => array('form' => NULL),
+      'file' => 'securesite.theme.inc',
+      'path' => drupal_get_path('module', 'securesite') .'/theme',
+    ),
+  );
+}
+
+function securesite_theme_registry_alter(&$theme_registry) {
+  $theme_registry['securesite_page']['preprocess functions'] = $theme_registry['page']['preprocess functions'];
+}

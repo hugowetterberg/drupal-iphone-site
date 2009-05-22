@@ -1,0 +1,59 @@
+$Id: CHANGELOG.txt,v 1.2.2.12 2009/04/20 14:34:08 darrenoh Exp $
+
+Secure Site 6.x-2.x, xxxx-xx-xx
+-------------------------------
+#388890 by jmiccolis: Fixed user name validation.
+  Users who didn't have permission to change their user names could not change
+  their passwords.
+by Darren Oh: Code re-organization and clean-up.
+by Darren Oh: Fixed a grammatical error in digest_md5/sudoers.
+by Darren Oh: Fixed update error for sites with disabled authentication.
+  Sites which had disabled authentication would have authentication forced when
+  updating.
+by Darren Oh: Removed CHANGELOG.txt message which belonged in Drupal 5 branch.
+
+
+Secure Site 6.x-2.2, 2009-01-19
+-------------------------------
+#330367: Added note about LDAP Integration compatibility being fixed in release
+  6.x-2.1.
+#352276 by naquah: Fixed delay in saving 403 page settings.
+#353216 by salvis: Fixed data type in securesite_update_6200().
+  This fixes "Wrong datatype" errors for those upgrading from previous versions.
+Renamed "po" directory to "translations" for Drupal 6 compatibility.
+#353216 by Darren Oh: Added 6.x-2.2 release.
+
+
+Secure Site 6.x-2.1, 2008-12-25
+-------------------------------
+#172170: Fixed OpenID authentication URL.
+Coding standards and grammar update.
+#330367: Fixed compatibility with LDAP Integration.
+Fixed incorrect password handling for digest authentication.
+Fixed handling for unauthorized user log-in attempts.
+Fixed password storage for digest authentication.
+Fixed possible conflict between guest name and user names.
+Added documentation for configuring cron jobs when digest authentication is
+  being forced.
+Fixed digest authentication scripts.
+Set HTTP status to 403 instead of 200 for users who are not authorized to log in
+  with Secure Site.
+Made test URL for drupal_http_request() bypass Secure Site to prevent warning on
+  the status report page.
+Set HTTP status to 200 for form fallback from digest authentication.
+Fixed digest authentication to prevent errors when the password is wrong.
+Fixed user deletion when not using form to delete user.
+Added test suite.
+Made password reset error messages show on separate page.
+Fixed cron.php bypass for form authentication.
+Added title to form authentication page.
+Fixed argument escaping to allow quotes in realm, user names, and passwords.
+Added password clean-up when digest authentication is disabled, the realm
+  changes, or the module is uninstalled.
+Added translation template.
+Added CHANGELOG.txt
+
+
+Secure Site 6.x-2.0, 2008-10-29
+-------------------------------
+Initial release

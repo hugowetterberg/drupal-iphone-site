@@ -1,0 +1,11 @@
+; $Id: securesite.info,v 1.4.2.1 2009/03/09 14:48:27 darrenoh Exp $
+name = Secure Site
+description = Enables HTTP Auth security or an HTML form to restrict site access.
+core = 6.x
+
+; Information added by drupal.org packaging script on 2009-04-20
+version = "6.x-2.3"
+core = "6.x"
+project = "securesite"
+datestamp = "1240238567"
+
