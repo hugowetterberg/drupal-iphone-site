@@ -1,5 +1,5 @@
 /**
- * $Id: ie6-fixes.css,v 1.1.2.3 2008/12/03 09:08:30 jwolf Exp $
+ * $Id: ie6-fixes.css,v 1.1.2.7 2009/05/13 09:26:46 jwolf Exp $
  * Acquia Marina
  */
 
@@ -46,11 +46,11 @@ body.layout-main-last #sidebar-last ul li,
 }
 
 /* adjust pager spacing */
-#main-wrapper .item-list ul.pager li {
+#main .item-list ul.pager li {
   margin: 0 2px;
 }
 
-#main-wrapper .item-list .pager a.active {
+#main .item-list .pager a.active {
   padding: 1px 0 2px 3px;
 }
 
@@ -61,6 +61,10 @@ body.layout-main-last #sidebar-last ul li,
 
 #search-box .search_submit {
   padding: 2px 0 0;
+}
+
+#postscript-wrapper.postscripts-2 div.column {
+  width: 47%;
 }
 
 input.form-submit,
@@ -82,23 +86,6 @@ html.js #user-login-form li.openid-processed,
 html.js #user-login li.openid-processed {
   margin-left: 0;
   padding-left: 8px;
-}
-
-/* group the block-icon layout styles together */
-.block-blog .block-icon,
-.block-comment .block-icon,
-.block-forum .block-icon,
-.block-search .block-icon,
-.block-menu .block-icon,
-.comments-block-icon,
-.block-user .block-icon,
-#block-blog-0 .block-icon,
-#block-book-0 .block-icon,
-#block-menu-devel .block-icon,
-#block-user-0 .block-icon,
-#block-views-archive-block .block-icon,
-#block-views-comments_recent-block .block-icon {
-  top: -5px;
 }
 
 /* fix extra rounded graphic at bottom */
@@ -130,7 +117,7 @@ div.admin .right {
 /**************************/
 div.pngfix,
 h2.pngfix { 
-  behavior: url(themes/acquia/acquia_marina/iepngfix.htc);   /* change path here and in iepngfix.htc to match theme location */ 
+  behavior: url(/sites/all/themes/acquia_marina/iepngfix.htc);   /* change path here and in iepngfix.htc to match theme location */ 
 } 
 
 

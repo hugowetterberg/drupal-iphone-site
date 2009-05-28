@@ -1,4 +1,4 @@
-/* $Id: style.css,v 1.1 2009/02/28 23:33:58 jwolf Exp $ */
+/* $Id: style.css,v 1.1.2.4 2009/05/11 08:53:00 jwolf Exp $ */
 
 /******************************************/
 /*  TopNotchThemes CSS Stylesheet         */
@@ -192,6 +192,18 @@ dl dt {
 dd {
   margin: 0 0 10px 22px;
 }
+
+/* adds indentation for child list items within nodes */
+#content-wrapper .node .content ol li,
+#content-wrapper .node .content ul li {
+  margin: 0 0 0 6px;
+}
+
+#content-wrapper .node .content ol li,
+#content-wrapper .node .content ul li {
+  padding: 0 0 0 12px;
+}
+
 
 /* Helper classes
 -------------------------------------------------------------- */
@@ -2105,6 +2117,37 @@ div.view div.views-admin-links li {
 }
 
 
+/* make text legible in views admin */
+div.views-admin-links a,
+div.views-admin-links-hover a,
+div.view div.views-admin-links:hover a{
+  color: #fff;
+}
+
+.views-edit-view a,
+.views-entry a {
+  color: #1767B1;
+}
+
+#views-ajax-form,
+#views-ajax-pad .form-item,
+#views-ajax-pad .views-expose .description,
+#views-ajax-pad .views-override .description,
+.changed,
+.defaulted,
+.views-category,
+.views-category-content,
+.views-entry,
+.tab-section,
+.views-tab {
+  color: #000 !important;
+}
+
+#views-ajax-pad table.sticky-enabled tr td {
+  color: #fff;
+}
+
+
 /* Web Accessibility 
 -------------------------------------------------------------- */
 
@@ -2176,26 +2219,3 @@ div.view div.views-admin-links li {
     margin: 0 3%;
   }
 }
-
-/*********************/
-/* Web Accessibility */ 
-/*********************/
-
-/*skip-link*/
-#skip a,
-#skip a:hover,
-#skip a:visited {
-  height: 1px;
-  left: 0px;
-  overflow: hidden;
-  position: absolute;
-  top: -500px;
-  width: 1px;
-}
-
-#skip a:active, 
-#skip a:focus {
-  height: auto;
-  position: static;
-  width: auto;
-} 

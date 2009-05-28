@@ -1,5 +1,5 @@
 <?php
-// $Id$
+// $Id: comment-wrapper-forum.tpl.php,v 1.1 2008/10/01 03:26:19 jwolf Exp $
 
 /**
  * @file comment-wrapper.tpl.php

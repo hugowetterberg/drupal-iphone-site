@@ -1,5 +1,5 @@
 <?php
-// $Id: page.tpl.php,v 1.1.2.3 2008/11/25 22:42:34 jwolf Exp $
+// $Id: page.tpl.php,v 1.1.2.6 2009/05/13 09:26:06 jwolf Exp $
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -21,8 +21,8 @@
   <body class="<?php print $body_classes; ?>">
     <div id="page" class="clearfix">
 
-      <div id="header">
-        <div id="header-wrapper" class="clearfix">
+      <div id="header-wrapper">
+        <div id="header" class="clearfix">
           
           <?php if ($search_box): ?>
           <div id="search-box">
@@ -56,16 +56,16 @@
             <?php endif; ?>
           </div><!-- /header-last -->
       
-        </div><!-- /header-wrapper -->
-    
-        <div id="header-bottom" class="clearfix">
+        </div><!-- /header -->
+      </div><!-- /header-wrapper -->
+      
+      <div id="primary-menu-wrapper" class="clearfix">
         <?php if ($primary_links): ?>
         <div id="primary-menu">
           <?php print $primary_links_tree; ?>
         </div><!-- /primary_menu -->
         <?php endif; ?>
-        </div><!-- /header-bottom -->
-      </div><!-- /header -->
+      </div><!-- /primary-menu-wrapper -->
 
       <div id="preface">
         <?php if ($preface_first || $preface_middle || $preface_last || $mission): ?>
@@ -97,8 +97,8 @@
         <?php endif; ?>
       </div><!-- /preface -->
 
-      <div id="main">
-        <div id="main-wrapper" class="clearfix">
+      <div id="main-wrapper">
+        <div id="main" class="clearfix">
           
           <?php if ($breadcrumb): ?>
           <div id="breadcrumb">
@@ -113,9 +113,7 @@
           <?php endif; ?>
 
           <div id="content-wrapper">
-            <?php if ($help): ?>
-              <?php print $help; ?>
-            <?php endif; ?>
+
             <?php if ($messages): ?>
               <?php print $messages; ?>
             <?php endif; ?>
@@ -132,7 +130,7 @@
                 <?php print $tabs; ?>
               </div>
               <?php endif; ?>
-            
+
               <?php if (($sidebar_first) && ($sidebar_last)) : ?>
                 <?php if ($sidebar_last): ?>
                 <div id="sidebar-last">
@@ -142,6 +140,13 @@
               <?php endif; ?>
 
               <div id="content-inner">
+                
+              <?php if ($help): ?>
+                <div id="help">
+                  <?php print $help; ?>
+                </div>
+              <?php endif; ?>
+                
                 <?php if ($title): ?>
                 <h1 class="title"><?php print $title; ?></h1>
                 <?php endif; ?>
@@ -204,8 +209,8 @@
           </div><!-- /footer -->
           <?php endif; ?>
           
-        </div><!-- /main-wrapper -->
-      </div><!-- /main -->
+        </div><!-- /main -->
+      </div><!-- /main-wrapper -->
     </div><!-- /page -->
     <?php print $closure; ?>
   </body>

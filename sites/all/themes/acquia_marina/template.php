@@ -1,17 +1,16 @@
 <?php
-// $Id: template.php,v 1.1.2.7 2008/12/09 03:47:12 jwolf Exp $
-
-/**
- * Force refresh of theme registry.
- * DEVELOPMENT USE ONLY - COMMENT OUT FOR PRODUCTION
- */
-// drupal_rebuild_theme_registry();
-
+// $Id: template.php,v 1.1.2.15 2009/05/13 11:19:43 jwolf Exp $
 
 /**
  * Initialize theme settings
  */
-if (is_null(theme_get_setting('user_notverified_display'))) {
+if (is_null(theme_get_setting('user_notverified_display')) || theme_get_setting('rebuild_registry')) {
+	
+  // Auto-rebuild the theme registry during theme development.
+  if(theme_get_setting('rebuild_registry')) {
+    drupal_set_message(t('The theme registry has been rebuilt. <a href="!link">Turn off</a> this feature on production websites.', array('!link' => url('admin/build/themes/settings/' . $GLOBALS['theme']))), 'warning');
+  }
+
   global $theme_key;
   // Get node types
   $node_types = node_get_types('names');
@@ -67,6 +66,7 @@ if (is_null(theme_get_setting('user_notverified_display'))) {
     'comment_node_prefix_default'           => '',
     'comment_node_suffix_default'           => '',
     'comment_enable_content_type'           => 0,
+    'rebuild_registry'                      => 0,
   );
   
   // Make the default content-type settings the same as the default theme settings,
@@ -230,53 +230,56 @@ function phptemplate_preprocess_page(&$vars) {
     $vars['breadcrumb'] = '';  
   }
   
-  // Set site title, slogan, mission, page title & separator
-  $title = t(variable_get('site_name', ''));
-  $slogan = t(variable_get('site_slogan', ''));
-  $mission = t(variable_get('site_mission', ''));
-  $page_title = t(drupal_get_title());
-  $title_separator = theme_get_setting('configurable_separator');
-  if (drupal_is_front_page()) {                                                // Front page title settings
-    switch (theme_get_setting('front_page_title_display')) {
-      case 'title_slogan':
-        $vars['head_title'] = drupal_set_title($title . $title_separator . $slogan);
-        break;
-      case 'slogan_title':
-        $vars['head_title'] = drupal_set_title($slogan . $title_separator . $title);
-        break;
-      case 'title_mission':
-        $vars['head_title'] = drupal_set_title($title . $title_separator . $mission);
-        break;
-      case 'custom':
-        if (theme_get_setting('page_title_display_custom') !== '') {
-          $vars['head_title'] = drupal_set_title(t(theme_get_setting('page_title_display_custom')));
-        }
+  // Set site title, slogan, mission, page title & separator (unless using Page Title module)
+  if (!module_exists('page_title')) {
+    $title = t(variable_get('site_name', ''));
+    $slogan = t(variable_get('site_slogan', ''));
+    $mission = t(variable_get('site_mission', ''));
+    $page_title = t(drupal_get_title());
+    $title_separator = theme_get_setting('configurable_separator');
+    if (drupal_is_front_page()) {                                                // Front page title settings
+      switch (theme_get_setting('front_page_title_display')) {
+        case 'title_slogan':
+          $vars['head_title'] = drupal_set_title($title . $title_separator . $slogan);
+          break;
+        case 'slogan_title':
+          $vars['head_title'] = drupal_set_title($slogan . $title_separator . $title);
+          break;
+        case 'title_mission':
+          $vars['head_title'] = drupal_set_title($title . $title_separator . $mission);
+          break;
+        case 'custom':
+          if (theme_get_setting('page_title_display_custom') !== '') {
+            $vars['head_title'] = drupal_set_title(t(theme_get_setting('page_title_display_custom')));
+          }
+      }
     }
-  }
-  else {                                                                       // Non-front page title settings
-    switch (theme_get_setting('other_page_title_display')) {
-      case 'ptitle_slogan':
-        $vars['head_title'] = drupal_set_title($page_title . $title_separator . $slogan);
-        break;
-      case 'ptitle_stitle':
-        $vars['head_title'] = drupal_set_title($page_title . $title_separator . $title);
-        break;
-      case 'ptitle_smission':
-        $vars['head_title'] = drupal_set_title($page_title . $title_separator . $mission);
-        break;
-      case 'ptitle_custom':
-        if (theme_get_setting('other_page_title_display_custom') !== '') {
-          $vars['head_title'] = drupal_set_title($page_title . $title_separator . t(theme_get_setting('other_page_title_display_custom')));
-        }
-        break;
-      case 'custom':
-        if (theme_get_setting('other_page_title_display_custom') !== '') {
-          $vars['head_title'] = drupal_set_title(t(theme_get_setting('other_page_title_display_custom')));
-        }
+    else {                                                                       // Non-front page title settings
+      switch (theme_get_setting('other_page_title_display')) {
+        case 'ptitle_slogan':
+          $vars['head_title'] = drupal_set_title($page_title . $title_separator . $slogan);
+          break;
+        case 'ptitle_stitle':
+          $vars['head_title'] = drupal_set_title($page_title . $title_separator . $title);
+          break;
+        case 'ptitle_smission':
+          $vars['head_title'] = drupal_set_title($page_title . $title_separator . $mission);
+          break;
+        case 'ptitle_custom':
+          if (theme_get_setting('other_page_title_display_custom') !== '') {
+            $vars['head_title'] = drupal_set_title($page_title . $title_separator . t(theme_get_setting('other_page_title_display_custom')));
+          }
+          break;
+        case 'custom':
+          if (theme_get_setting('other_page_title_display_custom') !== '') {
+            $vars['head_title'] = drupal_set_title(t(theme_get_setting('other_page_title_display_custom')));
+          }
+      }
     }
+    $vars['head_title'] = strip_tags($vars['head_title']);                       // Remove any potential html tags
   }
-  $vars['head_title'] = strip_tags($vars['head_title']);                       // Remove any potential html tags
   
+  // Set meta keywords and description (unless using Meta tags module)
   if (!module_exists('nodewords')) {
     if (theme_get_setting('meta_keywords') !== '') {
       $keywords = '<meta name="keywords" content="'. theme_get_setting('meta_keywords') .'" />';
@@ -287,7 +290,10 @@ function phptemplate_preprocess_page(&$vars) {
       $vars['head'] .= $keywords ."\n";
     } 
   }
-  $vars['closure'] .= '<div id="legal-notice">Theme provided by <a href="http://www.acquia.com">Acquia, Inc.</a> under GPL license from TopNotchThemes <a href="http://www.topnotchthemes.com">Drupal themes</a></div>';
+
+  if (drupal_is_front_page()) {
+    $vars['closure'] .= '<div id="legal-notice">Theme provided by <a href="http://www.acquia.com">Acquia, Inc.</a> under GPL license from TopNotchThemes <a href="http://www.topnotchthemes.com">Drupal themes</a></div>';
+  }
 }
 
 
@@ -315,17 +321,19 @@ function phptemplate_preprocess_node(&$vars) {
   // Node Theme Settings
   
   // Date & author
-  $date = t('Posted ') . format_date($vars['node']->created, 'medium');                 // Format date as small, medium, or large
-  $author = theme('username', $vars['node']);
-  $author_only_separator = t('Posted by ');
-  $author_date_separator = t(' by ');
-  $submitted_by_content_type = (theme_get_setting('submitted_by_enable_content_type') == 1) ? $vars['node']->type : 'default';
-  $date_setting = (theme_get_setting('submitted_by_date_'. $submitted_by_content_type) == 1);
-  $author_setting = (theme_get_setting('submitted_by_author_'. $submitted_by_content_type) == 1);
-  $author_separator = ($date_setting) ? $author_date_separator : $author_only_separator;
-  $date_author = ($date_setting) ? $date : '';
-  $date_author .= ($author_setting) ? $author_separator . $author : '';
-  $vars['submitted'] = $date_author;
+  if (!module_exists('submitted_by')) {
+    $date = t('Posted ') . format_date($vars['node']->created, 'medium');                 // Format date as small, medium, or large
+    $author = theme('username', $vars['node']);
+    $author_only_separator = t('Posted by ');
+    $author_date_separator = t(' by ');
+    $submitted_by_content_type = (theme_get_setting('submitted_by_enable_content_type') == 1) ? $vars['node']->type : 'default';
+    $date_setting = (theme_get_setting('submitted_by_date_'. $submitted_by_content_type) == 1);
+    $author_setting = (theme_get_setting('submitted_by_author_'. $submitted_by_content_type) == 1);
+    $author_separator = ($date_setting) ? $author_date_separator : $author_only_separator;
+    $date_author = ($date_setting) ? $date : '';
+    $date_author .= ($author_setting) ? $author_separator . $author : '';
+    $vars['submitted'] = $date_author;
+  }
 
   // Taxonomy
   $taxonomy_content_type = (theme_get_setting('taxonomy_enable_content_type') == 1) ? $vars['node']->type : 'default';
@@ -334,26 +342,28 @@ function phptemplate_preprocess_node(&$vars) {
   if ((module_exists('taxonomy')) && ($taxonomy_display == 'all' || ($taxonomy_display == 'only' && $vars['page']))) {
     $vocabularies = taxonomy_get_vocabularies($vars['node']->type);
     $output = '';
-    $vocab_delimiter = '';
+    $term_delimiter = ', ';
     foreach ($vocabularies as $vocabulary) {
-      if (theme_get_setting('taxonomy_vocab_display_'. $taxonomy_content_type .'_'. $vocabulary->vid) == 1) {
+      if (theme_get_setting('taxonomy_vocab_hide_'. $taxonomy_content_type .'_'. $vocabulary->vid) != 1) {
         $terms = taxonomy_node_get_terms_by_vocabulary($vars['node'], $vocabulary->vid);
         if ($terms) {
-          $output .= ($taxonomy_format == 'vocab') ? '<li class="vocab vocab-'. $vocabulary->vid .'"><span class="vocab-name">'. $vocabulary->name .':</span> <ul class="vocab-list">' : '';
-          $links = array();
-          foreach ($terms as $term) {        
-            $links[] = '<li class="vocab-term">'. l($term->name, taxonomy_term_path($term), array('attributes' => array('rel' => 'tag', 'title' => strip_tags($term->description)))) .'</li>';        
+          $term_items = '';
+          foreach ($terms as $term) {                        // Build vocabulary term items
+            $term_link = l($term->name, taxonomy_term_path($term), array('attributes' => array('rel' => 'tag', 'title' => strip_tags($term->description))));
+            $term_items .= '<li class="vocab-term">'. $term_link . $term_delimiter .'</li>';
           }
-          if ($taxonomy_format == 'list') {
-            $output .= $vocab_delimiter;    // Add comma between vocabularies
-            $vocab_delimiter = ', ';        // Use a comma delimiter after first displayed vocabulary
+          if ($taxonomy_format == 'vocab') {                 // Add vocabulary labels if separate
+            $output .= '<li class="vocab vocab-'. $vocabulary->vid .'"><span class="vocab-name">'. $vocabulary->name .':</span> <ul class="vocab-list">';
+            $output .= substr_replace($term_items, '</li>', -(strlen($term_delimiter) + 5)) .'</ul></li>';
           }
-          $output .= implode(", ", $links);
-          $output .= ($taxonomy_format == 'vocab') ? '</ul></li>' : '';
+          else {
+            $output .= $term_items;
+          }
         }
       }
     }
     if ($output != '') {
+      $output = ($taxonomy_format == 'list') ? substr_replace($output, '</li>', -(strlen($term_delimiter) + 5)) : $output;
       $output = '<ul class="taxonomy">'. $output .'</ul>';
     }
     $vars['terms'] = $output;
@@ -369,10 +379,10 @@ function phptemplate_preprocess_node(&$vars) {
       'title' => _themesettings_link(
       theme_get_setting('readmore_prefix_'. $node_content_type),
       theme_get_setting('readmore_suffix_'. $node_content_type),
-      theme_get_setting('readmore_'. $node_content_type),
+      t(theme_get_setting('readmore_'. $node_content_type)),
       'node/'. $vars['node']->nid,
       array(
-        'attributes' => array('title' => theme_get_setting('readmore_title_'. $node_content_type)), 
+        'attributes' => array('title' => t(theme_get_setting('readmore_title_'. $node_content_type))), 
         'query' => NULL, 'fragment' => NULL, 'absolute' => FALSE, 'html' => TRUE
         )
       ),
@@ -387,10 +397,10 @@ function phptemplate_preprocess_node(&$vars) {
         'title' => _themesettings_link(
         theme_get_setting('comment_add_prefix_'. $node_content_type),
         theme_get_setting('comment_add_suffix_'. $node_content_type),
-        theme_get_setting('comment_add_'. $node_content_type),
+        t(theme_get_setting('comment_add_'. $node_content_type)),
         "comment/reply/".$vars['node']->nid,
         array(
-          'attributes' => array('title' => theme_get_setting('comment_add_title_'. $node_content_type)), 
+          'attributes' => array('title' => t(theme_get_setting('comment_add_title_'. $node_content_type))), 
           'query' => NULL, 'fragment' => 'comment-form', 'absolute' => FALSE, 'html' => TRUE
           )
         ),
@@ -403,10 +413,10 @@ function phptemplate_preprocess_node(&$vars) {
         'title' => _themesettings_link(
         theme_get_setting('comment_node_prefix_'. $node_content_type),
         theme_get_setting('comment_node_suffix_'. $node_content_type),
-        theme_get_setting('comment_node_'. $node_content_type),
+        t(theme_get_setting('comment_node_'. $node_content_type)),
         "comment/reply/".$vars['node']->nid,
         array(
-          'attributes' => array('title' => theme_get_setting('comment_node_title_'. $node_content_type)), 
+          'attributes' => array('title' => t(theme_get_setting('comment_node_title_'. $node_content_type))), 
           'query' => NULL, 'fragment' => 'comment-form', 'absolute' => FALSE, 'html' => TRUE
           )
         ),
@@ -423,12 +433,12 @@ function phptemplate_preprocess_node(&$vars) {
         theme_get_setting('comment_new_suffix_'. $node_content_type),
         format_plural(
           comment_num_new($vars['node']->nid),
-          theme_get_setting('comment_new_singular_'. $node_content_type),
-          theme_get_setting('comment_new_plural_'. $node_content_type)
+          t(theme_get_setting('comment_new_singular_'. $node_content_type)),
+          t(theme_get_setting('comment_new_plural_'. $node_content_type))
         ),
         "node/".$vars['node']->nid,
         array(
-          'attributes' => array('title' => theme_get_setting('comment_new_title_'. $node_content_type)), 
+          'attributes' => array('title' => t(theme_get_setting('comment_new_title_'. $node_content_type))), 
           'query' => NULL, 'fragment' => 'new', 'absolute' => FALSE, 'html' => TRUE
         )
       ),
@@ -444,12 +454,12 @@ function phptemplate_preprocess_node(&$vars) {
         theme_get_setting('comment_suffix_'. $node_content_type),
         format_plural(
           comment_num_all($vars['node']->nid),
-          theme_get_setting('comment_singular_'. $node_content_type),
-          theme_get_setting('comment_plural_'. $node_content_type)
+          t(theme_get_setting('comment_singular_'. $node_content_type)),
+          t(theme_get_setting('comment_plural_'. $node_content_type))
         ),
         "node/".$vars['node']->nid,
         array(
-          'attributes' => array('title' => theme_get_setting('comment_title_'. $node_content_type)), 
+          'attributes' => array('title' => t(theme_get_setting('comment_title_'. $node_content_type))), 
           'query' => NULL, 'fragment' => 'comments', 'absolute' => FALSE, 'html' => TRUE
         )
       ),
