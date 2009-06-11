@@ -1,5 +1,5 @@
 <?php
-// $Id: theme.inc,v 1.72 2009/04/08 04:24:52 merlinofchaos Exp $
+// $Id: theme.inc,v 1.76 2009/06/02 20:28:52 merlinofchaos Exp $
 
 /**
  * @file theme.inc
@@ -24,6 +24,7 @@ function _views_theme_functions($hook, $view, $display = NULL) {
   if ($display) {
     $themes[] = $hook . '__' . $view->name . '__' . $display->id;
     $themes[] = $hook . '__' . $display->id;
+    $themes[] = $hook . '__' . preg_replace('/[^a-z0-9]/', '-', strtolower($view->tag));
     if ($display->id != $display->display_plugin) {
       $themes[] = $hook . '__' . $view->name . '__' . $display->display_plugin;
       $themes[] = $hook . '__' . $display->display_plugin;
@@ -106,7 +107,7 @@ function template_preprocess_views_view(&$vars) {
       ),
     );
 
-    drupal_alter('views_admin_links', $vars['admin_links_raw']);
+    drupal_alter('views_admin_links', $vars['admin_links_raw'], $view);
     $vars['admin_links'] = theme('links', $vars['admin_links_raw']);
     views_add_css('views');
   }
@@ -139,7 +140,8 @@ function template_preprocess_views_view(&$vars) {
             'view_args' => implode('/', $view->args),
             'view_path' => $_GET['q'],
             // Pass through URL to ensure we get e.g. language prefixes.
-            'view_base_path' => isset($view->display['page']) ? substr(url($view->display['page']->display_options['path']), strlen($base_path)) : '',
+//            'view_base_path' => isset($view->display['page']) ? substr(url($view->display['page']->display_options['path']), strlen($base_path)) : '',
+            'view_base_path' => $view->get_path(),
             'view_dom_id' => $vars['dom_id'],
             // To fit multiple views on a page, the programmer may have
             // overridden the display's pager_element.
@@ -436,7 +438,8 @@ function template_preprocess_views_view_unformatted(&$vars) {
   $vars['classes'] = array();
   // Set up striping values.
   foreach ($rows as $id => $row) {
-    $vars['classes'][$id] = 'views-row-' . ($id + 1);
+    $vars['classes'][$id] = 'views-row';
+    $vars['classes'][$id] .= ' views-row-' . ($id + 1);
     $vars['classes'][$id] .= ' views-row-' . ($id % 2 ? 'even' : 'odd');
     if ($id == 0) {
       $vars['classes'][$id] .= ' views-row-first';
