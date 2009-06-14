@@ -1,5 +1,5 @@
 <?php
-// $Id: content.admin.inc,v 1.181.2.64 2009/03/01 13:48:44 yched Exp $
+// $Id: content.admin.inc,v 1.181.2.68 2009/06/02 14:49:07 yched Exp $
 
 /**
  * @file
@@ -137,7 +137,7 @@ function content_field_overview_form(&$form_state, $type_name) {
   $field_types = _content_field_types();
 
   $extra = $type['extra'];
-  $groups = $group_options = array();
+  $groups = $group_options = $group_types = array();
   if (module_exists('fieldgroup')) {
     $groups = fieldgroup_groups($type['type']);
     $group_types = fieldgroup_types();
@@ -215,7 +215,7 @@ function content_field_overview_form(&$form_state, $type_name) {
   foreach ($extra as $name => $label) {
     $weight = $extra[$name]['weight'];
     $form[$name] = array(
-      'label' => array('#value' => t($extra[$name]['label'])),
+      'label' => array('#value' => check_plain(t($extra[$name]['label']))),
       'description' => array('#value' => isset($extra[$name]['description']) ? $extra[$name]['description'] : ''),
       'weight' => array('#type' => 'textfield', '#default_value' => $weight, '#size' => 3),
       'parent' => array('#type' => 'hidden', '#default_value' => ''),
@@ -305,7 +305,7 @@ function content_field_overview_form(&$form_state, $type_name) {
   }
 
   // Additional row : add new group.
-  if (module_exists('fieldgroup')) {
+  if (!empty($group_types)) {
     $weight++;
     $name = '_add_new_group';
     $form[$name] = array(
@@ -338,6 +338,14 @@ function content_field_overview_form(&$form_state, $type_name) {
       '#add_new' => TRUE,
       '#row_type' => 'add_new_group',
     );
+    if (count($group_types) > 1) {
+      $form[$name]['group_type'] = array(
+        '#type' => 'select',
+        '#description' => t('Type of group.'),
+        '#options' => $group_types,
+        '#default_value' => 'standard',
+      );
+    }
     $form['#group_rows'][] = $name;
   }
 
@@ -552,10 +560,9 @@ function content_display_overview_form(&$form_state, $type_name, $contexts_selec
   $field_types = _content_field_types();
   $fields = $type['fields'];
 
-  $groups = $group_options = array();
+  $groups = array();
   if (module_exists('fieldgroup')) {
     $groups = fieldgroup_groups($type['type']);
-    $group_options = _fieldgroup_groups_label($type['type']);
   }
   $contexts = content_build_modes($contexts_selector);
 
@@ -1544,7 +1551,16 @@ function content_alter_db($previous_field, $new_field) {
         $record['delta'] = $data['delta'];
       }
       foreach ($migrate_columns as $column => $attributes) {
-        $record[$column] = is_null($data[$column]) ? NULL : $data[$column];
+        if (is_null($data[$column])) {
+          $record[$column] = NULL;
+        }
+        else {
+          $record[$column] = $data[$column];
+          // Prevent double serializtion in drupal_write_record.
+          if (isset($attributes['serialize']) && $attributes['serialize']) {
+            $record[$column] = unserialize($record[$column]);
+          }
+        }
       }
       if (db_result(db_query('SELECT COUNT(*) FROM {'. $new_table .
       '} WHERE vid = %d AND nid = %d', $data['vid'], $data['nid']))) {
