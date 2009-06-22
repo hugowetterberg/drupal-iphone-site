@@ -1,5 +1,5 @@
 <?php
-// $Id: services.module,v 1.8.2.73 2008/09/06 23:17:30 marcingy Exp $
+// $Id: services.module,v 1.8.2.91 2009/06/10 17:17:59 marcingy Exp $
 /**
  * @author Services Dev Team
  * @file
@@ -73,8 +73,7 @@ function services_menu() {
     'title'             => 'Keys',
     'description'       => 'Manage application access to site services.',
     'page callback'     => 'services_admin_keys_list',
-    'access callback'   => 'variable_get',
-    'access arguments'  => array('services_use_key', TRUE),
+    'access callback'   => 'services_auth_access',
     'type'              => MENU_LOCAL_TASK,
     'file'              => 'services_admin_keys.inc',
   );
@@ -97,16 +96,14 @@ function services_menu() {
   $items['admin/build/services/keys/list'] = array(
     'title'             => 'List',
     'type'              => MENU_DEFAULT_LOCAL_TASK,
-    'access callback'   => 'variable_get',
-    'access arguments'  => array('services_use_key', TRUE),
+    'access callback'   => 'services_auth_access',
     'weight'            => -10,
   );
   $items['admin/build/services/keys/add'] = array(
     'title'             => 'Create key',
     'page callback'     => 'drupal_get_form',
     'page arguments'    => array('services_admin_keys_form'),
-    'access callback'   => 'variable_get',
-    'access arguments'  => array('services_use_key', TRUE),
+    'access callback'   => 'services_auth_access',
     'type'              => MENU_LOCAL_TASK,
     'file'              => 'services_admin_keys.inc',
   );
@@ -142,6 +139,15 @@ function services_menu() {
   );
 
   return $items;
+}
+
+/**
+ * This function is called to determine whether the current user has 
+ * access to a keys configuration.
+ * 
+ */
+function services_auth_access() {
+  return user_access('administer services') && variable_get('services_use_key', FALSE);
 }
 
 /**

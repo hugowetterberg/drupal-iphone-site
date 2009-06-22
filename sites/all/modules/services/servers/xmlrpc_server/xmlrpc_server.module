@@ -1,5 +1,5 @@
 <?php
-// $Id: xmlrpc_server.module,v 1.6.2.12 2008/09/06 04:13:07 marcingy Exp $
+// $Id: xmlrpc_server.module,v 1.6.2.16 2009/06/10 17:12:18 marcingy Exp $
 /**
  * @author Services Dev Team
  * @file

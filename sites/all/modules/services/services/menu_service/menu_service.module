@@ -1,5 +1,5 @@
 <?php
-// $Id: menu_service.module,v 1.1.2.5 2008/09/06 04:13:08 marcingy Exp $
+// $Id: menu_service.module,v 1.1.2.9 2009/06/10 17:12:42 marcingy Exp $
 /**
  * @file
  * Adds a service type for a menu

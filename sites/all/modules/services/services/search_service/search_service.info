@@ -1,13 +1,13 @@
-; $Id: search_service.info,v 1.1.4.3 2008/07/13 04:32:37 snelson Exp $
+; $Id: search_service.info,v 1.1.4.5 2009/06/10 17:12:43 marcingy Exp $
 name = Search Service
 description = Provides a search service.
 package = Services - services
 dependencies[] = services 
 dependencies[] = search
 core = 6.x
-; Information added by drupal.org packaging script on 2008-09-06
-version = "6.x-0.13"
+; Information added by drupal.org packaging script on 2009-06-10
+version = "6.x-0.14"
 core = "6.x"
 project = "services"
-datestamp = "1220743239"
+datestamp = "1244654779"
 

@@ -1,5 +1,5 @@
 <?php
-// $Id: search_service.inc,v 1.1.2.2 2008/09/01 14:57:48 brmassa Exp $
+// $Id: search_service.inc,v 1.1.2.10 2009/06/10 17:12:43 marcingy Exp $
 /**
  * @author Services Dev Team
  * @file

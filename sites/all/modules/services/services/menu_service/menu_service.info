@@ -1,12 +1,12 @@
-; $Id: menu_service.info,v 1.1.2.1 2008/09/01 12:48:33 brmassa Exp $
+; $Id: menu_service.info,v 1.1.2.3 2009/06/10 17:12:42 marcingy Exp $
 core            = "6.x"
 dependencies[]  = services
 description     = "Provides a menu service."
 name            = "Menu Service"
 package         = "Services - services"
-; Information added by drupal.org packaging script on 2008-09-06
-version = "6.x-0.13"
+; Information added by drupal.org packaging script on 2009-06-10
+version = "6.x-0.14"
 core = "6.x"
 project = "services"
-datestamp = "1220743239"
+datestamp = "1244654779"
 

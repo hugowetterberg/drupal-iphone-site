@@ -1,5 +1,5 @@
 <?php
-// $Id: services.install,v 1.3.2.17 2008/09/06 23:17:30 marcingy Exp $
+// $Id: services.install,v 1.3.2.24 2009/06/10 17:17:59 marcingy Exp $
 /**
  * @author Services Dev Team
  * @file
@@ -122,5 +122,13 @@ function services_update_6001() {
   );
   $update = array();
   db_create_table($update, 'services_timestamp_nonce', $schema['services_timestamp_nonce']);
+  return $update;
+}
+
+/*
+ * Update to ensure that new menu options are loaded.
+ */
+function services_update_6002() {
+  $update = array();
   return $update;
 }
