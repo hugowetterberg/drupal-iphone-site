@@ -1,5 +1,5 @@
 <?php
-// $Id: coder_style.inc,v 1.16.2.18 2008/08/28 14:31:19 douggreen Exp $
+// $Id: coder_style.inc,v 1.16.2.18.2.8 2009/05/27 00:08:45 snpower Exp $
 
 /**
  * @file
@@ -45,11 +45,13 @@ function coder_style_reviews() {
       '#value' => '(\S=>|=>\S)',
       '#warning' => 'Arrays should be formatted with a space separating each element and assignment operator',
     ),
+    /* Commenting out for string concatentation style change.
     array(
       '#type' => 'regex',
       '#value' => '(\.\s\'\'|\'\'\s\.|\.\s""|\.\s"")',
       '#warning' => 'string concatenation should be formatted without a space separating the operators (dot .) and a quote',
     ),
+    */
     array(
       '#type' => 'regex',
       '#value' => '([^\(\'\"\s0-9]\.|\.[^\)\'\"\=\s0-9])',
@@ -70,7 +72,7 @@ function coder_style_reviews() {
     array(
       '#type' => 'callback',
       '#source' => 'all',
-      '#value' => '_coder_style_callback',
+      '#value' => '_coder_style_closing_php_callback',
       '#warning' => 'the final ?> should be omitted from all code files',
     ),
     array(
@@ -92,12 +94,14 @@ function coder_style_reviews() {
       '#type' => 'regex',
       '#value' => '(?-i)(function\s+|\$)(([a-z]+[A-Z]+([a-z]*[A-Z]*)*)|([A-Z]+[a-z]+([A-Z]*[a-z]*)*))',
       '#warning' => 'do not use mixed case (camelCase), use lower case and _',
+      '#class-not' => '.+',
+      '#filename-not' => array('test'), // Add this line too for patch files, where we don't have have class context.
     ),
     array(
       '#type' => 'regex',
       '#value' => '\s(stdclass)\s*\(',
       '#not' => '^(?-i)stdClass$',
-      '#warning' => 'use stdClass caseCapitalization, it\'s the one exception to the mixed case style standard',
+      '#warning' => "use stdClass caseCapitalization, it's the one exception to the mixed case style standard",
     ),
     array(
       '#type' => 'regex',
@@ -144,6 +148,11 @@ function coder_style_reviews() {
       '#case-sensitive' => TRUE,
       '#warning' => 'Use uppercase for PHP constants, e.g. NULL, TRUE, FALSE',
     ),
+    array(
+      '#type' => 'regex',
+      '#value' => '\s+else\s+if\s*\(',
+      '#warning' => 'Use "elseif" in place of "else if"',
+    ),
   );
   $review = array(
     '#title' => t('Drupal Coding Standards'),
@@ -157,9 +166,12 @@ function coder_style_reviews() {
 /**
  * Define the rule callbacks for style.
  */
-function _coder_style_callback(&$coder_args, $review, $rule, $lines, &$results) {
+function _coder_style_closing_php_callback(&$coder_args, $review, $rule, $lines, &$results) {
+  if (empty($lines)) {
+    return;
+  }
   for ($lineno = -1; $last = array_slice($lines, $lineno); $lineno --) {
-    $lastline = $last[0];
+    $lastline = $last[0][0];
     if (preg_match('/\S/', $lastline)) {
       break;
     }

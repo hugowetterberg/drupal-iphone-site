@@ -1,5 +1,5 @@
 <?php
-// $Id: coder_6x.inc,v 1.17.2.53 2008/08/28 14:31:19 douggreen Exp $
+// $Id: coder_6x.inc,v 1.17.2.68.2.2 2008/10/01 20:10:49 snpower Exp $
 
 /**
  * @file
@@ -61,12 +61,12 @@ function coder_6x_reviews() {
     ),
     array(
       '#type' => 'regex',
-      '#value' => '(taxonomy_node_get_terms|taxonomy_node_get_terms_by_vocabulary|taxonomy_node_delete_revision)\s*\(\$(nid|node->nid)',
+      '#value' => '(taxonomy_node_get_terms|taxonomy_node_get_terms_by_vocabulary|taxonomy_node_save|taxonomy_node_delete)\s*\(\s*(\d+|\$(nid|node->nid))',
       '#warning_callback' => '_coder_6x_taxonomy_node_get_terms_warning',
     ),
     array(
       '#type' => 'regex',
-      '#value' => '[\s\(]strtr\s*\(format_plural\s*\(',
+      '#value' => '[\s\(]strtr\s*\(\s*format_plural\s*\(',
       '#warning_callback' => '_coder_6x_format_plural_warning',
     ),
     array(
@@ -76,13 +76,18 @@ function coder_6x_reviews() {
     ),
     array(
       '#type' => 'regex',
-      '#value' => '[\s\(]cache_set\s*\(\s*[^,]+,\s*\'',
+      '#value' => '[\s\(]cache_set\s*\(\s*[^,]+,\s*([\'"]|\$table)',
       '#warning_callback' => '_coder_6x_cache_set_warning',
     ),
     array(
       '#type' => 'regex',
+      '#value' => '[\s\(]cache_set\s*\(\s*[^\)]+,\s*serialize\s*\(\s*',
+      '#warning_callback' => '_coder_6x_cache_serialize_warning',
+    ),
+    array(
+      '#type' => 'regex',
       '#value' => '[\s\(]unserialize\s*\(\s*cache_get\s*\(',
-      '#warning_callback' => '_coder_6x_cache_get_warning',
+      '#warning_callback' => '_coder_6x_cache_serialize_warning',
     ),
     array(
       '#type' => 'regex',
@@ -97,12 +102,13 @@ function coder_6x_reviews() {
     ),
     array(
       '#type' => 'regex',
-      '#value' => '[\s\(]file_save_upload\s*\([^,]+\s*,\s*(\$dest|\$destination|\'\')\s*',
-      '#not' => 'function file_save_upload',
+      '#value' => '[\s\(]file_save_upload\s*\([^,]+\s*,\s*(\$dest|\$destination|\'\'|"")\s*',
+      '#never' => 'function file_save_upload',
       '#warning_callback' => '_coder_6x_file_save_upload_warning',
     ),
     array(
       '#type' => 'regex',
+      '#source' => 'allphp',
       '#value' => '\{file_revisions\}',
       '#warning' => 'The {'.'file_revisions} table is now {upload}',
     ),
@@ -128,12 +134,24 @@ function coder_6x_reviews() {
     array(
       '#type' => 'regex',
       '#source' => 'allphp',
+      '#function' => '_elements$',
+      '#value' => '\s*[\'"]#validate[\'"]\s*=>\s*',
+      '#warning_callback' => '_coder_6x_formapi_element_validate_warning',
+    ),
+    array(
+      '#type' => 'regex',
+      '#source' => 'allphp',
       '#value' => '(\$form\s*\[\s*[\'"]#multistep[\'"]|[\'"]#multistep[\'"]\s*=>)',
       '#warning' => '#multistep is gone, use $form_state instead',
     ),
     array(
       '#type' => 'regex',
       '#value' => '_(validate|submit)\s*\(\s*\$form_id',
+      '#warning_callback' => '_coder_6x_form_validate_and_submit_warning',
+    ),
+    array(
+      '#type' => 'regex',
+      '#value' => '_(validate|submit)\s*\(\s*\$form\s*,\s*\$form_state\s*\)[^;]',
       '#warning_callback' => '_coder_6x_form_validate_and_submit_warning',
     ),
     array(
@@ -188,18 +206,6 @@ function coder_6x_reviews() {
     ),
     array(
       '#type' => 'regex',
-      '#function' => '_confirm_submit$',
-      '#value' => 'return [\'"]',
-      '#warning' => 'in confirm_submit, use $form_state[\'redirect\'] instead of return (remember to change function prototype to use &$form_state) ',
-    ),
-    array(
-      '#type' => 'regex',
-      '#function' => '_confirm_submit$',
-      '#value' => 'return [\'"]',
-      '#warning' => 'in confirm_form, use $form_state[\'redirect\'] instead of return (remember to change function prototype to use &$form_state) ',
-    ),
-    array(
-      '#type' => 'regex',
       '#source' => 'allphp',
       '#function' => '_(un)?install$|_update_[0-9]+$',
       '#value' => '\$GLOBALS\[[\'"]?db_type[\'"]?\]',
@@ -210,6 +216,7 @@ function coder_6x_reviews() {
       '#source' => 'allphp',
       '#function' => '_submit$|_validate$',
       '#value' => '\$form(_values)?\[[\'"][A-Za-z]',
+      '#never' => '[\s\(]form_error\(',
       '#warning' => 'use $form_state[\'values\'] instead, which is where the values are stored after a submit',
     ),
     array(
@@ -236,7 +243,13 @@ function coder_6x_reviews() {
     ),
     array(
       '#type' => 'regex',
-      '#value' => 'variable_(get|set|del)\(\s*\'comment_form_location\'\s*(,|\))',
+      '#value' => 'variable_(get|set|del)\(\s*[\'"]comment_form_location[\'"]\s*(,|\))',
+      '#source' => 'allphp',
+      '#warning_callback' => '_coder_6x_comment_form_location_warning',
+    ),
+    array(
+      '#type' => 'regex',
+      '#value' => '=\s*[\'"]comment_form_location[\'"]\s*;',
       '#source' => 'allphp',
       '#warning_callback' => '_coder_6x_comment_form_location_warning',
     ),
@@ -249,13 +262,7 @@ function coder_6x_reviews() {
     array(
       '#type' => 'regex',
       '#value' => '[\s\(]node_access_rebuild\s*\(',
-      '#function' => '_enable$',
-      '#warning_callback' => '_coder_6x_node_access_rebuild_warning',
-    ),
-    array(
-      '#type' => 'regex',
-      '#value' => '[\s\(]node_access_rebuild\s*\(',
-      '#function' => '_disable$',
+      '#function' => '_disable$|_enable$',
       '#warning_callback' => '_coder_6x_node_access_rebuild_warning',
     ),
     array(
@@ -272,7 +279,8 @@ function coder_6x_reviews() {
     ),
     array(
       '#type' => 'regex',
-      '#value' => '\[\'#DANGEROUS_SKIP_CHECK\'\]',
+      '#source' => 'allphp',
+      '#value' => '(\$form\s*\[\s*[\'"]#DANGEROUS_SKIP_CHECK[\'"]|[\'"]#DANGEROUS_SKIP_CHECK[\'"]\s*=>)',
       '#warning_callback' => '_coder_6x_dangerous_skip_check_warning',
     ),
     array(
@@ -405,7 +413,7 @@ function coder_6x_reviews() {
     // Book module rules -  end.
     array(
       '#type' => 'regex',
-      '#value' => '\s[\'"]#value[\'"]\s*=>\s*t\s*\(\s*[\'"]Submit[\'"]\s*\)',
+      '#value' => '\s*[\'"]#value[\'"]\s*=>\s*t\s*\(\s*[\'"]Submit[\'"]\s*\)',
       '#source' => 'allphp',
       '#warning' => 'When labelling buttons, make it clear what the button does, "Submit" is too generic.',
       '#severity' => 'minor',
@@ -425,7 +433,7 @@ function coder_6x_reviews() {
     ),
     array(
       '#type' => 'regex',
-      '#value' => '^(create\s+table\s+|drop\s+table\s+)',
+      '#value' => '^(create\s+table\s+|alter\s+table\s+|drop\s+table\s+)',
       '#source' => 'quote',
       '#warning_callback' => '_coder_6x_drupal_install_schema_warning',
     ),
@@ -458,7 +466,17 @@ function coder_6x_reviews() {
       '#value' => '\'title\'\s*=>\s*t\(|\'description\'\s*=>\s*t\(',
       '#warning_callback' => '_coder_6x_menu_localization_warning',
     ),
-
+    array(
+      '#type' => 'regex',
+      '#value' => 'function\s+[a-z0-9_]+_(forms)\s*\(\s*[^,]+\)',
+      '#warning_callback' => '_coder_6x_hook_forms_warning',
+    ),
+    array(
+      '#type' => 'regex',
+      '#source' => 'allphp',
+      '#value' => '\$form\s*\[\s*[\'"]#pre_render[\'"]\s*\]\[\s*[\'"].*[\'"]\s*\]\s*=',
+      '#warning_callback' => '_coder_6x_formapi_prerender_warning',
+    ),
   );
   $review = array(
     '#title' => t('Converting 5.x modules to 6.x'),
@@ -480,14 +498,14 @@ function _coder_6x_callback(&$coder_args, $review, $rule, $lines, &$results) {
     $theme = FALSE;
     $hook_theme = FALSE;
     foreach ($lines as $lineno => $line) {
-      if (preg_match('/function theme_/', $line)) {
+      if (preg_match('/function theme_/', $line[0])) {
         if (!$theme) {
           $theme = TRUE;
-          $theme_line = $line;
+          $theme_line = $line[0];
           $theme_lineno = $lineno;
         }
       }
-      if (preg_match('/function \w+_theme\(/', $line)) {
+      if (preg_match('/function \w+_theme\(/', $line[0])) {
         $hook_theme = TRUE;
       }
     }
@@ -642,10 +660,11 @@ function _coder_6x_url_l_warning() {
 
 function _coder_6x_taxonomy_node_get_terms_warning() {
   return array(
-    '#warning' => t('!taxonomy_node_get_terms(), !taxonomy_node_get_terms_by_vocabulary(), and !taxonomy_node_delete() now take a full $node object, not just a nid (node id).',
+    '#warning' => t('!taxonomy_node_get_terms(), !taxonomy_node_get_terms_by_vocabulary(), !taxonomy_node_save and !taxonomy_node_delete() now take a full $node object, not just a nid (node id).',
       array(
         '!taxonomy_node_get_terms' => theme('drupalapi', 'taxonomy_node_get_terms', '6'),
         '!taxonomy_node_get_terms_by_vocabulary' => theme('drupalapi', 'taxonomy_node_get_terms_by_vocabulary', '6'),
+        '!taxonomy_node_save' => theme('drupalapi', 'taxonomy_node_save', '6'),
         '!taxonomy_node_delete' => theme('drupalapi', 'taxonomy_node_delete', '6'),
       )
     ),
@@ -688,7 +707,7 @@ function _coder_6x_cache_set_warning() {
   );
 }
 
-function _coder_6x_cache_get_warning() {
+function _coder_6x_cache_serialize_warning() {
   return array(
     '#warning' => t('!cache_set() and !cache_get() automatically (un)serialize complex data types',
       array(
@@ -751,6 +770,13 @@ function _coder_6x_form_validate_and_submit_warning() {
 function _coder_6x_form_prerender_warning() {
   return array(
     '#warning' => t('The parameters for form prerender functions have changed to $form.'),
+    '#link' => 'http://drupal.org/node/144132#pre-render',
+  );
+}
+
+function _coder_6x_formapi_prerender_warning() {
+  return array(
+    '#warning' => t('The form API for the #pre_render property has changed structure.'),
     '#link' => 'http://drupal.org/node/144132#pre-render',
   );
 }
@@ -1216,7 +1242,7 @@ function _coder_6x_drupal_mail_warning() {
 
 function _coder_6x_drupal_install_schema_warning() {
   return array(
-    '#warning' => t('Use the new Schema API to create and drop tables rather than db_query()'),
+    '#warning' => t('Use the new Schema API to create, alter and drop tables rather than db_query()'),
     '#link' => 'http://drupal.org/node/146862',
   );
 }
@@ -1256,7 +1282,7 @@ function _coder_6x_menu_get_object_warning() {
 
 function _coder_6x_form_submit_warning() {
   return array(
-    '#warning' => t('Submit handlers use $form_state rather than returning urls'),
+    '#warning' => t('Submit handlers use $form_state[\'redirect\'] rather than returning urls'),
     '#link' => 'http://drupal.org/node/144132#redirect',
   );
 }
@@ -1266,5 +1292,16 @@ function _coder_6x_menu_localization_warning() {
   return array(
     '#warning' => t('Menu item titles and descriptions should now no longer be wrapped in t() calls.'),
     '#link' => 'http://drupal.org/node/140311',
+  );
+}
+
+function _coder_6x_hook_forms_warning() {
+  return array(
+    '#warning' => t('The arguments to !hook_forms() have changed',
+      array(
+        '!hook_forms' => theme('drupalapi', 'hook_forms', '6'),
+      )
+    ),
+    '#link' => 'http://drupal.org/node/144132#hook-forms',
   );
 }

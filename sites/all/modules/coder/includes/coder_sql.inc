@@ -1,5 +1,5 @@
 <?php
-// $Id: coder_sql.inc,v 1.1.4.10 2008/05/13 18:03:19 snpower Exp $
+// $Id: coder_sql.inc,v 1.1.4.12.2.1 2008/09/29 11:38:21 douggreen Exp $
 
 /**
  * @file
@@ -43,9 +43,17 @@ function coder_sql_reviews() {
     ),
     array(
       '#type' => 'regex',
-      '#value' => '^(select\s+.*\s+from\s+'. $table .'\s+.+?=\s*`|insert\s+into\s+'. $table .'\s+.+?VALUES\s*(\(\s*`|\(.*?,\s*`)|update\s+'. $table .'\s+set\s+.+?=\s*`|delete\s+from\s'. $table .'\s+.+?=\s*`)',
+      '#value' => '^(select\s+.*\s+from\s+'. $table .'\s+.+?=\s*`|insert\s+into\s+'. $table .'\s+.*?VALUES\s*(\(\s*`|\(.*?,\s*`)|update\s+'. $table .'\s+set\s+.*?=\s*`|delete\s+from\s'. $table .'\s+.*?=\s*`)',
       '#source' => 'quote',
-      '#warning' => 'Don\'t use back ticks to quote values as it is not compliant with ANSI SQL'
+      '#warning' => "Don't use back ticks to quote values as it is not compliant with ANSI SQL"
+    ),
+    array(
+      '#type' => 'regex',
+      '#filename' => array('install'),
+      '#function' => '_update_[0-9]+$',
+      '#source' => 'allphp',
+      '#value' => 'db_query\s*\(\s*[\'"](UPDATE|INSERT|DELETE)\s+',
+      '#warning_callback' => '_coder_sql_db_query_in_install',
     ),
   );
   $review = array(
@@ -68,5 +76,17 @@ function _coder_sql_db_query_range_warning() {
       )
     ),
     '#link' => 'http://drupal.org/node/1395',
+  );
+}
+
+function _coder_sql_db_query_in_install() {
+  return array(
+    '#warning' => t('Use !update_sql() instead of !db_query() in !hook_update_N()',
+      array(
+        '!update_sql' => theme('drupalapi', 'update_sql'),
+        '!db_query' => theme('drupalapi', 'db_query'),
+        '!hook_update_N' => theme('drupalapi', 'hook_update_N'),
+      )
+    ),
   );
 }

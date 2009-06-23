@@ -1,5 +1,5 @@
 <?php
-// $Id: coder.drush.inc,v 1.1.4.10 2008/08/20 16:10:16 snpower Exp $
+// $Id: coder.drush.inc,v 1.1.4.11.2.2 2009/05/15 15:23:57 snpower Exp $
 
 /**
  * Implementation of hook_drush_command().
@@ -7,7 +7,7 @@
 function coder_drush_command() {
   $items['coder'] = array(
     'callback' => 'coder_drush_review',
-    'description' => t('Run code reviews'),
+    'description' => dt('Run code reviews'),
   );
   return $items;
 }
@@ -41,6 +41,7 @@ function coder_drush_review() {
           break;
         case 'active':
         case 'core':
+        case 'contrib':
         case 'all':
         case 'default':
           $settings = _coder_get_default_settings($arg);
@@ -78,7 +79,7 @@ function coder_drush_review() {
     }
     $output = array();
     if (isset($severity_name)) {
-      $output[] = t('Severity @severity_name', array('@severity_name' => $severity_name));
+      $output[] = dt('Severity @severity_name', array('@severity_name' => $severity_name));
       $settings['coder_severity'] = _coder_severity($severity_name);
     }
     if (count($reviews)) {
@@ -113,7 +114,7 @@ function _coder_drush_is_patch_arg(&$arg) {
 }
 
 function theme_drush_coder($name, $filename, $results) {
-  if (!_coder_drush_is_option('summary') && !empty($results) && (count($results) > 1 || !_coder_drush_is_option('no-empty'))) {
+  if (!_coder_drush_is_option('summary') && !empty($results) && ((count($results) && !isset($results[0])) || !_coder_drush_is_option('no-empty'))) {
     drush_print($filename .":\n ". implode("\n ", $results) ."\n");
   }
 }
@@ -126,7 +127,7 @@ function theme_drush_coder_warning($warning, $severity_name, $lineno = 0, $line 
 
 function coder_print_drush_messages() {
   foreach (drupal_get_messages() as $type => $messages) {
-    drush_print(t(ucfirst($type) .' Messages') .":\n ". _coder_drush_output(implode("\n ", $messages)) ."\n");
+    drush_print(dt(ucfirst($type) .' Messages') .":\n ". _coder_drush_output(implode("\n ", $messages)) ."\n");
   }
 }
 

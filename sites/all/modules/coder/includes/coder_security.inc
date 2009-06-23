@@ -1,5 +1,5 @@
 <?php
-// $Id: coder_security.inc,v 1.15.2.12 2008/07/20 14:36:38 snpower Exp $
+// $Id: coder_security.inc,v 1.15.2.17.2.1 2008/09/29 13:12:32 douggreen Exp $
 
 /**
  * @file
@@ -16,7 +16,9 @@ function coder_security_reviews() {
   $rules = array(
     array(
       '#type' => 'regex',
-      '#value' => 'l\(check_plain\(',
+      '#value' => 'l\(check_plain\(.*',
+      '#never' => '[\'"]html[\'"]\s*=>\s*(TRUE|1)',
+      '#source' => 'allphp',
       '#warning_callback' => '_coder_security_l_check_plain_warning',
     ),
 /*  array(
@@ -36,15 +38,17 @@ function coder_security_reviews() {
     ),
     array(
       '#type' => 'regex',
-      '#value' => '(db_query|db_query_range)\s*\(\s*"(select\s+.*\s+from\s+'. $table .'|insert\s+into\s+'. $table .'|update\s+'. $table .'\s+set|delete\s+from\s'. $table .')\s+[^"]*\$[^\'].*".*\)',
-      '#source' => 'allphp',
+      '#value' => '^(select\s+.*\s+from\s+'. $table .'|insert\s+into\s+'. $table .'|update\s+'. $table .'\s+set|delete\s+from\s+'. $table .')\s+.*\$[a-z0-9_]+',
+      '#not' => '\$placeholder',
+      '#never' => '[\s\(]update_sql\(',
+      '#source' => 'quote',
       '#warning_callback' => '_coder_security_sql_var_warning',
     ),
     array(
       '#type' => 'regex',
-      '#value' => '^(select\s+.*\s+from\s+'. $table .'|insert\s+into\s+'. $table .'|update\s+'. $table .'\s+set|delete\s+from\s'. $table .')\s+.*?(\s+|\(|=|,)\%s',
+      '#value' => '^(select\s+.*\s+from\s+'. $table .'|insert\s+into\s+'. $table .'|update\s+'. $table .'\s+set|delete\s+from\s'. $table .')\s+[^\']*?(\s+|\(|=|,)\%s',
       '#source' => 'quote',
-      '#warning_callback' => '_coder_6x_unquoted_sql_placeholders',
+      '#warning' => 'SQL query handling data in a potentially insecure way by using the %%s placeholder without wrapping it in single quotes.  This is a potential source of SQL injection attacks when the value can come from user data.',
     ),
   );
   $review = array(
@@ -99,11 +103,5 @@ function _coder_security_sql_var_warning() {
     ),
     '#link' => 'http://drupal.org/writing-secure-code',
     '#description' => t('Use %s and %d variable substitution.  When inserting an array of values use <code>$placeholders = implode(\',\', array_fill(0, count($args), "\'%s\'"));</code>'),
-  );
-}
-
-function _coder_6x_unquoted_sql_placeholders() {
-  return array(
-    '#warning' => t('SQL query handling data in a potentially insecure way by using the %s placeholder without wrapping it in single quotes.  This is a potential source of SQL injection attacks when the value can come from user data.'),
   );
 }

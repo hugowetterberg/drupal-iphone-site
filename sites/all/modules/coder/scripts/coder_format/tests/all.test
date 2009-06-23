@@ -1,5 +1,5 @@
 <?php
-// $Id: all.test,v 1.1.2.3 2008/08/19 21:59:45 douggreen Exp $
+// $Id: all.test,v 1.1.2.4 2008/09/23 14:35:59 douggreen Exp $
 
 // Load PEAR Text_Diff library.
 set_include_path(get_include_path() . PATH_SEPARATOR . drupal_get_path('module', 'coder') .'/scripts/coder_format/tests');
@@ -18,10 +18,10 @@ if (is_dir('Text/Diff')) {
  * Coder Format tests.
  */
 class CoderFormatTest extends CoderTestCase {
-  function get_info() {
+  function getInfo() {
     return array(
       'name'  => 'Full coder_format tests',
-      'desc'  => t('Tests all of the functionality of the coder_format script.'),
+      'description'  => t('Tests all of the functionality of the coder_format script.'),
       'group' => 'Coder Format Tests',
     );
   }
