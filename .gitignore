@@ -1,2 +1,4 @@
 .DS_Store
+sites/default/settings.php
 sites/.gitignore
+
