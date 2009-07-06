@@ -1,24 +1,21 @@
-# $Id: modules-blog.po,v 1.3.2.5 2008/07/13 23:23:27 zoo33 Exp $
-#
-# Swedish translation of Drupal (installer)
-# Copyright 2008 frjo <fredrik@combonet.se>
+# Swedish translation of drupal (6.10)
+# Copyright (c) 2009 by the Swedish translation team
 # Generated from files:
 #  blog.pages.inc,v 1.6.2.1 2008/02/08 21:15:12 goba
-#  blog.module,v 1.297 2008/01/09 09:51:34 goba
+#  blog.module,v 1.297.2.4 2009/02/25 12:21:53 goba
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Drupal 6\n"
-"POT-Creation-Date: 2008-02-15 13:50+0100\n"
-"PO-Revision-Date: 2007-01-22 18:00+0100\n"
-"Last-Translator: frjo <fredrik@combonet.se>\n"
-"Language-Team: Swedish (http://drupal.org/project/sv)\n"
+"Project-Id-Version: drupal (6.10)\n"
+"POT-Creation-Date: 2009-03-12 17:50+0100\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-#: modules/blog/blog.pages.inc:15 modules/blog/blog.module:108
+#: modules/blog/blog.pages.inc:15
 msgid "@name's blog"
 msgstr "@names blogg"
 
@@ -66,15 +63,15 @@ msgstr ""
 "Ett <em>blogginlägg</em> är ett enskild inlägg i onlinedagbok, eller "
 "<em>blogg</em>."
 
-#: modules/blog/blog.module:52
+#: modules/blog/blog.module:53
 msgid "View recent blog entries"
 msgstr "Läs de senaste blogginläggen"
 
-#: modules/blog/blog.module:52;124
-msgid "Read @username's latest blog entries."
-msgstr "Läs @usernames senaste blogginlägg."
+#: modules/blog/blog.module:53,126
+msgid "Read !username's latest blog entries."
+msgstr "Läs senaste blogginläggen från !username."
 
-#: modules/blog/blog.module:64
+#: modules/blog/blog.module:65
 msgid ""
 "The blog module allows registered users to maintain an online journal, or "
 "<em>blog</em>. Blogs are made up of individual <em>blog entries</em>, and "
@@ -85,7 +82,7 @@ msgstr ""
 "<em>blogg</em>. Bloggar består av enskilda blogginlägg som normalt visas med "
 "de senaste inläggen överst."
 
-#: modules/blog/blog.module:65
+#: modules/blog/blog.module:66
 msgid ""
 "There is an (optional) <em>Blogs</em> menu item added to the Navigation "
 "menu, which displays all blogs available on your site, and a <em>My blog</"
@@ -98,7 +95,7 @@ msgstr ""
 "em> som visas aktuell användares blogginlägg. Menyvalet <em>Blogginlägg</em> "
 "under <em>Skapa innehåll</em> används för att skapa nya blogginlägg."
 
-#: modules/blog/blog.module:66
+#: modules/blog/blog.module:67
 msgid ""
 "Each blog entry is displayed with an automatic link to other blogs created "
 "by the same user. By default, blog entries have comments enabled and are "
@@ -112,7 +109,7 @@ msgstr ""
 "också blocket <em>Senaste bloggarna</em> som kan aktiveras på sidan för <a "
 "href=\"@blocks\">blockadministration</a>."
 
-#: modules/blog/blog.module:67
+#: modules/blog/blog.module:68
 msgid ""
 "When using the aggregator module an automatic <em>blog it</em> icon is "
 "displayed next to the items in a feed's <em>latest items</em> block. "
@@ -136,25 +133,29 @@ msgstr ""
 "\">lägg till och konfigurera</a> ett flöde från en annan webbplats och <a "
 "href=\"@blocks\">placera</a> flödets <em>senaste inlägg</em> block."
 
-#: modules/blog/blog.module:68
+#: modules/blog/blog.module:69
 msgid ""
 "For more information, see the online handbook entry for <a href=\"@blog"
 "\">Blog module</a>."
 msgstr "Läs mer om <a href=\"@blog\">modulen Blog</a> i onlinehandboken."
 
-#: modules/blog/blog.module:108;137;152;160
+#: modules/blog/blog.module:109,139,154,163
 msgid "Blogs"
 msgstr "Bloggar"
 
-#: modules/blog/blog.module:122
-msgid "@username's blog"
-msgstr "@usernames blogg"
+#: modules/blog/blog.module:109
+msgid "!name's blog"
+msgstr "!names blogg"
 
-#: modules/blog/blog.module:178;187
+#: modules/blog/blog.module:124
+msgid "!username's blog"
+msgstr "!usernames blogg"
+
+#: modules/blog/blog.module:198,207
 msgid "Recent blog posts"
 msgstr "Senaste bloggarna"
 
-#: modules/blog/blog.module:186
+#: modules/blog/blog.module:206
 msgid "Read the latest blog entries."
 msgstr "Läs de senaste bloggarna."
 
@@ -178,7 +179,7 @@ msgstr "redigera egna blogginlägg"
 msgid "edit any blog entry"
 msgstr "redigera alla blogginlägg"
 
-#: modules/blog/blog.module:144
+#: modules/blog/blog.module:146
 msgid "My blog"
 msgstr "Min blogg"
 

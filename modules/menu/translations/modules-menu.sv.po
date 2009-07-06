@@ -1,31 +1,24 @@
-# $Id: modules-menu.po,v 1.2.2.9 2008/09/15 00:15:19 zoo33 Exp $
-#
-# Swedish translation of Drupal (installer)
-# Copyright 2008 Magnus Gunnarsson <seals@passagen.se>
+# Swedish translation of drupal (6.10)
+# Copyright (c) 2009 by the Swedish translation team
 # Generated from files:
-#  menu.admin.inc,v 1.26.2.3 2008/02/11 15:12:53 goba
-#  menu.module,v 1.157.2.1 2008/02/11 15:12:53 goba
-#  menu.install,v 1.9 2008/01/30 20:27:28 goba
+#  menu.admin.inc,v 1.26.2.4 2009/02/25 13:15:40 goba
+#  menu.module,v 1.157.2.5 2009/02/25 13:15:40 goba
+#  menu.install,v 1.9.2.1 2009/01/06 15:46:37 goba
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Drupal 6\n"
-"POT-Creation-Date: 2008-02-15 13:50+0100\n"
-"PO-Revision-Date: 2008-02-18 01:37+0100\n"
-"Last-Translator: Magnus Gunnarsson <seals@passagen.se>\n"
-"Language-Team: Swedish (http://drupal.org/project/sv)\n"
+"Project-Id-Version: drupal (6.10)\n"
+"POT-Creation-Date: 2009-03-12 17:50+0100\n"
+"PO-Revision-Date: 2009-03-12 17:04+0100\n"
+"Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #: modules/menu/menu.admin.inc:54
 msgid "There are no menu items yet."
 msgstr "Just nu finns det inga menyval."
-
-#: modules/menu/menu.admin.inc:72 modules/menu/menu.module:235
-msgid "disabled"
-msgstr "inaktiverad"
 
 #: modules/menu/menu.admin.inc:104
 msgid "reset"
@@ -35,13 +28,9 @@ msgstr "återställ"
 msgid "Menu item"
 msgstr "Menyval"
 
-#: modules/menu/menu.admin.inc:177;299
+#: modules/menu/menu.admin.inc:177,299
 msgid "Expanded"
 msgstr "Utfällt"
-
-#: modules/menu/menu.admin.inc:230 modules/menu/menu.module:358
-msgid "Menu settings"
-msgstr "Menyinställningar"
 
 #: modules/menu/menu.admin.inc:260
 msgid ""
@@ -52,10 +41,6 @@ msgstr ""
 "Sökvägen som denna meny länkar till. Detta kan antingen vara en intern "
 "sökväg i Drupal som %add-node eller en extern URL som %drupal. Ange %front "
 "för att länka till startsidan."
-
-#: modules/menu/menu.admin.inc:279 modules/menu/menu.module:385
-msgid "Menu link title"
-msgstr "Titel på menylänken"
 
 #: modules/menu/menu.admin.inc:281
 msgid ""
@@ -77,28 +62,6 @@ msgid ""
 msgstr ""
 "Om detta väljs och det finns underliggande menyval kommer det alltid att "
 "vara utfällt."
-
-#: modules/menu/menu.admin.inc:315 modules/menu/menu.module:401
-msgid ""
-"The maximum depth for an item and all its children is fixed at !maxdepth. "
-"Some menu items may not be available as parents if selecting them would "
-"exceed this limit."
-msgstr ""
-"Det maximala djupet för ett alternativ och dess underliggande alternativ är "
-"bestämt till !maxdepth. Några menyval kanske inte kan användas som "
-"ovanliggande alternativ om de överskrider denna gräns när de väljs."
-
-#: modules/menu/menu.admin.inc:323 modules/menu/menu.module:411
-msgid ""
-"Optional. In the menu, the heavier items will sink and the lighter items "
-"will be positioned nearer the top."
-msgstr ""
-"Valfritt. I menyn sjunker tyngre menyval nedåt medan lättare menyval "
-"placerar sig närmare toppen."
-
-#: modules/menu/menu.admin.inc:379 modules/menu/menu.module:302
-msgid "There was an error saving the menu link."
-msgstr "Ett fel inträffade när menylänken sparades."
 
 #: modules/menu/menu.admin.inc:403
 msgid "Menu name"
@@ -328,11 +291,11 @@ msgstr ""
 msgid "Enter the title and path for your new menu item."
 msgstr "Ange titel och sökväg för ditt nya menyval."
 
-#: modules/menu/menu.module:372
+#: modules/menu/menu.module:382
 msgid "Delete this menu item."
 msgstr "Radera det här menyvalet."
 
-#: modules/menu/menu.module:387
+#: modules/menu/menu.module:397
 msgid ""
 "The link text corresponding to this item that should appear in the menu. "
 "Leave blank if you do not wish to add this post to the menu."
@@ -364,54 +327,39 @@ msgstr "Visa menyer"
 msgid "Add menu"
 msgstr "Lägg till meny"
 
-#: modules/menu/menu.module:78
+#: modules/menu/menu.module:80
 msgid "Customize menu"
 msgstr "Anpassa meny"
 
-#: modules/menu/menu.module:88
+#: modules/menu/menu.module:90
 msgid "List items"
 msgstr "Visa alternativ"
 
-#: modules/menu/menu.module:94
+#: modules/menu/menu.module:96
 msgid "Add item"
 msgstr "Lägg till post"
 
-#: modules/menu/menu.module:101
+#: modules/menu/menu.module:104
 msgid "Edit menu"
 msgstr "Redigera meny"
 
-#: modules/menu/menu.module:108
+#: modules/menu/menu.module:112
 msgid "Delete menu"
 msgstr "Radera meny"
 
-#: modules/menu/menu.module:115
+#: modules/menu/menu.module:120
 msgid "Edit menu item"
 msgstr "Redigera menyval"
 
-#: modules/menu/menu.module:122
+#: modules/menu/menu.module:128
 msgid "Reset menu item"
 msgstr "Återställ menyval"
 
-#: modules/menu/menu.module:129
+#: modules/menu/menu.module:136
 msgid "Delete menu item"
 msgstr "Radera menyval"
 
-#: modules/menu/menu.install:31
-msgid ""
-"Holds definitions for top-level custom menus (for example, Primary Links)."
-msgstr ""
-"Innehåller en förklaring till ovanliggande, anpassade menyer (till exempel "
-"Primära länkar)."
-
-#: modules/menu/menu.install:45
-msgid "Menu title; displayed at top of block."
-msgstr "Titel på menyn: visas i toppen av ett block."
-
-#: modules/menu/menu.install:50
-msgid "Menu description."
-msgstr "Menybeskrivning"
-
-#: (duplicate) modules/menu/menu.install:12
+#: modules/menu/menu.install:12
 msgid ""
 "The navigation menu is provided by Drupal and is the main interactive menu "
 "for any site. It is usually the only menu that contains personalized links "
@@ -422,22 +370,22 @@ msgstr ""
 "innehåller anpassade länkar för inloggade användare och visas oftast inte "
 "ens för gäster."
 
-#: (duplicate) modules/menu/menu.install:13
+#: modules/menu/menu.install:13
 msgid ""
 "Primary links are often used at the theme layer to show the major sections "
 "of a site. A typical representation for primary links would be tabs along "
 "the top."
 msgstr ""
-"Primära länkar används ofta på temats lager för att visa större avdelning av "
-"en webbplats. En typisk representation för primära länkar skulle kunna vara "
-"flikar längst upp."
+"Primära länkar används ofta i temalagret för att visa de större "
+"avdelningarna på webbplatsen. Ett vanligt sätt att presentera primära länkar "
+"är flikar högst upp på sidan."
 
-#: (duplicate) modules/menu/menu.install:14
+#: modules/menu/menu.install:14
 msgid ""
 "Secondary links are often used for pages like legal notices, contact "
 "details, and other secondary navigation items that play a lesser role than "
 "primary links"
 msgstr ""
-"Sekundära länkar används ofta för sidor som tillåtna meddelanden, detaljer "
-"för kontakt och andra sekundära navigationsalternativ som spelar en mindre "
-"roll än primära länkar."
+"Sekundära länkar används ofta för sidor som juridiska meddelanden, "
+"kontaktinformation och andra sekundära navigationsval som spelar mindre roll "
+"än de primära länkarna."

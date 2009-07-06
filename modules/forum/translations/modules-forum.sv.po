@@ -1,24 +1,20 @@
-# $Id: modules-forum.po,v 1.3.2.7 2008/08/09 18:57:35 zoo33 Exp $
-#
-# Swedish translation of Drupal (installer)
-# Copyright 2008 Magnus Gunnarsson <seals@passagen.se>
+# Swedish translation of drupal (6.10)
+# Copyright (c) 2009 by the Swedish translation team
 # Generated from files:
 #  forum-list.tpl.php,v 1.4 2007/08/30 18:58:12 goba
 #  forum-submitted.tpl.php,v 1.3 2007/08/07 08:39:35 goba
 #  forum-topic-navigation.tpl.php,v 1.2 2007/08/07 08:39:35 goba
 #  forum.admin.inc,v 1.8 2008/01/30 10:14:42 goba
-#  forum.module,v 1.448.2.2 2008/02/13 14:06:36 goba
-#  forum.install,v 1.16 2007/12/31 16:58:34 goba
+#  forum.module,v 1.448.2.5 2008/10/24 19:07:47 dries
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Drupal 6\n"
-"POT-Creation-Date: 2008-02-15 13:50+0100\n"
-"PO-Revision-Date: 2008-08-08 13:42+0100\n"
-"Last-Translator: Magnus Gunnarsson <seals@passagen.se>\n"
-"Language-Team: Swedish (http://drupal.org/project/sv)\n"
+"Project-Id-Version: drupal (6.10)\n"
+"POT-Creation-Date: 2009-03-12 17:50+0100\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
@@ -70,10 +66,6 @@ msgstr ""
 #: modules/forum/forum.admin.inc:75
 msgid "forum container"
 msgstr "forumgrupp"
-
-#: modules/forum/forum.admin.inc:79 modules/forum/forum.module:0
-msgid "forum"
-msgstr "forum"
 
 #: modules/forum/forum.admin.inc:90
 msgid "Created new @type %term."
@@ -339,7 +331,7 @@ msgstr ""
 "att redigera <em>Innehållstyp</em> på <a href=\"@forum-vocabulary"
 "\">vokabulären för forumsidan</a>."
 
-#: modules/forum/forum.module:230
+#: modules/forum/forum.module:236
 msgid ""
 "The item %forum is only a container for forums. Please select one of the "
 "forums below it."
@@ -347,11 +339,11 @@ msgstr ""
 "Komponenten %forum är bara en gruppering för forum. Var vänlig välj ett av "
 "de underordnade forumen."
 
-#: modules/forum/forum.module:296
+#: modules/forum/forum.module:302
 msgid "Forum topic"
 msgstr "Diskussionsämne"
 
-#: modules/forum/forum.module:298
+#: modules/forum/forum.module:304
 msgid ""
 "A <em>forum topic</em> is the initial post to a new discussion thread within "
 "a forum."
@@ -359,7 +351,7 @@ msgstr ""
 "Ett <em>diskussionsämne</em> är det första inlägget för en ny trådad "
 "diskussion inom ett forum."
 
-#: modules/forum/forum.module:361
+#: modules/forum/forum.module:367
 msgid ""
 "This is the designated forum vocabulary. Some of the normal vocabulary "
 "options have been removed."
@@ -367,27 +359,27 @@ msgstr ""
 "Detta är den speciella vokabulären för forum. Vissa av de vanliga "
 "alternativen för vokabulärer har tagits bort."
 
-#: modules/forum/forum.module:403;419
+#: modules/forum/forum.module:409,425
 msgid "Active forum topics"
 msgstr "Aktiva diskussionsämnen"
 
-#: modules/forum/forum.module:404;426
+#: modules/forum/forum.module:410,432
 msgid "New forum topics"
 msgstr "Nya diskussionsämnen"
 
-#: modules/forum/forum.module:408
+#: modules/forum/forum.module:414
 msgid "Number of topics"
 msgstr "Antal ämnen"
 
-#: modules/forum/forum.module:435
+#: modules/forum/forum.module:441
 msgid "Read the latest forum topics."
 msgstr "Läs de senaste diskussionsämnena."
 
-#: modules/forum/forum.module:454
+#: modules/forum/forum.module:460
 msgid "Leave shadow copy"
 msgstr "Lämna kvar skuggkopia"
 
-#: modules/forum/forum.module:454
+#: modules/forum/forum.module:460
 msgid ""
 "If you move this topic, you can leave a link in the old forum to the new "
 "forum."
@@ -395,67 +387,63 @@ msgstr ""
 "Om du flyttar detta ämne kan du lämna en länk i det gamla forumet till det "
 "nya."
 
-#: modules/forum/forum.module:561
+#: modules/forum/forum.module:567
 msgid "Topic"
 msgstr "Ämne"
 
-#: modules/forum/forum.module:563
+#: modules/forum/forum.module:569
 msgid "Created"
 msgstr "Skapad"
 
-#: modules/forum/forum.module:564
+#: modules/forum/forum.module:570
 msgid "Last reply"
 msgstr "Senaste svar"
 
-#: modules/forum/forum.module:677
+#: modules/forum/forum.module:683
 msgid "Post new @node_type"
 msgstr "Skriv nytt @node_type"
 
-#: modules/forum/forum.module:684
+#: modules/forum/forum.module:690
 msgid "You are not allowed to post new content in forum."
 msgstr "Du har inte behörighet att lägga in nytt innehåll i forumet."
 
-#: modules/forum/forum.module:688
+#: modules/forum/forum.module:694
 msgid "<a href=\"@login\">Login</a> to post new content in forum."
 msgstr ""
 "<a href=\"@login\">Logga in</a> för att lägga till ett nytt innehåll i ett "
 "forum."
 
-#: modules/forum/forum.module:726
+#: modules/forum/forum.module:732
 msgid "No forums defined"
 msgstr "Inga forum är definierade"
 
-#: modules/forum/forum.module:812
+#: modules/forum/forum.module:818
 msgid "This topic has been moved"
 msgstr "Denna diskussion har flyttats"
 
-#: modules/forum/forum.module:322
+#: modules/forum/forum.module:328
 msgid "create forum topics"
 msgstr "skapa diskussionsämnen"
 
-#: modules/forum/forum.module:322
+#: modules/forum/forum.module:328
 msgid "delete own forum topics"
 msgstr "radera egna diskussionsämnen"
 
-#: modules/forum/forum.module:322
+#: modules/forum/forum.module:328
 msgid "delete any forum topic"
 msgstr "radera alla diskussionsämnen"
 
-#: modules/forum/forum.module:322
+#: modules/forum/forum.module:328
 msgid "edit own forum topics"
 msgstr "redigera egna diskussionsämnen"
 
-#: modules/forum/forum.module:322
+#: modules/forum/forum.module:328
 msgid "edit any forum topic"
 msgstr "redigera ett diskussionsämne"
 
-#: modules/forum/forum.module:322
+#: modules/forum/forum.module:328
 msgid "administer forums"
 msgstr "administrera forum"
-
-#: modules/forum/forum.module:86;93 modules/forum/forum.install:27;116
-msgid "Forums"
-msgstr "Forum"
 
 #: modules/forum/forum.module:94
 msgid "Control forums and their hierarchy and change forum settings."
@@ -465,26 +453,14 @@ msgstr "Hantera forum och deras hierarkier, och ändra inställningar för forum
 msgid "Add container"
 msgstr "Lägg till forumgrupp"
 
-#: modules/forum/forum.module:114
+#: modules/forum/forum.module:115
 msgid "Add forum"
 msgstr "Lägg till forum"
 
-#: modules/forum/forum.module:136
+#: modules/forum/forum.module:140
 msgid "Edit container"
 msgstr "Redigera forumgrupp"
 
-#: modules/forum/forum.module:143
+#: modules/forum/forum.module:148
 msgid "Edit forum"
 msgstr "Redigera forum"
-
-#: modules/forum/forum.install:69
-msgid "Stores the relationship of nodes to forum terms."
-msgstr "Sparar sambandet mellan noder och forumtermer."
-
-#: modules/forum/forum.install:76
-msgid "The {node}.nid of the node."
-msgstr "Nodens {node}.nid."
-
-#: modules/forum/forum.install:90
-msgid "The {term_data}.tid of the forum term assigned to the node."
-msgstr "{term_data}.tid för de forumtermer som knyts till noden."

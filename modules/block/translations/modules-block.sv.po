@@ -1,24 +1,20 @@
-# $Id: modules-block.po,v 1.2.2.9 2008/08/08 07:30:14 zoo33 Exp $
-#
-# Swedish translation of Drupal (installer)
-# Copyright 2008 Lars Palo <larspalo@yahoo.se>
+# Swedish translation of drupal (6.10)
+# Copyright (c) 2009 by the Swedish translation team
 # Generated from files:
 #  block-admin-display-form.tpl.php,v 1.3 2008/01/16 22:57:26 goba
-#  block.admin.inc,v 1.14 2007/12/22 23:24:24 goba
-#  block.module,v 1.299 2008/02/03 19:12:57 goba
-#  block.install,v 1.8 2007/12/18 12:59:20 dries
+#  block.admin.inc,v 1.14.2.5 2008/11/24 06:00:02 dries
+#  block.module,v 1.299.2.3 2008/06/24 14:40:08 goba
 #  block.js,v 1.2 2007/12/16 10:36:53 goba
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Drupal 6\n"
-"PO-Revision-Date: 2008-02-21 09:10+0100\n"
-"POT-Creation-Date: 2008-02-15 13:50+0100\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: drupal (6.10)\n"
+"POT-Creation-Date: 2009-03-12 17:50+0100\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
-"Language-Team: Swedish (http://drupal.org/project/sv)\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Last-Translator: Lars Palo <larspalo@yahoo.se>\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #: modules/block/block-admin-display-form.tpl.php:42
@@ -29,27 +25,27 @@ msgstr "Region"
 msgid "No blocks in this region"
 msgstr "Inga block i detta område"
 
-#: modules/block/block.admin.inc:85
+#: modules/block/block.admin.inc:91
 msgid "Save blocks"
 msgstr "Spara block"
 
-#: modules/block/block.admin.inc:100
+#: modules/block/block.admin.inc:106
 msgid "The block settings have been updated."
 msgstr "Blockinställningarna har uppdaterats."
 
-#: modules/block/block.admin.inc:151
+#: modules/block/block.admin.inc:156
 msgid "Block specific settings"
 msgstr "Blockspecifika inställningar"
 
-#: modules/block/block.admin.inc:156
+#: modules/block/block.admin.inc:161
 msgid "Block title"
 msgstr "Blocktitel"
 
-#: modules/block/block.admin.inc:158
+#: modules/block/block.admin.inc:163
 msgid "The title of the block as shown to the user."
 msgstr "Titeln på ett block såsom det visas för användaren."
 
-#: modules/block/block.admin.inc:158
+#: modules/block/block.admin.inc:163
 msgid ""
 "Override the default title for the block. Use <em>&lt;none&gt;</em> to "
 "display no title, or leave blank to use the default block title."
@@ -57,45 +53,45 @@ msgstr ""
 "Ändra standardtiteln för detta block. Använd <em>&lt;none&gt;</em> för att "
 "dölja titeln eller lämna fältet tomt om standardtiteln ska användas."
 
-#: modules/block/block.admin.inc:174
+#: modules/block/block.admin.inc:179
 msgid "'%name' block"
 msgstr "Blocket '%name'"
 
-#: modules/block/block.admin.inc:180
+#: modules/block/block.admin.inc:185
 msgid "User specific visibility settings"
 msgstr "Användarspecifika visningsinställningar"
 
-#: modules/block/block.admin.inc:185
+#: modules/block/block.admin.inc:190
 msgid "Custom visibility settings"
 msgstr "Anpassade visningsinställningar"
 
-#: modules/block/block.admin.inc:187
+#: modules/block/block.admin.inc:192
 msgid "Users cannot control whether or not they see this block."
 msgstr "Användare kan inte styra visningen av detta block."
 
-#: modules/block/block.admin.inc:188
+#: modules/block/block.admin.inc:193
 msgid "Show this block by default, but let individual users hide it."
 msgstr "Visa detta block som standard, men låt användare gömma det."
 
-#: modules/block/block.admin.inc:189
+#: modules/block/block.admin.inc:194
 msgid "Hide this block by default but let individual users show it."
 msgstr "Göm detta block som standard, men låt användare visa det."
 
-#: modules/block/block.admin.inc:191
+#: modules/block/block.admin.inc:196
 msgid ""
 "Allow individual users to customize the visibility of this block in their "
 "account settings."
 msgstr "Låter användarna anpassa blockets synlighet i kontoinställningarna."
 
-#: modules/block/block.admin.inc:208
+#: modules/block/block.admin.inc:213
 msgid "Role specific visibility settings"
 msgstr "Rollspecifika visningsinställningar"
 
-#: modules/block/block.admin.inc:213
+#: modules/block/block.admin.inc:218
 msgid "Show block for specific roles"
 msgstr "Visa block för specifika användarroller"
 
-#: modules/block/block.admin.inc:216
+#: modules/block/block.admin.inc:221
 msgid ""
 "Show this block only for the selected role(s). If you select no roles, the "
 "block will be visible to all users."
@@ -103,19 +99,19 @@ msgstr ""
 "Visa detta block endast för valda roller. Om du inte väljer någon roll visas "
 "blocket för alla roller."
 
-#: modules/block/block.admin.inc:221
+#: modules/block/block.admin.inc:226
 msgid "Page specific visibility settings"
 msgstr "Sidspecifika visningsinställningar"
 
-#: modules/block/block.admin.inc:232
+#: modules/block/block.admin.inc:237
 msgid "Show on every page except the listed pages."
 msgstr "Visa block på alla sidor förutom de sidor som finns i listan."
 
-#: modules/block/block.admin.inc:232
+#: modules/block/block.admin.inc:237
 msgid "Show on only the listed pages."
 msgstr "Visa endast på de sidor som finns i listan."
 
-#: modules/block/block.admin.inc:233
+#: modules/block/block.admin.inc:238
 msgid ""
 "Enter one page per line as Drupal paths. The '*' character is a wildcard. "
 "Example paths are %blog for the blog page and %blog-wildcard for every "
@@ -125,7 +121,7 @@ msgstr ""
 "Sökvägsexempel: %blog för blogg-sidan, %blog-wildcard för alla personliga "
 "bloggar. %front är startsidan."
 
-#: modules/block/block.admin.inc:236
+#: modules/block/block.admin.inc:241
 msgid ""
 "Show if the following PHP code returns <code>TRUE</code> (PHP-mode, experts "
 "only)."
@@ -133,7 +129,7 @@ msgstr ""
 "Visa om följande PHP-kod returnerar <code>TRUE</code> (PHP-läge, bara för "
 "experter)."
 
-#: modules/block/block.admin.inc:237
+#: modules/block/block.admin.inc:242
 msgid ""
 "If the PHP-mode is chosen, enter PHP code between %php. Note that executing "
 "incorrect PHP-code can break your Drupal site."
@@ -141,35 +137,35 @@ msgstr ""
 "Om PHP är valt skriver du PHP-kod mellan %php. Observera att felaktig PHP-"
 "kod kan förstöra din Drupal-webbplats när den körs."
 
-#: modules/block/block.admin.inc:241
+#: modules/block/block.admin.inc:246
 msgid "Show block on specific pages"
 msgstr "Visa block på specifika sidor"
 
-#: modules/block/block.admin.inc:247
+#: modules/block/block.admin.inc:252
 msgid "Pages"
 msgstr "Sidor"
 
-#: modules/block/block.admin.inc:255
+#: modules/block/block.admin.inc:260
 msgid "Save block"
 msgstr "Spara blocket"
 
-#: modules/block/block.admin.inc:264 modules/block/block.admin.inc:293
+#: modules/block/block.admin.inc:269,298
 msgid "Please ensure that each block description is unique."
 msgstr "Beskrivningen av varje block måste vara unik."
 
-#: modules/block/block.admin.inc:277
+#: modules/block/block.admin.inc:282
 msgid "The block configuration has been saved."
 msgstr "Blockinställningarna har sparats."
 
-#: modules/block/block.admin.inc:314
+#: modules/block/block.admin.inc:319
 msgid "The block has been created."
 msgstr "Ett nytt block har lagts till."
 
-#: modules/block/block.admin.inc:329
+#: modules/block/block.admin.inc:334
 msgid "Are you sure you want to delete the block %name?"
 msgstr "Är du säker att du vill ta bort blocket %name?"
 
-#: modules/block/block.admin.inc:338
+#: modules/block/block.admin.inc:343
 msgid "The block %name has been removed."
 msgstr "Blocket %name har tagits bort."
 
@@ -324,7 +320,7 @@ msgstr ""
 "grundinställning inaktiverade och måste flyttas till ett område på <a href="
 "\"@blocks\">sidan för blockadministration</a> för att bli synlig."
 
-#: modules/block/block.module:272
+#: modules/block/block.module:276
 msgid ""
 "The block %info was assigned to the invalid region %region and has been "
 "disabled."
@@ -332,11 +328,11 @@ msgstr ""
 "Blocket %info var tilldelat till den ogiltiga regionen %region och har "
 "blivit inaktiverat."
 
-#: modules/block/block.module:311
+#: modules/block/block.module:315
 msgid "Block description"
 msgstr "Blockbeskrivning"
 
-#: modules/block/block.module:314
+#: modules/block/block.module:318
 msgid ""
 "A brief description of your block. Used on the <a href=\"@overview\">block "
 "overview page</a>."
@@ -344,15 +340,15 @@ msgstr ""
 "En kort beskrivning av ditt block. Används på <a href=\"@overview"
 "\">blocköversiktssidan</a>."
 
-#: modules/block/block.module:321
+#: modules/block/block.module:325
 msgid "Block body"
 msgstr "Blockinnehåll"
 
-#: modules/block/block.module:324
+#: modules/block/block.module:328
 msgid "The content of the block as shown to the user."
 msgstr "Innehållet i ett block såsom det visas för användaren."
 
-#: modules/block/block.module:357
+#: modules/block/block.module:361
 msgid "Block configuration"
 msgstr "Blockinställningar"
 
@@ -379,161 +375,21 @@ msgstr ""
 msgid "JavaScript List Form"
 msgstr "JavaScript listformulär"
 
-#: modules/block/block.module:139
+#: modules/block/block.module:140
 msgid "Configure block"
 msgstr "Konfigurera block"
 
-#: modules/block/block.module:146
+#: modules/block/block.module:148
 msgid "Delete block"
 msgstr "Radera block"
 
-#: modules/block/block.module:153
+#: modules/block/block.module:156
 msgid "Add block"
 msgstr "Lägg till block"
 
 #: modules/block/block.module:0
 msgid "block"
 msgstr "block"
-
-#: modules/block/block.install:9
-msgid "Stores block settings, such as region and visibility settings."
-msgstr "Lagrar blockinställningar, som område och synlighetsinställning."
-
-#: modules/block/block.install:14
-msgid "Primary Key: Unique block ID."
-msgstr "Primärnyckel: Ett unikt block-ID."
-
-#: modules/block/block.install:21
-msgid ""
-"The module from which the block originates; for example, 'user' for the "
-"Who's Online block, and 'block' for any custom blocks."
-msgstr ""
-"Modulen som skapar blocket, till exempel 'user' för Inloggade användare-"
-"blocket, och 'block' för alla egna block."
-
-#: modules/block/block.install:28
-msgid "Unique ID for block within a module."
-msgstr "Ett unikt ID för block inom en modul."
-
-#: modules/block/block.install:35
-msgid "The theme under which the block settings apply."
-msgstr "Temat för vilket blockinställningarna gäller."
-
-#: modules/block/block.install:42
-msgid "Block enabled status. (1 = enabled, 0 = disabled)"
-msgstr "Blockaktiveringsstatus (1 = aktiverad, 0 = inaktiverad)"
-
-#: modules/block/block.install:49
-msgid "Block weight within region."
-msgstr "Blockvikt inom området."
-
-#: modules/block/block.install:56
-msgid "Theme region within which the block is set."
-msgstr "Temaområde inom vilket blocket är satt."
-
-#: modules/block/block.install:63
-msgid ""
-"Flag to indicate how users may control visibility of the block. (0 = Users "
-"cannot control, 1 = On by default, but can be hidden, 2 = Hidden by default, "
-"but can be shown)"
-msgstr ""
-"En flagga för att indikera hur användare kan kontrollera synligheten hos "
-"blocket. (0 = Användare kan ej kontrollera, 1 = På som grundinställning, men "
-"kan gömmas, 2 = Gömd som grundinställning, men kan visas)"
-
-#: modules/block/block.install:70
-msgid ""
-"Flag to indicate whether or not to remove block when website traffic is "
-"high. (1 = throttle, 0 = do not throttle)"
-msgstr ""
-"En flagga för att indikera om blocket ska tas bort då trafiken på "
-"webbplatsen är stor. (1 = lastbegränsa, 0 = begränsa ej)"
-
-#: modules/block/block.install:77
-msgid ""
-"Flag to indicate how to show blocks on pages. (0 = Show on all pages except "
-"listed pages, 1 = Show only on listed pages, 2 = Use custom PHP code to "
-"determine visibility)"
-msgstr ""
-"En flagga för att indikera hur block visas på sidor. (0 = Visa på samtliga "
-"sidor utom listade sidor, 1 = Visa endast på listade sidor. 2 = Använd egen "
-"PHP kod för att bestämma synlighet)"
-
-#: modules/block/block.install:82
-msgid ""
-"Contents of the \"Pages\" block; contains either a list of paths on which to "
-"include/exclude the block or PHP code, depending on \"visibility\" setting."
-msgstr ""
-"Innehåll från \"Sidor\"-blocket innehåller antingen en lista med sökvägar "
-"för att inkludera/exkludera block eller PHP kod, beroende på \"synlighet\" "
-"inställningen."
-
-#: modules/block/block.install:89
-msgid ""
-"Custom title for the block. (Empty string will use block default title, "
-"<none> will remove the title, text will cause block to use specified title.)"
-msgstr ""
-"Egen titel för blocket. (En tom sträng gör att blockets standardtitel "
-"används, <none> tar bort titeln, text kommer att göra att blocket använder "
-"specificerad titel.)"
-
-#: modules/block/block.install:96
-msgid ""
-"Binary flag to indicate block cache mode. (-1: Do not cache, 1: Cache per "
-"role, 2: Cache per user, 4: Cache per page, 8: Block cache global) See "
-"BLOCK_CACHE_* constants in block.module for more detailed information."
-msgstr ""
-"Binär flagga för att kontrollera hur block cachas. (1: Cacha inte, 1: Cacha "
-"efter roll, 2: Cacha efter användare, 4: Cacha efter sida, 8: Global block "
-"cache) Se BLOCK_CACHE_* konstanterna i block.module för en mer detaljerad "
-"information."
-
-#: modules/block/block.install:109
-msgid "Sets up access permissions for blocks based on user roles"
-msgstr "Ställer in åtkomsträttigheterna för block baserat på användarroller"
-
-#: modules/block/block.install:115
-msgid "The block's origin module, from {blocks}.module."
-msgstr "Blockets ursprungsmodul, från {blocks}.module."
-
-#: modules/block/block.install:121
-msgid "The block's unique delta within module, from {blocks}.delta."
-msgstr "Blockets unika delta inom modulen, från {blocks}.delta."
-
-#: modules/block/block.install:127
-msgid "The user's role ID from {users_roles}.rid."
-msgstr "Användarens roll ID från {users_roles}.rid."
-
-#: modules/block/block.install:141
-msgid "Stores contents of custom-made blocks."
-msgstr "Lagrar innehåll från egentillverkade block."
-
-#: modules/block/block.install:147
-msgid "The block's {blocks}.bid."
-msgstr "Blockets {blocks}.bid."
-
-#: modules/block/block.install:153
-msgid "Block contents."
-msgstr "Blockinnehåll."
-
-#: modules/block/block.install:160
-msgid "Block description."
-msgstr "Blockbeskrivning"
-
-#: modules/block/block.install:167
-msgid "Block body's {filter_formats}.format; for example, 1 = Filtered HTML."
-msgstr ""
-"Blockets brödtexts {filter_formats}.format; till exempel 1 = Filtrerad HTML."
-
-#: modules/block/block.install:175
-msgid ""
-"Cache table for the Block module to store already built blocks, identified "
-"by module, delta, and various contexts which may change the block, such as "
-"theme, locale, and caching mode defined for the block."
-msgstr ""
-"Cache-tabell för modulen Block för att lagra redan byggda block som "
-"identifieras via modul, delta och olika sammanhang som kan ändra blocket, "
-"såsom tema, språkanpassning och cache-inställning definierat för blocket."
 
 #: modules/block/block.js:0
 msgid ""

@@ -1,26 +1,22 @@
-# $Id: modules-contact.po,v 1.3.2.6 2008/08/12 20:47:34 zoo33 Exp $
-#
-# Swedish translation of Drupal (installer)
-# Copyright 2008 Johan Falk <johan@vaxjonexus.com>
+# Swedish translation of drupal (6.10)
+# Copyright (c) 2009 by the Swedish translation team
 # Generated from files:
 #  contact.admin.inc,v 1.3 2007/11/09 07:55:13 dries
 #  contact.pages.inc,v 1.6.2.1 2008/02/12 14:42:50 goba
-#  contact.module,v 1.103 2008/01/16 12:46:52 goba
-#  contact.install,v 1.10 2007/12/18 12:59:21 dries
+#  contact.module,v 1.103.2.1 2008/04/09 21:11:46 goba
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Drupal 6\n"
-"PO-Revision-Date: 2008-08-08 23:59+0100\n"
-"POT-Creation-Date: 2008-02-15 13:50+0100\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: drupal (6.10)\n"
+"POT-Creation-Date: 2009-03-12 17:50+0100\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
-"Language-Team: Swedish (http://drupal.org/project/sv)\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Last-Translator: Yettyn <yettyn@gmail.com>\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-#: modules/contact/contact.admin.inc:18 modules/contact/contact.admin.inc:47
+#: modules/contact/contact.admin.inc:18,47
 msgid "Recipients"
 msgstr "Mottagare"
 
@@ -91,10 +87,6 @@ msgstr "Kategorin %category har raderats."
 msgid "Additional information"
 msgstr "Mer information"
 
-#: modules/contact/contact.admin.inc:157 modules/contact/contact.pages.inc:41
-msgid "You can leave a message using the contact form below."
-msgstr "Du kan lämna ett meddelande i kontaktformuläret nedan."
-
 #: modules/contact/contact.admin.inc:158
 msgid ""
 "Information to show on the <a href=\"@form\">contact page</a>. Can be "
@@ -147,7 +139,7 @@ msgstr ""
 msgid "Your e-mail address"
 msgstr "Din e-postadress"
 
-#: modules/contact/contact.pages.inc:88;197
+#: modules/contact/contact.pages.inc:88,197
 msgid "Send yourself a copy."
 msgstr "Skicka en kopia till dig själv."
 
@@ -335,15 +327,15 @@ msgstr ""
 "Modulen Contact lägger också till ett <a href=\"@menu-settings\">menyval</a> "
 "(inaktivt som standard) i navigeringsblocket."
 
-#: modules/contact/contact.module:140
+#: modules/contact/contact.module:144
 msgid "Contact settings"
 msgstr "Kontaktinställningar"
 
-#: modules/contact/contact.module:145
+#: modules/contact/contact.module:149
 msgid "Personal contact form"
 msgstr "Personligt kontaktformulär"
 
-#: modules/contact/contact.module:147
+#: modules/contact/contact.module:151
 msgid ""
 "Allow other users to contact you by e-mail via <a href=\"@url\">your "
 "personal contact form</a>. Note that while your e-mail address is not made "
@@ -357,15 +349,15 @@ msgstr ""
 "för webbplatsen, kan kontakta dig även om du väljer att inte aktivera denna "
 "funktion."
 
-#: modules/contact/contact.module:168 modules/contact/contact.module:174
+#: modules/contact/contact.module:172,178
 msgid "[!category] !subject"
 msgstr "[!category] !subject"
 
-#: modules/contact/contact.module:169
+#: modules/contact/contact.module:173
 msgid "!name sent a message using the contact form at !form."
 msgstr "!name skickade ett meddelande via kontaktformuläret !form."
 
-#: modules/contact/contact.module:183
+#: modules/contact/contact.module:187
 msgid ""
 "!name (!name-url) has sent you a message via your contact form (!form-url) "
 "at !site."
@@ -373,14 +365,14 @@ msgstr ""
 "!name (!name-url) har skickat ett meddelande via ditt kontaktformulär (!form-"
 "url) på !site."
 
-#: modules/contact/contact.module:184
+#: modules/contact/contact.module:188
 msgid ""
 "If you don't want to receive such e-mails, you can change your settings at !"
 "url."
 msgstr ""
 "Om du inte vill ta emot sådan e-post kan du ändra dina inställningar på !url."
 
-#: modules/contact/contact.module:185
+#: modules/contact/contact.module:189
 msgid "Message:"
 msgstr "Meddelande:"
 
@@ -396,51 +388,20 @@ msgstr "administrera webbplatsens kontaktformulär"
 msgid "Contact form"
 msgstr "Kontaktformulär"
 
-# For some reason this translated string shows up in original version (as description to menu item "Contact form").
 #: modules/contact/contact.module:47
 msgid "Create a system contact form and set up categories for the form to use."
 msgstr ""
 "Skapa systemets kontaktformulär och skapa kategorier som formuläret kan "
 "använda."
 
-#: modules/contact/contact.module:67
+#: modules/contact/contact.module:68
 msgid "Edit contact category"
 msgstr "Redigera kontaktkategori"
 
-#: modules/contact/contact.module:74
+#: modules/contact/contact.module:76
 msgid "Delete contact"
 msgstr "Radera kontakt"
 
 #: modules/contact/contact.module:0
 msgid "contact"
 msgstr "kontakt"
-
-#: modules/contact/contact.install:29
-msgid "Contact form category settings."
-msgstr "Inställningar för kontaktformulärens kategorier."
-
-#: modules/contact/contact.install:35
-msgid "Primary Key: Unique category ID."
-msgstr "Primärnyckel: unikt ID för kategorin."
-
-#: modules/contact/contact.install:42
-msgid "Category name."
-msgstr "Kategorinamn."
-
-#: modules/contact/contact.install:48
-msgid "Comma-separated list of recipient e-mail addresses."
-msgstr "Kommaseparerad lista med mottagares e-postadresser."
-
-#: modules/contact/contact.install:54
-msgid "Text of the auto-reply message."
-msgstr "Text i det automatiska svarsmeddelandet."
-
-#: modules/contact/contact.install:61
-msgid "The category's weight."
-msgstr "Kategorins vikt."
-
-#: modules/contact/contact.install:68
-msgid ""
-"Flag to indicate whether or not category is selected by default. (1 = Yes, 0 "
-"= No)"
-msgstr "Flagga som visar om kategorin är förvald eller inte. (1 = Ja, 0 = Nej)"

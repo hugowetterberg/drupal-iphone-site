@@ -1,24 +1,19 @@
-# $Id: modules-locale.po,v 1.2.2.11 2008/09/15 00:21:12 zoo33 Exp $
-#
-# Swedish translation of Drupal (installer)
-# Copyright 2008 Lars Palo <larspalo@yahoo.se>
-# Generated from files:
-#  locale.module,v 1.212 2008/01/28 17:16:34 goba
-#  locale.install,v 1.27 2008/01/10 14:35:24 goba
+# Swedish translation of drupal (6.10)
+# Copyright (c) 2009 by the Swedish translation team
+# Generated from file: locale.module,v 1.212.2.6 2009/02/25 11:47:37 goba
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Drupal 6\n"
-"POT-Creation-Date: 2008-02-15 13:50+0100\n"
-"PO-Revision-Date: 2008-02-21 14:11+0100\n"
-"Last-Translator: Lars Palo <larspalo@yahoo.se>\n"
-"Language-Team: Swedish (http://drupal.org/project/sv)\n"
+"Project-Id-Version: drupal (6.10)\n"
+"POT-Creation-Date: 2009-03-12 17:50+0100\n"
+"PO-Revision-Date: 2009-03-12 17:37+0100\n"
+"Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-#: modules/locale/locale.module:35
+#: modules/locale/locale.module:24
 msgid ""
 "The locale module allows your Drupal site to be presented in languages other "
 "than the default English, a defining feature of multi-lingual websites. The "
@@ -35,7 +30,7 @@ msgstr ""
 "tillgänglig visas den ursprungliga texten och lagras för senare granskning "
 "av en översättare."
 
-#: modules/locale/locale.module:36
+#: modules/locale/locale.module:25
 msgid ""
 "Beyond translation of the Drupal interface, the locale module provides a "
 "feature set tailored to the needs of a multi-lingual site. Language "
@@ -59,11 +54,11 @@ msgstr ""
 "Modulen arbetar tillsammans med <a href=\"@content-help\">modulen Content "
 "Translation</a> för att hantera översatt innehåll."
 
-#: modules/locale/locale.module:37
+#: modules/locale/locale.module:26
 msgid "Translations may be provided by:"
 msgstr "Översättningar kan tillhandahållas av:"
 
-#: modules/locale/locale.module:38
+#: modules/locale/locale.module:27
 msgid ""
 "translating the original text via the locale module's integrated web "
 "interface, or"
@@ -71,7 +66,7 @@ msgstr ""
 "översätta originaltexten via modulen Locales integrerade webbgränssnitt, "
 "eller"
 
-#: modules/locale/locale.module:39
+#: modules/locale/locale.module:28
 msgid ""
 "importing files from a set of existing translations, known as a translation "
 "package. A translation package enables the display of a specific version of "
@@ -88,7 +83,7 @@ msgstr ""
 "varje Drupal-version finns många språk tillgängliga för nedladdning från <a "
 "href=\"@translations\">Drupals översättningssida</a>"
 
-#: modules/locale/locale.module:40
+#: modules/locale/locale.module:29
 msgid ""
 "If an existing translation package does not meet your needs, the Gettext "
 "Portable Object (<em>.po</em>) files within a package may be modified, or "
@@ -108,13 +103,13 @@ msgstr ""
 "översatta strängar. Dessa kan antingen delas med andra eller redigeras "
 "offline med ett Gettext-översättningsprogram."
 
-#: modules/locale/locale.module:41
+#: modules/locale/locale.module:30
 msgid ""
 "For more information, see the online handbook entry for <a href=\"@locale"
 "\">Locale module</a>."
 msgstr "Läs mer om <a href=\"@locale\">modulen Locale</a> i online manualen."
 
-#: modules/locale/locale.module:44
+#: modules/locale/locale.module:33
 msgid ""
 "This page provides an overview of your site's enabled languages. If multiple "
 "languages are available and enabled, the text on your site interface may be "
@@ -124,13 +119,13 @@ msgid ""
 "visitors and for users who have not selected a preferred language."
 msgstr ""
 "Denna sida ger en översikt över din webbplats aktiverade språk. Om flera "
-"språk är tillgängliga och aktiverade kan texten i din webbplats gränssitt "
+"språk är tillgängliga och aktiverade kan texten i din webbplats gränssnitt "
 "översättas, registrerade användare kan välja språk på <em>Mitt konto</em>-"
 "sidan och webbplatsens författare kan välja ett specifikt språk då inlägg "
 "skapas. Webbplatsens förvalda språk används för gäster och för användare som "
 "inte valt språk."
 
-#: modules/locale/locale.module:45
+#: modules/locale/locale.module:34
 msgid ""
 "For each language available on the site, use the <em>edit</em> link to "
 "configure language details, including name, an optional language-specific "
@@ -146,7 +141,7 @@ msgstr ""
 "<em>Språk</em> då ett inlägg skapas som är av en typ som har stöd för "
 "flerspråkighet."
 
-#: modules/locale/locale.module:46
+#: modules/locale/locale.module:35
 msgid ""
 "Use the <a href=\"@add-language\">add language page</a> to enable additional "
 "languages (and automatically import files from a translation package, if "
@@ -165,7 +160,7 @@ msgstr ""
 "finns tillgängliga på <a href=\"@translations\">översättningssidan på Drupal."
 "org</a>."
 
-#: modules/locale/locale.module:49
+#: modules/locale/locale.module:38
 msgid ""
 "Add all languages to be supported by your site. If your desired language is "
 "not available in the <em>Language name</em> drop-down, click <em>Custom "
@@ -181,7 +176,7 @@ msgstr ""
 "eftersom denna kod kan användas av webbläsare för att avgöra ett lämpligt "
 "visningsspråk."
 
-#: modules/locale/locale.module:51
+#: modules/locale/locale.module:40
 msgid ""
 "Language negotiation settings determine the site's presentation language. "
 "Available options include:"
@@ -189,7 +184,7 @@ msgstr ""
 "Inställningarna för språkförhandling avgör webbplatsens presentationsspråk. "
 "Tillgängliga val är:"
 
-#: modules/locale/locale.module:52
+#: modules/locale/locale.module:41
 msgid ""
 "<strong>None.</strong> The default language is used for site presentation, "
 "though users may (optionally) select a preferred language on the <em>My "
@@ -201,7 +196,7 @@ msgstr ""
 "em>-sidan. (Användarens språkpreferens kommer att användas för webbplatsens "
 "e-post, om det är tillgängligt.)"
 
-#: modules/locale/locale.module:53
+#: modules/locale/locale.module:42
 msgid ""
 "<strong>Path prefix only.</strong> The presentation language is determined "
 "by examining the path for a language code or other custom string that "
@@ -217,7 +212,7 @@ msgstr ""
 "språket. <em>Exempel: \"exempel.com/de/contact\" anger presentationsspråket "
 "till tyska baserat på användningen av \"de\" i sökvägen.</em>"
 
-#: modules/locale/locale.module:54
+#: modules/locale/locale.module:43
 msgid ""
 "<strong>Path prefix with language fallback.</strong> The presentation "
 "language is determined by examining the path for a language code or other "
@@ -235,7 +230,7 @@ msgstr ""
 "<em>Mitt konto</em>-sidan eller av webbläsarens språkinställning. Om "
 "presentationsspråk inte kan avgöras används det förvalda språket."
 
-#: modules/locale/locale.module:55
+#: modules/locale/locale.module:44
 msgid ""
 "<strong>Domain name only.</strong> The presentation language is determined "
 "by examining the domain used to access the site, and comparing it to the "
@@ -251,7 +246,7 @@ msgstr ""
 "de.exempel.com/contact\" anger presentationsspråket till tyska baserat på "
 "användningen av \"http://de.exempel.com\" i domännamnet.</em>"
 
-#: modules/locale/locale.module:56
+#: modules/locale/locale.module:45
 msgid ""
 "The path prefix or domain name for a language may be set by editing the <a "
 "href=\"@languages\">available languages</a>. In the absence of an "
@@ -262,7 +257,7 @@ msgstr ""
 "<a href=\"@languages\">tillgängliga språk</a>. Om lämplig matchning saknas "
 "visas webbplatsen i <a href=\"@languages\">förvalt språk</a>."
 
-#: modules/locale/locale.module:59
+#: modules/locale/locale.module:48
 msgid ""
 "This page provides an overview of available translatable strings. Drupal "
 "displays translatable strings in text groups; modules may define additional "
@@ -277,7 +272,7 @@ msgstr ""
 "samla arbetet med översättningen till specifika områden av Drupals "
 "gränssnitt."
 
-#: modules/locale/locale.module:60
+#: modules/locale/locale.module:49
 msgid ""
 "Review the <a href=\"@languages\">languages page</a> for more information on "
 "adding support for additional languages."
@@ -285,7 +280,7 @@ msgstr ""
 "Se <a href=\"@languages\"språksidan</a> för mer information om att lägga "
 "till stöd för ytterligare språk."
 
-#: modules/locale/locale.module:63
+#: modules/locale/locale.module:52
 msgid ""
 "This page imports the translated strings contained in an individual Gettext "
 "Portable Object (<em>.po</em>) file. Normally distributed as part of a "
@@ -301,7 +296,7 @@ msgstr ""
 "ett Gettext-översättningsprogram. Att importera en individuell <em>.po</em>-"
 "fil kan ta en viss tid."
 
-#: modules/locale/locale.module:64
+#: modules/locale/locale.module:53
 msgid ""
 "Note that the <em>.po</em> files within a translation package are imported "
 "automatically (if available) when new modules or themes are enabled, or as "
@@ -321,7 +316,7 @@ msgstr ""
 "alla <em>.po</em>-filer i paketet). Översättningspaket är tillgängliga för "
 "nedladdning på <a href=\"@translations\">Drupals översättningssida</a>."
 
-#: modules/locale/locale.module:67
+#: modules/locale/locale.module:56
 msgid ""
 "This page exports the translated strings used by your site. An export file "
 "may be in Gettext Portable Object (<em>.po</em>) form, which includes both "
@@ -337,7 +332,7 @@ msgstr ""
 "(<em>.pot</em>)-format vilket bara innehåller originalsträngarna (används "
 "för att skapa nya översättningar med ett Gettext-översättningsprogram)."
 
-#: modules/locale/locale.module:69
+#: modules/locale/locale.module:58
 msgid ""
 "This page allows a translator to search for specific translated and "
 "untranslated strings, and is used when creating or editing translations. "
@@ -353,7 +348,7 @@ msgstr ""
 "offline med ett Gettext-översättningsprogram.) Sökningar kan begränsas till "
 "strängar som finns inom en specifik textgrupp eller ett specifikt språk."
 
-#: modules/locale/locale.module:72
+#: modules/locale/locale.module:61
 msgid ""
 "This block is only shown if <a href=\"@languages\">at least two languages "
 "are enabled</a> and <a href=\"@configuration\">language negotiation</a> is "
@@ -363,15 +358,15 @@ msgstr ""
 "aktiverade</a> och <a href=\"@configuration\">språkförhandling</a> är satt "
 "till något annat än <em>Inget</em>."
 
-#: modules/locale/locale.module:198
+#: modules/locale/locale.module:196
 msgid "Built-in interface"
 msgstr "Inbyggt gränssnitt"
 
-#: modules/locale/locale.module:224
+#: modules/locale/locale.module:222
 msgid "Language settings"
 msgstr "Språkinställningar"
 
-#: modules/locale/locale.module:235
+#: modules/locale/locale.module:233
 msgid ""
 "This account's default language for e-mails, and preferred language for site "
 "presentation."
@@ -379,25 +374,25 @@ msgstr ""
 "Det här kontots förvalda språk för e-postmeddelanden och för presentationen "
 "av webbplatsen."
 
-#: modules/locale/locale.module:235
+#: modules/locale/locale.module:233
 msgid "This account's default language for e-mails."
 msgstr "Det här kontots förvalda språk för e-postmeddelanden."
 
-#: modules/locale/locale.module:255
+#: modules/locale/locale.module:253
 msgid ""
 "A path alias set for a specific language will always be used when displaying "
 "this page in that language, and takes precedence over path aliases set for "
-"<am>All languages</em>."
+"<em>All languages</em>."
 msgstr ""
-"Ett sökvägsalias som anges för ett visst språk kommer alltid att användas då "
-"denna sida visas på detta språk och tar företräde framför sökvägsalias "
-"angivna för <em>Samtliga språk</em>."
+"En uppsättning sökvägsalias för ett specifikt språk används alltid när denna "
+"sida visas på det språket, och får företräde framför sökvägsaliasen för "
+"<em>Alla språk</em>."
 
-#: modules/locale/locale.module:264
+#: modules/locale/locale.module:262
 msgid "Multilingual support"
 msgstr "Stöd för flera språk"
 
-#: modules/locale/locale.module:267
+#: modules/locale/locale.module:265
 msgid ""
 "Enable multilingual support for this content type. If enabled, a language "
 "selection field will be added to the editing form, allowing you to select "
@@ -412,51 +407,51 @@ msgstr ""
 "det förvalda språket. Existerande innehåll kommer inte att påverkas av en "
 "ändring av detta val."
 
-#: modules/locale/locale.module:437
+#: modules/locale/locale.module:435
 msgid "All"
 msgstr "Alla"
 
-#: modules/locale/locale.module:558
+#: modules/locale/locale.module:556
 msgid "Language switcher"
 msgstr "Språkbytare"
 
-#: modules/locale/locale.module:510
+#: modules/locale/locale.module:508
 msgid "Parsed JavaScript file %file."
 msgstr "Analyserade JavaScript-filen %file."
 
-#: modules/locale/locale.module:189
+#: modules/locale/locale.module:187
 msgid "administer languages"
 msgstr "administrera språk"
 
-#: modules/locale/locale.module:189
+#: modules/locale/locale.module:187
 msgid "translate interface"
 msgstr "översätta gränssnitt"
 
-#: modules/locale/locale.module:88
+#: modules/locale/locale.module:77
 msgid "Configure languages for content and the user interface."
 msgstr "Ställ in språk för innehåll och användargränssnitt."
 
-#: modules/locale/locale.module:113
+#: modules/locale/locale.module:104
 msgid "Edit language"
 msgstr "Redigera språk"
 
-#: modules/locale/locale.module:127
+#: modules/locale/locale.module:120
 msgid "Translate interface"
 msgstr "Översätt gränssnitt"
 
-#: modules/locale/locale.module:128
+#: modules/locale/locale.module:121
 msgid "Translate the built in interface and optionally other text."
 msgstr "Översätt det inbyggda gränssnittet och även annan text om så önskas."
 
-#: modules/locale/locale.module:134
+#: modules/locale/locale.module:127
 msgid "Overview"
 msgstr "Översikt"
 
-#: modules/locale/locale.module:160
+#: modules/locale/locale.module:156
 msgid "Edit string"
 msgstr "Redigera textsträng"
 
-#: modules/locale/locale.module:166
+#: modules/locale/locale.module:163
 msgid "Delete string"
 msgstr "Radera textsträng"
 
@@ -556,7 +551,7 @@ msgstr "!long-month-name december"
 msgid "Dec"
 msgstr "dec"
 
-#: modules/locale/locale.module:0;0
+#: modules/locale/locale.module:0
 msgid "Thu"
 msgstr "tors"
 
@@ -599,109 +594,3 @@ msgstr "FM"
 #: modules/locale/locale.module:0
 msgid "PM"
 msgstr "EM"
-
-#: modules/locale/locale.install:229
-msgid "List of all available languages in the system."
-msgstr "Lista alla tillgängliga språk i systemet."
-
-#: modules/locale/locale.install:236
-msgid "Language code, e.g. 'de' or 'en-US'."
-msgstr "Språkkod, t ex 'de' eller 'en-US'."
-
-#: modules/locale/locale.install:243
-msgid "Language name in English."
-msgstr "Språkets engelska namn."
-
-#: modules/locale/locale.install:250
-msgid "Native language name."
-msgstr "Språkets egna namn."
-
-#: modules/locale/locale.install:256
-msgid "Direction of language (Left-to-Right = 0, Right-to-Left = 1)."
-msgstr "Språkriktning (vänster till höger = 0, höger till vänster = 1)."
-
-#: modules/locale/locale.install:262
-msgid "Enabled flag (1 = Enabled, 0 = Disabled)."
-msgstr "Aktiverad-flagga (1 = Aktiverad, 0 = Inaktiverad)."
-
-#: modules/locale/locale.install:268
-msgid "Number of plural indexes in this language."
-msgstr "Antal pluralindex i detta språk."
-
-#: modules/locale/locale.install:275
-msgid "Plural formula in PHP code to evaluate to get plural indexes."
-msgstr "Pluralformel i PHP-kod för att utvärdera om pluralindex ska användas."
-
-#: modules/locale/locale.install:282
-msgid "Domain to use for this language."
-msgstr "Domän som används för detta språk"
-
-#: modules/locale/locale.install:289
-msgid "Path prefix to use for this language."
-msgstr "Sökvägsprefix som används för detta språk."
-
-#: modules/locale/locale.install:295
-msgid "Weight, used in lists of languages."
-msgstr "Vikt som används i språklistan."
-
-#: modules/locale/locale.install:302
-msgid "Location of JavaScript translation file."
-msgstr "Placering av översättningsfilen för JavaScript."
-
-#: modules/locale/locale.install:312
-msgid "List of English source strings."
-msgstr "Lista på Engelska källsträngar."
-
-#: modules/locale/locale.install:317
-msgid "Unique identifier of this string."
-msgstr "Unik identifierare av denna sträng."
-
-#: modules/locale/locale.install:324
-msgid ""
-"Drupal path in case of online discovered translations or file path in case "
-"of imported strings."
-msgstr ""
-"Drupal-sökväg vid översättningar hämtade online eller filsökvägar vid "
-"importerade textsträngar."
-
-#: modules/locale/locale.install:331
-msgid "A module defined group of translations, see hook_locale()."
-msgstr "En moduldefinierad grupp av översättningar, se hook_locale()."
-
-#: modules/locale/locale.install:337
-msgid "The original string in English."
-msgstr "Originalsträngen på engelska."
-
-#: modules/locale/locale.install:344
-msgid ""
-"Version of Drupal, where the string was last used (for locales optimization)."
-msgstr ""
-"Drupal-version där strängen senast användes (för språkanpassningsoptimering)."
-
-#: modules/locale/locale.install:354
-msgid "Stores translated versions of strings."
-msgstr "Sparar översatta versioner av textsträngar."
-
-#: modules/locale/locale.install:360
-msgid "Source string ID. References {locales_source}.lid."
-msgstr "Källsträng-ID. Syftar på {locales_source}.lid."
-
-#: modules/locale/locale.install:366
-msgid "Translation string value in this language."
-msgstr "Värdet på översättningssträngen för detta språk."
-
-#: modules/locale/locale.install:373
-msgid "Language code. References {languages}.language."
-msgstr "Språkkod. Syftar på {languages}.language."
-
-#: modules/locale/locale.install:379
-msgid ""
-"Parent lid (lid of the previous string in the plural chain) in case of "
-"plural strings. References {locales_source}.lid."
-msgstr ""
-"Förälder-lid (lid hos föregående sträng i pluralkedjan) om pluralsträngar "
-"används. Syftar på {locales_source}.lid."
-
-#: modules/locale/locale.install:385
-msgid "Plural index number in case of plural strings."
-msgstr "Pluralindexnummer om det rör sig om pluralsträngar."

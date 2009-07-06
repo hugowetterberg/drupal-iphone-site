@@ -1,20 +1,17 @@
-# $Id: modules-php.po,v 1.2.2.8 2008/07/14 00:00:09 zoo33 Exp $
-#
-# Swedish translation of Drupal (installer)
-# Copyright 2008 Lars Palo <larspalo@yahoo.se>
+# Swedish translation of drupal (6.10)
+# Copyright (c) 2009 by the Swedish translation team
 # Generated from files:
 #  php.module,v 1.8.2.1 2008/02/05 09:29:50 goba
 #  php.install,v 1.1 2007/04/24 10:54:34 dries
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Drupal 6\n"
-"POT-Creation-Date: 2008-02-15 13:50+0100\n"
-"PO-Revision-Date: 2008-02-22 15:20+0100\n"
-"Last-Translator: Lars Palo <larspalo@yahoo.se>\n"
-"Language-Team: Swedish (http://drupal.org/project/sv)\n"
+"Project-Id-Version: drupal (6.10)\n"
+"POT-Creation-Date: 2009-03-12 17:50+0100\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
@@ -48,7 +45,7 @@ msgstr ""
 "pålitliga användarna bör ges tillstånd att använda PHP-filtret och all PHP-"
 "kod som läggs till genom filtret bör undersökas noga innan det används."
 
-#: modules/php/php.module:18;61
+#: modules/php/php.module:18,61
 msgid ""
 "<a href=\"@drupal\">Drupal.org</a> offers <a href=\"@php-snippets\">some "
 "example PHP snippets</a>, or you can create your own with some PHP "

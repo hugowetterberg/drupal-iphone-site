@@ -1,37 +1,19 @@
-# $Id: modules-poll.po,v 1.2.2.4 2008/07/13 23:23:27 zoo33 Exp $
-#
-# Swedish translation of Drupal (installer)
-# Copyright 2008 Magnus Gunnarsson <seals@passagen.se>
+# Swedish translation of drupal (6.10)
+# Copyright (c) 2009 by the Swedish translation team
 # Generated from files:
-#  poll-bar.tpl.php,v 1.2 2007/08/07 08:39:35 goba
 #  poll.pages.inc,v 1.4 2007/12/14 09:50:41 goba
-#  poll-results-block.tpl.php,v 1.2 2007/08/02 20:08:53 dries
-#  poll-results.tpl.php,v 1.2 2007/08/07 08:39:35 goba
-#  poll.module,v 1.263 2008/01/15 07:57:46 dries
-#  poll.install,v 1.13 2007/12/18 12:59:21 dries
+#  poll.module,v 1.263.2.3 2008/12/18 15:46:20 dries
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Drupal 6\n"
-"POT-Creation-Date: 2008-02-15 13:50+0100\n"
-"PO-Revision-Date: 2008-02-17 21:13+0100\n"
-"Last-Translator: Magnus Gunnarsson <seals@passagen.se>\n"
-"Language-Team: Swedish (http://drupal.org/project/sv)\n"
+"Project-Id-Version: drupal (6.10)\n"
+"POT-Creation-Date: 2009-03-12 17:50+0100\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-
-#: modules/poll/poll-bar.tpl.php:25 modules/poll/poll.pages.inc:20
-msgid "1 vote"
-msgid_plural "@count votes"
-msgstr[0] "1 röst"
-msgstr[1] "@count röster"
-
-#: modules/poll/poll-results-block.tpl.php:26
-#: modules/poll/poll-results.tpl.php:24
-msgid "Total votes: @votes"
-msgstr "Totalt antal röster: @votes"
 
 #: modules/poll/poll.pages.inc:20
 msgid "open"
@@ -50,10 +32,6 @@ msgstr ""
 "Den här tabellen visar alla registrerade röster för den här omröstningen. Om "
 "gäster har rätt att rösta kommer de att identifieras av IP-numret på den "
 "dator de använde för att rösta."
-
-#: modules/poll/poll.pages.inc:35 modules/poll/poll.module:571
-msgid "Vote"
-msgstr "Röst"
 
 #: modules/poll/poll.module:16
 msgid ""
@@ -122,7 +100,7 @@ msgstr ""
 
 #: modules/poll/poll.module:251
 msgid "Closed"
-msgstr "Avslutad"
+msgstr "Stängd"
 
 #: modules/poll/poll.module:257
 msgid "Poll settings"
@@ -144,62 +122,62 @@ msgstr "Varaktighet för omröstningen"
 msgid "After this period, the poll will be closed automatically."
 msgstr "Omröstningen avslutas automatiskt efter denna tid."
 
-#: modules/poll/poll.module:306
+#: modules/poll/poll.module:307
 msgid "Choice @n"
 msgstr "Alternativ @n"
 
-#: modules/poll/poll.module:314
+#: modules/poll/poll.module:315
 msgid "Votes for choice @n"
 msgstr "Röster för alternativ @n"
 
-#: modules/poll/poll.module:385
+#: modules/poll/poll.module:380
 msgid "Negative values are not allowed."
 msgstr "Negativa värden är inte tillåtna."
 
-#: modules/poll/poll.module:390
+#: modules/poll/poll.module:385
 msgid "You must fill in at least two choices."
 msgstr "Du måste ange minst två alternativ."
 
-#: modules/poll/poll.module:511
+#: modules/poll/poll.module:506
 msgid "Older polls"
 msgstr "Äldre omröstningar"
 
-#: modules/poll/poll.module:511
+#: modules/poll/poll.module:506
 msgid "View the list of polls on this site."
 msgstr "Visa omröstningarna på webbplatsen."
 
-#: modules/poll/poll.module:513;98
+#: modules/poll/poll.module:508,98
 msgid "Results"
 msgstr "Resultat"
 
-#: modules/poll/poll.module:513
+#: modules/poll/poll.module:508
 msgid "View the current poll results."
 msgstr "Visa nuvarande omröstningsresultat"
 
-#: modules/poll/poll.module:593
+#: modules/poll/poll.module:588
 msgid ""
 "Your vote could not be recorded because you did not select any of the "
 "choices."
 msgstr ""
 "Din röst kunde inte registreras eftersom du inte valde något av alternativen."
 
-#: modules/poll/poll.module:616
+#: modules/poll/poll.module:611
 msgid "Your vote was recorded."
 msgstr "Din röst har registrerats."
 
-#: modules/poll/poll.module:672
+#: modules/poll/poll.module:667
 msgid "Add another choice"
 msgstr "Skapa fler alternativ"
 
-#: modules/poll/poll.module:676
+#: modules/poll/poll.module:671
 msgid "Choice"
 msgstr "Alternativ"
 
-#: modules/poll/poll.module:677
+#: modules/poll/poll.module:672
 msgid "Vote count"
 msgstr "Antalet röster"
 
-#: modules/poll/poll.module:759
+#: modules/poll/poll.module:754
 msgid "Cancel your vote"
 msgstr "Återkalla din röst"
 
@@ -250,70 +228,3 @@ msgstr "Alternativformulär i JavaScript."
 #: modules/poll/poll.module:0
 msgid "poll"
 msgstr "omröstning"
-
-#: modules/poll/poll.install:25
-msgid "Stores poll-specific information for poll nodes."
-msgstr "Sparar omröstningsspecifik information för omröstningsnoder."
-
-#: modules/poll/poll.install:32
-msgid "The poll's {node}.nid."
-msgstr "Omröstningens {node}.nid."
-
-#: modules/poll/poll.install:38
-msgid ""
-"The number of seconds past {node}.created during which the poll is open."
-msgstr ""
-"Antalet sekunder som förflutit {node}.created under tiden som omröstningen "
-"varit öppen."
-
-#: modules/poll/poll.install:45
-msgid "Boolean indicating whether or not the poll is open."
-msgstr "Boolesk indikering på om omröstningen är öppen eller ej."
-
-#: modules/poll/poll.install:52
-msgid "Stores information about all choices for all {poll}s."
-msgstr "Sparar information om alla alternativ för alla {poll}."
-
-#: modules/poll/poll.install:58
-msgid "Unique identifier for a poll choice."
-msgstr "Unik identifierare för ett alternativ i omröstningen."
-
-#: modules/poll/poll.install:65
-msgid "The {node}.nid this choice belongs to."
-msgstr "Den {node}.nid som det här valet hör till."
-
-#: modules/poll/poll.install:72
-msgid "The text for this choice."
-msgstr "Texten för det här alternativet."
-
-#: modules/poll/poll.install:78
-msgid "The total number of votes this choice has received by all users."
-msgstr ""
-"Det totala antalet röster det här alternativet har fått från alla användare."
-
-#: modules/poll/poll.install:84
-msgid "The sort order of this choice among all choices for the same node."
-msgstr ""
-"Sorteringsordningen för det här alternativet bland alla alternativ för samma "
-"nod."
-
-#: modules/poll/poll.install:94
-msgid "Stores per-{users} votes for each {poll}."
-msgstr "Sparar varje {users} röst för varje {poll}."
-
-#: modules/poll/poll.install:100
-msgid "The {poll} node this vote is for."
-msgstr "Noden för {poll} den här rösten är till för."
-
-#: modules/poll/poll.install:107
-msgid "The {users}.uid this vote is from unless the voter was anonymous."
-msgstr "Rösten från {users}.uid om inte röstaren var en gäst."
-
-#: modules/poll/poll.install:113
-msgid "The {users}'s vote for this poll."
-msgstr "Rösten från {users} i den här omröstningen."
-
-#: modules/poll/poll.install:120
-msgid "The IP address this vote is from unless the voter was logged in."
-msgstr ""
-"IP-adressen som den här rösten är ifrån såvida inte röstaren var inloggad."

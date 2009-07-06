@@ -1,22 +1,18 @@
-# $Id: modules-search.po,v 1.2.2.3 2008/07/13 23:23:27 zoo33 Exp $
-#
-# Swedish translation of Drupal (installer)
-# Copyright 2008 Lars Palo <larspalo@yahoo.se>
+# Swedish translation of drupal (6.10)
+# Copyright (c) 2009 by the Swedish translation team
 # Generated from files:
 #  search.admin.inc,v 1.4 2008/01/08 10:35:42 goba
 #  search.pages.inc,v 1.4 2007/12/06 09:51:01 goba
-#  search.module,v 1.250.2.1 2008/02/07 16:42:03 goba
-#  search.install,v 1.14 2007/12/28 10:53:27 dries
+#  search.module,v 1.250.2.5 2009/02/25 16:17:40 goba
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Drupal 6\n"
-"POT-Creation-Date: 2008-02-15 13:50+0100\n"
-"PO-Revision-Date: 2008-02-22 17:16+0100\n"
-"Last-Translator: Lars Palo <larspalo@yahoo.se>\n"
-"Language-Team: Swedish (http://drupal.org/project/sv)\n"
+"Project-Id-Version: drupal (6.10)\n"
+"POT-Creation-Date: 2009-03-12 17:50+0100\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
@@ -36,11 +32,11 @@ msgstr ""
 "innehåll kommer inte att indexeras förrän allt existerande innehåll har "
 "indexerats om. Detta kan inte ångras."
 
-#: modules/search/search.admin.inc:14;52;76
+#: modules/search/search.admin.inc:14,52,76
 msgid "Re-index site"
 msgstr "Indexera om webbplatsen"
 
-#: modules/search/search.admin.inc:23;82
+#: modules/search/search.admin.inc:23,82
 msgid "The index will be rebuilt."
 msgstr "Indexet kommer att byggas om."
 
@@ -139,10 +135,6 @@ msgstr "Din sökning gav inget resultat"
 msgid "Please enter some keywords."
 msgstr "Ange några sökord."
 
-#: modules/search/search.pages.inc:29 modules/search/search.module:0
-msgid "search"
-msgstr "sök"
-
 #: modules/search/search.pages.inc:29
 msgid "%keys (@type)."
 msgstr "Sökning: %keys (@type)."
@@ -218,14 +210,14 @@ msgstr ""
 msgid "Search form"
 msgstr "Sökformulär"
 
-#: modules/search/search.module:917
+#: modules/search/search.module:921
 msgid ""
 "You must include at least one positive keyword with @count characters or "
 "more."
 msgstr ""
 "Du måste ha med minst ett positivt sökord med @count bokstäver eller mer."
 
-#: modules/search/search.module:921
+#: modules/search/search.module:925
 msgid ""
 "Search for either of the two terms with uppercase <strong>OR</strong>. For "
 "example, <strong>cats OR dogs</strong>."
@@ -233,15 +225,15 @@ msgstr ""
 "Sök efter vilket som av de två angivna orden med hjälp av <strong>OR</"
 "strong> med stora bokstäver. Exempel: <strong>katter OR hundar</strong>."
 
-#: modules/search/search.module:1028
+#: modules/search/search.module:1032
 msgid "Enter your keywords"
 msgstr "Ange sökord"
 
-#: modules/search/search.module:1062
+#: modules/search/search.module:1066
 msgid "Search this site"
 msgstr "Sök på denna webbplats"
 
-#: modules/search/search.module:1066
+#: modules/search/search.module:1070
 msgid "Enter the terms you wish to search for."
 msgstr "Ange de ord du vill söka efter."
 
@@ -277,92 +269,3 @@ msgstr "Topplista sökord"
 #: modules/search/search.module:194
 msgid "View most popular search phrases."
 msgstr "Visa de populäraste sökorden"
-
-#: modules/search/search.install:29
-msgid "Stores items that will be searched."
-msgstr "Lagrar poster som ska sökas."
-
-#: modules/search/search.install:36
-msgid "Search item ID, e.g. node ID for nodes."
-msgstr "Sökpostens ID, t ex nod-ID för noder."
-
-#: modules/search/search.install:42
-msgid "Type of item, e.g. node."
-msgstr "Typ av post, t ex node."
-
-#: modules/search/search.install:48
-msgid "List of space-separated words from the item."
-msgstr "Lista av mellanrumsseparerade ord från posten."
-
-#: modules/search/search.install:55
-msgid "Set to force node reindexing."
-msgstr "Ange för att tvinga en omindexering av noder."
-
-#: modules/search/search.install:62
-msgid "Stores the search index, associating words, items and scores."
-msgstr "Lagrar sökindex genom att koppla samman ord, poster och poäng."
-
-#: modules/search/search.install:69
-msgid "The {search_total}.word that is associated with the search item."
-msgstr "Det {search_total}.word som är sammankopplat med sökposten."
-
-#: modules/search/search.install:76
-msgid ""
-"The {search_dataset}.sid of the searchable item to which the word belongs."
-msgstr "{search_dataset}.sid för den sökbara posten som ordet hör till."
-
-#: modules/search/search.install:82
-msgid ""
-"The {search_dataset}.type of the searchable item to which the word belongs."
-msgstr "{search_dataset}.type för den sökbara posten som ordet hör till."
-
-#: modules/search/search.install:87
-msgid "The numeric score of the word, higher being more important."
-msgstr "Den numeriska poängen hos ett ord, ju högre desto mer viktigt."
-
-#: modules/search/search.install:98
-msgid "Stores search totals for words."
-msgstr "Lagrar söksummor för ord."
-
-#: modules/search/search.install:101
-msgid "Primary Key: Unique word in the search index."
-msgstr "Primärnyckel: Unikt ord i sökindexet."
-
-#: modules/search/search.install:108
-msgid ""
-"The count of the word in the index using Zipf's law to equalize the "
-"probability distribution."
-msgstr ""
-"Antalet förekomster av ordet i indexet med hjälp av av Zipfs lag för att "
-"jämna ut sannolikhetsenfördelning."
-
-#: modules/search/search.install:117
-msgid ""
-"Stores items (like nodes) that link to other nodes, used to improve search "
-"scores for nodes that are frequently linked to."
-msgstr ""
-"Lagrar poster (som noder) som länkar till andra noder, används för att "
-"förbättra sökpoängen för noder som ofta länkas till."
-
-#: modules/search/search.install:124
-msgid ""
-"The {search_dataset}.sid of the searchable item containing the link to the "
-"node."
-msgstr ""
-"{search_dataset}.sid för den sökbara posten som innehåller länken till noden."
-
-#: modules/search/search.install:131
-msgid ""
-"The {search_dataset}.type of the searchable item containing the link to the "
-"node."
-msgstr ""
-"{search_dataset}.type för den sökbara posten som innehåller länken till "
-"noden."
-
-#: modules/search/search.install:138
-msgid "The {node}.nid that this item links to."
-msgstr "Den {node}.nid som denna post länkar till"
-
-#: modules/search/search.install:144
-msgid "The text used to link to the {node}.nid."
-msgstr "Text som används för att länka till {node}.nid."

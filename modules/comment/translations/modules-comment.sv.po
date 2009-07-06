@@ -1,23 +1,19 @@
-# $Id: modules-comment.po,v 1.2.2.7 2008/09/15 00:15:19 zoo33 Exp $
-#
-# Swedish translation of Drupal (installer)
-# Copyright 2008 Magnus Gunnarsson <seals@passagen.se>
+# Swedish translation of drupal (6.10)
+# Copyright (c) 2009 by the Swedish translation team
 # Generated from files:
 #  comment-folded.tpl.php,v 1.2 2007/08/07 08:39:35 goba
-#  comment.admin.inc,v 1.4 2008/01/08 10:35:41 goba
-#  comment.module,v 1.617 2008/01/25 16:19:12 goba
+#  comment.admin.inc,v 1.4.2.2 2008/05/19 07:27:35 goba
 #  comment.pages.inc,v 1.2.2.1 2008/02/07 18:53:38 goba
-#  comment.install,v 1.19 2008/01/16 21:45:30 goba
+#  comment.module,v 1.617.2.4 2009/01/06 17:34:54 goba
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Drupal 6\n"
-"POT-Creation-Date: 2008-02-15 13:50+0100\n"
-"PO-Revision-Date: 2008-02-17 19:15+0100\n"
-"Last-Translator: Magnus Gunnarsson <seals@passagen.se>\n"
-"Language-Team: Swedish (http://drupal.org/project/sv)\n"
+"Project-Id-Version: drupal (6.10)\n"
+"POT-Creation-Date: 2009-03-12 17:50+0100\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
@@ -76,10 +72,6 @@ msgstr ""
 msgid "The comment and all its replies have been deleted."
 msgstr "Kommentaren inklusive alla dess svar har raderats."
 
-#: modules/comment/comment.admin.inc:111 modules/comment/comment.module:707
-msgid "Comment: updated %subject."
-msgstr "Kommentar: uppdaterat %subject."
-
 #: modules/comment/comment.admin.inc:280
 msgid "Cannot delete non-existent comment."
 msgstr "Kan inte radera kommentar som inte existerar."
@@ -88,11 +80,11 @@ msgstr "Kan inte radera kommentar som inte existerar."
 msgid "Comment: deleted %subject."
 msgstr "Kommentar: raderat %subject."
 
-#: modules/comment/comment.pages.inc:65;105
+#: modules/comment/comment.pages.inc:65,105
 msgid "You are not authorized to post comments."
 msgstr "Du har inte behörighet att skriva kommentarer."
 
-#: modules/comment/comment.pages.inc:78;87
+#: modules/comment/comment.pages.inc:78,87
 msgid "The comment you are replying to does not exist."
 msgstr "Kommentaren du besvarar finns inte."
 
@@ -179,48 +171,48 @@ msgstr ""
 "författarens namn för att redigera användarinformationen, \"redigera\" för "
 "att ändra texten och \"radera\" för att ta bort kommentaren."
 
-#: modules/comment/comment.module:284;288
+#: modules/comment/comment.module:285,289
 msgid "Recent comments"
 msgstr "Nya kommentarer"
 
-#: modules/comment/comment.module:420
+#: modules/comment/comment.module:421
 msgid "Jump to the first comment of this posting."
 msgstr "Hoppa till detta inläggs första kommentar."
 
-#: modules/comment/comment.module:431
+#: modules/comment/comment.module:432
 msgid "Jump to the first new comment of this posting."
 msgstr "Hoppa till detta inläggs första nya kommentar."
 
-#: modules/comment/comment.module:440;461
+#: modules/comment/comment.module:441,462
 msgid "Add new comment"
 msgstr "Lägg till ny kommentar"
 
-#: modules/comment/comment.module:442
+#: modules/comment/comment.module:443
 msgid "Add a new comment to this page."
 msgstr "Lägg till en ny kommentar till denna sida."
 
-#: modules/comment/comment.module:463
+#: modules/comment/comment.module:464
 msgid "Share your thoughts and opinions related to this posting."
 msgstr ""
 "Dela med dig av dina tankar och åsikter som har med detta inlägg att göra."
 
-#: modules/comment/comment.module:492;575
+#: modules/comment/comment.module:493,576
 msgid "Comment settings"
 msgstr "Inställningar för kommentarer"
 
-#: modules/comment/comment.module:498
+#: modules/comment/comment.module:499
 msgid "Default comment setting"
 msgstr "Förvald inställning för kommentarer"
 
-#: modules/comment/comment.module:500;584
+#: modules/comment/comment.module:501,585
 msgid "Read only"
 msgstr "Endast läsa"
 
-#: modules/comment/comment.module:500;584
+#: modules/comment/comment.module:501,585
 msgid "Read/Write"
 msgstr "Läsa/Skriva"
 
-#: modules/comment/comment.module:501
+#: modules/comment/comment.module:502
 msgid ""
 "Users with the <em>administer comments</em> permission will be able to "
 "override this setting."
@@ -228,11 +220,11 @@ msgstr ""
 "Användare med behörighet att <em>administrera kommentarer</em> kan "
 "åsidosätta denna inställning."
 
-#: modules/comment/comment.module:505
+#: modules/comment/comment.module:506
 msgid "Default display mode"
 msgstr "Förvalt visningsläge"
 
-#: modules/comment/comment.module:508
+#: modules/comment/comment.module:509
 msgid ""
 "The default view for comments. Expanded views display the body of the "
 "comment. Threaded views keep replies together."
@@ -240,11 +232,11 @@ msgstr ""
 "Förvald vy för kommentarer. Utfällt läge visar innehållet i kommentaren. "
 "Trådad visning håller ihop relaterade svar med varandra."
 
-#: modules/comment/comment.module:512
+#: modules/comment/comment.module:513
 msgid "Default display order"
 msgstr "Förvald visningsordning"
 
-#: modules/comment/comment.module:515
+#: modules/comment/comment.module:516
 msgid ""
 "The default sorting for new users and anonymous users while viewing "
 "comments. These users may change their view using the comment control panel. "
@@ -255,11 +247,11 @@ msgstr ""
 "Dessa användare kan ändra visningsformat via kontrollpanelen för kommentar. "
 "För registrerade användare lagras denna användarinställning."
 
-#: modules/comment/comment.module:519
+#: modules/comment/comment.module:520
 msgid "Default comments per page"
 msgstr "Förvalt antal kommentarer per sida"
 
-#: modules/comment/comment.module:522
+#: modules/comment/comment.module:523
 msgid ""
 "Default number of comments for each page: more comments are distributed in "
 "several pages."
@@ -267,27 +259,27 @@ msgstr ""
 "Förvalt antal kommentarer per sida. Fler kommentarer fördelas över flera "
 "sidor."
 
-#: modules/comment/comment.module:526
+#: modules/comment/comment.module:527
 msgid "Comment controls"
 msgstr "Styrningar för kommentarer"
 
-#: modules/comment/comment.module:529
+#: modules/comment/comment.module:530
 msgid "Display above the comments"
 msgstr "Visa över kommentarerna"
 
-#: modules/comment/comment.module:530
+#: modules/comment/comment.module:531
 msgid "Display below the comments"
 msgstr "Visa under kommentarerna"
 
-#: modules/comment/comment.module:531
+#: modules/comment/comment.module:532
 msgid "Display above and below the comments"
 msgstr "Visa över och under kommentarerna"
 
-#: modules/comment/comment.module:532
+#: modules/comment/comment.module:533
 msgid "Do not display"
 msgstr "Visa ej"
 
-#: modules/comment/comment.module:533
+#: modules/comment/comment.module:534
 msgid ""
 "Position of the comment controls box. The comment controls let the user "
 "change the default display mode and display order of comments."
@@ -295,23 +287,23 @@ msgstr ""
 "Placering av kontrollpanelen för kommentar. Kontrollpanelen för kommentarer "
 "låter användaren ändra förvalt visningsläge och ordning på kommentarerna."
 
-#: modules/comment/comment.module:537
+#: modules/comment/comment.module:538
 msgid "Anonymous commenting"
 msgstr "Anonym kommentering"
 
-#: modules/comment/comment.module:540
+#: modules/comment/comment.module:541
 msgid "Anonymous posters may not enter their contact information"
 msgstr "Gäster som skriver får ej ange sin kontaktinformation"
 
-#: modules/comment/comment.module:541
+#: modules/comment/comment.module:542
 msgid "Anonymous posters may leave their contact information"
 msgstr "Gäster som skriver får ange sin kontaktinformation"
 
-#: modules/comment/comment.module:542
+#: modules/comment/comment.module:543
 msgid "Anonymous posters must leave their contact information"
 msgstr "Gäster som skriver måste ange sin kontaktinformation"
 
-#: modules/comment/comment.module:543
+#: modules/comment/comment.module:544
 msgid ""
 "This option is enabled when anonymous users have permission to post comments "
 "on the <a href=\"@url\">permissions page</a>."
@@ -319,19 +311,19 @@ msgstr ""
 "Detta alternativ är aktiverat när gäster har rättighet att skriva "
 "kommentarer. Se vidare på <a href=\"@url\">rättighetssidan</a>."
 
-#: modules/comment/comment.module:550
+#: modules/comment/comment.module:551
 msgid "Comment subject field"
 msgstr "Ämnesfält för kommentarer"
 
-#: modules/comment/comment.module:553
+#: modules/comment/comment.module:554
 msgid "Can users provide a unique subject for their comments?"
 msgstr "Kan användarna ange ett unikt ämne för sina kommentarer?"
 
-#: modules/comment/comment.module:557;1425
+#: modules/comment/comment.module:558,1428
 msgid "Preview comment"
 msgstr "Förhandsvisa kommentar"
 
-#: modules/comment/comment.module:560
+#: modules/comment/comment.module:561
 msgid ""
 "Forces a user to look at their comment by clicking on a 'Preview' button "
 "before they can actually add the comment"
@@ -339,19 +331,19 @@ msgstr ""
 "Tvingar en användare att titta på sina kommentarer genom att klicka på "
 "knappen <em>förhandsvisa</em> innan de faktiskt kan lägga till sin kommentar."
 
-#: modules/comment/comment.module:564
+#: modules/comment/comment.module:565
 msgid "Location of comment submission form"
 msgstr "Placering av kommentarformuläret"
 
-#: modules/comment/comment.module:566
+#: modules/comment/comment.module:567
 msgid "Display on separate page"
 msgstr "Visa på en separat sida"
 
-#: modules/comment/comment.module:566
+#: modules/comment/comment.module:567
 msgid "Display below post or comments"
 msgstr "Visa under inlägg eller kommentar"
 
-#: modules/comment/comment.module:778
+#: modules/comment/comment.module:781
 msgid ""
 "Your comment has been queued for moderation by site administrators and will "
 "be published after approval."
@@ -359,7 +351,7 @@ msgstr ""
 "Din kommentar har lagts i kö för moderering av webbplatsens administratörer "
 "och kommer att publiceras efter godkännande."
 
-#: modules/comment/comment.module:791;790
+#: modules/comment/comment.module:794,793
 msgid ""
 "Comment: unauthorized comment submitted or comment submitted to a closed "
 "post %subject."
@@ -367,51 +359,51 @@ msgstr ""
 "Kommentar: obehörig kommentar skickad eller kommentar skickad till stängt "
 "inlägg %subject."
 
-#: modules/comment/comment.module:814
+#: modules/comment/comment.module:817
 msgid "parent"
 msgstr "ovanliggande"
 
-#: modules/comment/comment.module:831;843
+#: modules/comment/comment.module:834,846
 msgid "reply"
 msgstr "besvara"
 
-#: modules/comment/comment.module:1048
+#: modules/comment/comment.module:1051
 msgid "Post new comment"
 msgstr "Skriv ny kommentar"
 
-#: modules/comment/comment.module:1069;1081
+#: modules/comment/comment.module:1072,1084
 msgid "Publish the selected comments"
 msgstr "Publicera de valda kommentarerna"
 
-#: modules/comment/comment.module:1070;1076;1083
+#: modules/comment/comment.module:1073,1079,1086
 msgid "Delete the selected comments"
 msgstr "Radera de valda kommentarerna"
 
-#: modules/comment/comment.module:1075;1082
+#: modules/comment/comment.module:1078,1085
 msgid "Unpublish the selected comments"
 msgstr "Avpublicera de valda kommentarerna"
 
-#: modules/comment/comment.module:1192
+#: modules/comment/comment.module:1195
 msgid "You have to specify a valid author."
 msgstr "Du måste ange en giltig författare."
 
-#: modules/comment/comment.module:1203
+#: modules/comment/comment.module:1206
 msgid "The name you used belongs to a registered user."
 msgstr "Namnet du använde hör till en registrerad användare."
 
-#: modules/comment/comment.module:1208
+#: modules/comment/comment.module:1211
 msgid "You have to leave your name."
 msgstr "Du måste ange ditt namn."
 
-#: modules/comment/comment.module:1213
+#: modules/comment/comment.module:1216
 msgid "The e-mail address you specified is not valid."
 msgstr "Den e-postadress du angav är inte giltig."
 
-#: modules/comment/comment.module:1217
+#: modules/comment/comment.module:1220
 msgid "You have to leave an e-mail address."
 msgstr "Du måste ange en e-postadress."
 
-#: modules/comment/comment.module:1222
+#: modules/comment/comment.module:1225
 msgid ""
 "The URL of your homepage is not valid. Remember that it must be fully "
 "qualified, i.e. of the form <code>http://example.com/directory</code>."
@@ -419,23 +411,23 @@ msgstr ""
 "URL:en till din hemsida är ogiltig. Kom ihåg att den måste vara helt giltig, "
 "det vill säga i formen <code>http://exempel.se/katalog</code>."
 
-#: modules/comment/comment.module:1278
+#: modules/comment/comment.module:1281
 msgid "Administration"
 msgstr "Administration"
 
-#: modules/comment/comment.module:1321;1346;1353
+#: modules/comment/comment.module:1324,1349,1356
 msgid "Homepage"
 msgstr "Hemsida"
 
-#: modules/comment/comment.module:1527
+#: modules/comment/comment.module:1530
 msgid "(No subject)"
 msgstr "(Inget ämne)"
 
-#: modules/comment/comment.module:1613
+#: modules/comment/comment.module:1616
 msgid "!a comments per page"
 msgstr "!a kommentarer per sida"
 
-#: modules/comment/comment.module:1640
+#: modules/comment/comment.module:1643
 msgid ""
 "Select your preferred way to display the comments and click \"Save settings"
 "\" to activate your changes."
@@ -443,11 +435,11 @@ msgstr ""
 "Välj ditt önskade sätt att visa kommentarerna och klicka på \"Spara\" för "
 "att verkställa dina ändringar."
 
-#: modules/comment/comment.module:1641
+#: modules/comment/comment.module:1644
 msgid "Comment viewing options"
 msgstr "Alternativ för kommentarvisning"
 
-#: modules/comment/comment.module:1794
+#: modules/comment/comment.module:1797
 msgid ""
 "<a href=\"@login\">Login</a> or <a href=\"@register\">register</a> to post "
 "comments"
@@ -455,56 +447,55 @@ msgstr ""
 "<a href=\"@login\">logga in</a> eller <a href=\"@register\">registrera dig</"
 "a> för att kunna kommentera"
 
-#: modules/comment/comment.module:1798
+#: modules/comment/comment.module:1801
 msgid "<a href=\"@login\">Login</a> to post comments"
 msgstr "<a href=\"@login\">Logga in</a> för att skriva kommentarer"
 
-#: modules/comment/comment.module:1826
+#: modules/comment/comment.module:1829
 msgid "Submitted by !username on @datetime."
 msgstr "Skrivet av !username den @datetime."
 
-#: modules/comment/comment.module:1841
+#: modules/comment/comment.module:1844
 msgid "Flat list - collapsed"
 msgstr "Rak lista - hoppfällt läge"
 
-#: modules/comment/comment.module:1842
+#: modules/comment/comment.module:1845
 msgid "Flat list - expanded"
 msgstr "Rak lista - utfällt läge"
 
-#: modules/comment/comment.module:1843
+#: modules/comment/comment.module:1846
 msgid "Threaded list - collapsed"
 msgstr "Trådad lista - hoppfällt läge"
 
-#: modules/comment/comment.module:1844
+#: modules/comment/comment.module:1847
 msgid "Threaded list - expanded"
 msgstr "Trådad lista - utfällt läge"
 
-#: modules/comment/comment.module:2000
+#: modules/comment/comment.module:2003
 msgid "After saving a new comment"
 msgstr "Efter sparande av ny kommentar"
 
-#: modules/comment/comment.module:2003
+#: modules/comment/comment.module:2006
 msgid "After saving an updated comment"
 msgstr "Efter sparande av uppdaterad kommentar"
 
-#: modules/comment/comment.module:2006
+#: modules/comment/comment.module:2009
 msgid "After deleting a comment"
 msgstr "Efter radering av kommentar"
 
-#: modules/comment/comment.module:2009
+#: modules/comment/comment.module:2012
 msgid "When a comment is being viewed by an authenticated user"
 msgstr "När en kommentar visas av en behörig användare."
 
-#: modules/comment/comment.module:2022
+#: modules/comment/comment.module:2025
 msgid "Unpublish comment"
 msgstr "Avpublicera kommentaren"
 
-#: modules/comment/comment.module:2030
+#: modules/comment/comment.module:2033
 msgid "Unpublish comment containing keyword(s)"
 msgstr "Avpublicera kommentarer som innehåller nyckelordet/nyckelorden"
 
-# Företag, AB är inte rätt skrivet, men kom inte på något exempel.
-#: modules/comment/comment.module:2070
+#: modules/comment/comment.module:2073
 msgid ""
 "The comment will be unpublished if it contains any of the character "
 "sequences above. Use a comma-separated list of character sequences. Example: "
@@ -516,33 +507,33 @@ msgstr ""
 "rolig, bungee jump, \"Företag, Inc\". Teckenserierna skiljer på gemener och "
 "versaler."
 
-#: modules/comment/comment.module:768
+#: modules/comment/comment.module:771
 msgid "Comment: added %subject."
 msgstr "Kommentar: Lagt till %subject"
 
-#: modules/comment/comment.module:2058;2098
+#: modules/comment/comment.module:2061,2101
 msgid "Unpublished comment %subject."
 msgstr "Avpublicera kommentaren %subject."
 
-#: modules/comment/comment.module:428
+#: modules/comment/comment.module:429
 msgid "1 new comment"
 msgid_plural "@count new comments"
 msgstr[0] "1 ny kommentar"
 msgstr[1] "@count nya kommentarer"
 
-#: modules/comment/comment.module:274
+#: modules/comment/comment.module:275
 msgid "access comments"
 msgstr "komma åt kommentarer"
 
-#: modules/comment/comment.module:274
+#: modules/comment/comment.module:275
 msgid "post comments"
 msgstr "skriva kommentarer"
 
-#: modules/comment/comment.module:274
+#: modules/comment/comment.module:275
 msgid "administer comments"
 msgstr "administrera kommentarer"
 
-#: modules/comment/comment.module:274
+#: modules/comment/comment.module:275
 msgid "post comments without approval"
 msgstr "skriv kommentarer utan godkännande"
 
@@ -560,145 +551,18 @@ msgstr "Publicerade kommentarer"
 msgid "Approval queue"
 msgstr "Godkännandekö"
 
-#: modules/comment/comment.module:219
+#: modules/comment/comment.module:220
 msgid "Delete comment"
 msgstr "Radera kommentar"
 
-#: modules/comment/comment.module:227
+#: modules/comment/comment.module:228
 msgid "Edit comment"
 msgstr "Redigera kommentar"
 
-#: modules/comment/comment.module:234
+#: modules/comment/comment.module:235
 msgid "Reply to comment"
 msgstr "Besvara kommentar"
 
 #: modules/comment/comment.module:0
 msgid "comment"
 msgstr "kommentar"
-
-#: modules/comment/comment.install:76
-msgid "Stores comments and associated data."
-msgstr "Sparar kommentarer och tillhörande information."
-
-#: modules/comment/comment.install:81
-msgid "Primary Key: Unique comment ID."
-msgstr "Primärnyckel: Unikt ID på kommentaren."
-
-#: modules/comment/comment.install:87
-msgid ""
-"The {comments}.cid to which this comment is a reply. If set to 0, this "
-"comment is not a reply to an existing comment."
-msgstr ""
-"Den {comments}.cid vars kommentar är ett svar. Den här kommentaren är inte "
-"ett svar på en existerande kommentar om det är satt till 0."
-
-#: modules/comment/comment.install:93
-msgid "The {node}.nid to which this comment is a reply."
-msgstr "Den {comments}.cid vars kommentar är ett svar."
-
-#: modules/comment/comment.install:99
-msgid ""
-"The {users}.uid who authored the comment. If set to 0, this comment was "
-"created by an anonymous user."
-msgstr ""
-"Den {users}.uid som författade kommentaren. Den här kommentaren skapades av "
-"en gäst om det är satt till 0."
-
-#: modules/comment/comment.install:106
-msgid "The comment title."
-msgstr "Kommentarens ämne."
-
-#: modules/comment/comment.install:112
-msgid "The comment body."
-msgstr "Kommentarens brödtext."
-
-#: modules/comment/comment.install:119
-msgid "The author's host name."
-msgstr "Författarens servernamn."
-
-#: modules/comment/comment.install:125
-msgid ""
-"The time that the comment was created, or last edited by its author, as a "
-"Unix timestamp."
-msgstr ""
-"Tiden som en kommentar skapades eller senast ändrades av dess författare, "
-"som en Unix-tidsstämpel."
-
-#: modules/comment/comment.install:133
-msgid "The published status of a comment. (0 = Published, 1 = Not Published)"
-msgstr ""
-"Status på den publicerade kommentaren. (0 = publicerad, 1 = Inte publicerad)"
-
-#: modules/comment/comment.install:140
-msgid "The {filter_formats}.format of the comment body."
-msgstr "Den {filter_formats}.format av en kommentars brödtext."
-
-#: modules/comment/comment.install:146
-msgid "The vancode representation of the comment's place in a thread."
-msgstr "Vancodes-representation av kommentarens placering i en tråd."
-
-#: modules/comment/comment.install:152
-msgid ""
-"The comment author's name. Uses {users}.name if the user is logged in, "
-"otherwise uses the value typed into the comment form."
-msgstr ""
-"Namn på författaren till kommentaren. Använder {users}.name om användaren är "
-"inloggad, annars används värdet som står i kommentarsformuläret."
-
-#: modules/comment/comment.install:158
-msgid ""
-"The comment author's e-mail address from the comment form, if user is "
-"anonymous, and the 'Anonymous users may/must leave their contact "
-"information' setting is turned on."
-msgstr ""
-"Om användaren är en gäst och \"Gäster kan/måste lämna sin kontaktinformation"
-"\" är påsatt skrivs författaren e-postadress från kommentarsformuläret"
-
-#: modules/comment/comment.install:164
-msgid ""
-"The comment author's home page address from the comment form, if user is "
-"anonymous, and the 'Anonymous users may/must leave their contact "
-"information' setting is turned on."
-msgstr ""
-"Om användaren är en gäst och \"Gäster kan/måste lämna sin kontaktinformation"
-"\" är påsatt skrivs författaren hemsideadress från kommentarsformuläret"
-
-#: modules/comment/comment.install:176
-msgid ""
-"Maintains statistics of node and comments posts to show \"new\" and \"updated"
-"\" flags."
-msgstr ""
-"Upprättar statistik på noden och inlagda kommentarer genom att flagga \"nya"
-"\" och \"uppdaterade\""
-
-#: modules/comment/comment.install:183
-msgid "The {node}.nid for which the statistics are compiled."
-msgstr "Den {node}.nid som statistiken sammanställdes för."
-
-#: modules/comment/comment.install:189
-msgid ""
-"The Unix timestamp of the last comment that was posted within this node, "
-"from {comments}.timestamp."
-msgstr ""
-"Unix-tidsstämpel på den senaste kommentaren som lades till i denna nod från "
-"{comments}.timestamp."
-
-#: modules/comment/comment.install:195
-msgid ""
-"The name of the latest author to post a comment on this node, from "
-"{comments}.name."
-msgstr ""
-"Namn på senaste författaren som lagt till en kommentar på den här noden från "
-"{comments}.uid."
-
-#: modules/comment/comment.install:201
-msgid ""
-"The user ID of the latest author to post a comment on this node, from "
-"{comments}.uid."
-msgstr ""
-"Användar-ID på senaste författaren som lagt till en kommentar på den här "
-"noden från {comments}.uid."
-
-#: modules/comment/comment.install:208
-msgid "The total number of comments on this node."
-msgstr "Det totala antalet kommentarer på den här noden."

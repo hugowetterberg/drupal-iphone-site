@@ -1,21 +1,17 @@
-# $Id: modules-taxonomy.po,v 1.1.2.6 2008/08/09 18:57:35 zoo33 Exp $
-#
-# Swedish translation of Drupal (installer)
-# Copyright 2008 zoo33
+# Swedish translation of drupal (6.10)
+# Copyright (c) 2009 by the Swedish translation team
 # Generated from files:
-#  taxonomy.admin.inc,v 1.22.2.1 2008/02/07 20:46:57 goba
-#  taxonomy.module,v 1.414 2008/01/27 17:55:15 goba
-#  taxonomy.install,v 1.7 2008/01/08 07:46:41 goba
+#  taxonomy.admin.inc,v 1.22.2.3 2009/02/25 12:53:24 goba
+#  taxonomy.module,v 1.414.2.6 2009/02/16 10:44:09 goba
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Drupal 6\n"
-"POT-Creation-Date: 2008-02-15 13:50+0100\n"
-"PO-Revision-Date: 2008-08-08 13:44+0100\n"
-"Last-Translator: Yettyn <yettyn@gmail.com>\n"
-"Language-Team: Swedish (http://drupal.org/project/sv)\n"
+"Project-Id-Version: drupal (6.10)\n"
+"POT-Creation-Date: 2009-03-12 17:50+0100\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
@@ -97,11 +93,11 @@ msgstr ""
 msgid "Vocabularies are displayed in ascending order by weight."
 msgstr "Vokabulärer visas i stigande ordning baserat på vikt."
 
-#: modules/taxonomy/taxonomy.admin.inc:202;203
+#: modules/taxonomy/taxonomy.admin.inc:202,203
 msgid "Created new vocabulary %name."
 msgstr "Skapade vokabulären %name."
 
-#: modules/taxonomy/taxonomy.admin.inc:206;207
+#: modules/taxonomy/taxonomy.admin.inc:206,207
 msgid "Updated vocabulary %name."
 msgstr "Uppdaterade vokabulären %name."
 
@@ -113,7 +109,7 @@ msgstr "Termer i %vocabulary"
 msgid "No terms available."
 msgstr "Inga termer tillgängliga."
 
-#: modules/taxonomy/taxonomy.admin.inc:418;445;912
+#: modules/taxonomy/taxonomy.admin.inc:418,445,912
 msgid "Reset to alphabetical"
 msgstr "Återställ till alfabetisk"
 
@@ -136,10 +132,6 @@ msgid ""
 msgstr ""
 "En beskrivning av termen. Detta kommer att visas på taxonomi- och termsidor "
 "och i RSS-flöden."
-
-#: modules/taxonomy/taxonomy.admin.inc:676
-msgid "Advanced options"
-msgstr "Avancerade alternativ"
 
 #: modules/taxonomy/taxonomy.admin.inc:695
 msgid "Parents"
@@ -169,11 +161,11 @@ msgstr "Termer visas i stigande ordning baserat på vikt."
 msgid "Weight value must be numeric."
 msgstr "Värdet för vikt måste vara ett heltal."
 
-#: modules/taxonomy/taxonomy.admin.inc:768;769
+#: modules/taxonomy/taxonomy.admin.inc:768,769
 msgid "Created new term %term."
 msgstr "Skapade termen %term."
 
-#: modules/taxonomy/taxonomy.admin.inc:772;773
+#: modules/taxonomy/taxonomy.admin.inc:772,773
 msgid "Updated term %term."
 msgstr "Uppdaterade termen %term."
 
@@ -221,7 +213,7 @@ msgstr ""
 "När en term raderas raderas även alla befintliga undertermer. Detta kan inte "
 "ångras."
 
-#: modules/taxonomy/taxonomy.admin.inc:854;855
+#: modules/taxonomy/taxonomy.admin.inc:854,855
 msgid "Deleted term %name."
 msgstr "Raderade termen %name."
 
@@ -237,7 +229,7 @@ msgstr ""
 "När en vokabulär raderas raderas även alla dess termer. Detta kan inte "
 "ångras."
 
-#: modules/taxonomy/taxonomy.admin.inc:888;889
+#: modules/taxonomy/taxonomy.admin.inc:888,889
 msgid "Deleted vocabulary %name."
 msgstr "Raderade vokabulären %name."
 
@@ -256,24 +248,19 @@ msgstr ""
 "Genom att återställa en vokabulär tas alla anpassade ordningar bort och "
 "inläggen sorteras därefter alfabetiskt."
 
-#: modules/taxonomy/taxonomy.admin.inc:923;924
+#: modules/taxonomy/taxonomy.admin.inc:923,924
 msgid "Reset vocabulary %name to alphabetical order."
 msgstr "Återställ vokabulären %name till alfabetisk ordning."
 
-#: modules/taxonomy/taxonomy.admin.inc:203;207;769;773;855;889;924
-#: modules/taxonomy/taxonomy.module:0
-msgid "taxonomy"
-msgstr "taxonomi"
-
-#: modules/taxonomy/taxonomy.module:418
+#: modules/taxonomy/taxonomy.module:422
 msgid "- None selected -"
 msgstr "- Inga valda -"
 
-#: modules/taxonomy/taxonomy.module:421
+#: modules/taxonomy/taxonomy.module:425
 msgid "- None -"
-msgstr "- Ingen - "
+msgstr "- Ingen -"
 
-#: modules/taxonomy/taxonomy.module:517
+#: modules/taxonomy/taxonomy.module:521
 msgid ""
 "A comma-separated list of terms describing this content. Example: funny, "
 "bungee jumping, \"Company, Inc.\"."
@@ -281,19 +268,19 @@ msgstr ""
 "En komma-separerad lista med termer som beskriver detta innehåll. "
 "Exempelvis: skoj, bungee jump, \"ett, två, tre\"."
 
-#: modules/taxonomy/taxonomy.module:548
+#: modules/taxonomy/taxonomy.module:552
 msgid "Vocabularies"
 msgstr "Vokabulärer"
 
-#: modules/taxonomy/taxonomy.module:635
+#: modules/taxonomy/taxonomy.module:639
 msgid "The %name vocabulary can not be modified in this way."
 msgstr "Vokabulären %name kan inte modifieras på detta sätt."
 
-#: modules/taxonomy/taxonomy.module:1133
+#: modules/taxonomy/taxonomy.module:1138
 msgid "There are currently no posts in this category."
 msgstr "Det finns för närvarande inga inlägg i denna kategori."
 
-#: modules/taxonomy/taxonomy.module:1236
+#: modules/taxonomy/taxonomy.module:1241
 msgid ""
 "The taxonomy module allows you to categorize content using various systems "
 "of classification. Free-tagging vocabularies are created by users on the fly "
@@ -313,7 +300,7 @@ msgstr ""
 "appliceras på olika innehållstyper och kombineras för att skapa en kraftfull "
 "och flexibel metod för att klassificera och presentera ditt innehåll."
 
-#: modules/taxonomy/taxonomy.module:1237
+#: modules/taxonomy/taxonomy.module:1242
 msgid ""
 "For example, when creating a recipe site, you might want to classify posts "
 "by both the type of meal and preparation time. A vocabulary for each allows "
@@ -325,15 +312,15 @@ msgstr ""
 "varje låter dig kategorisera genom att använda varje kriterium självständigt "
 "istället för att skapa en etikett för varje möjlig kombination."
 
-#: modules/taxonomy/taxonomy.module:1238
+#: modules/taxonomy/taxonomy.module:1243
 msgid "Type of Meal: <em>Appetizer, Main Course, Salad, Dessert</em>"
 msgstr "Typ av måltid: <em>Förrätt, Huvudrätt, Sallad, Dessert</em>"
 
-#: modules/taxonomy/taxonomy.module:1239
+#: modules/taxonomy/taxonomy.module:1244
 msgid "Preparation Time: <em>0-30mins, 30-60mins, 1-2 hrs, 2hrs+</em>"
 msgstr "Koktid: <em>0-30 min, 30-60 min, 1-2 h, 2 h+</em>"
 
-#: modules/taxonomy/taxonomy.module:1240
+#: modules/taxonomy/taxonomy.module:1245
 msgid ""
 "Each taxonomy term (often called a 'category' or 'tag' in other systems) "
 "automatically provides lists of posts and a corresponding RSS feed. These "
@@ -356,7 +343,7 @@ msgstr ""
 "som du kan använda för att förändra och utöka beteendet för standardmodulen, "
 "både för visning och för organisering av termer."
 
-#: modules/taxonomy/taxonomy.module:1241
+#: modules/taxonomy/taxonomy.module:1246
 msgid ""
 "Terms can also be organized in parent/child relationships from the admin "
 "interface. An example would be a vocabulary grouping countries under their "
@@ -370,7 +357,7 @@ msgstr ""
 "möjliggör också avancerade former av hierarkier, till exempel genom att "
 "placera Turkiet i både 'Mellanöstern' och 'Europa'."
 
-#: modules/taxonomy/taxonomy.module:1242
+#: modules/taxonomy/taxonomy.module:1247
 msgid ""
 "The taxonomy module supports the use of both synonyms and related terms, but "
 "does not directly use this functionality. However, optional contributed or "
@@ -380,14 +367,14 @@ msgstr ""
 "inte dessa funktioner rakt av. Dock kan valfria tilläggsmoduler eller "
 "anpassade moduler använda sig av dessa avancerade funktioner fullt ut."
 
-#: modules/taxonomy/taxonomy.module:1243
+#: modules/taxonomy/taxonomy.module:1248
 msgid ""
 "For more information, see the online handbook entry for <a href=\"@taxonomy"
 "\">Taxonomy module</a>."
 msgstr ""
 "Läs mer om <a href=\"@taxonomy\">modulen Taxonomy</a> i onlinehandboken."
 
-#: modules/taxonomy/taxonomy.module:1246
+#: modules/taxonomy/taxonomy.module:1251
 msgid ""
 "The taxonomy module allows you to categorize your content using both tags "
 "and administrator defined terms. It is a flexible tool for classifying "
@@ -404,7 +391,7 @@ msgstr ""
 "av allt innehåll, eller också separerade styrda vokabulärer som anger de "
 "olika egenskaperna för ditt innehåll, till exempel 'Länder' eller 'Färger'."
 
-#: modules/taxonomy/taxonomy.module:1247
+#: modules/taxonomy/taxonomy.module:1252
 msgid ""
 "Use the list below to configure and review the vocabularies defined on your "
 "site, or to list and manage the terms (tags) they contain. A vocabulary may "
@@ -429,7 +416,7 @@ msgstr ""
 "handtagsikonen.) Kom ihåg att dina ändringar inte kommer att sparas förrän "
 "du klickar på <em>Spara</em>-knappen längst ner på sidan."
 
-#: modules/taxonomy/taxonomy.module:1252
+#: modules/taxonomy/taxonomy.module:1257
 msgid ""
 "%capital_name is a free-tagging vocabulary. To change the name or "
 "description of a term, click the <em>edit</em> link next to the term."
@@ -437,7 +424,7 @@ msgstr ""
 "%capital_name är en vokabulär för fri etikettering. Klicka på <em>redigera</"
 "em>-länken bredvid termen för att ändra dess namn eller beskrivning."
 
-#: modules/taxonomy/taxonomy.module:1256
+#: modules/taxonomy/taxonomy.module:1261
 msgid ""
 "%capital_name is a flat vocabulary. You may organize the terms in the %name "
 "vocabulary by using the handles on the left side of the table. To change the "
@@ -448,7 +435,7 @@ msgstr ""
 "Klicka på <em>redigera</em>-länken bredvid termen för att ändra dess namn "
 "eller beskrivning."
 
-#: modules/taxonomy/taxonomy.module:1258
+#: modules/taxonomy/taxonomy.module:1263
 msgid ""
 "%capital_name is a single hierarchy vocabulary. You may organize the terms "
 "in the %name vocabulary by using the handles on the left side of the table. "
@@ -460,7 +447,7 @@ msgstr ""
 "Klicka på <em>redigera</em>-länken bredvid termen för att ändra dess namn "
 "eller beskrivning."
 
-#: modules/taxonomy/taxonomy.module:1260
+#: modules/taxonomy/taxonomy.module:1265
 msgid ""
 "%capital_name is a multiple hierarchy vocabulary. To change the name or "
 "description of a term, click the <em>edit</em> link next to the term. Drag "
@@ -473,7 +460,7 @@ msgstr ""
 "återaktivera drag-och-släpp genom att redigera varje term så att den bara "
 "har en ovanliggande term."
 
-#: modules/taxonomy/taxonomy.module:1263
+#: modules/taxonomy/taxonomy.module:1268
 msgid ""
 "Define how your vocabulary will be presented to administrators and users, "
 "and which content types to categorize with it. Tags allows users to create "
@@ -487,15 +474,15 @@ msgstr ""
 "kommaseparerad lista. Annars väljs termerna från en lista och kan bara "
 "skapas av användare med rättigheten \"administrera taxonomier\"."
 
-#: modules/taxonomy/taxonomy.module:1302
+#: modules/taxonomy/taxonomy.module:1307
 msgid "After saving a new term to the database"
 msgstr "Efter att ha sparat en ny term till databasen"
 
-#: modules/taxonomy/taxonomy.module:1305
+#: modules/taxonomy/taxonomy.module:1310
 msgid "After saving an updated term to the database"
 msgstr "Efter att ha sparat en uppdaterad term till databasen"
 
-#: modules/taxonomy/taxonomy.module:1308
+#: modules/taxonomy/taxonomy.module:1313
 msgid "After deleting a term"
 msgstr "Efter att ha tagit bort en term"
 
@@ -512,189 +499,26 @@ msgstr ""
 msgid "Add vocabulary"
 msgstr "Lägg till vokabulär"
 
-#: modules/taxonomy/taxonomy.module:137
+#: modules/taxonomy/taxonomy.module:138
 msgid "Edit vocabulary"
 msgstr "Redigera vokabulär"
 
-#: modules/taxonomy/taxonomy.module:145
+#: modules/taxonomy/taxonomy.module:147
 msgid "Edit term"
 msgstr "Redigera term"
 
-#: modules/taxonomy/taxonomy.module:152
+#: modules/taxonomy/taxonomy.module:155
 msgid "Taxonomy term"
 msgstr "Taxonomi-term"
 
-#: modules/taxonomy/taxonomy.module:161
+#: modules/taxonomy/taxonomy.module:164
 msgid "Autocomplete taxonomy"
 msgstr "Autokompletterande taxonomi"
 
-#: modules/taxonomy/taxonomy.module:168
+#: modules/taxonomy/taxonomy.module:171
 msgid "List terms"
 msgstr "Lista termer"
 
-#: modules/taxonomy/taxonomy.module:183
+#: modules/taxonomy/taxonomy.module:186
 msgid "Add term"
 msgstr "Lägg till term"
-
-#: modules/taxonomy/taxonomy.install:9
-msgid "Stores term information."
-msgstr "Lagrar information om termen."
-
-#: modules/taxonomy/taxonomy.install:15
-msgid "Primary Key: Unique term ID."
-msgstr "Primärnyckel: Unikt ID på termen."
-
-#: modules/taxonomy/taxonomy.install:22
-msgid "The {vocabulary}.vid of the vocabulary to which the term is assigned."
-msgstr "{vocabulary}.vid för vokabulären som termen är kopplad till."
-
-#: modules/taxonomy/taxonomy.install:29
-msgid "The term name."
-msgstr "Namn på termen."
-
-#: modules/taxonomy/taxonomy.install:35
-msgid "A description of the term."
-msgstr "En beskrivning av termen."
-
-#: modules/taxonomy/taxonomy.install:42
-msgid "The weight of this term in relation to other terms."
-msgstr "Vikten på den här termen jämfört med andra termer."
-
-#: modules/taxonomy/taxonomy.install:53
-msgid "Stores the hierarchical relationship between terms."
-msgstr "Lagrar det hierarkiska släktskapet mellan termer."
-
-#: modules/taxonomy/taxonomy.install:60
-msgid "Primary Key: The {term_data}.tid of the term."
-msgstr "Primärnyckel: {term_data}.tid för termen."
-
-#: modules/taxonomy/taxonomy.install:67
-msgid ""
-"Primary Key: The {term_data}.tid of the term's parent. 0 indicates no parent."
-msgstr ""
-"Primärnyckel: {term_data}.tid för en terms ovanliggande term. 0 anger att "
-"ovanliggande term saknas."
-
-#: modules/taxonomy/taxonomy.install:77
-msgid "Stores the relationship of terms to nodes."
-msgstr "Lagrar förhållandet mellan termer och noder."
-
-#: modules/taxonomy/taxonomy.install:84
-msgid "Primary Key: The {node}.nid of the node."
-msgstr "Primärnyckel: {node}.nid för en nod."
-
-#: modules/taxonomy/taxonomy.install:98
-msgid "Primary Key: The {term_data}.tid of a term assigned to the node."
-msgstr "Primärnyckel: {term_data}.tid för en term som är tilldelad till noden."
-
-#: modules/taxonomy/taxonomy.install:109
-msgid "Stores non-hierarchical relationships between terms."
-msgstr "Lagrar ickehierarkiska samband mellan termer."
-
-#: modules/taxonomy/taxonomy.install:114
-msgid "Primary Key: Unique term relation ID."
-msgstr "Primärnyckel: Unikt ID för samband mellan termer."
-
-#: modules/taxonomy/taxonomy.install:121
-msgid "The {term_data}.tid of the first term in a relationship."
-msgstr "{term_data}.tid för den första termen i en relation."
-
-#: modules/taxonomy/taxonomy.install:128
-msgid "The {term_data}.tid of the second term in a relationship."
-msgstr "{term_data}.tid för den andra termen i en relation."
-
-#: modules/taxonomy/taxonomy.install:141
-msgid "Stores term synonyms."
-msgstr "Lagrar synonymer till termen."
-
-#: modules/taxonomy/taxonomy.install:146
-msgid "Primary Key: Unique term synonym ID."
-msgstr "Primärnyckel: Unikt ID för termsynonym."
-
-#: modules/taxonomy/taxonomy.install:153
-msgid "The {term_data}.tid of the term."
-msgstr "{term_data}.tid för denna term."
-
-#: modules/taxonomy/taxonomy.install:160
-msgid "The name of the synonym."
-msgstr "Synonymets namn."
-
-#: modules/taxonomy/taxonomy.install:171
-msgid "Stores vocabulary information."
-msgstr "Lagrar information om en vokabulär."
-
-#: modules/taxonomy/taxonomy.install:177
-msgid "Primary Key: Unique vocabulary ID."
-msgstr "Primärnyckel: Unikt ID för vokabulären."
-
-#: modules/taxonomy/taxonomy.install:184
-msgid "Name of the vocabulary."
-msgstr "Vokabulärens namn."
-
-#: modules/taxonomy/taxonomy.install:190
-msgid "Description of the vocabulary."
-msgstr "Beskrivning av vokabulären."
-
-#: modules/taxonomy/taxonomy.install:197
-msgid "Help text to display for the vocabulary."
-msgstr "Hjälptext som ska visas för vokabulären."
-
-#: modules/taxonomy/taxonomy.install:205
-msgid ""
-"Whether or not related terms are enabled within the vocabulary. (0 = "
-"disabled, 1 = enabled)"
-msgstr ""
-"Huruvida relaterade termer är aktiverade inom vokabulären eller ej. (0 = "
-"inaktiverat, 1 = aktiverat)"
-
-#: modules/taxonomy/taxonomy.install:213
-msgid ""
-"The type of hierarchy allowed within the vocabulary. (0 = disabled, 1 = "
-"single, 2 = multiple)"
-msgstr ""
-"Typ av hierarki som är tillåten inom vokabulären. (0 = inaktiverat, 1 = "
-"enkel, 2 = flera)"
-
-#: modules/taxonomy/taxonomy.install:221
-msgid ""
-"Whether or not multiple terms from this vocabulary may be assigned to a "
-"node. (0 = disabled, 1 = enabled)"
-msgstr ""
-"Huruvida flera termer från den här vokabulären kan kopplas till en och samma "
-"nod. (0 = inaktiverat, 1 = aktiverat)"
-
-#: modules/taxonomy/taxonomy.install:229
-msgid ""
-"Whether or not terms are required for nodes using this vocabulary. (0 = "
-"disabled, 1 = enabled)"
-msgstr ""
-"Huruvida termer är obligatoriska för noder som använder den här vokabulären. "
-"(0 = inaktiverat, 1 = aktiverat)"
-
-#: modules/taxonomy/taxonomy.install:237
-msgid ""
-"Whether or not free tagging is enabled for the vocabulary. (0 = disabled, 1 "
-"= enabled)"
-msgstr ""
-"Huruvida fri etikettering är tillgängligt för vokabulären. (0 = inaktiverat, "
-"1 = aktiverat)"
-
-#: modules/taxonomy/taxonomy.install:244
-msgid "The module which created the vocabulary."
-msgstr "Modulen som skapade vokabulären."
-
-#: modules/taxonomy/taxonomy.install:251
-msgid "The weight of the vocabulary in relation to other vocabularies."
-msgstr "Vikten på vokabulären i förhållande till andra vokabulärer."
-
-#: modules/taxonomy/taxonomy.install:261
-msgid "Stores which node types vocabularies may be used with."
-msgstr "Lagrar vilka nodtyper som vokabulärer får användas med."
-
-#: modules/taxonomy/taxonomy.install:268
-msgid "Primary Key: the {vocabulary}.vid of the vocabulary."
-msgstr "Primärnyckel: {vocabulary}.vid för vokabulären."
-
-#: modules/taxonomy/taxonomy.install:275
-msgid "The {node}.type of the node type for which the vocabulary may be used."
-msgstr "{node}.type för nodtypen som vokabulären får användas med."

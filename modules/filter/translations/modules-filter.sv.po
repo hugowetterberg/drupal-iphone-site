@@ -1,22 +1,18 @@
-# $Id: modules-filter.po,v 1.2.2.7 2008/09/15 00:15:19 zoo33 Exp $
-#
-# Swedish translation of Drupal (installer)
-# Copyright 2008 Magnus Gunnarsson <seals@passagen.se>
+# Swedish translation of drupal (6.10)
+# Copyright (c) 2009 by the Swedish translation team
 # Generated from files:
 #  filter.admin.inc,v 1.8.2.1 2008/02/12 14:25:34 goba
-#  filter.module,v 1.204 2008/01/21 15:08:24 goba
 #  filter.pages.inc,v 1.2 2007/11/10 17:41:18 dries
-#  filter.install,v 1.5 2007/12/18 12:59:21 dries
+#  filter.module,v 1.204.2.8 2008/12/10 22:30:14 goba
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Drupal 6\n"
-"POT-Creation-Date: 2008-02-15 13:50+0100\n"
-"PO-Revision-Date: 2008-02-18 05:26+0100\n"
-"Last-Translator: Magnus Gunnarsson <seals@passagen.se>\n"
-"Language-Team: Swedish (http://drupal.org/project/sv)\n"
+"Project-Id-Version: drupal (6.10)\n"
+"POT-Creation-Date: 2009-03-12 17:50+0100\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
@@ -35,10 +31,6 @@ msgstr "Välj standardformat"
 #: modules/filter/filter.admin.inc:45
 msgid "Default format updated."
 msgstr "Standardformatet uppdaterat."
-
-#: modules/filter/filter.admin.inc:81 modules/filter/filter.module:83
-msgid "Add input format"
-msgstr "Lägg till inmatningsformat"
 
 #: modules/filter/filter.admin.inc:97
 msgid "All roles for the default format must be enabled and cannot be changed."
@@ -66,10 +58,6 @@ msgstr "Filter"
 msgid "Choose the filters that will be used in this filter format."
 msgstr "Välj vilka filter som ska användas i detta filterformat."
 
-#: modules/filter/filter.admin.inc:146 modules/filter/filter.module:583
-msgid "More information about formatting options"
-msgstr "Mer information om formateringsmöjligheter"
-
 #: modules/filter/filter.admin.inc:149
 msgid "No guidelines available."
 msgstr "Inga riktlinjer tillgängliga."
@@ -82,10 +70,6 @@ msgstr ""
 "Det här är den hjälptext som användare kommer att få se när de lägger in "
 "text i detta inmatningsformat. Den skapas automatiskt utifrån "
 "filterinställningarna."
-
-#: modules/filter/filter.admin.inc:153 modules/filter/filter.module:512
-msgid "Formatting guidelines"
-msgstr "Formateringshjälp"
 
 #: modules/filter/filter.admin.inc:168
 msgid ""
@@ -285,11 +269,11 @@ msgstr ""
 "sparas förrän du klickar på knappen <em>Spara inställningar</em> längst ner "
 "på sidan."
 
-#: modules/filter/filter.module:176;178
+#: modules/filter/filter.module:180,182
 msgid "Allowed HTML tags: @tags"
 msgstr "Tillåtna HTML-taggar: @tags"
 
-#: modules/filter/filter.module:183
+#: modules/filter/filter.module:187
 msgid ""
 "\n"
 "<p>This site allows HTML content. While learning all of HTML may feel "
@@ -309,11 +293,11 @@ msgstr ""
 "specifikation</a> eller använd en sökmotor för att hitta andra webbplatser "
 "som förklarar HTML.</p>"
 
-#: modules/filter/filter.module:187
+#: modules/filter/filter.module:191
 msgid "Anchors are used to make links to other pages."
 msgstr "Ankare används för att skapa länkar till andra sidor."
 
-#: modules/filter/filter.module:188
+#: modules/filter/filter.module:192
 msgid ""
 "By default line break tags are automatically added, so use this tag to add "
 "additional ones. Use of this tag is different because it is not used with an "
@@ -325,11 +309,11 @@ msgstr ""
 "att den inte har en start- och sluttagg som övriga taggar. Använd ett extra "
 "\"/\" inuti taggen för att behålla kompatibiliteten med XHTML 1.0."
 
-#: modules/filter/filter.module:188
+#: modules/filter/filter.module:192
 msgid "Text with <br />line break"
 msgstr "Text med <br />radbrytning"
 
-#: modules/filter/filter.module:189
+#: modules/filter/filter.module:193
 msgid ""
 "By default paragraph tags are automatically added, so use this tag to add "
 "additional ones."
@@ -337,129 +321,129 @@ msgstr ""
 "Som standard läggs stycketaggar till automatiskt. Använd denna tagg för att "
 "lägga till flera."
 
-#: modules/filter/filter.module:189
+#: modules/filter/filter.module:193
 msgid "Paragraph one."
 msgstr "Första stycket."
 
-#: modules/filter/filter.module:189
+#: modules/filter/filter.module:193
 msgid "Paragraph two."
 msgstr "Andra stycket."
 
-#: modules/filter/filter.module:190;190
+#: modules/filter/filter.module:194
 msgid "Strong"
 msgstr "Stark"
 
-#: modules/filter/filter.module:191;191
+#: modules/filter/filter.module:195
 msgid "Emphasized"
 msgstr "Betonat/kursivt"
 
-#: modules/filter/filter.module:192;192
+#: modules/filter/filter.module:196
 msgid "Cited"
 msgstr "Citerat"
 
-#: modules/filter/filter.module:193
+#: modules/filter/filter.module:197
 msgid "Coded text used to show programming source code"
 msgstr "Kodad text som används för att visa programkällkod."
 
-#: modules/filter/filter.module:193
+#: modules/filter/filter.module:197
 msgid "Coded"
 msgstr "Kodat"
 
-#: modules/filter/filter.module:194;194
+#: modules/filter/filter.module:198
 msgid "Bolded"
 msgstr "Fet"
 
-#: modules/filter/filter.module:195;195
+#: modules/filter/filter.module:199
 msgid "Underlined"
 msgstr "Understruket"
 
-#: modules/filter/filter.module:196;196
+#: modules/filter/filter.module:200
 msgid "Italicized"
 msgstr "Kursiverat"
 
-#: modules/filter/filter.module:197
+#: modules/filter/filter.module:201
 msgid "Superscripted"
 msgstr "Upphöjt"
 
-#: modules/filter/filter.module:197
+#: modules/filter/filter.module:201
 msgid "<sup>Super</sup>scripted"
 msgstr "<sup>Upp</sup>höjt"
 
-#: modules/filter/filter.module:198
+#: modules/filter/filter.module:202
 msgid "Subscripted"
 msgstr "Nedsänkt"
 
-#: modules/filter/filter.module:198
+#: modules/filter/filter.module:202
 msgid "<sub>Sub</sub>scripted"
 msgstr "<sub>Ned</sub>sänkt"
 
-#: modules/filter/filter.module:199;199
+#: modules/filter/filter.module:203
 msgid "Preformatted"
 msgstr "Förformaterat"
 
-#: modules/filter/filter.module:200
+#: modules/filter/filter.module:204
 msgid "Abbreviation"
 msgstr "Förkortning"
 
-#: modules/filter/filter.module:200
+#: modules/filter/filter.module:204
 msgid "<abbr title=\"Abbreviation\">Abbrev.</abbr>"
 msgstr "<abbr title=\"Förkortning\">Förkortn.</abbr>"
 
-#: modules/filter/filter.module:201
+#: modules/filter/filter.module:205
 msgid "Acronym"
 msgstr "Akronym"
 
-#: modules/filter/filter.module:201
+#: modules/filter/filter.module:205
 msgid "<acronym title=\"Three-Letter Acronym\">TLA</acronym>"
 msgstr "<acronym title=\"Trebokstävers-akronym\">TLA</acronym>"
 
-#: modules/filter/filter.module:202;202
+#: modules/filter/filter.module:206
 msgid "Block quoted"
 msgstr "Blockciterat"
 
-#: modules/filter/filter.module:203;203
+#: modules/filter/filter.module:207
 msgid "Quoted inline"
 msgstr "Citat i löpande text"
 
-#: modules/filter/filter.module:205
+#: modules/filter/filter.module:209
 msgid "Table"
 msgstr "Tabell"
 
-#: modules/filter/filter.module:205
+#: modules/filter/filter.module:209
 msgid "Table header"
 msgstr "Tabellhuvud"
 
-#: modules/filter/filter.module:205
+#: modules/filter/filter.module:209
 msgid "Table cell"
 msgstr "Tabellcell"
 
-#: modules/filter/filter.module:207;207
+#: modules/filter/filter.module:211
 msgid "Deleted"
 msgstr "Borttaget"
 
-#: modules/filter/filter.module:208;208
+#: modules/filter/filter.module:212
 msgid "Inserted"
 msgstr "Infogat"
 
-#: modules/filter/filter.module:210
+#: modules/filter/filter.module:214
 msgid "Ordered list - use the &lt;li&gt; to begin each list item"
 msgstr ""
 "Numrerad lista - använd &lt;li&gt; för att påbörja varje ny post i listan"
 
-#: modules/filter/filter.module:210;211
+#: modules/filter/filter.module:214,215
 msgid "First item"
 msgstr "Första posten"
 
-#: modules/filter/filter.module:210;211
+#: modules/filter/filter.module:214,215
 msgid "Second item"
 msgstr "Andra posten"
 
-#: modules/filter/filter.module:211
+#: modules/filter/filter.module:215
 msgid "Unordered list - use the &lt;li&gt; to begin each list item"
 msgstr ""
 "Onumrerad lista - använd &lt;li&gt; för att påbörja varje ny post i listan"
 
-#: modules/filter/filter.module:214
+#: modules/filter/filter.module:218
 msgid ""
 "Definition lists are similar to other HTML lists. &lt;dl&gt; begins the "
 "definition list, &lt;dt&gt; begins the definition term and &lt;dd&gt; begins "
@@ -469,59 +453,59 @@ msgstr ""
 "dt&gt; inleder definitionstermen och &lt;dd&gt; inleder "
 "definitionsbeskrivningen."
 
-#: modules/filter/filter.module:214
+#: modules/filter/filter.module:218
 msgid "First term"
 msgstr "Första termen"
 
-#: modules/filter/filter.module:214
+#: modules/filter/filter.module:218
 msgid "First definition"
 msgstr "Första definitionen"
 
-#: modules/filter/filter.module:214
+#: modules/filter/filter.module:218
 msgid "Second term"
 msgstr "Andra termen"
 
-#: modules/filter/filter.module:214
+#: modules/filter/filter.module:218
 msgid "Second definition"
 msgstr "Andra definitionen"
 
-#: modules/filter/filter.module:217
+#: modules/filter/filter.module:221
 msgid "Subtitle"
 msgstr "Underrubrik"
 
-#: modules/filter/filter.module:218
+#: modules/filter/filter.module:222
 msgid "Subtitle three"
 msgstr "Tredje rubrik"
 
-#: modules/filter/filter.module:219
+#: modules/filter/filter.module:223
 msgid "Subtitle four"
 msgstr "Fjärde rubrik"
 
-#: modules/filter/filter.module:220
+#: modules/filter/filter.module:224
 msgid "Subtitle five"
 msgstr "Femte rubrik"
 
-#: modules/filter/filter.module:221
+#: modules/filter/filter.module:225
 msgid "Subtitle six"
 msgstr "Sjätte rubrik"
 
-#: modules/filter/filter.module:223
+#: modules/filter/filter.module:227
 msgid "Tag Description"
 msgstr "Taggbeskrivning"
 
-#: modules/filter/filter.module:223;252
+#: modules/filter/filter.module:227,256
 msgid "You Type"
 msgstr "Du skriver"
 
-#: modules/filter/filter.module:223;252
+#: modules/filter/filter.module:227,256
 msgid "You Get"
 msgstr "Du får"
 
-#: modules/filter/filter.module:237
+#: modules/filter/filter.module:241
 msgid "No help provided for tag %tag."
 msgstr "Ingen hjälp finns tillgänglig för taggen %tag."
 
-#: modules/filter/filter.module:243
+#: modules/filter/filter.module:247
 msgid ""
 "\n"
 "<p>Most unusual characters can be directly entered without any problems.</"
@@ -540,35 +524,35 @@ msgstr ""
 "sgml/entities.html\">HTML entities</a>. Några av de tillgängliga tecknen är:"
 "</p>"
 
-#: modules/filter/filter.module:247
+#: modules/filter/filter.module:251
 msgid "Ampersand"
 msgstr "Tecknet &"
 
-#: modules/filter/filter.module:248
+#: modules/filter/filter.module:252
 msgid "Greater than"
 msgstr "Större än"
 
-#: modules/filter/filter.module:249
+#: modules/filter/filter.module:253
 msgid "Less than"
 msgstr "Mindre än"
 
-#: modules/filter/filter.module:250
+#: modules/filter/filter.module:254
 msgid "Quotation mark"
 msgstr "Citationstecken"
 
-#: modules/filter/filter.module:252
+#: modules/filter/filter.module:256
 msgid "Character Description"
 msgstr "Teckenbeskrivning"
 
-#: modules/filter/filter.module:266
+#: modules/filter/filter.module:270
 msgid "No HTML tags allowed"
 msgstr "Inga HTML-taggar tillåtna"
 
-#: modules/filter/filter.module:274
+#: modules/filter/filter.module:278
 msgid "Lines and paragraphs break automatically."
 msgstr "Rader och stycken bryts automatiskt."
 
-#: modules/filter/filter.module:276
+#: modules/filter/filter.module:280
 msgid ""
 "Lines and paragraphs are automatically recognized. The &lt;br /&gt; line "
 "break, &lt;p&gt; paragraph and &lt;/p&gt; close paragraph tags are inserted "
@@ -579,31 +563,31 @@ msgstr ""
 "taggar för stycken (&lt;p&gt; och &lt;/p&gt;) sätts in automatiskt. Om "
 "stycken inte fungerar är det bara att lägga till ett par tomrader."
 
-#: modules/filter/filter.module:280
+#: modules/filter/filter.module:284
 msgid "Web page addresses and e-mail addresses turn into links automatically."
 msgstr "Webbadresser och e-postadresser görs automatiskt till länkar."
 
-#: modules/filter/filter.module:484
+#: modules/filter/filter.module:495
 msgid "Input format"
 msgstr "Inmatningsformat"
 
-#: modules/filter/filter.module:604;655
+#: modules/filter/filter.module:615,666
 msgid "HTML filter"
 msgstr "HTML-filter"
 
-#: modules/filter/filter.module:604
+#: modules/filter/filter.module:615
 msgid "Line break converter"
 msgstr "Konverterare för radbrytning"
 
-#: modules/filter/filter.module:604;715
+#: modules/filter/filter.module:615,726
 msgid "URL filter"
 msgstr "Filter för URL:er"
 
-#: modules/filter/filter.module:604
+#: modules/filter/filter.module:615
 msgid "HTML corrector"
 msgstr "Korrigerare för HTML"
 
-#: modules/filter/filter.module:609
+#: modules/filter/filter.module:620
 msgid ""
 "Allows you to restrict whether users can post HTML and which tags to filter "
 "out. It will also remove harmful content such as JavaScript events, "
@@ -614,33 +598,33 @@ msgstr ""
 "JavaScript, URL:er i JavaScript och stilar i CSS från dess taggar som inte "
 "är borttagna."
 
-#: modules/filter/filter.module:611
+#: modules/filter/filter.module:622
 msgid "Converts line breaks into HTML (i.e. &lt;br&gt; and &lt;p&gt; tags)."
 msgstr ""
 "Konverterar radbrytningar till HTML (till exempel taggarna &lt;br&gt; och "
 "&lt;p&gt;)."
 
-#: modules/filter/filter.module:613
+#: modules/filter/filter.module:624
 msgid "Turns web and e-mail addresses into clickable links."
 msgstr "Gör webb- och e-postadresser till klickbara länkar."
 
-#: modules/filter/filter.module:615
+#: modules/filter/filter.module:626
 msgid "Corrects faulty and chopped off HTML in postings."
 msgstr "Korrigerar felaktig och kluven HTML i inlägg."
 
-#: modules/filter/filter.module:660
+#: modules/filter/filter.module:671
 msgid "Filter HTML tags"
 msgstr "Filtrera HTML-taggar"
 
-#: modules/filter/filter.module:662
+#: modules/filter/filter.module:673
 msgid "Strip disallowed tags"
 msgstr "Rensa bort otillåtna taggar"
 
-#: modules/filter/filter.module:662
+#: modules/filter/filter.module:673
 msgid "Escape all tags"
 msgstr "Koda alla taggar"
 
-#: modules/filter/filter.module:663
+#: modules/filter/filter.module:674
 msgid ""
 "How to deal with HTML tags in user-contributed content. If set to \"Strip "
 "disallowed tags\", dangerous tags are removed (see below). If set to "
@@ -650,7 +634,7 @@ msgstr ""
 "bort otillåtna taggar\" gör att farliga taggar tas bort (se nedan). "
 "Inställningen \"Koda taggar\" gör att HTML-taggarna visas som de skrivits."
 
-#: modules/filter/filter.module:671
+#: modules/filter/filter.module:682
 msgid ""
 "If \"Strip disallowed tags\" is selected, optionally specify tags which "
 "should not be stripped. JavaScript event attributes are always stripped."
@@ -658,22 +642,22 @@ msgstr ""
 "Om \"Ta bort otillåtna taggar\" är valt kan man specificera vilka taggar som "
 "inte skall tas bort. JavaScript tas alltid bort."
 
-#: modules/filter/filter.module:675
+#: modules/filter/filter.module:686
 msgid "Display HTML help"
 msgstr "Visa HTML-hjälp"
 
-#: modules/filter/filter.module:677
+#: modules/filter/filter.module:688
 msgid ""
 "If enabled, Drupal will display some basic HTML help in the long filter tips."
 msgstr ""
 "Om detta är aktiverat kommer Drupal att visa viss grundläggande HTML-hjälp i "
 "de långa filtertipsen."
 
-#: modules/filter/filter.module:681
+#: modules/filter/filter.module:692
 msgid "Spam link deterrent"
 msgstr "Avskräckning för spamlänk"
 
-#: modules/filter/filter.module:683
+#: modules/filter/filter.module:694
 msgid ""
 "If enabled, Drupal will add rel=\"nofollow\" to all links, as a measure to "
 "reduce the effectiveness of spam links. Note: this will also prevent valid "
@@ -685,11 +669,11 @@ msgstr ""
 "länkar från att följas av sökmotorer, det är därför sannolikt mest "
 "användbart för anonyma användare."
 
-#: modules/filter/filter.module:720
+#: modules/filter/filter.module:731
 msgid "Maximum link text length"
 msgstr "Maxlängd för länktext"
 
-#: modules/filter/filter.module:723
+#: modules/filter/filter.module:734
 msgid ""
 "URLs longer than this number of characters will be truncated to prevent long "
 "strings that break formatting. The link itself will be retained; just the "
@@ -699,7 +683,7 @@ msgstr ""
 "förhindra att långa strängar stör formateringen. Själva länken påverkas "
 "inte, det är bara texten som kortas av."
 
-#: modules/filter/filter.module:153
+#: modules/filter/filter.module:157
 msgid "administer filters"
 msgstr "administrera filter"
 
@@ -716,82 +700,18 @@ msgstr ""
 "taggar. Ger också möjlighet att aktivera filter som tillhandahålls av "
 "moduler."
 
-#: modules/filter/filter.module:90
+#: modules/filter/filter.module:91
 msgid "Delete input format"
 msgstr "Radera inmatningsformat"
 
-#: modules/filter/filter.module:97
+#: modules/filter/filter.module:99
 msgid "Compose tips"
 msgstr "Skrivtips"
 
-#: modules/filter/filter.module:128
+#: modules/filter/filter.module:131
 msgid "Rearrange"
 msgstr "Ordna om"
 
 #: modules/filter/filter.module:0
 msgid "filter"
 msgstr "filter"
-
-#: modules/filter/filter.install:9
-msgid ""
-"Table that maps filters (HTML corrector) to input formats (Filtered HTML)."
-msgstr ""
-"Tabell som kartlägger filter (korrigerare för HTML) till inmatningsformat "
-"(Filtrerad HTML)."
-
-#: modules/filter/filter.install:14
-msgid "Primary Key: Auto-incrementing filter ID."
-msgstr "Primärnyckel: Automatisk ökning av ID för format."
-
-#: modules/filter/filter.install:20
-msgid ""
-"Foreign key: The {filter_formats}.format to which this filter is assigned."
-msgstr ""
-"Sekundärnyckel: Det {filter_formats}.format som filtret är tilldelat till."
-
-#: modules/filter/filter.install:27
-msgid "The origin module of the filter."
-msgstr "Originalmodulen för filtret."
-
-#: modules/filter/filter.install:34
-msgid "ID to identify which filter within module is being referenced."
-msgstr ""
-"ID för att identifiera vilket filter som det hänvisats till inom en modul."
-
-#: modules/filter/filter.install:41
-msgid "Weight of filter within format."
-msgstr "Vikt av filter inom ett format."
-
-#: modules/filter/filter.install:53
-msgid ""
-"Stores input formats: custom groupings of filters, such as Filtered HTML."
-msgstr ""
-"Sparar inmatat format: anpassad gruppering av filter, så som Filtrerad HTML."
-
-#: modules/filter/filter.install:58
-msgid "Primary Key: Unique ID for format."
-msgstr "Primärnyckel: Unikt ID för format."
-
-#: modules/filter/filter.install:65
-msgid "Name of the input format (Filtered HTML)."
-msgstr "Namn på inmatningsformatet (Filtrerad HTML)."
-
-#: modules/filter/filter.install:72
-msgid "A comma-separated string of roles; references {role}.rid."
-msgstr "En kommaseparerad sträng av roller; hänvisningar {role}.rid."
-
-#: modules/filter/filter.install:79
-msgid ""
-"Flag to indicate whether format is cachable. (1 = cachable, 0 = not cachable)"
-msgstr ""
-"Flagga för att indikera om ett format är möjligt att cacha. (1 = möjligt att "
-"cacha, 0 = ej möjligt att cacha)"
-
-# ordet 'hashsumma' existerar enligt Svenska Datatermgruppen.
-#: modules/filter/filter.install:87
-msgid ""
-"Cache table for the Filter module to store already filtered pieces of text, "
-"identified by input format and md5 hash of the text."
-msgstr ""
-"Cachetabell för modulen Filter att spara redan filtrerade delar av texten, "
-"identifierade av inmatningsformatet och md5-hashsumma av texten."

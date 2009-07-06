@@ -1,28 +1,20 @@
-# $Id: modules-user.po,v 1.2.2.14 2008/09/25 05:52:40 zoo33 Exp $
-#
-# Swedish translation of Drupal (installer)
-# Copyright 2008 Lars Palo <larspalo@yahoo.se>
+# Swedish translation of drupal (6.10)
+# Copyright (c) 2009 by the Swedish translation team
 # Generated from files:
-#  user.admin.inc,v 1.18 2008/01/16 22:54:41 goba
-#  user.module,v 1.892 2008/02/03 19:23:01 goba
-#  user.pages.inc,v 1.11 2008/01/08 10:35:43 goba
-#  user.install,v 1.5 2008/01/08 07:46:41 goba
+#  user.admin.inc,v 1.18.2.1 2008/08/13 23:59:14 drumm
+#  user.pages.inc,v 1.11.2.1 2008/10/08 20:12:18 goba
+#  user.module,v 1.892.2.12 2009/02/25 13:57:04 goba
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Drupal 6\n"
-"POT-Creation-Date: 2008-02-15 13:50+0100\n"
-"PO-Revision-Date: 2008-02-25 17:02+0100\n"
-"Last-Translator: Lars Palo <larspalo@yahoo.se>\n"
-"Language-Team: Swedish (http://drupal.org/project/sv)\n"
+"Project-Id-Version: drupal (6.10)\n"
+"POT-Creation-Date: 2009-03-12 17:50+0100\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-
-#: modules/user/user.admin.inc:13 modules/user/user.module:667;2425;908
-msgid "Create new account"
-msgstr "Skapa nytt konto"
 
 #: modules/user/user.admin.inc:43
 msgid "Show only users where"
@@ -37,21 +29,9 @@ msgstr "<em>och</em> där <strong>%property</strong> är <strong>%value</strong>
 msgid "<strong>%property</strong> is <strong>%value</strong>"
 msgstr "<strong>%property</strong> är <strong>%value</strong>"
 
-#: modules/user/user.admin.inc:137;911 modules/user/user.module:621
-msgid "Member for"
-msgstr "Medlem i"
-
-#: modules/user/user.admin.inc:138;912
+#: modules/user/user.admin.inc:138,911
 msgid "Last access"
 msgstr "Senast inloggad"
-
-#: modules/user/user.admin.inc:169 modules/user/user.module:1957
-msgid "blocked"
-msgstr "spärrad"
-
-#: modules/user/user.admin.inc:169 modules/user/user.module:1957
-msgid "active"
-msgstr "aktiv"
 
 #: modules/user/user.admin.inc:221
 msgid "No users selected."
@@ -290,14 +270,6 @@ msgstr ""
 msgid "Save permissions"
 msgstr "Spara rättigheter"
 
-#: modules/user/user.admin.inc:563 modules/user/user.pages.inc:280;346
-msgid "The changes have been saved."
-msgstr "Ändringarna har sparats."
-
-#: modules/user/user.admin.inc:582 modules/user/user.module:1941
-msgid "@module module"
-msgstr "modulen @module"
-
 #: modules/user/user.admin.inc:595
 msgid "Permission"
 msgstr "Rättighet"
@@ -314,19 +286,19 @@ msgstr ""
 "Namnet för denna roll. Exempelvis \"moderator\", \"redaktion\" eller "
 "\"webbarkitekt\"."
 
-#: modules/user/user.admin.inc:637;662;679
+#: modules/user/user.admin.inc:637,662,679
 msgid "Save role"
 msgstr "Spara rollen"
 
-#: modules/user/user.admin.inc:641;683
+#: modules/user/user.admin.inc:641,683
 msgid "Delete role"
 msgstr "Radera rollen"
 
-#: modules/user/user.admin.inc:652;667;691
+#: modules/user/user.admin.inc:652,667,691
 msgid "Add role"
 msgstr "Lägg till roll"
 
-#: modules/user/user.admin.inc:664;669
+#: modules/user/user.admin.inc:664,669
 msgid "The role name %name already exists. Please choose another role name."
 msgstr "Det finns redan en roll som heter %roll. Välj ett annat rollnamn."
 
@@ -346,161 +318,153 @@ msgstr "Rollen har raderats."
 msgid "The role has been added."
 msgstr "Rollen har lagts till."
 
-#: modules/user/user.admin.inc:715;737
-msgid "You must enter a mask."
-msgstr "Du måste ange en mask."
-
-#: modules/user/user.admin.inc:720
-msgid "The access rule has been added."
-msgstr "Behörighetsregeln har lagts till."
-
-#: modules/user/user.admin.inc:728 modules/user/user.module:1007
-msgid "Add rule"
-msgstr "Lägg till regel"
-
-#: modules/user/user.admin.inc:741
-msgid "The access rule has been saved."
-msgstr "Behörighetsregeln har sparats."
-
-#: modules/user/user.admin.inc:748
+#: modules/user/user.admin.inc:725
 msgid "Save rule"
 msgstr "Spara regel"
 
-#: modules/user/user.admin.inc:759;886
+#: modules/user/user.admin.inc:741,885
 msgid "Access type"
 msgstr "Behörighetsttyp"
 
-#: modules/user/user.admin.inc:761
+#: modules/user/user.admin.inc:743
 msgid "Allow"
 msgstr "Tillåt"
 
-#: modules/user/user.admin.inc:761
+#: modules/user/user.admin.inc:743
 msgid "Deny"
 msgstr "Neka"
 
-#: modules/user/user.admin.inc:763
+#: modules/user/user.admin.inc:745
 msgid "Host"
 msgstr "Värd"
 
-#: modules/user/user.admin.inc:766;886
+#: modules/user/user.admin.inc:748,885
 msgid "Rule type"
 msgstr "Regeltyp"
 
-#: modules/user/user.admin.inc:772;886
+#: modules/user/user.admin.inc:754,885
 msgid "Mask"
 msgstr "Mask"
 
-#: modules/user/user.admin.inc:776
+#: modules/user/user.admin.inc:758
 msgid "Matches any number of characters, even zero characters"
 msgstr "Matchar hur många tecken som helst, även noll tecken"
 
-#: modules/user/user.admin.inc:776
+#: modules/user/user.admin.inc:758
 msgid "Matches exactly one character."
 msgstr "Matchar exakt ett tecken."
 
-#: modules/user/user.admin.inc:786
+#: modules/user/user.admin.inc:774
+msgid "The access rule has been saved."
+msgstr "Behörighetsregeln har sparats."
+
+#: modules/user/user.admin.inc:778
+msgid "The access rule has been added."
+msgstr "Behörighetsregeln har lagts till."
+
+#: modules/user/user.admin.inc:785
 msgid "No value entered. Please enter a test string and try again."
 msgstr "Inget värde angett. Var god ange en testtext och försök igen."
 
-#: modules/user/user.admin.inc:792
+#: modules/user/user.admin.inc:791
 msgid "Enter a username to check if it will be denied or allowed."
 msgstr ""
 "Skriv in ett användarnamn för att se om det kommer bli nekat eller godkänt."
 
-#: modules/user/user.admin.inc:794
+#: modules/user/user.admin.inc:793
 msgid "Check username"
 msgstr "Kontrollera användarnamn"
 
-#: modules/user/user.admin.inc:803
+#: modules/user/user.admin.inc:802
 msgid "Enter an e-mail address to check if it will be denied or allowed."
 msgstr ""
 "Skriv in en e-postadress för att avgöra om den kommer bli nekad eller "
 "godkänd."
 
-#: modules/user/user.admin.inc:805
+#: modules/user/user.admin.inc:804
 msgid "Check e-mail"
 msgstr "Kontrollera e-postadress"
 
-#: modules/user/user.admin.inc:814
+#: modules/user/user.admin.inc:813
 msgid ""
 "Enter a hostname or IP address to check if it will be denied or allowed."
 msgstr ""
 "Skriv in ett servernamn eller en IP-adress för att kontrollera om det kommer "
 "att godkännas eller nekas."
 
-#: modules/user/user.admin.inc:816
+#: modules/user/user.admin.inc:815
 msgid "Check hostname"
 msgstr "Kontrollera datornamn"
 
-#: modules/user/user.admin.inc:827
+#: modules/user/user.admin.inc:826
 msgid "The username %name is not allowed."
 msgstr "Användarnamnet %name är inte tillåtet."
 
-#: modules/user/user.admin.inc:830
+#: modules/user/user.admin.inc:829
 msgid "The username %name is allowed."
 msgstr "Namnet %name är tillåtet."
 
-#: modules/user/user.admin.inc:835
+#: modules/user/user.admin.inc:834
 msgid "The e-mail address %mail is not allowed."
 msgstr "E-postadressen %mail är inte tillåten."
 
-#: modules/user/user.admin.inc:838
+#: modules/user/user.admin.inc:837
 msgid "The e-mail address %mail is allowed."
 msgstr "E-postadressen %mail är tillåten."
 
-#: modules/user/user.admin.inc:843
+#: modules/user/user.admin.inc:842
 msgid "The hostname %host is not allowed."
 msgstr "Servernamnet %host är inte tillåtet."
 
-#: modules/user/user.admin.inc:846
+#: modules/user/user.admin.inc:845
 msgid "The hostname %host is allowed."
 msgstr "Servernamnet %host är tillåtet."
 
-#: modules/user/user.admin.inc:861;888
+#: modules/user/user.admin.inc:860,887
 msgid "username"
 msgstr "användarnamn"
 
-#: modules/user/user.admin.inc:861;888
+#: modules/user/user.admin.inc:860,887
 msgid "e-mail"
 msgstr "e-post"
 
-#: modules/user/user.admin.inc:861;888
+#: modules/user/user.admin.inc:860,887
 msgid "host"
 msgstr "värd"
 
-#: modules/user/user.admin.inc:867
+#: modules/user/user.admin.inc:866
 msgid "Are you sure you want to delete the @type rule for %rule?"
 msgstr "Är du säker att du vill radera @type-regeln för %rule?"
 
-#: modules/user/user.admin.inc:877
+#: modules/user/user.admin.inc:876
 msgid "The access rule has been deleted."
 msgstr "Behörighetsregeln har tagits bort."
 
-#: modules/user/user.admin.inc:891
+#: modules/user/user.admin.inc:890
 msgid "allow"
 msgstr "tillåt"
 
-#: modules/user/user.admin.inc:891
+#: modules/user/user.admin.inc:890
 msgid "deny"
 msgstr "neka"
 
-#: modules/user/user.admin.inc:894
+#: modules/user/user.admin.inc:893
 msgid "There are currently no access rules."
 msgstr "Det är finns för närvarande inga behörighetsregler."
 
-#: modules/user/user.admin.inc:931
+#: modules/user/user.admin.inc:930
 msgid "No users available."
 msgstr "Inga användare tillgängliga."
 
-#: modules/user/user.admin.inc:952
+#: modules/user/user.admin.inc:951
 msgid "edit permissions"
 msgstr "redigera rättigheter"
 
-#: modules/user/user.admin.inc:954
+#: modules/user/user.admin.inc:953
 msgid "edit role"
 msgstr "redigera roll"
 
-#: modules/user/user.admin.inc:957
+#: modules/user/user.admin.inc:956
 msgid "locked"
 msgstr "låst"
 
@@ -512,16 +476,20 @@ msgstr "Användarnamn eller e-postadress"
 msgid "E-mail new password"
 msgstr "Skicka nytt lösenord med e-post"
 
-#: modules/user/user.pages.inc:56
+#: modules/user/user.pages.inc:50
+msgid "%name is not allowed to request a new password."
+msgstr "%name får inte begära ett nytt lösenord."
+
+#: modules/user/user.pages.inc:63
 msgid "Sorry, %name is not recognized as a user name or an e-mail address."
 msgstr ""
 "Tyvärr känns inte %name igen som ett användarnamn eller en e-postadress."
 
-#: modules/user/user.pages.inc:67
+#: modules/user/user.pages.inc:74
 msgid "Further instructions have been sent to your e-mail address."
 msgstr "Vidare instruktioner har skickats till din e-postadress."
 
-#: modules/user/user.pages.inc:81
+#: modules/user/user.pages.inc:88
 msgid ""
 "You have already used this one-time login link. It is not necessary to use "
 "this link to login anymore. You are already logged in."
@@ -529,7 +497,13 @@ msgstr ""
 "Du har redan använt denna engångslänk för att logga in. Denna länk behöver "
 "inte längre användas för att logga in. Du är redan inloggad."
 
-#: modules/user/user.pages.inc:92
+#: modules/user/user.pages.inc:99
+msgid ""
+"You have tried to use a one-time login for an account which has been blocked."
+msgstr ""
+"Du har försökt använda en engångsinloggning för ett konto som har blockerats."
+
+#: modules/user/user.pages.inc:105
 msgid ""
 "You have tried to use a one-time login link that has expired. Please request "
 "a new one using the form below."
@@ -537,7 +511,7 @@ msgstr ""
 "Du har försökt använda en engångslänk för inloggning som inte är giltig "
 "längre. Var vänlig begär en ny med formuläret nedan."
 
-#: modules/user/user.pages.inc:104
+#: modules/user/user.pages.inc:117
 msgid ""
 "You have just used your one-time login link. It is no longer necessary to "
 "use this link to login. Please change your password."
@@ -545,7 +519,7 @@ msgstr ""
 "Du har nu använt din engångslänk för inloggning. Det är inte längre "
 "nödvändigt att använda denna länk för att logga in. Var vänlig byt lösenord."
 
-#: modules/user/user.pages.inc:108
+#: modules/user/user.pages.inc:121
 msgid ""
 "<p>This is a one-time login for %user_name and will expire on %"
 "expiration_date.</p><p>Click on this button to login to the site and change "
@@ -555,15 +529,11 @@ msgstr ""
 "expiration_date.</p><p>Klicka på denna knapp för att logga in på webbplatsen "
 "och byta lösenord.</p>"
 
-#: modules/user/user.pages.inc:109
+#: modules/user/user.pages.inc:122
 msgid "This login can be used only once."
 msgstr "Denna inloggning kan bara användas en gång."
 
-#: modules/user/user.pages.inc:110 modules/user/user.module:663;1255;902
-msgid "Log in"
-msgstr "Logga in"
-
-#: modules/user/user.pages.inc:116
+#: modules/user/user.pages.inc:129
 msgid ""
 "You have tried to use a one-time login link which has either been used or is "
 "no longer valid. Please request a new one using the form below."
@@ -571,16 +541,11 @@ msgstr ""
 "Du har försökt använda en engångslänk för inloggning som antingen redan har "
 "använts eller också inte längre är giltig."
 
-#: modules/user/user.pages.inc:263;332;261;330
-#: modules/user/user.module:1768;2277
-msgid "Detected malicious attempt to alter protected user fields."
-msgstr "Upptäckte illvilligt försök att ändra skyddade användarfält."
-
-#: modules/user/user.pages.inc:308
+#: modules/user/user.pages.inc:321
 msgid "Are you sure you want to delete the account %name?"
 msgstr "Är du säker på att du vill radera kontot %name?"
 
-#: modules/user/user.pages.inc:310
+#: modules/user/user.pages.inc:323
 msgid ""
 "All submissions made by this user will be attributed to the anonymous "
 "account. This action cannot be undone."
@@ -588,60 +553,60 @@ msgstr ""
 "Alla inlägg som gjorts av denna användare kommer att tillskrivas det anonyma "
 "användarkontot. Denna åtgärd kan inte ångras."
 
-#: modules/user/user.pages.inc:319
+#: modules/user/user.pages.inc:332
 msgid "%name has been deleted."
 msgstr "%name har raderats."
 
-#: modules/user/user.pages.inc:66
+#: modules/user/user.pages.inc:73
 msgid "Password reset instructions mailed to %name at %email."
 msgstr "Instruktioner för att återställa lösenord skickat till %name (%email)."
 
-#: modules/user/user.pages.inc:98
+#: modules/user/user.pages.inc:111
 msgid "User %name used one-time login link at time %timestamp."
 msgstr "Användaren %name använde en engångslänk för inloggning vid %timestamp."
 
-#: modules/user/user.pages.inc:134
+#: modules/user/user.pages.inc:147
 msgid "Session closed for %name."
 msgstr "Sessionen avslutad för %name."
 
-#: modules/user/user.module:379
+#: modules/user/user.module:381
 msgid "You must enter a username."
 msgstr "Du måste ange ett användarnamn."
 
-#: modules/user/user.module:380
+#: modules/user/user.module:382
 msgid "The username cannot begin with a space."
 msgstr "Användarnamnet får inte börja med mellanslag."
 
-#: modules/user/user.module:381
+#: modules/user/user.module:383
 msgid "The username cannot end with a space."
 msgstr "Användarnamnet får inte sluta med mellanslag."
 
-#: modules/user/user.module:382
+#: modules/user/user.module:384
 msgid "The username cannot contain multiple spaces in a row."
 msgstr "Användarnamnet får inte innehålla flera mellanslag i rad."
 
-#: modules/user/user.module:383;394
+#: modules/user/user.module:385,396
 msgid "The username contains an illegal character."
 msgstr "Användarnamnet innehåller ett otillåtet tecken."
 
-#: modules/user/user.module:396
+#: modules/user/user.module:398
 msgid "The username is not a valid authentication ID."
 msgstr "Användarnamnet är inte ett giltigt ID för autentisering."
 
-#: modules/user/user.module:397
+#: modules/user/user.module:399
 msgid "The username %name is too long: it must be %max characters or less."
 msgstr ""
 "Användarnamnet %name är för långt. Det får inte innehålla mer än %max tecken."
 
-#: modules/user/user.module:401
+#: modules/user/user.module:403
 msgid "You must enter an e-mail address."
 msgstr "Du måste ange en e-postadress."
 
-#: modules/user/user.module:403
+#: modules/user/user.module:405
 msgid "The e-mail address %mail is not valid."
 msgstr "E-postadressen %mail är inte godkänd."
 
-#: modules/user/user.module:429
+#: modules/user/user.module:431
 msgid ""
 "Failed to upload the picture image; the %directory directory doesn't exist "
 "or is not writable."
@@ -649,98 +614,98 @@ msgstr ""
 "Misslyckades att ladda upp bilden. Mappen %directory finns ej eller är inte "
 "skrivbar."
 
-#: modules/user/user.module:617
+#: modules/user/user.module:619
 msgid "History"
 msgstr "Historia"
 
-#: modules/user/user.module:639
+#: modules/user/user.module:641
 msgid "Account settings"
 msgstr "Kontoinställningar"
 
-#: modules/user/user.module:667
+#: modules/user/user.module:669
 msgid "Create a new user account."
 msgstr "Skapa ett nytt användarkonto"
 
-#: modules/user/user.module:669;917
+#: modules/user/user.module:671,922
 msgid "Request new password"
 msgstr "Begär nytt lösenord"
 
-#: modules/user/user.module:669
+#: modules/user/user.module:671
 msgid "Request new password via e-mail."
 msgstr "Begär nytt lösenord via e-post."
 
-#: modules/user/user.module:681;728
+#: modules/user/user.module:683,730
 msgid "User login"
 msgstr "Användarinloggning"
 
-#: modules/user/user.module:690;749
+#: modules/user/user.module:692,751
 msgid "Who's new"
 msgstr "Vilka är nya?"
 
-#: modules/user/user.module:693;788
+#: modules/user/user.module:695,790
 msgid "Who's online"
 msgstr "Vilka är aktiva?"
 
-#: modules/user/user.module:700
+#: modules/user/user.module:702
 msgid "Number of users to display"
 msgstr "Antalet användare som ska visas"
 
-#: modules/user/user.module:708
+#: modules/user/user.module:710
 msgid "User activity"
 msgstr "Användaraktivitet"
 
-#: modules/user/user.module:708
+#: modules/user/user.module:710
 msgid ""
 "A user is considered online for this long after they have last viewed a page."
 msgstr ""
 "En användare anses vara inloggad så här länge efter att de senast tittat på "
 "en sida."
 
-#: modules/user/user.module:709
+#: modules/user/user.module:711
 msgid "User list length"
 msgstr "Användarlistans längd"
 
-#: modules/user/user.module:709
+#: modules/user/user.module:711
 msgid "Maximum number of currently online users to display."
 msgstr "Maximalt antal inloggade användare som visas."
 
-#: modules/user/user.module:776
+#: modules/user/user.module:778
 msgid "There is currently %members and %visitors online."
 msgstr "För närvarande är %members och %visitors aktiva."
 
-#: modules/user/user.module:779
+#: modules/user/user.module:781
 msgid "There are currently %members and %visitors online."
 msgstr "För närvarande är %members och %visitors aktiva."
 
-#: modules/user/user.module:785
+#: modules/user/user.module:787
 msgid "Online users"
 msgstr "Inloggade användare"
 
-#: modules/user/user.module:816
+#: modules/user/user.module:818
 msgid "@user's picture"
 msgstr "@users bild"
 
-#: modules/user/user.module:1171;1041
+#: modules/user/user.module:1182,1052
 msgid "My account"
 msgstr "Mitt konto"
 
-#: modules/user/user.module:1247
+#: modules/user/user.module:1255
 msgid "Enter your @s username."
 msgstr "Ange ditt användarnamn på @s."
 
-#: modules/user/user.module:1250
+#: modules/user/user.module:1258
 msgid "Enter the password that accompanies your username."
 msgstr "Ange ett lösenord för ditt konto."
 
-#: modules/user/user.module:1289
+#: modules/user/user.module:1297
 msgid "The username %name has not been activated or is blocked."
 msgstr "Användarnamnet %name har inte aktiverats eller är spärrat."
 
-#: modules/user/user.module:1293
+#: modules/user/user.module:1301
 msgid "The name %name is a reserved username."
 msgstr "Namnet %name är ett reserverat användarnamn."
 
-#: modules/user/user.module:1313
+#: modules/user/user.module:1321
 msgid ""
 "Sorry, unrecognized username or password. <a href=\"@password\">Have you "
 "forgotten your password?</a>"
@@ -748,19 +713,19 @@ msgstr ""
 "Felaktigt användarnamn eller lösenord. <a href=\"@password\">Har du glömt "
 "ditt lösenord?</a>"
 
-#: modules/user/user.module:1419
+#: modules/user/user.module:1344
+msgid ""
+"The name %name is registered using a reserved e-mail address and therefore "
+"could not be logged in."
+msgstr ""
+"Namnet %name är registrerat med en reserverad e-postadress och kunde därför "
+"inte logga in."
+
+#: modules/user/user.module:1441
 msgid "Account information"
 msgstr "Kontoinformation"
 
-#: modules/user/user.module:1427
-msgid ""
-"Spaces are allowed; punctuation is not allowed except for periods, hyphens, "
-"and underscores."
-msgstr ""
-"Mellanslag är tillåtna. Skiljetecken är inte tillåtna förutom punkter, "
-"bindestreck och understreck."
-
-#: modules/user/user.module:1435
+#: modules/user/user.module:1458
 msgid ""
 "A valid e-mail address. All e-mails from the system will be sent to this "
 "address. The e-mail address is not made public and will only be used if you "
@@ -772,50 +737,50 @@ msgstr ""
 "endast om du behöver ett nytt lösenord via e-post, eller om du vill ha vissa "
 "nyheter eller meddelanden via e-post."
 
-#: modules/user/user.module:1440
+#: modules/user/user.module:1463
 msgid ""
 "To change the current user password, enter the new password in both fields."
 msgstr ""
 "För att byta nuvarande användarlösenord, ange det nya lösenordet i båda "
 "fälten."
 
-#: modules/user/user.module:1447
+#: modules/user/user.module:1470
 msgid "Provide a password for the new account in both fields."
 msgstr "Ange ett lösenord för det nya kontot i båda fälten."
 
-#: modules/user/user.module:1457
+#: modules/user/user.module:1480
 msgid "Blocked"
 msgstr "Spärrad"
 
-#: modules/user/user.module:1492
+#: modules/user/user.module:1515
 msgid "Signature settings"
 msgstr "Inställningar för signaturer"
 
-#: modules/user/user.module:1497
+#: modules/user/user.module:1520
 msgid "Signature"
 msgstr "Signatur"
 
-#: modules/user/user.module:1499
+#: modules/user/user.module:1522
 msgid "Your signature will be publicly displayed at the end of your comments."
-msgstr "Din signatur kommer att visas offentligt i slutet på dina kommentarer."
+msgstr "Din signatur kommer att visas öppet i slutet på dina kommentarer."
 
-#: modules/user/user.module:1505
+#: modules/user/user.module:1528
 msgid "Picture"
 msgstr "Bild"
 
-#: modules/user/user.module:1509
+#: modules/user/user.module:1532
 msgid "Delete picture"
 msgstr "Radera bild"
 
-#: modules/user/user.module:1509
+#: modules/user/user.module:1532
 msgid "Check this box to delete your current picture."
 msgstr "Klicka i rutan för att ta bort din nuvarande bild."
 
-#: modules/user/user.module:1514
+#: modules/user/user.module:1537
 msgid "Upload picture"
 msgstr "Ladda upp en bild"
 
-#: modules/user/user.module:1514
+#: modules/user/user.module:1537
 msgid ""
 "Your virtual face or picture. Maximum dimensions are %dimensions and the "
 "maximum size is %size kB."
@@ -823,15 +788,15 @@ msgstr ""
 "Ditt virtuella ansikte eller annan bild. Största bildstorlek är %dimensions "
 "och största filstorlek är %size kB."
 
-#: modules/user/user.module:1530
+#: modules/user/user.module:1553
 msgid "The name %name is already taken."
 msgstr "Namnet %name används redan."
 
-#: modules/user/user.module:1533
+#: modules/user/user.module:1556
 msgid "The name %name has been denied access."
 msgstr "Namnet %name har nekats åtkomst."
 
-#: modules/user/user.module:1542
+#: modules/user/user.module:1565
 msgid ""
 "The e-mail address %email is already registered. <a href=\"@password\">Have "
 "you forgotten your password?</a>"
@@ -839,15 +804,15 @@ msgstr ""
 "E-postadressen %email används redan. <a href=\"@password\">Har du glömt ditt "
 "lösenord?</a>"
 
-#: modules/user/user.module:1545
+#: modules/user/user.module:1568
 msgid "The e-mail address %email has been denied access."
 msgstr "E-postadressen %email har nekats åtkomst."
 
-#: modules/user/user.module:1625
+#: modules/user/user.module:1648
 msgid "Account details for !username at !site"
 msgstr "Kontodetaljer för !username på !site"
 
-#: modules/user/user.module:1627
+#: modules/user/user.module:1650
 msgid ""
 "!username,\n"
 "\n"
@@ -891,11 +856,11 @@ msgstr ""
 "\n"
 "--  teamet på !site"
 
-#: modules/user/user.module:1629
+#: modules/user/user.module:1652
 msgid "An administrator created an account for you at !site"
 msgstr "En administratör har skapat ett nytt konto åt dig på !site"
 
-#: modules/user/user.module:1631
+#: modules/user/user.module:1654
 msgid ""
 "!username,\n"
 "\n"
@@ -939,12 +904,12 @@ msgstr ""
 "\n"
 "--  teamet på !site"
 
-#: modules/user/user.module:1634
+#: modules/user/user.module:1657
 msgid "Account details for !username at !site (pending admin approval)"
 msgstr ""
 "Kontodetaljer för !username på !site (väntar på godkännande av administratör)"
 
-#: modules/user/user.module:1636
+#: modules/user/user.module:1659
 msgid ""
 "!username,\n"
 "\n"
@@ -966,7 +931,7 @@ msgstr ""
 "\n"
 "--  teamet på !site"
 
-#: modules/user/user.module:1638
+#: modules/user/user.module:1661
 msgid ""
 "!username has applied for an account.\n"
 "\n"
@@ -976,11 +941,11 @@ msgstr ""
 "\n"
 "!edit_uri"
 
-#: modules/user/user.module:1640
+#: modules/user/user.module:1663
 msgid "Replacement login information for !username at !site"
 msgstr "Ny inloggningsinformation för !username på !site"
 
-#: modules/user/user.module:1642
+#: modules/user/user.module:1665
 msgid ""
 "!username,\n"
 "\n"
@@ -1013,11 +978,11 @@ msgstr ""
 "När du har loggat in kommer du att vidarebefordras till !edit_uri så att du "
 "kanändra ditt lösenord."
 
-#: modules/user/user.module:1644
+#: modules/user/user.module:1667
 msgid "Account details for !username at !site (approved)"
 msgstr "Kontodetaljer för !username på !site (godkänd)"
 
-#: modules/user/user.module:1646
+#: modules/user/user.module:1669
 msgid ""
 "!username,\n"
 "\n"
@@ -1056,11 +1021,11 @@ msgstr ""
 "\n"
 "användarnamn: !username\n"
 
-#: modules/user/user.module:1648
+#: modules/user/user.module:1671
 msgid "Account details for !username at !site (blocked)"
 msgstr "Kontodetaljer för !username på !site (blockerad)"
 
-#: modules/user/user.module:1650
+#: modules/user/user.module:1673
 msgid ""
 "!username,\n"
 "\n"
@@ -1070,11 +1035,11 @@ msgstr ""
 "\n"
 "Ditt konto på !site har blockerats."
 
-#: modules/user/user.module:1652
+#: modules/user/user.module:1675
 msgid "Account details for !username at !site (deleted)"
 msgstr "Kontodetaljer för !username på !site (raderat)"
 
-#: modules/user/user.module:1654
+#: modules/user/user.module:1677
 msgid ""
 "!username,\n"
 "\n"
@@ -1084,35 +1049,35 @@ msgstr ""
 "\n"
 "Ditt konto på !site har raderats."
 
-#: modules/user/user.module:1714
+#: modules/user/user.module:1737
 msgid "Unblock the selected users"
 msgstr "Återaktivera de markerade användarna"
 
-#: modules/user/user.module:1718
+#: modules/user/user.module:1741
 msgid "Block the selected users"
 msgstr "Spärra de markerade användarna"
 
-#: modules/user/user.module:1722
+#: modules/user/user.module:1745
 msgid "Delete the selected users"
 msgstr "Radera de markerade användarna"
 
-#: modules/user/user.module:1742
+#: modules/user/user.module:1765
 msgid "Add a role to the selected users"
 msgstr "Lägg till en roll för de markerade användarna"
 
-#: modules/user/user.module:1745
+#: modules/user/user.module:1768
 msgid "Remove a role from the selected users"
 msgstr "Radera en roll för de markerade användarna"
 
-#: modules/user/user.module:1847
+#: modules/user/user.module:1870
 msgid "Are you sure you want to delete these users?"
 msgstr "Är du säker på att du vill ta bort dessa användare?"
 
-#: modules/user/user.module:1857
+#: modules/user/user.module:1880
 msgid "The users have been deleted."
 msgstr "Användarna har raderats."
 
-#: modules/user/user.module:1871
+#: modules/user/user.module:1894
 msgid ""
 "The user module allows users to register, login, and log out. Users benefit "
 "from being able to sign on because it associates content they create with "
@@ -1131,9 +1096,9 @@ msgstr ""
 "vill att de ska kunna göra. Varje användare är kopplad till en eller fler "
 "roller. Som standard finns det två roller: <em>gäst</em> - en besökare som "
 "inte har loggat in och <em>användare</em> - en besökare som har registrerat "
-"sig och blivit godkänd. "
+"sig och blivit godkänd."
 
-#: modules/user/user.module:1872
+#: modules/user/user.module:1895
 msgid ""
 "Users can use their own name or handle and can specify personal "
 "configuration settings through their individual <em>My account</em> page. "
@@ -1151,7 +1116,7 @@ msgstr ""
 "kan användare logga in med ett användarnamn och lösenord från en annan "
 "Drupal-webbplats eller genom någon annan webbplatsspecifik mekanism."
 
-#: modules/user/user.module:1873
+#: modules/user/user.module:1896
 msgid ""
 "A visitor accessing your website is assigned a unique ID, or session ID, "
 "which is stored in a cookie. The cookie does not contain personal "
@@ -1163,13 +1128,13 @@ msgstr ""
 "fungerar som en nyckel för att hämta information från webbplatsen. Användare "
 "bör tillåta cookies i sin webbläsare när de använder din webbplats."
 
-#: modules/user/user.module:1874
+#: modules/user/user.module:1897
 msgid ""
 "For more information, see the online handbook entry for <a href=\"@user"
 "\">User module</a>."
 msgstr "Läs mer om <a href=\"@user\">modulen User</a> i onlinehandboken."
 
-#: modules/user/user.module:1877
+#: modules/user/user.module:1900
 msgid ""
 "Drupal allows users to register, login, log out, maintain user profiles, "
 "etc. Users of the site may not use their own names to post content until "
@@ -1179,7 +1144,7 @@ msgstr ""
 "användarprofiler etc. Användare av den här webbplatsen kan inte använda sitt "
 "eget namn för att lägga till innehåll förrän de har registrerat ett konto."
 
-#: modules/user/user.module:1880
+#: modules/user/user.module:1903
 msgid ""
 "This web page allows administrators to register new users. Users' e-mail "
 "addresses and usernames must be unique."
@@ -1187,7 +1152,7 @@ msgstr ""
 "Denna sida ger administratören möjlighet att registrera nya användare. "
 "Användarnas e-postadresser och användarnamn måste vara unika."
 
-#: modules/user/user.module:1882
+#: modules/user/user.module:1905
 msgid ""
 "Set up username and e-mail address access rules for new <em>and</em> "
 "existing accounts (currently logged in accounts will not be logged out). If "
@@ -1202,7 +1167,7 @@ msgstr ""
 "logga in. En regel gäller för alla sidvisningar, inte bara för "
 "registreringar."
 
-#: modules/user/user.module:1884
+#: modules/user/user.module:1907
 msgid ""
 "Permissions let you control what users can do on your site. Each user role "
 "(defined on the <a href=\"@role\">user roles page</a>) has its own set of "
@@ -1222,7 +1187,7 @@ msgstr ""
 "som prenumererar på nyheter). Rättigheter kan också användas för att dela på "
 "den administrativa bördan på en välbesökt webbplats."
 
-#: modules/user/user.module:1886
+#: modules/user/user.module:1909
 msgid ""
 "<p>Roles allow you to fine tune the security and administration of Drupal. A "
 "role defines a group of users that have certain privileges as defined in <a "
@@ -1251,7 +1216,7 @@ msgstr ""
 "användare.</li>\n"
 "      </ul>"
 
-#: modules/user/user.module:1892
+#: modules/user/user.module:1915
 msgid ""
 "Enter a simple pattern (\"*\" may be used as a wildcard match) to search for "
 "a username or e-mail address. For example, one may search for \"br\" and "
@@ -1261,27 +1226,27 @@ msgstr ""
 "efter ett användarnamn eller en e-postadress. Om du till exempel skriver \"ka"
 "\" kan Drupal visa \"karoline\", \"karl\" och \"kalle@exempel.com\"."
 
-#: modules/user/user.module:1929
+#: modules/user/user.module:1952
 msgid "role"
 msgstr "roll"
 
-#: modules/user/user.module:1947
+#: modules/user/user.module:1970
 msgid "permission"
 msgstr "rättighet"
 
-#: modules/user/user.module:2149
+#: modules/user/user.module:2172
 msgid "Password strength:"
 msgstr "Lösenordsstyrka:"
 
-#: modules/user/user.module:2150
+#: modules/user/user.module:2173
 msgid "Low"
 msgstr "Låg"
 
-#: modules/user/user.module:2152
+#: modules/user/user.module:2175
 msgid "High"
 msgstr "Hög"
 
-#: modules/user/user.module:2153
+#: modules/user/user.module:2176
 msgid ""
 "It is recommended to choose a password that contains at least six "
 "characters. It should include numbers, punctuation, and both upper and "
@@ -1291,66 +1256,66 @@ msgstr ""
 "tecken. Det bör innehålla siffror, skiljetecken och både versaler och "
 "gemener."
 
-#: modules/user/user.module:2154
+#: modules/user/user.module:2177
 msgid "The password does not include enough variation to be secure. Try:"
 msgstr ""
 "Lösenordet innehåller inte tillräcklig variation för att vara säkert. Försök:"
 
-#: modules/user/user.module:2155
+#: modules/user/user.module:2178
 msgid "Adding both upper and lowercase letters."
 msgstr "Lägg till både versaler och gemener."
 
-#: modules/user/user.module:2156
+#: modules/user/user.module:2179
 msgid "Adding numbers."
 msgstr "Lägg till siffror."
 
-#: modules/user/user.module:2157
+#: modules/user/user.module:2180
 msgid "Adding punctuation."
 msgstr "Lägg till skiljetecken."
 
-#: modules/user/user.module:2158
+#: modules/user/user.module:2181
 msgid "It is recommended to choose a password different from the username."
 msgstr ""
 "Det är rekommenderat att välja ett lösenord som skiljer sig från "
 "användarnamnet."
 
-#: modules/user/user.module:2161
+#: modules/user/user.module:2184
 msgid "Passwords match:"
 msgstr "Lösenorden stämmer överens:"
 
-#: modules/user/user.module:2176
+#: modules/user/user.module:2199
 msgid "After a user account has been created"
 msgstr "Efter att ett användarkonto har skapats"
 
-#: modules/user/user.module:2179
+#: modules/user/user.module:2202
 msgid "After a user's profile has been updated"
 msgstr "Efter att en användarprofil har uppdaterats"
 
-#: modules/user/user.module:2182
+#: modules/user/user.module:2205
 msgid "After a user has been deleted"
 msgstr "Efter att en användare har raderats"
 
-#: modules/user/user.module:2185
+#: modules/user/user.module:2208
 msgid "After a user has logged in"
 msgstr "Efter att en användare har loggat in"
 
-#: modules/user/user.module:2188
+#: modules/user/user.module:2211
 msgid "After a user has logged out"
 msgstr "Efter att en användare har loggat ut"
 
-#: modules/user/user.module:2191
+#: modules/user/user.module:2214
 msgid "When a user's profile is being viewed"
 msgstr "När en användares profil visas"
 
-#: modules/user/user.module:2204
+#: modules/user/user.module:2227
 msgid "Block current user"
 msgstr "Spärra aktuell användare"
 
-#: modules/user/user.module:2210
+#: modules/user/user.module:2233
 msgid "Ban IP address of current user"
 msgstr "Förbjud IP-adress som nuvarande användare har"
 
-#: modules/user/user.module:2303
+#: modules/user/user.module:2326
 msgid ""
 "Welcome to Drupal. You are now logged in as user #1, which gives you full "
 "control over your website."
@@ -1358,7 +1323,7 @@ msgstr ""
 "Välkommen till Drupal. Du är nu inloggad som användare #1, vilket ger dig "
 "full kontroll över din webbplats."
 
-#: modules/user/user.module:2305
+#: modules/user/user.module:2328
 msgid ""
 "</p><p> Your password is <strong>%pass</strong>. You may change your "
 "password below.</p>"
@@ -1366,7 +1331,7 @@ msgstr ""
 "</p><p>Ditt lösenord är <strong>%pass</strong>. Du kan ändra ditt lösenord "
 "nedan.</p>"
 
-#: modules/user/user.module:2317
+#: modules/user/user.module:2340
 msgid ""
 "Created a new user account for <a href=\"@url\">%name</a>. No e-mail has "
 "been sent."
@@ -1374,11 +1339,11 @@ msgstr ""
 "Skapade ett nytt användarkonto för <a href=\"@url\">%name</a>. Inget e-"
 "postmeddelande har skickats."
 
-#: modules/user/user.module:2324
+#: modules/user/user.module:2347
 msgid "Registration successful. You are now logged in."
 msgstr "Registreringen lyckades. Du är nu inloggad."
 
-#: modules/user/user.module:2334
+#: modules/user/user.module:2357
 msgid ""
 "Password and further instructions have been e-mailed to the new user <a href="
 "\"@url\">%name</a>."
@@ -1386,13 +1351,13 @@ msgstr ""
 "Lösenord och instruktioner har skickats per e-post till den nya användaren "
 "<a href=\"@url\">%name</a>."
 
-#: modules/user/user.module:2337
+#: modules/user/user.module:2360
 msgid ""
 "Your password and further instructions have been sent to your e-mail address."
 msgstr ""
 "Lösenord och instruktioner har skickats till din registrerade e-postadress."
 
-#: modules/user/user.module:2345
+#: modules/user/user.module:2368
 msgid ""
 "Thank you for applying for an account. Your account is currently pending "
 "approval by the site administrator.<br />In the meantime, a welcome message "
@@ -1402,93 +1367,93 @@ msgstr ""
 "behandlad av en administratör.<br />Under tiden har ett välkomstmeddelande "
 "och instruktioner skickats till din e-postadress."
 
-#: modules/user/user.module:2382
+#: modules/user/user.module:2405
 msgid "Notify user of new account"
 msgstr "Skicka meddelande om det nya kontot till användaren"
 
-#: modules/user/user.module:1314
+#: modules/user/user.module:1322
 msgid "Login attempt failed for %user."
 msgstr "Inloggning misslyckades för %user."
 
-#: modules/user/user.module:1351
+#: modules/user/user.module:1368
 msgid "Session opened for %name."
 msgstr "Session startad för %name."
 
-#: modules/user/user.module:1400
+#: modules/user/user.module:1422
 msgid "New external user: %name using module %module."
 msgstr "Ny extern användare: %name genom modulen %module."
 
-#: modules/user/user.module:1577
+#: modules/user/user.module:1600
 msgid "Deleted user: %name %email."
 msgstr "Raderade användare: %name %email."
 
-#: modules/user/user.module:2235
+#: modules/user/user.module:2258
 msgid "Blocked user %name."
 msgstr "Spärrade användare: %name."
 
-#: modules/user/user.module:2245
+#: modules/user/user.module:2268
 msgid "Banned IP address %ip"
 msgstr "Förbjöd IP-adressen %ip"
 
-#: modules/user/user.module:2299
+#: modules/user/user.module:2322
 msgid "New user: %name (%email)."
 msgstr "Ny användare: %name (%email)."
 
-#: modules/user/user.module:776;779
+#: modules/user/user.module:778,781
 msgid "1 guest"
 msgid_plural "@count guests"
 msgstr[0] "1 gäst"
 msgstr[1] "@count gäster"
 
-#: modules/user/user.module:544
+#: modules/user/user.module:546
 msgid "administer permissions"
 msgstr "administrera rättigheter"
 
-#: modules/user/user.module:544
+#: modules/user/user.module:546
 msgid "administer users"
 msgstr "hantera användare"
 
-#: modules/user/user.module:544
+#: modules/user/user.module:546
 msgid "access user profiles"
 msgstr "tillgång till användarprofiler"
 
-#: modules/user/user.module:544
+#: modules/user/user.module:546
 msgid "change own username"
 msgstr "ändra eget användarnamn"
 
-#: modules/user/user.module:884
+#: modules/user/user.module:889
 msgid "User autocomplete"
 msgstr "Automatisk ifyllning av användarnamn"
 
-#: modules/user/user.module:894
+#: modules/user/user.module:899
 msgid "User account"
 msgstr "Användarkonto"
 
-#: modules/user/user.module:925
+#: modules/user/user.module:930
 msgid "Reset password"
 msgstr "Återställ lösenord"
 
-#: modules/user/user.module:935
+#: modules/user/user.module:940
 msgid "User management"
 msgstr "Användare"
 
-#: modules/user/user.module:936
+#: modules/user/user.module:941
 msgid "Manage your site's users, groups and access to site features."
 msgstr "Hantera webbplatsens användare, grupper och rättigheter."
 
-#: modules/user/user.module:945
+#: modules/user/user.module:950
 msgid "List, add, and edit users."
 msgstr "Visa, lägg till och redigera användare."
 
-#: modules/user/user.module:957
+#: modules/user/user.module:962
 msgid "Add user"
 msgstr "Lägg till användare"
 
-#: modules/user/user.module:963
+#: modules/user/user.module:969
 msgid "User settings"
 msgstr "Användarinställningar"
 
-#: modules/user/user.module:964
+#: modules/user/user.module:970
 msgid ""
 "Configure default behavior of users, including registration requirements, e-"
 "mails, and user pictures."
@@ -1496,28 +1461,28 @@ msgstr ""
 "Konfigurera standardinställningar för användare. Detta omfattar bland annat "
 "kraven för registrering, texter i automatiska e-postmeddelanden och bilder."
 
-#: modules/user/user.module:973
+#: modules/user/user.module:979
 msgid "Permissions"
 msgstr "Rättigheter"
 
-#: modules/user/user.module:974
+#: modules/user/user.module:980
 msgid "Determine access to features by selecting permissions for roles."
 msgstr ""
 "Fastställ behörighet till funktioner genom att ange rättigheter för roller."
 
-#: modules/user/user.module:982
+#: modules/user/user.module:988
 msgid "List, edit, or add user roles."
 msgstr "Visa, redigera eller lägg till användarroller."
 
-#: modules/user/user.module:989
+#: modules/user/user.module:995
 msgid "Edit role"
 msgstr "Redigera roll"
 
-#: modules/user/user.module:995
+#: modules/user/user.module:1002
 msgid "Access rules"
 msgstr "Åtkomstregler"
 
-#: modules/user/user.module:996
+#: modules/user/user.module:1003
 msgid ""
 "List and create rules to disallow usernames, e-mail addresses, and IP "
 "addresses."
@@ -1525,23 +1490,23 @@ msgstr ""
 "Visa och skapa regler för att spärra användarnamn, e-postadresser eller "
 "datorer."
 
-#: modules/user/user.module:1013
+#: modules/user/user.module:1021
 msgid "Check rules"
 msgstr "Kontrollera regler"
 
-#: modules/user/user.module:1019
+#: modules/user/user.module:1028
 msgid "Edit rule"
 msgstr "redigera regel"
 
-#: modules/user/user.module:1025
+#: modules/user/user.module:1035
 msgid "Delete rule"
 msgstr "Radera rollen"
 
-#: modules/user/user.module:1033
+#: modules/user/user.module:1044
 msgid "Log out"
 msgstr "Logga ut"
 
-#: modules/user/user.module:1080
+#: modules/user/user.module:1091
 msgid "Account"
 msgstr "Konto"
 
@@ -1552,185 +1517,3 @@ msgstr "gäst"
 #: modules/user/user.module:0
 msgid "authenticated user"
 msgstr "inloggad användare"
-
-#: modules/user/user.install:9
-msgid "Stores site access rules."
-msgstr "Lagrar åtkomstregler för webbplatsen."
-
-#: modules/user/user.install:14
-msgid "Primary Key: Unique access ID."
-msgstr "Primärnyckel: Unikt åtkomst-ID."
-
-#: modules/user/user.install:21
-msgid "Text mask used for filtering access."
-msgstr "Textmask som används för att filtrera åtkomst."
-
-#: modules/user/user.install:28
-msgid "Type of access rule: name, mail or host."
-msgstr "Typ av åtkomstregel: namn, e-post eller värd."
-
-#: modules/user/user.install:35
-msgid "Whether rule is to allow(1) or deny(0) access."
-msgstr "Om regeln tillåter (1) eller nekar (0) åtkomst."
-
-#: modules/user/user.install:42
-msgid "Stores distributed authentication mapping."
-msgstr "Lagrar kopplingar för distribuerad verifiering."
-
-#: modules/user/user.install:45
-msgid "Primary Key: Unique authmap ID."
-msgstr "Primärnyckel: Unikt authmap-ID."
-
-#: modules/user/user.install:54
-msgid "User's {users}.uid."
-msgstr "Användarens {users}.uid."
-
-#: modules/user/user.install:61
-msgid "Unique authentication name."
-msgstr "Unikt verifikationsnamn."
-
-#: modules/user/user.install:68
-msgid "Module which is controlling the authentication."
-msgstr "Modul som kontrollerar verifieringen."
-
-#: modules/user/user.install:76
-msgid "Stores permissions for users."
-msgstr "Sparar rättigheter för användare."
-
-#: modules/user/user.install:81
-msgid "Primary Key: Unique permission ID."
-msgstr "Primärnyckel: Unikt rättighets-ID."
-
-#: modules/user/user.install:88
-msgid "The {role}.rid to which the permissions are assigned."
-msgstr "Det {role}.rid till vilket rättigheterna tilldelats."
-
-#: modules/user/user.install:94
-msgid "List of permissions being assigned."
-msgstr "Lista över rättigheter som tilldelas."
-
-#: modules/user/user.install:101
-msgid "Originally intended for taxonomy-based permissions, but never used."
-msgstr ""
-"Ursprungligen tänkt för taxonomibaserade rättigheter, men aldrig använd."
-
-#: modules/user/user.install:109
-msgid "Stores user roles."
-msgstr "Lagrar användarroller."
-
-#: modules/user/user.install:115
-msgid "Primary Key: Unique role id."
-msgstr "Primärnyckel: Unikt roll-id."
-
-#: modules/user/user.install:122
-msgid "Unique role name."
-msgstr "Unikt rollnamn"
-
-#: modules/user/user.install:130
-msgid "Stores user data."
-msgstr "Lagrar användardata."
-
-#: modules/user/user.install:136
-msgid "Primary Key: Unique user ID."
-msgstr "Primärnyckel: Unikt användar-ID."
-
-#: modules/user/user.install:143
-msgid "Unique user name."
-msgstr "Unikt användarnamn."
-
-#: modules/user/user.install:150
-msgid "User's password (md5 hash)."
-msgstr "Användarens lösenord (md5-hash)."
-
-#: modules/user/user.install:157
-msgid "User's email address."
-msgstr "Användarens e-postadress."
-
-#: modules/user/user.install:164
-msgid ""
-"Per-user comment display mode (threaded vs. flat), used by the {comment} "
-"module."
-msgstr ""
-"Användarinställt visningsläge för kommentarer (trådat eller platt), används "
-"av modulen {comment}. "
-
-#: modules/user/user.install:171
-msgid ""
-"Per-user comment sort order (newest vs. oldest first), used by the {comment} "
-"module."
-msgstr ""
-"Användarinställd sorteringsordning för kommentarer (nyaste eller äldsta "
-"först), används av modulen {comment}."
-
-#: modules/user/user.install:178
-msgid ""
-"Previously used by the {comment} module for per-user preferences; no longer "
-"used."
-msgstr ""
-"Tidigare använd av modulen {comment} för användarinställningar; används inte "
-"längre."
-
-#: modules/user/user.install:185
-msgid "User's default theme."
-msgstr "Användarens standardtema"
-
-#: modules/user/user.install:192
-msgid "User's signature."
-msgstr "Användarens signatur."
-
-#: modules/user/user.install:198
-msgid "Timestamp for when user was created."
-msgstr "Tidsstämpel för tiden då användaren skapades."
-
-#: modules/user/user.install:204
-msgid "Timestamp for previous time user accessed the site."
-msgstr "Tidsstämpel för tiden då användaren sist besökte webbplatsen."
-
-#: modules/user/user.install:210
-msgid "Timestamp for user's last login."
-msgstr "Tidsstämpel för tiden då användaren senast loggade in."
-
-#: modules/user/user.install:217
-msgid "Whether the user is active(1) or blocked(0)."
-msgstr "Om användaren är aktiv (1) eller blockerad (0)."
-
-#: modules/user/user.install:223
-msgid "User's timezone."
-msgstr "Användarens tidszon"
-
-#: modules/user/user.install:230
-msgid "User's default language."
-msgstr "Användarens valda språk."
-
-#: modules/user/user.install:237
-msgid "Path to the user's uploaded picture."
-msgstr "Sökväg till användarens uppladdade bild."
-
-#: modules/user/user.install:244
-msgid "Email address used for initial account creation."
-msgstr "E-postadress som användes vid kontots skapande."
-
-#: modules/user/user.install:250
-msgid ""
-"A serialized array of name value pairs that are related to the user. Any "
-"form values posted during user edit are stored and are loaded into the $user "
-"object during user_load(). Use of this field is discouraged and it will "
-"likely disappear in a future version of Drupal."
-msgstr ""
-"En seriliserad array med par av namn och värden som hör till användaren. "
-"Vilka formulärvärden som helst som lagts in under användarredigering lagras "
-"och laddas till $user-objektet under user_load(). Att använda detta fält "
-"rekommenderas ej och det kommer troligtvis att försvinna i framtida "
-"versioner av Drupal."
-
-#: modules/user/user.install:265
-msgid "Maps users to roles."
-msgstr "Kopplar användare till roller."
-
-#: modules/user/user.install:272
-msgid "Primary Key: {users}.uid for user."
-msgstr "Primärnyckel: {users}.uid för användare."
-
-#: modules/user/user.install:279
-msgid "Primary Key: {role}.rid for role."
-msgstr "Primärnyckel: {role}.rid för roll."

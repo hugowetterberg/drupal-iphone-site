@@ -1,24 +1,21 @@
-# $Id: modules-book.po,v 1.2.2.4 2008/07/13 23:23:27 zoo33 Exp $
-#
-# Swedish translation of Drupal (installer)
-# Copyright 2008 Lars Palo <larspalo@yahoo.se>
+# Swedish translation of drupal (6.10)
+# Copyright (c) 2009 by the Swedish translation team
 # Generated from files:
 #  book-navigation.tpl.php,v 1.1 2007/11/04 14:29:09 goba
-#  book.admin.inc,v 1.8 2008/01/08 10:35:41 goba
-#  book.module,v 1.454.2.2 2008/02/13 11:20:47 goba
-#  book.pages.inc,v 1.5 2007/12/22 23:24:24 goba
-#  book.install,v 1.20 2008/01/10 18:13:42 goba
+#  book.admin.inc,v 1.8.2.3 2008/10/22 19:26:01 goba
+#  book.pages.inc,v 1.5.2.1 2008/08/13 23:59:13 drumm
+#  book.module,v 1.454.2.6 2009/02/25 11:47:37 goba
+#  book.install,v 1.20.2.1 2009/01/06 15:46:36 goba
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Drupal 6\n"
-"PO-Revision-Date: 2008-02-21 10:22+0100\n"
-"POT-Creation-Date: 2008-02-15 13:50+0100\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: drupal (6.10)\n"
+"POT-Creation-Date: 2009-03-12 17:50+0100\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
-"Language-Team: Swedish (http://drupal.org/project/sv)\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Last-Translator: Lars Palo <larspalo@yahoo.se>\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #: modules/book/book-navigation.tpl.php:40
@@ -55,19 +52,11 @@ msgstr ""
 "bokhierarkin. Användare med %outline-perm-rättigheter kan lägga till "
 "samtliga innehållstyper."
 
-#: modules/book/book.admin.inc:36 modules/book/book.module:43
-msgid "add content to books"
-msgstr "lägga till innehåll till böcker"
-
-#: modules/book/book.admin.inc:36 modules/book/book.module:43
-msgid "administer book outlines"
-msgstr "administrera bokdispositioner"
-
 #: modules/book/book.admin.inc:41
 msgid "Default child page type"
 msgstr "Standardtyp för underliggande sidor"
 
-#: modules/book/book.admin.inc:44 modules/book/book.admin.inc:60
+#: modules/book/book.admin.inc:44,60
 msgid ""
 "The content type for the %add-child link must be one of those selected as an "
 "allowed book outline type."
@@ -75,24 +64,25 @@ msgstr ""
 "Innehållstypen för länken %add-child måste vara en av de som valts som "
 "tillåtna typer för bokdisposition."
 
-#: modules/book/book.admin.inc:44 modules/book/book.admin.inc:60
-#: modules/book/book.module:57
-msgid "Add child page"
-msgstr "Lägg till underliggande sida"
-
 #: modules/book/book.admin.inc:78
 msgid "Save book pages"
 msgstr "Spara boksidor"
 
-#: modules/book/book.admin.inc:116
+#: modules/book/book.admin.inc:90
+msgid ""
+"This book has been modified by another user, the changes could not be saved."
+msgstr ""
+"Denna bok har ändrats av en annan användare, ändringarna kunde inte sparas."
+
+#: modules/book/book.admin.inc:128
 msgid "Title changed from %original to %current."
 msgstr "Titeln ändrades från %original till %current."
 
-#: modules/book/book.admin.inc:123
+#: modules/book/book.admin.inc:135
 msgid "Updated book %title."
 msgstr "Uppdaterade boken %title."
 
-#: modules/book/book.admin.inc:118
+#: modules/book/book.admin.inc:130
 msgid "book: updated %title."
 msgstr "book: uppdaterade %title."
 
@@ -169,7 +159,7 @@ msgstr "Utskriftsversion"
 msgid "Show a printer-friendly version of this book page and its sub-pages."
 msgstr "Visa en utskriftsversion av denna boksida och dess undersidor."
 
-#: modules/book/book.module:180;189
+#: modules/book/book.module:180,189
 msgid "Book navigation"
 msgstr "Boknavigering"
 
@@ -294,7 +284,7 @@ msgid ""
 msgstr ""
 "Användare kan välja länken <em>utskriftsversion</em> som syns längst ned på "
 "boksidan för att skapa en utskriftsversion av sidan och alla dess "
-"underliggande avdelningar."
+"underliggande avdelningar. "
 
 #: modules/book/book.module:1009
 msgid ""
@@ -354,7 +344,7 @@ msgstr "skapa nya böcker"
 msgid "access printer-friendly version"
 msgstr "se utskriftsversion"
 
-#: modules/book/book.module:79 modules/book/book.module:108
+#: modules/book/book.module:79,108
 msgid "Books"
 msgstr "Böcker"
 
@@ -393,23 +383,3 @@ msgstr ""
 "besläktade inlägg sammantaget kallade en <em>bok</em>. En <em>boksida</em> "
 "visar automatiskt länkar till närliggande sidor och ger ett enkelt "
 "navigationssystem för att organisera och hitta strukturerat innehåll."
-
-#: modules/book/book.install:254
-msgid ""
-"Stores book outline information. Uniquely connects each node in the outline "
-"to a link in {menu_links}"
-msgstr ""
-"Lagrar bokdispositionsinnehåll. Sammanbinder unikt varje nod i dispositionen "
-"till en länk i {menu_links}"
-
-#: modules/book/book.install:261
-msgid "The book page's {menu_links}.mlid."
-msgstr "Boksidans {menu_links}.mlid."
-
-#: modules/book/book.install:268
-msgid "The book page's {node}.nid."
-msgstr "Boksidans {node}.nid."
-
-#: modules/book/book.install:275
-msgid "The book ID is the {book}.nid of the top-level page."
-msgstr "Bok ID är {book}.nid för huvudsidan."

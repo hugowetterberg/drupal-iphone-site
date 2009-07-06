@@ -1,26 +1,27 @@
-# $Id: modules-translation.po,v 1.2.2.3 2008/07/14 00:18:40 zoo33 Exp $
-#
-# Swedish translation of Drupal (installer)
-# Copyright 2008 Jens Rantil
+# Swedish translation of drupal (6.10)
+# Copyright (c) 2009 by the Swedish translation team
 # Generated from files:
-#  translation.pages.inc,v 1.2 2008/01/07 13:18:40 goba
-#  translation.module,v 1.23 2008/01/28 11:38:58 goba
+#  translation.pages.inc,v 1.2.2.1 2008/09/30 10:50:43 goba
+#  translation.module,v 1.23.2.4 2009/01/14 23:34:07 goba
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Drupal 6\n"
-"POT-Creation-Date: 2008-02-15 13:50+0100\n"
-"PO-Revision-Date: 2008-03-01 12:31-0500\n"
-"Last-Translator: Jens Rantil\n"
-"Language-Team: Swedish (http://drupal.org/project/sv)\n"
+"Project-Id-Version: drupal (6.10)\n"
+"POT-Creation-Date: 2009-03-12 17:50+0100\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #: modules/translation/translation.pages.inc:41
 msgid "outdated"
 msgstr "inaktuell"
+
+#: modules/translation/translation.pages.inc:43
+msgid "<strong>@language_name</strong> (source)"
+msgstr "<strong>@language_name</strong> (källa)"
 
 #: modules/translation/translation.pages.inc:50
 msgid "add translation"
@@ -178,11 +179,11 @@ msgstr ""
 "languages\">aktiverade språk</a>. Alla översättningars status, aktuell eller "
 "inaktuell, uppdateras beroende på hur mycket originalinlägget har ändrats."
 
-#: modules/translation/translation.module:102
+#: modules/translation/translation.module:99
 msgid "Enabled, with translation"
 msgstr "Aktiverad, med översättningar"
 
-#: modules/translation/translation.module:104
+#: modules/translation/translation.module:101
 msgid ""
 "Enable multilingual support for this content type. If enabled, a language "
 "selection field will be added to the editing form, allowing you to select "
@@ -200,15 +201,15 @@ msgstr ""
 "alla inlägg att sparas i standardspråket. Tidigare inlägg kommer inte att "
 "beröras av detta val."
 
-#: modules/translation/translation.module:127
+#: modules/translation/translation.module:124
 msgid "Translation settings"
 msgstr "Inställningar för översättning"
 
-#: modules/translation/translation.module:138
+#: modules/translation/translation.module:135
 msgid "Flag translations as outdated"
 msgstr "Markera översättningar som inaktuella"
 
-#: modules/translation/translation.module:140
+#: modules/translation/translation.module:137
 msgid ""
 "If you made a significant change, which means translations should be "
 "updated, you can flag all translations of this post as outdated. This will "
@@ -220,11 +221,11 @@ msgstr ""
 "flagga översättningar ändrar inga andra egenskaper, såsom huruvida "
 "översättningarna är publicerade eller ej."
 
-#: modules/translation/translation.module:147
+#: modules/translation/translation.module:144
 msgid "This translation needs to be updated"
 msgstr "Översättningen behöver uppdateras"
 
-#: modules/translation/translation.module:149
+#: modules/translation/translation.module:146
 msgid ""
 "When this option is checked, this translation needs to be updated because "
 "the source post has changed. Uncheck when the translation is up to date "
@@ -234,7 +235,7 @@ msgstr ""
 "eftersom det ursprungliga inlägget har ändrats. Avmarkera när översättningen "
 "är aktuell igen."
 
-#: modules/translation/translation.module:89
+#: modules/translation/translation.module:86
 msgid "translate content"
 msgstr "översätta innehåll"
 

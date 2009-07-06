@@ -1,25 +1,20 @@
-# $Id: modules-aggregator.po,v 1.3.2.4 2008/09/15 00:15:19 zoo33 Exp $
-#
-# Swedish translation of Drupal (installer)
-# Copyright 2008 zoo33
+# Swedish translation of drupal (6.10)
+# Copyright (c) 2009 by the Swedish translation team
 # Generated from files:
 #  aggregator-feed-source.tpl.php,v 1.1 2007/09/13 08:02:38 goba
-#  aggregator-item.tpl.php,v 1.1 2007/09/13 08:02:38 goba
-#  aggregator.pages.inc,v 1.12 2008/01/08 10:35:40 goba
-#  aggregator.module,v 1.374 2008/01/15 08:06:32 dries
 #  aggregator-summary-items.tpl.php,v 1.1 2007/09/13 08:02:38 goba
-#  aggregator.admin.inc,v 1.7 2008/01/10 22:47:17 goba
-#  aggregator.install,v 1.14 2007/12/18 12:59:20 dries
+#  aggregator.admin.inc,v 1.7.2.1 2008/04/25 21:11:57 goba
+#  aggregator.pages.inc,v 1.12.2.1 2008/08/16 21:13:48 dries
+#  aggregator.module,v 1.374.2.4 2009/01/14 21:36:16 goba
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Drupal 6\n"
-"POT-Creation-Date: 2008-02-15 13:50+0100\n"
-"PO-Revision-Date: 2007-01-22 18:00+0100\n"
-"Last-Translator: zoo33\n"
-"Language-Team: Swedish (http://drupal.org/project/sv)\n"
+"Project-Id-Version: drupal (6.10)\n"
+"POT-Creation-Date: 2009-03-12 17:50+0100\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
@@ -31,12 +26,6 @@ msgstr "URL:"
 msgid "Updated:"
 msgstr "Uppdaterad:"
 
-#: modules/aggregator/aggregator-item.tpl.php:42
-#: modules/aggregator/aggregator.pages.inc:63
-#: modules/aggregator/aggregator.module:151
-msgid "Categories"
-msgstr "Kategorier"
-
 #: modules/aggregator/aggregator-summary-items.tpl.php:23
 msgid "More"
 msgstr "Mer"
@@ -45,8 +34,7 @@ msgstr "Mer"
 msgid "Feed overview"
 msgstr "Översikt över nyhetsflöden"
 
-#: modules/aggregator/aggregator.admin.inc:27
-#: modules/aggregator/aggregator.admin.inc:38
+#: modules/aggregator/aggregator.admin.inc:27,38
 msgid "Items"
 msgstr "Poster"
 
@@ -138,11 +126,6 @@ msgid "Are you sure you want to remove all items from the feed %feed?"
 msgstr ""
 "Är du säker på att du vill ta bort alla poster från nyhetsflödet %feed?"
 
-#: modules/aggregator/aggregator.admin.inc:190
-#: modules/aggregator/aggregator.module:108
-msgid "Remove items"
-msgstr "Ta bort poster"
-
 #: modules/aggregator/aggregator.admin.inc:230
 msgid ""
 "A space-separated list of HTML tags allowed in the content of feed items. "
@@ -212,12 +195,6 @@ msgstr "Kategorin %category har raderats."
 msgid "The category %category has been added."
 msgstr "Kategorin %category har lagts till."
 
-#: modules/aggregator/aggregator.admin.inc:161;174;325;338
-#: modules/aggregator/aggregator.pages.inc:16
-#: modules/aggregator/aggregator.module:602;636;643;713;0
-msgid "aggregator"
-msgstr "innehållssamlare"
-
 #: modules/aggregator/aggregator.admin.inc:161
 msgid "Feed %feed deleted."
 msgstr "Flödet %feed raderades."
@@ -234,60 +211,43 @@ msgstr "Kategorin %category raderades."
 msgid "Category %category added."
 msgstr "Kategorin %category lades till."
 
-#: modules/aggregator/aggregator.admin.inc:30;41
-#: modules/aggregator/aggregator.module:923
-msgid "1 item"
-msgid_plural "@count items"
-msgstr[0] "1 post"
-msgstr[1] "@count poster"
-
-#: modules/aggregator/aggregator.pages.inc:68
+#: modules/aggregator/aggregator.pages.inc:67
 msgid "aggregator - @title"
 msgstr "innehållssamlare - @title"
 
-#: modules/aggregator/aggregator.pages.inc:175
+#: modules/aggregator/aggregator.pages.inc:174
 msgid "Save categories"
 msgstr "Spara kategorier"
 
-#: modules/aggregator/aggregator.pages.inc:185
+#: modules/aggregator/aggregator.pages.inc:184
 msgid "You are not allowed to categorize this feed item."
 msgstr "Du är inte behörig att kategorisera detta nyhetsflöde."
 
-#: modules/aggregator/aggregator.pages.inc:203
+#: modules/aggregator/aggregator.pages.inc:202
 msgid "The categories have been saved."
 msgstr "Kategorierna har sparats."
 
-#: modules/aggregator/aggregator.pages.inc:228
-#: modules/aggregator/aggregator.module:185;213
-msgid "Categorize"
-msgstr "Kategorisera"
-
-#: modules/aggregator/aggregator.pages.inc:262
+#: modules/aggregator/aggregator.pages.inc:261
 msgid "%ago ago"
 msgstr "%ago sedan"
 
-#: modules/aggregator/aggregator.pages.inc:293
-#: modules/aggregator/aggregator.module:164
-msgid "OPML feed"
-msgstr "OPML-flöde"
-
-#: modules/aggregator/aggregator.pages.inc:377
+#: modules/aggregator/aggregator.pages.inc:376
 msgid "@site_name - aggregated feeds in category @title"
 msgstr "@site_name - hopsamlade flöden i kategorin @title"
 
-#: modules/aggregator/aggregator.pages.inc:377
+#: modules/aggregator/aggregator.pages.inc:376
 msgid "@site_name - aggregated feeds"
 msgstr "@site_name - hopsamlade flöden"
 
-#: modules/aggregator/aggregator.pages.inc:381
+#: modules/aggregator/aggregator.pages.inc:380
 msgid "@site_name aggregator"
 msgstr "@site_name - nyhetssamlare"
 
-#: modules/aggregator/aggregator.pages.inc:459
+#: modules/aggregator/aggregator.pages.inc:458
 msgid "%age old"
 msgstr "%age gammal"
 
-#: modules/aggregator/aggregator.pages.inc:477
+#: modules/aggregator/aggregator.pages.inc:476
 msgid "!title feed"
 msgstr "!title-fält"
 
@@ -388,48 +348,48 @@ msgstr ""
 "<em>Kategorisera</em>-sidan som finns tillgänglig från nyhetsflödenas listor "
 "över inlägg). Varje kategori tillhandahåller egna nyhetsflöden och block."
 
-#: modules/aggregator/aggregator.module:305
+#: modules/aggregator/aggregator.module:306
 msgid "!title category latest items"
 msgstr "!title-kategorins senaste artiklar"
 
-#: modules/aggregator/aggregator.module:309
+#: modules/aggregator/aggregator.module:310
 msgid "!title feed latest items"
 msgstr "!title-flödets senaste artiklar"
 
-#: modules/aggregator/aggregator.module:320
+#: modules/aggregator/aggregator.module:321
 msgid "Number of news items in block"
 msgstr "Antal nyhetsartiklar i block"
 
-#: modules/aggregator/aggregator.module:339
+#: modules/aggregator/aggregator.module:340
 msgid "View this feed's recent news."
 msgstr "Visa senaste nytt för detta flöde."
 
-#: modules/aggregator/aggregator.module:347
+#: modules/aggregator/aggregator.module:348
 msgid "View this category's recent news."
 msgstr "Visa senaste nytt för denna kategori."
 
-#: modules/aggregator/aggregator.module:457
+#: modules/aggregator/aggregator.module:462
 msgid "The news items from %site have been removed."
 msgstr "Nyhetsartiklarna från %site har tagits bort."
 
-#: modules/aggregator/aggregator.module:598
+#: modules/aggregator/aggregator.module:603
 msgid "There is no new syndicated content from %site."
 msgstr "Det finns inget nytt utdelat innehåll från %site."
 
-#: modules/aggregator/aggregator.module:637;636
+#: modules/aggregator/aggregator.module:642,641
 msgid "There is new syndicated content from %site."
 msgstr "Det finns nytt utdelat innehåll från %site."
 
-#: modules/aggregator/aggregator.module:640
+#: modules/aggregator/aggregator.module:645
 msgid "feed not parseable"
 msgstr "nyhetsflödet ej läsbart"
 
-#: modules/aggregator/aggregator.module:644
+#: modules/aggregator/aggregator.module:649
 msgid "The feed from %site seems to be broken, because of error \"%error\"."
 msgstr ""
 "Innehållsflödet från %site verkar inte fungera på grund av felet \"%error\"."
 
-#: modules/aggregator/aggregator.module:714
+#: modules/aggregator/aggregator.module:718
 msgid ""
 "The feed from %site seems to be broken, because of error \"%error\" on line %"
 "line."
@@ -437,24 +397,24 @@ msgstr ""
 "Innehållsflödet från %site verkar inte fungera på grund av felet \"%error\" "
 "på rad %line."
 
-#: modules/aggregator/aggregator.module:891;891
+#: modules/aggregator/aggregator.module:895
 msgid "blog it"
 msgstr "blogga om det"
 
-#: modules/aggregator/aggregator.module:892
+#: modules/aggregator/aggregator.module:896
 msgid "Comment on this news item in your personal blog."
 msgstr "Kommentera denna nyhetsartikel i din personliga blogg."
 
-#: modules/aggregator/aggregator.module:602
+#: modules/aggregator/aggregator.module:607
 msgid "Updated URL for feed %title to %url."
 msgstr "Uppdaterade URL:en för flödet %title till %url."
 
-#: modules/aggregator/aggregator.module:643
+#: modules/aggregator/aggregator.module:648
 msgid "The feed from %site seems to be broken, due to \"%error\"."
 msgstr ""
 "Innehållsflödet från %site verkar inte fungera på grund av felet \"%error\"."
 
-#: modules/aggregator/aggregator.module:713
+#: modules/aggregator/aggregator.module:717
 msgid ""
 "The feed from %site seems to be broken, due to an error \"%error\" on line %"
 "line."
@@ -462,16 +422,15 @@ msgstr ""
 "Innehållsflödet från %site verkar inte fungera på grund av felet \"%error\" "
 "på rad %line."
 
-#: modules/aggregator/aggregator.module:280
+#: modules/aggregator/aggregator.module:281
 msgid "administer news feeds"
 msgstr "administrera nyhetsflöden"
 
-#: modules/aggregator/aggregator.module:280
+#: modules/aggregator/aggregator.module:281
 msgid "access news feeds"
 msgstr "åtkomst till nyhetsflöden"
 
-#: modules/aggregator/aggregator.module:83
-#: modules/aggregator/aggregator.module:138
+#: modules/aggregator/aggregator.module:83,138
 msgid "Feed aggregator"
 msgstr "Innehållssamlare"
 
@@ -495,147 +454,10 @@ msgstr "Uppdatera poster"
 msgid "Sources"
 msgstr "Källor"
 
-#: modules/aggregator/aggregator.module:230
+#: modules/aggregator/aggregator.module:231
 msgid "Edit feed"
 msgstr "Redigera flöde"
 
-#: modules/aggregator/aggregator.module:238
+#: modules/aggregator/aggregator.module:239
 msgid "Edit category"
 msgstr "Redigera kategori"
-
-#: modules/aggregator/aggregator.install:30
-msgid "Stores categories for aggregator feeds and feed items."
-msgstr "Sparar kategorier för nyhetsflöden och dessas inlägg."
-
-#: modules/aggregator/aggregator.install:35
-msgid "Primary Key: Unique aggregator category ID."
-msgstr "Primärnyckel: Unikt kategori-ID för innehållssamlaren."
-
-#: modules/aggregator/aggregator.install:42
-msgid "Title of the category."
-msgstr "Kategorins namn."
-
-#: modules/aggregator/aggregator.install:48
-msgid "Description of the category"
-msgstr "Beskrivning av kategorin"
-
-#: modules/aggregator/aggregator.install:55
-msgid "The number of recent items to show within the category block."
-msgstr "Antal nya inlägg som ska visas inom kategoriblocket."
-
-#: modules/aggregator/aggregator.install:63
-msgid "Bridge table; maps feeds to categories."
-msgstr "Länktabell; kopplar samman nyhetsflöden och kategorier."
-
-#: modules/aggregator/aggregator.install:69
-msgid "The feed's {aggregator_feed}.fid."
-msgstr "Nyhetsflödets {aggregator_feed}.fid."
-
-#: modules/aggregator/aggregator.install:75
-msgid "The {aggregator_category}.cid to which the feed is being assigned."
-msgstr "Den {aggregator_category}.cid som nyhetsflödet kopplas till."
-
-#: modules/aggregator/aggregator.install:83
-msgid "Bridge table; maps feed items to categories."
-msgstr "Länktabell; kopplar samman nyhetflödens inlägg med kategorier."
-
-#: modules/aggregator/aggregator.install:89
-msgid "The feed item's {aggregator_item}.iid."
-msgstr "Nyhetsflödesinläggets {aggregator_item}.iid."
-
-#: modules/aggregator/aggregator.install:95
-msgid "The {aggregator_category}.cid to which the feed item is being assigned."
-msgstr "Det {aggregator_category}.cid som nyhetsflödens inlägg kopplas till."
-
-#: modules/aggregator/aggregator.install:103
-msgid "Stores feeds to be parsed by the aggregator."
-msgstr "Sparar nyhetsflöden som ska läsas av innehållssamlaren."
-
-#: modules/aggregator/aggregator.install:108
-msgid "Primary Key: Unique feed ID."
-msgstr "Primärnyckel: Unikt ID för nyhetsflöde."
-
-#: modules/aggregator/aggregator.install:115
-msgid "Title of the feed."
-msgstr "Nyhetsflödets namn."
-
-#: modules/aggregator/aggregator.install:122
-msgid "URL to the feed."
-msgstr "Nyhetsflödets URL."
-
-#: modules/aggregator/aggregator.install:128
-msgid "How often to check for new feed items, in seconds."
-msgstr "Hur ofta nya inlägg ska hämtas i nyhetsflöden, i sekunder."
-
-#: modules/aggregator/aggregator.install:134
-msgid "Last time feed was checked for new items, as Unix timestamp."
-msgstr ""
-"Senaste gången nyhetsflödet kontrollerades efter nya inlägg, som Unix-"
-"tidsstämpel."
-
-#: modules/aggregator/aggregator.install:141
-msgid ""
-"The parent website of the feed; comes from the <link> element in the feed."
-msgstr ""
-"Den webbplats som nyhetsflödet härstammar ifrån; kommer från elementet "
-"<link> i nyhetsflödet."
-
-#: modules/aggregator/aggregator.install:147
-msgid ""
-"The parent website's description; comes from the <description> element in "
-"the feed."
-msgstr ""
-"En beskrivning av den webbplats som nyhetsflödet härstammar från; kommer "
-"från elementet <description> i nyhetsflödet."
-
-#: modules/aggregator/aggregator.install:153
-msgid "An image representing the feed."
-msgstr "En bild som representerar nyhetsflödet."
-
-#: modules/aggregator/aggregator.install:160
-msgid "Entity tag HTTP response header, used for validating cache."
-msgstr "Entity-tagg från HTTP-huvud, används för att validera cache."
-
-#: modules/aggregator/aggregator.install:166
-msgid "When the feed was last modified, as a Unix timestamp."
-msgstr "När nyhetsflödet senast ändrades, som en Unix-tidsstämpel."
-
-#: modules/aggregator/aggregator.install:173
-msgid "Number of items to display in the feed's block."
-msgstr "Antal poster som visas i nyhetsflödets block."
-
-#: modules/aggregator/aggregator.install:184
-msgid "Stores the individual items imported from feeds."
-msgstr "Sparar individuella poster som importeras från nyhetsflöden."
-
-#: modules/aggregator/aggregator.install:189
-msgid "Primary Key: Unique ID for feed item."
-msgstr "Primärnyckel: Unikt ID för inlägg i nyhetsflöde."
-
-#: modules/aggregator/aggregator.install:195
-msgid "The {aggregator_feed}.fid to which this item belongs."
-msgstr "Det {aggregator_feed}.fid som inlägget hör till."
-
-#: modules/aggregator/aggregator.install:202
-msgid "Title of the feed item."
-msgstr "Inläggets namn."
-
-#: modules/aggregator/aggregator.install:209
-msgid "Link to the feed item."
-msgstr "Länk till inlägget."
-
-#: modules/aggregator/aggregator.install:216
-msgid "Author of the feed item."
-msgstr "Inläggets författare."
-
-#: modules/aggregator/aggregator.install:222
-msgid "Body of the feed item."
-msgstr "Inläggets huvudtext."
-
-#: modules/aggregator/aggregator.install:227
-msgid "Post date of feed item, as a Unix timestamp."
-msgstr "Datum som inlägget skapats, som en Unix-tidsstämpel."
-
-#: modules/aggregator/aggregator.install:233
-msgid "Unique identifier for the feed item."
-msgstr "Unikt ID för inlägget."
