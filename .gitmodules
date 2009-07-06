@@ -10,3 +10,6 @@
 [submodule "sites/all/modules/simple_geo"]
 	path = sites/all/modules/simple_geo
 	url = git://github.com/hugowetterberg/simple_geo.git
+[submodule "sites/all/modules/oembed"]
+	path = sites/all/modules/oembed
+	url = git://github.com/voxpelli/drupal-oembed.git
