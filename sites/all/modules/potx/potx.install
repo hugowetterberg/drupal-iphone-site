@@ -1,5 +1,5 @@
 <?php
-// $Id: potx.install,v 1.1.2.1 2008/09/25 06:49:33 goba Exp $
+// $Id: potx.install,v 1.1.2.1.4.1 2009/07/19 12:54:42 goba Exp $
 
 /**
  * @file
@@ -25,6 +25,24 @@ function potx_requirements($phase) {
   if (!function_exists('token_get_all')) {
     $requirements['potx_tokenizer']['description'] = $t('The <a href="@tokenizer">PHP tokenizer functions</a> are required.', array('@tokenizer' => 'http://php.net/tokenizer'));
     $requirements['potx_tokenizer']['severity'] = REQUIREMENT_ERROR;
+  }
+  
+  if (module_exists('l10n_community')) {
+    // If l10n_server is already installed and enabled, check its version by 
+    // looking at the specific API piece which lets us fingerprint the right 
+    // version. The compatible branch introduced 
+    // l10n_community_require_potx_with_context().
+
+    include_once drupal_get_path('module', 'l10n_community') .'/l10n_community.install';
+    $requirements['potx_l10n_server'] = array(
+      'title' => $t('Localization Server'),
+      'value' => $t('Translation template extractor compatible version'),
+    );
+    if (!function_exists('l10n_community_require_potx_with_context')) {
+      $requirements['potx_l10n_server']['description'] = $t('The Localization Server should be from a development snapshot later then July 19th, 2009 or at least 6.x-1.0-alpha4 to be compatible with this Translation template extractor.');
+      $requirements['potx_l10n_server']['severity'] = REQUIREMENT_ERROR;
+      $requirements['potx_l10n_server']['value'] = $t('Not compatible with Translation template extractor');
+    }
   }
   
   return $requirements;

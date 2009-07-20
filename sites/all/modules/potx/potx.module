@@ -1,5 +1,5 @@
 <?php
-// $Id: potx.module,v 1.1.2.12.2.2.2.7 2008/09/26 10:52:11 goba Exp $
+// $Id: potx.module,v 1.1.2.12.2.2.2.10 2009/03/13 10:13:14 goba Exp $
 
 /**
  * @file
@@ -110,14 +110,17 @@ function potx_select_form_submit($form, &$form_state) {
   
   $component = $form_state['values']['component'];
   $pathinfo = pathinfo($component);
+  if (!isset($pathinfo['filename'])) {
+    // The filename key is only available in PHP 5.2.0+
+    $pathinfo['filename'] = substr($pathinfo['basename'], 0, strrpos($pathinfo['basename'], '.'));
+  }
   $strip_prefix = 0;
 
   if (isset($pathinfo['extension'])) {
     // A specific module or theme file was requested (otherwise there should be no extension). 
-    $filename = preg_replace('!^(.+)'. preg_quote($pathinfo['extension'], '!') .'$!', '\1', $pathinfo['basename']);
-    $files = _potx_explore_dir($pathinfo['dirname'] .'/', $filename);
+    $files = _potx_explore_dir($pathinfo['dirname'] .'/', $pathinfo['filename']);
     $strip_prefix = 1 + strlen($pathinfo['dirname']);
-    $outputname = $filename;
+    $outputname = $pathinfo['filename'];
   }
   // A directory name was requested.
   else {
@@ -332,7 +335,7 @@ function potx_coder_review(&$coder_args, $review, $rule, $lines, &$results) {
     // most cases the line number and in some cases a code excerpt for the
     // error. Not all errors know about the exact line number, so it might
     // not be there, in which case we provide some sensible defaults.
-    list($message, $file, $lineno, $excerpt) = $error;
+    list($message, $file, $lineno, $excerpt, $docs_url) = $error;
     if (empty($lineno)) {
       // $lineno might be NULL so set to 0.
       $lineno = 0;
@@ -344,7 +347,7 @@ function potx_coder_review(&$coder_args, $review, $rule, $lines, &$results) {
       $lineno--;
       $line = $coder_args['#all_lines'][$lineno];
     }
-    $rule['#warning'] = htmlspecialchars_decode($message, ENT_QUOTES);
+    $rule['#warning'] = htmlspecialchars_decode($message, ENT_QUOTES) . (!empty($docs_url) ? (' <a href="'. $docs_url .'">'. t('Read the documentation') .'</a>.') : '');
     _coder_error($results, $rule, $severity_name, $lineno, $line);
   }
 }

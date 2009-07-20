@@ -1,132 +1,119 @@
+# $Id: uk.po,v 1.1.4.3 2009/05/17 10:55:45 podarok Exp $
+#
+# Ukrainian translation of Drupal (general)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  potx.module,v 1.1.2.12.2.2.2.7 2008/09/26 10:52:11 goba
+#  potx.install,v 1.1.2.1 2008/09/25 06:49:33 goba
+#  potx.info,v 1.1.2.3.2.2 2007/11/12 20:19:06 goba
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: Ukrainian translation of potx.module\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2007-06-29 18:32+0200\n"
-"Last-Translator: LsasS <max.xakep@gmail.com>\n"
-"Language-Team: LsasS <max.lsass@gmail.com>\n"
+"Project-Id-Version: potx uk Ukrainian Translation\n"
+"POT-Creation-Date: 2009-05-17 13:49+0300\n"
+"PO-Revision-Date: 2009-05-17 13:54+0300\n"
+"Last-Translator: Andriy Podanenko <podarok@ua.fm>\n"
+"Language-Team: uk <podarok@ua.fm>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Ukrainian\n"
+"X-Poedit-Country: UKRAINE\n"
+"X-Poedit-SourceCharset: utf-8\n"
 
-#: potx-cli.php:99
-msgid "Test string 1"
-msgstr "Тестовий рядок 1"
+#: potx.module:20
+msgid "This page allows you to generate translation templates for module and theme files. Select the module or theme you wish to generate a template file for. A single Gettext Portable Object (Template) file is generated, so you can easily save it and start translation."
+msgstr "Ця сторінка дозволяє Вам сформувати шаблони для перекладу тексту модулів та файлів тем. Оберіть модуль або тему, для якої бажаєте сформувати відповідний шаблон. В результаті отримаєте  Gettext Portable Object шаблон, який можете перекладати локально."
 
-#: potx-cli.php:100
-msgid "Test string 2 %string"
-msgstr "Тестовий рядок 2 %string"
+#: potx.module:52
+msgid "Language independent template"
+msgstr "Шаблон, незалежний від мови"
 
-#: potx-cli.php:101
-msgid "Test string 3"
-msgstr "Тестовий рядок 3"
+#: potx.module:58
+msgid "Template file for !langname translations"
+msgstr "Файл-шаблон для !langname перекладу"
 
-#: potx-cli.php:102
-msgid ""
-"Special\n"
-"characters"
-msgstr ""
-"Спеціальні\n"
-"Символи"
+#: potx.module:62
+msgid "Template language"
+msgstr "Шаблон мови"
 
-#: potx-cli.php:103
-msgid ""
-"Special\\n"
-"characters"
-msgstr ""
-"Спеціальні\\n"
-"Символи"
+#: potx.module:65
+msgid "Export a language independent or language dependent (plural forms, language team name, etc.) template."
+msgstr "Вийняти залежний або незалежний від мови шаблон."
 
-#: potx-cli.php:105
-msgid "Embedded $variable"
-msgstr "Вбудований $variable"
+#: potx.module:69
+msgid "Include translations"
+msgstr "Вкласти переклад"
 
-#: potx-cli.php:106
-msgid "more $special characters"
-msgstr "більше $special символів"
+#: potx.module:70
+msgid "Include translations of strings in the file generated. Not applicable for language independent templates."
+msgstr "Вкласти переклади строк в генерований файл. Не використовуйте в випадку генерації незалежного від мови шаблону."
 
-#: potx-cli.php:107
-msgid "even more \\$special characters"
-msgstr "ще більше \\$special символів"
-
-#: potx-cli.php:108
-msgid "Mixed 'quote' \"marks\""
-msgstr "Змішані 'знаки' \"лапок\""
-
-#: potx-cli.php:109
-msgid "Mixed \"quote\" 'marks'"
-msgstr "Змішані \"знаки\" 'лапок' "
-
-#: potx-cli.php:110
-#: ;111
-msgid "This is some repeating text"
-msgstr "Це якийсь текст, що повторюється"
-
-#: potx-cli.php:123
-msgid "Help called"
-msgstr "Викликано допомогу"
-
-#: potx-cli.php:124
-msgid "This is some help"
-msgstr "Це якась допомога"
-
-#: potx-cli.php:123
-msgid "help"
-msgstr "допомога"
-
-#: potx-cli.php:113
-#: ;114
-msgid "one day"
-msgid_plural "@count days"
-msgstr[0] "один день"
-msgstr[1] "@count днів"
-
-#: potx.module:15
-msgid "Helps to extract pot-files for translations from the sources of installed modules."
-msgstr "Допомагає експортувати pot-файли з коду інстальованих модулів."
-
-#: potx.module:17
-msgid "This page allows you to generate translation templates for module files. Select the module you wish to generate a template file for. A single Gettext Portable Object Template file is generated (unlike the output of the command line extractor utility), so you can easily save it and start translation."
-msgstr "Ця сторінка дозволяє генерувати шаблони перекладів для файлів модулів. Виберіть модуль, для якого Ви хочете згенерувати шаблон. Генерується один файл Gettext Portable Object Template (на відміну від результату роботи утліти-екстратора для командного рядка), тож Ви можете просто зберегти його і почати переклад."
-
-#: potx.module:30
-msgid "Extract strings"
-msgstr "Екстрагувати (витягнути) рядки"
-
-#: potx.module:77
+#: potx.module:76;29
 msgid "Extract"
-msgstr "Екстрагувати"
+msgstr "Вийняти"
 
-#: potx.module:168
-msgid "Extract from %module_name module, in directory %dir_name"
-msgstr "Екстрагувати з модуля %module_name у папку %dir_name"
-
-#: potx.module:169
-msgid "Generates output from all files found in this directory."
-msgstr "Генерує результат для всіх файлів, знайдених у цій папці."
-
-#: potx.module:184
-msgid "Extract from all modules in directory \"@dir_name\""
-msgstr "Екстрагувати (витягнути) з усіх модулів у папку \"@dir_name\""
+#: potx.module:87
+msgid "You should select a component to export."
+msgstr "Вам потрібно обрати компонент для витягування."
 
 #: potx.module:185
-msgid "To extract from a single module in this directory, choose the module entry in the fieldset below."
-msgstr "Щоб екстрагувати рядки з одного модуля у цій папці виберіть відповідне поле серед полів нижче."
+msgid "Extract from %name in the %directory directory"
+msgstr "Вийняти з %name в %directory папці"
 
-#: potx.module:194
-msgid "Modules in \"@dir_name\""
-msgstr "Модулі у \"@dir_name\""
+#: potx.module:186
+msgid "Generates output from all files found in this directory."
+msgstr "Генерується результат з усіх файлів, знайдених в папці."
 
-#: potx.module:214
-msgid "Extract from module %module_name"
-msgstr "Екстрагувати з модуля %module_name"
+#: potx.module:201
+msgid "Extract from all in directory \"@directory\""
+msgstr "Вийняти з усіх в папці \"@directory\""
 
-#: potx.module:215
-msgid "Extract from files named %module_pattern, in directory %module_dir."
-msgstr "Екстрагувати з файлів з назвою %module_pattern у папку %module_dir."
+#: potx.module:202
+msgid "To extract from a single component in this directory, choose the desired entry in the fieldset below."
+msgstr "Для витягування лише з одного компонента, оберіть його у списку нижче."
+
+#: potx.module:211
+msgid "Directory \"@directory\""
+msgstr "Папка \"@directory\""
+
+#: potx.module:232
+msgid "Extract from %name"
+msgstr "Вийняти з %name"
+
+#: potx.module:233
+msgid "Extract from files named %pattern in the %directory directory."
+msgstr "Вийняти з файлів %pattern в %directory папці."
+
+#: potx.module:303
+msgid "Interface text translatability"
+msgstr "Перекладання тексту інтерфейсу"
 
 #: potx.module:0
 msgid "potx"
 msgstr "potx"
+
+#: (duplicate) potx.install:22
+msgid "PHP tokenizer for Translation template extractor"
+msgstr "PHP tokenizer для Translation template extractor"
+
+#: (duplicate) potx.install:23
+msgid "Available"
+msgstr "Доступно"
+
+#: (duplicate) potx.install:23
+msgid "Not available"
+msgstr "Недоступно"
+
+#: (duplicate) potx.install:26
+msgid "The <a href=\"@tokenizer\">PHP tokenizer functions</a> are required."
+msgstr "Необхідна <a href=\"@tokenizer\">PHP tokenizer фукнція</a>"
+
+#: potx.info:0
+msgid "Translation template extractor"
+msgstr "Для витягування шаблонів локалізації"
+
+#: potx.info:0
+msgid "Provides a web interface and an API to extract translatable text from the sources of installed components."
+msgstr "Надає вебінтерфейс та API для витягування локалізовуваного тексту з встановлених компонентів."
 
