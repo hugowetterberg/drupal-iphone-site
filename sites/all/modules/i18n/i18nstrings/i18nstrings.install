@@ -1,5 +1,5 @@
 <?php
-// $Id: i18nstrings.install,v 1.2.2.10 2009/01/14 18:20:08 snpower Exp $
+// $Id: i18nstrings.install,v 1.2.2.11 2009/06/12 11:33:16 jareyero Exp $
 
 /**
  * @file
@@ -82,7 +82,7 @@ function i18nstrings_schema_alter(&$schema) {
   // Add index for textgroup and location to {locales_source}.
   $schema['locales_source']['indexes']['textgroup_location'] = array(array('textgroup', 30), 'location');
   // Add field for tracking whether translations need updating.
-  $schema['locales_target']['status'] = array(
+  $schema['locales_target']['fields']['status'] = array(
     'description' => t('A boolean indicating whether this translation needs to be updated.'),
     'type' => 'int',
     'not null' => TRUE,

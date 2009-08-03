@@ -1,5 +1,4 @@
 .DS_Store
-sites/default/files/
-sites/default/settings.php
-sites/.gitignore
-
+/sites/default/settings.php
+/sites/default/files
+/sites/.gitignore
