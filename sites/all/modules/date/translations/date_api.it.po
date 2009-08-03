@@ -167,7 +167,7 @@ msgstr "!datetime_plural Anni|Mesi|Giorni|Settimane|Ore|Minuti|Secondi"
 
 #: date_api.module:622
 msgid "!date_order Every|First|Second|Third|Fourth|Fifth"
-msgstr ""
+msgstr "!date_order Tutti|Primo|Secondo|Terzo|Quarto|Quinto"
 
 #: date_api.module:623
 msgid "!date_order |Last|Next to last|Third from last|Fourth from last|Fifth from last"
@@ -179,11 +179,11 @@ msgstr "!date_nav Prec|Succ|Oggi"
 
 #: date_api.module:627
 msgid "!month-name |January|February|March|April|May|June|July|August|September|October|November|December"
-msgstr "!month-name |Gennatio|Febbraio|Marzo|Aprile|Maggio|Giugno|Luglio|Agosto|Settembre|Ottobre|Novembre|Dicembre"
+msgstr "!month-name |Gennaio|Febbraio|Marzo|Aprile|Maggio|Giugno|Luglio|Agosto|Settembre|Ottobre|Novembre|Dicembre"
 
 #: date_api.module:628
 msgid "!month-abbreviation |Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec"
-msgstr "!month-abbreviation Gen|Feb|Mar|Apr|Mag|Giu|Lug|Ago|Sett|Ott|Nov|Dic"
+msgstr "!month-abbreviation |Gen|Feb|Mar|Apr|Mag|Giu|Lug|Ago|Sett|Ott|Nov|Dic"
 
 #: date_api.module:735
 msgid "!time ago"
@@ -191,7 +191,7 @@ msgstr "!time ago"
 
 #: date_api.module:54
 msgid "Formats"
-msgstr ""
+msgstr "Formati"
 
 #: date_api.module:55;65
 msgid "Allow users to configure date formats"
@@ -223,7 +223,7 @@ msgstr ""
 
 #: date_api.module:99
 msgid "Delete date format"
-msgstr ""
+msgstr "Elimina formato data"
 
 #: date_api.module:100
 msgid "Allow users to delete a configured date format."

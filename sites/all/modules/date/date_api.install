@@ -1,5 +1,5 @@
 <?php
-// $Id: date_api.install,v 1.16.2.1.2.19 2009/03/21 10:18:00 karens Exp $
+// $Id: date_api.install,v 1.16.2.1.2.20 2009/06/08 22:42:25 karens Exp $
 function date_api_set_variables() {
   /**
    * Set absolute minimum and maximum year for dates on this site.
@@ -75,7 +75,7 @@ function date_api_schema() {
     'primary key' => array('type'),
   );
 
-  $schema['date_format'] = array(
+  $schema['date_formats'] = array(
     'description' => 'For storing configured date formats.',
     'fields' => array(
       'dfid' => array(
@@ -105,7 +105,7 @@ function date_api_schema() {
       ),
     ),
     'primary key' => array('dfid'),
-    'unique keys' => array('format' => array('format', 'type')),
+    'unique keys' => array('formats' => array('format', 'type')),
   );
 
   $schema['date_format_locale'] = array(
@@ -167,6 +167,20 @@ function date_api_install() {
 
   $ret = array();
   db_add_field($ret, "users", "timezone_name", array('type' => 'varchar', 'length' => 50, 'not null' => TRUE, 'default' => ''));
+  
+  // Make sure MYSQL does not stupidly do case-insensitive 
+  // searches and indexes on our formats.
+  // @see http://pure.rednoize.com/2006/11/26/mysql-collation-matters-when-using-unique-indexes/
+  // @see http://jjinux.blogspot.com/2009/03/mysql-case-sensitivity-hell.html
+  // @see http://dev.mysql.com/doc/refman/5.0/en/case-sensitivity.html
+  global $db_type;
+  if ($db_type == 'mysql' || $db_type == 'mysqli') {
+    $sql = "ALTER TABLE {date_formats} CHANGE format format VARCHAR( 100 ) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL";
+    $ret[] = update_sql($sql);
+    $sql = "ALTER TABLE {date_format_locale} CHANGE format format VARCHAR( 100 ) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL";
+    $ret[] = update_sql($sql);
+  }
+
   return $ret;
 }
 
@@ -424,5 +438,82 @@ function date_api_update_6003() {
   db_change_field($ret, 'date_format_locale', 'format', 'format', array('type' => 'varchar', 'length' => 100, 'not null' => TRUE));
   db_drop_unique_key($ret, 'date_format', 'format');
   db_add_unique_key($ret, 'date_format', 'format', array('format', 'type'));
+  return $ret;
+}
+
+/**
+ * The "date_format" table is missing on boxes having MySQL 5.0.67 installed.
+ * There seems to be a bug in MySQL that prevents the creation of tables with
+ * a name "date_format" and indexes with the name "format".
+ * 
+ * We rename the table and index as a workaround.
+ */
+function date_api_update_6004() {
+  $ret = array();
+
+  $schema['date_formats'] = array(
+    'description' => 'For storing configured date formats.',
+    'fields' => array(
+      'dfid' => array(
+        'description' => 'The date format identifier.',
+        'type' => 'serial',
+        'not null' => TRUE,
+        'unsigned' => TRUE,
+      ),
+      'format' => array(
+        'description' => 'The date format string.',
+        'type' => 'varchar',
+        'length' => 100,
+        'not null' => TRUE,
+      ),
+      'type' => array(
+        'description' => 'The date format type, e.g. medium.',
+        'type' => 'varchar',
+        'length' => 200,
+        'not null' => TRUE,
+      ),
+      'locked' => array(
+        'description' => 'Whether or not this format can be modified.',
+        'type' => 'int',
+        'size' => 'tiny',
+        'default' => 0,
+        'not null' => TRUE,
+      ),
+    ),
+    'primary key' => array('dfid'),
+    'unique keys' => array('formats' => array('format', 'type')),
+  );
+
+  // Create missing table.
+  if (!db_table_exists('date_format')) {
+    db_create_table($ret, 'date_formats', $schema['date_formats']);
+    date_formats_rebuild();
+  }
+  // Rename existing table and index.
+  else {
+    db_rename_table($ret, 'date_format', 'date_formats');
+    db_drop_unique_key($ret, 'date_formats', 'format');
+    db_add_unique_key($ret, 'date_formats', 'formats', array('format', 'type'));
+  }
+
+  return $ret;  
+}
+
+/**
+ * Make sure MYSQL does not stupidly do case-insensitive 
+ * searches and indexes on our formats.
+ * @see http://pure.rednoize.com/2006/11/26/mysql-collation-matters-when-using-unique-indexes/
+ * @see http://jjinux.blogspot.com/2009/03/mysql-case-sensitivity-hell.html
+ * @see http://dev.mysql.com/doc/refman/5.0/en/case-sensitivity.html
+ */
+function date_api_update_6005() {
+  global $db_type;
+  $ret = array();
+  if ($db_type == 'mysql' || $db_type == 'mysqli') {
+    $sql = "ALTER TABLE {date_formats} CHANGE format format VARCHAR( 100 ) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL";
+    $ret[] = update_sql($sql);
+    $sql = "ALTER TABLE {date_format_locale} CHANGE format format VARCHAR( 100 ) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL";
+    $ret[] = update_sql($sql);
+  }
   return $ret;
 }

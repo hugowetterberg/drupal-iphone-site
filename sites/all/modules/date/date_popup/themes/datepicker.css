@@ -135,16 +135,3 @@ table.ui-datepicker .ui-datepicker-title-row td {
 table.ui-datepicker .ui-datepicker-title-row td a {
   color: #222222;
 }
-
-/* ___________ IE6 IFRAME FIX ________ */
-.ui-datepicker-cover {
-  display: none; /*sorry for IE5*/
-  display/**/: block; /*sorry for IE5*/
-  position: absolute; /*must have*/
-  z-index: -1; /*must have*/
-  filter: mask(); /*must have*/
-  top: -4px; /*must have*/
-  left: -4px; /*must have*/ /* LTR */
-  width: 200px; /*must have*/
-  height: 200px; /*must have*/
-}

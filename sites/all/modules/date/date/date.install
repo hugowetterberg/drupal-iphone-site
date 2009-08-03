@@ -1,10 +1,5 @@
 <?php
-// $Id: date.install,v 1.37.2.5.2.28 2009/03/25 12:04:38 karens Exp $
-function date_install_clear() {
-  cache_clear_all('date_', 'cache', '*');
-  drupal_load('module', 'content');
-  content_clear_type_cache();
-}
+// $Id: date.install,v 1.37.2.5.2.31 2009/06/08 22:42:27 karens Exp $
 
 /**
  * Implementation of hook_install().
@@ -16,7 +11,6 @@ function date_install_clear() {
 function date_install() {
   drupal_load('module', 'content');
   content_notify('install', 'date');
-  date_install_clear();
 }
 
 /**
@@ -25,8 +19,6 @@ function date_install() {
 function date_uninstall() {
   drupal_load('module', 'content');
   content_notify('uninstall', 'date');
-  // Empty the date caches.
-  date_install_clear();
 }
 
 /**
@@ -36,7 +28,6 @@ function date_uninstall() {
 function date_enable() {
   drupal_load('module', 'content');
   content_notify('enable', 'date');
-  date_install_clear();
 }
 
 /**
@@ -46,7 +37,6 @@ function date_enable() {
 function date_disable() {
   drupal_load('module', 'content');
   content_notify('disable', 'date');
-  date_install_clear();;
 }
 
 function date_update_last_removed() {
@@ -722,9 +712,9 @@ function date_install_create_format($field, $title, $name, $format) {
   }
   variable_set('date_format_'. $name, $format);
   db_query("INSERT INTO {date_format_types} (type, title, locked) VALUES('%s', '%s', 0)", $name, $title);
-  if (!db_result(db_query("SELECT dfid FROM {date_format} WHERE format='%s' AND type='%s'", $format, 'custom'))) {
-    db_query("INSERT INTO {date_format} (format, type, locked) VALUES('%s', '%s', 0)", $format, 'custom');
-  }
+  if (!db_result(db_query("SELECT dfid FROM {date_formats} WHERE format='%s' AND type='%s'", $format, $type))) {
+    db_query("INSERT INTO {date_formats} (format, type, locked) VALUES('%s', '%s', 0)", $format, 'custom'); 
+  } 
 }
 
 function date_db_integrity($name) {

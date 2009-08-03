@@ -1,5 +1,5 @@
 <?php
-// $Id: date_tools.module,v 1.1.2.15 2009/05/11 02:23:56 karens Exp $
+// $Id: date_tools.module,v 1.1.2.16 2009/07/24 18:48:14 karens Exp $
 
 /**
  * Implementation of hook_help().
@@ -24,7 +24,7 @@ function date_tools_help($section, $arg) {
 }
 
 function date_tools_perm() {
-  return array('use date tools');
+  return array('administer date tools');
 }
 
 function date_tools_menu() {
@@ -33,7 +33,7 @@ function date_tools_menu() {
   $items['admin/content/date/tools'] = array(
     'title'    => 'Date Tools',
     'description' => 'Tools to import and auto-create dates and calendars.',
-    'access arguments'   => array('use date tools'),
+    'access arguments'   => array('administer date tools'),
     'page callback' => 'date_tools_page',
     'type' => MENU_NORMAL_ITEM,
   );
@@ -44,7 +44,7 @@ function date_tools_menu() {
     'weight' => -5,
     'priority' => 1,
     'page callback' => 'date_tools_page',
-    'access arguments' => array('use date tools'),
+    'access arguments' => array('administer date tools'),
     );
   $items['admin/content/date/tools/date_wizard'] = array(
     'title' => 'Date wizard',
@@ -54,11 +54,11 @@ function date_tools_menu() {
     'priority' => 1,
     'page callback' => 'drupal_get_form',
     'page arguments' => array('date_tools_wizard_form'),
-    'access arguments' => array('use date tools'),
+    'access arguments' => array('administer date tools'),
     );
   $items['admin/content/date/tools/import'] = array(
     'title'    => 'Import',
-    'access arguments'   => array('use date tools'),
+    'access arguments'   => array('administer date tools'),
     'page callback' => 'drupal_get_form',
     'page arguments' => array('date_tools_copy_import_ical_form'),
     'type' => MENU_LOCAL_TASK,
@@ -66,7 +66,7 @@ function date_tools_menu() {
   );
   $items['admin/content/date/tools/import/ical'] = array(
     'title'    => 'iCal import',
-    'access arguments'   => array('use date tools'),
+    'access arguments'   => array('administer date tools'),
     'page callback' => 'drupal_get_form',
     'page arguments' => array('date_tools_copy_import_ical_form'),
     'type' => MENU_LOCAL_TASK,
@@ -74,7 +74,7 @@ function date_tools_menu() {
   );
   $items['admin/content/date/tools/import/event'] = array(
     'title'    => 'Event import',
-    'access arguments'   => array('use date tools'),
+    'access arguments'   => array('administer date tools'),
     'page callback' => 'drupal_get_form',
     'page arguments' => array('date_tools_copy_import_event_form'),
     'type' => MENU_LOCAL_TASK,
@@ -82,7 +82,7 @@ function date_tools_menu() {
   );
   $items['admin/content/date/tools/import/csv'] = array(
     'title'    => 'CSV import',
-    'access arguments'   => array('use date tools'),
+    'access arguments'   => array('administer date tools'),
     'page callback' => 'drupal_get_form',
     'page arguments' => array('date_tools_copy_import_csv_form'),
     'type' => MENU_LOCAL_TASK,
@@ -90,7 +90,7 @@ function date_tools_menu() {
   );
   $items['date/tools/remove'] = array(
     'title'    => 'Remove calendar',
-    'access arguments'   => array('use date tools'),
+    'access arguments'   => array('administer date tools'),
     'page callback' => 'drupal_get_form',
     'page arguments' => array('date_tools_remove_form', 3),
     'type' => MENU_CALLBACK,
@@ -288,6 +288,9 @@ function date_tools_wizard_form_validate(&$form, &$form_state) {
   $field_name = 'field_'. $form_state['values']['field_name'];
   if (db_result(db_query("SELECT type FROM {node_type} WHERE type='%s'", $type_name))) {
     drupal_set_message(t('This content type name already exists, adding new field to existing content type.'));
+  }
+  if (!preg_match('!^[a-z0-9_]+$!', $type_name)) {
+    form_set_error('type_name', t('The machine-readable name must contain only lowercase letters, numbers, and underscores.'));
   }
   if (db_result(db_query("SELECT field_name FROM {content_node_field_instance} WHERE field_name='%s' AND type_name='%s'", $field_name, $type_name))) {
     form_set_error('field_name', t('This field name already exists.'));

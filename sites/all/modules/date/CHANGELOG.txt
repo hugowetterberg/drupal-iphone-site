@@ -1,12 +1,58 @@
-//$Id: CHANGELOG.txt,v 1.1.8.428 2009/05/14 17:10:46 karens Exp $
+//$Id: CHANGELOG.txt,v 1.1.8.447 2009/07/29 11:23:20 karens Exp $
 Date Module 6.x
 =================
 Version 6.2-dev
 =================
 
+Version 6.2.3
+=============
+
+- #494350 Add 'c' format.
+- #352975 Remove filter:mask in datepicker css and add help in settings on how to add back in theme.
+- #352975 Add hook_requirements warning to suggest using jQuery UI for datepicker.
+- #529826 Change date tools permission name to add 'administrator' to make it clear it has important powers.
+- #529826 Check for invalid content type name in Date Tools.
+- #529826 Add check_plain to label.
+- #418874 Don't run timestamp format through date_limit_format().
+- #456308 Don't reset date_api_fields cache over and over.
+- #424006 Add flexibility to date filter options by passing them directly to date_create.
+- #465870 Make sure date_repeat_form.inc is included in validation.
+- #453688 Use is_a() function so date handler will work for any handler derived from views_handler_field_date.
+- #452934 Make sure format_interval() doesn't do anything with empty dates.
+- #483682 Make searches case-insensitive.
+- #395156 Change table name for date formats from 'date_format' to 'date_formats' because 'date_format' is reserved word in some dbs.
+- #342357 Make jQuery timepicker optional.
+- #473308 Add handling for year-only date stored in timestamp field.
+- Get rid of <br> in admin summary that was going through check_plain.
+- #482436 Removed deprecated code to remove empty field values, CCK does that now.
+- #421258 Don't cache prepared node, it may need to change context or content type.
+- #421258 Make sure formatter settings context is never empty.
+- Add theme date_time_ago() to Date API so other modules can use it.
+- Remove deprecated date_format_options().
+- Remove deprecated Views code.
+- Remove deprecated date_install_clear() function.
+
+
 Version 6.2.2
 =============
 
+- #418174 Timestamp format should not be run through date_limit_format().
+- #456308 We do not have to reset the date_api_fields cache over and over!
+- #424006 Add flexibility to date filter options by passing them directly to date_create() for PHP versions > 5.2.
+- #465870 Make sure date_repeat_form.inc is included in validation.
+- #453688 The is_a() function makes date handler api work for any handler that was derived from 'views_handler_field_date'.
+- #452934 Make sure format_interval doesn't try to do anything with empty dates.
+- #483682 and #395156 Have to alter the collation of the format fields in MYSQL so they don't do case-insensitive searches and indexes. Fixing table name at the same time to fix another sporatic problem where 'date_format' is treated as an invalid table name and the table is not created.
+- #342357 Make jQuery Timepicker optional.
+- #466222 Fix Dutch translations.
+- #473308 Add handling for year-only date stored in timestamp field.
+- #482436 Remove deprecated code to remove empty field values, CCK does that now.
+- #421258 Don't cache prepared node, it may need to change by context and/or content type.
+- #421258 Make sure formatter settings context is never empty.
+- Add new calendar-day theme to format date like a calendar day page, move basic theme date_time_ago() from Date module to Date API so other modules can use it.
+- Remove date_format_options() from Date API, no longer used with new format system. Move it to Date Popup, which is the only module still using it with TODO to maybe get rid of it.
+- Remove old views code from Date module.
+- Remove date_install_clear() function, a leftover from an earlier version no longer needed.
 - #451858 Fix date_timezone_set() when date is empty while adding new item.
 -  Fix date_limit_format() to be sure the 'T' is stripped out of ISO dates with only date or only time.
 - #432368 Don't force default value in exposed filter if default is empty.

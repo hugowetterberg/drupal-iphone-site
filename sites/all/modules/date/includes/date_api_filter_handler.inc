@@ -1,5 +1,5 @@
 <?php
-// $Id: date_api_filter_handler.inc,v 1.1.2.38 2009/05/12 13:38:28 karens Exp $
+// $Id: date_api_filter_handler.inc,v 1.1.2.40 2009/06/09 11:12:11 karens Exp $
 
 /**
  * A flexible, configurable date filter.
@@ -204,12 +204,17 @@ class date_api_filter_handler extends views_handler_filter_numeric {
       }
     }
     
+    // Add some text to make it clear when additional options are available.
+    $extra = '';
+    if (version_compare(PHP_VERSION, '5.2', '>=')) {
+      $extra = t(" You can use any values PHP's date_create() can understand, like between '12AM today' and '12AM tomorrow.");
+    }
     $form['value']['value']['#prefix'] = '<div class="form-item"><label>' . t('Absolute value') . '</label></div>';
     $form['value']['default_date'] = array(
       '#type' => 'textfield',
       '#title' => t('Date default'),
       '#default_value' => $this->options['default_date'],
-      '#prefix' => '<div class="form-item"><label>' . t('Relative value') . '</label><p>' . t("Relative values will be used if no date is set above. Use 'now' to default to the current date at runtime or add modifiers like 'now +1 day'. The To date default value is used when the operator is set to 'between' or 'not between'.") .'</p><p>' . t('If the filter is exposed, these values will be used to set the inital value of the exposed filter. Leave both date and default values blank to start with no value in the exposed filter.') .'</p></div>',
+      '#prefix' => '<div class="form-item"><label>' . t('Relative value') . '</label><p>' . t("Relative values will be used if no date is set above. Use 'now' to default to the current date at runtime or add modifiers like 'now +1 day'. The To date default value is used when the operator is set to 'between' or 'not between'.") . $extra .'</p><p>' . t('If the filter is exposed, these values will be used to set the inital value of the exposed filter. Leave both date and default values blank to start with no value in the exposed filter.') .'</p></div>',
       );
     $form['value']['default_to_date'] = array(
       '#type' => 'textfield',
@@ -302,9 +307,14 @@ class date_api_filter_handler extends views_handler_filter_numeric {
     // This is a date that needs to be constructed from options like 'now'.
     $default_option = $prefix == 'max' ? $options['default_to_date'] : $options['default_date'];
     if (!empty($default_option)) {
-      $date = date_now();
-      if ($add = trim(str_replace('now', '', $default_option))) {
-        date_modify($date, $add);
+      // For PHP 5.2+, take advantage of any strings that native PHP 
+      // date_create() can handle. For older versions use strtotime().
+      if (version_compare(PHP_VERSION, '5.2', '<')) {
+        $now = strtotime($default_option .' UTC');
+        $date = date_create("@$now", timezone_open('UTC'));
+      }
+      else {
+        $date = date_create($default_option, date_default_timezone());
       }
       $default_date = date_format($date, DATE_FORMAT_DATETIME);
     }
@@ -354,10 +364,9 @@ class date_api_filter_handler extends views_handler_filter_numeric {
         }
       }
     }
-    $field = implode('<br />'. $this->options['date_method'] .' ', $output);
+    $field = implode(' '. $this->options['date_method'] .' ', $output);
     $output = "$field ". check_plain($this->operator) . ' ';
     $parts = $handler->date_parts();
-    
     $widget_options = $this->widget_options();
     // If the filter is exposed, display the granularity.
     if ($this->options['exposed']) {

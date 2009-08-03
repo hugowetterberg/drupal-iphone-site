@@ -1,5 +1,5 @@
 <?php
-// $Id: theme.inc,v 1.1.4.34 2009/05/10 13:48:19 karens Exp $
+// $Id: theme.inc,v 1.1.4.36 2009/06/08 23:10:58 karens Exp $
 /**
  *  Preprocessor to construct back and next navigation from the date argument.
  */
@@ -354,4 +354,46 @@ function theme_date_part_label_ampm($part_type, $element) {
 }
 function theme_date_part_label_timezone($part_type, $element) {
   return t('Timezone');
+}
+
+/**
+ * Theme for a date block that looks like a mini calendar day.
+ * Pass in a date object already set to the right timezone, 
+ * format as a calendar page date. The calendar styling is created in css.
+ */
+function theme_date_calendar_day($date) {
+  if (empty($date)) {
+    return NULL;
+  }
+  return '<div class="date-calendar-day">' .
+    '<span class="month">' . date_format_date($date, 'custom', 'M') . '</span>' .
+    '<span class="day">' . date_format_date($date, 'custom', 'j') . '</span>' .
+    '<span class="year">' . date_format_date($date, 'custom', 'Y') . '</span>' .
+  '</div>';
+}
+
+function theme_date_time_ago($start_date, $end_date, $interval = 2) {
+  // If no date is sent, then return nothing
+  if (empty($start_date) || empty($end_date)){
+    return NULL;
+  }
+
+  // Time to compare dates to
+  $now = date_format(date_now(), DATE_FORMAT_DATETIME);
+  $start = date_format($start_date, DATE_FORMAT_DATETIME);
+  $end = date_format($end_date, DATE_FORMAT_DATETIME);
+  
+  // 1) The date is entirely in the future
+  if ($now < $start) {
+    return t('!time from now', array('!time' => date_format_interval($start_date, $interval)));
+  }
+  // 2) Ongoing date
+  elseif ($now > $start && $now <= $end) {
+    //return t('Started !time ago', array('!time' => $dates['value']['interval']));
+    return t('ongoing');
+  }
+  // 3) Date is in the past (format_interval added 'ago' to the value).
+  else {
+    return date_format_interval($start_date, $interval);
+  }
 }

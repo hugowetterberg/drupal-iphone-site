@@ -1,5 +1,5 @@
 <?php
-// $Id: date_api.module,v 1.64.2.5.2.85 2009/05/12 12:57:45 karens Exp $
+// $Id: date_api.module,v 1.64.2.5.2.92 2009/07/29 11:12:06 karens Exp $
 /**
  * @file
  * This module will make the date API available to other modules.
@@ -708,7 +708,7 @@ function date_format_date($date, $type = 'medium', $format = '', $langcode = NUL
         $datestring .= $format[++$i];
         break;
       default:
-        if (strpos('BdgGhHiIjLmnsStTUwWYyz', $c) !== FALSE) {
+        if (strpos('BdcgGhHiIjLmnsStTUwWYyz', $c) !== FALSE) {
           $datestring .= date_format($date, $c);
         }
         else if ($c == 'r') {
@@ -730,6 +730,11 @@ function date_format_date($date, $type = 'medium', $format = '', $langcode = NUL
  * @return formatted string
  */
 function date_format_interval($date, $granularity = 2) {
+  // If no date is sent, then return nothing
+  if (empty($date)){
+    return NULL;
+  }
+
   $interval = time() - date_format($date, 'U');
   if($interval > 0 ) {
     return t('!time ago', array('!time' => format_interval($interval, $granularity)));
@@ -774,19 +779,24 @@ function date_make_date($date, $timezone = NULL, $type = DATE_DATETIME, $granula
     return NULL;
   }
 
-  // Special handling for partial dates that don't need precision.
-  $max_granularity = array_pop($granularity);
-  if (in_array($max_granularity, array('year', 'month')) || $type == DATE_ISO || $type == DATE_ARRAY) {
-    $date = date_fuzzy_datetime($date);
-    $type = DATE_DATETIME;
-  }
-  
   // Make sure some value is set for the date and timezone even if the
   // site timezone is not yet set up to avoid fatal installation
   // errors.
   if (empty($timezone) || !date_timezone_is_valid($timezone)) {
     $timezone = date_default_timezone_name();
   }
+    
+  // Special handling for partial dates that don't need precision.
+  $max_granularity = array_pop($granularity);
+  if (in_array($max_granularity, array('year', 'month')) || $type == DATE_ISO || $type == DATE_ARRAY) {
+    if ($type == DATE_UNIX) {
+      $date = date_convert($date, $type, DATE_DATETIME);
+    }
+    $date = date_fuzzy_datetime($date);
+    $type = DATE_DATETIME;
+  }
+  
+
   if (!date_is_valid($date, $type, $granularity)) {
     $date = 'now';
   }
@@ -1691,7 +1701,8 @@ function date_api_theme() {
     'date_views_filter_form' => $base + array(
       'template' => 'date-views-filter-form',
       'arguments' => array('form' => NULL)),
-    );
+    'date_calendar_day' => $base + array('arguments' => array('date' => NULL)),  
+    'date_time_ago' => $base + array('arguments' => array('start_date' => NULL, 'end_date' => NULL, 'interval' => NULL)));
 }
 
 /**
@@ -1776,7 +1787,7 @@ function date_get_formats($type = NULL, $reset = FALSE) {
  *   Array of date format details.
  */
 function date_get_format($dfid) {
-  $result = db_query('SELECT df.dfid, df.format, df.type, df.locked FROM {date_format} df WHERE df.dfid = %d', $dfid);
+  $result = db_query('SELECT df.dfid, df.format, df.type, df.locked FROM {date_formats} df WHERE df.dfid = %d', $dfid);
   return db_fetch_array($result);
 }
 
@@ -1858,7 +1869,7 @@ function date_format_type_save($date_format_type) {
  *   The date format type name.
  */
 function date_format_type_delete($date_format_type) {
-  db_query("DELETE FROM {date_format} WHERE type = '%s'", $date_format_type);
+  db_query("DELETE FROM {date_formats} WHERE type = '%s'", $date_format_type);
   db_query("DELETE FROM {date_format_types} WHERE type = '%s'", $date_format_type);
   db_query("DELETE FROM {date_format_locale} WHERE type = '%s'", $date_format_type);
 }
@@ -1874,13 +1885,13 @@ function date_format_save($date_format) {
   $format['type'] = $date_format['type'];
   $format['format'] = $date_format['format'];
   $format['locked'] = $date_format['locked'];
-
+  
   // Update date_format table.
   if (isset($date_format['is_new']) && !empty($date_format['is_new'])) {
-    drupal_write_record('date_format', $format);
+    drupal_write_record('date_formats', $format);
   }
   else {
-    drupal_write_record('date_format', $format, array('format', 'type'));
+    drupal_write_record('date_formats', $format, array('format', 'type'));
   }
 
   $languages = language_list('enabled');
@@ -1926,7 +1937,7 @@ function date_format_save($date_format) {
  *   The date format string identifier.
  */
 function date_format_delete($date_format_id) {
-  db_query("DELETE FROM {date_format} WHERE dfid = '%d'", $date_format_id);
+  db_query("DELETE FROM {date_formats} WHERE dfid = '%d'", $date_format_id);
 }
 
 /**
@@ -2032,7 +2043,7 @@ function _date_formats_build() {
   }
 
   // Get custom formats added to the database by the end user.
-  $result = db_query('SELECT df.dfid, df.format, df.type, df.locked, dfl.language FROM {date_format} df LEFT JOIN {date_format_types} dft ON df.type = dft.type LEFT JOIN {date_format_locale} dfl ON df.format = dfl.format AND df.type = dfl.type ORDER BY df.type, df.format');
+  $result = db_query('SELECT df.dfid, df.format, df.type, df.locked, dfl.language FROM {date_formats} df LEFT JOIN {date_format_types} dft ON df.type = dft.type LEFT JOIN {date_format_locale} dfl ON df.format = dfl.format AND df.type = dfl.type ORDER BY df.type, df.format');
   while ($object = db_fetch_object($result)) {
     // If this format type isn't set, initialise the array.
     if (!isset($date_formats[$object->type])) {
@@ -2107,46 +2118,6 @@ function date_format_locale($langcode = NULL, $type = NULL, $reset = FALSE) {
   }
 
   return FALSE;
-}
-
-/**
- * Store personalized format options for each user.
- *
- * Store to avoid work of re-creating it over and over,
- * personalize for each user to preserve translation.
- *
- * @return array
- */
-function date_format_options() {
-  global $user;
-  $options = array();
-  $cached = cache_get('date_format_options:'. $user->uid);
-  $options = isset($cached->data) ? $cached->data : array();
-  if (empty($options)) {
-    $formats = date_get_formats();
-    $options = array();
-    $now = date_example_date();
-    if (!empty($now)) {
-      foreach ($formats as $type => $format_types) {
-        foreach ($format_types as $format => $format_attributes) {
-          // Create an option that shows date only without time, along with the
-          // default string which has both date and time.
-          $no_time = date_limit_format($format, array('month', 'day', 'year'));
-          $zones = array('', 'O', 'P', 'e');
-          foreach ($zones as $zone) {
-            $time_format = !empty($zone) ? $format .' '. $zone : $format;
-            $options[$no_time] = date_format_date($now, 'custom', $no_time);
-            $options[$time_format] = date_format_date($now, 'custom', $time_format);
-          }
-        }
-      }
-      asort($options);
-    }
-    if (!empty($options)) {
-      cache_set('date_format_options:'. $user->uid, $options, 'cache', CACHE_TEMPORARY);
-    }
-  }
-  return $options;
 }
 
 /**

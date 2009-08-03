@@ -1,5 +1,5 @@
 <?php
-// $Id: date_api_fields.inc,v 1.1.2.8 2009/04/27 17:46:09 karens Exp $
+// $Id: date_api_fields.inc,v 1.1.2.9 2009/06/08 23:23:46 karens Exp $
 /**
  *  Identify all potential date/timestamp fields.
  *
@@ -48,7 +48,9 @@ function _date_api_fields($base = 'node') {
     }
     
     // Allow custom modules to provide date fields.
-    elseif ($handler_name == 'views_handler_field_date') {
+    // The is_a() function makes this work for any handler
+    // that was derived from 'views_handler_field_date'.
+    elseif (is_a($handler, 'views_handler_field_date')) {
       foreach (module_implements('date_api_fields') as $module) {
         $function = $module .'_date_api_fields';
         if ($custom = $function("$table_name.$field_name")) {

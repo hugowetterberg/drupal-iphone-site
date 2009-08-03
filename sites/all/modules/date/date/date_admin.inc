@@ -1,5 +1,5 @@
 <?php
-//$Id: date_admin.inc,v 1.40.2.3.2.38 2009/03/03 15:16:54 karens Exp $
+//$Id: date_admin.inc,v 1.40.2.3.2.39 2009/06/08 16:49:36 karens Exp $
 /**
  * @file
  * Date administration code.
@@ -578,8 +578,9 @@ function date_field_default_values($field_type, $widget_type, $tz_handling, $ove
  */
 function _date_formatter_settings($form_state = NULL, $field, $options = array(), $views_form = FALSE) {
   $field_name = $field['field_name'];
-  $type_name = isset($options['type_name']) ? $options['type_name'] : NULL;
-  $context = isset($options['context']) ? $options['context'] : NULL;
+  $field = content_fields($field_name);
+  $type_name = isset($options['type_name']) ? $options['type_name'] : $field['type_name'];
+  $context = isset($options['context']) ? $options['context'] : 'full';
   if (empty($options['fromto'])) {
     $options = date_formatter_get_settings($field_name, $type_name, $context);
   }

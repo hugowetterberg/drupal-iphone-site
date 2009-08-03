@@ -1,5 +1,5 @@
 <?php
-// $Id: date_popup.module,v 1.42.2.1.2.48 2009/05/12 12:57:45 karens Exp $
+// $Id: date_popup.module,v 1.42.2.1.2.51 2009/07/28 19:43:52 karens Exp $
 /**
  * @file
  * A module to enable jquery calendar and time entry popups.
@@ -37,7 +37,9 @@ function date_popup_load() {
   else {
     drupal_add_js($path .'/lib/ui.datepicker.js');
   }
-  drupal_add_js($path .'/lib/jquery.timeentry.pack.js');
+  if (variable_get('date_popup_timepicker', 'default') == 'default') {
+    drupal_add_js($path .'/lib/jquery.timeentry.pack.js');
+  }
   $loaded = TRUE;
 }
 
@@ -46,7 +48,9 @@ function date_popup_load() {
  */
 function date_popup_init() {
   drupal_add_css(drupal_get_path('module', 'date_popup')  .'/themes/datepicker.css');
-  drupal_add_css(drupal_get_path('module', 'date_popup')  .'/themes/timeentry.css');
+  if (variable_get('date_popup_timepicker', 'default') == 'default') {
+    drupal_add_css(drupal_get_path('module', 'date_popup')  .'/themes/timeentry.css');
+  }
 }
 
  /**
@@ -406,6 +410,40 @@ function date_popup_formats() {
 }
 
 /**
+ * Store personalized format options for each user.
+ *
+ * TODO see what is needed to remove this completely.
+ * It is now only used by Date Popup and not really needed there.
+ *
+ * @return array
+ */
+function date_format_options() {
+  global $user;
+  $options = array();
+  $formats = date_get_formats();
+  $options = array();
+  module_load_include('inc', 'date', 'date_admin');
+  $now = date_example_date();
+  if (!empty($now)) {
+    foreach ($formats as $type => $format_types) {
+      foreach ($format_types as $format => $format_attributes) {
+        // Create an option that shows date only without time, along with the
+        // default string which has both date and time.
+        $no_time = date_limit_format($format, array('month', 'day', 'year'));
+        $zones = array('', 'O', 'P', 'e');
+        foreach ($zones as $zone) {
+          $time_format = !empty($zone) ? $format .' '. $zone : $format;
+          $options[$no_time] = date_format_date($now, 'custom', $no_time);
+          $options[$time_format] = date_format_date($now, 'custom', $time_format);
+        }
+      }
+    }
+    asort($options);
+  }
+  return $options;
+}
+
+/**
  * Recreate a date format string so it has the values popup expects.
  *
  * @param string $format
@@ -495,4 +533,57 @@ function theme_date_popup($element) {
     $output = $element['#children'];
   }
   return '<div class="'. $class .'">'. theme('form_element', $element, $output) .'</div>';
+}
+
+/**
+ * Implementation of hook_menu().
+ */
+function date_popup_menu() {
+  $items = array();
+
+  $items['admin/settings/date_popup'] = array(
+    'title' => 'Date Popup Configuration',
+    'description' => 'Allows the user to configure the Date Popup settings.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('date_popup_settings'),
+    'access callback' => 'user_access',
+    'access arguments' => array('administer site configuration'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+  return $items;
+}
+/**
+ * General configuration form for controlling the Date Popup behaviour.
+ */
+function date_popup_settings() {
+
+  $form['#prefix'] = t('<p>The Date Popup calendar datepicker uses the jQuery UI datepicker. A version of that is included with the Date Popup module, but you are strongly encouraged to use the <a href="http://drupal.org/project/jquery_ui">jQuery UI module</a> instead. If the jQuery UI module is installed, the Date Popup will use the datepicker from that module, which is likely to be more current. If you are having any problems with Popups and you are not already using jQuery UI, please do that as a first step before reporting problems.</p>');
+  $form['#prefix'] .= t('<p>The Date Popup module uses a jQuery timepicker module. There is no "official" jQuery UI timepicker, and not everyone likes the one that is included here. If you do not want to use the timepicker, you can turn it off below and users will get a regular textfield instead.</p>');
+  
+  $form['date_popup_timepicker'] = array(
+    '#type' => 'select',
+    '#options' => array('default' => t('Use default jQuery timepicker'), 'none' => t('Manual time entry, no jQuery timepicker')),
+    '#title' => t('Timepicker'),
+    '#default_value' => variable_get('date_popup_timepicker', 'default'),
+    '#description' => t("Choose the jQuery timepicker to user."),
+  );
+  
+  $css = <<<EOM
+/* ___________ IE6 IFRAME FIX ________ */
+.ui-datepicker-cover {
+  display: none; /*sorry for IE5*/
+  display/**/: block; /*sorry for IE5*/
+  position: absolute; /*must have*/
+  z-index: -1; /*must have*/
+  filter: mask(); /*must have*/
+  top: -4px; /*must have*/
+  left: -4px; /*must have*/ /* LTR */
+  width: 200px; /*must have*/
+  height: 200px; /*must have*/
+}
+EOM;
+
+  $form['#suffix'] = t('<p>The Date Popup calendar includes some css for IE6 that breaks css validation. Since IE 6 is now superceded by IE 7 and IE 8, the special css for IE 6 has been removed from the regular css used by the Date Popup. If you find you need that css after all, you can add it back in your theme. Look at the way the Garland theme adds special IE-only css in in its page.tpl.php file. The css you need is:</p>') .'<blockquote><PRE>'. $css .'</PRE></blockquote>';
+
+  return system_settings_form($form);
 }

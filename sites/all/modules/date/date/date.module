@@ -1,5 +1,5 @@
 <?php
-// $Id: date.module,v 1.61.2.4.2.56 2009/05/11 02:23:56 karens Exp $
+// $Id: date.module,v 1.61.2.4.2.61 2009/06/09 17:20:31 karens Exp $
 
 /**
  * @file
@@ -264,8 +264,6 @@ function date_theme() {
       'arguments' => array('date' => NULL, 'timezone' => NULL)),
     'date_display_range' => array(
       'arguments' => array('date1' => NULL, 'date2' => NULL, 'timezone' => NULL)),
-    'date_time_ago' => array(
-      'arguments' => array('start_date' => NULL, 'end_date' => NULL)),  
     'date_text_parts' => array(
       'arguments' => array('element' => NULL)),
     'date' => array(
@@ -276,6 +274,9 @@ function date_theme() {
     'date_formatter_format_interval' => $base + array(
       'arguments' => array('element' => NULL), 
       'function' => 'theme_date_format_interval'),
+    'date_formatter_format_calendar_day' => $base + array(
+      'arguments' => array('element' => NULL), 
+      'function' => 'theme_date_format_calendar_day'),
     'date_repeat_display' => $base + array(
       'arguments' => array('field' => NULL, 
       'item' => NULL, 'node' => NULL, 'dates' => NULL),
@@ -365,7 +366,16 @@ function date_formatter_process($element) {
       if (is_object($date)) {
         if ($format == 'format_interval') {
            $dates[$processed]['interval'] = date_format_interval($date);
+        }
+        elseif ($format == 'format_calendar_day') {
+           $dates[$processed]['calendar_day'] = date_format_calendar_day($date);
         } 
+        elseif ($format == 'U') {
+          $dates[$processed]['formatted'] = date_format_date($date, 'custom', $format);
+          $dates[$processed]['formatted_date'] = date_format_date($date, 'custom', $format);
+          $dates[$processed]['formatted_time'] = '';
+          $dates[$processed]['formatted_timezone'] = '';
+        }
         elseif (!empty($format)) {
           $dates[$processed]['formatted'] = date_format_date($date, 'custom', $format);
           $dates[$processed]['formatted_date'] = date_format_date($date, 'custom', date_limit_format($format, array('year', 'month', 'day')));
@@ -434,10 +444,7 @@ function date_help($path, $arg) {
  * Make sure date information gets updated.
  */
 function date_form_alter(&$form, &$form_state, $form_id) {
-  if ($form_id == 'views_edit_view') {
-    cache_clear_all('date_', 'cache', '*');
-  }
-  elseif ($form_id == 'content_display_overview_form') {
+  if ($form_id == 'content_display_overview_form') {
     date_content_display_form($form, $form_state);
   }
 }
@@ -550,6 +557,7 @@ function date_formatter_format($formatter, $field_name) {
       $format = variable_get('date_format_'. $formatter, $default);
       break;
   }
+ 
   if (empty($format)) {
     $format = $default_format;
   }
@@ -573,15 +581,7 @@ function date_views_api() {
  * Helper function to adapt node date fields to formatter settings.
  */
 function date_prepare_node($node, $field, $type_name, $context, $options) {
-  static $prepared_node = array();
   
-  // No need to do this over and over for every item in a normal node view.
-  if (empty($node->view) && isset($node->content) && !empty($prepared_node) && 
-    array_key_exists($field['field_name'], $prepared_node) && 
-    $prepared_node[$field['field_name']]->nid == $node->nid) {
-    return $prepared_node[$field['field_name']];
-  }
-    
   // If there are options to limit multiple values, 
   // alter the node values to match. 
   $field_name = $field['field_name'];
@@ -591,7 +591,6 @@ function date_prepare_node($node, $field, $type_name, $context, $options) {
   // If no results should be shown, empty the values and return.
   if (is_numeric($max_count) && $max_count == 0) {
     $node->{$field_name} = array();
-    $prepared_node[$field_name] = $node;
     return $node;
   }
   
@@ -632,7 +631,6 @@ function date_prepare_node($node, $field, $type_name, $context, $options) {
       }
     }
   }
-  $prepared_node[$field['field_name']] = $node;
   return $node;
 }
 

@@ -1,5 +1,5 @@
 <?php
-//$Id: date.theme,v 1.6.4.48 2009/05/11 02:23:56 karens Exp $
+//$Id: date.theme,v 1.6.4.51 2009/06/09 17:20:31 karens Exp $
 /**
  * @file
  * Theme functions.
@@ -50,7 +50,7 @@ function theme_date_display_combination($element) {
   
   $node = $element['#node'];
   $field_name = $element['#field_name'];
-  $context = !empty($node->content) && !empty($node->content[$field_name]) ? $node->content[$field_name]['#context'] : '';
+  $context = !empty($node->content) && !empty($node->content[$field_name]) ? $node->content[$field_name]['#context'] : 'full';
   $type_name = $element['#type_name'];
   $fields = content_fields();
   $field = $fields[$field_name];
@@ -100,7 +100,6 @@ function theme_date_display_combination($element) {
   // Update the element with values that might have been altered by 
   // date_prepare_node() and figure out which values to display.
   $dates = date_formatter_process($element);
-  
   switch ($options['fromto']['fromto']) {
     case 'value':
       $date1 = $dates['value']['formatted'];
@@ -178,7 +177,7 @@ function theme_date_display_range($date1, $date2, $timezone = NULL) {
 function theme_date_format_interval($element) {
   $node = $element['#node'];
   $field_name = $element['#field_name'];
-  $context = !empty($node->content) ? $node->content[$field_name]['#context'] : '';
+  $context = !empty($node->content) ? $node->content[$field_name]['#context'] : 'full';
   $type_name = $element['#type_name'];
   $fields = content_fields();
   $field = $fields[$field_name];
@@ -216,27 +215,6 @@ function theme_date_format_interval($element) {
   }
   $dates = date_formatter_process($element);
   return theme('date_time_ago', $dates['value']['local']['object'], $dates['value2']['local']['object']);
-}
-
-function theme_date_time_ago($start_date, $end_date) {
-  // Time to compare dates to
-  $now = date_format(date_now(), DATE_FORMAT_DATETIME);
-  $start = date_format($start_date, DATE_FORMAT_DATETIME);
-  $end = date_format($end_date, DATE_FORMAT_DATETIME);
-  
-  // 1) The date is entirely in the future
-  if ($now < $start) {
-    return t('!time from now', array('!time' => date_format_interval($start_date, 2)));
-  }
-  // 2) Ongoing date
-  elseif ($now > $start && $now <= $end) {
-    //return t('Started !time ago', array('!time' => $dates['value']['interval']));
-    return t('ongoing');
-  }
-  // 3) Date is in the past (format_interval added 'ago' to the value).
-  else {
-    return date_format_interval($start_date, 2);
-  }
 }
 
 /**

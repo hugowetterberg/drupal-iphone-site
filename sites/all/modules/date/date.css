@@ -170,3 +170,37 @@ span.date-display-separator {
   float: left;
 }
 
+/* Calendar day css */
+div.date-calendar-day {
+  line-height: 1;
+  width: 40px;
+  float: left;
+  margin: 6px 10px 0 0;
+  background: #F3F3F3;
+  border-top: 1px solid #eee;
+  border-left: 1px solid #eee;
+  border-right: 1px solid #bbb;
+  border-bottom: 1px solid #bbb;
+  color: #999;
+  text-align: center;
+  font-family: Georgia, Arial, Verdana, sans;
+}
+div.date-calendar-day span {
+  display: block;  
+  text-align: center;
+}
+div.date-calendar-day span.month {
+  font-size: .9em;
+  background-color: #B5BEBE;
+  color: white;
+  padding: 2px;
+  text-transform: uppercase;
+}
+div.date-calendar-day span.day {
+  font-weight: bold;
+  font-size: 2em;
+}
+div.date-calendar-day span.year {
+  font-size: .9em;
+  padding: 2px;
+}
