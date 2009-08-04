@@ -27,12 +27,22 @@ function imagecache_action_cover_form($data)
     '#default_value' => $data['height'],
     '#description' => t('Enter a height in pixels'),
   );
+  $form['center'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Center'),
+    '#default_value' => $data['center'],
+    '#description' => t('Centers the cropped image when checked'),
+  );
   return $form;
 }
 
 function theme_imagecache_action_cover($element) {
   $data = $element['#value'];
-  return 'width: '. $data['width'] .', height: '. $data['height'];
+  return t('width: !width, height: !height, align: !align', array(
+    '!width' => $data['width'],
+    '!height' => $data['height'],
+    '!align' => (isset($data['center']) && $data['center']?t('centered'):t('top left')),
+  ));
 }
 
 function imagecache_action_cover_image(&$image, $data) {
@@ -40,6 +50,7 @@ function imagecache_action_cover_image(&$image, $data) {
   $h = $image->info['height'];
   $tw = $data['width'];
   $th = $data['height'];
+  $center = isset($data['center']) && $data['center'];
   
   if($w == $tw && $h == $th)
     return true;
@@ -48,8 +59,11 @@ function imagecache_action_cover_image(&$image, $data) {
   if($r!=1) {
     imageapi_image_resize($image, $w/$r, $h/$r);
   }
-  
-  imageapi_image_crop($image, 0, 0, $tw, $th);
+
+  $cow = $center ? ($w/$r-$tw)/2 : 0;
+  $coh = $center ? ($h/$r-$th)/2 : 0;
+
+  imageapi_image_crop($image, $cow, $coh, $tw, $th);
   return true;
 }
 
