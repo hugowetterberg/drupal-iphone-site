@@ -1,4 +1,41 @@
-//$Id: CHANGELOG.txt,v 1.1.6.337 2009/06/17 11:10:26 yched Exp $
+//$Id: CHANGELOG.txt,v 1.1.6.362 2009/08/03 21:11:12 markuspetrux Exp $
+
+CCK 6.x-2.5
+===========
+
+A few files have been added and/or removed in this package. It is recommended to replace the whole CCK directory with the new one.
+Please visit update.php apply pending updates after installing the new files.
+It also worths to mention that Panels 3 integration has been reviewed and enhanced with display options for fiels and field groups.
+IMPORTANT: All sites using Diff module with CCK for Drupal 6 are strongly encouraged to upgrade to CCK 2.5 (see #538872 below).
+
+Features:
+- #428650 Conditional cache/menu rebuild for content CRUD methods.
+- #334945 Save default values when field is hidden because of access permissions.
+- #503258 by eaton: allow 'extra fields' to provide 'configure' and 'remove' links.
+- #505278 Panels 3 and multiple node type fields.
+- #495582 Reviewed Panels 3 integration (prep work for combo / multigroups).
+  Implementation of fieldgroup_view_group() that can be used to render field groups.
+- #417122 by quicksketch: allow drupal_alter on field and widget settings.
+- #514452 Add new argument $node to content_access() to enhance the context for hook_field_access().
+- #523072 by merlinofchaos - Have nodereference relationships limit CCK field availability as well.
+- #519870 by joachim - Add a note to say offset starts from 0 in grouping options for views handler for multiple values fields.
+- #231453 Allow fields index their columns. Implemented for reference value column in node and user reference fields. Needs update.php.
+- #521002 by mh86 - Support for optgroups in allowed values for select elements.
+
+Bugfixes:
+- #499696 by DeFr - Noderefernce / Userreference: fix Views mode when the view has exposed filters.
+- #498924 #multiple FAPI attribute is used for a radios and checkboxes in content export forms.
+- #409144 Review extra elements for node edit form provided by core modules.
+- #361473 CCK fieldgroup panels doesn't respect CCK field privacy settings.
+- #515984 Multiple field delta ORDER BY incorrect.
+- #414298 by Michelle, merlinofchaos - Follow up to remove fieldgroup.panels.inc (it was moved to panels/content_types).
+- #522112 by hefox, prevent malformed condition for vid IN () in views handler for multiple values fields.
+- #505278 by Michelle, merlinofchaos - Provide backward compatibility with previous method to build Panels 3 subtype names for fields.
+- #523864 Minor coding style issues in Panels 3 relationships implementations.
+- #481568 by merlinofchaos - Empty property error when attempting to save a user reference in Panels.
+- #510396 by yched - Use field/type definition to render fields in views.
+- #393020 by auth - Fieldgroup data is lost when importing to module provided content type with group info for existing fields.
+- #538872 Diff does not respect field permissions.
 
 CCK 6.x-2.4
 ===========

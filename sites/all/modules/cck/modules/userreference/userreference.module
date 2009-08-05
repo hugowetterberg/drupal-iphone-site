@@ -1,5 +1,5 @@
 <?php
-// $Id: userreference.module,v 1.106.2.43 2009/06/02 12:24:04 yched Exp $
+// $Id: userreference.module,v 1.106.2.45 2009/07/19 13:03:57 markuspetrux Exp $
 
 /**
  * @file
@@ -60,7 +60,7 @@ function userreference_field_info() {
     'userreference' => array(
       'label' => t('User reference'),
       'description' => t('Store the ID of a related user as an integer value.'),
-      'content_icon' => 'icon_content_noderef.png',
+//      'content_icon' => 'icon_content_noderef.png',
     ),
   );
 }
@@ -141,7 +141,7 @@ function userreference_field_settings($op, $field) {
 
     case 'database columns':
       $columns = array(
-        'uid' => array('type' => 'int', 'unsigned' => TRUE,  'not null' => FALSE),
+        'uid' => array('type' => 'int', 'unsigned' => TRUE, 'not null' => FALSE, 'index' => TRUE),
       );
       return $columns;
 

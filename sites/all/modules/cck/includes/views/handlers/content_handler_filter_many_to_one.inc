@@ -1,5 +1,5 @@
 <?php
-// $Id: content_handler_filter_many_to_one.inc,v 1.1.2.3 2009/03/20 00:53:47 yched Exp $
+// $Id: content_handler_filter_many_to_one.inc,v 1.1.2.4 2009/08/03 20:40:26 markuspetrux Exp $
 
 /**
  * @file
@@ -30,7 +30,7 @@ class content_handler_filter_many_to_one extends views_handler_filter_many_to_on
     if ($this->value_form_type == 'select') {
       // For selects, HTML should be filtered out and entities left unencoded.
       // See content_allowed_values / content_filter_xss / filter_xss.
-      $options = array_map(create_function('$opt', 'return html_entity_decode(strip_tags($opt), ENT_QUOTES);'), $options);
+      content_allowed_values_filter_html($options);
     }
     return (array) $options;
   }

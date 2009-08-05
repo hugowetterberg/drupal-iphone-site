@@ -1,5 +1,5 @@
 <?php
-// $Id: content_handler_field_multiple.inc,v 1.1.2.18 2009/05/07 15:06:36 yched Exp $
+// $Id: content_handler_field_multiple.inc,v 1.1.2.22 2009/07/22 20:45:17 markuspetrux Exp $
 
 /**
  * @file
@@ -87,14 +87,16 @@ class content_handler_field_multiple extends content_handler_field {
       '#default_value' => $options['multiple']['multiple_from'],
       '#process' => array('views_process_dependency'),
       '#dependency' => array('edit-options-multiple-group' => array(TRUE)),
+      '#description' => t('(first item is 0)'),
     );
     $form['multiple']['multiple_reversed'] = array(
-      '#title' => t('Reversed (start from last values)'),
+      '#title' => t('Reversed'),
       '#type' => 'checkbox',
       '#default_value' => $options['multiple']['multiple_reversed'],
       '#suffix' => '</div>',
       '#process' => array('views_process_dependency'),
       '#dependency' => array('edit-options-multiple-group' => array(TRUE)),
+      '#description' => t('(start from last values)'),
     );
   }
 
@@ -141,6 +143,13 @@ class content_handler_field_multiple extends content_handler_field {
       }
     }
 
+    // It may happend that the multiple values field is related to a non
+    // required relation for which no node data related to the field being
+    // processed here is available.
+    if (empty($vids)) {
+      return parent::pre_render($values);
+    }
+
     // List columns to retrieve.
     $alias = content_views_tablename($field);
     // Prefix aliases with '_' to avoid clashing with field columns names.
@@ -157,7 +166,7 @@ class content_handler_field_multiple extends content_handler_field {
     $query = 'SELECT '. implode(', ', $query_columns) .
              ' FROM {'. $db_info['table'] ."}".
              " WHERE vid IN (". implode(',', $vids) .')'.
-             " ORDER BY nid ASC, delta ". ($options['multiple']['multiple_reversed'] ? 'DESC' : 'ASC');
+             " ORDER BY _nid ASC, _delta ". ($options['multiple']['multiple_reversed'] ? 'DESC' : 'ASC');
     $result = db_query($query);
 
     while ($item = db_fetch_array($result)) {
@@ -194,7 +203,9 @@ class content_handler_field_multiple extends content_handler_field {
       return parent::render($values);
     }
 
-    $field = $this->content_field;
+    // We're down to a single node here, so we can retrieve the actual field
+    // definition for the node type being considered.
+    $field = content_fields($this->content_field['field_name'], $values->{$this->aliases['type']});
     $options = $this->options;
 
     $vid = $values->{$this->field_alias};

@@ -1,5 +1,5 @@
 <?php
-// $Id: userreference.install,v 1.23.2.6 2008/10/04 13:14:23 karens Exp $
+// $Id: userreference.install,v 1.23.2.7 2009/07/19 13:03:57 markuspetrux Exp $
 
 /**
  * @file
@@ -51,5 +51,65 @@ function userreference_update_6000() {
   }
 
   $ret = array();
+  return $ret;
+}
+
+/**
+ * Create an index by user reference column for all fields.
+ */
+function userreference_update_6001(&$sandbox) {
+  include_once('./'. drupal_get_path('module', 'content') .'/content.install');
+  drupal_load('module', 'content');
+
+  $ret = array();
+
+  if (!isset($sandbox['progress'])) {
+    if ($abort = content_check_update('userreference')) {
+      return $abort;
+    }
+
+    // Get the latest cache values and schema.
+    content_clear_type_cache(TRUE, TRUE);
+    $types = content_types_install();
+
+    if (empty($types)) {
+      return $ret;
+    }
+
+    $sandbox['fields'] = array();
+    foreach ($types as $type_name => $fields) {
+      foreach ($fields as $field) {
+        if ($field['type'] == 'userreference') {
+          $sandbox['fields'][] = $field;
+        }
+      }
+    }
+
+    if (empty($sandbox['fields'])) {
+      return $ret;
+    }
+
+    $sandbox['progress'] = 0;
+    $sandbox['visited'] = array();
+  }
+
+  $field = $sandbox['fields'][$sandbox['progress']];
+
+  // We only want to process a field once -- if we hit it a second time,
+  // that means it's its own table and it should have already been updated.
+  if (!in_array($field['field_name'], $sandbox['visited'])) {
+    $db_info = content_database_info($field);
+    $table = $db_info['table'];
+    $attributes = $db_info['columns']['uid'];
+    $column = $attributes['column'];
+    if (!content_db_index_exists($table, $column)) {
+      db_add_index($ret, $table, $column, array($column));
+    }
+    $sandbox['visited'][] = $field['field_name'];
+  }
+
+  $sandbox['progress']++;
+  $ret['#finished'] = $sandbox['progress'] / count($sandbox['fields']);
+
   return $ret;
 }

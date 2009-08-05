@@ -1,5 +1,5 @@
 <?php
-// $Id: content.module,v 1.301.2.106 2009/06/02 12:24:04 yched Exp $
+// $Id: content.module,v 1.301.2.112 2009/08/03 20:40:26 markuspetrux Exp $
 /**
  * @file
  * Allows administrators to associate custom fields to content types.
@@ -611,7 +611,7 @@ function content_associate_fields($module) {
   foreach ($types as $type_name => $fields) {
     foreach ($fields as $field) {
       if ($field['module'] == $module && !in_array($field['field_name'], $fields_set)) {
-        $columns = module_invoke($field['module'], 'field_settings', 'database columns', $field);
+        $columns = (array) module_invoke($field['module'], 'field_settings', 'database columns', $field);
         db_query("UPDATE {". content_field_tablename() ."} SET db_columns = '%s' WHERE field_name = '%s'", serialize($columns), $field['field_name']);
         $fields_set[] = $field['field_name'];
       }
@@ -765,7 +765,7 @@ function content_field($op, &$node, $field, &$items, $teaser, $page) {
           '#type' => 'content_field',
           '#title' => check_plain(t($field['widget']['label'])),
           '#field_name' => $field['field_name'],
-          '#access' => $formatter_name != 'hidden' && content_access('view', $field),
+          '#access' => $formatter_name != 'hidden' && content_access('view', $field, NULL, $node),
           '#label_display' => $label_display,
           '#node' => $node,
           '#teaser' => $teaser,
@@ -1676,6 +1676,24 @@ function content_allowed_values($field) {
 }
 
 /**
+ * Filter out HTML from allowed values array while leaving entities unencoded.
+ *
+ * @see content_allowed_values()
+ * @see optionwidgets_select_process()
+ * @see content_handler_filter_many_to_one::allowed_values()
+ */
+function content_allowed_values_filter_html(&$options) {
+  foreach ($options as $key => $opt) {
+    if (is_array($opt)) {
+      content_allowed_values_filter_html($options[$key]);
+    }
+    else {
+      $options[$key] = html_entity_decode(strip_tags($opt), ENT_QUOTES);
+    }
+  }
+}
+
+/**
  * Like filter_xss_admin(), but with a shorter list of allowed tags.
  *
  * Used for items entered by administrators, like field descriptions,
@@ -1729,7 +1747,7 @@ function content_format($field, $item, $formatter_name = 'default', $node = NULL
     $field = content_fields($field);
   }
 
-  if (content_access('view', $field) && $formatter = _content_get_formatter($formatter_name, $field['type'])) {
+  if (content_access('view', $field, NULL, $node) && $formatter = _content_get_formatter($formatter_name, $field['type'])) {
     $theme = $formatter['module'] .'_formatter_'. $formatter_name;
 
     $element = array(
@@ -2019,6 +2037,10 @@ function content_table_schema($field = NULL) {
   if (!empty($field['columns'])) {
     foreach ($field['columns'] as $column => $attributes) {
       $column_name =  $field['field_name'] .'_'. $column;
+      if (isset($attributes['index']) && $attributes['index']) {
+        $schema['indexes'][$column_name] = array($column_name);
+        unset($attributes['index']);
+      }
       unset($attributes['column']);
       unset($attributes['sortable']);
       $schema['fields'][$column_name] = $attributes;
@@ -2026,6 +2048,30 @@ function content_table_schema($field = NULL) {
     $schema['content fields'][] = $field['field_name'];
   }
   return $schema;
+}
+
+/**
+ * Checks if an index exists.
+ *
+ * @todo: May we remove this funcion when implemented by Drupal core itself?
+ * @link http://drupal.org/node/360854
+ *
+ * @param $table
+ *   Name of the table.
+ * @param $name
+ *   Name of the index.
+ * @return
+ *   TRUE if the table exists. Otherwise FALSE.
+ */
+function content_db_index_exists($table, $name) {
+  global $db_type;
+  if ($db_type == 'mysql' || $db_type == 'mysqli') {
+    return (bool)db_result(db_query("SHOW INDEX FROM {". $table ."} WHERE key_name = '$name'"));
+  }
+  elseif ($db_type == 'pgsql') {
+    return (bool)db_result(db_query("SELECT COUNT(indexname) FROM pg_indexes WHERE indexname = '$name'"));
+  }
+  return FALSE;
 }
 
 /**
@@ -2134,18 +2180,20 @@ function content_default_value(&$form, &$form_state, $field, $delta) {
  *   The field on which the operation is to be performed.
  * @param $account
  *   (optional) The account to check, if not given use currently logged in user.
+ * @param $node
+ *   (optional) The node on which the operation is to be performed.
  * @return
  *   TRUE if the operation is allowed;
  *   FALSE if the operation is denied.
  */
-function content_access($op, $field, $account = NULL) {
+function content_access($op, $field, $account = NULL, $node = NULL) {
   global $user;
 
   if (is_null($account)) {
     $account = $user;
   }
 
-  $access = module_invoke_all('field_access', $op, $field, $account);
+  $access = module_invoke_all('field_access', $op, $field, $account, $node);
   foreach ($access as $value) {
     if ($value === FALSE) {
       return FALSE;
@@ -2357,11 +2405,30 @@ function content_content_extra_fields($type_name) {
       'view' => 'body'
     );
   }
+  $extra['revision_information'] = array(
+    'label' => t('Revision information'),
+    'description' => t('Node module form.'),
+    'weight' => 20
+  );
+  if (module_exists('comment')) {
+    $extra['comment_settings'] = array(
+      'label' => t('Comment settings'),
+      'description' => t('Comment module form.'),
+      'weight' => 30
+    );
+  }  
   if (module_exists('locale') && variable_get("language_content_type_$type_name", 0)) {
     $extra['language'] = array(
       'label' => t('Language'),
       'description' => t('Locale module form.'),
       'weight' => 0
+    );
+  }
+  if (module_exists('translation') && translation_supported_type($type_name)) {
+    $extra['translation'] = array(
+      'label' => t('Translation settings'),
+      'description' => t('Translation module form.'),
+      'weight' => 30
     );
   }
   if (module_exists('menu')) {
@@ -2383,6 +2450,13 @@ function content_content_extra_fields($type_name) {
       'label' => t('Book'),
       'description' => t('Book module form.'),
       'weight' => 10
+    );
+  }
+  if (module_exists('path')) {
+    $extra['path'] = array(
+      'label' => t('Path settings'),
+      'description' => t('Path module form.'),
+      'weight' => 30
     );
   }
   if ($type_name == 'poll' && module_exists('poll')) {

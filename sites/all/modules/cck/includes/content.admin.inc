@@ -1,5 +1,5 @@
 <?php
-// $Id: content.admin.inc,v 1.181.2.68 2009/06/02 14:49:07 yched Exp $
+// $Id: content.admin.inc,v 1.181.2.74 2009/07/19 13:03:56 markuspetrux Exp $
 
 /**
  * @file
@@ -219,6 +219,8 @@ function content_field_overview_form(&$form_state, $type_name) {
       'description' => array('#value' => isset($extra[$name]['description']) ? $extra[$name]['description'] : ''),
       'weight' => array('#type' => 'textfield', '#default_value' => $weight, '#size' => 3),
       'parent' => array('#type' => 'hidden', '#default_value' => ''),
+      'configure' => array('#value' => isset($extra[$name]['configure']) ? $extra[$name]['configure'] : ''),
+      'remove' => array('#value' => isset($extra[$name]['remove']) ? $extra[$name]['remove'] : ''),
       'hidden_name' => array('#type' => 'hidden', '#default_value' => $name),
       '#leaf' => TRUE,
       '#root' => TRUE,
@@ -690,9 +692,13 @@ function content_display_overview_form_submit($form, &$form_state) {
       $field = content_fields($key, $form['#type_name']);
       // We have some numeric keys here, so we can't use array_merge.
       $field['display_settings'] = $values + $field['display_settings'];
-      content_field_instance_update($field);
+      content_field_instance_update($field, FALSE);
     }
   }
+
+  // Clear caches and rebuild menu.
+  content_clear_type_cache(TRUE);
+  menu_rebuild();
 
   drupal_set_message(t('Your settings have been saved.'));
 }
@@ -998,11 +1004,12 @@ function content_field_edit_form(&$form_state, $type_name, $field_name) {
     '#value' => $field['type'],
     '#disabled' => TRUE,
   );
+  $widget_options = content_widget_type_options($field['type']);
   $form['basic']['widget_type'] = array(
     '#type' => 'select',
     '#title' => t('Widget type'),
-    '#options' => content_widget_type_options($field['type']),
-    '#default_value' => $field['widget']['type'] ? $field['widget']['type'] : $default_widget,
+    '#options' => $widget_options,
+    '#default_value' => $field['widget']['type'] ? $field['widget']['type'] : key($widget_options),
     '#disabled' => TRUE,
   );
   $form['basic']['change'] = array(
@@ -1022,10 +1029,11 @@ function content_field_edit_form(&$form_state, $type_name, $field_name) {
     '#type' => 'hidden',
     '#default_value' => $field['widget']['weight'],
   );
-  $additions = module_invoke($widget_type['module'], 'widget_settings', 'form', $field['widget']);
-  if (is_array($additions)) {
-    $form['widget'] = array_merge($form['widget'], $additions);
-  }
+
+  $additions = (array) module_invoke($widget_type['module'], 'widget_settings', 'form', $field['widget']);
+  drupal_alter('widget_settings', $additions, 'form', $field['widget']);
+  $form['widget'] = array_merge($form['widget'], $additions);
+
   $form['widget']['description'] = array(
     '#type' => 'textarea',
     '#title' => t('Help text'),
@@ -1141,10 +1149,9 @@ function content_field_edit_form(&$form_state, $type_name, $field_name) {
     '#value' => serialize($field),
   );
 
-  $additions = module_invoke($field_type['module'], 'field_settings', 'form', $field);
-  if (is_array($additions)) {
-    $form['field'] = array_merge($form['field'], $additions);
-  }
+  $additions = (array) module_invoke($field_type['module'], 'field_settings', 'form', $field);
+  drupal_alter('field_settings', $additions, 'form', $field);
+  $form['field'] = array_merge($form['field'], $additions);
 
   $form['submit'] = array(
     '#type' => 'submit',
@@ -1458,10 +1465,17 @@ function content_alter_db($previous_field, $new_field) {
     db_create_table($ret, $new_table, $new_schema);
   }
   else {
-    // Or add fields to an existing table.
+    // Or add fields and/or indexes to an existing table.
     foreach ($new_schema['fields'] as $column => $attributes) {
-      if (!in_array($column, array('nid', 'vid', 'delta')) && !db_column_exists($new_table, $column)) {
-        db_add_field($ret, $new_table, $column, $attributes);
+      if (!in_array($column, array('nid', 'vid', 'delta'))) {
+        // Create the column if it does not exist.
+        if (!db_column_exists($new_table, $column)) {
+          db_add_field($ret, $new_table, $column, $attributes);
+        }
+        // Create the index if requested to, and it does not exist.
+        if (isset($new_schema['indexes'][$column]) && !content_db_index_exists($new_table, $column)) {
+          db_add_index($ret, $new_table, $column, $new_schema['indexes'][$column]);
+        }
       }
     }
   }
