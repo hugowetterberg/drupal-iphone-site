@@ -1,0 +1,211 @@
+<?php
+// $Id$
+
+/**
+ * @file
+ * Install file for the simple geo module
+ */
+
+/**
+ * Implementation of hook_install().
+ * We have to add our spatial columns manually in the install because the are unsupported by
+ * the schema api
+ *
+ * @return void
+ */
+function simple_geo_install() {
+  drupal_install_schema('simple_geo');
+
+  db_query("ALTER TABLE {simple_geo_area}
+    ADD COLUMN area POLYGON NOT NULL,
+    ADD SPATIAL INDEX area_index(area)");
+
+  db_query("ALTER TABLE {simple_geo_position}
+    ADD COLUMN position POINT NOT NULL,
+    ADD SPATIAL INDEX position_index(position)");
+}
+
+/**
+ * Implementation of hook_uninstall().
+ *
+ * @return void
+ */
+function simple_geo_uninstall() {
+  $type_vars = array(
+    'simple_geo_allow_area_',
+    'simple_geo_allow_position_',
+    'simple_geo_sync_translations_',
+    'simple_geo_show_in_form',
+  );
+  $types = node_get_types();
+
+  foreach ($type_vars as $var) {
+    foreach ($types as $type) {
+      variable_del($var . $type->type);
+    }
+  }
+
+  $vars = array(
+    'simple_geo_default_position',
+    'simple_geo_geocoding_suffix',
+    'simple_geo_micromap_parent',
+    'simple_geo_micromap_add_mode',
+    'simple_geo_use_microformat_map',
+    'simple_geo_add_google_jsapi',
+    'simple_geo_position_users',
+    'simple_geo_show_map_link',
+    'simple_geo_add_microformat_tag',
+  );
+
+  foreach ($vars as $var) {
+    variable_del($var);
+  }
+
+  drupal_uninstall_schema('simple_geo');
+}
+
+/**
+ * Implementation of hook_scheme().
+ * We have to add our spatial columns manually in the install because the are unsupported by
+ * the schema api
+ *
+ * @return array The database schema for simple_geo
+ */
+function simple_geo_schema() {
+  $schema['simple_geo_position'] = array(
+    'fields' => array(
+      'nid' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'type' => array(
+        'type' => 'varchar',
+        'length' => 32,
+        'default' => 'node',
+        'not null' => TRUE,
+      )
+    ),
+    'primary key' => array('nid', 'type'),
+  );
+
+  $schema['simple_geo_area'] = array(
+    'fields' => array(
+      'nid' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'type' => array(
+        'type' => 'varchar',
+        'length' => 32,
+        'default' => 'node',
+        'not null' => TRUE,
+      )
+    ),
+    'primary key' => array('nid', 'type'),
+  );
+
+  $schema['simple_geo_in_area'] = array(
+    'fields' => array(
+      'point_nid' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'point_type' => array(
+        'type' => 'varchar',
+        'length' => 32,
+        'default' => 'node',
+        'not null' => TRUE,
+      ),
+      'area_nid' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'area_type' => array(
+        'type' => 'varchar',
+        'length' => 32,
+        'default' => 'node',
+        'not null' => TRUE,
+      )
+    ),
+    'indexes' => array(
+      'point' => array('point_nid', 'point_type'),
+      'area' => array('area_nid', 'area_type'),
+    ),
+    'primary key' => array('point_nid', 'point_type', 'area_nid', 'area_type'),
+  );
+
+  return $schema;
+}
+
+function simple_geo_update_1() {
+  $ret = array();
+  //Update position table
+  db_drop_primary_key($ret, 'simple_geo_position');
+  db_add_field($ret, 'simple_geo_position', 'type', array(
+    'type' => 'varchar',
+    'length' => 32,
+    'default' => 'node',
+    'not null' => TRUE,
+  ));
+  db_add_primary_key($ret, 'simple_geo_position', array('nid', 'type'));
+
+  //Update area table
+  db_drop_primary_key($ret, 'simple_geo_area');
+  db_add_field($ret, 'simple_geo_area', 'type', array(
+    'type' => 'varchar',
+    'length' => 32,
+    'default' => 'node',
+    'not null' => TRUE,
+  ));
+  db_add_primary_key($ret, 'simple_geo_area', array('nid', 'type'));
+
+  //Update simple_geo_in_area table
+  db_drop_primary_key($ret, 'simple_geo_in_area');
+  db_drop_index($ret, 'simple_geo_in_area', 'point');
+  db_drop_index($ret, 'simple_geo_in_area', 'area');
+  db_add_field($ret, 'simple_geo_in_area', 'point_type', array(
+    'type' => 'varchar',
+    'length' => 32,
+    'default' => 'node',
+    'not null' => TRUE,
+  ));
+  db_add_field($ret, 'simple_geo_in_area', 'area_type', array(
+    'type' => 'varchar',
+    'length' => 32,
+    'default' => 'node',
+    'not null' => TRUE,
+  ));
+  db_add_index($ret, 'simple_geo_in_area', 'point', array('point_nid', 'point_type'));
+  db_add_index($ret, 'simple_geo_in_area', 'area', array('area_nid', 'area_type'));
+  db_add_primary_key($ret, 'simple_geo_in_area', array('point_nid', 'point_type', 'area_nid', 'area_type'));
+
+  return $ret;
+}
+
+//For upcoming 6.x-0.5
+function simple_geo_update_2() {
+  $type_vars = array(
+    'allow_area_'     => 'simple_geo_allow_area_',
+    'allow_position_' => 'simple_geo_allow_position_',
+  );
+  $types = node_get_types();
+
+  foreach ($type_vars as $key => $var) {
+    foreach ($types as $type) {
+      $tmp = variable_get($key . $type->type, NULL);
+      if ($tmp !== NULL) {
+        variable_set($var . $type->type, $tmp);
+      }
+    }
+  }
+
+  return array();
+}
