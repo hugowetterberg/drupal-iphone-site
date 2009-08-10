@@ -1,0 +1,201 @@
+<?php
+// $Id$
+
+/**
+ * Implementation of hook_init().
+ */
+function cobalt_init() {
+  if (user_access('use cobalt')) {
+    global $user;
+
+    if (variable_get('cobalt_gears_init', 1)) {
+      drupal_add_js(drupal_get_path('module', 'cobalt') . '/js/gears_init.js');
+    }
+
+    if (variable_get('cobalt_jquery_json', 1)) {
+      drupal_add_js(drupal_get_path('module', 'cobalt') . '/js/jquery.json-1.3.min.js');
+    }
+
+    if (variable_get('cobalt_jquery_hotkeys', 1)) {
+      drupal_add_js(drupal_get_path('module', 'cobalt') . '/js/jquery.hotkeys.js');
+    }
+
+    drupal_add_js(drupal_get_path('module', 'cobalt') . '/js/minimal-gears-wrapper.js');
+
+    drupal_add_js(drupal_get_path('module', 'cobalt') . '/js/cobalt.js');
+    drupal_add_js(drupal_get_path('module', 'cobalt') . '/js/cobalt.menu.js');
+
+    $settings = array(
+      'state' => $user->uid,
+      'path' => $_GET['q'],
+      'bindings' => preg_split('/,\s*/', variable_get('cobalt_shortcuts', 'Alt+space, Ctrl+space')),
+    );
+    drupal_add_js(array('cobalt' => $settings), 'setting');
+
+    $themes = cobalt_themes();
+    $theme_key = variable_get('cobalt_theme', '');
+    foreach ($themes as $key => $info) {
+      if ($key==$theme_key) {
+        $theme = $info;
+        break;
+      }
+    }
+
+    if (!isset($theme) || !isset($theme['css']) || !isset($theme['replace']) || !$theme['replace']) {
+      drupal_add_css(drupal_get_path('module', 'cobalt') . '/css/cobalt.css');
+    }
+    if (isset($theme) && isset($theme['css'])) {
+      drupal_add_css($theme['css']);
+    }
+  }
+}
+
+function cobalt_themes() {
+  static $themes;
+
+  if (!$themes) {
+    $themes = array(
+      '' => array(
+        'name' => t('Default theme'),
+      ),
+    );
+    drupal_alter('cobalt_themes', $themes);
+  }
+
+  return $themes;
+}
+
+function cobalt_cobalt_themes_alter(&$themes) {
+  $themes['cobalt_blue'] = array(
+    'name' => t('Cobalt blue'),
+    'css' => drupal_get_path('module', 'cobalt') . '/css/cobalt_blue.css',
+    'replace' => FALSE,
+  );
+}
+
+/**
+ * Implementation of hook_perm().
+ */
+function cobalt_perm() {
+  return array('use cobalt');
+}
+
+/**
+ * Implementation of hook_menu().
+ */
+function cobalt_menu() {
+  $items = array();
+  $items['cobalt/alias'] = array(
+    'title' => 'Forward to the correct alias',
+    'page callback' => 'cobalt_forward_to_alias',
+    'access arguments' => array('use cobalt'),
+    'type' => MENU_CALLBACK,
+  );
+  $items['cobalt/data/menu_json'] = array(
+    'title' => 'Serialized menu',
+    'page callback' => 'cobalt_menu_json',
+    'access arguments' => array('use cobalt'),
+    'type' => MENU_CALLBACK,
+  );
+  $items['admin/settings/cobalt'] = array(
+    'title' => 'Cobalt configuration',
+    'description' => 'Settings for cobalt appearance and behaviour',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('cobalt_settings'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'cobalt_admin.inc.php',
+    'type' => MENU_NORMAL_ITEM,
+    'weight' => 0,
+  );
+  $items['cobalt/update'] = array(
+    'title' => 'Cobalt update',
+    'page callback' => 'cobalt_js_update',
+    'page arguments' => array('cobalt_settings'),
+    'access arguments' => array('use cobalt'),
+    'file' => 'cobalt_update.inc.php',
+    'type' => MENU_CALLBACK,
+    'weight' => 0,
+  );
+
+  // Menu callback for clearing the cache even when the devel module
+  // isn't installed.
+  $items['cobalt/clear-cache'] = array(
+    'title' => t('Clear cache'),
+    'page callback' => '_cobalt_clear_cache',
+    'file' => 'cobalt_admin.inc.php',
+    'access arguments' => array('administer site configuration'),
+    'type' => MENU_CALLBACK,
+  );
+
+  // Menuitem for rebuilding content permissions.
+  $items['cobalt/rebuild-permissions'] = array(
+    'title' => t('Rebuild permissions'),
+    'page callback' => '_cobalt_rebuild_permissions',
+    'file' => 'cobalt_admin.inc.php',
+    'access arguments' => array('administer site configuration'),
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+function cobalt_forward_to_alias() {
+  $url_parts = array();
+  $i = 2;
+  while (arg($i)) {
+    $url_parts[] = arg($i);
+    $i++;
+  }
+  $path = join('/', $url_parts);
+  drupal_goto($path);
+}
+
+function cobalt_menu_json() {
+  $menu_names = menu_get_names();
+
+  $tree = array();
+  foreach ($menu_names as $name) {
+    // Ignore the menu created by the admin_menu module which creates a lot of
+    // duplicates.
+    if ($name != 'admin_menu') {
+      $tree += menu_tree_all_data($name);
+    }
+  }
+
+  $data = array();
+  _cobalt_menu_data_recursive($tree, $data);
+
+  drupal_alter('cobalt_menu', $data);
+
+  print drupal_to_js($data);
+  exit;
+}
+
+function _cobalt_menu_data_recursive($tree, &$data) {
+  foreach ($tree as $key => $item) {
+    $link = $item['link'];
+    if (!$link['hidden'] && $link['access']) {
+      $data[$link['mlid']] = array($link['href'], $link['title']);
+      if ($item['below']) {
+        _cobalt_menu_data_recursive($item['below'], $data);
+      }
+    }
+  }
+}
+
+/**
+ * Implementation of hook_cobalt_menu_alter().
+ */
+function cobalt_cobalt_menu_alter(&$menuitems) {
+  if (!module_exists('devel') && user_access('administer site configuration')) {
+    $menuitems['cobalt-clear-cache'] = array('cobalt/clear-cache', t('Clear cache'));
+  }
+
+  if (user_access('administer site configuration')) {
+    $menuitems['cobalt-rebuild-permissions'] = array('cobalt/rebuild-permissions', t('Rebuild permissions'));
+  }
+
+  if (module_exists('pathauto') && user_access('administer pathauto')) {
+    $menuitems['cobalt-pathauto'] = array('admin/build/path/pathauto', t('Automated alias settings'));
+  }
+}
