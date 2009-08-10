@@ -1,0 +1,78 @@
+<?php
+// $Id$
+
+function imagecache_action_cover_imagecache_actions() {
+  $actions = array(
+    'imagecache_action_cover' => array(
+      'name' => t('Cover and crop'),
+      'description' => t('Scales a image so that it covers a specified width and height and then crops it'),
+    ),
+  );
+  return $actions;
+}
+
+function imagecache_action_cover_form($data)
+{
+  $form['width'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Width'),
+    '#required' => true,
+    '#default_value' => $data['width'],
+    '#description' => t('Enter a width in pixels'),
+  );
+  $form['height'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Height'),
+    '#required' => true,
+    '#default_value' => $data['height'],
+    '#description' => t('Enter a height in pixels'),
+  );
+  $form['center'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Center'),
+    '#default_value' => $data['center'],
+    '#description' => t('Centers the cropped image when checked'),
+  );
+  return $form;
+}
+
+function theme_imagecache_action_cover($element) {
+  $data = $element['#value'];
+  return t('width: !width, height: !height, align: !align', array(
+    '!width' => $data['width'],
+    '!height' => $data['height'],
+    '!align' => (isset($data['center']) && $data['center']?t('centered'):t('top left')),
+  ));
+}
+
+function imagecache_action_cover_image(&$image, $data) {
+  $w = $image->info['width'];
+  $h = $image->info['height'];
+  $tw = $data['width'];
+  $th = $data['height'];
+  $center = isset($data['center']) && $data['center'];
+  
+  if($w == $tw && $h == $th)
+    return true;
+  
+  $r = min($w / $tw, $h / $th);
+  if($r!=1) {
+    imageapi_image_resize($image, $w/$r, $h/$r);
+  }
+
+  $cow = $center ? ($w/$r-$tw)/2 : 0;
+  $coh = $center ? ($h/$r-$th)/2 : 0;
+
+  imageapi_image_crop($image, $cow, $coh, $tw, $th);
+  return true;
+}
+
+function imagecache_action_cover_enable()
+{
+  cache_clear_all('imagecache_actions', 'cache');
+}
+
+function imagecache_action_cover_disable()
+{
+  cache_clear_all('imagecache_actions', 'cache');
+}
