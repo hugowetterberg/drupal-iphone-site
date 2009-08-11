@@ -1,5 +1,5 @@
 <?php
-// $Id: coder_style.inc,v 1.16.2.18.2.8 2009/05/27 00:08:45 snpower Exp $
+// $Id: coder_style.inc,v 1.16.2.18.2.9 2009/08/09 18:31:53 snpower Exp $
 
 /**
  * @file
@@ -95,7 +95,7 @@ function coder_style_reviews() {
       '#value' => '(?-i)(function\s+|\$)(([a-z]+[A-Z]+([a-z]*[A-Z]*)*)|([A-Z]+[a-z]+([A-Z]*[a-z]*)*))',
       '#warning' => 'do not use mixed case (camelCase), use lower case and _',
       '#class-not' => '.+',
-      '#filename-not' => array('test'), // Add this line too for patch files, where we don't have have class context.
+      '#filename-not' => array('\.test'), // Add this line too for patch files, where we don't have have class context.
     ),
     array(
       '#type' => 'regex',
