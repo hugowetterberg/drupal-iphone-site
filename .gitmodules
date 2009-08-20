@@ -13,3 +13,6 @@
 [submodule "sites/all/modules/oembed"]
 	path = sites/all/modules/oembed
 	url = git://github.com/voxpelli/drupal-oembed.git
+[submodule "sites/all/modules/cssdry"]
+	path = sites/all/modules/cssdry
+	url = git://github.com/hugowetterberg/cssdry.git
