@@ -4,9 +4,9 @@ description = Logs detailed and/or summary page generation time and memory consu
 package = Development
 core = 6.x
 
-; Information added by drupal.org packaging script on 2009-04-10
-version = "6.x-1.16"
+; Information added by drupal.org packaging script on 2009-08-19
+version = "6.x-1.17"
 core = "6.x"
 project = "devel"
-datestamp = "1239375932"
+datestamp = "1250713853"
 
