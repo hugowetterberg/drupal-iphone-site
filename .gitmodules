@@ -10,3 +10,6 @@
 [submodule "sites/default/modules/services"]
 	path = sites/default/modules/services
 	url = git://github.com/hugowetterberg/services.git
+[submodule "sites/default/modules/query_builder"]
+	path = sites/default/modules/query_builder
+	url = git://github.com/hugowetterberg/query_builder.git
