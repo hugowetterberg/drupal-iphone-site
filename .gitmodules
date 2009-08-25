@@ -1,0 +1,12 @@
+[submodule "sites/default/modules/oauth_common"]
+	path = sites/default/modules/oauth_common
+	url = git://github.com/hugowetterberg/oauth_common.git
+[submodule "sites/default/modules/services_oauth"]
+	path = sites/default/modules/services_oauth
+	url = git://github.com/hugowetterberg/services_oauth.git
+[submodule "sites/default/modules/inputstream"]
+	path = sites/default/modules/inputstream
+	url = git://github.com/hugowetterberg/inputstream.git
+[submodule "sites/default/modules/services"]
+	path = sites/default/modules/services
+	url = git://github.com/hugowetterberg/services.git
