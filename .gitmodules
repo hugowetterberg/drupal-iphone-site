@@ -16,3 +16,6 @@
 [submodule "sites/default/modules/services_oop"]
 	path = sites/default/modules/services_oop
 	url = git://github.com/hugowetterberg/services_oop.git
+[submodule "sites/default/modules/rest_server"]
+	path = sites/default/modules/rest_server
+	url = git://github.com/hugowetterberg/rest_server.git
