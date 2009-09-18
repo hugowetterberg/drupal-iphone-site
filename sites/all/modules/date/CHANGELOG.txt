@@ -1,8 +1,18 @@
-//$Id: CHANGELOG.txt,v 1.1.8.447 2009/07/29 11:23:20 karens Exp $
+//$Id: CHANGELOG.txt,v 1.1.8.453 2009/09/16 11:13:01 karens Exp $
 Date Module 6.x
 =================
 Version 6.2-dev
 =================
+
+- #565830, by bengtan, Fix Postgres handling of hour '0'.
+- #408770, by vkareh, Make sure dates with access control retain values during processing.
+- #574876, by stella, Fix odd logic when forcing views dates in date elements.
+- #385688, by noahb, a fix for using relationships with date filters and arguments. Thanks!
+- #535008 Prevent possible PostgreSQL problem by re-arranging timing of dropping the key.
+- #535270 Fix install test for update 6005 that kept it from completing.
+- We sometimes get $edit without $edit['date'] from Views exposed filters, fix processing for that possibility.
+- Exposed filter querystring must be appended in normal views.
+
 
 Version 6.2.3
 =============

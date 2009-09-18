@@ -1,5 +1,5 @@
 <?php
-// $Id: date_api.install,v 1.16.2.1.2.20 2009/06/08 22:42:25 karens Exp $
+// $Id: date_api.install,v 1.16.2.1.2.21 2009/08/21 20:45:50 karens Exp $
 function date_api_set_variables() {
   /**
    * Set absolute minimum and maximum year for dates on this site.
@@ -491,8 +491,8 @@ function date_api_update_6004() {
   }
   // Rename existing table and index.
   else {
+    db_drop_unique_key($ret, 'date_format', 'format');
     db_rename_table($ret, 'date_format', 'date_formats');
-    db_drop_unique_key($ret, 'date_formats', 'format');
     db_add_unique_key($ret, 'date_formats', 'formats', array('format', 'type'));
   }
 

@@ -1,5 +1,5 @@
 <?php
-// $Id: date.module,v 1.61.2.4.2.61 2009/06/09 17:20:31 karens Exp $
+// $Id: date.module,v 1.61.2.4.2.62 2009/09/16 09:50:31 karens Exp $
 
 /**
  * @file
@@ -73,7 +73,7 @@ function date_repeat_fields($type_name) {
 }
 
 function date_repeat_page($node) {
-  drupal_set_title($node->title);
+  drupal_set_title(check_plain($node->title));
   $node->date_repeat_show_all = TRUE;
   $node->build_mode = NODE_BUILD_NORMAL;
   $node->content = array();

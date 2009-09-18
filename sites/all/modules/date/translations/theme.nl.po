@@ -1,4 +1,4 @@
-# $Id: theme.nl.po,v 1.1.2.2 2009/06/08 19:36:03 karens Exp $
+# $Id: theme.nl.po,v 1.1.2.3 2009/09/16 11:34:10 karens Exp $
 #
 # LANGUAGE translation of Drupal (theme)
 # Copyright YEAR NAME <EMAIL@ADDRESS>
@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n>1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "X-Poedit-Language: Dutch\n"
 "X-Poedit-Country: NETHERLANDS\n"
 

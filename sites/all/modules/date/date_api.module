@@ -1,5 +1,5 @@
 <?php
-// $Id: date_api.module,v 1.64.2.5.2.92 2009/07/29 11:12:06 karens Exp $
+// $Id: date_api.module,v 1.64.2.5.2.93 2009/08/13 10:57:27 karens Exp $
 /**
  * @file
  * This module will make the date API available to other modules.
@@ -2326,14 +2326,19 @@ function date_real_url($view, $date_type = NULL, $date_arg = NULL, $force_view_u
     $args = $view->args;
   }
   // Is this an embedded or a block view?
-  if (!$force_view_url && (!empty($view->preview) || !empty($view->date_info->block_identifier))) {
+  if (!$force_view_url && 
+  (!empty($view->preview) || !empty($view->date_info->block_identifier))) {
     $url = $view->get_url($args);
     return url($_GET['q'], array(
       'query' => date_querystring($view, array(date_block_identifier($view) => $url)), 
       'absolute' => TRUE));
   }
   else {
-    return $view->get_url($args);
+    // Normal views may need querystrings appended to them
+    // if they use exposed filters.
+    return url($view->get_url($args), array(
+      'query' => date_querystring($view), 
+      'absolute' => TRUE));
   }
 }
 
