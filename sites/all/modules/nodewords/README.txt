@@ -1,4 +1,6 @@
-Drupal nodewords.module (aka Meta tags) README.txt
+; $Id: README.txt,v 1.27.2.5 2009/08/14 13:12:43 kiam Exp $
+
+Nodewords README.txt
 ==============================================================================
 
 This module allows you to set some meta tags for each node.
@@ -49,6 +51,9 @@ Some features include:
   later. Similar support for panels pages (see panels module) has been
   added to version 5.x-1.4. For this feature you need panels-5.x-1.2 or
   later.
+  The support has been removed from Nodewords 6.x-1.x on August 15, 2009;
+  successive version for Drupal 6 replaced the support for Views, and Panels
+  with a more generic support for third-party module pages.
 
 * You can select which of these tags you want to output on each page. You
   can also remove the edit box for these tags from the node edit page if
@@ -57,7 +62,7 @@ Some features include:
 * All text of the DESCRIPTION and KEYWORDS meta tags are added to the search
   system so they are searable too.
 
-Installing nodewords (aka Meta tags) (first time installation)
+Installing Nodewords (aka Meta tags) (first time installation)
 ------------------------------------------------------------------------------
 
 1. Backup your database.
@@ -65,27 +70,12 @@ Installing nodewords (aka Meta tags) (first time installation)
 2. Copy the complete 'nodewords/' directory into the 'modules/' directory of
    your Drupal site.
 
-3. Enable the "Meta tags" module from the module administration page
+3. Enable the "Nodewords" module from the module administration page
    (Administer >> Site configuration >> Modules).
-
-   The needed tables will be automatically created. If this fails, you will
-   need to create the tables manually. For example, the table definition for
-   MySQL is:
-
-     CREATE TABLE nodewords (
-       type varchar(16) not null,
-       id varchar(255) not null,
-       name varchar(32) not null,
-       content varchar(255) null,
-       PRIMARY KEY (type, id, name)
-     ) /*!40100 DEFAULT CHARACTER SET utf8 */;
-
-   Do not forget to adjust the table name (nodewords) to work with your table
-   prefix if you use table prefixing.
 
 4. Configure the module (see "Configuration" below).
 
-Upgrading nodewords (aka Meta tags) (on Drupal 4.7 or later)
+Upgrading Nodewords (aka Meta tags) (on Drupal 4.7 or later)
 ------------------------------------------------------------------------------
 
 1. Backup your database.
@@ -111,34 +101,30 @@ Configuration
 1. On the access control administration page ("Administer >> User management
    >> Access control") you need to assign:
 
-   + the "administer meta tags" permission to the roles that are allowed to
+   + the "administer nodewords" permission to the roles that are allowed to
      administer the meta tags (such as setting the default values and/or
      enabling the possibility to edit them),
 
-   + the "edit meta tags" permission to the roles that are allowed to set and
-     edit meta tags for the content.
+   + the "edit XYZ tag" permission to the roles that are allowed to set and
+     edit meta tags for the content (there is a permission for each of the
+     meta tags currently defined).
 
    All users will be able to see the assigned meta tags.
 
-2. On the meta tags settings page ("Administer >> Content management >> Meta
-   tags") you can specify the global settings for the module. This includes:
-    - setting a global copyright,
-    - setting global keywords and/or specify auto-keywords vocabularies,
-    - specifying the tags to show on the edit form and/or the html head.
-
-   Users need the "administer meta tags" permission to do this.
+2. On the settings page ("Administer >> Content management >>
+   Nodewords") you can specify the default settings for the module.
+   Users need the "administer nodewords" permission to do this.
 
 3. The front page is an important page for each website. Therefor you can
    specifically set the meta tags to use on the front page meta tags
-   settings page ("Administer >> Content management >> Meta tags >>
+   settings page ("Administer >> Content management >> Nodewords >>
    Front page").
-
-   Users need the "administer meta tags" permission to do this.
+   Users need the "administer nodewords" permission to do this.
 
    Alternatively, you can opt not to set the meta tags for the front page
    on this page, but to use the meta tags of the view, panel or node the
    front page points to. To do this, you need to uncheck the "Use front
-   page meta tags" option on the meta tags settings page.
+   page meta tags" option on the settings page.
 
    Note that, in contrast to previous versions of this module, the site
    mission and/or site slogan are no longer used as DESCRIPTION or ABSTRACT
@@ -148,75 +134,14 @@ Configuration
    individual content type by editing the content type workflow options
    ("Administer >> Content management >> Content types").
 
-   Note that this will still output the globally set meta tags.
+   Note that this will still output the default values for the meta tags.
 
-Displaying nodewords META tags in your theme
+Using Nodewords and Tagadelic
 ------------------------------------------------------------------------------
 
-The nodewords module depends on your theme to output the meta tags in the
-right place. By default, themes will output $head (phptemplate) or {head}
-(xtemplate) in the <head> section - that's all that is needed.
-
-More precisely, you'll want something like the following in the beginning of
-your theming file:
-
-* for phptemplate themes (in page.tpl.php):
-
-  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-            "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-  <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-    <head>
-      <title><?php print $head_title; ?></title>
-      <?php print $head; ?> <!-- <<-- this must be present! -->
-    </head>
-    <body <?php print $onload_attributes; ?>>
-      <!-- etc etc etc -->
-    </body>
-  </html>
-
-* for xtemplate themes (in xtemplate.tmpl):
-
-  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-            "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-  <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-    <head>
-      <title>{head_title}</title>
-      {head} <!-- <<-- this must be present! -->
-    </head>
-    <body {onload_attributes}>
-      <!-- etc etc etc -->
-    </body>
-  </html>
-
-* for PHP only themes (not using a theming engine like the ones above), you
-  need to include the output of 'drupal_get_html_head()' in the <head>
-  section of each page. See for example the chameleon theme in Drupal core
-  which includes the call in 'function chameleon_page($content)'.
-
-On the other hand, if you want to display the meta tags for a node or a page
-in your theme on a different place than in the <head> section of your HTML
-(the <meta ...> tags), then you'll need to load the tags manually.
-The core function to do this is:
-
-  $tags = nodewords_get();
-
-This will return the tags defined for this page. If you want to be more
-specific about the tags to load, you can use:
-
-  $tags = nodewords_get('node', $node->nid);
-
-for example in your node.tpl.php.
-
-As an example, see node.tpl.php-example in this directory.
-
-Using nodewords and tagadelic
-------------------------------------------------------------------------------
-
-The tagadelic module (http://drupal.org/project/tagadelic) allows one to
-create a tagcloud of all terms used. The keywords you assign to nodes with
-the nodewords module will not appear in these clouds as we don't use
-taxonomy to assign the meta KEYWORDS to a node (because we want to keep
-the order of the keywords entered).
+The Tagadelic module (http://drupal.org/project/tagadelic) allows one to
+create a cloud of all terms used. The keywords you assign to nodes with
+the Nodewords module will not appear in these clouds.
 
 If you want to use tagclouds and have the same terms in the KEYWORDS meta
 tag, you can configure nodewords as follows:
@@ -225,7 +150,7 @@ tag, you can configure nodewords as follows:
    >> Categories". For example, call this vocabulary "Keywords".
 
 2. On the meta tags settings page ("Administer >> Content management >>
-   Meta tags"), select the "Keywords" vocabulary as one of the "Auto-keywords
+   Nodewords"), select the "Keywords" vocabulary as one of the "Auto-keywords
    vocabularies". This will make sure that all terms you assign to nodes
    will appear in the KEYWORDS meta tag.
 
@@ -245,7 +170,7 @@ Auto-generated meta DESCRIPTION for CCK content types
 
 The nodewords module uses the teaser of a node as the auto-generated
 DESCRIPTION for nodes if instructed to do so on the meta tags settings
-page (Administer >> Content management >> Meta tags). Unfortunately, for
+page (Administer >> Content management >> Nodewords). Unfortunately, for
 CCK (Content Construction Kit) content types, this teaser is not really
 useful for use as meta DESCRIPTION.
 
@@ -269,10 +194,8 @@ Credits / Contact
 The original author of this module is Andras Barthazi. Mike Carter
 (mike[at]buddasworld.co.uk) and Gabor Hojtsy (gobap[at]hp.net)
 provided some feature enhancements.
-Robrecht Jacques (robrecht.jacques[at]advalvas.be) is the current
-active maintainer.
+Robrecht Jacques (robrecht.jacques[at]advalvas.be) is the current maintainer;
+Alberto Paderno (k.iam[at]avpnet.org) is the current co-maintainer.
 
 Best way to contact the authors is to submit a (support/feature/bug) issue at
 the projects issue page at http://drupal.org/project/issues/nodewords.
-
-$Id: README.txt,v 1.27.2.2 2008/01/22 09:31:37 robrechtj Exp $
