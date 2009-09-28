@@ -10,7 +10,7 @@
 * @license http://opensource.org/licenses/lgpl-license.php GNU Lesser General Public License Version 2.1
 *
 * @package Krumo
-* @version $Id: class.krumo.php,v 1.1.2.4 2009/02/11 04:01:01 weitzman Exp $
+* @version $Id: class.krumo.php,v 1.1.2.5 2009/09/23 18:14:19 davereid Exp $
 */
 
 //////////////////////////////////////////////////////////////////////////////
@@ -665,7 +665,7 @@ This is a list of all the values from the <code><b><?php echo realpath($ini_file
 			//
 			
 			// DEVEL: changed for Drupal path system.
-			$css_url = url(drupal_get_path('module', 'devel')) . "/krumo/skins/{$skin}/";
+			$css_url = base_path() . drupal_get_path('module', 'devel') . "/krumo/skins/{$skin}/";
 			
 			$css = preg_replace('~%url%~Uis', $css_url, $css);
 			
