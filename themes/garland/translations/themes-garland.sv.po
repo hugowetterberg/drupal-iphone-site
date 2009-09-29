@@ -1,11 +1,11 @@
-# Swedish translation of drupal (6.10)
+# Swedish translation of drupal (6.13)
 # Copyright (c) 2009 by the Swedish translation team
 # Generated from file: template.php,v 1.16.2.1 2009/02/25 11:47:37 goba
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: drupal (6.10)\n"
-"POT-Creation-Date: 2009-03-12 17:50+0100\n"
+"Project-Id-Version: drupal (6.13)\n"
+"POT-Creation-Date: 2009-08-04 10:44+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"

@@ -1,16 +1,16 @@
-# Swedish translation of drupal (6.10)
+# Swedish translation of drupal (6.13)
 # Copyright (c) 2009 by the Swedish translation team
 # Generated from files:
-#  content_types.inc,v 1.50.2.1 2008/02/13 11:23:28 goba
-#  node.admin.inc,v 1.19.2.2 2008/11/10 10:31:06 goba
-#  node.pages.inc,v 1.28.2.3 2008/11/10 10:18:54 goba
+#  content_types.inc,v 1.50.2.2 2009/04/27 14:28:57 goba
+#  node.admin.inc,v 1.19.2.3 2009/06/08 16:45:34 goba
+#  node.pages.inc,v 1.28.2.4 2009/04/27 11:35:01 goba
 #  node.module,v 1.947.2.15 2009/02/16 14:39:40 goba
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: drupal (6.10)\n"
-"POT-Creation-Date: 2009-03-12 17:50+0100\n"
-"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Project-Id-Version: drupal (6.13)\n"
+"POT-Creation-Date: 2009-08-04 10:44+0200\n"
+"PO-Revision-Date: 2009-05-19 22:58+0200\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -212,7 +212,7 @@ msgstr[1] ""
 "webbplatsen. De kanske inte kan visas eller redigeras korrekt om du tar bort "
 "denna innehållstyp."
 
-#: modules/node/node.admin.inc:17
+#: modules/node/node.admin.inc:13
 msgid ""
 "If the site is experiencing problems with permissions to content, you may "
 "have to rebuild the permissions cache. Possible causes for permission "
@@ -226,7 +226,7 @@ msgstr ""
 "man bygger om tas alla gamla behörigheter bort och ersätts med nya, baserade "
 "på nuvarande moduler och inställningar."
 
-#: modules/node/node.admin.inc:18
+#: modules/node/node.admin.inc:14
 msgid ""
 "Rebuilding may take some time if there is a lot of content or complex "
 "permission settings. After rebuilding has completed posts will automatically "
@@ -236,15 +236,15 @@ msgstr ""
 "behörigheterna är komplexa. När det är klart kommer inläggen automatiskt att "
 "använda de nya behörigheterna."
 
-#: modules/node/node.admin.inc:22
+#: modules/node/node.admin.inc:18
 msgid "Node access status"
 msgstr "Status för nodåtkomst"
 
-#: modules/node/node.admin.inc:33
+#: modules/node/node.admin.inc:28
 msgid "Number of posts on main page"
 msgstr "Antalet inlägg på förstasidan"
 
-#: modules/node/node.admin.inc:35
+#: modules/node/node.admin.inc:30
 msgid ""
 "The default maximum number of posts to display per page on overview pages "
 "such as the main page."
@@ -252,51 +252,51 @@ msgstr ""
 "Det förvalda antalet inlägg som maximalt visas per sida på översiktssidor "
 "såsom förstasidan."
 
-#: modules/node/node.admin.inc:38
+#: modules/node/node.admin.inc:33
 msgid "Length of trimmed posts"
 msgstr "Längden på förkortade inlägg"
 
-#: modules/node/node.admin.inc:41
+#: modules/node/node.admin.inc:36
 msgid "200 characters"
 msgstr "200 tecken"
 
-#: modules/node/node.admin.inc:42
+#: modules/node/node.admin.inc:37
 msgid "400 characters"
 msgstr "400 tecken"
 
-#: modules/node/node.admin.inc:43
+#: modules/node/node.admin.inc:38
 msgid "600 characters"
 msgstr "600 tecken"
 
-#: modules/node/node.admin.inc:44
+#: modules/node/node.admin.inc:39
 msgid "800 characters"
 msgstr "800 tecken"
 
-#: modules/node/node.admin.inc:45
+#: modules/node/node.admin.inc:40
 msgid "1000 characters"
 msgstr "1000 tecken"
 
-#: modules/node/node.admin.inc:46
+#: modules/node/node.admin.inc:41
 msgid "1200 characters"
 msgstr "1200 tecken"
 
-#: modules/node/node.admin.inc:47
+#: modules/node/node.admin.inc:42
 msgid "1400 characters"
 msgstr "1400 tecken"
 
-#: modules/node/node.admin.inc:48
+#: modules/node/node.admin.inc:43
 msgid "1600 characters"
 msgstr "1600 tecken"
 
-#: modules/node/node.admin.inc:49
+#: modules/node/node.admin.inc:44
 msgid "1800 characters"
 msgstr "1800 tecken"
 
-#: modules/node/node.admin.inc:50
+#: modules/node/node.admin.inc:45
 msgid "2000 characters"
 msgstr "2000 tecken"
 
-#: modules/node/node.admin.inc:52
+#: modules/node/node.admin.inc:47
 msgid ""
 "The maximum number of characters used in the trimmed version of a post. "
 "Drupal will use this setting to determine at which offset long posts should "
@@ -312,19 +312,19 @@ msgstr ""
 "För att stänga av ingresser, välj 'Obegränsat'. Observera att detta val bara "
 "påverkar nytt eller uppdaterat innehåll och inte befintliga ingresser."
 
-#: modules/node/node.admin.inc:57
+#: modules/node/node.admin.inc:52
 msgid "Preview post"
 msgstr "Förhandsvisa inlägg"
 
-#: modules/node/node.admin.inc:60
+#: modules/node/node.admin.inc:55
 msgid "Must users preview posts before submitting?"
 msgstr "Måste användarna förhandsvisa inlägg innan de sparas?"
 
-#: modules/node/node.admin.inc:77
+#: modules/node/node.admin.inc:72
 msgid "Are you sure you want to rebuild the permissions on site content?"
 msgstr "Är du säker på att du vill bygga om behörigheterna på webbplatsen?"
 
-#: modules/node/node.admin.inc:78
+#: modules/node/node.admin.inc:73
 msgid ""
 "This action rebuilds all permissions on site content, and may be a lengthy "
 "process. This action cannot be undone."
@@ -332,107 +332,107 @@ msgstr ""
 "Denna åtgärd bygger om alla rättigheter för webbplatsens innehåll, och detta "
 "kan ta lång tid. Du kan inte ångra åtgärden."
 
-#: modules/node/node.admin.inc:95
+#: modules/node/node.admin.inc:90
 msgid "Publish"
 msgstr "Publicera"
 
-#: modules/node/node.admin.inc:100
+#: modules/node/node.admin.inc:95
 msgid "Unpublish"
 msgstr "Häv publicering"
 
-#: modules/node/node.admin.inc:105
+#: modules/node/node.admin.inc:100
 msgid "Promote to front page"
 msgstr "Publicera på förstasidan"
 
-#: modules/node/node.admin.inc:110
+#: modules/node/node.admin.inc:105
 msgid "Demote from front page"
 msgstr "Ta bort från förstasidan"
 
-#: modules/node/node.admin.inc:115
+#: modules/node/node.admin.inc:110
 msgid "Make sticky"
 msgstr "Visa överst i listor"
 
-#: modules/node/node.admin.inc:120
+#: modules/node/node.admin.inc:115
 msgid "Remove stickiness"
 msgstr "Visa inte överst i listor"
 
-#: modules/node/node.admin.inc:140,497
+#: modules/node/node.admin.inc:135,492
 msgid "published"
 msgstr "publicerad"
 
-#: modules/node/node.admin.inc:141,497
+#: modules/node/node.admin.inc:136,492
 msgid "not published"
 msgstr "inte publicerad"
 
-#: modules/node/node.admin.inc:142
+#: modules/node/node.admin.inc:137
 msgid "promoted"
 msgstr "på framsidan"
 
-#: modules/node/node.admin.inc:143
+#: modules/node/node.admin.inc:138
 msgid "not promoted"
 msgstr "inte på framsidan"
 
-#: modules/node/node.admin.inc:144
+#: modules/node/node.admin.inc:139
 msgid "sticky"
 msgstr "överst i listor"
 
-#: modules/node/node.admin.inc:145
+#: modules/node/node.admin.inc:140
 msgid "not sticky"
 msgstr "inte överst i listor"
 
-#: modules/node/node.admin.inc:151
+#: modules/node/node.admin.inc:146
 msgid "Up to date translation"
 msgstr "Aktuell översättning"
 
-#: modules/node/node.admin.inc:152
+#: modules/node/node.admin.inc:147
 msgid "Outdated translation"
 msgstr "Inaktuell översättning"
 
-#: modules/node/node.admin.inc:156
+#: modules/node/node.admin.inc:151
 msgid "type"
 msgstr "typ"
 
-#: modules/node/node.admin.inc:160
+#: modules/node/node.admin.inc:155
 msgid "category"
 msgstr "kategori"
 
-#: modules/node/node.admin.inc:165
+#: modules/node/node.admin.inc:160
 msgid "language"
 msgstr "språk"
 
-#: modules/node/node.admin.inc:217
+#: modules/node/node.admin.inc:212
 msgid "Show only items where"
 msgstr "Visa bara poster där"
 
-#: modules/node/node.admin.inc:235
+#: modules/node/node.admin.inc:230
 msgid "<em>and</em> where <strong>%a</strong> is <strong>%b</strong>"
 msgstr "<em>och</em> där <strong>%a</strong> är <strong>%b</strong>"
 
-#: modules/node/node.admin.inc:238
+#: modules/node/node.admin.inc:233
 msgid "<strong>%a</strong> is <strong>%b</strong>"
 msgstr "<strong>%a</strong> är <strong>%b</strong>"
 
-#: modules/node/node.admin.inc:366
+#: modules/node/node.admin.inc:361
 msgid "The update has encountered an error."
 msgstr "Uppdateringen stötte på ett fel."
 
-#: modules/node/node.admin.inc:432
+#: modules/node/node.admin.inc:427
 msgid "An error occurred and processing did not complete."
 msgstr "Ett fel inträffade och behandlingen fulföljdes inte."
 
-#: modules/node/node.admin.inc:518
+#: modules/node/node.admin.inc:513
 msgid "No items selected."
 msgstr "Inga poster valda."
 
-#: modules/node/node.admin.inc:616
+#: modules/node/node.admin.inc:611
 msgid "Are you sure you want to delete these items?"
 msgstr "Är du säker på att du vill ta bort dessa poster?"
 
-#: modules/node/node.admin.inc:626
+#: modules/node/node.admin.inc:621
 msgid "The items have been deleted."
 msgstr "Posterna har tagits bort."
 
-#: modules/node/node.admin.inc:433
+#: modules/node/node.admin.inc:428
 msgid "1 item successfully processed:"
 msgid_plural "@count items successfully processed:"
 msgstr[0] "1 post behandlades framgångsrikt"
@@ -442,15 +442,15 @@ msgstr[1] "@count poster behandlades framgångsrikt"
 msgid "Create @name"
 msgstr "Skapa @name"
 
-#: modules/node/node.pages.inc:147
+#: modules/node/node.pages.inc:149
 msgid "Revision information"
 msgstr "Revisionsinformation"
 
-#: modules/node/node.pages.inc:161
+#: modules/node/node.pages.inc:163
 msgid "Log message"
 msgstr "Loggmeddelande"
 
-#: modules/node/node.pages.inc:163
+#: modules/node/node.pages.inc:166
 msgid ""
 "An explanation of the additions or updates being made to help other authors "
 "understand your motivations."
@@ -458,27 +458,27 @@ msgstr ""
 "En förklaring av de tillägg eller uppdateringar du gjort för att andra "
 "författare skall förstå varför du gjort dem."
 
-#: modules/node/node.pages.inc:171
+#: modules/node/node.pages.inc:174
 msgid "Authoring information"
 msgstr "Författarinformation"
 
-#: modules/node/node.pages.inc:183
+#: modules/node/node.pages.inc:186
 msgid "Leave blank for %anonymous."
 msgstr "Lämna detta tomt för %anonymous."
 
-#: modules/node/node.pages.inc:189
+#: modules/node/node.pages.inc:192
 msgid "Format: %time. Leave blank to use the time of form submission."
 msgstr "Format: %time. Lämna tomt för att använda tiden då formuläret skickas."
 
-#: modules/node/node.pages.inc:200
+#: modules/node/node.pages.inc:203
 msgid "Publishing options"
 msgstr "Publiceringsalternativ"
 
-#: modules/node/node.pages.inc:281
+#: modules/node/node.pages.inc:284
 msgid "Show summary in full view"
 msgstr "Visa sammanfattningen i fullt visningsläge"
 
-#: modules/node/node.pages.inc:434
+#: modules/node/node.pages.inc:437
 msgid ""
 "The trimmed version of your post shows what your post looks like when "
 "promoted to the main page or when exported for syndication.<span class=\"no-"
@@ -490,88 +490,88 @@ msgstr ""
 "Du kan infoga avgränsaren \"&lt;!--break--&gt;\" (utan citattecknen) för att "
 "styra var ditt inlägg kapas.</span>"
 
-#: modules/node/node.pages.inc:435
+#: modules/node/node.pages.inc:438
 msgid "Preview trimmed version"
 msgstr "Förhandsvisa trimmad version"
 
-#: modules/node/node.pages.inc:437
+#: modules/node/node.pages.inc:440
 msgid "Preview full version"
 msgstr "Förhandsvisa komplett version"
 
-#: modules/node/node.pages.inc:460
+#: modules/node/node.pages.inc:463
 msgid "@type %title has been created."
 msgstr "%title (@type) har skapats."
 
-#: modules/node/node.pages.inc:464
+#: modules/node/node.pages.inc:467
 msgid "@type %title has been updated."
 msgstr "%title (@type) har uppdaterats."
 
-#: modules/node/node.pages.inc:474
+#: modules/node/node.pages.inc:477
 msgid "The post could not be saved."
 msgstr "Inlägget kunde inte sparas."
 
-#: modules/node/node.pages.inc:502
+#: modules/node/node.pages.inc:505
 msgid "Are you sure you want to delete %title?"
 msgstr "Är du säker på att du vill ta bort %title?"
 
-#: modules/node/node.pages.inc:525
+#: modules/node/node.pages.inc:528
 msgid "Revisions for %title"
 msgstr "Revisioner för %title"
 
-#: modules/node/node.pages.inc:527
+#: modules/node/node.pages.inc:530
 msgid "Revision"
 msgstr "Revision"
 
-#: modules/node/node.pages.inc:545,551
+#: modules/node/node.pages.inc:548,554
 msgid "!date by !username"
 msgstr "!date av !username"
 
-#: modules/node/node.pages.inc:548
+#: modules/node/node.pages.inc:551
 msgid "current revision"
 msgstr "nuvarande revision"
 
-#: modules/node/node.pages.inc:554
+#: modules/node/node.pages.inc:557
 msgid "revert"
 msgstr "återställ"
 
-#: modules/node/node.pages.inc:571
+#: modules/node/node.pages.inc:574
 msgid "Are you sure you want to revert to the revision from %revision-date?"
 msgstr "Är du säker på att du vill återställa revisionen från %revision-date?"
 
-#: modules/node/node.pages.inc:571
+#: modules/node/node.pages.inc:574
 msgid "Revert"
 msgstr "Återställ"
 
-#: modules/node/node.pages.inc:577
+#: modules/node/node.pages.inc:580
 msgid "Copy of the revision from %date."
 msgstr "Kopia av revisionen från %date."
 
-#: modules/node/node.pages.inc:585
+#: modules/node/node.pages.inc:588
 msgid ""
 "@type %title has been reverted back to the revision from %revision-date."
 msgstr "%title (@type) har återställts till revisionen från %revision-date."
 
-#: modules/node/node.pages.inc:591
+#: modules/node/node.pages.inc:594
 msgid "Are you sure you want to delete the revision from %revision-date?"
 msgstr "Är du säker på att du vill radera revisionen från %revision-date?"
 
-#: modules/node/node.pages.inc:599
+#: modules/node/node.pages.inc:602
 msgid "Revision from %revision-date of @type %title has been deleted."
 msgstr "Revisionen från %revision-date av %title (@type) har raderats."
 
-#: modules/node/node.pages.inc:459
+#: modules/node/node.pages.inc:462
 msgid "@type: added %title."
 msgstr "@type: lade till %title."
 
-#: modules/node/node.pages.inc:463
+#: modules/node/node.pages.inc:466
 msgid "@type: updated %title."
 msgstr "@type: uppdaterade %title."
 
-#: modules/node/node.pages.inc:584
+#: modules/node/node.pages.inc:587
 msgid "@type: reverted %title revision %revision."
 msgstr "@type: återställde revisionen %revision av %title."
 
-#: modules/node/node.pages.inc:598
+#: modules/node/node.pages.inc:601
 msgid "@type: deleted %title revision %revision."
 msgstr "@type: raderade revisionen %revision av %title."
 

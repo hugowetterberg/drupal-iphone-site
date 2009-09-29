@@ -1,48 +1,48 @@
-# Swedish translation of drupal (6.10)
+# Swedish translation of drupal (6.13)
 # Copyright (c) 2009 by the Swedish translation team
 # Generated from files:
-#  install.php,v 1.113.2.8 2009/02/25 11:47:36 goba
+#  install.php,v 1.113.2.9 2009/04/27 10:50:35 goba
 #  taxonomy.admin.inc,v 1.22.2.3 2009/02/25 12:53:24 goba
-#  system.admin.inc,v 1.63.2.7 2009/02/25 11:38:41 goba
+#  system.admin.inc,v 1.63.2.8 2009/06/09 10:58:09 goba
 #  system.js,v 1.14.2.1 2008/02/07 18:23:30 goba
 #  install.inc,v 1.56.2.4 2009/02/16 10:25:02 goba
-#  system.module,v 1.585.2.32 2009/02/25 21:02:37 goba
+#  system.module,v 1.585.2.38 2009/07/01 20:51:56 goba
 #  node.module,v 1.947.2.15 2009/02/16 14:39:40 goba
 #  user.admin.inc,v 1.18.2.1 2008/08/13 23:59:14 drumm
-#  user.module,v 1.892.2.12 2009/02/25 13:57:04 goba
+#  user.module,v 1.892.2.14 2009/07/01 20:51:56 goba
 #  block.admin.inc,v 1.14.2.5 2008/11/24 06:00:02 dries
-#  comment.module,v 1.617.2.4 2009/01/06 17:34:54 goba
+#  comment.module,v 1.617.2.8 2009/07/01 20:51:55 goba
 #  locale.module,v 1.212.2.6 2009/02/25 11:47:37 goba
 #  statistics.admin.inc,v 1.6 2008/01/08 10:35:42 goba
-#  statistics.module,v 1.272 2008/01/04 09:31:48 goba
-#  system.install,v 1.238.2.12 2009/02/25 14:02:46 goba
+#  statistics.module,v 1.272.2.1 2009/04/27 12:25:24 goba
+#  system.install,v 1.238.2.15 2009/07/01 20:51:56 goba
 #  upload.module,v 1.197.2.4 2009/01/12 15:30:23 goba
-#  locale.inc,v 1.174.2.7 2009/01/06 15:36:51 goba
+#  locale.inc,v 1.174.2.9 2009/06/18 12:50:33 goba
 #  menu.admin.inc,v 1.26.2.4 2009/02/25 13:15:40 goba
 #  batch.inc,v 1.14 2007/12/20 11:57:20 goba
 #  unicode.inc,v 1.29 2007/12/28 12:02:50 dries
 #  database.mysql.inc,v 1.89 2008/01/24 10:46:54 goba
 #  database.mysqli.inc,v 1.54 2008/01/23 09:59:29 goba
-#  database.pgsql.inc,v 1.68.2.3 2008/11/17 10:31:41 goba
-#  file.inc,v 1.121.2.5 2008/10/20 09:42:31 goba
-#  form.inc,v 1.265.2.19 2009/02/22 18:12:46 goba
+#  database.pgsql.inc,v 1.68.2.5 2009/06/09 10:53:52 goba
+#  file.inc,v 1.121.2.7 2009/06/09 10:37:38 goba
+#  form.inc,v 1.265.2.25 2009/05/26 08:18:46 goba
 #  filter.module,v 1.204.2.8 2008/12/10 22:30:14 goba
-#  node.admin.inc,v 1.19.2.2 2008/11/10 10:31:06 goba
+#  node.admin.inc,v 1.19.2.3 2009/06/08 16:45:34 goba
 #  install.mysql.inc,v 1.9 2008/01/23 09:59:29 goba
 #  install.mysqli.inc,v 1.12 2008/01/23 09:59:29 goba
 #  install.pgsql.inc,v 1.6 2007/10/22 15:22:39 dries
 #  theme.maintenance.inc,v 1.10 2008/01/24 09:42:50 goba
 #  menu.install,v 1.9.2.1 2009/01/06 15:46:37 goba
-#  statistics.pages.inc,v 1.2 2007/10/20 21:57:50 goba
+#  statistics.pages.inc,v 1.2.2.1 2009/04/27 12:08:29 goba
 #  default.profile,v 1.22 2007/12/17 12:43:34 goba
-#  update.report.inc,v 1.10.2.2 2008/08/28 08:14:56 dries
-#  update.module,v 1.17.2.1 2008/09/23 10:19:02 goba
+#  update.report.inc,v 1.10.2.4 2009/06/09 11:08:32 goba
+#  update.module,v 1.17.2.5 2009/06/09 11:08:32 goba
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: drupal (6.10)\n"
-"POT-Creation-Date: 2009-03-12 17:50+0100\n"
-"PO-Revision-Date: 2009-03-12 17:17+0100\n"
+"Project-Id-Version: drupal (6.13)\n"
+"POT-Creation-Date: 2009-08-04 10:44+0200\n"
+"PO-Revision-Date: 2009-07-22 23:48+0200\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -103,19 +103,19 @@ msgstr ""
 msgid "Database name"
 msgstr "Databasens namn"
 
-#: install.php:268
+#: install.php:267
 msgid "Database username"
 msgstr "Databasens användarnamn"
 
-#: install.php:278
+#: install.php:276
 msgid "Database password"
 msgstr "Databasens lösenord"
 
-#: install.php:286; modules/taxonomy/taxonomy.admin.inc:676
+#: install.php:283; modules/taxonomy/taxonomy.admin.inc:676
 msgid "Advanced options"
 msgstr "Avancerade alternativ"
 
-#: install.php:289
+#: install.php:286
 msgid ""
 "These options are only necessary for some sites. If you're not sure what you "
 "should enter here, leave the default settings or check with your hosting "
@@ -125,19 +125,19 @@ msgstr ""
 "vad du ska skriva in här, låt standardinställningen stå kvar eller fråga din "
 "webbleverantör."
 
-#: install.php:295
+#: install.php:292
 msgid "Database host"
 msgstr "Databasserver"
 
-#: install.php:300
+#: install.php:298
 msgid "If your database is located on a different server, change this."
 msgstr "Ändra detta om din databas ligger på en annan server."
 
-#: install.php:306
+#: install.php:304
 msgid "Database port"
 msgstr "Databasport"
 
-#: install.php:310
+#: install.php:309
 msgid ""
 "If your database server is listening to a non-standard port, enter its "
 "number."
@@ -145,11 +145,11 @@ msgstr ""
 "Om din databasserver lyssnar på en port som inte är standard, skriv in "
 "portnumret här."
 
-#: install.php:317
+#: install.php:316
 msgid "Table prefix"
 msgstr "Tabellprefix"
 
-#: install.php:321
+#: install.php:319
 msgid ""
 "If more than one application will be sharing this database, enter a table "
 "prefix such as %prefix for your @drupal site here."
@@ -157,11 +157,11 @@ msgstr ""
 "Om fler än en applikation kommer att använda denna databas, ange ett "
 "tabellprefix såsom %prefix för din @drupal-webbplats här."
 
-#: install.php:326,491,1103
+#: install.php:324,489,1101
 msgid "Save and continue"
 msgstr "Spara och fortsätt"
 
-#: install.php:354
+#: install.php:352
 msgid ""
 "The database table prefix you have entered, %db_prefix, is invalid. The "
 "table prefix can only contain alphanumeric characters, periods, or "
@@ -171,11 +171,11 @@ msgstr ""
 "Tabellprefixet får bara innehålla alfanumeriska tecken, punkter eller "
 "understreck."
 
-#: install.php:358
+#: install.php:356
 msgid "Database port must be a number."
 msgstr "Databasporten måste vara ett heltal."
 
-#: install.php:368
+#: install.php:366
 msgid ""
 "In your %settings_file file you have configured @drupal to use a %db_type "
 "server, however your PHP installation currently does not support this "
@@ -184,7 +184,7 @@ msgstr ""
 "I filen %settings_file har du ställt in att @drupal ska använda en %db_type-"
 "server, men din PHP-installation stöder för närvarande inte denna databastyp."
 
-#: install.php:381
+#: install.php:379
 msgid ""
 "In order for Drupal to work, and to continue with the installation process, "
 "you must resolve all permission issues reported above. We were able to "
@@ -202,15 +202,15 @@ msgstr ""
 "är osäker på vad detta betyder bör du förmodligen kontakta din "
 "webbleverantör."
 
-#: install.php:443
+#: install.php:441
 msgid "Select an installation profile"
 msgstr "Välj en installationsprofil"
 
-#: install.php:525,569,953
+#: install.php:523,567,951
 msgid "Choose language"
 msgstr "Välj språk"
 
-#: install.php:527
+#: install.php:525
 msgid ""
 "With the addition of an appropriate translation package, this installer is "
 "capable of proceeding in another language of your choice. To install and use "
@@ -220,7 +220,7 @@ msgstr ""
 "fortsätta processen på ett annat språk. För att installera och använda "
 "Drupal på ett annat språk än engelska:"
 
-#: install.php:528
+#: install.php:526
 msgid ""
 "Determine if <a href=\"@translations\" target=\"_blank\">a translation of "
 "this Drupal version</a> is available in your language of choice. A "
@@ -234,7 +234,7 @@ msgstr ""
 "visa en viss version av Drupal på ett visst språk. Alla språk finns inte "
 "tillgängliga för alla versioner av Drupal."
 
-#: install.php:529
+#: install.php:527
 msgid ""
 "If an alternative translation package of your choice is available, download "
 "and extract its contents to your Drupal root directory."
@@ -242,7 +242,7 @@ msgstr ""
 "Om det finns ett alternativt språkpaket som du vill använda, ladda ner det "
 "och packa upp dess innehåll i Drupals rotkatalog."
 
-#: install.php:530
+#: install.php:528
 msgid ""
 "Return to choose language using the second link below and select your "
 "desired language from the displayed list. Reloading the page allows the list "
@@ -252,7 +252,7 @@ msgstr ""
 "önskade språk i listan som visas. Genom att ladda om sidan kan listan utökas "
 "automatiskt om det finns nya språkpaket."
 
-#: install.php:531
+#: install.php:529
 msgid ""
 "Alternatively, to install and use Drupal in English, or to defer the "
 "selection of an alternative language until after installation, select the "
@@ -262,43 +262,43 @@ msgstr ""
 "skjuta upp språkvalet till efter installationen, välj den första länken "
 "nedan."
 
-#: install.php:532
+#: install.php:530
 msgid "How should the installation continue?"
 msgstr "Hur ska installationen fortsätta?"
 
-#: install.php:533
+#: install.php:531
 msgid "Continue installation in English"
 msgstr "Fortsätt installationen på engelska"
 
-#: install.php:533
+#: install.php:531
 msgid "Return to choose a language"
 msgstr "Återgå för att välja ett språk"
 
-#: install.php:536
+#: install.php:534
 msgid "Install Drupal in English"
 msgstr "Installera Drupal på engelska"
 
-#: install.php:536
+#: install.php:534
 msgid "Learn how to install Drupal in other languages"
 msgstr "Få mer information om hur man installerar Drupal på andra språk"
 
-#: install.php:585
+#: install.php:583
 msgid "(@language)"
 msgstr "(@language)"
 
-#: install.php:591
+#: install.php:589
 msgid "(built-in)"
 msgstr "(inbyggt)"
 
-#: install.php:597
+#: install.php:595
 msgid "Select language"
 msgstr "Välj språk"
 
-#: install.php:607
+#: install.php:605
 msgid "No profiles available"
 msgstr "Inga profiler tillgängliga"
 
-#: install.php:608
+#: install.php:606
 msgid ""
 "We were unable to find any installer profiles. Installer profiles tell us "
 "what modules to enable and what schema to install in the database. A profile "
@@ -309,11 +309,11 @@ msgstr ""
 "installeras. En profil är nödvändig för att kunna fortsätta "
 "installationsprocessen."
 
-#: install.php:619
+#: install.php:617
 msgid "Drupal already installed"
 msgstr "Drupal är redan installerat"
 
-#: install.php:620
+#: install.php:618
 msgid ""
 "<ul><li>To start over, you must empty your existing database.</li><li>To "
 "install to a different database, edit the appropriate <em>settings.php</em> "
@@ -328,19 +328,19 @@ msgstr ""
 "update.php\">uppgraderingsskriptet</a>.</li><li>Gå till din <a href=\"@base-"
 "url\">befintliga webbplats</a>.</li></ul>"
 
-#: install.php:659
+#: install.php:657
 msgid "Installing @drupal"
 msgstr "Installerar @drupal"
 
-#: install.php:660
+#: install.php:658
 msgid "The installation has encountered an error."
 msgstr "Ett fel har inträffat under installationen."
 
-#: install.php:716,958
+#: install.php:714,956
 msgid "Configure site"
 msgstr "Anpassa webbplatsen"
 
-#: install.php:722
+#: install.php:720
 msgid ""
 "All necessary changes to %dir and %file have been made, so you should remove "
 "write permissions to them now in order to avoid security risks. If you are "
@@ -351,7 +351,7 @@ msgstr ""
 "skrivrättigheterna till dem nu för att undvika säkerhetsrisker. Om du är "
 "osäker på hur det går till, se <a href=\"@handbook_url\">onlinehandboken</a>."
 
-#: install.php:725
+#: install.php:723
 msgid ""
 "All necessary changes to %dir and %file have been made. They have been set "
 "to read-only for security."
@@ -359,12 +359,12 @@ msgstr ""
 "Alla nödvändiga ändringar i %dir och %file har utförts. De har av "
 "säkerhetsskäl ställts in för att endast kunna läsas."
 
-#: install.php:733; modules/system/system.admin.inc:1678;
+#: install.php:731; modules/system/system.admin.inc:1678;
 #: modules/system/system.js:0
 msgid "Your server has been successfully tested to support this feature."
 msgstr "Din server har testats och har stöd för denna funktion."
 
-#: install.php:733; modules/system/system.js:0
+#: install.php:731; modules/system/system.js:0
 msgid ""
 "Your system configuration does not currently support this feature. The <a "
 "href=\"http://drupal.org/node/15365\">handbook page on Clean URLs</a> has "
@@ -374,19 +374,19 @@ msgstr ""
 "href=\"http://drupal.org/node/15365\">Handboksidan om Rena URL:er</a> har "
 "mer information om felsökning."
 
-#: install.php:733; modules/system/system.js:0
+#: install.php:731; modules/system/system.js:0
 msgid "Testing clean URLs..."
 msgstr "Testar rena URL:er..."
 
-#: install.php:798
+#: install.php:796
 msgid "@drupal installation complete"
 msgstr "Installationen av @drupal är klar"
 
-#: install.php:800
+#: install.php:798
 msgid "Congratulations, @drupal has been successfully installed."
 msgstr "Gratulerar, @drupal har installerats korrekt."
 
-#: install.php:801
+#: install.php:799
 msgid ""
 "Please review the messages above before continuing on to <a href=\"@url"
 "\">your new site</a>."
@@ -394,15 +394,15 @@ msgstr ""
 "Var god kontrollera meddelandena ovan innan du går vidare till <a href=\"@url"
 "\">din nya webbplats</a>."
 
-#: install.php:801
+#: install.php:799
 msgid "You may now visit <a href=\"@url\">your new site</a>."
 msgstr "Du kan nu besöka <a href=\"@url\">din nya webbplats</a>."
 
-#: install.php:843
+#: install.php:841
 msgid "Installed %module module."
 msgstr "Installerade modulen %module."
 
-#: install.php:903
+#: install.php:901
 msgid ""
 "The @drupal installer requires that you create a settings file as part of "
 "the installation process.\n"
@@ -424,7 +424,7 @@ msgstr ""
 "</ol>\r\n"
 "Mer information om hur man installerar Drupal finns i INSTALL.txt."
 
-#: install.php:911
+#: install.php:909
 msgid ""
 "The @drupal installer requires write permissions to %file during the "
 "installation process. If you are unsure how to grant file permissions, "
@@ -434,59 +434,59 @@ msgstr ""
 "installationsprocessen. Om du är osäker på hur man sätter filrättigheter, se "
 "<a href=\"@handbook_url\">onlinehandboken</a>."
 
-#: install.php:926,938; includes/install.inc:728
+#: install.php:924,936; includes/install.inc:728
 msgid "Currently using !item !version"
 msgstr "Använder för närvarande !item !version"
 
-#: install.php:952
+#: install.php:950
 msgid "Choose profile"
 msgstr "Välj profil"
 
-#: install.php:954
+#: install.php:952
 msgid "Verify requirements"
 msgstr "Verifiera systemkrav"
 
-#: install.php:955
+#: install.php:953
 msgid "Set up database"
 msgstr "Installera databas"
 
-#: install.php:956
+#: install.php:954
 msgid "Install profile"
 msgstr "Installationsprofil"
 
-#: install.php:957
+#: install.php:955
 msgid "Set up translations"
 msgstr "Installera översättningar"
 
-#: install.php:969
+#: install.php:967
 msgid "Install site"
 msgstr "Installera webbplats"
 
-#: install.php:989
+#: install.php:987
 msgid "Finish translations"
 msgstr "Slutför översättningar"
 
-#: install.php:994
+#: install.php:992
 msgid "Finished"
 msgstr "Slutfört"
 
-#: install.php:1011
+#: install.php:1009
 msgid "To configure your website, please provide the following information."
 msgstr "För att anpassa din webbplats, fyll i följande information."
 
-#: install.php:1016; modules/system/system.module:379
+#: install.php:1014; modules/system/system.module:379
 msgid "Site information"
 msgstr "Information om webbplatsen"
 
-#: install.php:1021; modules/system/system.admin.inc:378
+#: install.php:1019; modules/system/system.admin.inc:378
 msgid "Site name"
 msgstr "Webbplatsens namn"
 
-#: install.php:1027
+#: install.php:1025
 msgid "Site e-mail address"
 msgstr "Webbplatsens e-postadress"
 
-#: install.php:1029; modules/system/system.admin.inc:1138
+#: install.php:1027; modules/system/system.admin.inc:1138
 msgid ""
 "The <em>From</em> address in automated e-mails sent during registration and "
 "new password requests, and other notifications. (Use an address ending in "
@@ -497,11 +497,11 @@ msgstr ""
 "(Använd en adress som slutar med din webbplats domän för att minska risken "
 "för att e-posten flaggas som spam.)"
 
-#: install.php:1035
+#: install.php:1033
 msgid "Administrator account"
 msgstr "Administratörskonto"
 
-#: install.php:1040
+#: install.php:1038
 msgid ""
 "The administrator account has complete access to the site; it will "
 "automatically be granted all permissions and can perform any administrative "
@@ -513,13 +513,13 @@ msgstr ""
 "arbete. Detta är det enda konto som kan utföra vissa uppgifter, så förvara "
 "inloggninguppgifterna säkert."
 
-#: install.php:1045; modules/node/node.module:2699,2708;
+#: install.php:1043; modules/node/node.module:2699,2708;
 #: modules/user/user.admin.inc:134,745,790,907;
-#: modules/user/user.module:653,1248,1447
+#: modules/user/user.module:653,1248,1445
 msgid "Username"
 msgstr "Användarnamn"
 
-#: install.php:1047; modules/user/user.module:1450
+#: install.php:1045; modules/user/user.module:1448
 msgid ""
 "Spaces are allowed; punctuation is not allowed except for periods, hyphens, "
 "and underscores."
@@ -527,12 +527,12 @@ msgstr ""
 "Mellanslag är tillåtna. Skiljetecken är inte tillåtna förutom punkter, "
 "bindestreck och understreck."
 
-#: install.php:1053; modules/system/system.admin.inc:1136;
-#: modules/user/user.module:1455
+#: install.php:1051; modules/system/system.admin.inc:1136;
+#: modules/user/user.module:1453
 msgid "E-mail address"
 msgstr "E-postadress"
 
-#: install.php:1055
+#: install.php:1053
 msgid ""
 "All e-mails from the system will be sent to this address. The e-mail address "
 "is not made public and will only be used if you wish to receive a new "
@@ -543,26 +543,26 @@ msgstr ""
 "nytt lösenord, eller om du vill ha vissa nyheter eller meddelanden via e-"
 "post."
 
-#: install.php:1068
+#: install.php:1066
 msgid "Server settings"
 msgstr "Inställningar för servern"
 
-#: install.php:1073; modules/system/system.admin.inc:1499
+#: install.php:1071; modules/system/system.admin.inc:1499
 msgid "Default time zone"
 msgstr "Förvald tidszon"
 
-#: install.php:1076
+#: install.php:1074
 msgid ""
 "By default, dates in this site will be displayed in the chosen time zone."
 msgstr ""
 "Datum och tid på webbplatsen kommer som standard att visas i denna tidszon."
 
-#: install.php:1082; modules/system/system.admin.inc:1661;
+#: install.php:1080; modules/system/system.admin.inc:1661;
 #: modules/system/system.module:457
 msgid "Clean URLs"
 msgstr "Rena URL:er"
 
-#: install.php:1084; modules/block/block.admin.inc:363;
+#: install.php:1082; modules/block/block.admin.inc:363;
 #: modules/comment/comment.module:501,553,585;
 #: modules/locale/locale.module:264;
 #: modules/statistics/statistics.admin.inc:185;
@@ -571,9 +571,9 @@ msgstr "Rena URL:er"
 #: modules/system/system.install:60; modules/upload/upload.module:215;
 #: modules/user/user.admin.inc:412,430
 msgid "Disabled"
-msgstr "Ej aktiverad"
+msgstr "Inaktiverad"
 
-#: install.php:1084; includes/locale.inc:90;
+#: install.php:1082; includes/locale.inc:90;
 #: modules/comment/comment.module:553; modules/locale/locale.module:264;
 #: modules/menu/menu.admin.inc:176,293;
 #: modules/statistics/statistics.admin.inc:185;
@@ -583,7 +583,7 @@ msgstr "Ej aktiverad"
 msgid "Enabled"
 msgstr "Aktiverat"
 
-#: install.php:1085; modules/system/system.admin.inc:1664
+#: install.php:1083; modules/system/system.admin.inc:1664
 msgid ""
 "This option makes Drupal emit \"clean\" URLs (i.e. without <code>?q=</code> "
 "in the URL)."
@@ -591,15 +591,15 @@ msgstr ""
 "Detta val gör att Drupal använder \"rena\" URL:er (det vill säga utan <code>?"
 "q=</code> i adressen)."
 
-#: install.php:1094; modules/system/system.install:285
+#: install.php:1092; modules/system/system.install:285
 msgid "Update notifications"
 msgstr "Meddelanden om uppdateringar"
 
-#: install.php:1095
+#: install.php:1093
 msgid "Check for updates automatically"
 msgstr "Sök efter uppdateringar automatiskt"
 
-#: install.php:1097
+#: install.php:1095
 msgid ""
 "With this option enabled, Drupal will notify you when new releases are "
 "available. This will significantly enhance your site's security and is "
@@ -675,31 +675,31 @@ msgid ""
 msgstr ""
 "Ett ogiltigt val har upptäckts. Var vänlig kontakta webbplatsadministratören."
 
-#: includes/form.inc:2197
+#: includes/form.inc:2200
 msgid "This field is required."
 msgstr "Detta fält är obligatoriskt."
 
-#: includes/form.inc:2202,2205
+#: includes/form.inc:2205,2208
 msgid "!title: !required"
 msgstr "!title: !required"
 
-#: includes/form.inc:2442; modules/node/node.admin.inc:362
+#: includes/form.inc:2445; modules/node/node.admin.inc:357
 msgid "Processing"
 msgstr "Bearbetar"
 
-#: includes/form.inc:2443
+#: includes/form.inc:2446
 msgid "Initializing."
 msgstr "Initierar."
 
-#: includes/form.inc:2444
+#: includes/form.inc:2447
 msgid "Remaining @remaining of @total."
 msgstr "@remaining av @total återstår."
 
-#: includes/form.inc:2445
+#: includes/form.inc:2448
 msgid "An error has occurred."
 msgstr "Ett fel har uppstått."
 
-#: includes/form.inc:2518
+#: includes/form.inc:2521
 msgid "Please continue to <a href=\"@error_url\">the error page</a>"
 msgstr "Fortsätt till <a href=\"@error_url\">felsidan</a>"
 
@@ -923,34 +923,34 @@ msgstr ""
 "för att ta bort tabellen var %query och PostgreSQL gav följande "
 "felmeddelande: %error."
 
-#: includes/locale.inc:1079
+#: includes/locale.inc:1081
 msgid ""
 "The translation import failed, because the file %filename could not be read."
 msgstr ""
 "Importen av översättningen misslyckades eftersom filen %filename inte kunde "
 "läsas."
 
-#: includes/locale.inc:1108
+#: includes/locale.inc:1110
 msgid ""
 "The translation file %filename contains an error: \"msgstr\" was expected "
 "but not found on line %line."
 msgstr ""
-"Översättningsfilen %filename har ett fel: \"msgstr\" förväntades men "
+"Översättningsfilen %filename innehåller ett fel: \"msgstr\" förväntades, men "
 "hittades inte på rad %line."
 
-#: includes/locale.inc:1114
+#: includes/locale.inc:1116
 msgid ""
 "The translation file %filename contains an error: \"msgid_plural\" was "
 "expected but not found on line %line."
 msgstr ""
-"Översättningsfilen %filename har ett fel: \"msgid_plural\" förväntades men "
-"hittades inte på rad %line."
+"Översättningsfilen %filename innehåller ett fel: \"msgid_plural\" "
+"förväntades, men hittades inte på rad %line."
 
-#: includes/locale.inc:1120,1138,1150,1158,1172,1181
+#: includes/locale.inc:1122,1140,1152,1160,1174,1183
 msgid "The translation file %filename contains a syntax error on line %line."
 msgstr "Översättningsfilen %filename har ett syntaxfel på rad %line."
 
-#: includes/locale.inc:1132
+#: includes/locale.inc:1134
 msgid ""
 "The translation file %filename contains an error: \"msgid\" is unexpected on "
 "line %line."
@@ -958,7 +958,7 @@ msgstr ""
 "Översättningsfilen %filename har ett fel: \"msgid\" förväntades inte på rad %"
 "line."
 
-#: includes/locale.inc:1146
+#: includes/locale.inc:1148
 msgid ""
 "The translation file %filename contains an error: \"msgstr[]\" is unexpected "
 "on line %line."
@@ -966,7 +966,7 @@ msgstr ""
 "Översättningsfilen %filename har ett fel: \"msgstr[]\" förväntades inte på "
 "rad %line."
 
-#: includes/locale.inc:1166
+#: includes/locale.inc:1168
 msgid ""
 "The translation file %filename contains an error: \"msgstr\" is unexpected "
 "on line %line."
@@ -974,26 +974,26 @@ msgstr ""
 "Översättningsfilen %filename har ett fel: \"msgstr\" förväntades inte på rad "
 "%line."
 
-#: includes/locale.inc:1194
+#: includes/locale.inc:1196
 msgid ""
 "The translation file %filename contains an error: there is an unexpected "
 "string on line %line."
 msgstr ""
 "Översättningsfilen %filename har ett fel: oväntad textsträng på rad %line."
 
-#: includes/locale.inc:1205
+#: includes/locale.inc:1207
 msgid "The translation file %filename ended unexpectedly at line %line."
 msgstr "Översättningsfilen %filename slutade oväntat på rad %line."
 
-#: includes/locale.inc:2577
+#: includes/locale.inc:2581
 msgid "Importing interface translations"
 msgstr "Importerar gränssnittsöversättningar"
 
-#: includes/locale.inc:2578
+#: includes/locale.inc:2582
 msgid "Starting import"
 msgstr "Påbörjar import"
 
-#: includes/locale.inc:2579
+#: includes/locale.inc:2583
 msgid "Error importing interface translations"
 msgstr "Ett fel uppstod under importen av gränssnittsöversättningar"
 
@@ -1374,12 +1374,12 @@ msgstr "Skrivbar (<em>stängd</em> nerladdningsmetod)"
 msgid "Database updates"
 msgstr "Databasuppdateringar"
 
-#: modules/system/system.install:232; modules/update/update.report.inc:82;
-#: modules/update/update.module:274
+#: modules/system/system.install:232; modules/update/update.report.inc:84;
+#: modules/update/update.module:284
 msgid "Up to date"
 msgstr "Aktuell"
 
-#: modules/system/system.install:242; modules/update/update.module:265
+#: modules/system/system.install:242; modules/update/update.module:274
 msgid "Out of date"
 msgstr "Föråldrad"
 

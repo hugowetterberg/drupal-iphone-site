@@ -1,15 +1,15 @@
-# Swedish translation of drupal (6.10)
+# Swedish translation of drupal (6.13)
 # Copyright (c) 2009 by the Swedish translation team
 # Generated from files:
 #  drupal.js,v 1.41.2.3 2008/06/25 09:06:57 goba
-#  tabledrag.js,v 1.13.2.4 2008/09/17 07:59:39 goba
+#  tabledrag.js,v 1.13.2.5 2009/06/18 12:24:24 goba
 #  tableselect.js,v 1.8 2007/11/19 12:15:16 goba
-#  teaser.js,v 1.12 2008/01/09 12:10:04 goba
+#  teaser.js,v 1.12.2.1 2009/05/20 11:50:54 goba
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: drupal (6.10)\n"
-"POT-Creation-Date: 2009-03-12 17:50+0100\n"
+"Project-Id-Version: drupal (6.13)\n"
+"POT-Creation-Date: 2009-08-04 10:44+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"

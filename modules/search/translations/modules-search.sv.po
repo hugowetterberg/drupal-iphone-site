@@ -1,14 +1,14 @@
-# Swedish translation of drupal (6.10)
+# Swedish translation of drupal (6.13)
 # Copyright (c) 2009 by the Swedish translation team
 # Generated from files:
 #  search.admin.inc,v 1.4 2008/01/08 10:35:42 goba
 #  search.pages.inc,v 1.4 2007/12/06 09:51:01 goba
-#  search.module,v 1.250.2.5 2009/02/25 16:17:40 goba
+#  search.module,v 1.250.2.6 2009/03/10 17:20:01 goba
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: drupal (6.10)\n"
-"POT-Creation-Date: 2009-03-12 17:50+0100\n"
+"Project-Id-Version: drupal (6.13)\n"
+"POT-Creation-Date: 2009-08-04 10:44+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -210,14 +210,14 @@ msgstr ""
 msgid "Search form"
 msgstr "Sökformulär"
 
-#: modules/search/search.module:921
+#: modules/search/search.module:922
 msgid ""
 "You must include at least one positive keyword with @count characters or "
 "more."
 msgstr ""
 "Du måste ha med minst ett positivt sökord med @count bokstäver eller mer."
 
-#: modules/search/search.module:925
+#: modules/search/search.module:926
 msgid ""
 "Search for either of the two terms with uppercase <strong>OR</strong>. For "
 "example, <strong>cats OR dogs</strong>."
@@ -225,15 +225,15 @@ msgstr ""
 "Sök efter vilket som av de två angivna orden med hjälp av <strong>OR</"
 "strong> med stora bokstäver. Exempel: <strong>katter OR hundar</strong>."
 
-#: modules/search/search.module:1032
+#: modules/search/search.module:1033
 msgid "Enter your keywords"
 msgstr "Ange sökord"
 
-#: modules/search/search.module:1066
+#: modules/search/search.module:1067
 msgid "Search this site"
 msgstr "Sök på denna webbplats"
 
-#: modules/search/search.module:1070
+#: modules/search/search.module:1071
 msgid "Enter the terms you wish to search for."
 msgstr "Ange de ord du vill söka efter."
 

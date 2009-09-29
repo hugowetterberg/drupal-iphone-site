@@ -1,16 +1,16 @@
-# Swedish translation of drupal (6.10)
+# Swedish translation of drupal (6.13)
 # Copyright (c) 2009 by the Swedish translation team
 # Generated from files:
 #  aggregator-feed-source.tpl.php,v 1.1 2007/09/13 08:02:38 goba
 #  aggregator-summary-items.tpl.php,v 1.1 2007/09/13 08:02:38 goba
 #  aggregator.admin.inc,v 1.7.2.1 2008/04/25 21:11:57 goba
 #  aggregator.pages.inc,v 1.12.2.1 2008/08/16 21:13:48 dries
-#  aggregator.module,v 1.374.2.4 2009/01/14 21:36:16 goba
+#  aggregator.module,v 1.374.2.5 2009/03/30 12:15:53 goba
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: drupal (6.10)\n"
-"POT-Creation-Date: 2009-03-12 17:50+0100\n"
+"Project-Id-Version: drupal (6.13)\n"
+"POT-Creation-Date: 2009-08-04 10:44+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"

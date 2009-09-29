@@ -1,14 +1,14 @@
-# Swedish translation of drupal (6.10)
+# Swedish translation of drupal (6.13)
 # Copyright (c) 2009 by the Swedish translation team
 # Generated from files:
 #  openid.inc,v 1.8 2008/01/30 22:11:22 goba
 #  openid.pages.inc,v 1.5.2.1 2008/07/09 21:48:28 goba
-#  openid.module,v 1.19.2.4 2009/01/14 21:36:16 goba
+#  openid.module,v 1.19.2.6 2009/06/10 14:05:23 goba
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: drupal (6.10)\n"
-"POT-Creation-Date: 2009-03-12 17:50+0100\n"
+"Project-Id-Version: drupal (6.13)\n"
+"POT-Creation-Date: 2009-08-04 10:44+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
@@ -52,7 +52,7 @@ msgstr "Är du säker på att du vill radera OpenID %authname som tillhör %user
 msgid "OpenID deleted."
 msgstr "OpenID borttagen."
 
-#: modules/openid/openid.module:48
+#: modules/openid/openid.module:47
 msgid ""
 "This site supports <a href=\"@openid-net\">OpenID</a>, a secure way to log "
 "into many websites using a single username and password. OpenID can reduce "
@@ -63,7 +63,7 @@ msgstr ""
 "lösenord. OpenID kan göra att du slipper handskas med flera användarnamn och "
 "lösenord för olika webbplatser."
 
-#: modules/openid/openid.module:49
+#: modules/openid/openid.module:48
 msgid ""
 "To use OpenID you must first establish an identity on a public or private "
 "OpenID server. If you do not have an OpenID and would like one, look into "
@@ -75,7 +75,7 @@ msgstr ""
 "en <a href=\"@openid-providers\">gratis publik leverantör</a>. Du kan läsa "
 "mer om OpenID på <a href=\"@openid-net\">denna webbplats</a>."
 
-#: modules/openid/openid.module:50
+#: modules/openid/openid.module:49
 msgid ""
 "If you already have an OpenID, enter the URL to your OpenID server below (e."
 "g. myusername.openidprovider.com). Next time you login, you will be able to "
@@ -87,7 +87,7 @@ msgstr ""
 "använda denna URL istället för ett vanligt användarnamn och lösenord. Du kan "
 "ha flera OpenID-servrar om du vill – lägg bara till dem här."
 
-#: modules/openid/openid.module:54
+#: modules/openid/openid.module:53
 msgid ""
 "OpenID is a secure method for logging into many websites with a single "
 "username and password. It does not require special software, and it does not "
@@ -98,7 +98,7 @@ msgstr ""
 "delar inte lösenord med någon annan webbplats som är kopplad till det. Det "
 "gäller också din egen webbplats."
 
-#: modules/openid/openid.module:55
+#: modules/openid/openid.module:54
 msgid ""
 "Users can create accounts using their OpenID, assign one or more OpenIDs to "
 "an existing account, and log in using an OpenID. This lowers the barrier to "
@@ -118,7 +118,7 @@ msgstr ""
 "att de enkelt kan uppdatera sitt lösenord på ett centralt ställe istället "
 "för att behöva ändra på en massa olika ställen."
 
-#: modules/openid/openid.module:56
+#: modules/openid/openid.module:55
 msgid ""
 "The basic concept is as follows: A user has an account on an OpenID server. "
 "This account provides them with a unique URL (such as myusername."
@@ -139,7 +139,7 @@ msgstr ""
 "är inloggade kommer OpenID servern att fråga efter deras lösenord. Din "
 "webbplats lagrar aldrig, och behöver inte heller lagra, användarens lösenord."
 
-#: modules/openid/openid.module:57
+#: modules/openid/openid.module:56
 msgid ""
 "More information on OpenID is available at <a href=\"@openid-net\">OpenID."
 "net</a>."
@@ -147,29 +147,29 @@ msgstr ""
 "Mer information om OpenID finns tillgänglig på <a href=\"@openid-net"
 "\">OpenID.net</a>."
 
-#: modules/openid/openid.module:58
+#: modules/openid/openid.module:57
 msgid ""
 "For more information, see the online handbook entry for <a href=\"@handbook"
 "\">OpenID module</a>."
 msgstr "Läs mer om <a href=\"@contact\">modulen OpenID</a> i onlinehandboken."
 
-#: modules/openid/openid.module:70
+#: modules/openid/openid.module:69
 msgid "Once you have verified your email address, you may log in via OpenID."
 msgstr "När du bekräftat din e-postadress kan du logga in med OpenID."
 
-#: modules/openid/openid.module:92,109
+#: modules/openid/openid.module:91,108
 msgid "Log in using OpenID"
 msgstr "Inloggning med OpenID"
 
-#: modules/openid/openid.module:96
+#: modules/openid/openid.module:95
 msgid "Cancel OpenID login"
 msgstr "Avbryt inloggning med OpenID"
 
-#: modules/openid/openid.module:113
+#: modules/openid/openid.module:112
 msgid "What is OpenID?"
 msgstr "Vad är OpenID?"
 
-#: modules/openid/openid.module:162
+#: modules/openid/openid.module:161
 msgid ""
 "Sorry, that is not a valid OpenID. Please ensure you have spelled your ID "
 "correctly."
@@ -177,7 +177,7 @@ msgstr ""
 "Tyvärr, detta är inget giltigt OpenID. Var vänlig kontrollera att du angivit "
 "ditt ID korrekt."
 
-#: modules/openid/openid.module:392
+#: modules/openid/openid.module:391
 msgid ""
 "You must validate your email address for this account before logging in via "
 "OpenID"
@@ -185,7 +185,7 @@ msgstr ""
 "Du måste bekräfta din e-postadress för detta konto innan du loggar in med "
 "OpenID"
 
-#: modules/openid/openid.module:410
+#: modules/openid/openid.module:409
 msgid ""
 "OpenID registration failed for the reasons listed. You may register now, or "
 "if you already have an account you can <a href=\"@login\">log in</a> now and "
