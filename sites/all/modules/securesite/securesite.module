@@ -1,5 +1,5 @@
 <?php
-// $Id: securesite.module,v 1.43.2.11 2009/03/09 14:48:26 darrenoh Exp $
+// $Id: securesite.module,v 1.43.2.12 2009/07/15 18:17:32 darrenoh Exp $
 
 /**
  * @file
@@ -130,6 +130,7 @@ function _securesite_mechanism() {
       $_SERVER['HTTP_AUTHORIZATION'] = $_SERVER['REDIRECT_HTTP_AUTHORIZATION'];
     }
     if (!empty($_SERVER['HTTP_AUTHORIZATION'])) {
+      require_once './includes/unicode.inc';
       list($type, $authorization) = explode(' ', $_SERVER['HTTP_AUTHORIZATION'], 2);
       switch (drupal_strtolower($type)) {
         case 'digest':

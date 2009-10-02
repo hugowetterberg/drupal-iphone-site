@@ -3,9 +3,9 @@ name = Secure Site
 description = Enables HTTP Auth security or an HTML form to restrict site access.
 core = 6.x
 
-; Information added by drupal.org packaging script on 2009-04-20
-version = "6.x-2.3"
+; Information added by drupal.org packaging script on 2009-10-02
+version = "6.x-2.4"
 core = "6.x"
 project = "securesite"
-datestamp = "1240238567"
+datestamp = "1254487917"
 
