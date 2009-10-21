@@ -1,5 +1,5 @@
 <?php
-// $Id: filefield_field.inc,v 1.32 2009/07/03 22:47:08 quicksketch Exp $
+// $Id: filefield_field.inc,v 1.34 2009/10/20 19:18:10 quicksketch Exp $
 
 /**
  * @file
@@ -19,7 +19,7 @@ function filefield_field_settings_form($field) {
     '#title' => t('List field'),
     '#options' => array(0 => t('Disabled'), 1 => t('Enabled')),
     '#default_value' => $field['list_field'] === '' ? 0 : (int) $field['list_field'],
-    '#description' => t('The "list" option lets a user choose if a file should shown in a list when viewing the content after creation.'),
+    '#description' => t('The "list" option lets a user choose if a file should be shown in a list when viewing the content after creation.'),
     '#attributes' => array('class' => 'filefield-list-field'),
   );
   $form['list_default'] = array(
@@ -266,7 +266,7 @@ function filefield_field_sanitize($node, $field, &$items, $teaser, $page) {
 
     // Verify the file exists on the server.
     if (!empty($item['filepath']) && !file_exists($item['filepath'])) {
-      watchdog('filefield', 'FileField was trying to display the file %file, but it does not exist.', array('%file' => $item['filepath']));
+      watchdog('filefield', 'FileField was trying to display the file %file, but it does not exist.', array('%file' => $item['filepath']), WATCHDOG_WARNING);
     }
   }
 }
