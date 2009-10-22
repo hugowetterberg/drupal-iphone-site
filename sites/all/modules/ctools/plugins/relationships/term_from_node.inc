@@ -1,5 +1,5 @@
 <?php
-// $Id: term_from_node.inc,v 1.2.2.1 2009/10/01 22:00:09 merlinofchaos Exp $
+// $Id: term_from_node.inc,v 1.2.2.2 2009/10/21 21:25:39 merlinofchaos Exp $
 
 /**
  * @file
@@ -18,6 +18,7 @@ function ctools_term_from_node_ctools_relationships() {
     'context' => 'ctools_term_from_node_context',
     'settings form' => 'ctools_term_from_node_settings_form',
     'settings form validate' => 'ctools_term_from_node_settings_form_validate',
+    'defaults' => array('vid' => ''),
   );
   return $args;
 }

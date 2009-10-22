@@ -1,5 +1,5 @@
 <?php
-// $Id: ctools.module,v 1.27.2.2 2009/10/12 21:35:54 merlinofchaos Exp $
+// $Id: ctools.module,v 1.27.2.3 2009/10/21 21:25:39 merlinofchaos Exp $
 
 /**
  * @file
@@ -10,7 +10,7 @@
  * must be implemented in the module file.
  */
 
-define('CTOOLS_API_VERSION', '1.1.1');
+define('CTOOLS_API_VERSION', '1.2');
 
 /**
  * Test the CTools API version.

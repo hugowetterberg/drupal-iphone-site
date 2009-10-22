@@ -1,5 +1,5 @@
 <?php
-// $Id: views_panes.inc,v 1.14.2.1 2009/10/02 21:57:57 merlinofchaos Exp $
+// $Id: views_panes.inc,v 1.14.2.3 2009/10/21 19:52:07 merlinofchaos Exp $
 
 /**
  * @file
@@ -142,12 +142,14 @@ function views_content_views_panes_content_type_render($subtype, $conf, $panel_a
   }
 
   $view->set_display($display);
-  if (!$view->display_handler->access($GLOBALS['user'])) {
+  if (!$view->display_handler->access($GLOBALS['user']) || !$view->display_handler->panel_pane_display) {
     return;
   }
 
+
   $args = array();
   $arguments = $view->display_handler->get_option('arguments');
+
 
   $context_keys = array_keys($contexts);
   foreach ($view->display_handler->get_argument_input() as $id => $argument) {
@@ -421,4 +423,33 @@ function views_content_views_panes_content_type_admin_title($subtype, $conf, $co
  * Returns the administrative title for a type.
  */
 function views_content_views_panes_content_type_admin_info($subtype, $conf, $contexts) {
+  $info = array();
+
+  list($view_name, $display_name) = explode('-', $subtype);
+  $view = views_get_view($view_name);
+  $view->set_display($display_name);
+
+  // Add arguments first
+  if ($conf['arguments']) { 
+    $keys = array_keys($conf['arguments']);
+    $values = array_values($conf['arguments']);
+    $argument_input = $view->display_handler->get_option('argument_input');
+
+    foreach ($conf['arguments'] as $key => $value) { 
+      $label = $argument_input[$key]['label'];
+      $info[] = $label .': '. $value;
+    }
+  }
+
+  $block = new stdClass;
+  if ($info) { 
+    $block->title = array_shift($info);
+
+    $info[] = $view->display_handler->get_option('pane_description');
+    $block->content = theme('item_list', $info);
+  }
+  else { 
+    $block->title = $view->display_handler->get_option('pane_description');
+  }
+  return $block;
 }
