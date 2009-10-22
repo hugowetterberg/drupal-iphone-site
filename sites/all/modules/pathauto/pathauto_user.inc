@@ -1,5 +1,5 @@
 <?php
-// $Id: pathauto_user.inc,v 1.28 2008/05/28 16:04:35 freso Exp $
+// $Id: pathauto_user.inc,v 1.28.2.2 2008/08/05 17:28:13 freso Exp $
 
 /**
  * @file
@@ -74,7 +74,7 @@ function tracker_pathauto($op) {
       $settings['groupheader'] = t('User-tracker path settings');
       $settings['patterndescr'] = t('Pattern for user-tracker page paths');
       $settings['patterndefault'] = t('users/[user-raw]/track');
-      $patterns = module_invoke_all('token_list', 'user');
+      $patterns = token_get_list('user');
       foreach ($patterns['user'] as $pattern => $description) {
         $settings['placeholders']['['. $pattern .']'] = $description;
       }
@@ -99,7 +99,7 @@ function user_pathauto_bulkupdate() {
   while ($user = db_fetch_object($result)) {
     $placeholders = pathauto_get_placeholders('user', $user);
     $src = 'user/'. $user->uid;
-    if ($alias = pathauto_create_alias('user', 'bulkupdate', $placeholders, $src, $user->uid)) {
+    if (pathauto_create_alias('user', 'bulkupdate', $placeholders, $src, $user->uid)) {
       $count++;
     }
   }
@@ -121,7 +121,7 @@ function blog_pathauto_bulkupdate() {
   while ($user = db_fetch_object($result)) {
     $placeholders = pathauto_get_placeholders('user', $user);
     $src = 'blog/'. $user->uid;
-    if ($alias = pathauto_create_alias('blog', 'bulkupdate', $placeholders, $src, $user->uid)) {
+    if (pathauto_create_alias('blog', 'bulkupdate', $placeholders, $src, $user->uid)) {
       $count++;
     }
   }
@@ -145,7 +145,7 @@ function tracker_pathauto_bulkupdate() {
   while ($user = db_fetch_object($result)) {
     $placeholders = pathauto_get_placeholders('user', $user);
     $src = 'user/'. $user->uid .'/track';
-    if ($alias = pathauto_create_alias('tracker', 'bulkupdate', $placeholders, $src, $user->uid)) {
+    if (pathauto_create_alias('tracker', 'bulkupdate', $placeholders, $src, $user->uid)) {
       $count++;
     }
   }

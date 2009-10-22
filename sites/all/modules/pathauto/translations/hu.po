@@ -1,10 +1,8 @@
-# $Id$
-#
-# Czech translation of pathauto (6.x-1.x-dev)
-# Copyright (c) 2008 by the Czech translation team
+# Hungarian translation of pathauto (6.x-1.1)
+# Copyright (c) 2009 by the Hungarian translation team
 # Generated from files:
-#  pathauto.module,v 1.116 2008/06/10 21:41:53 freso
-#  pathauto.admin.inc,v 1.10 2008/06/10 21:41:53 freso
+#  pathauto.module,v 1.118 2008/06/20 20:01:01 greggles
+#  pathauto.admin.inc,v 1.10.2.1 2008/06/24 16:07:51 greggles
 #  pathauto_node.inc,v 1.47 2008/06/10 21:41:53 freso
 #  pathauto.inc,v 1.45 2008/06/18 20:02:40 greggles
 #  pathauto.info,v 1.4 2007/10/28 21:06:13 greggles
@@ -13,30 +11,39 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Pathauto (6.x-1.x-dev)\n"
-"POT-Creation-Date: 2008-08-16 09:39+0200\n"
-"PO-Revision-Date: 2008-08-16 09:39+0200\n"
-"Language-Team: Czech\n"
+"Project-Id-Version: pathauto (6.x-1.1)\n"
+"POT-Creation-Date: 2009-02-16 18:11-0600\n"
+"PO-Revision-Date: 2009-02-13 13:52-0600\n"
+"Last-Translator: Balogh Zoltán\n"
+"Language-Team: Hungarian http://forditas.mindworks.hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=((n==1)?(0):(((n>=2)&&(n<=4))?(1):2));\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-#: pathauto.module:183
+#: pathauto.module:188
 msgid "content"
-msgstr "obsah"
+msgstr "tartalom"
 
 #: pathauto.admin.inc:161
 msgid "Remove"
-msgstr "Odstranit"
+msgstr "Eltávolítás"
 
-#: pathauto_node.inc:37,79
+#: pathauto_node.inc:79,37
 msgid "Language neutral"
-msgstr "Jazykově neutrální"
+msgstr "Nyelvfüggetlen"
 
 #: pathauto.admin.inc:38
 msgid "General settings"
-msgstr "Obecné nastavení"
+msgstr "Általános beállítások"
+
+#: pathauto.admin.inc:53
+msgid "Separator"
+msgstr "Elválasztó"
+
+#: pathauto.admin.inc:239
+msgid "Replacement patterns"
+msgstr "Helyettesítési minták"
 
 #: pathauto.admin.inc:22
 msgid ""
@@ -45,22 +52,21 @@ msgid ""
 "can work properly. You may need to disable Pathauto and re-enable it "
 "to get Token enabled."
 msgstr ""
-"Modul <a href=\"@token_link\">Token</a> zřejmě není nainstalován. "
-"Ujistěte se, prosím, že jej máte nainstalovaný, aby mohl modul "
-"Pathauto správně pracovat. Možná budete muset Pathauto vypnout a "
-"znovu zapnout, abyste mohli zapnout Token."
+"A <a href=\"@token_link\"><em>Token</em> modul</a> valószínűleg "
+"nincs telepítve. E nélkül a <em>Pathauto</em> modul nem tud "
+"helyesen működni. A <em>Pathauto</em> modult le kell tiltani, majd "
+"ismételten engedélyezni kell a <em>Token</em> modul engedélyezése "
+"után."
 
 #: pathauto.admin.inc:46
 msgid "Verbose"
-msgstr "Detailní výpis"
+msgstr "Bőbeszédűen"
 
 #: pathauto.admin.inc:48
 msgid "Display alias changes (except during bulk updates)."
-msgstr "Zobrazit změny aliasů (mimo mnohonásobných úprav)."
-
-#: pathauto.admin.inc:53
-msgid "Separator"
-msgstr "Oddělovač"
+msgstr ""
+"Álnévváltoztatások megjelenítése (kivéve a tömeges "
+"módosítást)"
 
 #: pathauto.admin.inc:57
 msgid ""
@@ -68,39 +74,38 @@ msgid ""
 "spaces and punctuation characters. Using a space or + character can "
 "cause unexpected results."
 msgstr ""
-"Znak používaný pro oddělení slov v nadpisech (titles). Tímto "
-"znakem budou nahrazeny mezery mezi slovy a interpunkční znaménka "
-"(tečky, čárky, pomlčky atd.). Použití mezery nebo znaku plus (+) "
-"může způsobit neočekávaný výsledek."
+"A címekben a szavak elválasztásához használt karakter. Ez fogja "
+"helyettesíteni az összes szóköz és írásjel karaktert. Szóköz, "
+"vagy pluszjel használata nem várt eredményeket okozhat."
 
 #: pathauto.admin.inc:62
 msgid "Character case"
-msgstr "Velikost znaků"
+msgstr "Kisbetű-Nagybetű"
 
 #: pathauto.admin.inc:64
 msgid "Leave case the same as source token values."
-msgstr "Zanechat velikost písma jako ve zdrojových šablonách."
+msgstr "Hagyja úgy, mint a forrás vezérjel értékek."
 
 #: pathauto.admin.inc:64
 msgid "Change to lower case"
-msgstr "Převést na malá písmena"
+msgstr "Alakítsa kisbetűssé"
 
 #: pathauto.admin.inc:69
 msgid "Maximum alias length"
-msgstr "Maximální délka aliasu"
+msgstr "Az álnév maximális hossza"
 
 #: pathauto.admin.inc:73
 msgid ""
 "Maximum length of aliases to generate. 100 is recommended. See <a "
 "href=\"@pathauto-help\">Pathauto help</a> for details."
 msgstr ""
-"Maximální délka aliasu pro generování. Doporučeno je 100. Pro "
-"více informací se podívejte do <a "
-"href=\"@pathauto-help\">nápovědy k modulu Pathauto</a>."
+"A létrehozott álnevek maximális hossza. Ajánlott értéke 100. "
+"További információk a <a href=\"@pathauto-help\"><em>Pathauto</em> "
+"súgóban</a>."
 
 #: pathauto.admin.inc:78
 msgid "Maximum component length"
-msgstr "Maximální délka komponentu"
+msgstr "Maximális összetevő hossz"
 
 #: pathauto.admin.inc:82
 msgid ""
@@ -108,56 +113,59 @@ msgid ""
 "is recommended. See <a href=\"@pathauto-help\">Pathauto help</a> for "
 "details."
 msgstr ""
-"Maximální délka komponenty v aliasu (např. [title]). Doporučeno "
-"je 100. Pro více informací se podívejte na <a "
-"href=\"@paathauto-help\">nápovědu k pathauto</a>."
+"Bármilyen összetevő maximális szöveghosszúsága az álnévben "
+"(például [title]). Az ajánlott érték 100. További információk "
+"a <a href=\"@pathauto-help\"><em>Pathauto</em> súgóban</a>."
 
 #: pathauto.admin.inc:87
 msgid "Maximum number of objects to alias in a bulk update"
 msgstr ""
-"Maximální počet objektů, pro které mají být vytvořeny aliasy "
-"během hromadné aktualizace."
+"Egy tömeges módosítás közben érintett objektumok maximális "
+"száma"
 
 #: pathauto.admin.inc:91
 msgid ""
 "Maximum number of objects of a given type which should be aliased "
-"during a a bulk update. The default is 50 and the recommended number "
+"during a bulk update. The default is 50 and the recommended number "
 "depends on the speed of your server. If bulk updates \"time out\" or "
 "result in a \"white screen\" then reduce the number."
 msgstr ""
-"Maximální počet objektů daného typu, pro které mají být "
-"vytvořeny aliasy při hromadné aktualizaci. Standardně je nastaveno "
-"50. Doporučená hodnota závisí na rychlosti vašeho serveru. "
-"Jestliže během aktualizace vyprší časový limit (timeout) nebo se "
-"objeví bílá obrazovka, snižte počet objektů k aktualizaci."
+"A tömeges álnév előállítás közben álnévvel ellátott, adott "
+"típusú objektumok maximális száma. Alapértelmezése 50, az "
+"ajánlott érték függ a kiszolgáló sebességétől. Ha a tömeges "
+"álnév előállítás „idő túllépésre fut”, vagy üres, "
+"„fehér képernyő” az eredmény, akkor az értéket csökkenteni "
+"kell."
 
 #: pathauto.admin.inc:95
 msgid "Do nothing. Leave the old alias intact."
-msgstr "Nic nedělat, ponechat stávající alias."
+msgstr "Nem csinál semmit, hagyja a régi álnevet érintetlenül."
 
 #: pathauto.admin.inc:96
 msgid "Create a new alias. Leave the existing alias functioning."
-msgstr "Vytvořit nový alias, stávající ponechat funkční."
+msgstr ""
+"Új álnevet hoz létre, de meghagyja a létező álnevet is "
+"működni."
 
 #: pathauto.admin.inc:97
 msgid "Create a new alias. Delete the old alias."
-msgstr "Vytvořit nový alias, starý smazat."
+msgstr "Új álnevet hoz létre, a létező álnevet törli."
 
 #: pathauto.admin.inc:100
 msgid "Create a new alias. Redirect from old alias."
-msgstr "Vytvořit nový alias, přesměrovat ze starého."
+msgstr "Új álnevet hoz létre, és átirányít a régi álnévről."
 
 #: pathauto.admin.inc:110
 msgid "Update action"
-msgstr "Akce při aktualizaci"
+msgstr "Frissítési művelet"
 
 #: pathauto.admin.inc:113
 msgid ""
 "What should pathauto do when updating an existing content item which "
 "already has an alias?"
 msgstr ""
-"Co má Pathauto dělat, pokud narazí na obsah, který již má "
-"vytvořený alias?"
+"Mit csináljon a <em>Pathauto</em> modul, ha frissítenek egy "
+"meglévő tartalmat, amely már rendelkezik álnévvel?"
 
 #: pathauto.admin.inc:118
 msgid ""
@@ -168,13 +176,13 @@ msgid ""
 "your site because you do not have an i18n-ascii.txt file in the "
 "Pathauto directory.</strong>"
 msgstr ""
-"Jestliže předloha obsahuje určité znaky, např. s diakritikou, má "
-"se Pathauto pokusit převést tyto znaky do znakové sady ASCII-96 "
-"(bez diakritiky)? Způsob převodu jednotlivých znaků je určen "
-"souborem i18n-ascii.txt, který se nachází v adresáři modulu "
-"Pathauto. <strong>Tato možnost není na tomto webu není povolena, "
-"protože v adresáři modulu Pathauto se nenachází soubor "
-"i18n-ascii.txt</strong>."
+"Amikor a minta tartalmaz bizonyos speciális karaktereket (úgymint "
+"ékezetek) a <em>Pathauto</em> modul megpróbálja helyettesíteni "
+"ezeket az ASCII-96 megfelelőjével? A behelyettesítést az "
+"i18n-ascii.txt nevű állomány határozza meg a <em>Pathauto</em> "
+"modul könyvtárában. <strong>Ez a lehetőség le van tiltva, "
+"amennyiben a <em>Pathauto</em> modul könyvtárában nincs "
+"i18n-ascii.txt nevű állomány.</strong>"
 
 #: pathauto.admin.inc:121
 msgid ""
@@ -183,80 +191,80 @@ msgid ""
 "ASCII-96 alphabet? Transliteration is determined by the i18n-ascii.txt "
 "file in the Pathauto directory."
 msgstr ""
-"Jestliže předloha obsahuje určité znaky, např. s diakritikou, má "
-"se Pathauto pokusit převést tyto znaky do znakové sady ASCII-96 "
-"(bez diakritiky)? Způsob převodu jednotlivých znaků je určen "
-"souborem i18n-ascii.txt, který se nachází v adresáři modulu "
-"Pathauto."
+"Amikor a minta tartalmaz bizonyos speciális karaktereket (úgymint "
+"ékezetek) a <em>Pathauto</em> modul megpróbálja helyettesíteni "
+"ezeket az ASCII-96 megfelelőjével? A behelyettesítést az "
+"i18n-ascii.txt nevű állomány határozza meg a <em>Pathauto</em> "
+"modul könyvtárában."
 
 #: pathauto.admin.inc:129
 msgid "Transliterate prior to creating alias"
-msgstr "Před vytovřením aliasu přeložit na správný formát"
+msgstr "Átírási elsőbbség az álnév létrehozásnak"
 
 #: pathauto.admin.inc:136
 msgid "Reduce strings to letters and numbers from ASCII-96"
-msgstr "Zredukovat řetězce na znaky a čísla z ASCII-96"
+msgstr ""
+"A karaktersorozatok az ASCII-96 szerinti betűkre és számokra "
+"csökkentése"
 
 #: pathauto.admin.inc:138
 msgid ""
 "Filters the new alias to only letters and numbers found in the "
 "ASCII-96 set."
-msgstr "Filtruje nový alias pouze do znaků a čísel z tabulky ASCII-96."
+msgstr ""
+"Az új álnevek szűrése, hogy azok csak az ASCII-96 készletben "
+"megtalálható betűket és számokat tartalmazzanak."
 
 #: pathauto.admin.inc:143
 msgid "Strings to Remove"
-msgstr "Řetězce k odstranění"
+msgstr "Eltávolítandó karaktersorozatok"
 
 #: pathauto.admin.inc:144
 msgid ""
 "Words to strip out of the URL alias, separated by commas. Do not place "
 "punctuation in here and do not use WYSIWYG editors on this field."
 msgstr ""
-"Slova, určená k vypuštění z url aliasu. Slova oddělujte "
-"čárkami. V tomto poli nepoužívejte interpunkci ani WYSIWYG "
-"editory."
+"Vesszővel elválasztva azon szavak, melyeket el kell távolítani a "
+"webcím álnévből. Nem szabad itt írásjeleket elhelyezni, és nem "
+"szabad WYSIWYG szerkesztőt használni ezen a mezőn."
 
 #: pathauto.admin.inc:150
 msgid "Punctuation settings"
-msgstr "Nastavení interpunkce"
+msgstr "Írásjelek beállításai"
 
 #: pathauto.admin.inc:161
 msgid "Replace by separator"
-msgstr "Nahradit oddělovačem"
+msgstr "Helyettesíti az elválasztóval"
 
 #: pathauto.admin.inc:161
 msgid "No action (do not replace)"
-msgstr "Žádná akce (nenahrazovat)"
-
-#: pathauto.admin.inc:239
-msgid "Replacement patterns"
-msgstr "Nahrazovací vzorky"
+msgstr "Nincs művelet (nincs helyettesítés)"
 
 #: pathauto.admin.inc:243
 msgid "Use -raw replacements for text to avoid problems with HTML entities."
 msgstr ""
-"Použití -raw nahrazení v textu zabraňuje problémům s HTML "
-"entitami."
+"A HTML entitásokkal való problémák elkerülésének érdekében "
+"-raw helyettesítők használata javasolt a szövegben."
 
 #: pathauto.admin.inc:276
 msgid "Internal feed alias text (leave blank to disable)"
-msgstr "Interní text aliasu pro RSS (nevyplňujte pro vypnutí)"
+msgstr "Belső csatorna álnév (a letiltáshoz üresen kell hagyni)"
 
 #: pathauto.admin.inc:280
 msgid ""
 "The text to use for aliases for RSS feeds. Examples are \"feed\" and "
 "\"0/feed\"."
 msgstr ""
-"Text pro použití pro aliasy RSS feedů. Např. \"feed\" nebo "
-"\"0/feed\"."
+"Az RSS csatornák álnevéhez használt szöveg. Példák: „feed” "
+"és „0/feed”."
 
 #: pathauto.admin.inc:335
 msgid ""
 "You are using the token [%token] which is not valid within the scope "
 "of tokens where you are using it."
 msgstr ""
-"Používáte token [%token] který není validní s ostatním rozsahem "
-"tokenů, které používáte."
+"Olyan vezérjel van megadva [%token], amely nem érvényes az adott "
+"láthatósági tartományban."
 
 #: pathauto.admin.inc:343
 msgid ""
@@ -265,15 +273,15 @@ msgid ""
 "tokens unless you really know what you are doing. See the <a "
 "href=\"@pathauto-help\">Pathauto help</a> for more details."
 msgstr ""
-"Používáte token [%token] , který má dostupný -raw (řádkový) "
-"protějšek [%raw_token]. Pro Pathauto šablony byste měli používat "
-"-raw token verze vyjma případů, kdy opravdu víte, co děláte. Pro "
-"více informací zhlédněte <a href=\"@pathauto-help\">Pathauto "
-"help</a>."
+"Olyan token van megadva  [%token], melynek elérhető a -raw párja is "
+"[%raw_token]. A <em>Pathauto</em> mintáiból a -raw verziókat "
+"célszerű használni, kivéve, ha pontosan ismertek a "
+"következmények. További információk a <a "
+"href=\"@pathauto-help\"><em>Pathauto</em> súgóban</a>."
 
 #: pathauto.admin.inc:353
 msgid "NOTE: This field contains potentially incorrect patterns. "
-msgstr "UPOZORNĚNÍ: Toto pole obsahuje potenciálně chybné šablony."
+msgstr "Figyelem! Valószínűleg ez a mező helytelen mintákat tartalmaz. "
 
 #: pathauto.admin.inc:355
 msgid "%problems"
@@ -287,24 +295,24 @@ msgid ""
 "should probably set the action for @name to be \"replace by "
 "separator\""
 msgstr ""
-"Máte nastaven @name tak, že bude nahrazen pomlčkou anebo smazán, "
-"pokud se nachází ve slově. Toto může způsobit problém s vaší "
-"šablonou a zvláště s catpath a termpath šablonou. Pravděpodobně "
-"byste měli nastavit @name tak, aby byl nahrazen pomlčkou (\"replace "
-"by separator\")."
+"A @name lett beállítva elválaszó jelnek, de ez el lesz "
+"távolítva, ha előfordul a karakterláncokban. Ez problémát fog "
+"okozni a mintákban, különösen a catpath és a termpath mintákban. "
+"@name esetében célszerű lenne átállítani a műveletet "
+"„Helyettesíti az elválasztóval”-ra."
 
 #: pathauto.admin.inc:399
 msgid "Choose Aliases to Delete"
-msgstr "Vyberte aliasy k vymazání"
+msgstr "A törlendő álnevek kiválasztása"
 
 #: pathauto.admin.inc:408
 msgid "all aliases"
-msgstr "všechny aliasy"
+msgstr "minden álnév"
 
 #: pathauto.admin.inc:410
 msgid "Delete all aliases. Number of aliases which will be deleted: %count."
 msgstr ""
-"Vymazat všechny aliasy. Počet aliasů, které budou smazány: "
+"Minden álnév törlése. A törlésre kerülő álnevek száma: "
 "%count."
 
 #: pathauto.admin.inc:421
@@ -312,8 +320,8 @@ msgid ""
 "Delete aliases for all @label. Number of aliases which will be "
 "deleted: %count."
 msgstr ""
-"Vymaže všechny aliasy pro jméno @label. Počet aliasů, které "
-"budou vymazány: %count."
+"Minden @label álnév törlése. A törlésre kerülő álnevek "
+"száma: @count."
 
 #: pathauto.admin.inc:426
 msgid ""
@@ -322,201 +330,198 @@ msgid ""
 "may want to make a backup of the database and/or the url_alias table "
 "prior to using this feature.</p>"
 msgstr ""
-"<p><strong>Poznámka:</strong> bez potvrzení. Ujistěte se, že "
-"chcete tuto akci provést, než kliknete na tlačítko \"Smazat aliasy "
-"nyní\" (\"Delete aliases now!\"). <br />Můžete také udělat "
-"zálohu databáze a/anebo url_alias tabulek před tím, než jí "
-"provedete."
+"<p><strong>Figyelem!</strong> Nincs megerősítés. Fokozott "
+"óvatosság szükséges az „Álnevek törlése most!” gomb "
+"használatához.<br />Célszerű az adatbázis vagy az url_alias "
+"tábla mentése a művelet használata előtt.</p>"
 
 #: pathauto.admin.inc:429
 msgid "Delete aliases now!"
-msgstr "Vymazat aliasy!"
+msgstr "Álnevek törlése most!"
 
 #: pathauto.admin.inc:443
 msgid "All of your path aliases have been deleted."
-msgstr "Všechny vaše aliasy byly vymazány."
+msgstr "Minden útvonal álnév törlésre került."
 
 #: pathauto.admin.inc:448
 msgid "All of your %type path aliases have been deleted."
-msgstr "Všechny aliasy typu %type byly vymazány."
+msgstr "Minden %type útvonal álnév törlésre került."
 
 #: pathauto.admin.inc:287
 msgid "Bulk generation of index aliases completed, one alias generated."
 msgid_plural "Bulk generation of index aliases completed, @count aliases generated."
 msgstr[0] ""
-"Hromadná aktualizace indexových aliasů dokončena, 1 alias byl "
-"vygenerován."
+"A tárgymutató álnevek tömeges előállítása megtörtént, egy "
+"álnév lett generálva."
 msgstr[1] ""
-"Hromadná aktualizace indexových aliasů dokončena, @count aliasy "
-"byly vygenerovány."
-msgstr[2] ""
-"Hromadná aktualizace indexových aliasů dokončena, @count aliasů "
-"bylo vygenerováno."
+"A tárgymutató álnevek tömeges előállítása megtörtént, @count "
+"álnév lett generálva."
 
 #: pathauto.admin.inc:354
 msgid "Problem token: "
 msgid_plural "Problem tokens: "
-msgstr[0] "Problémový token:"
-msgstr[1] "Problémových tokenů:"
-msgstr[2] "Problémových tokenů: "
+msgstr[0] "Hibás vezérjel: "
+msgstr[1] "Hibás vezérjelek: "
 
 #: pathauto.inc:315
 msgid ""
 "The automatically generated alias %original_alias conflicted with an "
 "existing alias. Alias changed to %alias."
 msgstr ""
-"Automaticky generovaný alias %original_alias kolidoval s již "
-"existujícím aliasem. Byl změněn na %alias."
+"Az automatikusan létrehozott %original_alias álnév megegyezik egy "
+"már létezővel. Az új álnév: %alias."
 
 #: pathauto.inc:381
 msgid "Ignoring alias %dst due to existing path conflict."
-msgstr "Ignoruji alias %dst kvůli konfliktu s již existujícím aliasem."
+msgstr "%dst álnév mellőzve, mivel egy létező útvonallal ütközik."
 
 #: pathauto.inc:388
 msgid "Ignoring alias %dst because it is the same as the internal path."
-msgstr "Ignoruji alias %dst protože je stejný jako interní cesta."
+msgstr "%dst álnév mellőzve, mivel megegyezik egy belső útvonallal."
 
 #: pathauto.inc:408
 msgid ""
 "Created new alias %dst for %src, replacing %old_alias. %old_alias now "
 "redirects to %dst"
 msgstr ""
-"Vytvořen nový alias %dst pro %src, nahrazením %old_alias,  který "
-"je nyní přesměrován na %dst"
+"%src számára új %dst álnév készült, kicserélve a régi "
+"%old_alias álnevet. %old_alias most ide írányít %dst"
 
 #: pathauto.inc:411
 msgid "Created new alias %dst for %src, replacing %old_alias"
-msgstr "Vytvořen nový alias %dst pro %src, nahrazující %old_alias"
+msgstr ""
+"%src számára új %dst álnév készült, kicserélve a régi "
+"%old_alias álnevet"
 
 #: pathauto.inc:414
 msgid "Created new alias %dst for %src"
-msgstr "Vytvořen nový alias %dst pro %src"
+msgstr "%src számára új %dst álnév készült"
 
 #: pathauto.inc:477
 msgid "Double quotes \""
-msgstr "Dvojité uvozovky \""
+msgstr "Idézőjel \""
 
 #: pathauto.inc:478
 msgid "Single quotes (apostrophe) '"
-msgstr "Jednoduché úvozovky (apostrof) '"
+msgstr "Aposztróf '"
 
 #: pathauto.inc:479
 msgid "Back tick `"
-msgstr "Zpětný apostrof `"
+msgstr "Vissza aposztróf `"
 
 #: pathauto.inc:480
 msgid "Comma ,"
-msgstr "Čárka ,"
+msgstr "Vessző ,"
 
 #: pathauto.inc:481
 msgid "Period ."
-msgstr "Tečka ."
+msgstr "Pont ."
 
 #: pathauto.inc:482
 msgid "Hyphen -"
-msgstr "Pomlčka -"
+msgstr "Kötőjel -"
 
 #: pathauto.inc:483
 msgid "Underscore _"
-msgstr "Podtržítko _"
+msgstr "Aláhúzás _"
 
 #: pathauto.inc:484
 msgid "Colon :"
-msgstr "Dvojtečka :"
+msgstr "Kettőspont :"
 
 #: pathauto.inc:485
 msgid "Semicolon ;"
-msgstr "Středník ;"
+msgstr "Pontosvessző ;"
 
 #: pathauto.inc:486
 msgid "Pipe |"
-msgstr "Svislítko (roura) |"
+msgstr "Csővezeték jel |"
 
 #: pathauto.inc:487
 msgid "Left curly bracket {"
-msgstr "Levá složená závorka {"
+msgstr "Nyitó kapcsos zárójel {"
 
 #: pathauto.inc:488
 msgid "Left square bracket ["
-msgstr "Levá hranatá závorka ["
+msgstr "Nyitó szögletes zárójel ["
 
 #: pathauto.inc:489
 msgid "Right curly bracket }"
-msgstr "Pravá složená závorka }"
+msgstr "Záró kapcsos zárójel }"
 
 #: pathauto.inc:490
 msgid "Right square bracket ]"
-msgstr "Pravá hranatá závorka ]"
+msgstr "Záró szögletes zárójel ]"
 
 #: pathauto.inc:491
 msgid "Plus +"
-msgstr "Plus +"
+msgstr "Összeadás jel +"
 
 #: pathauto.inc:492
 msgid "Equal ="
-msgstr "Rovnítko ="
+msgstr "Egyenlőség jel ="
 
 #: pathauto.inc:493
 msgid "Asterisk *"
-msgstr "Hvězdička *"
+msgstr "Szorzás jel *"
 
 #: pathauto.inc:494
 msgid "Ampersand &"
-msgstr "Ampersand &"
+msgstr "Kereskedelmi és jel &"
 
 #: pathauto.inc:495
 msgid "Percent %"
-msgstr "Procenta %"
+msgstr "Százalék jel %"
 
 #: pathauto.inc:496
 msgid "Caret ^"
-msgstr "Stříška ^"
+msgstr "Kalap ^"
 
 #: pathauto.inc:497
 msgid "Dollar $"
-msgstr "Dolar $"
+msgstr "Dollár $"
 
 #: pathauto.inc:498
 msgid "Hash #"
-msgstr "Křížek #"
+msgstr "Kettőskereszt #"
 
 #: pathauto.inc:499
 msgid "At @"
-msgstr "Zavináč @"
+msgstr "Kukac @"
 
 #: pathauto.inc:500
 msgid "Exclamation !"
-msgstr "Vykřičník !"
+msgstr "Felkiáltójel !"
 
 #: pathauto.inc:501
 msgid "Tilde ~"
-msgstr "Vlnovka (tilda) ~"
+msgstr "Hullámvonal ~"
 
 #: pathauto.inc:502
 msgid "Left parenthesis ("
-msgstr "Levá závorka ("
+msgstr "Nyitó zárójel ("
 
 #: pathauto.inc:503
 msgid "right parenthesis )"
-msgstr "Pravá závorka )"
+msgstr "Záró zárójel )"
 
 #: pathauto.inc:504
 msgid "Question mark ?"
-msgstr "Otazník ?"
+msgstr "Kérdőjel ?"
 
 #: pathauto.inc:505
 msgid "Less than <"
-msgstr "Menší než <"
+msgstr "Kisebb, mint jel <"
 
 #: pathauto.inc:506
 msgid "Greater than >"
-msgstr "Větší než >"
+msgstr "Nagyobb, mint jel >"
 
 #: pathauto.inc:507
 msgid "Back slash \\"
-msgstr "Zpětné lomítko \\"
+msgstr "Visszaperjel \\"
 
-#: pathauto.inc:437; pathauto.info:0
+#: pathauto.info:0; pathauto.inc:437
 msgid "Pathauto"
 msgstr "Pathauto"
 
@@ -525,82 +530,81 @@ msgid ""
 "It appears that you have installed Pathauto, which depends on token, "
 "but token is either not installed or not installed properly."
 msgstr ""
-"Vypadá to, že byl nainstalován modul Pahtauto, který je závislý "
-"na modulu Token, ale ten nainstalován nebyl nebo byl nainstalován "
-"chybně."
+"A telepített <em>Pathauto</em> modul függ a <em>Token</em> "
+"modultól, de az nincs, vagy nem megfelelően van telepítve."
 
 #: pathauto_node.inc:20
 msgid "Node path settings"
-msgstr "Nastavení cesty uzlu"
+msgstr "Tartalom útvonalak beállításai"
 
 #: pathauto_node.inc:21
 msgid ""
 "Default path pattern (applies to all node types with blank patterns "
 "below)"
 msgstr ""
-"Výchozí vzorek cesty (aplikován na všechny uzly, které nemají "
-"níže nic vyplněno)"
+"Alapértelmezett útvonal minta (felhasználja minden olyan tartalom "
+"típushoz, amelynek üres a mintája lejjebb)"
 
 #: pathauto_node.inc:22
 msgid "content/[title-raw]"
-msgstr "obsah/[title-raw]"
+msgstr "content/[title-raw]"
 
 #: pathauto_node.inc:23
 msgid "Bulk generate aliases for nodes that are not aliased"
 msgstr ""
-"Generovat aliasy všem existujícím uzlům, které zatím aliasy "
-"nemají."
+"Tömeges álnév előállítás a nem álnevesített tartalmak "
+"számára"
 
 #: pathauto_node.inc:24
 msgid ""
 "Generate aliases for all existing nodes which do not already have "
 "aliases."
 msgstr ""
-"Generovat aliasy pro všechny existující uzly, které zatím "
-"žádné aliasy nemají."
+"Álnevek létrehozása minden olyan tartalomhoz, amely még nem "
+"rendelkezik álnévvel."
 
 #: pathauto_node.inc:44
 msgid ""
 "Default path pattern for @node_type (applies to all @node_type node "
 "types with blank patterns below)"
 msgstr ""
-"Výchozí šablona uzlu typu @node_type (platí pro všechny uzly typu "
-"@node_type s prázdnou předlohou níže)"
+"Alapértelmezett útvonal minta @node_type számára (felhasználja "
+"minden olyan @node_type tartalom típushoz, amelynek üres a mintája "
+"lejjebb)"
 
 #: pathauto_node.inc:47
 msgid "Pattern for all @node_type paths in @language"
-msgstr "Šablona pro všechny @node_type paths v @language"
+msgstr "Minta minden @node_type útvonalnak @language nyelven"
 
 #: pathauto_node.inc:50
 msgid "Pattern for all language neutral @node_type paths"
-msgstr "Šablona pro všechny jazykově neutrální uzly typu @node_type"
+msgstr "Minta minden nyelvfüggetlen @node_type útvonalnak"
 
 #: pathauto_node.inc:55
 msgid "Pattern for all @node_type paths"
-msgstr "Šablona pro všechny uzly typu @node_type"
+msgstr "Minta minden @node_type útvonalnak"
 
 #: pathauto_node.inc:121
 msgid "Bulk generation of nodes completed, one alias generated."
 msgid_plural "Bulk generation of nodes completed, @count aliases generated."
-msgstr[0] "Hromadná aktualizace uzlů dokončena, 1 alias byl vygenerován."
+msgstr[0] ""
+"A tartalmak tömeges előállítása megtörtént, egy álnév lett "
+"generálva."
 msgstr[1] ""
-"Hromadná aktualizace uzlů dokončena, @count aliasy byly "
-"vygenerovány."
-msgstr[2] ""
-"Hromadná aktualizace uzlů dokončena, @count aliasů bylo "
-"vygenerováno."
+"A tartalmak tömeges előállítása megtörtént, @count álnév lett "
+"generálva."
 
 #: pathauto_taxonomy.inc:20
 msgid "Taxonomy term path settings"
-msgstr "Nastavení šablon cest k termínům (modul Taxonomy)"
+msgstr "Taxonómia kifejezés útvonalak beállításai"
 
 #: pathauto_taxonomy.inc:21
 msgid ""
 "Default path pattern (applies to all vocabularies with blank patterns "
 "below)"
 msgstr ""
-"Výchozí šablona pro cestu (aplikována na všechny slovníky s "
-"nevyplněnou šablonou níže)"
+"Alapértelmezett útvonal minta (felhasználja minden olyan "
+"szótárhoz, amelynek üres a mintája lejjebb)"
 
 #: pathauto_taxonomy.inc:22
 msgid "category/[vocab-raw]/[catpath-raw]"
@@ -608,27 +612,27 @@ msgstr "category/[vocab-raw]/[catpath-raw]"
 
 #: pathauto_taxonomy.inc:32
 msgid "Bulk generate aliases for terms that are not aliased"
-msgstr "Hromadně vygenerovat cesty pro termíny, které nejsou aliasovány."
+msgstr "Tömeges álnév előállítás a nem álnevesített kifejezéseknek"
 
 #: pathauto_taxonomy.inc:33
 msgid ""
 "Generate aliases for all existing terms which do not already have "
 "aliases."
 msgstr ""
-"Generovat aliasy pro všechny existující termíny, které dosud "
-"nemají aliasy."
+"Álnevek létrehozása minden olyan kifejezéshez, amely még nem "
+"rendelkezik álnévvel."
 
 #: pathauto_taxonomy.inc:42
 msgid "Pattern for all %vocab-name paths"
-msgstr "Šablona pro všechny cesty %vocab-name"
+msgstr "Minta minden %vocab-name útvonalnak"
 
 #: pathauto_taxonomy.inc:134
 msgid "Forum path settings"
-msgstr "Nastavení cest k diskusnímu fóru"
+msgstr "Fórum útvonalak beállításai"
 
 #: pathauto_taxonomy.inc:135
 msgid "Pattern for forums and forum containers"
-msgstr "Šablona pro diskusní fóra a kontejnery diskusních fór"
+msgstr "Minta fórumoknak és fórum csoportoknak"
 
 #: pathauto_taxonomy.inc:136
 msgid "[vocab-raw]/[catpath-raw]"
@@ -636,26 +640,25 @@ msgstr "[vocab-raw]/[catpath-raw]"
 
 #: pathauto_taxonomy.inc:146
 msgid "Bulk generate forum paths"
-msgstr "Generovat všechny aliasy pro diskusní fórum"
+msgstr "Fórum útvonalak tömeges előállítása"
 
 #: pathauto_taxonomy.inc:147
 msgid ""
 "Generate aliases for all existing forums and forum containers which do "
 "not already have aliases."
 msgstr ""
-"Generovat aliasy pro všechna existující diskusní fóra a "
-"kontejnery diskusních fór, které zatím žádné aliasy nemají."
+"Álnevek létrehozása minden olyan fórumhoz és fórum csoporthoz, "
+"amely még nem rendelkezik álnévvel."
 
 #: pathauto_taxonomy.inc:92
 msgid "Bulk generation of terms completed, one alias generated."
 msgid_plural "Bulk generation of terms completed, @count aliases generated."
-msgstr[0] "Hromadná úprava termínů byla dokončena, 1 alias byl vygenerován."
+msgstr[0] ""
+"A kifejezések tömeges előállítása megtörtént, egy álnév lett "
+"generálva."
 msgstr[1] ""
-"Hromadná úprava termínů byla dokončena, @count aliasy byly "
-"vygenerovány."
-msgstr[2] ""
-"Hromadná úprava termínů byla dokončena, @count aliasů bylo "
-"vygenerováno."
+"A kifejezések tömeges előállítása megtörtént, @count álnév "
+"lett generálva."
 
 #: pathauto_taxonomy.inc:168
 msgid ""
@@ -665,22 +668,19 @@ msgid_plural ""
 "Bulk update of forums and forum containers completed, @count aliases "
 "generated."
 msgstr[0] ""
-"Hromadná úprava diskusních fór a kontejnerů diskusních fór, 1 "
-"alias byl vygenerován."
+"A fórumok és fórum csoportok tömeges módosítása megtörtént, "
+"egy álnév lett generálva."
 msgstr[1] ""
-"Hromadná úprava diskusních fór a kontejnerů diskusních fór, "
-"@count aliasy byly vygenerovány."
-msgstr[2] ""
-"Hromadná úprava diskusních fór a kontejnerů diskusních fór, "
-"@count aliasů bylo vygenerováno."
+"A fórumok és fórum csoportok tömeges módosítása megtörtént, "
+"@count álnév lett generálva."
 
 #: pathauto_user.inc:20
 msgid "User path settings"
-msgstr "Nastavení uživatelských cest"
+msgstr "Felhasználói útvonalak beállításai"
 
 #: pathauto_user.inc:21
 msgid "Pattern for user account page paths"
-msgstr "Šablona pro cesty k uživatelských účtům"
+msgstr "Minta a felhasználói adatlap útvonalakhoz"
 
 #: pathauto_user.inc:22
 msgid "users/[user-raw]"
@@ -688,25 +688,23 @@ msgstr "users/[user-raw]"
 
 #: pathauto_user.inc:32
 msgid "Bulk generate aliases for users that are not aliased"
-msgstr ""
-"Generovat aliasy pro všechny uživatelské účty, které ještě "
-"aliasy nemají."
+msgstr "Tömeges álnév előállítás a nem álnevesített felhasználóknak"
 
 #: pathauto_user.inc:33
 msgid ""
 "Generate aliases for all existing user account pages which do not "
 "already have aliases."
 msgstr ""
-"Generovat aliasy pro všechny existující uživatelské účty, "
-"které zatím žádné aliasy nemají."
+"Álnevek előállítása azon felhasználói adatlapoknak, melyek még "
+"nem rendelkeznek álnévvel."
 
 #: pathauto_user.inc:49
 msgid "Blog path settings"
-msgstr "Nastavení cest blogu"
+msgstr "Blog útvonalak beállításai"
 
 #: pathauto_user.inc:50
 msgid "Pattern for blog page paths"
-msgstr "Šablona pro cesty k blogům"
+msgstr "Minta a blog oldal útvonalakhoz"
 
 #: pathauto_user.inc:51
 msgid "blogs/[user-raw]"
@@ -715,24 +713,24 @@ msgstr "blogs/[user-raw]"
 #: pathauto_user.inc:57
 msgid "Bulk generate aliases for blogs that are not aliased"
 msgstr ""
-"Generovat aliasy pro všechny blogy, které zatím žádné aliasy "
-"nemají"
+"Tömeges álnév előállítás a nem álnevesített "
+"blogbejegyzéseknek"
 
 #: pathauto_user.inc:58
 msgid ""
 "Generate aliases for all existing blog pages which do not already have "
 "aliases."
 msgstr ""
-"Generovat aliasy pro všechny existující stránky blogu, které "
-"zatím žádné aliasy nemají."
+"Álnevek előállítása azon blog oldalaknak, melyek még nem "
+"rendelkeznek álnévvel."
 
 #: pathauto_user.inc:74
 msgid "User-tracker path settings"
-msgstr "Nastavení cesty user-tracker"
+msgstr "Felhasználó-követő útvonalak beállításai"
 
 #: pathauto_user.inc:75
 msgid "Pattern for user-tracker page paths"
-msgstr "Šablona pro user-tracker cesty"
+msgstr "Minta a felhasználó-követő oldalak útvonalainak"
 
 #: pathauto_user.inc:76
 msgid "users/[user-raw]/track"
@@ -741,40 +739,36 @@ msgstr "users/[user-raw]/track"
 #: pathauto_user.inc:82
 msgid "Bulk generate aliases for user-tracker paths that are not aliased"
 msgstr ""
-"Generovat aliasy pro všechny existující uživatelské trackery, "
-"které zatím žádné aliasy nemají."
+"Tömeges álnév előállítás a nem álnevesített "
+"felhasználó-követő útvonalaknak"
 
 #: pathauto_user.inc:83
 msgid ""
 "Generate aliases for all existing user-tracker pages which do not "
 "already have aliases."
 msgstr ""
-"Generovat aliasy pro všechny existující uživatelské trackery, "
-"které zatím žádné aliasy nemají."
+"Álnevek létrehozása minden olyan felhasználó-követő oldalhoz, "
+"amely még nem rendelkezik álnévvel."
 
 #: pathauto_user.inc:107
 msgid "Bulk generation of users completed, one alias generated."
 msgid_plural "Bulk generation of users completed, @count aliases generated."
 msgstr[0] ""
-"Hromadná úprava uživatelů byla dokončena, 1 alias byl "
-"vygenerován."
+"A felhasználók tömeges előállítása megtörtént, egy álnév "
+"lett generálva."
 msgstr[1] ""
-"Hromadná úprava uživatelů byla dokončena, @count aliasy byly "
-"vygenerovány."
-msgstr[2] ""
-"Hromadná úprava uživatelů byla dokončena, @count aliasů bylo "
-"vygenerováno."
+"A felhasználók tömeges előállítása megtörtént, @count álnév "
+"lett generálva."
 
 #: pathauto_user.inc:129
 msgid "Bulk generation of user blogs completed, one alias generated."
 msgid_plural "Bulk generation of user blogs completed, @count aliases generated."
-msgstr[0] "Hromadná úprava blogů byla dokončena, 1 alias byl vygenerován."
+msgstr[0] ""
+"A felhasználói blogok tömeges előállítása megtörtént, egy "
+"álnév lett generálva."
 msgstr[1] ""
-"Hromadná úprava blogů byla dokončena, @count aliasy byly "
-"vygenerovány."
-msgstr[2] ""
-"Hromadná úprava blogů byla dokončena, @count aliasů bylo "
-"vygenerováno."
+"A felhasználói blogok tömeges előállítása megtörtént, @count "
+"álnév lett generálva."
 
 #: pathauto_user.inc:153
 msgid "Bulk generation of user tracker pages completed, one alias generated."
@@ -782,14 +776,11 @@ msgid_plural ""
 "Bulk generation of user tracker pages completed, @count aliases "
 "generated."
 msgstr[0] ""
-"Hromadná úprava user-tracker byla dokončena, 1 alias byl "
-"vygenerován."
+"A felhasználó-követő oldalak tömeges előállítása "
+"megtörtént, egy álnév lett generálva."
 msgstr[1] ""
-"Hromadná úprava user-tracker byla dokončena, @count aliasy byly "
-"vygenerovány."
-msgstr[2] ""
-"Hromadná úprava user-tracker byla dokončena, @count aliasů bylo "
-"vygenerováno."
+"A felhasználó-követő oldalak tömeges előállítása "
+"megtörtént, @count álnév lett generálva."
 
 #: pathauto.module:27
 msgid ""
@@ -821,122 +812,143 @@ msgid ""
 "                  tokens can cause problems with the Pathauto "
 "punctuation filtering system.</p>"
 msgstr ""
-"<p>Nabízí mechanismus pro moduly k automatickému generování "
-"aliasů pro obsah, který spravují.</p><br /> <h2>Nastavení</h2><br "
-"/> <p>Hodnoty <strong>Maximum Alias Length</strong> (maximální "
-"délka aliasu) a <strong>Maximum component length</strong><br /> jsou "
-"standardně nastaveny na 100 a mají limit 128. Tato délka je dána "
-"délkou prvního<br /> sloupce v url_alias databázové tabulce. "
-"Standardní databázové schéma (nastavení) pro tento sloupec je "
-"128. Jestliže<br /> nastavíte délku, která je rovna délce, jež "
-"je nastavena v prvním sloupci, může to způsobit problém v "
-"situacích,<br /> kdy systém potřebuje přidat dodatečná slova do "
-"aliasovaného URL. Například: URL adresy generované<br /> pro "
-"nábytek budou mít na konci přidáno \"/nabytek\". Měli byste zadat "
-"hodnotu, která je rovna: nastavená délka v pvním<br /> sloupci "
-"mínus délka jakéhokoliv znakového řetězce, který může být "
-"přidán na konec URL. Délka<br /> znakového řetězce, který "
-"může být přidán na konec URL závisí na tom, jaký modul máte "
-"povolen a<br /> na vašem nastavení v Pathauto. Doporučená a "
-"standardně nastavená hodnota je 100.</p> <p><strong>Raw "
-"Tokens</strong> V Pathauto je vhodné používat -raw podobu tokenů. "
-"Cesty (paths)<br /> jsou poslány přes filtrovací systém, který "
-"zajistí, že raw user obsah bude filtrovaný. Nepoužití -raw "
-"tokenů<br /> může způsobit problémy ve filtrovacím systému "
-"diakritiky v modulu Pathauto.</p>"
+"<p>Lehetőséget biztosít a moduloknak, hogy automatikus álneveket "
+"hozzanak létre az általuk kezelt tartalmakhoz.</p>\r\n"
+"                  <h2>Beállítások</h2>\r\n"
+"                  <p><strong>Az álnév maximális hossza</strong> és "
+"a <strong>Maximális összetevő hossz</strong> alapértelmezett\r\n"
+"                  értéke 100 és ennek maximuma 128 a "
+"<em>Pathauto</em> modulban. Ezt ez értéket behatárolja az url_alias "
+"tábla oszlopának\r\n"
+"                  szélessége az adatbázisban, melynek "
+"alapértelmezett értéke 128. Ha a <em>Pathauto</em> beállítása "
+"megegyezik evvel\r\n"
+"                  az azokban esetekben problémákat okozhat, amikor a "
+"rendszernek hozzá kell adni egyéb szavakat az álnevesített\r\n"
+"                  webcímhez. Például a csatornákhoz létesített "
+"álnevek végére odafűzí, hogy „/feed”.\r\n"
+"                  Tehát olyan értéket kell megadni, amelyhez a "
+"leghosszabb toldalékot hozzáadva is be fog férni a kapott webcím "
+"álnév az url_alias táblába.\r\n"
+"                  A webcímekhez hozzáadható karaktersorozatok "
+"hossza függ a bekapcsolt moduloktól, és a <em>Pathauto</em> modul "
+"beállításaitól.\r\n"
+"                  Az ajánlott érték 100.</p>\r\n"
+"                  <p><strong>Nyers vezérjelek</strong> A "
+"<em>Pathauto</em> modulban helyes a -raw formátumú vezérjelek "
+"használata.\r\n"
+"                  Az útvonalak keresztülmennek a szűrő rendszeren, "
+"mely gondoskodik a nyers felhasználói adatok szűréséről.\r\n"
+"                  A nyers vezérjelek hibás használata problémákat "
+"okozhat a <em>Pathauto</em> modul írásjel szűrő rendszerében.</p>"
 
-#: pathauto.module:159
+#: pathauto.module:164
 msgid "As [cat], but including its supercategories separated by /."
-msgstr "Jako [cat], ale včetně nadkategorií oddělených znakem /."
+msgstr ""
+"Mint a [cat], de beleértve annak / jellel elválasztott "
+"szülőkategóriáit is."
 
-#: pathauto.module:160
+#: pathauto.module:165
 msgid ""
 "As [cat-raw], but including its supercategories separated by /. "
 "WARNING - raw user input."
 msgstr ""
-"Jako [cat-raw], ale včetně nadkategorií oddělených znakem /. "
-"POZOR - raw vstup."
+"Mint a [cat-raw], de beleértve annak / jellel elválasztott "
+"szülőkategóriáit is. FIGYELEM - nyers felhasználói bevitel."
 
-#: pathauto.module:161,166
+#: pathauto.module:171,166
 msgid "URL alias for the term."
-msgstr "URL alias pro termín."
+msgstr "Webcím álnév a kifejezésnek."
 
-#: pathauto.module:164
+#: pathauto.module:169
 msgid "As [term], but including its supercategories separated by /."
-msgstr "Jako [term], ale včetně nadkategorií oddělených znakem /."
+msgstr ""
+"Mint a [term], de beleértve annak / jellel elválasztott "
+"szülőkategóriáit is."
 
-#: pathauto.module:165
+#: pathauto.module:170
 msgid ""
 "As [term-raw], but including its supercategories separated by /. "
 "WARNING - raw user input."
 msgstr ""
-"Jako [term-raw], ale včetně nadkategorií oddělených znakem /. "
-"POZOR - nefiltrovaný vstup."
+"Mint a [term-raw], de beleértve annak / jellel elválasztott "
+"szülőkategóriáit is. FIGYELEM - nyers felhasználói bevitel."
 
-#: pathauto.module:171
+#: pathauto.module:176
 msgid "URL alias for the parent book."
-msgstr "URL alias pro rodičovskou knihu."
-
-#: pathauto.module:183
-msgid "users"
-msgstr "uživatelé"
-
-#: pathauto.module:185
-msgid "user blogs"
-msgstr "uživatelské blogy"
+msgstr "Webcím álnév a szülő könyvnek"
 
 #: pathauto.module:188
+msgid "users"
+msgstr "felhasználók"
+
+#: pathauto.module:190
+msgid "user blogs"
+msgstr "felhasználói blogok"
+
+#: pathauto.module:193
 msgid "vocabularies and terms"
-msgstr "slovníky a termíny"
+msgstr "szótárak és kifejezések"
 
-#: pathauto.module:191
+#: pathauto.module:196
 msgid "user trackers"
-msgstr "uživatelské trackery"
+msgstr "felhasználó-követök"
 
-#: pathauto.module:194
+#: pathauto.module:199
 msgid "forums"
-msgstr "diskusní fóra"
+msgstr "fórumok"
 
-#: pathauto.module:279
+#: pathauto.module:284
 msgid ""
 "An alias will be generated for you. If you wish to create your own "
 "alias below, untick this option."
 msgstr ""
-"Alias bude vygenerován. Pokud si to nepřejete, můžete zadat "
-"vlastní, zrušte zaškrtnutí této volby."
+"Egy új álnév automatikusan létre fog jönni a tartalomhoz. Ha "
+"saját álnév szükséges, akkor ki kell kapcsolni ezt a "
+"lehetőséget."
 
-#: pathauto.module:281
+#: pathauto.module:286
 msgid ""
 " To control the format of the generated aliases, see the <a "
 "href=\"@pathauto\">Pathauto settings</a>."
 msgstr ""
-" Pro kontrolu formátu generovaných aliasů se podívejte na <a "
-"href=\"@pathauto\">nastavení Pathauto</a>."
+" A létrehozott álneveket vezérlő formátumok részletes "
+"beállítása a <a href=\"@pathauto\"><em>Pathauto</em> "
+"beállításainál</a>."
 
-#: pathauto.module:289
+#: pathauto.module:294
 msgid "Automatic alias"
-msgstr "Automatický alias"
+msgstr "Automatikus álnév"
 
-#: pathauto.module:312
+#: pathauto.module:319
 msgid "Update path alias"
-msgstr "Aktualizovat cestu aliasu"
+msgstr "Útvonal álnév frissítése"
 
 #: pathauto.module:49
 msgid "administer pathauto"
-msgstr "spravovat pathauto"
+msgstr "pathauto adminisztrációja"
 
 #: pathauto.module:49
 msgid "notify of path changes"
-msgstr "informovat o změně aliasů"
+msgstr "értesítés útvonal változásról"
 
 #: pathauto.module:57
 msgid "Automated alias settings"
-msgstr "Nastavení automatických cest"
+msgstr "Automatikus álnév beállításai"
 
 #: pathauto.module:68
 msgid "Delete aliases"
-msgstr "Vymazat cesty"
+msgstr "Álnevek törlése"
 
 #: pathauto.module:0
 msgid "pathauto"
 msgstr "pathauto"
+
+#: pathauto.info:0
+msgid ""
+"Provides a mechanism for modules to automatically generate aliases for "
+"the content they manage."
+msgstr ""
+"Lehetőséget biztosít a moduloknak, hogy automatikus álneveket "
+"hozzanak létre az általuk kezelt tartalmakhoz."
+

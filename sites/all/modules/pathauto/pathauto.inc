@@ -1,5 +1,5 @@
 <?php
-// $Id: pathauto.inc,v 1.45 2008/06/18 20:02:40 greggles Exp $
+// $Id: pathauto.inc,v 1.45.2.3 2009/10/20 17:52:12 greggles Exp $
 
 /**
  * @file
@@ -68,7 +68,7 @@ function _pathauto_alias_exists($alias, $src, $language = '') {
   $alias_pid = db_result(db_query_range("SELECT pid FROM {url_alias} WHERE dst = '%s' AND src <> '%s' AND language = '%s'", array($alias, $src, $language), 0, 1));
   if (function_exists('path_redirect_delete')) {
     // Delete from path_redirect the exact same alias to the same node.
-    path_redirect_delete($alias, $src);
+    path_redirect_delete(array('path' => $alias, 'redirect' => $src));
 
     // If there still is this alias used in path_redirect, then create a different alias
     $redirect_rid = db_result(db_query_range("SELECT rid FROM {path_redirect} WHERE path = '%s'", $alias, 0, 1));
@@ -202,6 +202,9 @@ function pathauto_cleanstring($string, $clean_slash = TRUE) {
     // Trim any leading or trailing separators (note the need to
     $output = preg_replace("/^$seppattern+|$seppattern+$/", '', $output);
 
+    // Replace trailing separators around slashes.
+    $output = preg_replace("/$seppattern\/|\/$seppattern/", "/", $output);
+
     // Replace multiple separators with a single one
     $output = preg_replace("/$seppattern+/", "$separator", $output);
   }
@@ -220,7 +223,7 @@ function pathauto_cleanstring($string, $clean_slash = TRUE) {
  *   The name of your module (e.g., 'node').
  * @param $op
  *   Operation being performed on the content being aliased
- *   ('insert', 'update', or 'bulkupdate').
+ *   ('insert', 'update', 'return', or 'bulkupdate').
  * @param $placeholders
  *   An array whose keys consist of the translated placeholders
  *   which appear in patterns (e.g., t('[title]')) and values are the
@@ -317,6 +320,11 @@ function pathauto_create_alias($module, $op, $placeholders, $src, $entity_id, $t
     }
   }
 
+  // Return the generated alias if requested.
+  if ($op == 'return') {
+    return $alias;
+  }
+
   // If $pid is NULL, a new alias is created - otherwise, the existing
   // alias for the designated src is replaced
   _pathauto_set_alias($src, $alias, $module, $entity_id, $pid, $verbose, $old_alias, $language);
@@ -396,11 +404,11 @@ function _pathauto_set_alias($src, $dst, $entity_type, $entity_id, $pid = NULL, 
 
     if (variable_get('pathauto_update_action', 2) == 3 && function_exists('path_redirect_save')) {
       if (!empty($old_alias)) {
-        $save['path'] = $old_alias;
-        $save['redirect'] = $src;
-        $save['type'] = 301; //moved permanently
-        path_redirect_save($save);
-        $redirect = TRUE;
+        $redirect = array(
+          'path' => $old_alias,
+          'redirect' => $src,
+        );
+        path_redirect_save($redirect);
       }
     }
     if ($verbose && user_access('notify of path changes')) {
