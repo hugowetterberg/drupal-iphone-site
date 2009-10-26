@@ -1,5 +1,5 @@
 <?php
-// $Id: coder_style.inc,v 1.16.2.18.2.10 2009/08/14 00:18:30 snpower Exp $
+// $Id: coder_style.inc,v 1.16.2.18.2.11 2009/10/18 13:24:17 snpower Exp $
 
 /**
  * @file
@@ -26,13 +26,13 @@ function coder_style_reviews() {
     ),
     array(
       '#type' => 'regex',
-      '#value' => '\s(if|elseif|while|foreach|switch|return|for|catch)\(',
+      '#value' => '\s(if|elseif|while|foreach|switch|case|return|for|catch)\(',
       '#warning' => 'Control statements should have one space between the control keyword and opening parenthesis',
     ),
     array(
       '#type' => 'regex',
       '#value' => '[\s\(](\w+)\s\(',
-      '#not' => '^(if|elseif|while|foreach|switch|return|for|list|catch)$',
+      '#not' => '^(if|elseif|while|foreach|switch|case|return|for|list|catch)$',
       '#warning' => 'Functions should be called with no spaces between the function name and opening parentheses',
     ),
     array(

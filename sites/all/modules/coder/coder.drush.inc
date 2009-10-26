@@ -1,5 +1,5 @@
 <?php
-// $Id: coder.drush.inc,v 1.1.4.11.2.2 2009/05/15 15:23:57 snpower Exp $
+// $Id: coder.drush.inc,v 1.1.4.11.2.3 2009/10/18 13:05:58 snpower Exp $
 
 /**
  * Implementation of hook_drush_command().
@@ -8,6 +8,7 @@ function coder_drush_command() {
   $items['coder'] = array(
     'callback' => 'coder_drush_review',
     'description' => dt('Run code reviews'),
+    'drupal dependencies' => array('coder'),
   );
   return $items;
 }
