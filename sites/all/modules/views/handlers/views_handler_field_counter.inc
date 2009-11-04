@@ -26,7 +26,6 @@ class views_handler_field_counter extends views_handler_field {
   }
 
   function render($values) {
-    dsm($this->view->row_index);
     // Note:  1 is subtracted from the counter start value below because the
     // counter value is incremented by 1 at the end of this function.
     $count = is_numeric($this->options['counter_start']) ? $this->options['counter_start'] - 1 : 0;
