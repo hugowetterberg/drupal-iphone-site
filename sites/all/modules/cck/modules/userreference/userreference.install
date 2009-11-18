@@ -124,6 +124,8 @@ function userreference_update_6001(&$sandbox) {
 function userreference_update_6002() {
   $ret = array();
 
+  drupal_load('module', 'content');
+
   $result = db_query("SELECT field_name, global_settings FROM {". content_field_tablename() ."} WHERE type = 'userreference'");
   while ($userreference = db_fetch_object($result)) {
     $global_settings = unserialize($userreference->global_settings);
