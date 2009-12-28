@@ -1,17 +1,16 @@
-# Hungarian translation of potx (6.x-2.2)
+# Hungarian translation of potx (6.x-3.0)
 # Copyright (c) 2009 by the Hungarian translation team
 # Generated from files:
-#  potx.install,v 1.1.2.1 2008/09/25 06:49:33 goba
-#  potx.info,v 1.1.2.3.2.2 2007/11/12 20:19:06 goba
-#  potx.module,v 1.1.2.12.2.2.2.7 2008/09/26 10:52:11 goba
+#  potx.install,v 1.1.2.1.4.1 2009/07/19 12:54:42 goba
+#  potx.info,v 1.1.2.3.2.2.2.1 2009/04/02 11:05:29 goba
+#  potx.module,v 1.1.2.12.2.2.2.10 2009/03/13 10:13:14 goba
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: potx (6.x-2.2)\n"
-"POT-Creation-Date: 2009-06-25 18:21+0200\n"
+"Project-Id-Version: potx (6.x-3.0)\n"
+"POT-Creation-Date: 2009-09-12 17:25+0200\n"
 "PO-Revision-Date: 2009-06-23 10:48+0200\n"
-"Last-Translator: Balogh Zoltán\n"
-"Language-Team: Hungarian http://forditas.mindworks.hu\n"
+"Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,6 +23,10 @@ msgstr "Nem elérhető"
 #: potx.info:0
 msgid "Translation template extractor"
 msgstr "Translation template extractor"
+
+#: potx.info:0
+msgid "Multilanguage"
+msgstr "Többnyelvűség"
 
 #: potx.module:20
 msgid ""
@@ -79,19 +82,19 @@ msgstr "Kinyerés"
 msgid "You should select a component to export."
 msgstr "Az exporthoz ki kell választani egy összetevőt."
 
-#: potx.module:185
+#: potx.module:188
 msgid "Extract from %name in the %directory directory"
 msgstr "%directory könyvtárban levő %name összetevő kinyerése"
 
-#: potx.module:186
+#: potx.module:189
 msgid "Generates output from all files found in this directory."
 msgstr "Sablon előállítása a könyvtárban található összes fájlból."
 
-#: potx.module:201
+#: potx.module:204
 msgid "Extract from all in directory \"@directory\""
 msgstr "Kinyerés a könyvtár összes fájlából: „@directory”"
 
-#: potx.module:202
+#: potx.module:205
 msgid ""
 "To extract from a single component in this directory, choose the "
 "desired entry in the fieldset below."
@@ -99,27 +102,23 @@ msgstr ""
 "Az egyetlen összetevőből történő kinyeréshez az alábbi "
 "mezőcsoportból kell kiválasztani a kívánt elemet."
 
-#: potx.module:211
+#: potx.module:214
 msgid "Directory \"@directory\""
 msgstr "„@directory” könyvtár"
 
-#: potx.module:232
+#: potx.module:235
 msgid "Extract from %name"
 msgstr "Kinyerés az összetevőből: %name"
 
-#: potx.module:233
+#: potx.module:236
 msgid "Extract from files named %pattern in the %directory directory."
 msgstr ""
 "%directory könyvtárban található, %pattern mintára illeszkedő "
 "fájlok kinyerése"
 
-#: potx.module:303
+#: potx.module:306
 msgid "Interface text translatability"
 msgstr "Kezelőfelületi szövegek fordíthatósága"
-
-#: potx.module:0
-msgid "potx"
-msgstr "potx"
 
 #: potx.install:22
 msgid "PHP tokenizer for Translation template extractor"
@@ -144,4 +143,31 @@ msgid ""
 msgstr ""
 "A telepített összetevőkből a fordítható szövegek kinyeréséhez "
 "egy webes felületet és egy API-t nyújt."
+
+#: potx.module:350
+msgid "Read the documentation"
+msgstr "Dokumentáció olvasása"
+
+#: potx.install:38
+msgid "Localization Server"
+msgstr "Localization Server"
+
+#: potx.install:39
+msgid "Translation template extractor compatible version"
+msgstr "<em>Translation template extractor</em> kompatibilis verzió"
+
+#: potx.install:42
+msgid ""
+"The Localization Server should be from a development snapshot later "
+"then July 19th, 2009 or at least 6.x-1.0-alpha4 to be compatible with "
+"this Translation template extractor."
+msgstr ""
+"A <em>Localization Server</em> modul fejlesztői verziójának 2009. "
+"július 19-nél később kiadottnak kell lennie, vagy legalább a "
+"6.x-1.0-alpha4 verzió szükséges ahhoz, hogy kompatibilis legyen a "
+"<em>Translation template extractor</em> modullal."
+
+#: potx.install:44
+msgid "Not compatible with Translation template extractor"
+msgstr "Nem kompatibilis a <em>Translation template extractor</em> modullal"
 

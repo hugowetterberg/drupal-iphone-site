@@ -1,5 +1,5 @@
 <?php
-// $Id: potx.inc,v 1.1.2.17.2.7.2.19.4.1 2009/07/19 12:54:42 goba Exp $
+// $Id: potx.inc,v 1.1.2.17.2.7.2.19.4.8 2009/11/17 12:25:18 goba Exp $
 
 /**
  * @file
@@ -23,6 +23,13 @@
  */
 
 /**
+ * The current Drupal major API verion.
+ * 
+ * This should be the only difference between different branches of potx.inc
+ */
+define('POTX_API_CURRENT', 6);
+
+/**
  * Silence status reports.
  */
 define('POTX_STATUS_SILENT', 0);
@@ -34,7 +41,7 @@ define('POTX_STATUS_MESSAGE', 1);
 
 /**
  * Command line status reporting.
- * 
+ *
  * Status goes to standard output, errors to standard error.
  */
 define('POTX_STATUS_CLI', 2);
@@ -88,14 +95,14 @@ define('POTX_API_5', 5);
 
 /**
  * Parse source files in Drupal 6.x format.
- * 
+ *
  * Changes since 5.x documented at http://drupal.org/node/114774
  */
 define('POTX_API_6', 6);
 
 /**
  * Parse source files in Drupal 7.x format.
- * 
+ *
  * Changes since 6.x documented at http://drupal.org/node/224333
  */
 define('POTX_API_7', 7);
@@ -124,7 +131,7 @@ define('POTX_CONTEXT_ERROR', FALSE);
  * @param $api_version
  *   Drupal API version to work with.
  */
-function _potx_process_file($file_path, $strip_prefix = 0, $save_callback = '_potx_save_string', $version_callback = '_potx_save_version', $api_version = POTX_API_6) {
+function _potx_process_file($file_path, $strip_prefix = 0, $save_callback = '_potx_save_string', $version_callback = '_potx_save_version', $api_version = POTX_API_CURRENT) {
   global $_potx_tokens, $_potx_lookup;
 
   // Figure out the basename and extension to select extraction method.
@@ -173,10 +180,10 @@ function _potx_process_file($file_path, $strip_prefix = 0, $save_callback = '_po
     }
     // Collect line numbers.
     if (is_array($token)) {
-      $line_number += count(split("\n", $token[1])) - 1;
+      $line_number += count(explode("\n", $token[1])) - 1;
     }
     else {
-      $line_number += count(split("\n", $token)) - 1;
+      $line_number += count(explode("\n", $token)) - 1;
     }
   }
   unset($raw_tokens);
@@ -211,7 +218,7 @@ function _potx_process_file($file_path, $strip_prefix = 0, $save_callback = '_po
     if ($api_version < POTX_API_7) {
       _potx_find_perm_hook($file_name, $name_parts['filename'], $save_callback);
     }
-    if ($api_version > POTX_API_5) {  
+    if ($api_version > POTX_API_5) {
       _potx_find_menu_hook($file_name, $name_parts['filename'], $save_callback);
     }
   }
@@ -263,7 +270,7 @@ function _potx_process_file($file_path, $strip_prefix = 0, $save_callback = '_po
  * @param $api_version
  *   Drupal API version to work with.
  */
-function _potx_build_files($string_mode = POTX_STRING_RUNTIME, $build_mode = POTX_BUILD_SINGLE, $force_name = 'general',  $save_callback = '_potx_save_string', $version_callback = '_potx_save_version', $header_callback = '_potx_get_header', $template_export_langcode = NULL, $translation_export_langcode = NULL, $api_version = POTX_API_6) {
+function _potx_build_files($string_mode = POTX_STRING_RUNTIME, $build_mode = POTX_BUILD_SINGLE, $force_name = 'general',  $save_callback = '_potx_save_string', $version_callback = '_potx_save_version', $header_callback = '_potx_get_header', $template_export_langcode = NULL, $translation_export_langcode = NULL, $api_version = POTX_API_CURRENT) {
   global $_potx_store;
 
   // Get strings and versions by reference.
@@ -293,14 +300,14 @@ function _potx_build_files($string_mode = POTX_STRING_RUNTIME, $build_mode = POT
         }
         $last_location = dirname($file);
       }
-  
+
       // Mark duplicate strings (both translated in the app and in the installer).
       $comment = join(" ", $occured);
       if (strpos($comment, '(dup)') !== FALSE) {
         $comment = '(duplicate) '. str_replace('(dup)', '', $comment);
       }
       $output = "#: $comment\n";
-  
+
       if ($build_mode == POTX_BUILD_SINGLE) {
         // File name forcing in single mode.
         $file_name = $force_name;
@@ -323,8 +330,8 @@ function _potx_build_files($string_mode = POTX_STRING_RUNTIME, $build_mode = POT
           $file_name = str_replace('/', '-', $last_location);
         }
       }
-      
-  
+
+
       if (strpos($string, "\0") !== FALSE) {
         // Plural strings have a null byte delimited format.
         list($singular, $plural) = explode("\0", $string);
@@ -387,16 +394,16 @@ function _potx_build_files($string_mode = POTX_STRING_RUNTIME, $build_mode = POT
  * @param $api_version
  *   Drupal API version to work with.
  */
-function _potx_translation_export($translation_export_langcode, $string, $plural = NULL, $api_version = POTX_API_6) {
+function _potx_translation_export($translation_export_langcode, $string, $plural = NULL, $api_version = POTX_API_CURRENT) {
   include_once 'includes/locale.inc';
-  
+
   // Stip out slash escapes.
   $string = stripcslashes($string);
-  
+
   // Column and table name changed between versions.
   $language_column = $api_version > POTX_API_5 ? 'language' : 'locale';
   $language_table  = $api_version > POTX_API_5 ? 'languages' : 'locales_meta';
-  
+
   if (!isset($plural)) {
     // Single string to look translation up for.
     if ($translation = db_result(db_query("SELECT t.translation FROM {locales_source} s LEFT JOIN {locales_target} t ON t.lid = s.lid WHERE s.source = '%s' AND t.{$language_column} = '%s'", $string, $translation_export_langcode))) {
@@ -404,7 +411,7 @@ function _potx_translation_export($translation_export_langcode, $string, $plural
     }
     return "msgstr \"\"\n";
   }
-  
+
   else {
     // String with plural variants. Fill up source string array first.
     $plural = stripcslashes($plural);
@@ -427,7 +434,7 @@ function _potx_translation_export($translation_export_langcode, $string, $plural
       }
       $plural_index++;
     }
-    
+
     $output = '';
     if (count($strings)) {
       // Source string array was done, so export translations.
@@ -460,7 +467,7 @@ function _potx_translation_export($translation_export_langcode, $string, $plural
  * @param $api_version
  *   Drupal API version to work with.
  */
-function _potx_get_header($file, $template_export_langcode = NULL, $api_version = POTX_API_6) {
+function _potx_get_header($file, $template_export_langcode = NULL, $api_version = POTX_API_CURRENT) {
   // We only have language to use if we should export with that langcode.
   $language = NULL;
   if (isset($template_export_langcode)) {
@@ -522,7 +529,7 @@ function _potx_write_files($http_filename = NULL, $content_disposition = 'inline
         $filelist = 'No version information was available in the source files.';
       }
       $output = str_replace('--VERSIONS--', $filelist, $contents['header'] . $contents['strings']);
-  
+
       if ($http_filename) {
         // HTTP output.
         header('Content-Type: text/plain; charset=utf-8');
@@ -579,7 +586,7 @@ function _potx_format_quoted_string($str) {
  */
 function _potx_marker_error($file, $line, $marker, $ti, $error, $docs_url = NULL) {
   global $_potx_tokens;
-  
+
   $tokens = '';
   $ti += 2;
   $tc = count($_potx_tokens);
@@ -627,7 +634,7 @@ function _potx_marker_error($file, $line, $marker, $ti, $error, $docs_url = NULL
 function potx_status($op, $value = NULL, $file = NULL, $line = NULL, $excerpt = NULL, $docs_url = NULL) {
   static $mode = POTX_STATUS_CLI;
   static $messages = array();
-  
+
   switch ($op) {
     case 'set':
       // Setting the reporting mode.
@@ -644,7 +651,7 @@ function potx_status($op, $value = NULL, $file = NULL, $line = NULL, $excerpt = 
 
     case 'error':
     case 'status':
-      
+
       // Location information is required in 3 of the four possible reporting
       // modes as part of the error message. The structured mode needs the
       // file, line and excerpt info separately, not in the text.
@@ -667,13 +674,13 @@ function potx_status($op, $value = NULL, $file = NULL, $line = NULL, $excerpt = 
           }
         }
       }
-      
+
       // Documentation helpers are provided as readable text in most modes.
       $read_more = '';
       if (($mode != POTX_STATUS_STRUCTURED) && isset($docs_url)) {
         $read_more = ($mode == POTX_STATUS_CLI) ? t('Read more at @url', array('@url' => $docs_url)) : t('Read more at <a href="@url">@url</a>', array('@url' => $docs_url));
       }
-      
+
       // Error message or progress text to display.
       switch ($mode) {
         case POTX_STATUS_MESSAGE:
@@ -717,7 +724,7 @@ function potx_status($op, $value = NULL, $file = NULL, $line = NULL, $excerpt = 
  */
 function _potx_find_t_calls($file, $save_callback, $function_name = 't', $string_mode = POTX_STRING_RUNTIME) {
   global $_potx_tokens, $_potx_lookup;
-  
+
   // Lookup tokens by function name.
   if (isset($_potx_lookup[$function_name])) {
     foreach ($_potx_lookup[$function_name] as $ti) {
@@ -760,7 +767,7 @@ function _potx_find_t_calls($file, $save_callback, $function_name = 't', $string
  */
 function _potx_find_t_calls_with_context($file, $save_callback, $function_name = 't', $string_mode = POTX_STRING_RUNTIME) {
   global $_potx_tokens, $_potx_lookup;
-  
+
   // Lookup tokens by function name.
   if (isset($_potx_lookup[$function_name])) {
     foreach ($_potx_lookup[$function_name] as $ti) {
@@ -804,7 +811,7 @@ function _potx_find_t_calls_with_context($file, $save_callback, $function_name =
  */
 function _potx_find_watchdog_calls($file, $save_callback) {
   global $_potx_tokens, $_potx_lookup;
-  
+
   // Lookup tokens by function name.
   if (isset($_potx_lookup['watchdog'])) {
     foreach ($_potx_lookup['watchdog'] as $ti) {
@@ -844,7 +851,7 @@ function _potx_find_watchdog_calls($file, $save_callback) {
  * @param $api_version
  *   Drupal API version to work with.
  */
-function _potx_find_format_plural_calls($file, $save_callback, $api_version = POTX_API_6) {
+function _potx_find_format_plural_calls($file, $save_callback, $api_version = POTX_API_CURRENT) {
   global $_potx_tokens, $_potx_lookup;
 
   if (isset($_potx_lookup['format_plural'])) {
@@ -984,7 +991,7 @@ function _potx_skip_args($here) {
   $nesting = 0;
   // Go through to either the end of the function call or to a comma
   // after the current position on the same nesting level.
-  while (!(($_potx_tokens[$here] == ',' && $nesting == 0) || 
+  while (!(($_potx_tokens[$here] == ',' && $nesting == 0) ||
            ($_potx_tokens[$here] == ')' && $nesting == -1))) {
     $here++;
     if (!is_array($_potx_tokens[$here])) {
@@ -997,7 +1004,7 @@ function _potx_skip_args($here) {
     }
   }
   // If we run out of nesting, it means we reached the end of the function call,
-  // so we skipped the arguments but did not find meat for looking at the 
+  // so we skipped the arguments but did not find meat for looking at the
   // specified context.
   return ($nesting == 0 ? $here : FALSE);
 }
@@ -1021,7 +1028,7 @@ function _potx_find_context($tf, $ti, $file, $function_name) {
   // Start from after the comma and skip the possible arguments for the function
   // so we can look for the context.
   if (($ti = _potx_skip_args($ti)) && ($_potx_tokens[$ti] == ',')) {
-    // Now we actually might have some definition for a context. The $options 
+    // Now we actually might have some definition for a context. The $options
     // argument is coming up, which might have a key for context.
     list($com, $arr, $par) = array($_potx_tokens[$ti], $_potx_tokens[$ti+1], $_potx_tokens[$ti+2]);
     if ($com == ',' && $arr[1] == 'array' && $par == '(') {
@@ -1029,7 +1036,7 @@ function _potx_find_context($tf, $ti, $file, $function_name) {
       $ti += 3;
       // Go through to either the end of the array or to the key definition of
       // context on the same nesting level.
-      while (!((is_array($_potx_tokens[$ti]) && (in_array($_potx_tokens[$ti][1], array('"context"', "'context'"))) && ($_potx_tokens[$ti][0] == T_CONSTANT_ENCAPSED_STRING) && ($nesting == 0)) || 
+      while (!((is_array($_potx_tokens[$ti]) && (in_array($_potx_tokens[$ti][1], array('"context"', "'context'"))) && ($_potx_tokens[$ti][0] == T_CONSTANT_ENCAPSED_STRING) && ($nesting == 0)) ||
                ($_potx_tokens[$ti] == ')' && $nesting == -1))) {
         $ti++;
         if (!is_array($_potx_tokens[$ti])) {
@@ -1061,7 +1068,7 @@ function _potx_find_context($tf, $ti, $file, $function_name) {
       }
     }
   }
-  
+
   // After skipping args, we did not find a comma to look for $options.
   return POTX_CONTEXT_NONE;
 }
@@ -1078,7 +1085,7 @@ function _potx_find_context($tf, $ti, $file, $function_name) {
  */
 function _potx_find_menu_hook($file, $filebase, $save_callback) {
   global $_potx_tokens, $_potx_lookup;
-  
+
   if (isset($_potx_lookup[$filebase .'_menu']) && is_array($_potx_lookup[$filebase .'_menu'])) {
     // We have a menu hook in this file.
     foreach ($_potx_lookup[$filebase .'_menu'] as $ti) {
@@ -1117,7 +1124,7 @@ function _potx_find_menu_hook($file, $filebase, $save_callback) {
  * @param $api_version
  *   Drupal API version to work with.
  */
-function _potx_find_language_names($file, $save_callback, $api_version = POTX_API_6) {
+function _potx_find_language_names($file, $save_callback, $api_version = POTX_API_CURRENT) {
   global $_potx_tokens, $_potx_lookup;
 
   foreach ($_potx_lookup[$api_version > POTX_API_5 ? '_locale_get_predefined_list' : '_locale_get_iso639_list'] as $ti) {
@@ -1126,7 +1133,7 @@ function _potx_find_language_names($file, $save_callback, $api_version = POTX_AP
       break;
     }
   }
-    
+
   $end = _potx_find_end_of_function($ti);
   $ti += 7; // function name, (, ), {, return, array, (
   while ($ti < $end) {
@@ -1177,7 +1184,7 @@ function _potx_find_version_number($code, $file, $version_callback) {
  * @param $api_version
  *   Drupal API version to work with.
  */
-function _potx_add_date_strings($file, $save_callback, $api_version = POTX_API_6) {
+function _potx_add_date_strings($file, $save_callback, $api_version = POTX_API_CURRENT) {
   for ($i = 1; $i <= 12; $i++) {
     $stamp = mktime(0, 0, 0, $i, 1, 1971);
     if ($api_version > POTX_API_6) {
@@ -1217,7 +1224,7 @@ function _potx_add_date_strings($file, $save_callback, $api_version = POTX_API_6
  * @param $api_version
  *   Drupal API version to work with.
  */
-function _potx_add_format_interval_strings($file, $save_callback, $api_version = POTX_API_6) {
+function _potx_add_format_interval_strings($file, $save_callback, $api_version = POTX_API_CURRENT) {
   $components = array(
     '1 year' => '@count years',
     '1 week' => '@count weeks',
@@ -1248,7 +1255,7 @@ function _potx_add_format_interval_strings($file, $save_callback, $api_version =
  * @param $api_version
  *   Drupal API version to work with.
  */
-function _potx_add_default_region_names($file, $save_callback, $api_version = POTX_API_6) {
+function _potx_add_default_region_names($file, $save_callback, $api_version = POTX_API_CURRENT) {
   $regions = array(
     'left' => 'Left sidebar',
     'right' => 'Right sidebar',
@@ -1280,7 +1287,7 @@ function _potx_add_default_region_names($file, $save_callback, $api_version = PO
  * @param $api_version
  *   Drupal API version to work with.
  */
-function _potx_find_info_file_strings($file_path, $file_name, $save_callback, $api_version = POTX_API_6) {
+function _potx_find_info_file_strings($file_path, $file_name, $save_callback, $api_version = POTX_API_CURRENT) {
   $info = array();
 
   if (file_exists($file_path)) {
@@ -1296,7 +1303,7 @@ function _potx_find_info_file_strings($file_path, $file_name, $save_callback, $a
       $save_callback($info[$key], POTX_CONTEXT_NONE, $file_name);
     }
   }
-  
+
   // Add regions names from themes.
   if (isset($info['regions']) && is_array($info['regions'])) {
     foreach ($info['regions'] as $region => $region_name) {
@@ -1316,7 +1323,7 @@ function _potx_find_info_file_strings($file_path, $file_name, $save_callback, $a
  */
 function _potx_parse_js_file($code, $file, $save_callback) {
   $js_string_regex = '(?:(?:\'(?:\\\\\'|[^\'])*\'|"(?:\\\\"|[^"])*")(?:\s*\+\s*)?)+';
-  
+
   // Match all calls to Drupal.t() in an array.
   // Note: \s also matches newlines with the 's' modifier.
   preg_match_all('~[^\w]Drupal\s*\.\s*t\s*\(\s*('. $js_string_regex .')\s*[,\)]~s', $code, $t_matches, PREG_SET_ORDER);
@@ -1345,7 +1352,7 @@ function _potx_parse_js_file($code, $file, $save_callback) {
       );
     }
   }
-  
+
   // Any remaining Drupal.t() or Drupal.formatPlural() calls are evil. This
   // regex is not terribly accurate (ie. code wrapped inside will confuse
   // the match), but we only need some unique part to identify the faulty calls.
@@ -1377,10 +1384,12 @@ function _potx_parse_js_string($string) {
  *   (ie. to collect files for a specific module).
  * @param $api_version
  *   Drupal API version to work with.
- * @todo
- *   Add folder exceptions for other version control systems.
+ * @param $skip_self
+ *   Skip potx related files. To be used when command line type of extraction
+ *   is used and the potx files at in the webroot, and their strings should not
+ *   end up in the generated template. Set to TRUE if skiping is needed.
  */
-function _potx_explore_dir($path = '', $basename = '*', $api_version = POTX_API_6) {
+function _potx_explore_dir($path = '', $basename = '*', $api_version = POTX_API_CURRENT, $skip_self = FALSE) {
   // It would be so nice to just use GLOB_BRACE, but it is not available on all
   // operarting systems, so we are working around the missing functionality.
   $extensions = array('php', 'inc', 'module', 'engine', 'theme', 'install', 'info', 'profile');
@@ -1402,21 +1411,21 @@ function _potx_explore_dir($path = '', $basename = '*', $api_version = POTX_API_
       }
     }
   }
-  
+
   // Grab subdirectories.
   $dirs = glob($path .'*', GLOB_ONLYDIR);
   if (is_array($dirs)) {
     foreach ($dirs as $dir) {
-      if (!preg_match("!(^|.+/)(CVS|.svn|.git)$!", $dir)) {
+      if (!preg_match("!(^|.+/)(CVS|\.svn|\.git|tests)$!", $dir)) {
         $files = array_merge($files, _potx_explore_dir("$dir/", $basename));
       }
     }
   }
-  // Skip our own files, because we don't want to get strings from them 
-  // to appear in the output, especially with the command line interface.
-  // TODO: fix this to be able to autogenerate templates for potx itself.
+
+  // Skip API files. Also skip our own files, if that was requested.
+  $skip_pattern = ($skip_self ? '!(potx-cli\.php|potx\.inc|\.api\.php)$!' : '!\.api\.php$!');
   foreach ($files as $id => $file_name) {
-    if (preg_match('!(potx-cli.php|potx.inc)$!', $file_name)) {
+    if (preg_match($skip_pattern, $file_name)) {
       unset($files[$id]);
     }
   }
@@ -1436,7 +1445,7 @@ function _potx_explore_dir($path = '', $basename = '*', $api_version = POTX_API_
  */
 function _potx_save_version($value = NULL, $file = NULL) {
   global $_potx_versions;
-  
+
   if (isset($value)) {
     $_potx_versions[$file] = $value;
   }
@@ -1454,7 +1463,7 @@ function _potx_save_version($value = NULL, $file = NULL) {
  *   The string value. If NULL, the array of collected values
  *   are returned for the given $string_mode.
  * @param $context
- *   From Drupal 7, separate contexts are supported. POTX_CONTEXT_NONE is 
+ *   From Drupal 7, separate contexts are supported. POTX_CONTEXT_NONE is
  *   the default, if the code does not specify a context otherwise.
  * @param $file
  *   Name of file where the string was found.
@@ -1466,8 +1475,18 @@ function _potx_save_version($value = NULL, $file = NULL) {
  */
 function _potx_save_string($value = NULL, $context = NULL, $file = NULL, $line = 0, $string_mode = POTX_STRING_RUNTIME) {
   global $_potx_strings, $_potx_install;
-  
+
   if (isset($value)) {
+    
+    // Value set but empty. Mark error on empty translatable string. Only trim
+    // for empty string checking, since we should store leading/trailing
+    // whitespace as it appears in the string otherwise.
+    $check_empty = trim($value);
+    if (empty($check_empty)) {
+      potx_status('error', t('Empty string attempted to be localized. Please do not leave test code for localization in your source.'), $file, $line);
+      return;
+    }
+    
     switch ($string_mode) {
       case POTX_STRING_BOTH:
         // Mark installer strings as duplicates of runtime strings if
@@ -1503,11 +1522,11 @@ if (!function_exists('drupal_parse_info_file')) {
   // Directly copied from common.inc,v 1.704 2007/10/19 10:30:54 goba Exp.
   function drupal_parse_info_file($filename) {
     $info = array();
-  
+
     if (!file_exists($filename)) {
       return $info;
     }
-  
+
     $data = file_get_contents($filename);
     if (preg_match_all('
       @^\s*                           # Start at the beginning of a line, ignoring leading whitespace
@@ -1529,12 +1548,12 @@ if (!function_exists('drupal_parse_info_file')) {
           $$var = isset($match[++$i]) ? $match[$i] : '';
         }
         $value = stripslashes(substr($value1, 1, -1)) . stripslashes(substr($value2, 1, -1)) . $value3;
-  
+
         // Parse array syntax
         $keys = preg_split('/\]?\[/', rtrim($key, ']'));
         $last = array_pop($keys);
         $parent = &$info;
-  
+
         // Create nested arrays
         foreach ($keys as $key) {
           if ($key == '') {
@@ -1545,12 +1564,12 @@ if (!function_exists('drupal_parse_info_file')) {
           }
           $parent = &$parent[$key];
         }
-  
+
         // Handle PHP constants
         if (defined($value)) {
           $value = constant($value);
         }
-  
+
         // Insert actual value
         if ($last == '') {
           $last = count($parent);
@@ -1558,7 +1577,7 @@ if (!function_exists('drupal_parse_info_file')) {
         $parent[$last] = $value;
       }
     }
-  
+
     return $info;
   }
 }

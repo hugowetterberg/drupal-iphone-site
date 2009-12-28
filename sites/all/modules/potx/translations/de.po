@@ -1,4 +1,4 @@
-# $Id: de.po,v 1.1.4.4 2009/04/04 09:35:31 hass Exp $
+# $Id: de.po,v 1.1.4.4.4.1 2009/11/09 11:45:18 thomaszahreddin Exp $
 #
 # German translation of Template extractor
 # Copyright Uwe L. Korn <uwelk@xhochy.org>
@@ -10,173 +10,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2009-04-04 11:11+0200\n"
-"PO-Revision-Date: 2009-04-04 11:34+0100\n"
-"Last-Translator: Alexander Haß\n"
+"POT-Creation-Date: 2009-11-09 10:16+0100\n"
+"PO-Revision-Date: 2009-11-09 10:24+0100\n"
+"Last-Translator: Thomas Zahreddin <thomas@voicehero.net>\n"
 "Language-Team: German <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-
-#: potx-cli.php:110
-msgid "Double quoted test string"
-msgstr ""
-
-#: potx-cli.php:111
-msgid "Test string with %variable"
-msgstr ""
-
-#: potx-cli.php:111
-msgid "variable replacement"
-msgstr ""
-
-#: potx-cli.php:112
-msgid "Single qouted test string"
-msgstr ""
-
-#: potx-cli.php:113
-msgid ""
-"Special\n"
-"characters"
-msgstr ""
-
-#: potx-cli.php:114
-msgid ""
-"Special\\n"
-"characters"
-msgstr ""
-
-#: potx-cli.php:116
-msgid "Embedded $variable"
-msgstr ""
-
-#: potx-cli.php:117
-msgid "more $special characters"
-msgstr ""
-
-#: potx-cli.php:118
-msgid "even more \\$special characters"
-msgstr ""
-
-#: potx-cli.php:119
-msgid "Mixed 'quote' \"marks\""
-msgstr ""
-
-#: potx-cli.php:120
-msgid "Mixed \"quote\" 'marks'"
-msgstr ""
-
-#: potx-cli.php:121;122
-#, fuzzy
-msgid "Some repeating text"
-msgstr "Sich wiederholender Text"
-
-#: potx-cli.php:127
-msgid "Test string with @complex %variables !smile"
-msgstr ""
-
-#: potx-cli.php:127
-msgid "variables"
-msgstr "Variablen"
-
-#: potx-cli.php:136
-msgid "Help called"
-msgstr ""
-
-#: potx-cli.php:137
-msgid "This is some help"
-msgstr ""
-
-#: potx-cli.php:124;125
-msgid "one day"
-msgid_plural "@count days"
-msgstr[0] "ein Tag"
-msgstr[1] "@count Tage"
-
-#: potx.inc:624
-#, fuzzy
-msgid "At %excerpt in %file on line %line."
-msgstr "Bei %excerpt in %file in Zeile %line."
-
-#: potx.inc:627
-#, fuzzy
-msgid "In %file on line %line."
-msgstr "In %file in Zeile %line."
-
-#: potx.inc:632
-#, fuzzy
-msgid "At %excerpt in %file."
-msgstr "Bei %excerpt in %file."
-
-#: potx.inc:635
-#, fuzzy
-msgid "In %file."
-msgstr "In %file."
-
-#: potx.inc:643
-msgid "Read more at @url"
-msgstr ""
-
-#: potx.inc:643
-msgid "Read more at <a href=\"@url\">@url</a>"
-msgstr ""
-
-#: potx.inc:702
-msgid "The first parameter to @function() should be a literal string. There should be no variables, concatenation, constants or other non-literal strings there."
-msgstr ""
-
-#: potx.inc:739
-msgid "The first two watchdog() parameters should be literal strings. There should be no variables, concatenation, constants or even a t() call there."
-msgstr ""
-
-#: potx.inc:794
-msgid "In format_plural(), the singular and plural strings should be literal strings. There should be no variables, concatenation, constants or even a t() call there."
-msgstr ""
-
-#: potx.inc:840
-msgid "%hook should have an array of literal string permission names."
-msgstr ""
-
-#: potx.inc:904
-msgid "Invalid menu %element definition found in %hook. Title and description keys of the menu array should be literal strings."
-msgstr ""
-
-#: potx.inc:1125
-msgid "Drupal.t() calls should have a single literal string as their first parameter."
-msgstr ""
-
-#: potx.inc:1125
-msgid "The singular and plural string parameters on Drupal.formatPlural() calls should be literal strings, plural containing a @count placeholder."
-msgstr ""
-
-#: potx.info:0
-msgid "Translation template extractor"
-msgstr "Übersetzungsvorlagenextrahierer"
-
-#: potx.info:0
-msgid "Provides a web interface and an API to extract translatable text from the sources of installed components."
-msgstr "Stellt ein Webinterface und ein API bereit, um übersetzbaren Text von den Quellen der installierten Komponenten zu extrahieren."
-
-#: potx.info:0
-msgid "Multilanguage"
-msgstr "Mehrsprachig"
-
-#: (duplicate) potx.install:22
-msgid "PHP tokenizer for Translation template extractor"
-msgstr "PHP-Tokenizer zum Extrahieren der Übersetzungsvorlagen"
-
-#: (duplicate) potx.install:23
-msgid "Available"
-msgstr "Verfügbar"
-
-#: (duplicate) potx.install:23
-msgid "Not available"
-msgstr "Nicht verfügbar"
-
-#: (duplicate) potx.install:26
-msgid "The <a href=\"@tokenizer\">PHP tokenizer functions</a> are required."
-msgstr "Die <a href=\"@tokenizer\">PHP-Tokenizer-Funktionen</a> werden benötigt."
 
 # not literally
 #: potx.module:20
@@ -249,5 +90,192 @@ msgstr "Schnittstellen-Text-Übersetzbarkeit"
 
 #: potx.module:350
 msgid "Read the documentation"
-msgstr ""
+msgstr "Ziehen Sie die Dokumentation zu Rate."
+
+#: (duplicate) potx.install:22
+msgid "PHP tokenizer for Translation template extractor"
+msgstr "PHP-Tokenizer zum Extrahieren der Übersetzungsvorlagen"
+
+#: (duplicate) potx.install:23
+msgid "Available"
+msgstr "Verfügbar"
+
+#: (duplicate) potx.install:23
+msgid "Not available"
+msgstr "Nicht verfügbar"
+
+#: (duplicate) potx.install:26
+msgid "The <a href=\"@tokenizer\">PHP tokenizer functions</a> are required."
+msgstr "Die <a href=\"@tokenizer\">PHP-Tokenizer-Funktionen</a> werden benötigt."
+
+#: (duplicate) potx.install:38
+msgid "Localization Server"
+msgstr "Localization Server"
+
+#: (duplicate) potx.install:39
+msgid "Translation template extractor compatible version"
+msgstr "Translation template extractor (potx) Modul zum Extrahieren der Übersetzungsvorlagen (*.pot)."
+
+#: (duplicate) potx.install:42
+msgid "The Localization Server should be from a development snapshot later then July 19th, 2009 or at least 6.x-1.0-alpha4 to be compatible with this Translation template extractor."
+msgstr "Der Localization Server sollte aktueller sein als 6.x-1.0-alpha4, um mit dieser Version von Translation template extractor (potx)."
+
+#: (duplicate) potx.install:44
+msgid "Not compatible with Translation template extractor"
+msgstr "Nicht kompatibel mit Translation template extractor"
+
+#: potx.info:0
+msgid "Translation template extractor"
+msgstr "Übersetzungsvorlagenextrahierer"
+
+#: potx.info:0
+msgid "Provides a web interface and an API to extract translatable text from the sources of installed components."
+msgstr "Stellt ein Webinterface und ein API bereit, um übersetzbaren Text von den Quellen der installierten Komponenten zu extrahieren."
+
+#: potx.info:0
+msgid "Multilanguage"
+msgstr "Mehrsprachig"
+
+#, fuzzy
+#~ msgid "Double quoted test string"
+#~ msgstr "Testzeichenkette in doppelten Anführungszeichen"
+
+#, fuzzy
+#~ msgid "Test string with %variable"
+#~ msgstr "Testzeichenkette mit %variable"
+
+#, fuzzy
+#~ msgid "variable replacement"
+#~ msgstr "Wert der Variablen"
+
+#, fuzzy
+#~ msgid "Single qouted test string"
+#~ msgstr "Testzeichenkette in einfachen Anführungszeichen"
+
+#, fuzzy
+#~ msgid ""
+#~ "Special\n"
+#~ "characters"
+#~ msgstr "Sonderzeichen"
+
+#, fuzzy
+#~ msgid "Special\\ncharacters"
+#~ msgstr "Sonderzeichen"
+
+#, fuzzy
+#~ msgid "Embedded $variable"
+#~ msgstr "Eingebettete $variable"
+
+#, fuzzy
+#~ msgid "more $special characters"
+#~ msgstr "weitere $special Zeichen"
+
+#, fuzzy
+#~ msgid "even more \\$special characters"
+#~ msgstr "und noch mehr \\$special Zeichen"
+
+#, fuzzy
+#~ msgid "Mixed 'quote' \"marks\""
+#~ msgstr "Gemischte 'Anführungs-'\"zeichen\""
+
+#, fuzzy
+#~ msgid "Mixed \"quote\" 'marks'"
+#~ msgstr "Gemischte \"Anführungs-\"'zeichen'"
+
+#, fuzzy
+#~ msgid "Some repeating text"
+#~ msgstr "Wiederholung..."
+
+#, fuzzy
+#~ msgid "Test string with @complex %variables !smile"
+#~ msgstr "Testzeichenkette mit @complex %variables !smile"
+#~ msgid "variables"
+#~ msgstr "Variablen"
+
+#, fuzzy
+#~ msgid "Help called"
+#~ msgstr "Hilfe aufgerufen"
+
+#, fuzzy
+#~ msgid "This is some help"
+#~ msgstr "diese Hilfe anzeigen"
+#~ msgid "one day"
+#~ msgid_plural "@count days"
+#~ msgstr[0] "ein Tag"
+#~ msgstr[1] "@count Tage"
+
+#, fuzzy
+#~ msgid "At %excerpt in %file on line %line."
+#~ msgstr "Ausnahme %excerpt in %file, Zeile %line aufgetreten."
+
+#, fuzzy
+#~ msgid "In %file on line %line."
+#~ msgstr "In %file in Zeile %line."
+
+#, fuzzy
+#~ msgid "At %excerpt in %file."
+#~ msgstr "Eine Ausnahme %excerpt in %file."
+
+#, fuzzy
+#~ msgid "In %file."
+#~ msgstr "In Datei %file."
+
+#, fuzzy
+#~ msgid "Read more at @url"
+#~ msgstr "Weiterlesen unter @url"
+
+#, fuzzy
+#~ msgid "Read more at <a href=\"@url\">@url</a>"
+#~ msgstr "Mehr unter <a href=\"@url\">@url</a>"
+
+#, fuzzy
+#~ msgid ""
+#~ "The first two watchdog() parameters should be literal strings. There "
+#~ "should be no variables, concatenation, constants or even a t() call there."
+#~ msgstr ""
+#~ "Die ersten beiden Parameter der Funktion watchdog() sollen direkt "
+#~ "darstellbare Zeichenketten sein,  keine Variablen, keine zusammengesetzte "
+#~ "Zeichenketten (concatenation) oder andere nicht direkt darstellbare "
+#~ "Zeichen."
+
+#, fuzzy
+#~ msgid ""
+#~ "In format_plural(), the singular and plural strings should be literal "
+#~ "strings. There should be no variables, concatenation, constants or even a "
+#~ "t() call there."
+#~ msgstr ""
+#~ "In der Funktion format_plural() sollten die Zeichenketten für Einzahl und "
+#~ "Mehrzahl jeweils direkt darstellbare Zeichen sein, also keine Variable, "
+#~ "keine zusammengesetzte Zeichenkette (concatenation) oder andere nicht "
+#~ "direkt darstellbare Zeichen."
+
+#, fuzzy
+#~ msgid "%hook should have an array of literal string permission names."
+#~ msgstr ""
+#~ "%hook soll ein Array sein mit einer Zeichenkette für die Berechtigungen."
+
+#, fuzzy
+#~ msgid ""
+#~ "Invalid menu %element definition found in %hook. Title and description "
+#~ "keys of the menu array should be literal strings."
+#~ msgstr ""
+#~ "Ungültiges Menü %element gefunden in %hook. Titel und Beschreibung des "
+#~ "Menü-Arrays sollten nur direkt darstellbare Zeichen enthalten."
+
+#, fuzzy
+#~ msgid ""
+#~ "Drupal.t() calls should have a single literal string as their first "
+#~ "parameter."
+#~ msgstr ""
+#~ "Aufrufe der Funktion t() sollten nur direkt darstellbare Zeichen als "
+#~ "ersten Parameter im Funktionsaufruf enthalten."
+
+#, fuzzy
+#~ msgid ""
+#~ "The singular and plural string parameters on Drupal.formatPlural() calls "
+#~ "should be literal strings, plural containing a @count placeholder."
+#~ msgstr ""
+#~ "Die Zeichenkette für Einzahl und Mehrzahl für die Funktion format_plural"
+#~ "() sollte ausschließlich direkt darstellbare Zeichen enthalten, in die "
+#~ "Pluralform wird @count aufgenommen: \"@count Stücke\"."
 

@@ -1,6 +1,6 @@
 #!/usr/bin/php
 <?php
-// $Id: potx-cli.php,v 1.1.2.6.4.4 2008/10/13 21:55:18 goba Exp $
+// $Id: potx-cli.php,v 1.1.2.6.4.4.4.2 2009/11/17 12:25:18 goba Exp $
 
 /**
  * @file
@@ -20,13 +20,13 @@ if (isset($_SERVER['REQUEST_METHOD'])) {
 // Functions shared with web based interface
 include dirname(__FILE__) .'/potx.inc';
 
-// We need a lot of resources probably, so try to set memory 
+// We need a lot of resources probably, so try to set memory
 // limit higher and set unlimited time for our work.
 $memory_limit = @ini_get('memory_limit');
 if ($memory_limit != '' && (int)$memory_limit < 16) {
   // ini_get returns the original set value, such as "32M",
   // so we check for the int version. Before PHP 5.2, this
-  // limit was less then 16M. 
+  // limit was less then 16M.
   @ini_set('memory_limit', 16777216);
 }
 @set_time_limit(0);
@@ -61,7 +61,7 @@ Possible options:
      Only perform a 'self test'.
  --help
      Display this message.
- 
+
 END;
       return 1;
       break;
@@ -82,14 +82,14 @@ END;
       $files = array(__FILE__);
       break;
     case '--auto' :
-      $files = _potx_explore_dir();
+      $files = _potx_explore_dir('', '*', POTX_API_CURRENT, TRUE);
       break;
   }
 }
 
 // Fall back to --auto, if --files are not specified
 if (empty($files)) {
-  $files = _potx_explore_dir();
+  $files = _potx_explore_dir('', '*', POTX_API_CURRENT, TRUE);
 }
 
 foreach ($files as $file) {
