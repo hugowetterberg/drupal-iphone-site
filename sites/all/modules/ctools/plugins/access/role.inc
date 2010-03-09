@@ -1,5 +1,5 @@
 <?php
-// $Id: role.inc,v 1.7.2.1 2009/10/01 22:00:08 merlinofchaos Exp $
+// $Id: role.inc,v 1.7.2.2 2009/11/13 00:44:16 merlinofchaos Exp $
 
 /**
  * @file
@@ -7,20 +7,19 @@
  */
 
 /**
- * Implementation of specially named hook_ctools_access().
+ * Plugins are described by creating a $plugin array which will be used
+ * by the system that includes this file.
  */
-function ctools_role_ctools_access() {
-  return array(
-    'title' => t("User: role"),
-    'description' => t('Control access by role.'),
-    'callback' => 'ctools_role_ctools_access_check',
-    'default' => array('rids' => array()),
-    'settings form' => 'ctools_role_ctools_access_settings',
-    'settings form submit' => 'ctools_role_ctools_access_settings_submit',
-    'summary' => 'ctools_role_ctools_acesss_summary',
-    'required context' => new ctools_context_required(t('User'), 'user'),
-  );
-}
+$plugin = array(
+  'title' => t("User: role"),
+  'description' => t('Control access by role.'),
+  'callback' => 'ctools_role_ctools_access_check',
+  'default' => array('rids' => array()),
+  'settings form' => 'ctools_role_ctools_access_settings',
+  'settings form submit' => 'ctools_role_ctools_access_settings_submit',
+  'summary' => 'ctools_role_ctools_acesss_summary',
+  'required context' => new ctools_context_required(t('User'), 'user'),
+);
 
 /**
  * Settings form for the 'by role' access plugin

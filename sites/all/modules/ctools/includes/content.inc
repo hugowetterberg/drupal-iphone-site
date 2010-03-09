@@ -1,5 +1,5 @@
 <?php
-// $Id: content.inc,v 1.12.2.3 2009/10/21 21:25:39 merlinofchaos Exp $
+// $Id: content.inc,v 1.12.2.4 2010/01/29 19:26:13 merlinofchaos Exp $
 
 /**
  * @file
@@ -126,7 +126,8 @@ function ctools_get_content_types() {
  *   An array of all subtypes available.
  */
 function ctools_content_get_subtypes($type) {
-  // @todo cache -- multiple calls on the same page can be intensive.
+  static $cache = array();
+
   $subtypes = array();
 
   if (is_array($type)) {
@@ -134,6 +135,10 @@ function ctools_content_get_subtypes($type) {
   }
   else {
     $plugin = ctools_get_content_type($type);
+  }
+
+  if (isset($cache[$plugin['name']])) {
+    return $cache[$plugin['name']];
   }
 
   if (isset($plugin['content types'])) {
@@ -153,6 +158,8 @@ function ctools_content_get_subtypes($type) {
     // Use exact name since this is a modify by reference.
     ctools_content_prepare_subtype($subtypes[$id], $plugin);
   }
+
+  $cache[$plugin['name']] = $subtypes;
 
   return $subtypes;
 }

@@ -1,5 +1,5 @@
 <?php
-// $Id: blog.inc,v 1.1.2.1 2009/10/13 18:10:37 merlinofchaos Exp $
+// $Id: blog.inc,v 1.1.2.2 2010/01/29 21:21:31 merlinofchaos Exp $
 
 /**
  * Specialized implementation of hook_page_manager_task_tasks(). See api-task.html for
@@ -73,7 +73,7 @@ function page_manager_blog() {
 
   ctools_include('context');
   ctools_include('context-task-handler');
-  $output = ctools_context_handler_render($task, '', array(), '');
+  $output = ctools_context_handler_render($task, '', array(), array());
   if ($output !== FALSE) {
     return $output;
   }

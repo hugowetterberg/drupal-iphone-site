@@ -1,5 +1,5 @@
 <?php
-// $Id: wizard.inc,v 1.12 2009/09/08 21:44:52 merlinofchaos Exp $
+// $Id: wizard.inc,v 1.12.2.1 2010/02/01 21:11:15 merlinofchaos Exp $
 
 /**
  * @file
@@ -317,6 +317,10 @@ function ctools_wizard_wrapper(&$form, &$form_state) {
 
   if (isset($info['wrapper']) && function_exists($info['wrapper'])) {
     $info['wrapper']($form, $form_state);
+  }
+
+  if (isset($form_info['wrapper']) && function_exists($form_info['wrapper'])) {
+    $form_info['wrapper']($form, $form_state);
   }
 }
 

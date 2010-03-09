@@ -1,4 +1,4 @@
-// $Id: ajax-responder.js,v 1.18.2.2 2009/10/05 23:38:33 merlinofchaos Exp $
+// $Id: ajax-responder.js,v 1.18.2.6 2010/01/22 06:48:08 merlinofchaos Exp $
 /**
  * @file
  *
@@ -43,11 +43,11 @@
       $.ajax({
         type: "POST",
         url: url,
-        data: '',
+        data: { 'js': 1, 'ctools_ajax': 1 },
         global: true,
         success: Drupal.CTools.AJAX.respond,
-        error: function() {
-          alert("An error occurred while attempting to process " + url);
+        error: function(xhr) {
+          Drupal.CTools.AJAX.handleErrors(xhr, url);
         },
         complete: function() {
           object.removeClass('ctools-ajaxing');
@@ -85,11 +85,11 @@
         $.ajax({
           type: "POST",
           url: url,
-          data: '',
+          data: { 'js': 1, 'ctools_ajax': 1 },
           global: true,
           success: Drupal.CTools.AJAX.respond,
-          error: function() {
-            alert("An error occurred while attempting to process " + url);
+          error: function(xhr) {
+            Drupal.CTools.AJAX.handleErrors(xhr, url);
           },
           complete: function() {
             object.removeClass('ctools-ajaxing');
@@ -104,11 +104,11 @@
         $(form).ajaxSubmit({
           type: "POST",
           url: url,
-          data: '',
+          data: { 'js': 1, 'ctools_ajax': 1 },
           global: true,
           success: Drupal.CTools.AJAX.respond,
-          error: function() {
-            alert("An error occurred while attempting to process " + url);
+          error: function(xhr) {
+            Drupal.CTools.AJAX.handleErrors(xhr, url);
           },
           complete: function() {
             object.removeClass('ctools-ajaxing');
@@ -124,6 +124,36 @@
     }
     return false;
   };
+
+  /**
+   * Display error in a more fashion way
+   */
+  Drupal.CTools.AJAX.handleErrors = function(xhr, path) {
+    var error_text = '';
+
+    if ((xhr.status == 500 && xhr.responseText) || xhr.status == 200) {
+      error_text = xhr.responseText;
+
+      // Replace all &lt; and &gt; by < and >
+      error_text = error_text.replace("/&(lt|gt);/g", function (m, p) {
+        return (p == "lt")? "<" : ">";
+      });
+
+      // Now, replace all html tags by empty spaces
+      error_text = error_text.replace(/<("[^"]*"|'[^']*'|[^'">])*>/gi,"");
+
+      // Fix end lines
+      error_text = error_text.replace(/[\n]+\s+/g,"\n");
+    }
+    else if (xhr.status == 500) {
+      error_text = xhr.status + ': ' + Drupal.t("Internal server error. Please see server or PHP logs for error information.");
+    }
+    else {
+      error_text = xhr.status + ': ' + xhr.statusText;
+    }
+
+    alert(Drupal.t("An error occurred at @path.\n\nError Description: @error", {'@path': path, '@error': error_text}));
+  }
 
   /**
    * Generic replacement for change handler to execute ajax method.
@@ -143,11 +173,11 @@
         $.ajax({
           type: "POST",
           url: url,
-          data: {'ctools_changed' : $(this).val()},
+          data: {'ctools_changed': $(this).val(), 'js': 1, 'ctools_ajax': 1 },
           global: true,
           success: Drupal.CTools.AJAX.respond,
-          error: function() {
-            alert("An error occurred while attempting to process " + url);
+          error: function(xhr) {
+            Drupal.CTools.AJAX.handleErrors(xhr, url);
           },
           complete: function() {
             object.removeClass('ctools-ajaxing');

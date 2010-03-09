@@ -1,5 +1,5 @@
 <?php
-// $Id: user_from_node.inc,v 1.3.2.1 2009/10/01 22:00:09 merlinofchaos Exp $
+// $Id: user_from_node.inc,v 1.3.2.2 2010/01/29 20:18:26 merlinofchaos Exp $
 
 /**
  * @file
@@ -7,18 +7,16 @@
  */
 
 /**
- * Implementation of specially named hook_ctools_relationships().
+ * Plugins are described by creating a $plugin array which will be used
+ * by the system that includes this file.
  */
-function ctools_user_from_node_ctools_relationships() {
-  return array(
-    'title' => t('Node author'),
-    'keyword' => 'user',
-    'description' => t('Creates the author of a node as a user context.'),
-    'required context' => new ctools_context_required(t('Node'), 'node'),
-    'context' => 'ctools_user_from_node_context',
-  );
-  return $args;
-}
+$plugin = array(
+  'title' => t('Node author'),
+  'keyword' => 'user',
+  'description' => t('Creates the author of a node as a user context.'),
+  'required context' => new ctools_context_required(t('Node'), 'node'),
+  'context' => 'ctools_user_from_node_context',
+);
 
 /**
  * Return a new context based on an existing context.

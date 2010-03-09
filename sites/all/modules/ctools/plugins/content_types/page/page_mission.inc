@@ -1,5 +1,5 @@
 <?php
-// $Id: page_mission.inc,v 1.1 2009/08/19 01:18:35 merlinofchaos Exp $
+// $Id: page_mission.inc,v 1.1.2.1 2010/01/29 20:18:25 merlinofchaos Exp $
 
 /**
  * @file
@@ -8,17 +8,16 @@
  */
 
 /**
- * Implementation of hook_ctools_content_types()
+ * Plugins are described by creating a $plugin array which will be used
+ * by the system that includes this file.
  */
-function ctools_page_mission_ctools_content_types() {
-  return array(
-    'title' => t('Mission'),
-    'single' => TRUE,
-    'icon' => 'icon_page.png',
-    'description' => t('Add the site mission statement as content.'),
-    'category' => t('Page elements'),
-  );
-}
+$plugin = array(
+  'title' => t('Mission'),
+  'single' => TRUE,
+  'icon' => 'icon_page.png',
+  'description' => t('Add the site mission statement as content.'),
+  'category' => t('Page elements'),
+);
 
 /**
  * Output function for the 'page_mission' content type.

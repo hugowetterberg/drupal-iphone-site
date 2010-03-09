@@ -1,5 +1,5 @@
 <?php
-// $Id: node_add.inc,v 1.3.2.2 2009/10/01 22:39:02 merlinofchaos Exp $
+// $Id: node_add.inc,v 1.3.2.3 2010/01/29 20:18:25 merlinofchaos Exp $
 
 /**
  * @file
@@ -8,17 +8,16 @@
  */
 
 /**
- * Implementation of specially named hook_ctools_arguments().
+ * Plugins are described by creating a $plugin array which will be used
+ * by the system that includes this file.
  */
-function ctools_node_add_ctools_arguments() {
-  return array(
-    'title' => t("Node add form: node type"),
-    // keyword to use for %substitution
-    'keyword' => 'node_type',
-    'description' => t('Creates a node add form context from a node type argument.'),
-    'context' => 'ctools_node_add_context',
-  );
-}
+$plugin = array(
+  'title' => t("Node add form: node type"),
+  // keyword to use for %substitution
+  'keyword' => 'node_type',
+  'description' => t('Creates a node add form context from a node type argument.'),
+  'context' => 'ctools_node_add_context',
+);
 
 /**
  * Discover if this argument gives us the node we crave.

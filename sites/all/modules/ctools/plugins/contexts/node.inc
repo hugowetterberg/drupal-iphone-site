@@ -1,5 +1,5 @@
 <?php
-// $Id: node.inc,v 1.11.2.2 2009/10/06 18:08:24 merlinofchaos Exp $
+// $Id: node.inc,v 1.11.2.4 2010/01/29 22:46:05 merlinofchaos Exp $
 
 /**
  * @file
@@ -9,27 +9,26 @@
  */
 
 /**
- * Implementation of specially named hook_ctools_contexts().
+ * Plugins are described by creating a $plugin array which will be used
+ * by the system that includes this file.
  */
-function ctools_node_ctools_contexts() {
-  return array(
-    'title' => t("Node"),
-    'description' => t('A node object.'),
-    'context' => 'ctools_context_create_node',
-    'settings form' => 'ctools_context_node_settings_form',
-    'settings form validate' => 'ctools_context_node_settings_form_validate',
-    'settings form submit' => 'ctools_context_node_settings_form_submit',
-    'defaults' => array('nid' => ''),
-    'keyword' => 'node',
-    'context name' => 'node',
-    'convert list' => 'ctools_context_node_convert_list',
-    'convert' => 'ctools_context_node_convert',
-    'placeholder form' => array(
-      '#type' => 'textfield',
-      '#description' => t('Enter the node ID of a node for this context.'),
-    ),
-  );
-}
+$plugin = array(
+  'title' => t("Node"),
+  'description' => t('A node object.'),
+  'context' => 'ctools_context_create_node',
+  'settings form' => 'ctools_context_node_settings_form',
+  'settings form validate' => 'ctools_context_node_settings_form_validate',
+  'settings form submit' => 'ctools_context_node_settings_form_submit',
+  'defaults' => array('nid' => ''),
+  'keyword' => 'node',
+  'context name' => 'node',
+  'convert list' => 'ctools_context_node_convert_list',
+  'convert' => 'ctools_context_node_convert',
+  'placeholder form' => array(
+    '#type' => 'textfield',
+    '#description' => t('Enter the node ID of a node for this context.'),
+  ),
+);
 
 /**
  * It's important to remember that $conf is optional here, because contexts
@@ -162,13 +161,19 @@ function ctools_context_node_settings_form_submit($form, &$form_values, &$form_s
  * Provide a list of ways that this context can be converted to a string.
  */
 function ctools_context_node_convert_list() {
-  return array(
+  $list = array(
     'nid' => t('Node ID'),
     'vid' => t('Node revision ID'),
     'title' => t('Node title'),
     'uid' => t('Author UID'),
     'type' => t('Node type'),
   );
+
+  if (module_exists('token')) {
+    $list += reset(token_get_list(array('node')));
+  }
+
+  return $list;
 }
 
 /**
@@ -186,5 +191,11 @@ function ctools_context_node_convert($context, $type) {
       return $context->data->uid;
     case 'type':
       return $context->data->type;
+  }
+  if (module_exists('token')) {
+    $values = token_get_values('node', $context->data);
+    if ($key = array_search($type, $values->tokens)) {
+      return $values->values[$key];
+    }
   }
 }

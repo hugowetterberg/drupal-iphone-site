@@ -1,5 +1,5 @@
 <?php
-// $Id: page.admin.inc,v 1.18.2.2 2009/10/13 20:38:17 merlinofchaos Exp $
+// $Id: page.admin.inc,v 1.18.2.6 2010/02/01 20:25:00 merlinofchaos Exp $
 
 /**
  * @file
@@ -81,13 +81,15 @@ function page_manager_page_menu(&$items, $task) {
         // placholder. This will allow to_args.
         if (!empty($subtask->arguments[$name])) {
           ctools_include('context');
-          $plugin = ctools_get_argument($subtask->arguments[$name]['name']);
-          if (isset($plugin['path placeholder'])) {
-            if (function_exists($plugin['path placeholder'])) {
-              $placeholder = $plugin['path placeholder']($subtask->arguments[$name]);
-            }
-            else {
-              $placeholder = $plugin['path placeholder'];
+          if (!empty($subtask->arguments[$name]['name'])) {
+            $plugin = ctools_get_argument($subtask->arguments[$name]['name']);
+            if (isset($plugin['path placeholder'])) {
+              if (function_exists($plugin['path placeholder'])) {
+                $placeholder = $plugin['path placeholder']($subtask->arguments[$name]);
+              }
+              else {
+                $placeholder = $plugin['path placeholder'];
+              }
             }
           }
         }
@@ -187,6 +189,11 @@ function page_manager_page_menu_item($task, $menu, $access_arguments, $page_argu
  */
 function page_manager_page_add_subtask($task_name = NULL, $step = NULL) {
   $task = page_manager_get_task('page');
+  $task_handler_plugins = page_manager_get_task_handler_plugins($task);
+  if (empty($task_handler_plugins)) {
+    drupal_set_message(t('There are currently no variants available and a page may not be added. Perhaps you need to install the Panels module to get a variant?'), 'error');
+    return ' ';
+  }
 
   $form_info = array(
     'id' => 'page_manager_add_page',
@@ -420,12 +427,12 @@ function page_manager_page_form_basic(&$form, &$form_state) {
       '#type' => 'checkbox',
       '#default_value' => !empty($page->make_frontpage),
       '#title' => t('Make this your site home page.'),
-      '#description' => t('To set this panel as your home page you must create a unique path name with no % placeholders in the path. The current site home page is set to %homepage.', array('%homepage' => '/' . $frontpage)),
+      '#description' => t('To set this panel as your home page you must create a unique path name with no % placeholders in the path. The site home page is currently set to %homepage on the !siteinfo configuration form.', array('!siteinfo' => l('Site Information', 'admin/settings/site-information'), '%homepage' => '/' . $frontpage)),
     );
   }
   else if ($path == $frontpage) {
     $form['frontpage_markup'] = array(
-      '#value' => '<b>' . t('This page is currently set to be your site home page.') . '</b>',
+      '#value' => '<b>' . t('This page is currently set to be your site home page. This can be modified on the !siteinfo configuration form.', array('!siteinfo' => l('Site Information', 'admin/settings/site-information'))) . '</b>',
     );
 
     $form['frontpage'] = array(
@@ -523,7 +530,7 @@ function page_manager_page_form_basic_validate(&$form, &$form_state) {
   $result = db_query("SELECT * FROM {menu_router} WHERE path = '%s'", $path);
   while ($router = db_fetch_object($result)) {
     if ($router->page_callback != 'page_manager_page_execute') {
-      form_error($form['path'], t('That path is already in used. This system cannot override existing paths.'));
+      form_error($form['path'], t('That path is already in use. This system cannot override existing paths.'));
     }
   }
 

@@ -1,5 +1,5 @@
 <?php
-// $Id: page.inc,v 1.17.2.1 2009/10/09 22:35:56 merlinofchaos Exp $
+// $Id: page.inc,v 1.17.2.3 2010/01/29 23:06:59 merlinofchaos Exp $
 
 /**
  * @file
@@ -457,25 +457,10 @@ function page_manager_page_delete($page) {
     }
   }
   db_query("DELETE FROM {page_manager_pages} WHERE name = '%s'", $page->name);
-
-  // Check to see if this was the site frontpage. If so, reset the site
-  // frontpage to default.
-  $frontpage = variable_get('site_frontpage', 'node');
-
-  $path = array();
-  if ($page->path) {
-    foreach (explode('/', $page->path) as $bit) {
-      if ($bit[0] != '!') {
-        $path[] = $bit;
-      }
-    }
-  }
-
-  $path = implode('/', $path);
-  if ($path == $frontpage) {
-    variable_del('site_frontpage');
-  }
-
+  // Make sure that the cache is reset so that the menu rebuild does not
+  // rebuild this page again.
+  ctools_include('export');
+  ctools_export_load_object_reset('page_manager_pages');
   menu_rebuild();
 }
 

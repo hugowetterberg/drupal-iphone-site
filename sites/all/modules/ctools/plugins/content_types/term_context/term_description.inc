@@ -1,19 +1,18 @@
 <?php
-// $Id: term_description.inc,v 1.1 2009/04/18 02:00:35 merlinofchaos Exp $
+// $Id: term_description.inc,v 1.1.2.1 2010/01/29 20:18:25 merlinofchaos Exp $
 
 /**
- * Callback function to supply a list of content types.
+ * Plugins are described by creating a $plugin array which will be used
+ * by the system that includes this file.
  */
-function ctools_term_description_ctools_content_types() {
-  return array(
-    'single' => TRUE,
-    'title' => t('Term description'),
-    'icon' => 'icon_term.png',
-    'description' => t('Term description.'),
-    'required context' => new ctools_context_required(t('Term'), 'term'),
-    'category' => t('Taxonomy term'),
-  );
-}
+$plugin = array(
+  'single' => TRUE,
+  'title' => t('Term description'),
+  'icon' => 'icon_term.png',
+  'description' => t('Term description.'),
+  'required context' => new ctools_context_required(t('Term'), 'term'),
+  'category' => t('Taxonomy term'),
+);
 
 function ctools_term_description_content_type_render($subtype, $conf, $panel_args, $context) {
   $term = isset($context->data) ? drupal_clone($context->data) : NULL;

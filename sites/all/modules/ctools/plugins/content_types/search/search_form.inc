@@ -1,15 +1,12 @@
 <?php
-// $Id: search_form.inc,v 1.1.2.1 2009/10/12 21:35:54 merlinofchaos Exp $
+// $Id: search_form.inc,v 1.1.2.2 2010/01/29 20:18:25 merlinofchaos Exp $
 
-/**
- * Callback function to supply a list of content types.
- */
-function ctools_search_form_ctools_content_types() {
-  if (!module_exists('search')) {
-    return;
-  }
-
-  return array(
+if (module_exists('search')) {
+  /**
+   * Plugins are described by creating a $plugin array which will be used
+   * by the system that includes this file.
+   */
+  $plugin = array(
     'single' => TRUE,
     'title' => t('Advanced search form'),
     'icon' => 'icon_search.png',

@@ -1,5 +1,5 @@
 <?php
-// $Id: block.inc,v 1.9 2009/07/17 21:53:41 merlinofchaos Exp $
+// $Id: block.inc,v 1.9.2.2 2010/02/01 21:26:54 merlinofchaos Exp $
 
 /**
  * @file
@@ -12,15 +12,14 @@
  */
 
 /**
- * Callback function to supply a list of content types.
+ * Plugins are described by creating a $plugin array which will be used
+ * by the system that includes this file.
  */
-function ctools_block_ctools_content_types() {
-  return array(
-    // And this is just the administrative title.
-    // All our callbacks are named according to the standard pattern and can be deduced.
-    'title' => t('Block'),
-  );
-}
+$plugin = array(
+  // And this is just the administrative title.
+  // All our callbacks are named according to the standard pattern and can be deduced.
+  'title' => t('Block'),
+);
 
 /**
  * Return all block content types available.
@@ -240,6 +239,9 @@ function ctools_block_content_type_admin_title($subtype, $conf) {
 function ctools_block_content_type_admin_info($subtype, $conf) {
   list($module, $delta) = _ctools_block_get_module_delta($subtype, $conf);
   $block = (object) module_invoke($module, 'block', 'view', $delta);
+
+  // Sanitize the block because <script> tags can hose javascript up:
+  $block->content = filter_xss_admin($block->content);
   if (!empty($block) && !empty($block->subject)) {
     $block->title = $block->subject;
     return $block;
@@ -272,7 +274,7 @@ function ctools_default_block_info($module, $delta, &$info) {
   }
 }
 
-// These are all on behalf of modules that don't implement ctools but we that
+// These are all on behalf of modules that don't implement ctools but that
 // we care about.
 function menu_ctools_block_info($module, $delta, &$info) {
   $info['icon'] = 'icon_core_block_menu.png';

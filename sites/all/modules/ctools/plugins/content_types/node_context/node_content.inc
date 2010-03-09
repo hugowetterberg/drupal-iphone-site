@@ -1,30 +1,29 @@
 <?php
-// $Id: node_content.inc,v 1.4 2009/08/18 04:36:53 merlinofchaos Exp $
+// $Id: node_content.inc,v 1.4.2.1 2010/01/29 20:18:25 merlinofchaos Exp $
 
 /**
- * Callback function to supply a list of content types.
+ * Plugins are described by creating a $plugin array which will be used
+ * by the system that includes this file.
  */
-function ctools_node_content_ctools_content_types() {
-  return array(
-    'single' => TRUE,
-    'title' => t('Node content'),
-    'icon' => 'icon_node.png',
-    'description' => t('The content of the referenced node.'),
-    'required context' => new ctools_context_required(t('Node'), 'node'),
-    'category' => t('Node'),
-    'defaults' => array(
-      'links' => TRUE,
-      'page' => TRUE,
-      'no_extras' => TRUE,
-      'override_title' => FALSE,
-      'override_title_text' => '',
-      'teaser' => TRUE,
-      'identifier' => '',
-      'link' => TRUE,
-      'leave_node_title' => FALSE,
-    ),
-  );
-}
+$plugin = array(
+  'single' => TRUE,
+  'title' => t('Node content'),
+  'icon' => 'icon_node.png',
+  'description' => t('The content of the referenced node.'),
+  'required context' => new ctools_context_required(t('Node'), 'node'),
+  'category' => t('Node'),
+  'defaults' => array(
+    'links' => TRUE,
+    'page' => TRUE,
+    'no_extras' => TRUE,
+    'override_title' => FALSE,
+    'override_title_text' => '',
+    'teaser' => TRUE,
+    'identifier' => '',
+    'link' => TRUE,
+    'leave_node_title' => FALSE,
+  ),
+);
 
 /**
  * Render the node content.

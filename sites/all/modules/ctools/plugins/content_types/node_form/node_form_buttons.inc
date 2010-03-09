@@ -1,19 +1,18 @@
 <?php
-// $Id: node_form_buttons.inc,v 1.1 2009/04/18 02:00:35 merlinofchaos Exp $
+// $Id: node_form_buttons.inc,v 1.1.2.1 2010/01/29 20:18:25 merlinofchaos Exp $
 
 /**
- * Implementation of specially named hook_ctools_content_types()
+ * Plugins are described by creating a $plugin array which will be used
+ * by the system that includes this file.
  */
-function ctools_node_form_buttons_ctools_content_types() {
-  return array(
-    'single' => TRUE,
-    'icon' => 'icon_node_form.png',
-    'title' => t('Node form submit buttons'),
-    'description' => t('Submit buttons for the node form.'),
-    'required context' => new ctools_context_required(t('Form'), 'node_form'),
-    'category' => t('Form'),
-  );
-}
+$plugin = array(
+  'single' => TRUE,
+  'icon' => 'icon_node_form.png',
+  'title' => t('Node form submit buttons'),
+  'description' => t('Submit buttons for the node form.'),
+  'required context' => new ctools_context_required(t('Form'), 'node_form'),
+  'category' => t('Form'),
+);
 
 function ctools_node_form_buttons_content_type_render($subtype, $conf, $panel_args, &$context) {
   $block = new stdClass();

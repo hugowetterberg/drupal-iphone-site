@@ -1,19 +1,18 @@
 <?php
-// $Id: user_profile.inc,v 1.7 2009/09/08 21:25:04 merlinofchaos Exp $
+// $Id: user_profile.inc,v 1.7.2.1 2010/01/29 20:18:26 merlinofchaos Exp $
 
 /**
- * Callback function to supply a list of content types.
+ * Plugins are described by creating a $plugin array which will be used
+ * by the system that includes this file.
  */
-function ctools_user_profile_ctools_content_types() {
-  return array(
-    'single' => TRUE,
-    'title' => t('User profile'),
-    'icon' => 'icon_user.png',
-    'description' => t('The profile of a user.'),
-    'required context' => new ctools_context_required(t('User'), 'user'),
-    'category' => t('User'),
-  );
-}
+$plugin = array(
+  'single' => TRUE,
+  'title' => t('User profile'),
+  'icon' => 'icon_user.png',
+  'description' => t('The profile of a user.'),
+  'required context' => new ctools_context_required(t('User'), 'user'),
+  'category' => t('User'),
+);
 
 /**
  * Render the user profile content type.

@@ -1,22 +1,20 @@
 <?php
-// $Id: form.inc,v 1.1 2009/04/18 02:00:34 merlinofchaos Exp $
-
+// $Id: form.inc,v 1.1.2.1 2010/01/29 20:18:25 merlinofchaos Exp $
 
 /**
- * Callback function to supply a list of content types.
+ * Plugins are described by creating a $plugin array which will be used
+ * by the system that includes this file.
  */
-function ctools_form_ctools_content_types() {
-  return array(
-    // only provides a single content type
-    'single' => TRUE,
-    'render last' => TRUE,
-    'title' => t('General form'),
-    'icon' => 'icon_form.png',
-    'description' => t('Everything in the form that is not displayed by other content.'),
-    'required context' => new ctools_context_required(t('Form'), 'form'),
-    'category' => t('Form'),
-  );
-}
+$plugin = array(
+  // only provides a single content type
+  'single' => TRUE,
+  'render last' => TRUE,
+  'title' => t('General form'),
+  'icon' => 'icon_form.png',
+  'description' => t('Everything in the form that is not displayed by other content.'),
+  'required context' => new ctools_context_required(t('Form'), 'form'),
+  'category' => t('Form'),
+);
 
 /**
  * Output function for the 'node' content type. Outputs a node

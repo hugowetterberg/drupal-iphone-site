@@ -1,19 +1,18 @@
 <?php
-// $Id: node_form_log.inc,v 1.1 2009/04/18 02:00:35 merlinofchaos Exp $
+// $Id: node_form_log.inc,v 1.1.2.1 2010/01/29 20:18:25 merlinofchaos Exp $
 
 /**
- * Implementation of specially named hook_ctools_content_types()
+ * Plugins are described by creating a $plugin array which will be used
+ * by the system that includes this file.
  */
-function ctools_node_form_log_ctools_content_types() {
-  return array(
-    'single' => TRUE,
-    'icon' => 'icon_node_form.png',
-    'title' => t('Node form revision log message'),
-    'description' => t('Revision log message for the node.'),
-    'required context' => new ctools_context_required(t('Form'), 'node_form'),
-    'category' => t('Form'),
-  );
-}
+$plugin = array(
+  'single' => TRUE,
+  'icon' => 'icon_node_form.png',
+  'title' => t('Node form revision log message'),
+  'description' => t('Revision log message for the node.'),
+  'required context' => new ctools_context_required(t('Form'), 'node_form'),
+  'category' => t('Form'),
+);
 
 function ctools_node_form_log_content_type_render($subtype, $conf, $panel_args, &$context) {
   $block = new stdClass();

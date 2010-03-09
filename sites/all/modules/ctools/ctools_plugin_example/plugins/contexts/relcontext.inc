@@ -1,5 +1,5 @@
 <?php
-// $Id: relcontext.inc,v 1.1 2009/08/17 22:02:26 merlinofchaos Exp $
+// $Id: relcontext.inc,v 1.1.2.1 2010/01/29 19:54:02 merlinofchaos Exp $
 
 /**
  * @file
@@ -7,22 +7,20 @@
  * is used in this demo to create a relcontext from an existing simplecontext.
  */
 
-/*
- *
- * Plugin to provide a relcontext context.
+/**
+ * Plugins are described by creating a $plugin array which will be used
+ * by the system that includes this file.
  */
-function ctools_plugin_example_relcontext_ctools_contexts() {
-  return array(
-    'title' => t("Relcontext"),
-    'description' => t('A relcontext object.'),
-    // Function to create the relcontext.
-    'context' => 'ctools_plugin_example_context_create_relcontext',
-    // Function that does the settings.
-    'settings form' => 'relcontext_settings_form',
-    'keyword' => 'relcontext',
-    'context name' => 'relcontext',
-  );
-}
+$plugin = array(
+  'title' => t("Relcontext"),
+  'description' => t('A relcontext object.'),
+  // Function to create the relcontext.
+  'context' => 'ctools_plugin_example_context_create_relcontext',
+  // Function that does the settings.
+  'settings form' => 'relcontext_settings_form',
+  'keyword' => 'relcontext',
+  'context name' => 'relcontext',
+);
 
 /**
  * Create a context, either from manual configuration (form) or from an argument on the URL.

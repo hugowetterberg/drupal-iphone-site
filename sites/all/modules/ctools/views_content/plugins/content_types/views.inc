@@ -1,5 +1,5 @@
 <?php
-// $Id: views.inc,v 1.11.2.3 2009/10/21 20:18:09 merlinofchaos Exp $
+// $Id: views.inc,v 1.11.2.5 2010/02/01 21:57:37 merlinofchaos Exp $
 
 /**
  * @file
@@ -393,7 +393,9 @@ function views_content_views_content_type_admin_title($subtype, $conf) {
   if (!is_object($view)) {
     return t('Deleted/missing view @view', array('@view' => $view));
   }
-  return t('View: @name', array('@name' => $view->name));
+
+  $title = $view->display[$view->current_display]->display_title;
+  return t('View: @name', array('@name' => $view->name . '-' . $title));
 }
 
 /**
@@ -406,10 +408,11 @@ function views_content_views_content_type_admin_info($subtype, $conf, $contexts)
     return t('Deleted/missing view @view', array('@view' => $view));
   }
 
+  $display = empty($conf['display']) ? $view->current_display : $conf['display'];
   $block->title = t('View information');
 
   $block->content = '<ul>';
-  $block->content .= '<li>' . t('Using display @display.', array('@display' => $view->display[$conf['display']]->display_title)) . '</li>';
+  $block->content .= '<li>' . t('Using display @display.', array('@display' => $view->display[$display]->display_title)) . '</li>';
 
   if (!empty($conf['context']) && $arguments = $view->display_handler->get_handlers('argument')) {
     $argument = reset($arguments);

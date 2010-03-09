@@ -1,20 +1,19 @@
 <?php
-// $Id: node_form_taxonomy.inc,v 1.1 2009/04/18 02:00:35 merlinofchaos Exp $
+// $Id: node_form_taxonomy.inc,v 1.1.2.1 2010/01/29 20:18:25 merlinofchaos Exp $
 
-/**
- * Implementation of specially named hook_ctools_content_types()
- */
-function ctools_node_form_taxonomy_ctools_content_types() {
-  if (module_exists('taxonomy')) {
-    return array(
-      'single' => TRUE,
-      'icon' => 'icon_node_form.png',
-      'title' => t('Node form categories'),
-      'description' => t('Taxonomy categories for the node.'),
-      'required context' => new ctools_context_required(t('Form'), 'node_form'),
-      'category' => t('Form'),
-    );
-  }
+if (module_exists('taxonomy')) {
+  /**
+   * Plugins are described by creating a $plugin array which will be used
+   * by the system that includes this file.
+   */
+  $plugin = array(
+    'single' => TRUE,
+    'icon' => 'icon_node_form.png',
+    'title' => t('Node form categories'),
+    'description' => t('Taxonomy categories for the node.'),
+    'required context' => new ctools_context_required(t('Form'), 'node_form'),
+    'category' => t('Form'),
+  );
 }
 
 function ctools_node_form_taxonomy_content_type_render($subtype, $conf, $panel_args, &$context) {

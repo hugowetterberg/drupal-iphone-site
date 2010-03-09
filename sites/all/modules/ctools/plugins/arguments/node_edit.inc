@@ -1,5 +1,5 @@
 <?php
-// $Id: node_edit.inc,v 1.5.2.2 2009/10/01 22:39:02 merlinofchaos Exp $
+// $Id: node_edit.inc,v 1.5.2.3 2010/01/29 20:18:25 merlinofchaos Exp $
 
 /**
  * @file
@@ -8,21 +8,20 @@
  */
 
 /**
- * Implementation of specially named hook_ctools_arguments().
+ * Plugins are described by creating a $plugin array which will be used
+ * by the system that includes this file.
  */
-function ctools_node_edit_ctools_arguments() {
-  return array(
-    'title' => t("Node edit form: node ID"),
-    // keyword to use for %substitution
-    'keyword' => 'node',
-    'description' => t('Creates a node edit form context from a node ID argument.'),
-    'context' => 'ctools_node_edit_context',
-    'placeholder form' => array(
-      '#type' => 'textfield',
-      '#description' => t('Enter the node ID of a node for this argument'),
-    ),
-  );
-}
+$plugin = array(
+  'title' => t("Node edit form: node ID"),
+  // keyword to use for %substitution
+  'keyword' => 'node',
+  'description' => t('Creates a node edit form context from a node ID argument.'),
+  'context' => 'ctools_node_edit_context',
+  'placeholder form' => array(
+    '#type' => 'textfield',
+    '#description' => t('Enter the node ID of a node for this argument'),
+  ),
+);
 
 /**
  * Discover if this argument gives us the node we crave.

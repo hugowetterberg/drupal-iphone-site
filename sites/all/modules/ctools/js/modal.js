@@ -1,4 +1,4 @@
-// $Id: modal.js,v 1.17.2.2 2009/10/13 20:06:36 merlinofchaos Exp $
+// $Id: modal.js,v 1.17.2.5 2010/01/22 06:48:08 merlinofchaos Exp $
 /**
  * @file
  *
@@ -143,11 +143,11 @@
       var ajaxOptions = {
         type: 'POST',
         url: url,
-        data: '',
+        data: { 'js': 1, 'ctools_ajax': 1 },
         global: true,
         success: Drupal.CTools.AJAX.respond,
-        error: function() {
-          alert("An error occurred while attempting to process " + url);
+        error: function(xhr) {
+          Drupal.CTools.AJAX.handleErrors(xhr, url);
         },
         complete: function() {
           object.removeClass('ctools-ajaxing');

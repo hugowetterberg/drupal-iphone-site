@@ -1,5 +1,5 @@
 <?php
-// $Id: node_language.inc,v 1.7.2.1 2009/10/01 22:00:08 merlinofchaos Exp $
+// $Id: node_language.inc,v 1.7.2.2 2009/11/13 00:44:16 merlinofchaos Exp $
 
 /**
  * @file
@@ -7,21 +7,20 @@
  */
 
 /**
- * Implementation of specially named hook_ctools_access().
+ * Plugins are described by creating a $plugin array which will be used
+ * by the system that includes this file.
  */
-function ctools_node_language_ctools_access() {
-  if (module_exists('locale')) {
-    return array(
-      'title' => t("Node: language"),
-      'description' => t('Control access by node language.'),
-      'callback' => 'ctools_node_language_ctools_access_check',
-      'default' => array('language' => array()),
-      'settings form' => 'ctools_node_language_ctools_access_settings',
-      'settings form submit' => 'ctools_node_language_ctools_access_settings_submit',
-      'summary' => 'ctools_node_language_ctools_acesss_summary',
-      'required context' => new ctools_context_required(t('Node'), 'node'),
-    );
-  }
+if (module_exists('locale')) {
+  $plugin = array(
+    'title' => t("Node: language"),
+    'description' => t('Control access by node language.'),
+    'callback' => 'ctools_node_language_ctools_access_check',
+    'default' => array('language' => array()),
+    'settings form' => 'ctools_node_language_ctools_access_settings',
+    'settings form submit' => 'ctools_node_language_ctools_access_settings_submit',
+    'summary' => 'ctools_node_language_ctools_acesss_summary',
+    'required context' => new ctools_context_required(t('Node'), 'node'),
+  );
 }
 
 /**

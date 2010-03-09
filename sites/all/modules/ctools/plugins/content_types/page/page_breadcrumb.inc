@@ -1,5 +1,5 @@
 <?php
-// $Id: page_breadcrumb.inc,v 1.1 2009/08/17 21:23:13 merlinofchaos Exp $
+// $Id: page_breadcrumb.inc,v 1.1.2.1 2010/01/29 20:18:25 merlinofchaos Exp $
 
 /**
  * @file
@@ -8,17 +8,16 @@
  */
 
 /**
- * Implementation of hook_ctools_content_types()
+ * Plugins are described by creating a $plugin array which will be used
+ * by the system that includes this file.
  */
-function ctools_page_breadcrumb_ctools_content_types() {
-  return array(
-    'title' => t('Breadcrumb'),
-    'single' => TRUE,
-    'icon' => 'icon_page.png',
-    'description' => t('Add the breadcrumb trail as content.'),
-    'category' => t('Page elements'),
-  );
-}
+$plugin = array(
+  'title' => t('Breadcrumb'),
+  'single' => TRUE,
+  'icon' => 'icon_page.png',
+  'description' => t('Add the breadcrumb trail as content.'),
+  'category' => t('Page elements'),
+);
 
 /**
  * Output function for the 'page_breadcrumb' content type.

@@ -1,5 +1,5 @@
 <?php
-// $Id: term_parent.inc,v 1.2.2.1 2009/10/01 22:00:09 merlinofchaos Exp $
+// $Id: term_parent.inc,v 1.2.2.2 2010/01/29 20:18:26 merlinofchaos Exp $
 
 /**
  * @file relationships/term_parent.inc
@@ -7,20 +7,18 @@
  */
 
 /**
- * Implementation of specially named hook_ctools_relationships().
+ * Plugins are described by creating a $plugin array which will be used
+ * by the system that includes this file.
  */
-function ctools_term_parent_ctools_relationships() {
-  return array(
-    'title' => t('Term parent'),
-    'keyword' => 'parent_term',
-    'description' => t('Adds a taxonomy term parent from a term context.'),
-    'required context' => new ctools_context_required(t('Term'), 'term'),
-    'context' => 'ctools_term_parent_context',
-    'settings form' => 'ctools_term_parent_settings_form',
-    'settings form validate' => 'ctools_term_parent_settings_form_validate',
-  );
-  return $args;
-}
+$plugin = array(
+  'title' => t('Term parent'),
+  'keyword' => 'parent_term',
+  'description' => t('Adds a taxonomy term parent from a term context.'),
+  'required context' => new ctools_context_required(t('Term'), 'term'),
+  'context' => 'ctools_term_parent_context',
+  'settings form' => 'ctools_term_parent_settings_form',
+  'settings form validate' => 'ctools_term_parent_settings_form_validate',
+);
 
 /**
  * Return a new context based on an existing context.
