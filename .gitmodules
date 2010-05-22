@@ -22,9 +22,9 @@
 [submodule "sites/all/modules/inputstream"]
 	path = sites/all/modules/inputstream
 	url = git://github.com/hugowetterberg/inputstream.git
-[submodule "sites/all/modules/oauth_common"]
-	path = sites/all/modules/oauth_common
-	url = git://github.com/hugowetterberg/oauth_common.git
 [submodule "sites/all/modules/services_oauth"]
 	path = sites/all/modules/services_oauth
 	url = git://github.com/hugowetterberg/services_oauth.git
+[submodule "sites/all/modules/oauth"]
+	path = sites/all/modules/oauth
+	url = git://github.com/hugowetterberg/oauth.git
