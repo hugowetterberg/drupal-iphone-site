@@ -1,5 +1,5 @@
 <?php
-// $Id: potx.test,v 1.1.2.2 2009/10/20 15:49:36 goba Exp $
+// $Id: potx.test,v 1.1.2.3 2010/02/15 10:49:24 goba Exp $
 
 /**
  * @file
@@ -198,9 +198,9 @@ class PotxTestCase extends DrupalWebTestCase {
     ob_start();
     _potx_write_files('potx-test.po');
     $this->potx_output = ob_get_clean();
-    // $this->pass(var_export($this->potx_output, TRUE));
+    //debug(var_export($this->potx_output, TRUE));
     $this->potx_status = potx_status('get', TRUE);
-    // $this->pass(var_export($this->potx_status, TRUE));
+    //debug(var_export($this->potx_status, TRUE));
 }
   
   /**
@@ -230,7 +230,7 @@ class PotxTestCase extends DrupalWebTestCase {
     if (!$message) {
       $message = t('MsgID "@raw" in context "@context" found', array('@raw' => check_plain($string), '@context' => check_plain($context)));
     }
-    $this->assert(strpos($this->potx_output, 'msgid "'. _potx_format_quoted_string('"'. $string . '"') .'"'. "\nmsgctxt \"". _potx_format_quoted_string('"'. $context . '"') . '"') !== FALSE, $message, $group);
+    $this->assert(strpos($this->potx_output, 'msgctxt "'. _potx_format_quoted_string('"'. $context . '"') . "\"\nmsgid \"". _potx_format_quoted_string('"'. $string . '"') .'"') !== FALSE, $message, $group);
   }
 
   /**

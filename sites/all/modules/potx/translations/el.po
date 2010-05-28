@@ -1,26 +1,27 @@
 # translation of el.po to Greek
 # Greek translation of potx.module
-# $Id: el.po,v 1.1.4.3 2008/08/26 13:46:21 goofyx Exp $
+# $Id: el.po,v 1.1.4.3.4.1 2010/01/06 12:08:51 goofyx Exp $
 # LANGUAGE translation of Drupal (general)
 # Copyright YEAR NAME <EMAIL@ADDRESS>
 # Generated from files:
 #  potx.module,v 1.1.2.9 2007/05/02 12:56:31 ray007
 #  potx.info,v 1.1.2.3 2007/03/27 19:40:09 goba
 #
-# Vasileios Lourdas <lourdas_v@yahoo.gr>, 2007.
-# Vasileios Lourdas <vasilis@lourdas.name>, 2008.
+# Vasileios Lourdas <drupal@lourdas.name>, 2007.
+# Vasileios Lourdas <drupal@lourdas.name>, 2008.
+# Vasileios Lourdas <drupal@lourdas.name>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
-"POT-Creation-Date: 2008-07-28 18:49+0200\n"
-"PO-Revision-Date: 2008-08-26 16:45+0300\n"
-"Last-Translator: Vasileios Lourdas <vasilis@lourdas.name>\n"
-"Language-Team: Greek <el@li.org>\n"
+"POT-Creation-Date: 2009-11-09 10:16+0100\n"
+"PO-Revision-Date: 2010-01-06 14:07+0200\n"
+"Last-Translator: Vasileios Lourdas <drupal@lourdas.name>\n"
+"Language-Team: Greek <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Lokalize 1.0\n"
 
 #: potx.module:20
 msgid "This page allows you to generate translation templates for module and theme files. Select the module or theme you wish to generate a template file for. A single Gettext Portable Object (Template) file is generated, so you can easily save it and start translation."
@@ -58,41 +59,73 @@ msgstr "Εξαγωγή"
 msgid "You should select a component to export."
 msgstr "Πρέπει να επιλέξετε ένα συστατικό για εξαγωγή."
 
-#: potx.module:185
+#: potx.module:188
 msgid "Extract from %name in the %directory directory"
 msgstr "Εξαγωγή από το %name στον κατάλογο %directory"
 
-#: potx.module:186
+#: potx.module:189
 msgid "Generates output from all files found in this directory."
 msgstr "Δημιουργεί έξοδο από όλα τα αρχεία που υπάρχουν στον κατάλογο."
 
-#: potx.module:201
+#: potx.module:204
 msgid "Extract from all in directory \"@directory\""
 msgstr "Εξαγωγή από όλα τα συστατικά στον κατάλογο \"@directory\""
 
-#: potx.module:202
+#: potx.module:205
 msgid "To extract from a single component in this directory, choose the desired entry in the fieldset below."
 msgstr "Για την εξαγωγή ενός μόνο συστατικού σε αυτό τον κατάλογο, επιλέξτε το όνομα του επιθυμητού συστατικού στο πεδίο παρακάτω."
 
-#: potx.module:211
+#: potx.module:214
 msgid "Directory \"@directory\""
 msgstr "Κατάλογος \"@directory\""
 
-#: potx.module:232
+#: potx.module:235
 msgid "Extract from %name"
 msgstr "Εξαγωγή από το %name"
 
-#: potx.module:233
+#: potx.module:236
 msgid "Extract from files named %pattern in the %directory directory."
 msgstr "Εξαγωγή από αρχεία με ονόματα %pattern στον κατάλογο %directory."
 
-#: potx.module:303
+#: potx.module:306
 msgid "Interface text translatability"
 msgstr "Δυνατότητα μετάφρασης του κειμένου διεπαφής"
 
-#: potx.module:0
-msgid "potx"
-msgstr "potx"
+#: potx.module:350
+msgid "Read the documentation"
+msgstr "Διαβάστε την τεκμηρίωση"
+
+#: (duplicate) potx.install:22
+msgid "PHP tokenizer for Translation template extractor"
+msgstr "Συμβολομεταφραστής PHP για εργαλείο εξαγωγής προτύπων μετάφρασης"
+
+#: (duplicate) potx.install:23
+msgid "Available"
+msgstr "Διαθέσιμο"
+
+#: (duplicate) potx.install:23
+msgid "Not available"
+msgstr "Μη διαθέσιμο"
+
+#: (duplicate) potx.install:26
+msgid "The <a href=\"@tokenizer\">PHP tokenizer functions</a> are required."
+msgstr "Απαιτούνται οι <a href=\"@tokenizer\">συναρτήσεις συμβόλων PHP</a>."
+
+#: (duplicate) potx.install:38
+msgid "Localization Server"
+msgstr "Διακομιστής Μεταφράσεων"
+
+#: (duplicate) potx.install:39
+msgid "Translation template extractor compatible version"
+msgstr "Συμβατή έκδοση με το εργαλείο εξαγωγής προτύπων μετάφρασης"
+
+#: (duplicate) potx.install:42
+msgid "The Localization Server should be from a development snapshot later then July 19th, 2009 or at least 6.x-1.0-alpha4 to be compatible with this Translation template extractor."
+msgstr "Ο Διακομιστής Μεταφράσεων πρέπει να είναι από έκδοση ανάπτυξης μετέπειτα της 19ης Ιουλίου 2009 ή τουλάχιστον έκδοσης 6.x-1.0-alpha4 για να είναι συμβατός με το εργαλείο εξαγωγής προτύπων μετάφρασης."
+
+#: (duplicate) potx.install:44
+msgid "Not compatible with Translation template extractor"
+msgstr "Μη συμβατή έκδοση με το εργαλείο εξαγωγής προτύπων μετάφρασης"
 
 #: potx.info:0
 msgid "Translation template extractor"
@@ -100,5 +133,9 @@ msgstr "Εργαλείο εξαγωγής προτύπων μετάφρασης"
 
 #: potx.info:0
 msgid "Provides a web interface and an API to extract translatable text from the sources of installed components."
-msgstr "Παρέχει μια διεπαφή ιστοσελίδας και ένα API για την εξαγωγή μεταφράσιμων αρχείων από τον πηγαίο κώδικα των εγκατεστημένων συστατικών."
+msgstr "Παρέχει μια διεπαφή ιστοσελίδας και ένα API για την εξαγωγή αρχείων προς μετάφραση από τον πηγαίο κώδικα των εγκατεστημένων συστατικών."
+
+#: potx.info:0
+msgid "Multilanguage"
+msgstr "Πολυγλωσσικό"
 

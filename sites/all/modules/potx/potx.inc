@@ -1,5 +1,5 @@
 <?php
-// $Id: potx.inc,v 1.1.2.17.2.7.2.19.4.8 2009/11/17 12:25:18 goba Exp $
+// $Id: potx.inc,v 1.1.2.17.2.7.2.19.4.13 2010/05/07 14:57:30 goba Exp $
 
 /**
  * @file
@@ -24,7 +24,7 @@
 
 /**
  * The current Drupal major API verion.
- * 
+ *
  * This should be the only difference between different branches of potx.inc
  */
 define('POTX_API_CURRENT', 6);
@@ -335,11 +335,11 @@ function _potx_build_files($string_mode = POTX_STRING_RUNTIME, $build_mode = POT
       if (strpos($string, "\0") !== FALSE) {
         // Plural strings have a null byte delimited format.
         list($singular, $plural) = explode("\0", $string);
-        $output .= "msgid \"$singular\"\n";
-        $output .= "msgid_plural \"$plural\"\n";
         if (!empty($context)) {
           $output .= "msgctxt \"$context\"\n";
         }
+        $output .= "msgid \"$singular\"\n";
+        $output .= "msgid_plural \"$plural\"\n";
         if (isset($translation_export_langcode)) {
           $output .= _potx_translation_export($translation_export_langcode, $singular, $plural, $api_version);
         }
@@ -350,10 +350,10 @@ function _potx_build_files($string_mode = POTX_STRING_RUNTIME, $build_mode = POT
       }
       else {
         // Simple strings.
-        $output .= "msgid \"$string\"\n";
         if (!empty($context)) {
           $output .= "msgctxt \"$context\"\n";
         }
+        $output .= "msgid \"$string\"\n";
         if (isset($translation_export_langcode)) {
           $output .= _potx_translation_export($translation_export_langcode, $string, NULL, $api_version);
         }
@@ -1300,7 +1300,7 @@ function _potx_find_info_file_strings($file_path, $file_name, $save_callback, $a
   foreach (array('name', 'description', 'package') as $key) {
     if (isset($info[$key])) {
       // No context support for .info file strings.
-      $save_callback($info[$key], POTX_CONTEXT_NONE, $file_name);
+      $save_callback(addcslashes($info[$key], "\0..\37\\\""), POTX_CONTEXT_NONE, $file_name);
     }
   }
 
@@ -1308,7 +1308,7 @@ function _potx_find_info_file_strings($file_path, $file_name, $save_callback, $a
   if (isset($info['regions']) && is_array($info['regions'])) {
     foreach ($info['regions'] as $region => $region_name) {
       // No context support for .info file strings.
-      $save_callback($region_name, POTX_CONTEXT_NONE, $file_name);
+      $save_callback(addcslashes($region_name, "\0..\37\\\""), POTX_CONTEXT_NONE, $file_name);
     }
   }
 }
@@ -1422,8 +1422,8 @@ function _potx_explore_dir($path = '', $basename = '*', $api_version = POTX_API_
     }
   }
 
-  // Skip API files. Also skip our own files, if that was requested.
-  $skip_pattern = ($skip_self ? '!(potx-cli\.php|potx\.inc|\.api\.php)$!' : '!\.api\.php$!');
+  // Skip API and test files. Also skip our own files, if that was requested.
+  $skip_pattern = ($skip_self ? '!(potx-cli\.php|potx\.inc|\.api\.php|\.test)$!' : '!(\.api\.php|\.test)$!');
   foreach ($files as $id => $file_name) {
     if (preg_match($skip_pattern, $file_name)) {
       unset($files[$id]);
@@ -1477,7 +1477,7 @@ function _potx_save_string($value = NULL, $context = NULL, $file = NULL, $line =
   global $_potx_strings, $_potx_install;
 
   if (isset($value)) {
-    
+
     // Value set but empty. Mark error on empty translatable string. Only trim
     // for empty string checking, since we should store leading/trailing
     // whitespace as it appears in the string otherwise.
@@ -1486,7 +1486,7 @@ function _potx_save_string($value = NULL, $context = NULL, $file = NULL, $line =
       potx_status('error', t('Empty string attempted to be localized. Please do not leave test code for localization in your source.'), $file, $line);
       return;
     }
-    
+
     switch ($string_mode) {
       case POTX_STRING_BOTH:
         // Mark installer strings as duplicates of runtime strings if
@@ -1519,9 +1519,10 @@ if (!function_exists('t')) {
 if (!function_exists('drupal_parse_info_file')) {
   // If invoked outside of Drupal, drupal_parse_info_file() will not be available,
   // but we need this function to properly parse Drupal 6/7 .info files.
-  // Directly copied from common.inc,v 1.704 2007/10/19 10:30:54 goba Exp.
+  // Directly copied from common.inc,v 1.756.2.76 2010/02/01 16:01:41 goba Exp.
   function drupal_parse_info_file($filename) {
     $info = array();
+    $constants = get_defined_constants();
 
     if (!file_exists($filename)) {
       return $info;
@@ -1565,9 +1566,9 @@ if (!function_exists('drupal_parse_info_file')) {
           $parent = &$parent[$key];
         }
 
-        // Handle PHP constants
-        if (defined($value)) {
-          $value = constant($value);
+        // Handle PHP constants.
+        if (isset($constants[$value])) {
+          $value = $constants[$value];
         }
 
         // Insert actual value

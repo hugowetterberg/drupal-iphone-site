@@ -1,5 +1,5 @@
 <?php
-// $Id: potx.install,v 1.1.2.1.4.2 2009/08/23 10:25:37 goba Exp $
+// $Id: potx.install,v 1.1.2.1.4.3 2010/05/07 14:31:44 goba Exp $
 
 /**
  * @file
@@ -12,37 +12,20 @@
  * The translation template extractor requires the PHP token extension to
  * be enabled. We should not let Drupal to install the module if this is
  * not available. Also, if it was available, but the site was moved or
- * PHP was changed, we should nag again: so we run in install and runtime as well.
+ * PHP was changed, we should nag again: so we run in install and runtime
+ * as well.
  */
 function potx_requirements($phase) {
   $requirements = array();
   $t = get_t();
 
-  $requirements['potx_tokenizer'] = array(
-    'title' => $t('PHP tokenizer for Translation template extractor'),
-    'value' => function_exists('token_get_all') ? $t('Available') : $t('Not available')
-  );
   if (!function_exists('token_get_all')) {
-    $requirements['potx_tokenizer']['description'] = $t('The <a href="@tokenizer">PHP tokenizer functions</a> are required.', array('@tokenizer' => 'http://php.net/tokenizer'));
-    $requirements['potx_tokenizer']['severity'] = REQUIREMENT_ERROR;
-  }
-
-  if (module_exists('l10n_community')) {
-    // If l10n_server is already installed and enabled, check its version by
-    // looking at the specific API piece which lets us fingerprint the right
-    // version. The compatible branch introduced
-    // l10n_community_require_potx_with_context().
-
-    include_once drupal_get_path('module', 'l10n_community') .'/l10n_community.install';
-    $requirements['potx_l10n_server'] = array(
-      'title' => $t('Localization Server'),
-      'value' => $t('Translation template extractor compatible version'),
+    $requirements['potx_tokenizer'] = array(
+      'title' => $t('PHP tokenizer for Translation template extractor'),
+      'value' => $t('Not available'),
+      'description' => $t('The <a href="@tokenizer">PHP tokenizer functions</a> are required.', array('@tokenizer' => 'http://php.net/tokenizer')),
+      'severity' => REQUIREMENT_ERROR,
     );
-    if (!function_exists('l10n_community_require_potx_with_context')) {
-      $requirements['potx_l10n_server']['description'] = $t('The Localization Server should be from a development snapshot later then July 19th, 2009 or at least 6.x-1.0-alpha4 to be compatible with this Translation template extractor.');
-      $requirements['potx_l10n_server']['severity'] = REQUIREMENT_ERROR;
-      $requirements['potx_l10n_server']['value'] = $t('Not compatible with Translation template extractor');
-    }
   }
 
   return $requirements;

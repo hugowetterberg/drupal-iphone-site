@@ -1,5 +1,5 @@
 <?php
-// $Id: potx.module,v 1.1.2.12.2.2.2.10.4.2 2009/08/24 07:33:08 goba Exp $
+// $Id: potx.module,v 1.1.2.12.2.2.2.10.4.3 2010/05/07 14:42:56 goba Exp $
 
 /**
  * @file
@@ -92,6 +92,10 @@ function potx_select_form_validate($form, &$form_state) {
  * Generate translation template or translation file for the requested component.
  */
 function potx_select_form_submit($form, &$form_state) {
+  global $devel_shutdown;
+
+  // Avoid devel.module putting extra output to the end of files exported.
+  $devel_shutdown = FALSE;
 
   // This could take some time.
   @set_time_limit(0);

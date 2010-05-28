@@ -5,9 +5,9 @@ package = Test package
 version = 6.x
 core = 6.x
 
-; Information added by drupal.org packaging script on 2009-12-27
-version = "6.x-3.1"
+; Information added by drupal.org packaging script on 2010-05-07
+version = "6.x-3.2"
 core = "6.x"
 project = "potx"
-datestamp = "1261928143"
+datestamp = "1273245607"
 
