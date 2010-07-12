@@ -1,9 +1,5 @@
 <?php
-<<<<<<< HEAD
-// $Id: filefield_formatter.inc,v 1.16 2010/04/24 03:54:59 quicksketch Exp $
-=======
 // $Id: filefield_formatter.inc,v 1.20 2010/06/29 23:49:11 quicksketch Exp $
->>>>>>> 7970f2e... Update FileField to filefield-6.x-3.7.
 /**
  * @file
  * FileField: Defines a CCK file field type.

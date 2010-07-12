@@ -1,9 +1,5 @@
 <?php
-<<<<<<< HEAD
-// $Id: filefield.token.inc,v 1.5 2009/07/30 16:47:43 drewish Exp $
-=======
 // $Id: filefield.token.inc,v 1.6 2010/06/17 00:07:06 quicksketch Exp $
->>>>>>> 7970f2e... Update FileField to filefield-6.x-3.7.
 
 /**
  * @file

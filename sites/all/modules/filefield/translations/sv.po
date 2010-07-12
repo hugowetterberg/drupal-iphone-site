@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-# $Id: sv.po,v 1.2 2010/04/24 02:47:49 quicksketch Exp $
-=======
 # $Id: sv.po,v 1.4 2010/05/08 04:25:37 quicksketch Exp $
->>>>>>> 7970f2e... Update FileField to filefield-6.x-3.7.
 #
 # Swedish translation of Drupal (filefield)
 # Generated from files:

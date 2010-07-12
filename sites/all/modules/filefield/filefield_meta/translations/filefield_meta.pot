@@ -1,33 +1,20 @@
-<<<<<<< HEAD
-# $Id: filefield_meta.pot,v 1.2 2009/06/06 21:24:10 hass Exp $
-=======
 # $Id: filefield_meta.pot,v 1.3 2010/05/08 04:31:23 quicksketch Exp $
->>>>>>> 7970f2e... Update FileField to filefield-6.x-3.7.
 #
 # LANGUAGE translation of Drupal (general)
 # Copyright YEAR NAME <EMAIL@ADDRESS>
 # Generated from files:
-<<<<<<< HEAD
-#  filefield_meta.module,v 1.14 2009/04/20 22:29:24 quicksketch
-#  filefield_meta.info,v 1.6 2009/04/01 08:57:49 quicksketch
-=======
 #  filefield_meta.module,v 1.16 2010/04/24 19:35:28 quicksketch
 #  filefield_meta.info,v 1.6 2009/04/01 08:57:49 quicksketch
 #  filefield_meta.views.inc,v 1.2 2010/04/24 06:28:03 quicksketch
 #  filefield_meta_handler_field_bitrate.inc,v 1.1 2010/04/24 06:28:03 quicksketch
 #  filefield_meta_handler_field_samplerate.inc,v 1.1 2010/04/24 06:28:03 quicksketch
 #  filefield_meta_handler_field_duration.inc,v 1.3 2010/04/24 06:28:03 quicksketch
->>>>>>> 7970f2e... Update FileField to filefield-6.x-3.7.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-<<<<<<< HEAD
-"POT-Creation-Date: 2009-06-06 23:22+0200\n"
-=======
 "POT-Creation-Date: 2010-05-07 22:30-0600\n"
->>>>>>> 7970f2e... Update FileField to filefield-6.x-3.7.
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -40,10 +27,6 @@ msgstr ""
 msgid "@sampleratekHz"
 msgstr ""
 
-<<<<<<< HEAD
-#: filefield_meta/filefield_meta.info:0
-msgid "FileField Meta"
-=======
 #: filefield_meta.module:136
 msgid "@bitrateKbps"
 msgstr ""
@@ -90,7 +73,6 @@ msgstr ""
 
 #: includes/filefield_meta.views.inc:87
 msgid "Audio format"
->>>>>>> 7970f2e... Update FileField to filefield-6.x-3.7.
 msgstr ""
 
 #: includes/filefield_meta.views.inc:88

@@ -1,9 +1,5 @@
 <?php
-<<<<<<< HEAD
-// $Id: filefield.module,v 1.216 2010/05/05 23:25:24 quicksketch Exp $
-=======
 // $Id: filefield.module,v 1.224 2010/06/30 01:37:29 quicksketch Exp $
->>>>>>> 7970f2e... Update FileField to filefield-6.x-3.7.
 
 /**
  * @file
@@ -185,15 +181,9 @@ function filefield_file_download($filepath) {
       if (isset($nodes[$content['nid']])) {
         continue; // Don't check the same node twice.
       }
-<<<<<<< HEAD
-      if ($denied == FALSE && ($node = node_load($content['nid'])) && (node_access('view', $node) == FALSE || filefield_view_access($field_name, $node) == FALSE)) {
-        // You don't have permission to view the node this file is attached to.
-        $denied = TRUE;
-=======
       if (($node = node_load($content['nid'])) && (node_access('view', $node) && filefield_view_access($field_name))) {
         $denied = FALSE;
         break 2;
->>>>>>> 7970f2e... Update FileField to filefield-6.x-3.7.
       }
       $nodes[$content['nid']] = $node;
     }
@@ -505,13 +495,8 @@ function filefield_filefield_icon_sets() {
  * The content_permissions module provides nice fine-grained permissions for
  * us to check, so we can make sure that the user may actually edit the file.
  */
-<<<<<<< HEAD
-function filefield_edit_access($field_name) {
-  if (!content_access('edit', content_fields($field_name))) {
-=======
 function filefield_edit_access($type_name, $field_name) {
   if (!content_access('edit', content_fields($field_name, $type_name))) {
->>>>>>> 7970f2e... Update FileField to filefield-6.x-3.7.
     return FALSE;
   }
   // No content permissions to check, so let's fall back to a more general permission.
@@ -521,13 +506,8 @@ function filefield_edit_access($type_name, $field_name) {
 /**
  * Access callback that checks if the current user may view the filefield.
  */
-<<<<<<< HEAD
-function filefield_view_access($field_name, $node = NULL) {
-  if (!content_access('view', content_fields($field_name), NULL, $node)) {
-=======
 function filefield_view_access($field_name) {
   if (!content_access('view', content_fields($field_name))) {
->>>>>>> 7970f2e... Update FileField to filefield-6.x-3.7.
     return FALSE;
   }
   // No content permissions to check, so let's fall back to a more general permission.

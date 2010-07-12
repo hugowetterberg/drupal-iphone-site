@@ -1,9 +1,5 @@
 <?php
-<<<<<<< HEAD
-// $Id: filefield.theme.inc,v 1.10 2010/04/28 16:32:20 quicksketch Exp $
-=======
 // $Id: filefield.theme.inc,v 1.12 2010/06/30 01:37:29 quicksketch Exp $
->>>>>>> 7970f2e... Update FileField to filefield-6.x-3.7.
 
 /**
  * @file

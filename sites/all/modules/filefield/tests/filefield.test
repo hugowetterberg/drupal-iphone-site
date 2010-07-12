@@ -1,9 +1,5 @@
 <?php
-<<<<<<< HEAD
-// $Id: filefield.test,v 1.7 2010/04/29 01:37:05 quicksketch Exp $
-=======
 // $Id: filefield.test,v 1.8 2010/06/29 19:14:16 quicksketch Exp $
->>>>>>> 7970f2e... Update FileField to filefield-6.x-3.7.
 
 class FileFieldTestCase extends DrupalWebTestCase {
   protected $admin_user;

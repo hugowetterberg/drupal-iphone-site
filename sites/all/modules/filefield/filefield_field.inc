@@ -1,9 +1,5 @@
 <?php
-<<<<<<< HEAD
-// $Id: filefield_field.inc,v 1.37 2010/04/28 22:38:13 quicksketch Exp $
-=======
 // $Id: filefield_field.inc,v 1.41 2010/06/30 23:52:45 quicksketch Exp $
->>>>>>> 7970f2e... Update FileField to filefield-6.x-3.7.
 
 /**
  * @file
