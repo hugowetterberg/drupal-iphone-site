@@ -203,7 +203,11 @@ msgid "The directory %directory is a file and cannot be overwritten."
 msgstr "A %directory könyvtár egy fájl és nem írható felül."
 msgid "filefield"
 msgstr "filefield"
+<<<<<<< HEAD
 msgid "Could not set permissons on destination file: %file"
+=======
+msgid "Could not set permissions on destination file: %file"
+>>>>>>> 7970f2e... Update FileField to filefield-6.x-3.7.
 msgstr "%file célfájl jogosultságait nem lehet beállítani."
 msgid "The path %directory was checked as a directory, but it is a file."
 msgstr "%directory elérési út könyvtárnak van jelölve, de ez egy fájl."
@@ -285,7 +289,11 @@ msgstr ""
 "engedélyezett."
 msgid "The file referenced by the %field field does not exist."
 msgstr "%field mező által hivatkozott fájl nem létezik."
+<<<<<<< HEAD
 msgid "Total filesize for %title, %tsize,  exceeds field settings of %msize."
+=======
+msgid "Total filesize for %title, %tsize, exceeds field settings of %msize."
+>>>>>>> 7970f2e... Update FileField to filefield-6.x-3.7.
 msgstr ""
 "%title teljes %tsize fájlmérete elérte a beállításokban megadott "
 "%msize értéket."
@@ -372,7 +380,11 @@ msgstr ""
 "uploadprogress library</a> használata."
 msgid "Migrating filefield values"
 msgstr "Filefield értékek költöztetése"
+<<<<<<< HEAD
 msgid "The File field %field has been updated with new settings."
+=======
+msgid "The file field %field has been updated with new settings."
+>>>>>>> 7970f2e... Update FileField to filefield-6.x-3.7.
 msgstr "%field fájlmező új beállítási értékek szerint frissítve lett."
 msgid ""
 "Your server is not capable of displaying file upload progress. File "

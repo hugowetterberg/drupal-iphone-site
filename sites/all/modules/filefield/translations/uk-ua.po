@@ -37,7 +37,11 @@ msgstr "Формат аудіо"
 msgid "CCK"
 msgstr "CCK"
 
+<<<<<<< HEAD
 msgid "Could not set permissons on destination file: %file"
+=======
+msgid "Could not set permissions on destination file: %file"
+>>>>>>> 7970f2e... Update FileField to filefield-6.x-3.7.
 msgstr "Неможливо встановити права на файл призначення: %file"
 
 msgid "Default"
