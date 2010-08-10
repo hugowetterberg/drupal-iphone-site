@@ -1,5 +1,5 @@
 <?php
-// $Id: date_api_argument_handler.inc,v 1.1.2.37 2009/03/26 08:47:11 karens Exp $
+// $Id: date_api_argument_handler.inc,v 1.1.2.38 2009/09/16 10:47:23 karens Exp $
 /**
  * Date API argument handler.
  */
@@ -341,6 +341,12 @@ class date_api_argument_handler extends views_handler_argument_date {
         $date_handler = $query_field['date_handler'];
         $from_field = str_replace($field['table_name'] .'_', $field['table_name'] .'.', $field['fromto'][0]);
         $to_field = str_replace($field['table_name'] .'_', $field['table_name'] .'.', $field['fromto'][1]);
+        if ($this->options['relationship'] !== 'none') {
+          $from_field = str_replace($field['table_name'] .'_', $this->relationship .'_'. $field['table_name'] .'.', $field['fromto'][0]);
+          $to_field = str_replace($field['table_name'] .'_', $this->relationship .'_'.  $field['table_name'] .'.', $field['fromto'][1]);
+          $this->table = $this->query_fields[0]['field']['table_name'];
+          $this->ensure_my_table();
+        }
         if ($this->granularity != 'week') {
           $from = $date_handler->sql_where_format($format, $from_field, '<=', date_format($max_date, $format));
           $to   = $date_handler->sql_where_format($format, $to_field, '>=', date_format($min_date, $format));

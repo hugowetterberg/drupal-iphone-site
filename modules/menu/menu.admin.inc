@@ -1,9 +1,9 @@
 <?php
-// $Id: menu.admin.inc,v 1.26.2.4 2009/02/25 13:15:40 goba Exp $
+// $Id: menu.admin.inc,v 1.26.2.7 2010/06/02 12:56:20 goba Exp $
 
 /**
  * @file
- * Administrative page callbaks for menu module.
+ * Administrative page callbacks for menu module.
  */
 
 /**
@@ -15,6 +15,7 @@ function menu_overview_page() {
   while ($menu = db_fetch_array($result)) {
     $menu['href'] = 'admin/build/menu-customize/'. $menu['menu_name'];
     $menu['localized_options'] = array();
+    $menu['description'] = filter_xss_admin($menu['description']);
     $content[] = $menu;
   }
   return theme('admin_block_content', $content);
@@ -343,8 +344,16 @@ function menu_edit_item_validate($form, &$form_state) {
     if (isset($parsed_link['query'])) {
       $item['options']['query'] = $parsed_link['query'];
     }
+    else {
+      // Use unset() rather than setting to empty string
+      // to avoid redundant serialized data being stored.
+      unset($item['options']['query']);
+    }
     if (isset($parsed_link['fragment'])) {
       $item['options']['fragment'] = $parsed_link['fragment'];
+    }
+    else {
+      unset($item['options']['fragment']);
     }
     if ($item['link_path'] != $parsed_link['path']) {
       $item['link_path'] = $parsed_link['path'];

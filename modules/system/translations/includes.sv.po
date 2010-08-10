@@ -1,30 +1,30 @@
-# Swedish translation of drupal (6.10)
+# Swedish translation of drupal (6.13)
 # Copyright (c) 2009 by the Swedish translation team
 # Generated from files:
 #  actions.inc,v 1.8.2.7 2009/02/16 14:34:30 goba
 #  batch.inc,v 1.14 2007/12/20 11:57:20 goba
-#  common.inc,v 1.756.2.47 2009/02/25 21:02:36 goba
-#  database.pgsql.inc,v 1.68.2.3 2008/11/17 10:31:41 goba
-#  file.inc,v 1.121.2.5 2008/10/20 09:42:31 goba
-#  form.inc,v 1.265.2.19 2009/02/22 18:12:46 goba
+#  common.inc,v 1.756.2.57 2009/07/01 20:51:55 goba
+#  database.pgsql.inc,v 1.68.2.5 2009/06/09 10:53:52 goba
+#  file.inc,v 1.121.2.7 2009/06/09 10:37:38 goba
+#  form.inc,v 1.265.2.25 2009/05/26 08:18:46 goba
 #  image.gd.inc,v 1.4 2008/01/15 10:17:42 goba
 #  image.inc,v 1.24 2008/01/28 16:05:17 goba
-#  locale.inc,v 1.174.2.7 2009/01/06 15:36:51 goba
-#  mail.inc,v 1.8.2.4 2008/10/06 11:04:08 dries
-#  menu.inc,v 1.255.2.28 2009/02/09 16:28:21 dries
+#  locale.inc,v 1.174.2.9 2009/06/18 12:50:33 goba
+#  mail.inc,v 1.8.2.7 2009/06/18 12:15:44 goba
+#  menu.inc,v 1.255.2.31 2009/04/27 12:50:13 goba
 #  module.inc,v 1.115.2.1 2009/02/16 10:32:10 goba
-#  pager.inc,v 1.63 2007/12/06 09:58:30 goba
-#  tablesort.inc,v 1.47 2008/01/04 09:31:48 goba
-#  theme.inc,v 1.415.2.19 2009/02/25 21:02:16 goba
+#  pager.inc,v 1.63.2.1 2009/07/01 20:51:55 goba
+#  tablesort.inc,v 1.47.2.1 2009/07/01 20:51:55 goba
+#  theme.inc,v 1.415.2.24 2009/06/18 12:04:04 goba
 #  unicode.inc,v 1.29 2007/12/28 12:02:50 dries
 #  xmlrpc.inc,v 1.47.2.5 2009/01/14 21:36:16 goba
 #  xmlrpcs.inc,v 1.24.2.1 2008/04/28 10:04:52 dries
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: drupal (6.10)\n"
-"POT-Creation-Date: 2009-03-12 17:50+0100\n"
-"PO-Revision-Date: 2009-03-12 16:19+0100\n"
+"Project-Id-Version: drupal (6.13)\n"
+"POT-Creation-Date: 2009-08-04 10:44+0200\n"
+"PO-Revision-Date: 2009-07-22 23:48+0200\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -70,15 +70,15 @@ msgstr[1] "@count oanvända åtgärder (%orphans) finns i åtgärdstabellen. !li
 msgid "HTTP POST is required."
 msgstr "HTTP POST är obligatoriskt."
 
-#: includes/common.inc:333
+#: includes/common.inc:342
 msgid "Site off-line"
 msgstr "Webbplatsen är nedkopplad"
 
-#: includes/common.inc:360
+#: includes/common.inc:364
 msgid "Page not found"
 msgstr "Hittar inte sidan"
 
-#: includes/common.inc:361
+#: includes/common.inc:365
 msgid "The requested page could not be found."
 msgstr "Den valda sidan kunde inte hittas."
 
@@ -90,58 +90,58 @@ msgstr "Åtkomst nekad"
 msgid "You are not authorized to access this page."
 msgstr "Du har inte behörighet till denna sida."
 
-#: includes/common.inc:1198
+#: includes/common.inc:1208
 msgid "KB"
 msgstr "kB"
 
-#: includes/common.inc:1203
+#: includes/common.inc:1213
 msgid "@size @suffix"
 msgstr "@size @suffix"
 
-#: includes/common.inc:1235
+#: includes/common.inc:1245
 msgid "0 sec"
 msgstr "0 sek"
 
-#: includes/common.inc:3579
+#: includes/common.inc:3593
 msgid "notice"
 msgstr "notis"
 
-#: includes/common.inc:3580
+#: includes/common.inc:3594
 msgid "info"
 msgstr "info"
 
-#: includes/common.inc:3581
+#: includes/common.inc:3595
 msgid "debug"
 msgstr "debug"
 
-#: includes/common.inc:609
+#: includes/common.inc:619
 msgid "%message in %file on line %line."
 msgstr "%message in %file on line %line."
 
-#: includes/common.inc:2629,2636,2651,2667
+#: includes/common.inc:2643,2650,2665,2681
 msgid "cron"
 msgstr "schemalagda aktiviteter"
 
-#: includes/common.inc:2629
+#: includes/common.inc:2643
 msgid "Cron has been running for more than an hour and is most likely stuck."
 msgstr ""
 "Schemalagda aktiviteter har körts i mer än en timme och har förmodligen "
 "hängt sig."
 
-#: includes/common.inc:2636
+#: includes/common.inc:2650
 msgid "Attempting to re-run cron while it is already running."
 msgstr "Försök att köra schemalagda aktiviteter när körningen redan är igång."
 
-#: includes/common.inc:2651
+#: includes/common.inc:2665
 msgid "Cron run completed."
 msgstr "Körning av schemalagda aktiviteter färdig."
 
-#: includes/common.inc:2667
+#: includes/common.inc:2681
 msgid "Cron run exceeded the time limit and was aborted."
 msgstr ""
 "Körningen av schemalagda aktiviteter överskred tidsgränsen och avbröts."
 
-#: includes/common.inc:1194
+#: includes/common.inc:1204
 msgid "1 byte"
 msgid_plural "@count bytes"
 msgstr[0] "1 byte"
@@ -363,19 +363,19 @@ msgstr ""
 "Uppladdningsfel. Kunde inte flytta den uppladdade filen %file till "
 "destinationen %destination."
 
-#: includes/form.inc:1602
+#: includes/form.inc:1605
 msgid "Confirm password"
 msgstr "Bekräfta lösenord"
 
-#: includes/form.inc:1625
+#: includes/form.inc:1628
 msgid "The specified passwords do not match."
 msgstr "De angivna lösenorden stämmer inte överens."
 
-#: includes/form.inc:1629
+#: includes/form.inc:1632
 msgid "Password field is required."
 msgstr "Lösenordsfältet är obligatoriskt."
 
-#: includes/form.inc:1710
+#: includes/form.inc:1713
 msgid "The specified date is invalid."
 msgstr "Det angivna datumet är ogiltigt."
 
@@ -391,27 +391,27 @@ msgstr ""
 "!name får inte vara längre än %max tecken, men är för närvarande %length "
 "tecken."
 
-#: includes/form.inc:2197
+#: includes/form.inc:2200
 msgid "This field is required."
 msgstr "Detta fält är obligatoriskt."
 
-#: includes/form.inc:2202,2205
+#: includes/form.inc:2205,2208
 msgid "!title: !required"
 msgstr "!title: !required"
 
-#: includes/form.inc:2443
+#: includes/form.inc:2446
 msgid "Initializing."
 msgstr "Initierar."
 
-#: includes/form.inc:2444
+#: includes/form.inc:2447
 msgid "Remaining @remaining of @total."
 msgstr "@remaining av @total återstår."
 
-#: includes/form.inc:2445
+#: includes/form.inc:2448
 msgid "An error has occurred."
 msgstr "Ett fel har uppstått."
 
-#: includes/form.inc:2518
+#: includes/form.inc:2521
 msgid "Please continue to <a href=\"@error_url\">the error page</a>"
 msgstr "Fortsätt till <a href=\"@error_url\">felsidan</a>"
 
@@ -776,7 +776,7 @@ msgstr ""
 "Välj vilket språk du vill lägga till textsträngar i. Om du väljer ett språk "
 "som ännu inte har ställts in kommer det att läggas till."
 
-#: includes/locale.inc:623,716,735,2033
+#: includes/locale.inc:623,716,735,2037
 msgid "Text group"
 msgstr "Textgrupp"
 
@@ -807,7 +807,7 @@ msgstr "Importen av översättningen %filename misslyckades."
 
 #: includes/locale.inc:666
 msgid "File to import not found."
-msgstr "Importfilen hittades inte."
+msgstr "Fil att importera hittades inte."
 
 #: includes/locale.inc:707
 msgid "Export translation"
@@ -845,19 +845,19 @@ msgstr "Originaltext"
 msgid "Save translations"
 msgstr "Spara översättningar"
 
-#: includes/locale.inc:852
+#: includes/locale.inc:854
 msgid "The submitted string contains disallowed HTML: %string"
 msgstr "Den skickade textsträngen innehåller otillåten HTML: %string"
 
-#: includes/locale.inc:885
+#: includes/locale.inc:887
 msgid "The string has been saved."
 msgstr "Textsträngen har sparats."
 
-#: includes/locale.inc:920
+#: includes/locale.inc:922
 msgid "Are you sure you want to delete the string \"%source\"?"
 msgstr "Är du säker på att du vill ta bort strängen \"%source\"?"
 
-#: includes/locale.inc:920
+#: includes/locale.inc:922
 msgid ""
 "Deleting the string will remove all translations of this string in all "
 "languages. This action cannot be undone."
@@ -865,21 +865,21 @@ msgstr ""
 "Om du raderar denna textsträng raderas alla översättningar av textsträngen "
 "på alla språk. Detta kan inte ångras."
 
-#: includes/locale.inc:932
+#: includes/locale.inc:934
 msgid "The string has been removed."
 msgstr "Textsträngen har tagits bort."
 
-#: includes/locale.inc:1026
+#: includes/locale.inc:1028
 msgid "The language selected for import is not supported."
 msgstr "Stöd saknas för språket som valts för import."
 
-#: includes/locale.inc:1041
+#: includes/locale.inc:1043
 msgid ""
 "The translation file %filename appears to have a missing or malformed header."
 msgstr ""
 "Översättningsfilen %filename tycks sakna eller ha ett felaktigt filhuvud."
 
-#: includes/locale.inc:1051
+#: includes/locale.inc:1053
 msgid ""
 "The translation was successfully imported. There are %number newly created "
 "translated strings, %update strings were updated and %delete strings were "
@@ -888,49 +888,49 @@ msgstr ""
 "Översättningen importerades. Det finns %number nya översatta textsträngar, %"
 "update textsträngar uppdaterades och %delete textsträngar togs bort."
 
-#: includes/locale.inc:1437
+#: includes/locale.inc:1441
 msgid ""
 "The translation file %filename contains an error: the plural formula could "
 "not be parsed."
 msgstr ""
 "Översättningsfilen %filename har ett fel: pluralformen kunde inte tolkas."
 
-#: includes/locale.inc:2033
+#: includes/locale.inc:2037
 msgid "String"
 msgstr "Textsträng"
 
-#: includes/locale.inc:2059
+#: includes/locale.inc:2063
 msgid "No strings found for your search."
 msgstr "Inga textsträngar hittades."
 
-#: includes/locale.inc:1079
+#: includes/locale.inc:1081
 msgid ""
 "The translation import failed, because the file %filename could not be read."
 msgstr ""
 "Importen av översättningen misslyckades eftersom filen %filename inte kunde "
 "läsas."
 
-#: includes/locale.inc:1108
+#: includes/locale.inc:1110
 msgid ""
 "The translation file %filename contains an error: \"msgstr\" was expected "
 "but not found on line %line."
 msgstr ""
-"Översättningsfilen %filename har ett fel: \"msgstr\" förväntades men "
+"Översättningsfilen %filename innehåller ett fel: \"msgstr\" förväntades, men "
 "hittades inte på rad %line."
 
-#: includes/locale.inc:1114
+#: includes/locale.inc:1116
 msgid ""
 "The translation file %filename contains an error: \"msgid_plural\" was "
 "expected but not found on line %line."
 msgstr ""
-"Översättningsfilen %filename har ett fel: \"msgid_plural\" förväntades men "
-"hittades inte på rad %line."
+"Översättningsfilen %filename innehåller ett fel: \"msgid_plural\" "
+"förväntades, men hittades inte på rad %line."
 
-#: includes/locale.inc:1120,1138,1150,1158,1172,1181
+#: includes/locale.inc:1122,1140,1152,1160,1174,1183
 msgid "The translation file %filename contains a syntax error on line %line."
 msgstr "Översättningsfilen %filename har ett syntaxfel på rad %line."
 
-#: includes/locale.inc:1132
+#: includes/locale.inc:1134
 msgid ""
 "The translation file %filename contains an error: \"msgid\" is unexpected on "
 "line %line."
@@ -938,7 +938,7 @@ msgstr ""
 "Översättningsfilen %filename har ett fel: \"msgid\" förväntades inte på rad %"
 "line."
 
-#: includes/locale.inc:1146
+#: includes/locale.inc:1148
 msgid ""
 "The translation file %filename contains an error: \"msgstr[]\" is unexpected "
 "on line %line."
@@ -946,7 +946,7 @@ msgstr ""
 "Översättningsfilen %filename har ett fel: \"msgstr[]\" förväntades inte på "
 "rad %line."
 
-#: includes/locale.inc:1166
+#: includes/locale.inc:1168
 msgid ""
 "The translation file %filename contains an error: \"msgstr\" is unexpected "
 "on line %line."
@@ -954,39 +954,39 @@ msgstr ""
 "Översättningsfilen %filename har ett fel: \"msgstr\" förväntades inte på rad "
 "%line."
 
-#: includes/locale.inc:1194
+#: includes/locale.inc:1196
 msgid ""
 "The translation file %filename contains an error: there is an unexpected "
 "string on line %line."
 msgstr ""
 "Översättningsfilen %filename har ett fel: oväntad textsträng på rad %line."
 
-#: includes/locale.inc:1205
+#: includes/locale.inc:1207
 msgid "The translation file %filename ended unexpectedly at line %line."
 msgstr "Översättningsfilen %filename slutade oväntat på rad %line."
 
-#: includes/locale.inc:2577
+#: includes/locale.inc:2581
 msgid "Importing interface translations"
 msgstr "Importerar gränssnittsöversättningar"
 
-#: includes/locale.inc:2578
+#: includes/locale.inc:2582
 msgid "Starting import"
 msgstr "Påbörjar import"
 
-#: includes/locale.inc:2579
+#: includes/locale.inc:2583
 msgid "Error importing interface translations"
 msgstr "Ett fel uppstod under importen av gränssnittsöversättningar"
 
-#: includes/locale.inc:853
+#: includes/locale.inc:855
 msgid ""
 "Attempted submission of a translation string with disallowed HTML: %string"
 msgstr "Försökte spara en textsträng med otillåten HTML: %string"
 
-#: includes/locale.inc:995
+#: includes/locale.inc:997
 msgid "The %language language (%code) has been created."
 msgstr "Språket %language (%code) har skapats."
 
-#: includes/locale.inc:1052
+#: includes/locale.inc:1054
 msgid ""
 "Imported %file into %locale: %number new strings added, %update updated and %"
 "delete removed."
@@ -994,23 +994,23 @@ msgstr ""
 "Importerade %file till %locale: %number nya textsträngar lades till, %update "
 "uppdaterades och %delete togs bort."
 
-#: includes/locale.inc:1879
+#: includes/locale.inc:1883
 msgid "Exported %locale translation file: %filename."
 msgstr "Exporterade %locale översättningsfil: %filename."
 
-#: includes/locale.inc:1883
+#: includes/locale.inc:1887
 msgid "Exported translation file: %filename."
 msgstr "Exporterade översättningsfil: %filename."
 
-#: includes/locale.inc:2224
+#: includes/locale.inc:2228
 msgid "Updated JavaScript translation file for the language %language."
 msgstr "Uppdaterade översättningsfil för JavaScript för språket %language."
 
-#: includes/locale.inc:2227
+#: includes/locale.inc:2231
 msgid "Created JavaScript translation file for the language %language."
 msgstr "Skapade översättningsfil för JavaScript för språket %language."
 
-#: includes/locale.inc:2230
+#: includes/locale.inc:2234
 msgid ""
 "Removed JavaScript translation file for the language %language, because no "
 "translations currently exist for that language."
@@ -1018,7 +1018,7 @@ msgstr ""
 "Tog bort översättningsfil för JavaScript för språket %language, eftersom "
 "inga översättningar finns för det språket för närvarande."
 
-#: includes/locale.inc:2233
+#: includes/locale.inc:2237
 msgid ""
 "An error occurred during creation of the JavaScript translation file for the "
 "language %language."
@@ -1026,7 +1026,7 @@ msgstr ""
 "Ett fel uppstod när översättningsfilen för JavaScript för språket %language "
 "skapades."
 
-#: includes/locale.inc:1054
+#: includes/locale.inc:1056
 msgid "One translation string was skipped because it contains disallowed HTML."
 msgid_plural ""
 "@count translation strings were skipped because they contain disallowed HTML."
@@ -1036,7 +1036,7 @@ msgstr[1] ""
 "@count översättningssträngar hoppades över eftersom de innehåller otillåten "
 "HTML."
 
-#: includes/locale.inc:2617
+#: includes/locale.inc:2621
 msgid "One translation file imported for the newly installed modules."
 msgid_plural ""
 "@count translation files imported for the newly installed modules."
@@ -1044,741 +1044,729 @@ msgstr[0] "En översättningsfil importerades för de nyinstallerade modulerna."
 msgstr[1] ""
 "@count översättningsfiler importerades för de nyinstallerade modulerna."
 
-#: includes/locale.inc:2627
+#: includes/locale.inc:2631
 msgid "One translation file imported for the enabled modules."
 msgid_plural "@count translation files imported for the enabled modules."
 msgstr[0] "En översättningsfil importerades för de aktiverade modulerna."
 msgstr[1] "@count översättningsfiler importerades för de aktiverade modulerna."
 
-#: includes/locale.inc:2299
+#: includes/locale.inc:2303
 msgid "Afar"
 msgstr "Afar"
 
-#: includes/locale.inc:2300
+#: includes/locale.inc:2304
 msgid "Abkhazian"
 msgstr "Abchaziska"
 
-#: includes/locale.inc:2301
+#: includes/locale.inc:2305
 msgid "Avestan"
 msgstr "Avestiska"
 
-#: includes/locale.inc:2302
+#: includes/locale.inc:2306
 msgid "Afrikaans"
 msgstr "Afrikaans"
 
-#: includes/locale.inc:2303
+#: includes/locale.inc:2307
 msgid "Akan"
 msgstr "Akan"
 
-#: includes/locale.inc:2304
+#: includes/locale.inc:2308
 msgid "Amharic"
 msgstr "Amhariska"
 
-#: includes/locale.inc:2305
+#: includes/locale.inc:2309
 msgid "Arabic"
 msgstr "Arabiska"
 
-#: includes/locale.inc:2306
+#: includes/locale.inc:2310
 msgid "Assamese"
 msgstr "Assamese"
 
-#: includes/locale.inc:2307
+#: includes/locale.inc:2311
 msgid "Avar"
 msgstr "Avariska"
 
-#: includes/locale.inc:2308
+#: includes/locale.inc:2312
 msgid "Aymara"
 msgstr "Aymara"
 
-#: includes/locale.inc:2309
+#: includes/locale.inc:2313
 msgid "Azerbaijani"
 msgstr "Azerbajdzjanska"
 
-#: includes/locale.inc:2310
+#: includes/locale.inc:2314
 msgid "Bashkir"
 msgstr "Basjkiriska"
 
-#: includes/locale.inc:2311
+#: includes/locale.inc:2315
 msgid "Belarusian"
 msgstr "Vitryska"
 
-#: includes/locale.inc:2312
+#: includes/locale.inc:2316
 msgid "Bulgarian"
 msgstr "Bulgariska"
 
-#: includes/locale.inc:2313
+#: includes/locale.inc:2317
 msgid "Bihari"
 msgstr "Bihari"
 
-#: includes/locale.inc:2314
+#: includes/locale.inc:2318
 msgid "Bislama"
 msgstr "Bislama"
 
-#: includes/locale.inc:2315
+#: includes/locale.inc:2319
 msgid "Bambara"
 msgstr "Bambara"
 
-#: includes/locale.inc:2316
+#: includes/locale.inc:2320
 msgid "Bengali"
 msgstr "Bengali"
 
-#: includes/locale.inc:2317
+#: includes/locale.inc:2321
 msgid "Tibetan"
 msgstr "Tibetanska"
 
-#: includes/locale.inc:2318
+#: includes/locale.inc:2322
 msgid "Breton"
 msgstr "Bretonska"
 
-#: includes/locale.inc:2319
+#: includes/locale.inc:2323
 msgid "Bosnian"
 msgstr "Bosniska"
 
-#: includes/locale.inc:2320
+#: includes/locale.inc:2324
 msgid "Catalan"
 msgstr "Katalanska"
 
-#: includes/locale.inc:2321
+#: includes/locale.inc:2325
 msgid "Chechen"
 msgstr "Tjetjenska"
 
-#: includes/locale.inc:2322
+#: includes/locale.inc:2326
 msgid "Chamorro"
 msgstr "Chamorro"
 
-#: includes/locale.inc:2323
+#: includes/locale.inc:2327
 msgid "Corsican"
 msgstr "Korsiska"
 
-#: includes/locale.inc:2324
+#: includes/locale.inc:2328
 msgid "Cree"
 msgstr "Cree"
 
-#: includes/locale.inc:2325
+#: includes/locale.inc:2329
 msgid "Czech"
 msgstr "Tjeckiska"
 
-#: includes/locale.inc:2326
+#: includes/locale.inc:2330
 msgid "Old Slavonic"
 msgstr "Gammal-slaviska"
 
-#: includes/locale.inc:2327
+#: includes/locale.inc:2331
 msgid "Chuvash"
 msgstr "Tjuvasjiska"
 
-#: includes/locale.inc:2328
+#: includes/locale.inc:2332
 msgid "Welsh"
 msgstr "Walesiska"
 
-#: includes/locale.inc:2329
+#: includes/locale.inc:2333
 msgid "Danish"
 msgstr "Danska"
 
-#: includes/locale.inc:2330
+#: includes/locale.inc:2334
 msgid "German"
 msgstr "Tyska"
 
-#: includes/locale.inc:2331
+#: includes/locale.inc:2335
 msgid "Maldivian"
 msgstr "Maldiviska"
 
-#: includes/locale.inc:2332
+#: includes/locale.inc:2336
 msgid "Bhutani"
 msgstr "Bhutani"
 
-#: includes/locale.inc:2333
+#: includes/locale.inc:2337
 msgid "Ewe"
 msgstr "Ewe"
 
-#: includes/locale.inc:2334
+#: includes/locale.inc:2338
 msgid "Greek"
 msgstr "Grekiska"
 
-#: includes/locale.inc:2335
+#: includes/locale.inc:2339
 msgid "English"
 msgstr "Engelska"
 
-#: includes/locale.inc:2336
+#: includes/locale.inc:2340
 msgid "Esperanto"
 msgstr "Esperanto"
 
-#: includes/locale.inc:2337
+#: includes/locale.inc:2341
 msgid "Spanish"
 msgstr "Spanska"
 
-#: includes/locale.inc:2338
+#: includes/locale.inc:2342
 msgid "Estonian"
 msgstr "Estniska"
 
-#: includes/locale.inc:2339
+#: includes/locale.inc:2343
 msgid "Basque"
 msgstr "Baskiska"
 
-#: includes/locale.inc:2340
+#: includes/locale.inc:2344
 msgid "Persian"
 msgstr "Persiska"
 
-#: includes/locale.inc:2341
+#: includes/locale.inc:2345
 msgid "Fulah"
 msgstr "Fulah"
 
-#: includes/locale.inc:2342
+#: includes/locale.inc:2346
 msgid "Finnish"
 msgstr "Finska"
 
-#: includes/locale.inc:2343
+#: includes/locale.inc:2347
 msgid "Fiji"
 msgstr "Fiji"
 
-#: includes/locale.inc:2344
+#: includes/locale.inc:2348
 msgid "Faeroese"
 msgstr "Färöiska"
 
-#: includes/locale.inc:2345
+#: includes/locale.inc:2349
 msgid "French"
 msgstr "Franska"
 
-#: includes/locale.inc:2346
+#: includes/locale.inc:2350
 msgid "Frisian"
 msgstr "Frisiska"
 
-#: includes/locale.inc:2347
+#: includes/locale.inc:2351
 msgid "Irish"
 msgstr "Irländska"
 
-#: includes/locale.inc:2348
+#: includes/locale.inc:2352
 msgid "Scots Gaelic"
 msgstr "Skotsk Gaeliska"
 
-#: includes/locale.inc:2349
+#: includes/locale.inc:2353
 msgid "Galician"
 msgstr "Gaeliska"
 
-#: includes/locale.inc:2350
+#: includes/locale.inc:2354
 msgid "Guarani"
 msgstr "Guarani"
 
-#: includes/locale.inc:2351
+#: includes/locale.inc:2355
 msgid "Gujarati"
 msgstr "Gujarati"
 
-#: includes/locale.inc:2352
+#: includes/locale.inc:2356
 msgid "Manx"
 msgstr "Manx"
 
-#: includes/locale.inc:2353
+#: includes/locale.inc:2357
 msgid "Hausa"
 msgstr "Hausa"
 
-#: includes/locale.inc:2354
+#: includes/locale.inc:2358
 msgid "Hebrew"
 msgstr "Hebreiska"
 
-#: includes/locale.inc:2355
+#: includes/locale.inc:2359
 msgid "Hindi"
 msgstr "Hindi"
 
-#: includes/locale.inc:2356
+#: includes/locale.inc:2360
 msgid "Hiri Motu"
 msgstr "Hiri Motu"
 
-#: includes/locale.inc:2357
+#: includes/locale.inc:2361
 msgid "Croatian"
 msgstr "Kroatiska"
 
-#: includes/locale.inc:2358
+#: includes/locale.inc:2362
 msgid "Hungarian"
 msgstr "Ungerska"
 
-#: includes/locale.inc:2359
+#: includes/locale.inc:2363
 msgid "Armenian"
 msgstr "Armeniska"
 
-#: includes/locale.inc:2360
+#: includes/locale.inc:2364
 msgid "Herero"
 msgstr "Herero"
 
-#: includes/locale.inc:2361
+#: includes/locale.inc:2365
 msgid "Interlingua"
 msgstr "Interlingua"
 
-#: includes/locale.inc:2362
+#: includes/locale.inc:2366
 msgid "Indonesian"
 msgstr "Indonesiska"
 
-#: includes/locale.inc:2363
+#: includes/locale.inc:2367
 msgid "Interlingue"
 msgstr "Interlingue"
 
-#: includes/locale.inc:2364
+#: includes/locale.inc:2368
 msgid "Igbo"
 msgstr "Igbo"
 
-#: includes/locale.inc:2365
+#: includes/locale.inc:2369
 msgid "Inupiak"
 msgstr "Inupiak"
 
-#: includes/locale.inc:2366
+#: includes/locale.inc:2370
 msgid "Icelandic"
 msgstr "Isländska"
 
-#: includes/locale.inc:2367
+#: includes/locale.inc:2371
 msgid "Italian"
 msgstr "Italienska"
 
-#: includes/locale.inc:2368
+#: includes/locale.inc:2372
 msgid "Inuktitut"
 msgstr "Inuitiska"
 
-#: includes/locale.inc:2369
+#: includes/locale.inc:2373
 msgid "Japanese"
 msgstr "Japanska"
 
-#: includes/locale.inc:2370
+#: includes/locale.inc:2374
 msgid "Javanese"
 msgstr "Javanesiska"
 
-#: includes/locale.inc:2371
+#: includes/locale.inc:2375
 msgid "Georgian"
 msgstr "Georgiska"
 
-#: includes/locale.inc:2372
+#: includes/locale.inc:2376
 msgid "Kongo"
 msgstr "Kongo"
 
-#: includes/locale.inc:2373
+#: includes/locale.inc:2377
 msgid "Kikuyu"
 msgstr "Kikuyu"
 
-#: includes/locale.inc:2374
+#: includes/locale.inc:2378
 msgid "Kwanyama"
 msgstr "Kwanyama"
 
-#: includes/locale.inc:2375
+#: includes/locale.inc:2379
 msgid "Kazakh"
 msgstr "Kazakh"
 
-#: includes/locale.inc:2376
+#: includes/locale.inc:2380
 msgid "Greenlandic"
 msgstr "Grönländska"
 
-#: includes/locale.inc:2377
+#: includes/locale.inc:2381
 msgid "Cambodian"
 msgstr "Kambodjanska"
 
-#: includes/locale.inc:2378
+#: includes/locale.inc:2382
 msgid "Kannada"
 msgstr "Kannada"
 
-#: includes/locale.inc:2379
+#: includes/locale.inc:2383
 msgid "Korean"
 msgstr "Koreanska"
 
-#: includes/locale.inc:2380
+#: includes/locale.inc:2384
 msgid "Kanuri"
 msgstr "Kanuri"
 
-#: includes/locale.inc:2381
+#: includes/locale.inc:2385
 msgid "Kashmiri"
 msgstr "Kashmiriska"
 
-#: includes/locale.inc:2382
+#: includes/locale.inc:2386
 msgid "Kurdish"
 msgstr "Kurdiska"
 
-#: includes/locale.inc:2383
+#: includes/locale.inc:2387
 msgid "Komi"
 msgstr "Komi"
 
-#: includes/locale.inc:2384
+#: includes/locale.inc:2388
 msgid "Cornish"
 msgstr "Cornish"
 
-#: includes/locale.inc:2385
+#: includes/locale.inc:2389
 msgid "Kirghiz"
 msgstr "Kirghiz"
 
-#: includes/locale.inc:2386
+#: includes/locale.inc:2390
 msgid "Latin"
 msgstr "Latin"
 
-#: includes/locale.inc:2387
+#: includes/locale.inc:2391
 msgid "Luxembourgish"
 msgstr "Luxenburgska"
 
-#: includes/locale.inc:2388
+#: includes/locale.inc:2392
 msgid "Luganda"
 msgstr "Luganda"
 
-#: includes/locale.inc:2389
+#: includes/locale.inc:2393
 msgid "Lingala"
 msgstr "Lingala"
 
-#: includes/locale.inc:2390
+#: includes/locale.inc:2394
 msgid "Laothian"
 msgstr "Laonesiska"
 
-#: includes/locale.inc:2391
+#: includes/locale.inc:2395
 msgid "Lithuanian"
 msgstr "Litauiska"
 
-#: includes/locale.inc:2392
+#: includes/locale.inc:2396
 msgid "Latvian"
 msgstr "Lettiska"
 
-#: includes/locale.inc:2393
+#: includes/locale.inc:2397
 msgid "Malagasy"
 msgstr "Malagasy"
 
-#: includes/locale.inc:2394
+#: includes/locale.inc:2398
 msgid "Marshallese"
 msgstr "Marshallese"
 
-#: includes/locale.inc:2395
+#: includes/locale.inc:2399
 msgid "Maori"
 msgstr "Maori"
 
-#: includes/locale.inc:2396
+#: includes/locale.inc:2400
 msgid "Macedonian"
 msgstr "Makedonska"
 
-#: includes/locale.inc:2397
+#: includes/locale.inc:2401
 msgid "Malayalam"
 msgstr "Malayalam"
 
-#: includes/locale.inc:2398
+#: includes/locale.inc:2402
 msgid "Mongolian"
 msgstr "Mongoliska"
 
-#: includes/locale.inc:2399
+#: includes/locale.inc:2403
 msgid "Moldavian"
 msgstr "Moldaviska"
 
-#: includes/locale.inc:2400
+#: includes/locale.inc:2404
 msgid "Marathi"
 msgstr "Marathi"
 
-#: includes/locale.inc:2401
+#: includes/locale.inc:2405
 msgid "Malay"
 msgstr "Malaysiska"
 
-#: includes/locale.inc:2402
+#: includes/locale.inc:2406
 msgid "Maltese"
 msgstr "Maltese"
 
-#: includes/locale.inc:2403
+#: includes/locale.inc:2407
 msgid "Burmese"
 msgstr "Burmesiska"
 
-#: includes/locale.inc:2404
+#: includes/locale.inc:2408
 msgid "Nauru"
 msgstr "Nauru"
 
-#: includes/locale.inc:2405
+#: includes/locale.inc:2409
 msgid "North Ndebele"
 msgstr "North Ndebele"
 
-#: includes/locale.inc:2406
+#: includes/locale.inc:2410
 msgid "Nepali"
 msgstr "Nepalesiska"
 
-#: includes/locale.inc:2407
+#: includes/locale.inc:2411
 msgid "Ndonga"
 msgstr "Ndonga"
 
-#: includes/locale.inc:2408
+#: includes/locale.inc:2412
 msgid "Dutch"
 msgstr "Holländska"
 
-#: includes/locale.inc:2409
+#: includes/locale.inc:2413
 msgid "Norwegian Bokmål"
 msgstr "Norska: Bokmål"
 
-#: includes/locale.inc:2410
+#: includes/locale.inc:2414
 msgid "Norwegian Nynorsk"
 msgstr "Norska: Nynorsk"
 
-#: includes/locale.inc:2411
+#: includes/locale.inc:2415
 msgid "South Ndebele"
 msgstr "South Ndebele"
 
-#: includes/locale.inc:2412
+#: includes/locale.inc:2416
 msgid "Navajo"
 msgstr "Navajo"
 
-#: includes/locale.inc:2413
+#: includes/locale.inc:2417
 msgid "Chichewa"
 msgstr "Chichewa"
 
-#: includes/locale.inc:2414
+#: includes/locale.inc:2418
 msgid "Occitan"
 msgstr "Occitan"
 
-#: includes/locale.inc:2415
+#: includes/locale.inc:2419
 msgid "Oromo"
 msgstr "Oromo"
 
-#: includes/locale.inc:2416
+#: includes/locale.inc:2420
 msgid "Oriya"
 msgstr "Oriya"
 
-#: includes/locale.inc:2417
+#: includes/locale.inc:2421
 msgid "Ossetian"
 msgstr "Ossetian"
 
-#: includes/locale.inc:2418
+#: includes/locale.inc:2422
 msgid "Punjabi"
 msgstr "Punjabi"
 
-#: includes/locale.inc:2419
+#: includes/locale.inc:2423
 msgid "Pali"
 msgstr "Pali"
 
-#: includes/locale.inc:2420
+#: includes/locale.inc:2424
 msgid "Polish"
 msgstr "Polska"
 
-#: includes/locale.inc:2421
+#: includes/locale.inc:2425
 msgid "Pashto"
 msgstr "Pashto"
 
-#: includes/locale.inc:2422
+#: includes/locale.inc:2426
 msgid "Portuguese, Portugal"
 msgstr "Portugisiska, Portugal"
 
-#: includes/locale.inc:2423
+#: includes/locale.inc:2427
 msgid "Portuguese, Brazil"
 msgstr "Portugisiska, Brasilien"
 
-#: includes/locale.inc:2424
+#: includes/locale.inc:2428
 msgid "Quechua"
 msgstr "Quechua"
 
-#: includes/locale.inc:2425
+#: includes/locale.inc:2429
 msgid "Rhaeto-Romance"
 msgstr "Rätoromanska"
 
-#: includes/locale.inc:2426
+#: includes/locale.inc:2430
 msgid "Kirundi"
 msgstr "Kirundi"
 
-#: includes/locale.inc:2427
+#: includes/locale.inc:2431
 msgid "Romanian"
 msgstr "Rumänska"
 
-#: includes/locale.inc:2428
+#: includes/locale.inc:2432
 msgid "Russian"
 msgstr "Ryska"
 
-#: includes/locale.inc:2429
+#: includes/locale.inc:2433
 msgid "Kinyarwanda"
 msgstr "Kinyarwanda"
 
-#: includes/locale.inc:2430
+#: includes/locale.inc:2434
 msgid "Sanskrit"
 msgstr "Sanskrit"
 
-#: includes/locale.inc:2431
+#: includes/locale.inc:2435
 msgid "Sardinian"
 msgstr "Sardinska"
 
-#: includes/locale.inc:2432
+#: includes/locale.inc:2436
 msgid "Sindhi"
 msgstr "Sindhi"
 
-#: includes/locale.inc:2433
+#: includes/locale.inc:2437
 msgid "Northern Sami"
 msgstr "Nordsamiska"
 
-#: includes/locale.inc:2434
+#: includes/locale.inc:2438
 msgid "Sango"
 msgstr "Sango"
 
-#: includes/locale.inc:2435
+#: includes/locale.inc:2439
 msgid "Serbo-Croatian"
 msgstr "Serbokroatiska"
 
-#: includes/locale.inc:2436
-msgid "Singhalese"
-msgstr "Singhalese"
-
-#: includes/locale.inc:2437
+#: includes/locale.inc:2441
 msgid "Slovak"
 msgstr "Slovakiska"
 
-#: includes/locale.inc:2438
+#: includes/locale.inc:2442
 msgid "Slovenian"
 msgstr "Slovenska"
 
-#: includes/locale.inc:2439
+#: includes/locale.inc:2443
 msgid "Samoan"
 msgstr "Samoanska"
 
-#: includes/locale.inc:2440
+#: includes/locale.inc:2444
 msgid "Shona"
 msgstr "Shona"
 
-#: includes/locale.inc:2441
+#: includes/locale.inc:2445
 msgid "Somali"
 msgstr "Somaliska"
 
-#: includes/locale.inc:2442
+#: includes/locale.inc:2446
 msgid "Albanian"
 msgstr "Albanska"
 
-#: includes/locale.inc:2443
+#: includes/locale.inc:2447
 msgid "Serbian"
 msgstr "Serbiska"
 
-#: includes/locale.inc:2444
+#: includes/locale.inc:2448
 msgid "Siswati"
 msgstr "Siswati"
 
-#: includes/locale.inc:2445
+#: includes/locale.inc:2449
 msgid "Sesotho"
 msgstr "Sesotho"
 
-#: includes/locale.inc:2446
+#: includes/locale.inc:2450
 msgid "Sudanese"
 msgstr "Sudanesiska"
 
-#: includes/locale.inc:2447
+#: includes/locale.inc:2451
 msgid "Swedish"
 msgstr "Svenska"
 
-#: includes/locale.inc:2448
+#: includes/locale.inc:2452
 msgid "Swahili"
 msgstr "Swahili"
 
-#: includes/locale.inc:2449
+#: includes/locale.inc:2453
 msgid "Tamil"
 msgstr "Tamilska"
 
-#: includes/locale.inc:2450
+#: includes/locale.inc:2454
 msgid "Telugu"
 msgstr "Telugu"
 
-#: includes/locale.inc:2451
+#: includes/locale.inc:2455
 msgid "Tajik"
 msgstr "Tajik"
 
-#: includes/locale.inc:2452
+#: includes/locale.inc:2456
 msgid "Thai"
 msgstr "Thailändska"
 
-#: includes/locale.inc:2453
+#: includes/locale.inc:2457
 msgid "Tigrinya"
 msgstr "Tigrinya"
 
-#: includes/locale.inc:2454
+#: includes/locale.inc:2458
 msgid "Turkmen"
 msgstr "Turkmenska"
 
-#: includes/locale.inc:2455
+#: includes/locale.inc:2459
 msgid "Tagalog"
 msgstr "Tagalog"
 
-#: includes/locale.inc:2456
+#: includes/locale.inc:2460
 msgid "Setswana"
 msgstr "Setswana"
 
-#: includes/locale.inc:2457
+#: includes/locale.inc:2461
 msgid "Tonga"
 msgstr "Tonga"
 
-#: includes/locale.inc:2458
+#: includes/locale.inc:2462
 msgid "Turkish"
 msgstr "Turkiska"
 
-#: includes/locale.inc:2459
+#: includes/locale.inc:2463
 msgid "Tsonga"
 msgstr "Tsonga"
 
-#: includes/locale.inc:2460
+#: includes/locale.inc:2464
 msgid "Tatar"
 msgstr "Tatar"
 
-#: includes/locale.inc:2461
+#: includes/locale.inc:2465
 msgid "Twi"
 msgstr "Twi"
 
-#: includes/locale.inc:2462
+#: includes/locale.inc:2466
 msgid "Tahitian"
 msgstr "Tahitiska"
 
-#: includes/locale.inc:2463
+#: includes/locale.inc:2467
 msgid "Uighur"
 msgstr "Uighur"
 
-#: includes/locale.inc:2464
+#: includes/locale.inc:2468
 msgid "Ukrainian"
 msgstr "Ukrainska"
 
-#: includes/locale.inc:2465
+#: includes/locale.inc:2469
 msgid "Urdu"
 msgstr "Urdu"
 
-#: includes/locale.inc:2466
+#: includes/locale.inc:2470
 msgid "Uzbek"
 msgstr "Uzbekiska"
 
-#: includes/locale.inc:2467
+#: includes/locale.inc:2471
 msgid "Venda"
 msgstr "Venda"
 
-#: includes/locale.inc:2468
+#: includes/locale.inc:2472
 msgid "Vietnamese"
 msgstr "Vietnamesiska"
 
-#: includes/locale.inc:2469
+#: includes/locale.inc:2473
 msgid "Wolof"
 msgstr "Wolof"
 
-#: includes/locale.inc:2470
+#: includes/locale.inc:2474
 msgid "Xhosa"
 msgstr "Xhosa"
 
-#: includes/locale.inc:2471
+#: includes/locale.inc:2475
 msgid "Yiddish"
 msgstr "Jiddisch"
 
-#: includes/locale.inc:2472
+#: includes/locale.inc:2476
 msgid "Yoruba"
 msgstr "Yoruba"
 
-#: includes/locale.inc:2473
+#: includes/locale.inc:2477
 msgid "Zhuang"
 msgstr "Zhuang"
 
-#: includes/locale.inc:2474
+#: includes/locale.inc:2478
 msgid "Chinese, Simplified"
 msgstr "Kinesiska, förenklad"
 
-#: includes/locale.inc:2475
+#: includes/locale.inc:2479
 msgid "Chinese, Traditional"
 msgstr "Kinesiska, traditionell"
 
-#: includes/locale.inc:2476
+#: includes/locale.inc:2480
 msgid "Zulu"
 msgstr "Zulu"
-
-#: includes/mail.inc:135
-msgid ""
-"Unable to send e-mail. Please contact the site admin, if the problem "
-"persists."
-msgstr ""
-"Kunde inte skicka e-post. Kontakta webbplatsens administratör om problemet "
-"kvarstår."
 
 #: includes/mail.inc:134
 msgid "Error sending e-mail (from %from to %to)."
 msgstr "Fel vid sändning av e-post (från %from till %to)."
 
-#: includes/menu.inc:2426
+#: includes/menu.inc:2461
 msgid "Operating in off-line mode."
 msgstr "Kör i nedkopplat läge."
 
-#: includes/menu.inc:2287
+#: includes/menu.inc:2322
 msgid "Menu router rebuild failed - some paths may not work correctly."
 msgstr ""
 "Ombyggnaden av menyroutern misslyckades - vissa sökvägar kommer eventuellt "
@@ -1824,39 +1812,39 @@ msgstr "Gå till sidan @number"
 msgid "sort by @s"
 msgstr "sortera efter @s"
 
-#: includes/theme.inc:1389,1392
+#: includes/theme.inc:1398,1401
 msgid "sort icon"
 msgstr "sorteringsikon"
 
-#: includes/theme.inc:1389
+#: includes/theme.inc:1398
 msgid "sort ascending"
 msgstr "sortera i stigande ordning"
 
-#: includes/theme.inc:1392
+#: includes/theme.inc:1401
 msgid "sort descending"
 msgstr "sortera i fallande ordning"
 
-#: includes/theme.inc:1430
+#: includes/theme.inc:1439
 msgid "updated"
 msgstr "uppdaterad"
 
-#: includes/theme.inc:1502
+#: includes/theme.inc:1511
 msgid "[<a href=\"@link\">more help...</a>]"
 msgstr "[<a href=\"@link\">mer hjälp...</a>]"
 
-#: includes/theme.inc:1515
+#: includes/theme.inc:1524
 msgid "XML feed"
 msgstr "XML-flöde"
 
-#: includes/theme.inc:1529
+#: includes/theme.inc:1538
 msgid "Syndicate content"
 msgstr "Prenumerera på innehåll"
 
-#: includes/theme.inc:1543
+#: includes/theme.inc:1552
 msgid "<a href=\"@link\" title=\"@title\">more</a>"
 msgstr "<a href=\"@link\" title=\"@title\">mer</a>"
 
-#: includes/theme.inc:1623
+#: includes/theme.inc:1632
 msgid "not verified"
 msgstr "inte verifierad"
 
@@ -1986,3 +1974,15 @@ msgstr "Rekursiva anrop till system.multicall är inte tillåtna."
 msgid "Server error. Requested method @methodname signature not specified."
 msgstr ""
 "Serverfel. Den begärda metoden @methodname har ingen specificerad signatur."
+
+#: includes/locale.inc:2440
+msgid "Sinhala"
+msgstr "Sinhala"
+
+#: includes/mail.inc:135
+msgid ""
+"Unable to send e-mail. Please contact the site administrator if the problem "
+"persists."
+msgstr ""
+"Kunde inte skicka e-post. Kontakta webbplatsens administratör om problemet "
+"kvarstår."

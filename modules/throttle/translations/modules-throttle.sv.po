@@ -1,4 +1,4 @@
-# Swedish translation of drupal (6.10)
+# Swedish translation of drupal (6.13)
 # Copyright (c) 2009 by the Swedish translation team
 # Generated from files:
 #  throttle.admin.inc,v 1.2 2008/01/08 10:35:43 goba
@@ -6,9 +6,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: drupal (6.10)\n"
-"POT-Creation-Date: 2009-03-12 17:50+0100\n"
-"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Project-Id-Version: drupal (6.13)\n"
+"POT-Creation-Date: 2009-08-04 10:44+0200\n"
+"PO-Revision-Date: 2009-07-22 23:27+0200\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -122,8 +122,7 @@ msgid ""
 "For more information, see the online handbook entry for <a href=\"@throttle"
 "\">Throttle module</a>."
 msgstr ""
-"Läs mer om <a href=\"@throttle\">modulen Throttle</a> i konfigurations- och "
-"anpassningshandboken."
+"Läs mer om <a href=\"@throttle\">modulen Throttle</a> i onlinehandboken."
 
 #: modules/throttle/throttle.module:126
 msgid ""

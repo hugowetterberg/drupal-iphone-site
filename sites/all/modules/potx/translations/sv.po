@@ -1,7 +1,6 @@
-# $Id: sv.po,v 1.1.2.1 2008/07/28 16:55:43 seals Exp $
+# $Id: sv.po,v 1.1.2.1.4.1 2009/11/16 04:23:53 seals Exp $
 #
 # Swedish translation of Drupal (potx)
-# Copyright 2008 Magnus Gunnarsson <seals@passagen.se>
 # Generated from files:
 #  potx.module,v 1.1.2.12.2.2.2.2 2008/01/25 16:47:22 goba
 #  potx.info,v 1.1.2.3.2.2 2007/11/12 20:19:06 goba
@@ -9,12 +8,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Potx 6.x\n"
-"POT-Creation-Date: 2008-03-10 22:48+0100\n"
-"PO-Revision-Date: 2008-03-10 23:22+0100\n"
+"POT-Creation-Date: 2009-11-09 10:16+0100\n"
+"PO-Revision-Date: 2009-11-16 05:21+0100\n"
 "Last-Translator: Magnus Gunnarsson <seals@passagen.se>\n"
 "Language-Team: drupalsverige.se\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "X-Poedit-Language: Swedish\n"
@@ -57,41 +56,73 @@ msgstr "Extrahera"
 msgid "You should select a component to export."
 msgstr "Du måste välja en komponent att exportera."
 
-#: potx.module:185
+#: potx.module:188
 msgid "Extract from %name in the %directory directory"
 msgstr "Extrahera från %name i katalogen %directory"
 
-#: potx.module:186
+#: potx.module:189
 msgid "Generates output from all files found in this directory."
 msgstr "Genererar utmatning från alla filer som hittas i den här katalogen."
 
-#: potx.module:201
+#: potx.module:204
 msgid "Extract from all in directory \"@directory\""
 msgstr "Extrahera från alla i katalogen \"@directory\""
 
-#: potx.module:202
+#: potx.module:205
 msgid "To extract from a single component in this directory, choose the desired entry in the fieldset below."
 msgstr "Välj komponentens post i formuläret nedan för att extrahera från en enstaka komponent i den här katalogen."
 
-#: potx.module:211
+#: potx.module:214
 msgid "Directory \"@directory\""
 msgstr "Katalogen \"@directory\""
 
-#: potx.module:232
+#: potx.module:235
 msgid "Extract from %name"
 msgstr "Extrahera från %name"
 
-#: potx.module:233
+#: potx.module:236
 msgid "Extract from files named %pattern in the %directory directory."
 msgstr "Extrahera från filer namgivna %pattern i katalogen %directory."
 
-#: potx.module:303
+#: potx.module:306
 msgid "Interface text translatability"
 msgstr "Gränssnitt för möjlighet att översätta text."
 
-#: potx.module:0
-msgid "potx"
-msgstr "potx"
+#: potx.module:350
+msgid "Read the documentation"
+msgstr "Läs dokumenteringen"
+
+#: (duplicate) potx.install:22
+msgid "PHP tokenizer for Translation template extractor"
+msgstr "PHP tokenizer för extraherare till översättningsmallar"
+
+#: (duplicate) potx.install:23
+msgid "Available"
+msgstr "Tillgängliga"
+
+#: (duplicate) potx.install:23
+msgid "Not available"
+msgstr "Ej tillgängliga"
+
+#: (duplicate) potx.install:26
+msgid "The <a href=\"@tokenizer\">PHP tokenizer functions</a> are required."
+msgstr "Funktionen <a href=\"@tokenizer\">PHP tokenizer</a> krävs."
+
+#: (duplicate) potx.install:38
+msgid "Localization Server"
+msgstr "Lokaliseringsserver"
+
+#: (duplicate) potx.install:39
+msgid "Translation template extractor compatible version"
+msgstr "Kompatibel version för extraherare till översättningsmallar"
+
+#: (duplicate) potx.install:42
+msgid "The Localization Server should be from a development snapshot later then July 19th, 2009 or at least 6.x-1.0-alpha4 to be compatible with this Translation template extractor."
+msgstr "Lokaliseringsservern måste vara från en utvecklingsversion senare än 19:e juli 2009, eller åtminstone 6.x-1.0-alpha4 för att vara kompatibel med denna Extraherare för översättningsmallar."
+
+#: (duplicate) potx.install:44
+msgid "Not compatible with Translation template extractor"
+msgstr "Ej kompatibel med extraheraren för översättningsmallar"
 
 #: potx.info:0
 msgid "Translation template extractor"
@@ -101,3 +132,6 @@ msgstr "Extraherare för översättningsmallar"
 msgid "Provides a web interface and an API to extract translatable text from the sources of installed components."
 msgstr "Erbjuder ett webbgränssnitt och ett API för att extrahera översättningsbar text från källorna av installerade komponenter."
 
+#: potx.info:0
+msgid "Multilanguage"
+msgstr "Flerspråkig"

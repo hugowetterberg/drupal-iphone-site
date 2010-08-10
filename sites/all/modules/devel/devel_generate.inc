@@ -1,5 +1,5 @@
 <?php
-// $Id: devel_generate.inc,v 1.14.2.14 2009/06/09 03:22:39 weitzman Exp $
+// $Id: devel_generate.inc,v 1.14.2.21 2010/04/21 15:27:44 weitzman Exp $
 // If not in 'safe mode', increase the maximum execution time:
 if (!ini_get('safe_mode')) {
   set_time_limit(240);
@@ -245,6 +245,8 @@ function devel_create_content($type = NULL) {
 
 // Return an $options array of content types.
 function devel_generate_content_types() {
+  $options = array();
+
   if (module_exists('content')) {
     $types = content_types();
     foreach ($types as $type) {
@@ -355,12 +357,7 @@ function devel_generate_add_terms(&$node) {
     $sql = "SELECT tid FROM {term_data} WHERE vid = %d ORDER BY RAND()";
     $result = db_query_range($sql, $vocab->vid, 0, 5);
     while ($row = db_fetch_object($result)) {
-      if ($vocab->tags) {
-        $node->taxonomy['tags'][] = $row->tid;
-      }
-      else {
-        $node->taxonomy[$row->tid] = $row->tid;
-      }
+      $node->taxonomy[] = $row->tid;
       if (!$vocab->multiple) {
         break;
       }
@@ -391,12 +388,11 @@ function devel_generate_add_upload(&$node) {
   $file->description = 'b log.png was here';
   $file->filesize = $size;
   $file->weight = mt_rand(0,10);
+  $file->new = TRUE;
 
   // If we made it this far it's safe to record this file in the database.
   db_query("INSERT INTO {files} (uid, filename, filepath, filemime, filesize, status, timestamp) VALUES (%d, '%s', '%s', '%s', %d, %d, %d)", $node->uid, $file->filename, $file->filepath, $file->filemime, $file->filesize, FILE_STATUS_TEMPORARY, time());
   $file->fid = db_last_insert_id('files', 'fid');
-  
-  $_SESSION['upload_files'][$file->fid] = $file;
   $node->files[$file->fid] = $file;
 }
 
@@ -457,15 +453,18 @@ function devel_generate_content_add_node(&$results) {
   // Insert new data:
   $node->type = array_rand($results['node_types']);
   module_load_include('inc', 'node', 'node.pages');
+  $type = node_get_types('type', $node->type);
   node_object_prepare($node);
   $users = $results['users'];
   $node->uid = $users[array_rand($users)];
 
   $node->title = devel_create_greeking(mt_rand(1, $results['title_length']), TRUE);
-  $node->body = "node ($node->type) - ". devel_create_content();
-  $node->teaser = node_teaser($node->body);
-  $node->filter = variable_get('filter_default_format', 1);
-  $node->format = FILTER_FORMAT_DEFAULT;
+  if ($type->has_body) {
+    $node->body = "node ($node->type) - ". devel_create_content();
+    $node->teaser = node_teaser($node->body);
+    $node->filter = variable_get('filter_default_format', 1);
+    $node->format = FILTER_FORMAT_DEFAULT;
+  }
   $node->language = '';
   $node->revision = mt_rand(0,1);
   $node->promote = mt_rand(0, 1);
@@ -473,7 +472,6 @@ function devel_generate_content_add_node(&$results) {
   
   // A flag to let hook_nodeapi() implementations know that this is a generated node.
   $node->devel_generate = $results;
-      
   // See devel_generate_nodeapi() for actions that happen before and after this save.
   node_save($node);
 
@@ -482,7 +480,6 @@ function devel_generate_content_add_node(&$results) {
 function devel_generate_nodeapi(&$node, $op, $a3 = NULL, $a4 = NULL) {
   if (isset($node->devel_generate)) {
     $results = $node->devel_generate;
-    
     switch ($op) {
       // Modules that want to affect generated nodes may implement hook_nodeapi('presave'). See OG module or CCK.
       // A few implementations live here because core doesn't do bulk node generation.
@@ -493,6 +490,10 @@ function devel_generate_nodeapi(&$node, $op, $a3 = NULL, $a4 = NULL) {
 
         if ($results['add_terms']) {
           devel_generate_add_terms($node);
+        }
+        if (isset($results['add_language']) && variable_get('language_content_type_' . $node->type, 0)) {
+          $languages = array_keys($results['add_language']);
+          $node->language = $languages[array_rand($languages)];
         }
         break;
     case 'insert':

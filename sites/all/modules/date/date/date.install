@@ -1,5 +1,5 @@
 <?php
-// $Id: date.install,v 1.37.2.5.2.31 2009/06/08 22:42:27 karens Exp $
+// $Id: date.install,v 1.37.2.5.2.32 2009/08/21 20:31:37 karens Exp $
 
 /**
  * Implementation of hook_install().
@@ -531,7 +531,7 @@ function date_update_6005() {
   // We need to abort and tell the user to re-run it.
   // We need a custom abort process because the content_check_update could be OK
   // but we still need to update these values.
-  if (!db_table_exists('date_format') || !db_table_exists('date_format_types')) {
+  if (!db_table_exists('date_formats') || !db_table_exists('date_format_types')) {
     drupal_set_message(t('Some updates are still pending. Please return to <a href="@update-php">update.php</a> and run the remaining updates.', array('@update-php' => base_path() .'update.php?op=selection')), 'error', FALSE);
     $ret['#abort'] = array('success' => FALSE, 'query' => t('Some updates are still pending.<br/>Please re-run the update script.'));
     return $ret;

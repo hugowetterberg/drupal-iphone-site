@@ -1,5 +1,5 @@
 <?php
-// $Id: cache.inc,v 1.17.2.2 2009/05/26 08:10:33 goba Exp $
+// $Id: cache.inc,v 1.17.2.4 2009/12/16 17:30:00 goba Exp $
 
 /**
  * Return data from the persistent cache. Data may be stored as either plain text or as serialized data.
@@ -126,9 +126,9 @@ function cache_set($cid, $data, $table = 'cache', $expire = CACHE_PERMANENT, $he
  *   argument if $cid is set.
  *
  * @param $wildcard
- *   If set to TRUE, the $cid is treated as a substring
- *   to match rather than a complete ID. The match is a right hand
- *   match. If '*' is given as $cid, the table $table will be emptied.
+ *   If $wildcard is TRUE, cache IDs starting with $cid are deleted in
+ *   addition to the exact cache ID specified by $cid.  If $wildcard is
+ *   TRUE and $cid is '*' then the entire table $table is emptied.
  */
 function cache_clear_all($cid = NULL, $table = NULL, $wildcard = FALSE) {
   global $user;
@@ -169,7 +169,7 @@ function cache_clear_all($cid = NULL, $table = NULL, $wildcard = FALSE) {
   else {
     if ($wildcard) {
       if ($cid == '*') {
-        db_query("DELETE FROM {". $table ."}");
+        db_query("TRUNCATE TABLE {". $table ."}");
       }
       else {
         db_query("DELETE FROM {". $table ."} WHERE cid LIKE '%s%%'", $cid);

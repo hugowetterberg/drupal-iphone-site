@@ -1,6 +1,11 @@
-$Id: CHANGELOG.txt,v 1.2.2.12 2009/04/20 14:34:08 darrenoh Exp $
+$Id: CHANGELOG.txt,v 1.2.2.13 2009/07/15 18:17:32 darrenoh Exp $
 
 Secure Site 6.x-2.x, xxxx-xx-xx
+-------------------------------
+#441634 by Arto: Fixed undefined function drupal_strtolower().
+
+
+Secure Site 6.x-2.3, 2009-04-20
 -------------------------------
 #388890 by jmiccolis: Fixed user name validation.
   Users who didn't have permission to change their user names could not change

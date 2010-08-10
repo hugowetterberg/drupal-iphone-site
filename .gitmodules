@@ -1,15 +1,3 @@
-[submodule "sites/default/modules/oauth_common"]
-	path = sites/default/modules/oauth_common
-	url = git://github.com/hugowetterberg/oauth.git
-[submodule "sites/default/modules/services_oauth"]
-	path = sites/default/modules/services_oauth
-	url = git://github.com/hugowetterberg/services_oauth.git
-[submodule "sites/default/modules/inputstream"]
-	path = sites/default/modules/inputstream
-	url = git://github.com/hugowetterberg/inputstream.git
-[submodule "sites/default/modules/services"]
-	path = sites/default/modules/services
-	url = git://github.com/hugowetterberg/services.git
 [submodule "sites/default/modules/query_builder"]
 	path = sites/default/modules/query_builder
 	url = git://github.com/hugowetterberg/query_builder.git
@@ -19,3 +7,33 @@
 [submodule "sites/default/modules/rest_server"]
 	path = sites/default/modules/rest_server
 	url = git://github.com/hugowetterberg/rest_server.git
+[submodule "sites/all/modules/cobalt"]
+	path = sites/all/modules/cobalt
+	url = git://github.com/hugowetterberg/cobalt.git
+[submodule "sites/all/modules/imagecache_action_cover"]
+	path = sites/all/modules/imagecache_action_cover
+	url = git://github.com/hugowetterberg/imagecache_action_cover.git
+[submodule "sites/all/modules/nodeformcols"]
+	path = sites/all/modules/nodeformcols
+	url = git://github.com/hugowetterberg/nodeformcols.git
+[submodule "sites/all/modules/simple_geo"]
+	path = sites/all/modules/simple_geo
+	url = git://github.com/hugowetterberg/simple_geo.git
+[submodule "sites/all/modules/oembed"]
+	path = sites/all/modules/oembed
+	url = git://github.com/voxpelli/drupal-oembed.git
+[submodule "sites/all/modules/cssdry"]
+	path = sites/all/modules/cssdry
+	url = git://github.com/hugowetterberg/cssdry.git
+[submodule "sites/all/modules/services"]
+	path = sites/all/modules/services
+	url = git://github.com/hugowetterberg/services.git
+[submodule "sites/all/modules/inputstream"]
+	path = sites/all/modules/inputstream
+	url = git://github.com/hugowetterberg/inputstream.git
+[submodule "sites/all/modules/services_oauth"]
+	path = sites/all/modules/services_oauth
+	url = git://github.com/hugowetterberg/services_oauth.git
+[submodule "sites/all/modules/oauth"]
+	path = sites/all/modules/oauth
+	url = git://github.com/hugowetterberg/oauth.git

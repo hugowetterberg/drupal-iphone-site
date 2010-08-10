@@ -1,29 +1,40 @@
-$Id: API.txt,v 1.5 2008/01/22 14:26:53 greggles Exp $
+$Id: API.txt,v 1.5.2.1 2009/03/07 19:52:05 greggles Exp $
 
-Implementing automatic aliases for a module
+This document explains how to provide "Pathauto integration" in a
+module. You need this if you would like to provide additional tokens
+or if your module has paths and you wish to have them automatically
+aliased.  The simplest integration is just to provide tokens so we
+cover that first.  More advanced integration requires an
+implementation of hook_pathauto to provide a settings form.
 
-There are three pieces a module must provide to support automatic aliasing 
-(see pathauto_node.inc, pathauto_taxonomy.inc, and pathauto_user.inc for 
-examples). 
+It may be helpful to review some examples of integration from the
+pathauto_node.inc, pathauto_taxonomy.inc, and pathauto_user.inc files.
 
-Ideally this code will be integrated into a module, but a developer may extend 
-a module they don't maintain by implementing these functions in a file 
-of the form pathauto_<module>.inc in the pathauto directory.
-
-Note that as of Pathauto 5-2 this API is vastly simplified.  If all you want is
-to enable tokens for your module you will simply need to implement two functions
-
-  hook_token_values
-  hook_token_list
-
-See the token.module for more information about this process.  
-
-Legacy information is retained below - and it may apply if you have a complex 
-module in which case you are encouraged to help the Pathauto maintainers figure 
-out what the below text should say ;)
 
 ==================
-1 - Settings hook
+1 - Providing additional tokens
+==================
+
+If all you want is to enable tokens for your module you will simply
+need to implement two functions:
+
+  hook_token_values 
+  hook_token_list
+
+See the token.module and it's API.txt for more information about this
+process.
+
+When an object is created (whether it is a node or a user or a
+taxonomy term) the data that Pathauto hands to the token_values in the
+$object is in a specific format. This is the format that most people
+write code to handle. However, during edits and bulk updates the data
+may be in a totally different format. So, if you are writing a
+hook_token_values implementation to add special tokens, be sure to
+test creation, edit, and bulk update cases to make sure your code will
+handle it.
+
+==================
+2 - Settings hook - To create aliases for your module
 ==================
 You must implement hook_pathauto($op), where $op is always (at this
 time) 'settings'. Return an object (NOT an array) containing the
@@ -63,7 +74,8 @@ bulkdescr - For modules which support a bulk update operation, a
 
 At the appropriate time (usually when a new item is being created for
 which a generated alias is desired), call pathauto_create_alias() to
-generate and create the alias.
+generate and create the alias.  See the user, taxonomy, and nodeapi hook 
+implementations in pathauto.module for examples.
 
 $module - The name of your module (e.g., 'node')
 $op - Operation being performed on the item ('insert', 'update', or
@@ -102,7 +114,7 @@ count of created aliases) via drupal_set_message().
 
 
 ==================
-4 - Bulk delete hook
+4 - Bulk delete hook_path_alias_types()
 ==================
 
 For modules that create new types of pages that can be aliased with pathauto, a
@@ -120,6 +132,8 @@ is a database wildcard, so be careful.
 ==================
 Modules that extend node and/or taxonomy
 ==================
+
+NOTE: this is basically not true any more.  If you feel you need this file an issue.
 
 Many contributed Drupal modules extend the core node and taxonomy
 modules. To extend pathauto patterns to support their extensions, they

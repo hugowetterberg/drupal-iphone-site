@@ -1,5 +1,5 @@
 <?php
-// $Id: potx.module,v 1.1.2.12.2.2.2.10 2009/03/13 10:13:14 goba Exp $
+// $Id: potx.module,v 1.1.2.12.2.2.2.10.4.3 2010/05/07 14:42:56 goba Exp $
 
 /**
  * @file
@@ -44,7 +44,7 @@ function potx_select_form() {
   $form = array();
   $components = _potx_component_list();
   _potx_component_selector($form, $components);
-  
+
   // Generate translation file for a specific language if possible.
   $languages = language_list();
   if (count($languages) > 1 || !isset($languages['en'])) {
@@ -75,7 +75,7 @@ function potx_select_form() {
     '#type' => 'submit',
     '#value' => t('Extract'),
   );
-  
+
   return $form;
 }
 
@@ -92,6 +92,10 @@ function potx_select_form_validate($form, &$form_state) {
  * Generate translation template or translation file for the requested component.
  */
 function potx_select_form_submit($form, &$form_state) {
+  global $devel_shutdown;
+
+  // Avoid devel.module putting extra output to the end of files exported.
+  $devel_shutdown = FALSE;
 
   // This could take some time.
   @set_time_limit(0);
@@ -107,7 +111,7 @@ function potx_select_form_submit($form, &$form_state) {
   //   sites/all/modules/coder
   //   sites/all/modules/i18n/i18n.module
   //   themes/garland
-  
+
   $component = $form_state['values']['component'];
   $pathinfo = pathinfo($component);
   if (!isset($pathinfo['filename'])) {
@@ -117,7 +121,7 @@ function potx_select_form_submit($form, &$form_state) {
   $strip_prefix = 0;
 
   if (isset($pathinfo['extension'])) {
-    // A specific module or theme file was requested (otherwise there should be no extension). 
+    // A specific module or theme file was requested (otherwise there should be no extension).
     $files = _potx_explore_dir($pathinfo['dirname'] .'/', $pathinfo['filename']);
     $strip_prefix = 1 + strlen($pathinfo['dirname']);
     $outputname = $pathinfo['filename'];
@@ -128,7 +132,7 @@ function potx_select_form_submit($form, &$form_state) {
     $strip_prefix = 1 + strlen($component);
     $outputname = $pathinfo['basename'];
   }
-  
+
   // Decide on template or translation file generation.
   $template_langcode = $translation_langcode = NULL;
   if (isset($form_state['values']['langcode']) && ($form_state['values']['langcode'] != 'n/a')) {
@@ -145,14 +149,14 @@ function potx_select_form_submit($form, &$form_state) {
   else {
     $outputname .= '.pot';
   }
-  
+
   // Collect every string in affected files. Installer related strings are discared.
   foreach ($files as $file) {
     _potx_process_file($file, $strip_prefix);
   }
   // Need to include full parameter list to get to passing the language codes.
   _potx_build_files(POTX_STRING_RUNTIME, POTX_BUILD_SINGLE, 'general', '_potx_save_string', '_potx_save_version', '_potx_get_header', $template_langcode, $translation_langcode);
-  
+
   _potx_write_files($outputname, 'attachment');
 
   exit;
@@ -178,9 +182,9 @@ function _potx_component_selector(&$form, &$components, $dirname = '') {
 
   //ksort($components);
   $dirkeys = array_keys($components);
-  
+
   // A directory with one component.
-  if (isset($component_count) && (count($components) == 1)) { 
+  if (isset($component_count) && (count($components) == 1)) {
     $component = array_shift($components);
     $dirname = dirname($component->filename);
     $form[_potx_form_id('dir', $dirname)] = array(
@@ -275,7 +279,7 @@ function _potx_form_id($type, $path) {
 function _potx_component_list() {
   $components = array();
   // Get a list of all enabled modules and themes.
-  $result = db_query("SELECT name, filename, type, status FROM {system} WHERE type IN ('module', 'theme') AND status = 1 ORDER BY filename ASC");
+  $result = db_query("SELECT name, filename, type, status FROM {system} WHERE type IN ('module', 'theme') ORDER BY filename ASC");
   while ($component = db_fetch_object($result)) {
     // Build directory tree structure.
     $path_parts = explode('/', dirname($component->filename));
@@ -292,7 +296,7 @@ function _potx_component_list() {
     $dir['#'. $component->basename] = $component;
     $dir['#-count'] = isset($dir['#-count']) ? $dir['#-count'] + 1 : 1;
   }
-  
+
   return $components;
 }
 

@@ -1,5 +1,5 @@
 <?php
-//$Id: date_api_elements.inc,v 1.49.2.1.2.50 2009/05/11 02:23:56 karens Exp $
+//$Id: date_api_elements.inc,v 1.49.2.1.2.53 2009/09/16 10:56:28 karens Exp $
 /**
  * @file
  * Date API elements themes and validation.
@@ -132,14 +132,15 @@ function date_text_process($element, $edit, $form_state, $form) {
   $date = NULL;
   $granularity = date_format_order($element['#date_format']);
   
-  if (!empty($edit) && !empty($edit['date'])) {
+  // We sometimes get $edit without $edit['date'] from
+  // Views exposed filters.
+  if (!empty($edit) && is_array($edit) && !empty($edit['date'])) {
     $datetime = date_convert_from_custom($edit['date'], $element['#date_format']);
     $date = date_make_date($datetime, $element['#date_timezone'], DATE_DATETIME, $granularity);
   }
   elseif (!empty($element['#value'])) {
     $date = date_make_date($element['#value'], $element['#date_timezone'], DATE_DATETIME, $granularity);
   }
-  
   $element['#tree'] = TRUE;
 
   $element['date']['#type'] = 'textfield';
@@ -328,12 +329,12 @@ function date_parts_element($element, $date, $format) {
         $sub_element[$field]['#title'] = $label;
       }
     }
-  }
  
-  // Views exposed filters are treated as submitted even if not,
-  // so force the #default value in that case.  
-  if (!empty($element[$field]['#force_value'])) {
-    $sub_element[$field]['#value'] = $sub_element[$field]['#default_value'];
+    // Views exposed filters are treated as submitted even if not,
+    // so force the #default value in that case.  
+    if (!empty($element[$field]['#force_value'])) {
+      $sub_element[$field]['#value'] = $sub_element[$field]['#default_value'];
+    }
   }
   
   if (($hours_format == 'g' || $hours_format == 'h') && date_has_time($granularity)) {

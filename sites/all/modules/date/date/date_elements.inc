@@ -1,5 +1,5 @@
 <?php
-//$Id: date_elements.inc,v 1.46.2.2.2.64 2009/07/24 18:48:14 karens Exp $
+//$Id: date_elements.inc,v 1.46.2.2.2.66 2009/09/16 11:07:18 karens Exp $
 /**
  * @file
  * Date forms and form themes and validation.
@@ -256,7 +256,7 @@ function _date_elements() {
  */
 function date_combo_process($element, $edit, &$form_state, $form) {
   if (isset($element['#access']) && empty($element['#access'])) {
-    return;
+    return $element;
   }
 
   $field_name = $element['#field_name'];
@@ -283,7 +283,6 @@ function date_combo_process($element, $edit, &$form_state, $form) {
     '#weight'        => $field['widget']['weight'],
     '#required'      => ($field['required'] && $delta == 0) ? 1 : 0,
     '#default_value' => isset($element['#value'][$from_field]) ? $element['#value'][$from_field] : '',
-    '#field'         => $field,
     '#delta'         => $delta,
     '#date_timezone' => $element['#date_timezone'],
     '#date_format'      => date_limit_format(date_input_format($element, $field), $field['granularity']),

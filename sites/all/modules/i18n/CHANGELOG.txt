@@ -1,4 +1,56 @@
-// $Id: CHANGELOG.txt,v 1.15.4.65 2009/06/22 09:32:03 jareyero Exp $
+// $Id: CHANGELOG.txt,v 1.15.4.81 2010/04/07 19:45:52 jareyero Exp $
+
+6.x-1.3 to 6.x-1.4
+------------------
+- Added some unit tests for strings, blocks and taxonomy
+- Fixed: Block translations deleted on refresh, #732680
+- Fixed: warning in node form causes PHP notice, by swentel, #664944
+- Fixed: i18nblocks conflicts with modules and themes, by JohnAlbin, #457512
+- Some clean up to i18nstrings API: Dropped update option from i18nstrings_translate()
+- Disable content selection during synchronization, by Pisco, #648348
+- Add CSS class to body tag based on language, by Garrett Albright, #661448
+- Added compatibility with ctools page manager, by Kars-T, #698942
+- Added support for taxonomy_override_selector, by hefox, #619726
+- Fixed: Configure string translation tab not showing up, #732368
+- Fixed: Views content negotiation filter not working, by markus_petrux, #650552
+- PHP 5.3 compatibiliby issue, by Berdir, #623138
+
+6.x-1.2 to 6.x-1.3
+-------------------
+- Security update: Reworked string translation (i18nstrings) API, see #731632
+- Fixed: Multiple issues with file synchronization, new files, other modules, #363065
+- Usability: Added proper validation to vocabulary form, by andrewlevine #577066
+- Fixed: Translated primary and secondary links appear even if they are disabled, by yrocq #631388
+- Reworked i18nstrings API using proper namespaces, kept tt() for compatibility
+- Added: New plugin for views translation, by nedjo, joostvdl, #360024
+
+6.x-1.1 to 6.x-1.2
+------------------ 
+- Fixed: location fields not showing up for synchronization options, #426294
+- Fixed: pgsql compatibility in upgrade scripts, by jandd, #383728
+- Fixed: Translate all custom block titles (not only custom blocks), by brucepearson, #541048
+- Added: Primary and secondary links' menus translation using preprocess, by neochief, #514108
+- Changed: hook_locale(), new 'info' op, obsoleted 'refresh'
+- Fixed: Some text groups losing strings when refreshed, #442428
+- Fixed: Checkboxes fields are not translating in profile view pages, by neochief, #520692
+- Added: Translate tags vocablary name on node form, by dboulet, #494576
+- Fixed i18n Filter in Views results in SQL Error, by markus_petrux, #522162
+- Added tag support for taxonomy synchronization, #605600
+- Fixed buggy taxonomy synchronization, #365606, #365606, #379306
+- Cleaning some module dependencies and old code.
+- Fixed: Select translations autocomplete wrong filtering by hass, #557980
+- Added: Translated taxonomy tokens by Hugo Wetterberg, googletorp, #344794
+- Fixed: Global variable corruption by etzel, #580280
+- New i18ncck module by neochief
+- Got started with some unit tests and base test clase.
+- Added support for image synchronization, #329825
+- Added filefield/imagefield synchronization, by dasjo, #278426
+- Fixed: Unset variables set to be multilingual don't show default values, by Island Usurper, #527534
+- Reworked content type settings, now in own fieldset
+- Added node language options:
+  - Default to current language
+  - No language neutral
+  - Lock language once created
 
 6.x-1.0 to 6.x-1.1
 --------------------
@@ -41,7 +93,7 @@
 - Reworked taxonomy language logic when saving terms, set node/current language for tags.
 - Added some more help text and links to the taxonomy admin pages.
 - Mark translations a outdated when source string changes, by nedjo, #355366
-- Changed default behavior: content types with multilingual support disabled are now language neutral, #270655 
+- Changed default behavior: content types with multilingual support disabled are now language neutral, #270655
 - Added i18n menu handling to node form, by Roger López, Stella, #348444
 - Added additional language support level, by stella, Roger Lopez, #349193
 - Fixed duplicated 'ts' function (CiviCRM), renamed to 'i18nstrings_ts', by mfb, #298154

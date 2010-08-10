@@ -1,5 +1,5 @@
 <?php
-// $Id: date_api_filter_handler.inc,v 1.1.2.40 2009/06/09 11:12:11 karens Exp $
+// $Id: date_api_filter_handler.inc,v 1.1.2.41 2009/09/16 10:47:23 karens Exp $
 
 /**
  * A flexible, configurable date filter.
@@ -404,11 +404,13 @@ class date_api_filter_handler extends views_handler_filter_numeric {
    * AND and OR methods in the right places.
    */
   function query() {
-    $this->ensure_my_table();
     $this->get_query_fields();
+    $this->table = $this->query_fields[0]['field']['table_name'];
+    $this->ensure_my_table();
     if (!empty($this->query_fields)) {
       foreach ((array) $this->query_fields as $query_field) {
         $field = $query_field['field'];
+        $query_field['field']['fullname'] = $this->table_alias. '.' .$field['field_name'];
         $sql = '';
         $sql_parts = array();
         switch ($this->operator) {

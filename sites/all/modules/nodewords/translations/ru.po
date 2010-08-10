@@ -1,5 +1,5 @@
 # translation of nodewords-5.x-1.5.po to russian
-# $Id: ru.po,v 1.1.2.1 2008/01/27 21:46:45 hass Exp $
+# $Id: ru.po,v 1.1.2.2 2009/08/11 01:17:37 kiam Exp $
 #
 # LANGUAGE translation of Drupal (general)
 # Copyright YEAR NAME <EMAIL@ADDRESS>
@@ -224,4 +224,3 @@ msgstr "Мета-ярлык robots"
 #: tags/robots.inc:30
 msgid "The ROBOTS meta tag offers a simple mechanisme to indicate to web robots and crawlers wether the page should be indexed (INDEX or NOINDEX) and whether links on the page should be followed (FOLLOW or NOFOLLOW). The default setting is @default."
 msgstr "Мета-ярлык ROBOTS предоставляет простой механизм задания директив роботам - \"паукам\" (программам автоматического посещения страниц) - следует ли им принимать страницы во внимание (INDEX или NOINDEX), а также - следовать ли по найденным на страницах ссылкам (FOLLOW или NOFOLLOW). По умолчанию выставлено @default."
-

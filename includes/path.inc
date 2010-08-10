@@ -1,5 +1,5 @@
 <?php
-// $Id: path.inc,v 1.19.2.1 2008/10/13 21:06:41 dries Exp $
+// $Id: path.inc,v 1.19.2.4 2010/05/28 15:12:04 goba Exp $
 
 /**
  * @file
@@ -66,7 +66,7 @@ function drupal_lookup_path($action, $path = '', $path_language = '') {
         return $map[$path_language][$path];
       }
       // Get the most fitting result falling back with alias without language
-      $alias = db_result(db_query("SELECT dst FROM {url_alias} WHERE src = '%s' AND language IN('%s', '') ORDER BY language DESC", $path, $path_language));
+      $alias = db_result(db_query("SELECT dst FROM {url_alias} WHERE src = '%s' AND language IN('%s', '') ORDER BY language DESC, pid DESC", $path, $path_language));
       $map[$path_language][$path] = $alias;
       return $alias;
     }
@@ -77,7 +77,7 @@ function drupal_lookup_path($action, $path = '', $path_language = '') {
       $src = '';
       if (!isset($map[$path_language]) || !($src = array_search($path, $map[$path_language]))) {
         // Get the most fitting result falling back with alias without language
-        if ($src = db_result(db_query("SELECT src FROM {url_alias} WHERE dst = '%s' AND language IN('%s', '') ORDER BY language DESC", $path, $path_language))) {
+        if ($src = db_result(db_query("SELECT src FROM {url_alias} WHERE dst = '%s' AND language IN('%s', '') ORDER BY language DESC, pid DESC", $path, $path_language))) {
           $map[$path_language][$src] = $path;
         }
         else {
@@ -217,9 +217,15 @@ function drupal_set_title($title = NULL) {
  *   Boolean value: TRUE if the current page is the front page; FALSE if otherwise.
  */
 function drupal_is_front_page() {
-  // As drupal_init_path updates $_GET['q'] with the 'site_frontpage' path,
-  // we can check it against the 'site_frontpage' variable.
-  return $_GET['q'] == drupal_get_normal_path(variable_get('site_frontpage', 'node'));
+  static $is_front_page;
+
+  if (!isset($is_front_page)) {
+    // As drupal_init_path updates $_GET['q'] with the 'site_frontpage' path,
+    // we can check it against the 'site_frontpage' variable.
+    $is_front_page = ($_GET['q'] == drupal_get_normal_path(variable_get('site_frontpage', 'node')));
+  }
+
+  return $is_front_page;
 }
 
 /**
@@ -231,7 +237,7 @@ function drupal_is_front_page() {
  *   String containing a set of patterns separated by \n, \r or \r\n.
  *
  * @return
- *   Boolean value: TRUE if the path matches a pattern, FALSE otherwise.
+ *   1 if there is a match, 0 if there is not a match.
  */
 function drupal_match_path($path, $patterns) {
   static $regexps;

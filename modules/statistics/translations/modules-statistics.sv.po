@@ -1,13 +1,13 @@
-# Swedish translation of drupal (6.10)
+# Swedish translation of drupal (6.13)
 # Copyright (c) 2009 by the Swedish translation team
 # Generated from files:
 #  statistics.admin.inc,v 1.6 2008/01/08 10:35:42 goba
-#  statistics.module,v 1.272 2008/01/04 09:31:48 goba
+#  statistics.module,v 1.272.2.1 2009/04/27 12:25:24 goba
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: drupal (6.10)\n"
-"POT-Creation-Date: 2009-03-12 17:50+0100\n"
+"Project-Id-Version: drupal (6.13)\n"
+"POT-Creation-Date: 2009-08-04 10:44+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"

@@ -17,3 +17,17 @@
   margin-left: 0;
   margin-right: -5px;
 }
+
+.date-nav div.date-prev {
+  text-align: right;
+  float: right;
+}
+
+.date-nav div.date-next {
+  text-align: left;
+  float: right;
+}
+
+.date-nav div.date-heading {
+  float: right;
+}

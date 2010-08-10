@@ -1,16 +1,16 @@
-# Swedish translation of drupal (6.10)
+# Swedish translation of drupal (6.13)
 # Copyright (c) 2009 by the Swedish translation team
 # Generated from files:
 #  comment-folded.tpl.php,v 1.2 2007/08/07 08:39:35 goba
 #  comment.admin.inc,v 1.4.2.2 2008/05/19 07:27:35 goba
-#  comment.pages.inc,v 1.2.2.1 2008/02/07 18:53:38 goba
-#  comment.module,v 1.617.2.4 2009/01/06 17:34:54 goba
+#  comment.pages.inc,v 1.2.2.2 2009/07/01 20:51:55 goba
+#  comment.module,v 1.617.2.8 2009/07/01 20:51:55 goba
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: drupal (6.10)\n"
-"POT-Creation-Date: 2009-03-12 17:50+0100\n"
-"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Project-Id-Version: drupal (6.13)\n"
+"POT-Creation-Date: 2009-08-04 10:44+0200\n"
+"PO-Revision-Date: 2009-07-23 00:05+0200\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -142,8 +142,7 @@ msgid ""
 "For more information, see the online handbook entry for <a href=\"@comment"
 "\">Comment module</a>."
 msgstr ""
-"Läs mer om <a href=\"@comment\">modulen Comment</a> i konfigurations- och "
-"anpassningshandboken."
+"Läs mer om <a href=\"@comment\">modulen Comment </a> i onlinehandboken."
 
 #: modules/comment/comment.module:134
 msgid ""
@@ -319,7 +318,7 @@ msgstr "Ämnesfält för kommentarer"
 msgid "Can users provide a unique subject for their comments?"
 msgstr "Kan användarna ange ett unikt ämne för sina kommentarer?"
 
-#: modules/comment/comment.module:558,1428
+#: modules/comment/comment.module:558,1430
 msgid "Preview comment"
 msgstr "Förhandsvisa kommentar"
 
@@ -371,39 +370,39 @@ msgstr "besvara"
 msgid "Post new comment"
 msgstr "Skriv ny kommentar"
 
-#: modules/comment/comment.module:1072,1084
+#: modules/comment/comment.module:1074,1086
 msgid "Publish the selected comments"
 msgstr "Publicera de valda kommentarerna"
 
-#: modules/comment/comment.module:1073,1079,1086
+#: modules/comment/comment.module:1075,1081,1088
 msgid "Delete the selected comments"
 msgstr "Radera de valda kommentarerna"
 
-#: modules/comment/comment.module:1078,1085
+#: modules/comment/comment.module:1080,1087
 msgid "Unpublish the selected comments"
 msgstr "Avpublicera de valda kommentarerna"
 
-#: modules/comment/comment.module:1195
+#: modules/comment/comment.module:1197
 msgid "You have to specify a valid author."
 msgstr "Du måste ange en giltig författare."
 
-#: modules/comment/comment.module:1206
+#: modules/comment/comment.module:1208
 msgid "The name you used belongs to a registered user."
 msgstr "Namnet du använde hör till en registrerad användare."
 
-#: modules/comment/comment.module:1211
+#: modules/comment/comment.module:1213
 msgid "You have to leave your name."
 msgstr "Du måste ange ditt namn."
 
-#: modules/comment/comment.module:1216
+#: modules/comment/comment.module:1218
 msgid "The e-mail address you specified is not valid."
 msgstr "Den e-postadress du angav är inte giltig."
 
-#: modules/comment/comment.module:1220
+#: modules/comment/comment.module:1222
 msgid "You have to leave an e-mail address."
 msgstr "Du måste ange en e-postadress."
 
-#: modules/comment/comment.module:1225
+#: modules/comment/comment.module:1227
 msgid ""
 "The URL of your homepage is not valid. Remember that it must be fully "
 "qualified, i.e. of the form <code>http://example.com/directory</code>."
@@ -411,23 +410,23 @@ msgstr ""
 "URL:en till din hemsida är ogiltig. Kom ihåg att den måste vara helt giltig, "
 "det vill säga i formen <code>http://exempel.se/katalog</code>."
 
-#: modules/comment/comment.module:1281
+#: modules/comment/comment.module:1283
 msgid "Administration"
 msgstr "Administration"
 
-#: modules/comment/comment.module:1324,1349,1356
+#: modules/comment/comment.module:1326,1351,1358
 msgid "Homepage"
 msgstr "Hemsida"
 
-#: modules/comment/comment.module:1530
+#: modules/comment/comment.module:1532
 msgid "(No subject)"
 msgstr "(Inget ämne)"
 
-#: modules/comment/comment.module:1616
+#: modules/comment/comment.module:1620
 msgid "!a comments per page"
 msgstr "!a kommentarer per sida"
 
-#: modules/comment/comment.module:1643
+#: modules/comment/comment.module:1647
 msgid ""
 "Select your preferred way to display the comments and click \"Save settings"
 "\" to activate your changes."
@@ -435,11 +434,11 @@ msgstr ""
 "Välj ditt önskade sätt att visa kommentarerna och klicka på \"Spara\" för "
 "att verkställa dina ändringar."
 
-#: modules/comment/comment.module:1644
+#: modules/comment/comment.module:1648
 msgid "Comment viewing options"
 msgstr "Alternativ för kommentarvisning"
 
-#: modules/comment/comment.module:1797
+#: modules/comment/comment.module:1801
 msgid ""
 "<a href=\"@login\">Login</a> or <a href=\"@register\">register</a> to post "
 "comments"
@@ -447,55 +446,55 @@ msgstr ""
 "<a href=\"@login\">logga in</a> eller <a href=\"@register\">registrera dig</"
 "a> för att kunna kommentera"
 
-#: modules/comment/comment.module:1801
+#: modules/comment/comment.module:1805
 msgid "<a href=\"@login\">Login</a> to post comments"
 msgstr "<a href=\"@login\">Logga in</a> för att skriva kommentarer"
 
-#: modules/comment/comment.module:1829
+#: modules/comment/comment.module:1833
 msgid "Submitted by !username on @datetime."
 msgstr "Skrivet av !username den @datetime."
 
-#: modules/comment/comment.module:1844
+#: modules/comment/comment.module:1848
 msgid "Flat list - collapsed"
 msgstr "Rak lista - hoppfällt läge"
 
-#: modules/comment/comment.module:1845
+#: modules/comment/comment.module:1849
 msgid "Flat list - expanded"
 msgstr "Rak lista - utfällt läge"
 
-#: modules/comment/comment.module:1846
+#: modules/comment/comment.module:1850
 msgid "Threaded list - collapsed"
 msgstr "Trådad lista - hoppfällt läge"
 
-#: modules/comment/comment.module:1847
+#: modules/comment/comment.module:1851
 msgid "Threaded list - expanded"
 msgstr "Trådad lista - utfällt läge"
 
-#: modules/comment/comment.module:2003
+#: modules/comment/comment.module:2007
 msgid "After saving a new comment"
 msgstr "Efter sparande av ny kommentar"
 
-#: modules/comment/comment.module:2006
+#: modules/comment/comment.module:2010
 msgid "After saving an updated comment"
 msgstr "Efter sparande av uppdaterad kommentar"
 
-#: modules/comment/comment.module:2009
+#: modules/comment/comment.module:2013
 msgid "After deleting a comment"
 msgstr "Efter radering av kommentar"
 
-#: modules/comment/comment.module:2012
+#: modules/comment/comment.module:2016
 msgid "When a comment is being viewed by an authenticated user"
 msgstr "När en kommentar visas av en behörig användare."
 
-#: modules/comment/comment.module:2025
+#: modules/comment/comment.module:2029
 msgid "Unpublish comment"
 msgstr "Avpublicera kommentaren"
 
-#: modules/comment/comment.module:2033
+#: modules/comment/comment.module:2037
 msgid "Unpublish comment containing keyword(s)"
 msgstr "Avpublicera kommentarer som innehåller nyckelordet/nyckelorden"
 
-#: modules/comment/comment.module:2073
+#: modules/comment/comment.module:2077
 msgid ""
 "The comment will be unpublished if it contains any of the character "
 "sequences above. Use a comma-separated list of character sequences. Example: "
@@ -511,7 +510,7 @@ msgstr ""
 msgid "Comment: added %subject."
 msgstr "Kommentar: Lagt till %subject"
 
-#: modules/comment/comment.module:2061,2101
+#: modules/comment/comment.module:2065,2105
 msgid "Unpublished comment %subject."
 msgstr "Avpublicera kommentaren %subject."
 
@@ -535,7 +534,7 @@ msgstr "administrera kommentarer"
 
 #: modules/comment/comment.module:275
 msgid "post comments without approval"
-msgstr "skriv kommentarer utan godkännande"
+msgstr "skriva kommentarer utan godkännande"
 
 #: modules/comment/comment.module:199
 msgid "List and edit site comments and the comment moderation queue."

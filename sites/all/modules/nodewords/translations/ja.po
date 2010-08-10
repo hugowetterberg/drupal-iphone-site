@@ -1,4 +1,4 @@
-# $Id: ja.po,v 1.1.4.3 2008/11/13 04:40:26 imagine Exp $
+# $Id: ja.po,v 1.1.4.5 2009/08/11 01:17:37 kiam Exp $
 #
 # Japanese translation of Drupal (general)
 # Copyright YEAR NAME <EMAIL@ADDRESS>
@@ -111,8 +111,8 @@ msgid "Use front page meta tags"
 msgstr "フロントページのメタタグを使用"
 
 #: nodewords.admin.inc:139
-msgid "Check this option if you want to use the <a href=\"!front-page-url\" title=\"Meta tags for front page\">meta tags for the front page</a> even if the <a href=\"!site-settings-url\" title=\"Site information\">default front page</a> specified is a view, panel or node - in this case, the meta tags specified for the view, panel or node will be ignored. If you want to use the meta tags of the view, panel or node instead, uncheck this option. If unsure, select this option and specify the meta tags you want on the <a href=\"!front-page-url\" title=\"Meta tags for front page\">meta tags for the front page</a>."
-msgstr "<a href=\"!site-settings-url\" title=\"Site information\">デフォルトのフロントページ</a>がビューやパネル、ノードに設定されていても<a href=\"!front-page-url\" title=\"Meta tags for front page\">フロントページ用のメタタグ</a>を使用する場合は、このオプションにチェックを入れてください。この場合、ビューやパネル、ノードに設定されているメタタグは無視されます。ビューやパネル、ノードに設定されているメタタグを代わりに使用する場合はチェックを外します。良く分からなければ、このオプションを選択して、<a href=\"!front-page-url\" title=\"Meta tags for front page\">フロントページ用のメタタグ</a>を設定してください。"
+msgid "Check this option if you want to use the <a href=\"!front-page-url\" title=\"Meta tags for front page\">meta tags for the front page</a> even if the <a href=\"@site-settings-url\" title=\"Site information\">default front page</a> specified is a view, panel or node - in this case, the meta tags specified for the view, panel or node will be ignored. If you want to use the meta tags of the view, panel or node instead, uncheck this option. If unsure, select this option and specify the meta tags you want on the <a href=\"!front-page-url\" title=\"Meta tags for front page\">meta tags for the front page</a>."
+msgstr "<a href=\"@site-settings-url\" title=\"Site information\">デフォルトのフロントページ</a>がビューやパネル、ノードに設定されていても<a href=\"!front-page-url\" title=\"Meta tags for front page\">フロントページ用のメタタグ</a>を使用する場合は、このオプションにチェックを入れてください。この場合、ビューやパネル、ノードに設定されているメタタグは無視されます。ビューやパネル、ノードに設定されているメタタグを代わりに使用する場合はチェックを外します。良く分からなければ、このオプションを選択して、<a href=\"!front-page-url\" title=\"Meta tags for front page\">フロントページ用のメタタグ</a>を設定してください。"
 
 #: nodewords.admin.inc:157
 msgid "Currently no meta tags can be assigned to the front page because you have disabled all tags to show on the edit forms. <a href=\"!nodewords-settings-url\" title=\"meta tags settings\">Enable some meta tags to show on edit forms</a> first."
@@ -250,4 +250,3 @@ msgstr "Robotsメタタグ"
 #: metatags/robots.inc:30
 msgid "The ROBOTS meta tag offers a simple mechanisme to indicate to web robots and crawlers wether the page should be indexed (INDEX or NOINDEX) and whether links on the page should be followed (FOLLOW or NOFOLLOW). The default setting is @default."
 msgstr "ROBOTSメタタグは、ページをインデックスに加えるかどうか (INDEXまたはNOINDEX) とリンク先のページを対象に含めるかどうか (FOLLOWまたはNOFOLLOW) をウェブロボットやクローラーに伝える単純な機能を提供します。デフォルトの設定は @default です。"
-
